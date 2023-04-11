@@ -75,7 +75,7 @@ assignees: Arman17Babaei
 
   **نام و نام خانوادگی:امید حیدری
 <details>
-  <summary>تسک مربوطه</summary>
+  <summary>کلاس های لازم برای Object های اولیه مثل یگان‌ها و ساختمان‌ها</summary>
 
   <div dir="ltr" align='right'>
 
