@@ -1,6 +1,6 @@
 package model.buildings;
 
-public class Defence extends Building {
+public class TowersAndGatehouses extends Building {
     int maxHp;
     int hp;
     boolean canBeLivedIn;
@@ -9,15 +9,15 @@ public class Defence extends Building {
     int height;
     ArrayList<Person> residents;
 
-    public Defence(String type,
-                   String category,
-                   String materialToBuild,
-                   int numberOfMaterialToBuild,
-                   int price,
-                   int hp,
-                   int capacity,
-                   int height) {
-        super(type, category, materialToBuild, numberOfMaterialToBuild, price);
+    public TowersAndGatehouses(String type,
+                               String category,
+                               User owner,
+                               String materialToBuild,
+                               int numberOfMaterialToBuild,
+                               int price,
+                               int hp,
+                               int capacity,
+                               int height) {
         //TODO set the other attributes
     }
 
@@ -33,7 +33,7 @@ public class Defence extends Building {
         return height;
     }
 
-    public int getCapacityLeft() {
+    public int getNumberOfResidents() {
         //TODO capacity left
     }
 
