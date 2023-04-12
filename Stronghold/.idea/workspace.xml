@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="595dce4f-0ef9-4748-902f-c9703fcbd2f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/buildings/OffensiveBuilding.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/buildings/Storage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/NumberOfThings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/buildings/DairyProduceBuilding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/buildings/DefenceBuilding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/buildings/ProduceBuilding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/buildings/WeaponBuilding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/buildings/WorkerBuilding.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/Building.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/Defence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/TowersAndGatehouses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/OffensiveBuilding.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/Storage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/TowersAndGatehouses.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +23,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -36,7 +42,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../project-group-03-1.0.0" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />

@@ -1,39 +1,19 @@
 package model.buildings;
 
 public class Building {
-    private String type;
-    private String category;
-    User owner;
-    private String materialToBuild;
-    private int numberOfMaterialToBuild;
-    private int price;
+    private Kingdom kingdom;
+    private BuildingType buildingType;
+    private int hp;
 
-    public Building(String type,
-                    String category,
-                    User owner,
-                    String materialToBuild,
-                    int numberOfMaterialToBuild,
-                    int price) {
+    public Building (Kingdom kingdom, BuildingType buildingType) {
         //TODO
     }
 
-    public String getType() {
-        return type;
+    public int getHp() {
+        return hp;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public int getNumberOfMaterialToBuild() {
-        return numberOfMaterialToBuild;
-    }
-
-    public String getMaterialToBuild() {
-        return materialToBuild;
+    public void takeDamage(int amount) {
+        //TODO
     }
 }
