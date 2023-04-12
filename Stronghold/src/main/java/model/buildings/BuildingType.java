@@ -10,7 +10,7 @@ public enum BuildingType {
     private NumberOfThings materialToBuild;
     private int price;
 
-
+    //TODO add direction, and list of troops to make and their cost, and list of items to be held, and movers, and cabBeDestroyedByTunnels
     private int maxHp;
     private int workersNeeded;
     private int homeCapacity;

@@ -5,7 +5,7 @@ public class Building {
     private BuildingType buildingType;
     private int hp;
 
-    public Building (Kingdom kingdom, BuildingType buildingType) {
+    public Building(Kingdom kingdom, BuildingType buildingType) {
         //TODO
     }
 
