@@ -10,7 +10,7 @@ public class CaptchaMenu {
         while (true) {
             captcha = Captcha.generateRandomCaptcha();
             String code = captcha.getCode();
-            String asciiArt = captcha.getAsciiArt().getArtAsString();//TODO clear console
+            String asciiArt = captcha.getAsciiArt().getArtAsString();
             System.out.println(asciiArt);
             String userInput = GetInputFromUser.getUserInput();
             if (Commands.getMatcher(userInput, Commands.CHANGE_CODE) == null)

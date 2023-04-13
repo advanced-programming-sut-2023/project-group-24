@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 
 public class RegisterMenu {
 
-    private RegisterMenuController registerMenuController;
+    private final RegisterMenuController registerMenuController;
 
     public RegisterMenu(RegisterMenuController registerMenuController) {
         this.registerMenuController = registerMenuController;

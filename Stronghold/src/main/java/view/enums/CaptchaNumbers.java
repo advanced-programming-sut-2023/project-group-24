@@ -57,7 +57,7 @@ public enum CaptchaNumbers {
             "\n" +
             "\n");
 
-    private String asciiArt;
+    private final String asciiArt;
 
     CaptchaNumbers(String asciiArt) {
         this.asciiArt = asciiArt;

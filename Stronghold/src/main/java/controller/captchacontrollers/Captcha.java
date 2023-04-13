@@ -2,7 +2,7 @@ package controller.captchacontrollers;
 
 public class Captcha {
     private String code;
-    private AsciiArt asciiArt;
+    private final AsciiArt asciiArt;
 
     private Captcha() {
         code = null;

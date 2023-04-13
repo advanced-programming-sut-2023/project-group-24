@@ -4,7 +4,7 @@ import model.Database;
 import view.enums.messages.LoginMenuMessages;
 
 public class LoginMenuController {
-    private Database database;
+    private final Database database;
 
     public LoginMenuController(Database database) {
         this.database = database;

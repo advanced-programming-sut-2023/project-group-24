@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AsciiArt {
-    private char[] noiseChars = {'#', '.', '*', '@', '+', 'O'};
+    private final char[] noiseChars = {'#', '.', '*', '@', '+', 'O'};
 
-    private ArrayList<StringBuilder> art = new ArrayList<>();
+    private final ArrayList<StringBuilder> art = new ArrayList<>();
 
     AsciiArt(int digit) {
         String art = getArtFromDigit(digit);

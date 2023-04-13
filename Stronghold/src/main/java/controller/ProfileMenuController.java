@@ -5,8 +5,8 @@ import model.User;
 import view.enums.messages.ProfileMenuMessages;
 
 public class ProfileMenuController {
-    private Database database;
-    private User currentUser;
+    private final Database database;
+    private final User currentUser;
 
     public ProfileMenuController(Database database) {
         this.database = database;
