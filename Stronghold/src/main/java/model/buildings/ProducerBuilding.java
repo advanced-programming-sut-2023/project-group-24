@@ -1,9 +1,9 @@
 package model.buildings;
 
-public class ProduceBuilding extends WorkerBuilding {
+public class ProducerBuilding extends WorkersNeededBuilding {
     private int numberOfItemsWaitingToBeLoaded;
 
-    public ProduceBuilding(Kingdom kingdom, BuildingType buildingType) {
+    public ProducerBuilding(Kingdom kingdom, BuildingType buildingType) {
         //TODO
     }
 

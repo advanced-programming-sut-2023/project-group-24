@@ -1,9 +1,9 @@
 package model.buildings;
 
-public class Door extends Building {
+public class Gate extends DefenceBuilding {
     private boolean closed;
 
-    public Door(Kingdom kingdom, BuildingType buildingType) {
+    public Gate(Kingdom kingdom, BuildingType buildingType) {
         //TODO
     }
 

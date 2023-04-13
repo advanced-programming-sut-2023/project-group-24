@@ -9,6 +9,14 @@ public class Building {
         //TODO
     }
 
+    public BuildingType getBuildingType() {
+        return buildingType;
+    }
+
+    public Kingdom getKingdom() {
+        return kingdom;
+    }
+
     public int getHp() {
         return hp;
     }

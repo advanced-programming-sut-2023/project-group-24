@@ -2,7 +2,7 @@ package model.buildings;
 
 import java.util.HashMap;
 
-public class Storage extends Building {
+public class StorageBuilding extends Building {
     private HashMap<Item, Integer> storage;
 
     public PopularityBuilding(Kingdom kingdom, BuildingType buildingType) {

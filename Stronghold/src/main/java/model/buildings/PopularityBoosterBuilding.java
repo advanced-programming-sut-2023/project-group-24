@@ -1,7 +1,7 @@
 package model.buildings;
 
-public class PopularityBuilding extends ProduceBuilding {
-    public PopularityBuilding(Kingdom kingdom, BuildingType buildingType) {
+public class PopularityBoosterBuilding extends ProducerBuilding {
+    public PopularityBoosterBuilding(Kingdom kingdom, BuildingType buildingType) {
         //TODO
     }
 

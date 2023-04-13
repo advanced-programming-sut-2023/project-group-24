@@ -1,21 +1,19 @@
 package model.buildings;
 
+import model.LadderState;
+
 public class DefenceBuilding extends Building {
-    private boolean hasBlazer;
+    private LadderState ladderState;
 
     public DefenceBuilding(Kingdom kingdom, BuildingType buildingType) {
         //TODO
     }
 
-    public boolean hasBlazer() {
-        //TODO obvious
+    public LadderState getLadderState() {
+        return ladderState;
     }
 
-    public void addBlazer() {
-        //TODO obvious, again
-    }
-
-    public void removeBlazer() {
-        //TODO obvious. (okay this joke is getting old)
+    public void addLadder(LadderState ladderState) {
+        //TODO set ladder state
     }
 }

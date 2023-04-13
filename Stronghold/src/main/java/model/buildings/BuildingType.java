@@ -26,7 +26,6 @@ public enum BuildingType {;
     private HashMap<Item, Integer> uses;
     private HashMap<Item, Integer> produces;
     private int producePrice;
-    private boolean canHaveBlazer;
     private Direction direction;
     private Vector<Troop> troopsItCanMake;
     private Vector<Item> itemsItCanHold;
@@ -48,7 +47,6 @@ public enum BuildingType {;
                  HashMap<Item, Integer> uses,
                  HashMap<Item, Integer> produces,
                  int producePrice,
-                 boolean canHaveBlazer,
                  Direction direction,
                  Vector<Soldier> soldiersItCanMake,
                  Vector<Item> itemsItCanHold,

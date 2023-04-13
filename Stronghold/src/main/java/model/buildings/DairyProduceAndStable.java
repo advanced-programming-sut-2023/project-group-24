@@ -1,6 +1,6 @@
 package model.buildings;
 
-public class DairyProduceAndStable extends ProduceBuilding {
+public class DairyProduceAndStable extends ProducerBuilding {
     private int numberOfAnimals;
 
     public DairyProduceAndStable(Kingdom kingdom, BuildingType buildingType) {

@@ -1,8 +1,13 @@
 package model.buildings;
 
-public class Mover extends Building {
+public class OxTether extends Building {
+    ProducerBuilding quarry;
     public DefenceBuilding(Kingdom kingdom, BuildingType buildingType) {
         //TODO
+    }
+
+    private void findNearestNonEmptyQuarry() {
+        //TODO obvious. it is always called in move.
     }
 
     public void move() {
