@@ -1,6 +1,6 @@
 package model.buildings;
 
-import utils.NumberOfThings;
+import java.util.HashMap;
 
 public class Storage extends Building {
     private HashMap<Item, Integer> storage;
@@ -9,11 +9,11 @@ public class Storage extends Building {
         //TODO
     }
 
-    public int putItem(NumberOfThings items) {
+    public int putItem(HashMap<Item, Integer> items) {
         //TODO add the items to the storage as much as possible. the return value is the number of items left to add. don't forget to call the kingdom's storage
     }
 
-    public int removeItem(NumberOfThings items) {
+    public int removeItem(HashMap<Item, Integer> items) {
         //TODO pretty much the same as putting items. don't forget to call the kingdom's storage.
     }
 }

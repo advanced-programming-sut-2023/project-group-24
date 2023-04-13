@@ -1,13 +1,17 @@
 package model.buildings;
 
-import utils.NumberOfThings;
+import model.Direction;
 
-public enum BuildingType {
-    SMALL_STONE_GATEHOUSE("small stone gatehouse", "Castle", null, 0, 100, 0, 8, 0, 0, 0, 0, 0, null, null, 0, false);
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Vector;
+
+public enum BuildingType {;
+//    SMALL_STONE_GATEHOUSE("small stone gatehouse", "Castle", null, 0, 100, 0, 8, 0, 0, 0, 0, 0, null, null, 0, false);
 
     private String name;
     private String category;
-    private NumberOfThings materialToBuild;
+    private HashMap<Item, Integer> materialToBuild;
     private int price;
 
     //TODO add direction, and list of troops to make and their cost, and list of items to be held, and movers, and cabBeDestroyedByTunnels
@@ -19,14 +23,19 @@ public enum BuildingType {
     private int attackPoint;
     private int popularityRate;
     private int produceRate;
-    private NumberOfThings uses;
-    private NumberOfThings produces;
+    private HashMap<Item, Integer> uses;
+    private HashMap<Item, Integer> produces;
     private int producePrice;
     private boolean canHaveBlazer;
+    private Direction direction;
+    private Vector<Troop> troopsItCanMake;
+    private Vector<Item> itemsItCanHold;
+    private Vector<Item> itemsItCanMove;
+    private boolean canBeDestroyedByTunnels;
 
     BuildingType(String name,
                  String category,
-                 NumberOfThings materialToBuild,
+                 HashMap<Item, Integer> materialToBuild,
                  int price,
                  int maxHp,
                  int workersNeeded,
@@ -36,10 +45,15 @@ public enum BuildingType {
                  int attackPoint,
                  int popularityRate,
                  int produceRate,
-                 NumberOfThings uses,
-                 NumberOfThings produces,
+                 HashMap<Item, Integer> uses,
+                 HashMap<Item, Integer> produces,
                  int producePrice,
-                 boolean canHaveBlazer) {
+                 boolean canHaveBlazer,
+                 Direction direction,
+                 Vector<Soldier> soldiersItCanMake,
+                 Vector<Item> itemsItCanHold,
+                 Vector<Item> itemsItCanMove,
+                 boolean canBeDestroyedByTunnels) {
         //TODO
     }
 
