@@ -10,11 +10,6 @@ public enum Slogan {
     }
 
     public static String getRandomSlogan() {
-        switch ((int) (Math.random() % 10)) {
-            case 1:
-                return FIRST.slogan;
-            default:
-                return null;
-        }
+        return values()[(int) (Math.random() * values().length)].toString();
     }
 }

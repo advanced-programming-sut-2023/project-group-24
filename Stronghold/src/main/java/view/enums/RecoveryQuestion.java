@@ -12,7 +12,7 @@ public enum RecoveryQuestion {
         this.recoveryQuestion = recoveryQuestion;
     }
 
-    public static String getSloganByNumber(int number) {
+    public static String getRecoveryQuestionByNumber(int number) {
         switch (number) {
             case 1:
                 return ONE.recoveryQuestion;

@@ -2,6 +2,7 @@ package controller;
 
 import model.Database;
 import model.User;
+import view.enums.MenusName;
 import view.menus.LoginMenu;
 import view.menus.MainMenu;
 import view.menus.ProfileMenu;

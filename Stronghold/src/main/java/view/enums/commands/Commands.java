@@ -6,7 +6,10 @@ import java.util.regex.Pattern;
 public enum Commands {
     //TODO add commands
     //Login menu commands
-    FORGOT_PASSWORD("^forgot my password$");
+    FORGOT_PASSWORD("^forgot my password$"),
+
+    //Captcha Menu commands
+    CHANGE_CODE("^change code$");
     private final String regex;
 
     Commands(String regex) {
