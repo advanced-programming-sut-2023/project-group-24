@@ -74,6 +74,10 @@ public class GameMenu {
         //TODO connect BuildingController and sout result
     }
 
+    private void createResources(Matcher matcher) {
+        //TODO connect BuildingController and sout result
+    }
+
     private void selectUnit(Matcher matcher) {
         //TODO connect UnitController and sout result
     }

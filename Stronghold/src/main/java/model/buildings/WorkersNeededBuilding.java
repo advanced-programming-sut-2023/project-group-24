@@ -1,14 +1,16 @@
 package model.buildings;
 
+import java.util.ArrayList;
+
 public class WorkersNeededBuilding extends Building {
-    private int workers;
+    private ArrayList<People> workers;
     private boolean isSleeping;
 
     public WorkersNeededBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         //TODO
     }
 
-    public void assignWorker(int amount) {
+    public void assignWorker(People person) {
         //TODO assign the said worker
     }
 
