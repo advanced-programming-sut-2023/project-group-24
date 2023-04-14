@@ -2,7 +2,6 @@ package controller.gamecontrollers;
 
 import model.GameDatabase;
 import utils.enums.Direction;
-import utils.enums.UnitsMode;
 import utils.enums.messages.UnitControllerMessages;
 
 public class UnitController {
