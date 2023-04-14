@@ -1,4 +1,4 @@
-package view.enums;
+package utils.enums;
 
 public enum UnitsMode {
     STANDING("standing"),

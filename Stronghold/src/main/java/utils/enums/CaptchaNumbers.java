@@ -1,4 +1,4 @@
-package view.enums;
+package utils.enums;
 
 public enum CaptchaNumbers {
     ZERO("  ___  \n" +

@@ -1,9 +1,9 @@
 package controller.gamecontrollers;
 
 import model.GameDatabase;
-import view.enums.Direction;
-import view.enums.UnitsMode;
-import view.enums.messages.UnitControllerMessages;
+import utils.enums.Direction;
+import utils.enums.UnitsMode;
+import utils.enums.messages.UnitControllerMessages;
 
 public class UnitController {
     private GameDatabase gameDatabase;

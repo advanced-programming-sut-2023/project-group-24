@@ -1,7 +1,7 @@
 package view.menus;
 
 import controller.captchacontrollers.Captcha;
-import view.enums.commands.Commands;
+import utils.enums.commands.Commands;
 
 public class CaptchaMenu {
 

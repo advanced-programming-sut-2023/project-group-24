@@ -1,16 +1,23 @@
 package controller;
 
+import controller.gamecontrollers.KingdomController;
+import controller.gamecontrollers.ShowMapController;
+import controller.gamecontrollers.UnitController;
 import model.Database;
+import model.GameDatabase;
 import model.User;
-import view.enums.MenusName;
+import utils.enums.MenusName;
 import view.menus.LoginMenu;
 import view.menus.MainMenu;
 import view.menus.ProfileMenu;
 import view.menus.RegisterMenu;
+import view.menus.gamemenus.GameMenu;
+import view.menus.gamemenus.ShowMapMenu;
 
 public class AppController {
     private static User loggedInUser;
     protected static Database database = new Database();
+    protected GameDatabase gameDatabase;
     private static MenusName currentMenu;
 
     public AppController() {
@@ -57,6 +64,17 @@ public class AppController {
                     MainMenuController mainMenuController = new MainMenuController(database);
                     MainMenu mainMenu = new MainMenu(mainMenuController);
                     mainMenu.run();
+                    break;
+                case GAME_MENU:
+                    KingdomController kingdomController = new KingdomController(gameDatabase);
+                    UnitController unitController = new UnitController(gameDatabase);
+                    GameMenu gameMenu = new GameMenu(kingdomController, unitController);
+                    gameMenu.run();
+                    break;
+                case SHOW_MAP_MENU:
+                    ShowMapController showMapController = new ShowMapController(gameDatabase);
+                    ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
+                    showMapMenu.run();
                     break;
             }
         }

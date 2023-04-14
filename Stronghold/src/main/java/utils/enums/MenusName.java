@@ -1,4 +1,4 @@
-package view.enums;
+package utils.enums;
 
 public enum MenusName {
     MAIN_MENU,
@@ -7,5 +7,6 @@ public enum MenusName {
     REGISTER_MENU,
     RESET_PASSWORD_MENU,
     GAME_MENU,
-    CREATE_MAP_MENU
+    CREATE_MAP_MENU,
+    SHOW_MAP_MENU
 }

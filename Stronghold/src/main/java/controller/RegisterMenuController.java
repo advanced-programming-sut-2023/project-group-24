@@ -1,7 +1,7 @@
 package controller;
 
 import model.Database;
-import view.enums.messages.RegisterMenuMessages;
+import utils.enums.messages.RegisterMenuMessages;
 
 public class RegisterMenuController {
 

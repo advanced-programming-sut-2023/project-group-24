@@ -2,7 +2,7 @@ package controller;
 
 import model.Database;
 import model.User;
-import view.enums.messages.MainMenuMessages;
+import utils.enums.messages.MainMenuMessages;
 
 public class MainMenuController {
 

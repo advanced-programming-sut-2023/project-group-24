@@ -1,6 +1,6 @@
 package controller.captchacontrollers;
 
-import view.enums.CaptchaNumbers;
+import utils.enums.CaptchaNumbers;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,7 +1,7 @@
 package controller;
 
 import model.Database;
-import view.enums.messages.LoginMenuMessages;
+import utils.enums.messages.LoginMenuMessages;
 
 public class LoginMenuController {
     private final Database database;

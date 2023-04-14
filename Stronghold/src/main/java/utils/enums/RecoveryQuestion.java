@@ -1,4 +1,4 @@
-package view.enums;
+package utils.enums;
 
 public enum RecoveryQuestion {
     ONE("What is my father's name?"),
