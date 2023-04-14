@@ -1,23 +1,24 @@
 package model;
 
 import model.army.Army;
+import model.map.Cell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Kingdom {
     private User owner;
+    private Cell gateHouseLocation;
     private ArrayList<Building> buildings;
     private ArrayList<Army> armies;
     private ArrayList<Trade> trades;
+    private ArrayList<People> population;
     private Color color;
     private int popularity;
     private int foodFactor;
     private int fearFactor;
     private int religionFactor;
     private int taxFactor;
-    private int peopleCapacity;
-    private int workers;
     private int gold;
 
     public Kingdom(Color color) {
@@ -30,6 +31,13 @@ public class Kingdom {
 
     public User getOwner() {
         return owner;
+    }
+    public Cell getGateHouseLocation() {
+        return gateHouseLocation;
+    }
+
+    public void setGateHouseLocation(Cell gateHouseLocation) {
+        this.gateHouseLocation = gateHouseLocation;
     }
 
     public int getPopularity() {
@@ -72,20 +80,19 @@ public class Kingdom {
         this.taxFactor = taxFactor;
     }
 
-    public int getPeopleCapacity() {
-        return peopleCapacity;
+    public int getPopulation() {
+        return population.size();
     }
 
-    public void addPeopleCapacity(int amount) {
-        this.peopleCapacity += amount;
+    public void addPeople(People people) {
+        population.add(people);
     }
-
-    public int getWorkers() {
-        return workers;
-    }
-
-    public void changeWorkersNumbers(int amount) {
-        this.workers += amount;
+    public int getUnemployment() {
+        int unemployment = 0;
+        for (People people : population)
+            if (!people.isWorking())
+                unemployment++;
+        return unemployment;
     }
 
     public int getGold() {
@@ -95,8 +102,24 @@ public class Kingdom {
     public void changeGold(int amount) {
         this.gold += amount;
     }
-    public int getUnEmployed() {
-        return peopleCapacity - workers;
+
+    public void addArmy(Army army) {
+        armies.add(army);
     }
+
+    public void removeArmy(Army army) {
+        for (int i = 0; i < armies.size(); i++)
+            if (armies.get(i).equals(army))
+                armies.remove(i);
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public ArrayList<Trade> getTrades() {
+        return trades;
+    }
+
 
 }

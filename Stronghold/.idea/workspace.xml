@@ -4,35 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="595dce4f-0ef9-4748-902f-c9703fcbd2f1" name="Default Changelist" comment="start model">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Stronghold.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Database.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/army/Army.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/army/Nation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/army/Soldier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/army/SoldierType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/army/UnitState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/army/WarMachine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/army/WarMachineType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/map/Map.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/map/Texture.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/storage/Armor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/storage/Food.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/storage/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/storage/Material.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/storage/Storage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/storage/Weapon.java" afterDir="false" />
+    <list default="true" id="595dce4f-0ef9-4748-902f-c9703fcbd2f1" name="Default Changelist" comment="finish model except Building">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/People.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Hi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,8 +102,16 @@
       <workItem from="1681294128554" duration="10485000" />
       <workItem from="1681386552156" duration="11848000" />
       <workItem from="1681468431297" duration="1340000" />
-      <workItem from="1681469829915" duration="17882000" />
+      <workItem from="1681469829915" duration="19823000" />
     </task>
+    <task id="LOCAL-00001" summary="finish model except Building">
+      <created>1681491534554</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681491534554</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +130,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="start model" />
-    <option name="LAST_COMMIT_MESSAGE" value="start model" />
+    <MESSAGE value="finish model except Building" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish model except Building" />
   </component>
 </project>
