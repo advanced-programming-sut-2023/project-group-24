@@ -1,8 +1,11 @@
 package controller.gamecontrollers;
 
 import model.GameDatabase;
-import utils.enums.Direction;
+import model.Direction;
 import utils.enums.messages.UnitControllerMessages;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
 
 public class UnitController {
     private GameDatabase gameDatabase;
@@ -15,7 +18,7 @@ public class UnitController {
         //TODO check factors and add population
     }
 
-    public UnitControllerMessages selectUnit(int x, int y /*TODO add unit type*/) {
+    public UnitControllerMessages selectUnit(int x, int y, String unitName) {
         //TODO check selected cell and save selected unit in game database
         return null;
     }
@@ -35,7 +38,7 @@ public class UnitController {
         return null;
     }
 
-    public UnitControllerMessages setModeForUnits(int x, int y, UnitsMode unitsMode) {
+    public UnitControllerMessages changeState(int x, int y, String unitState) {
         //TODO set mode for units
         return null;
     }
@@ -60,11 +63,31 @@ public class UnitController {
         return null;
     }
 
-    public UnitControllerMessages buildEquipment(/*TODO add equipment type*/) {
+    public UnitControllerMessages buildEquipment(String equipmentType) {
         return null;
     }
 
     public void disbandUnit() {
         //ma ke nafahmidim doc chi mige
+    }
+
+    public UnitControllerMessages digMoat(int x, int y) {
+        //TODO dig moat if selected unit is can do that
+        return null;
+    }
+
+    public UnitControllerMessages removeMoat(int x, int y) {
+        //TODO remove moat if selected unit can do that
+        return null;
+    }
+
+    public UnitControllerMessages fillMoat(int x, int y) {
+        //TODO fill moat if selected unit can do that
+        return null;
+    }
+
+    private ArrayList<Cell> findBestPath(int x, int y) {
+        //TODO find best path with dfs
+        return null;
     }
 }

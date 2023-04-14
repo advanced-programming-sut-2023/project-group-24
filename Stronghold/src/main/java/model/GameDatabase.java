@@ -3,24 +3,24 @@ package model;
 import java.util.ArrayList;
 
 public class GameDatabase {
-    private User currentPlayer;
-    private ArrayList<User> players;
+    private Kingdom currentKingdom;
+    private ArrayList<Kingdom> kingdoms;
     private ArrayList<Army> selectedUnits;
     private Map map;
 
     public GameDatabase(ArrayList<User> players, Map map) {
-        this.players = new ArrayList<User>(players);
         selectedUnits = new ArrayList<Army>();
-        currentPlayer = players.get(0);
         this.map = map;
+        //TODO get kingdoms from map and set owner for them
+        currentKingdom = kingdoms.get(0);
     }
 
-    public void setCurrentPlayer(User currentPlayer) {
-        this.currentPlayer = currentPlayer;
+    public void setCurrentKingdom(Kingdom currentKingdom) {
+        this.currentKingdom = currentKingdom;
     }
 
-    public User getCurrentPlayer() {
-        return currentPlayer;
+    public Kingdom getCurrentKingdom() {
+        return currentKingdom;
     }
 
     public void setSelectedUnits(ArrayList<Army> selectedUnits) {
@@ -28,11 +28,15 @@ public class GameDatabase {
         selectedUnits.addAll(selectedUnits);
     }
 
-    public ArrayList getSelectedUnits() {
+    public ArrayList<Army> getSelectedUnits() {
         return selectedUnits;
     }
 
     public Map getMap() {
         return map;
+    }
+
+    public void removeKingdom(Kingdom kingdom) {
+        kingdoms.remove(kingdom);
     }
 }
