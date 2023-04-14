@@ -1,7 +1,6 @@
 package controller.gamecontrollers;
 
 import model.GameDatabase;
-import utils.enums.Direction;
 import utils.enums.messages.UnitControllerMessages;
 
 public class UnitController {
@@ -11,11 +10,7 @@ public class UnitController {
         this.gameDatabase = gameDatabase;
     }
 
-    public void checkPopulationGrowth() {
-        //TODO check factors and add population
-    }
-
-    public UnitControllerMessages selectUnit(int x, int y /*TODO add unit type*/) {
+    public UnitControllerMessages selectUnit(int x, int y, String unitType) {
         //TODO check selected cell and save selected unit in game database
         return null;
     }
@@ -35,7 +30,7 @@ public class UnitController {
         return null;
     }
 
-    public UnitControllerMessages setModeForUnits(int x, int y, UnitsMode unitsMode) {
+    public UnitControllerMessages setModeForUnits(int x, int y, String unitState) {
         //TODO set mode for units
         return null;
     }
@@ -50,7 +45,7 @@ public class UnitController {
         return null;
     }
 
-    public UnitControllerMessages pourOil(Direction direction) {
+    public UnitControllerMessages pourOil(String direction) {
         //TODO pour oil in that direction
         return null;
     }
@@ -60,7 +55,22 @@ public class UnitController {
         return null;
     }
 
-    public UnitControllerMessages buildEquipment(/*TODO add equipment type*/) {
+    public UnitControllerMessages buildEquipment(String equipmentType) {
+        return null;
+    }
+
+    public UnitControllerMessages digMoat(int x, int y) {
+        //TODO dig moat
+        return null;
+    }
+
+    public UnitControllerMessages removeMoat(int x, int y) {
+        //TODO remove moat
+        return null;
+    }
+
+    public UnitControllerMessages fillMoat(int x, int y) {
+        //TODO fil opponent moat
         return null;
     }
 
