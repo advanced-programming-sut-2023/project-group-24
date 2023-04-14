@@ -31,6 +31,7 @@ public enum BuildingType {;
     private Vector<Item> itemsItCanHold;
     private Vector<Item> itemsItCanMove;
     private boolean canBeDestroyedByTunnels;
+    private boolean canBeRepaired;
 
     BuildingType(String name,
                  String category,
@@ -51,7 +52,8 @@ public enum BuildingType {;
                  Vector<Soldier> soldiersItCanMake,
                  Vector<Item> itemsItCanHold,
                  Vector<Item> itemsItCanMove,
-                 boolean canBeDestroyedByTunnels) {
+                 boolean canBeDestroyedByTunnels,
+                 boolean canBeRepaired) {
         //TODO
     }
 

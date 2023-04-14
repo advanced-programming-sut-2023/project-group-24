@@ -6,7 +6,7 @@ public class DefenceBuilding extends Building {
     private LadderState ladderState;
     private LadderState staircase;
 
-    public DefenceBuilding(Kingdom kingdom, BuildingType buildingType) {
+    public DefenceBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         //TODO
     }
 

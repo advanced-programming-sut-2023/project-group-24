@@ -8,5 +8,7 @@ public enum MenusName {
     RESET_PASSWORD_MENU,
     GAME_MENU,
     CREATE_MAP_MENU,
-    SHOW_MAP_MENU
+    SHOW_MAP_MENU,
+    SHOP_MENU,
+    TRADE_MENU
 }

@@ -3,7 +3,7 @@ package model.buildings;
 public class DairyProduceAndStable extends ProducerBuilding {
     private int numberOfAnimals;
 
-    public DairyProduceAndStable(Kingdom kingdom, BuildingType buildingType) {
+    public DairyProduceAndStable(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         //TODO
     }
 

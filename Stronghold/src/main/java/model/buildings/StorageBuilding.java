@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class StorageBuilding extends Building {
     private HashMap<Item, Integer> storage;
 
-    public PopularityBuilding(Kingdom kingdom, BuildingType buildingType) {
+    public PopularityBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         //TODO
     }
 

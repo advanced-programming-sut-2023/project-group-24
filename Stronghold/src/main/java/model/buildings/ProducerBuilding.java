@@ -3,7 +3,7 @@ package model.buildings;
 public class ProducerBuilding extends WorkersNeededBuilding {
     private int numberOfItemsWaitingToBeLoaded;
 
-    public ProducerBuilding(Kingdom kingdom, BuildingType buildingType) {
+    public ProducerBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         //TODO
     }
 

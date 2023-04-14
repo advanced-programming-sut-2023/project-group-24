@@ -1,5 +1,6 @@
 package view.menus.gamemenus;
 
+import controller.gamecontrollers.BuildingController;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.ShowMapController;
 import controller.gamecontrollers.UnitController;
@@ -8,12 +9,13 @@ import java.util.regex.Matcher;
 
 public class GameMenu {
     private KingdomController kingdomController;
-    private ShowMapController showMapController;
     private UnitController unitController;
+    private BuildingController buildingController;
 
-    public GameMenu(KingdomController kingdomController, UnitController unitController) {
+    public GameMenu(KingdomController kingdomController, UnitController unitController, BuildingController buildingController) {
         this.kingdomController = kingdomController;
         this.unitController = unitController;
+        this.buildingController = buildingController;
     }
 
     public void run() {
@@ -54,6 +56,22 @@ public class GameMenu {
 
     private void checkPopulationGrowth() {
         //TODO connect UnitController
+    }
+
+    private void dropBuilding(Matcher matcher) {
+        //TODO connect BuildingController and sout result
+    }
+
+    private void selectBuilding(Matcher matcher) {
+        //TODO connect BuildingController and sout result
+    }
+
+    private void createUnit(Matcher matcher) {
+        //TODO connect BuildingController and sout result
+    }
+
+    private void repair() {
+        //TODO connect BuildingController and sout result
     }
 
     private void selectUnit(Matcher matcher) {

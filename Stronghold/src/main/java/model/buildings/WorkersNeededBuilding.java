@@ -4,7 +4,7 @@ public class WorkersNeededBuilding extends Building {
     private int workers;
     private boolean isSleeping;
 
-    public WorkersNeededBuilding(Kingdom kingdom, BuildingType buildingType) {
+    public WorkersNeededBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         //TODO
     }
 

@@ -2,10 +2,11 @@ package model.buildings;
 
 public class Building {
     private Kingdom kingdom;
+    private Cell cell;
     private BuildingType buildingType;
     private int hp;
 
-    public Building(Kingdom kingdom, BuildingType buildingType) {
+    public Building(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         //TODO
     }
 

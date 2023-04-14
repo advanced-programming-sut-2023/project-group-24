@@ -1,8 +1,6 @@
 package controller;
 
-import controller.gamecontrollers.KingdomController;
-import controller.gamecontrollers.ShowMapController;
-import controller.gamecontrollers.UnitController;
+import controller.gamecontrollers.*;
 import model.Database;
 import model.GameDatabase;
 import model.User;
@@ -12,12 +10,16 @@ import view.menus.MainMenu;
 import view.menus.ProfileMenu;
 import view.menus.RegisterMenu;
 import view.menus.gamemenus.GameMenu;
+import view.menus.gamemenus.ShopMenu;
 import view.menus.gamemenus.ShowMapMenu;
+import view.menus.gamemenus.TradeMenu;
+
+import java.util.ArrayList;
 
 public class AppController {
     private static User loggedInUser;
-    protected static Database database = new Database();
-    protected GameDatabase gameDatabase;
+    private static Database database = new Database();
+    private static GameDatabase gameDatabase;
     private static MenusName currentMenu;
 
     public AppController() {
@@ -38,6 +40,10 @@ public class AppController {
 
     public static void setLoggedInUser(User loggedInUser) {
         AppController.loggedInUser = loggedInUser;
+    }
+
+    public static void makeNewGameDatabase(ArrayList<User> players, Map map) {
+        gameDatabase = new GameDatabase(players, map);
     }
 
     public void run() {
@@ -68,13 +74,24 @@ public class AppController {
                 case GAME_MENU:
                     KingdomController kingdomController = new KingdomController(gameDatabase);
                     UnitController unitController = new UnitController(gameDatabase);
-                    GameMenu gameMenu = new GameMenu(kingdomController, unitController);
+                    BuildingController buildingController = new BuildingController(gameDatabase);
+                    GameMenu gameMenu = new GameMenu(kingdomController, unitController, buildingController);
                     gameMenu.run();
                     break;
                 case SHOW_MAP_MENU:
                     ShowMapController showMapController = new ShowMapController(gameDatabase);
                     ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
                     showMapMenu.run();
+                    break;
+                case TRADE_MENU:
+                    TradeController tradeController = new TradeController(gameDatabase);
+                    TradeMenu tradeMenu = new TradeMenu(tradeController);
+                    tradeMenu.run();
+                    break;
+                case SHOP_MENU:
+                    ShopController shopController = new ShopController(gameDatabase);
+                    ShopMenu shopMenu = new ShopMenu(shopController);
+                    shopMenu.run();
                     break;
             }
         }

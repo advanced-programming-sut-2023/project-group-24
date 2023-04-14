@@ -3,7 +3,7 @@ package model.buildings;
 public class Gate extends DefenceBuilding {
     private boolean closed;
 
-    public Gate(Kingdom kingdom, BuildingType buildingType) {
+    public Gate(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         //TODO
     }
 
