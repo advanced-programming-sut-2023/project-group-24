@@ -15,15 +15,15 @@ public class ShopMenu {
         //TODO get input from GetInputFromUser class and check command
     }
 
-    public void showPriceList() {
+    private void showPriceList() {
         //TODO connect to shopController and sout
     }
 
-    public void buyItem(Matcher matcher) {
+    private void buyItem(Matcher matcher) {
         //TODO connect to shopController and sout
     }
 
-    public void sellItem(Matcher matcher) {
+    private void sellItem(Matcher matcher) {
         //TODO connect to shopController and sout
     }
 }

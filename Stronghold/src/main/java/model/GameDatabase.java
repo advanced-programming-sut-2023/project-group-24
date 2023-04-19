@@ -1,26 +1,29 @@
 package model;
 
+import controller.gamecontrollers.KingdomController;
+import model.buildings.Building;
+
 import java.util.ArrayList;
 
 public class GameDatabase {
-    private User currentPlayer;
-    private ArrayList<User> players;
+    private Kingdom currentKingdom;
+    private ArrayList<Kingdom> kingdoms;
+    private Building currentBuilding;
     private ArrayList<Army> selectedUnits;
     private Map map;
 
     public GameDatabase(ArrayList<User> players, Map map) {
-        this.players = new ArrayList<User>(players);
         selectedUnits = new ArrayList<Army>();
-        currentPlayer = players.get(0);
         this.map = map;
+        //TODO add gor kingdoms current player
     }
 
-    public void setCurrentPlayer(User currentPlayer) {
-        this.currentPlayer = currentPlayer;
+    public void setCurrentPlayer(Kingdom currentKingdom) {
+        this.currentKingdom = currentKingdom;
     }
 
-    public User getCurrentPlayer() {
-        return currentPlayer;
+    public Kingdom getCurrentKingdom() {
+        return currentKingdom;
     }
 
     public void setSelectedUnits(ArrayList<Army> selectedUnits) {
@@ -34,5 +37,13 @@ public class GameDatabase {
 
     public Map getMap() {
         return map;
+    }
+
+    public Building getCurrentBuilding() {
+        return currentBuilding;
+    }
+
+    public void setCurrentBuilding(Building currentBuilding) {
+        this.currentBuilding = currentBuilding;
     }
 }

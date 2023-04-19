@@ -1,7 +1,7 @@
 package model.buildings;
 
 public class TroopMakerBuilding extends Building {
-    public PopularityBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
+    public TroopMakerBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         //TODO
     }
 

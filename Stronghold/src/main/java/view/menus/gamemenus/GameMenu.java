@@ -4,6 +4,7 @@ import controller.gamecontrollers.BuildingController;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.ShowMapController;
 import controller.gamecontrollers.UnitController;
+import utils.enums.messages.UnitControllerMessages;
 
 import java.util.regex.Matcher;
 
@@ -74,6 +75,10 @@ public class GameMenu {
         //TODO connect BuildingController and sout result
     }
 
+    private void createResources(Matcher matcher) {
+        //TODO connect BuildingController and sout result
+    }
+
     private void selectUnit(Matcher matcher) {
         //TODO connect UnitController and sout result
     }
@@ -116,5 +121,17 @@ public class GameMenu {
 
     private void disbandUnit() {
         //TODO connect UnitController and sout result
+    }
+
+    private void digMoat(Matcher matcher) {
+        //TODO connect unit controller
+    }
+
+    private void removeMoat(Matcher matcher) {
+        //TODO connect unit controller
+    }
+
+    private void fillMoat(Matcher matcher) {
+        //TODO connect unit controller
     }
 }
