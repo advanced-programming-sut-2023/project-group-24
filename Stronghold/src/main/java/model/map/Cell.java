@@ -1,7 +1,9 @@
 package model.map;
 
+import model.Direction;
 import model.army.Army;
 import model.army.ArmyType;
+import model.buildings.Building;
 
 import java.util.ArrayList;
 
