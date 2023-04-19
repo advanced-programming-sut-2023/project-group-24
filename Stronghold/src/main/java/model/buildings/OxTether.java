@@ -1,5 +1,8 @@
 package model.buildings;
 
+import model.Kingdom;
+import model.map.Cell;
+
 public class OxTether extends Building {
     ProducerBuilding quarry;
     public DefenceBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {

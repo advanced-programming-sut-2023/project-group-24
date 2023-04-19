@@ -1,5 +1,8 @@
 package model.buildings;
 
+import model.Kingdom;
+import model.map.Cell;
+
 public class ProducerBuilding extends WorkersNeededBuilding {
     private int numberOfItemsWaitingToBeLoaded;
 

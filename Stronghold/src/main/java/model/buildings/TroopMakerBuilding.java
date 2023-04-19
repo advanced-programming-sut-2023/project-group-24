@@ -1,5 +1,8 @@
 package model.buildings;
 
+import model.Kingdom;
+import model.map.Cell;
+
 public class TroopMakerBuilding extends Building {
     public TroopMakerBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         //TODO

@@ -1,6 +1,8 @@
 package model.buildings;
 
+import model.Kingdom;
 import model.LadderState;
+import model.map.Cell;
 
 public class DefenceBuilding extends Building {
     private LadderState ladderState;

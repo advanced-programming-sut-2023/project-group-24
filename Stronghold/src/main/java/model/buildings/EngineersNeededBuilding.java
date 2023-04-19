@@ -1,5 +1,10 @@
 package model.buildings;
 
+import model.Kingdom;
+import model.People;
+import model.army.Soldier;
+import model.map.Cell;
+
 import java.util.ArrayList;
 
 public class EngineersNeededBuilding extends WorkersNeededBuilding{

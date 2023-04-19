@@ -1,5 +1,9 @@
 package model.buildings;
 
+import model.Kingdom;
+import model.map.Cell;
+import model.storage.Item;
+
 import java.util.HashMap;
 
 public class StorageBuilding extends Building {

@@ -1,6 +1,8 @@
 package model.buildings;
 
 import model.Direction;
+import model.army.Army;
+import model.storage.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +29,7 @@ public enum BuildingType {;
     private HashMap<Item, Integer> produces;
     private int producePrice;
     private Direction direction;
-    private Vector<Troop> troopsItCanMake;
+    private Vector<Army> troopsItCanMake;
     private Vector<Item> itemsItCanHold;
     private Vector<Item> itemsItCanMove;
     private boolean canBeDestroyedByTunnels;
@@ -49,7 +51,7 @@ public enum BuildingType {;
                  HashMap<Item, Integer> produces,
                  int producePrice,
                  Direction direction,
-                 Vector<Soldier> soldiersItCanMake,
+                 Vector<Army> troopsItCanMake,
                  Vector<Item> itemsItCanHold,
                  Vector<Item> itemsItCanMove,
                  boolean canBeDestroyedByTunnels,
@@ -65,7 +67,7 @@ public enum BuildingType {;
         return category;
     }
 
-    public NumberOfThings getMaterialToBuild() {
+    public HashMap<Item, Integer> getMaterialToBuild() {
         return materialToBuild;
     }
 
@@ -121,7 +123,7 @@ public enum BuildingType {;
         return direction;
     }
 
-    public Vector<Troop> getTroopsItCanMake() {
+    public Vector<Army> getTroopsItCanMake() {
         return troopsItCanMake;
     }
 

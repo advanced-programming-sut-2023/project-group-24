@@ -2,34 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="595dce4f-0ef9-4748-902f-c9703fcbd2f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShopController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/TradeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Trade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/enums/messages/BuildingControllerMessages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/enums/messages/ShopMenuMessages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/enums/messages/TradeControllerMessages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShopMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/TradeMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/Building.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/DairyProduceAndStable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/DairyProduceAndStable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/DefenceBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/DefenceBuilding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/Gate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/Gate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/OxTether.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/OxTether.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/PopularityBoosterBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/PopularityBoosterBuilding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/ProducerBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/ProducerBuilding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/StorageBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/StorageBuilding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/Trap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/TroopMakerBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/TroopMakerBuilding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/WorkersNeededBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/WorkersNeededBuilding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/MenusName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/enums/MenusName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/UnitsMode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stronghold.iml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +32,7 @@
   <component name="ProjectId" id="2OEN2y0ixiGjGQIg9h0A0LTxLIk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
