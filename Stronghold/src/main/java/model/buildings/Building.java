@@ -1,5 +1,8 @@
 package model.buildings;
 
+import model.Kingdom;
+import model.map.Cell;
+
 public class Building {
     private Kingdom kingdom;
     private Cell cell;

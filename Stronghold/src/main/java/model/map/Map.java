@@ -3,6 +3,7 @@ package model.map;
 import model.Kingdom;
 import model.map.Cell;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Map {
