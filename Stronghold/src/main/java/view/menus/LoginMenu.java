@@ -25,6 +25,8 @@ public class LoginMenu {
                 loginUser(matcher);
             else if (Commands.getMatcher(command, Commands.FORGOT_PASSWORD) != null)
                 enterResetPasswordMenu();
+            else if (Commands.getMatcher(command, Commands.ENTER_REGISTER_MENU) != null)
+                enterRegisterMenu();
             else
                 System.out.println("Invalid command!");
         }
@@ -36,24 +38,28 @@ public class LoginMenu {
         boolean stayLoggedIn = matcher.group("stayLoggedIn") != null;
         LoginMenuMessages message = loginMenuController.loginUser(username, password, stayLoggedIn);
         switch (message) {
-            case SUCCESS:
+            case SUCCESS -> {
                 System.out.println("user logged in successfully!");
-                break;
-            case USER_NOT_FOUND:
-                System.out.println("User not found!");
-                break;
-            case INCORRECT_PASSWORD:
+                enterMainMenu();
+            }
+            case USER_NOT_FOUND -> System.out.println("User not found!");
+            case INCORRECT_PASSWORD -> {
                 System.out.println("Incorrect password!\nYou have to wait for a while");
                 loginMenuController.makeDelayForIncorrectPassword();
-                break;
-            case INCORRECT_CAPTCHA:
-                System.out.println("You input incorrect captcha code!");
-            default:
-                break;
+            }
+            case INCORRECT_CAPTCHA -> System.out.println("You entered the captcha code incorrectly!");
         }
     }
 
     private void enterResetPasswordMenu() {
         AppController.setCurrentMenu(MenusName.RESET_PASSWORD_MENU);
+    }
+
+    private void enterRegisterMenu() {
+        AppController.setCurrentMenu(MenusName.REGISTER_MENU);
+    }
+
+    private void enterMainMenu() {
+        AppController.setCurrentMenu(MenusName.MAIN_MENU);
     }
 }

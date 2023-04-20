@@ -6,6 +6,8 @@ import utils.enums.MenusName;
 import view.enums.messages.LoginMenuMessages;
 import view.menus.CaptchaMenu;
 
+import java.io.IOException;
+
 public class LoginMenuController {
     private final Database database;
     private int numberOfIncorrectPassword;
@@ -23,8 +25,14 @@ public class LoginMenuController {
             return LoginMenuMessages.INCORRECT_PASSWORD;
         }
         numberOfIncorrectPassword = 0;
-        if(!CaptchaMenu.runCaptcha()) return LoginMenuMessages.INCORRECT_CAPTCHA;
-        if (stayLoggedIn) database.setStayedLoggedInUser(user);
+        if (!CaptchaMenu.runCaptcha()) return LoginMenuMessages.INCORRECT_CAPTCHA;
+        if (stayLoggedIn) {
+            try {
+                database.setStayedLoggedInUser(user);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         AppController.setLoggedInUser(user);
         AppController.setCurrentMenu(MenusName.MAIN_MENU);
         return LoginMenuMessages.SUCCESS;

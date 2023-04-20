@@ -33,8 +33,6 @@ public class ResetPasswordMenu {
         switch (message) {
             case USER_NOT_FOUND -> System.out.println("User not found!");
             case USER_FOUND -> getAndCheckUserRecoveryAnswer();
-            default -> {
-            }
         }
     }
 
@@ -46,8 +44,6 @@ public class ResetPasswordMenu {
         switch (message) {
             case INCORRECT_ANSWER -> System.out.println("Your answer is not correct!");
             case CORRECT_ANSWER -> changePassword();
-            default -> {
-            }
         }
     }
 
@@ -63,8 +59,6 @@ public class ResetPasswordMenu {
                 AppController.setCurrentMenu(MenusName.LOGIN_MENU);
             }
             case PASSWORD_REPETITION_DO_NOT_MATCH -> System.out.println("The password and its repetition do not match");
-            default -> {
-            }
         }
     }
 }
