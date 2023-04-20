@@ -1,7 +1,9 @@
 package model;
 
 import controller.gamecontrollers.KingdomController;
+import model.army.Army;
 import model.buildings.Building;
+import model.map.Map;
 
 import java.util.ArrayList;
 

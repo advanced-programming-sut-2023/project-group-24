@@ -1,5 +1,7 @@
 package model.map;
 
+import utils.enums.Color;
+
 public enum Texture {
     Ground(true, true, Color.YELLOW);
     private boolean canPass;

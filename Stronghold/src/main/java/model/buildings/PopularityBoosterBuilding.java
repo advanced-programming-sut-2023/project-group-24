@@ -5,7 +5,7 @@ import model.map.Cell;
 
 public class PopularityBoosterBuilding extends ProducerBuilding {
     public PopularityBoosterBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
-        //TODO
+        super(kingdom, cell, buildingType);
     }
 
     public void addPopularity() {

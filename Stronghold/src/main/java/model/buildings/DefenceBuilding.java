@@ -9,7 +9,9 @@ public class DefenceBuilding extends Building {
     private LadderState staircase;
 
     public DefenceBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
-        //TODO
+        super(kingdom, cell, buildingType);
+        ladderState = LadderState.NONE;
+        staircase = LadderState.NONE;
     }
 
     public LadderState getLadderState() {
@@ -20,11 +22,19 @@ public class DefenceBuilding extends Building {
         return staircase;
     }
 
+    public void setLadderState(LadderState ladderState) {
+        this.ladderState = ladderState;
+    }
+
+    public void setStaircase(LadderState staircase) {
+        this.staircase = staircase;
+    }
+
     public void addLadder(LadderState ladderState) {
-        //TODO set ladder state
+        this.ladderState = ladderState;
     }
 
     public void addStaircase(LadderState staircase) {
-        //TODO set staircase
+        this.staircase = staircase;
     }
 }
