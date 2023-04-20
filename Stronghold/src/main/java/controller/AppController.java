@@ -4,6 +4,7 @@ import controller.gamecontrollers.*;
 import model.Database;
 import model.GameDatabase;
 import model.User;
+import model.map.Map;
 import utils.enums.MenusName;
 import view.menus.LoginMenu;
 import view.menus.MainMenu;

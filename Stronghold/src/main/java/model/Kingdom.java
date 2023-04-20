@@ -1,7 +1,9 @@
 package model;
 
 import model.army.Army;
+import model.buildings.Building;
 import model.map.Cell;
+import utils.enums.Color;
 
 import java.util.ArrayList;
 import java.util.HashMap;

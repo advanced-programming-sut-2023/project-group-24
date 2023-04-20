@@ -2,6 +2,7 @@ package model.map;
 
 import model.Kingdom;
 import model.map.Cell;
+import utils.enums.Color;
 
 import java.util.ArrayList;
 
