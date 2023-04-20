@@ -1,23 +1,23 @@
 package model.buildings;
 
-import model.Direction;
-import model.Item;
-import model.army.Soldier;
+import model.army.Army;
+import model.storage.Item;
+import utils.Pair;
 
-import java.util.HashMap;
 import java.util.Vector;
 
 public enum BuildingType {
-    ;
-//    SMALL_STONE_GATEHOUSE("small stone gatehouse", "Castle", null, 0, 100, 0, 8, 0, 0, 0, 0, 0, null, null, 0, false);
+    SMALL_STONE_GATEHOUSE("small stone gatehouse", "castle", null, 0, 1000,
+            0, 8, 0, 0, 0, 0, 0,
+            null, null, 0, null, null, null,
+            true, true, "building");
 
     private String name;
     private String category;
-    private HashMap<Item, Integer> materialToBuild;
+    private Pair<Item, Integer> materialToBuild;
     private int price;
-
-    //TODO add direction, and list of troops to make and their cost, and list of items to be held, and movers, and cabBeDestroyedByTunnels
     private int maxHp;
+
     private int workersNeeded;
     private int homeCapacity;
     private int height;
@@ -25,19 +25,19 @@ public enum BuildingType {
     private int attackPoint;
     private int popularityRate;
     private int produceRate;
-    private HashMap<Item, Integer> uses;
-    private HashMap<Item, Integer> produces;
+    private Vector<Pair<Item, Integer>> uses;
+    private Vector<Pair<Item, Integer>> produces;
     private int producePrice;
-    private Direction direction;
-    private Vector<Troop> troopsItCanMake;
+    private Vector<Army> troopsItCanMake;
     private Vector<Item> itemsItCanHold;
     private Vector<Item> itemsItCanMove;
     private boolean canBeDestroyedByTunnels;
     private boolean canBeRepaired;
+    private String buildingClass;
 
     BuildingType(String name,
                  String category,
-                 HashMap<Item, Integer> materialToBuild,
+                 Pair<Item, Integer> materialToBuild,
                  int price,
                  int maxHp,
                  int workersNeeded,
@@ -47,16 +47,36 @@ public enum BuildingType {
                  int attackPoint,
                  int popularityRate,
                  int produceRate,
-                 HashMap<Item, Integer> uses,
-                 HashMap<Item, Integer> produces,
+                 Vector<Pair<Item, Integer>> uses,
+                 Vector<Pair<Item, Integer>> produces,
                  int producePrice,
-                 Direction direction,
-                 Vector<Soldier> soldiersItCanMake,
+                 Vector<Army> troopsItCanMake,
                  Vector<Item> itemsItCanHold,
                  Vector<Item> itemsItCanMove,
                  boolean canBeDestroyedByTunnels,
-                 boolean canBeRepaired) {
-        //TODO
+                 boolean canBeRepaired,
+                 String buildingClass) {
+        this.name = name;
+        this.category = category;
+        this.materialToBuild = materialToBuild;
+        this.price = price;
+        this.maxHp = maxHp;
+        this.workersNeeded = workersNeeded;
+        this.homeCapacity = homeCapacity;
+        this.height = height;
+        this.storageCapacity = storageCapacity;
+        this.attackPoint = attackPoint;
+        this.popularityRate = popularityRate;
+        this.produceRate = produceRate;
+        this.uses = uses;
+        this.produces = produces;
+        this.producePrice = producePrice;
+        this.troopsItCanMake = troopsItCanMake;
+        this.itemsItCanHold = itemsItCanHold;
+        this.itemsItCanMove = itemsItCanMove;
+        this.canBeDestroyedByTunnels = canBeDestroyedByTunnels;
+        this.canBeRepaired = canBeRepaired;
+        this.buildingClass = buildingClass;
     }
 
     public String getName() {
@@ -67,7 +87,7 @@ public enum BuildingType {
         return category;
     }
 
-    public NumberOfThings getMaterialToBuild() {
+    public Pair<Item, Integer> getMaterialToBuild() {
         return materialToBuild;
     }
 
@@ -107,11 +127,11 @@ public enum BuildingType {
         return produceRate;
     }
 
-    public HashMap<Item, Integer> getUses() {
+    public Vector<Pair<Item, Integer>> getUses() {
         return uses;
     }
 
-    public HashMap<Item, Integer> getProduces() {
+    public Vector<Pair<Item, Integer>> getProduces() {
         return produces;
     }
 
@@ -119,11 +139,7 @@ public enum BuildingType {
         return producePrice;
     }
 
-    public Direction getDirection() {
-        return direction;
-    }
-
-    public Vector<Troop> getTroopsItCanMake() {
+    public Vector<Army> getTroopsItCanMake() {
         return troopsItCanMake;
     }
 
@@ -141,6 +157,10 @@ public enum BuildingType {
 
     public boolean canBeRepaired() {
         return canBeRepaired;
+    }
+
+    public String getBuildingClass() {
+        return buildingClass;
     }
 
     public BuildingType getBuildingTypeFromName(String name) {

@@ -1,6 +1,7 @@
 package controller.gamecontrollers;
 
 import model.GameDatabase;
+import model.storage.Item;
 import utils.enums.messages.TradeControllerMessages;
 
 public class TradeController {

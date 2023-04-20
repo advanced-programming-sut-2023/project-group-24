@@ -1,5 +1,7 @@
 package model;
 
+import model.storage.Item;
+
 public class Trade {
     private Item resourceType;
     private int resourceAmount;

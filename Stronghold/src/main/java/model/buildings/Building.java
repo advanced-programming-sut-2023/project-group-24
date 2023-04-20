@@ -4,14 +4,16 @@ import model.Kingdom;
 import model.map.Cell;
 
 public class Building {
+    private final Kingdom kingdom;
     private final Cell location;
-    private Kingdom kingdom;
-    private BuildingType buildingType;
+    private final BuildingType buildingType;
     private int hp;
 
     public Building(Kingdom kingdom, Cell location, BuildingType buildingType) {
+        this.kingdom = kingdom;
         this.location = location;
-        //TODO
+        this.buildingType = buildingType;
+        this.hp = buildingType.getMaxHp();
     }
 
     public BuildingType getBuildingType() {
@@ -22,15 +24,19 @@ public class Building {
         return kingdom;
     }
 
+    public Cell getLocation() {
+        return location;
+    }
+
     public int getHp() {
         return hp;
     }
 
     public void takeDamage(int amount) {
-        //TODO
+        hp -= amount;
     }
 
-    public Cell getLocation() {
-        return location;
+    public void repair() {
+        hp = buildingType.getMaxHp();
     }
 }
