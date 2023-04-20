@@ -2,20 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="595dce4f-0ef9-4748-902f-c9703fcbd2f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/DatabaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/TradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/TradeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Database.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="190" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">

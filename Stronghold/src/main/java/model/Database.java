@@ -37,6 +37,10 @@ public class Database {
         return stayedLoggedInUser;
     }
 
+    public Vector<User> getAllUsers() {
+        return allUsers;
+    }
+
     public void loadDataFromFile() {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
