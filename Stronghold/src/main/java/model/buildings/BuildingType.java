@@ -1,6 +1,7 @@
 package model.buildings;
 
 import model.army.Army;
+import model.map.Texture;
 import model.storage.Item;
 import utils.Pair;
 
@@ -10,7 +11,7 @@ public enum BuildingType {
     SMALL_STONE_GATEHOUSE("small stone gatehouse", "castle", null, 0, 1000,
             0, 8, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
-            true, true, "building");
+            true, true, "building", null);
 
     private String name;
     private String category;
@@ -34,6 +35,7 @@ public enum BuildingType {
     private boolean canBeDestroyedByTunnels;
     private boolean canBeRepaired;
     private String buildingClass;
+    private Vector<Texture> canOnlyBuiltOn;
 
     BuildingType(String name,
                  String category,
@@ -55,7 +57,8 @@ public enum BuildingType {
                  Vector<Item> itemsItCanMove,
                  boolean canBeDestroyedByTunnels,
                  boolean canBeRepaired,
-                 String buildingClass) {
+                 String buildingClass,
+                 Vector<Texture> canOnlyBuiltOn) {
         this.name = name;
         this.category = category;
         this.materialToBuild = materialToBuild;
@@ -77,6 +80,7 @@ public enum BuildingType {
         this.canBeDestroyedByTunnels = canBeDestroyedByTunnels;
         this.canBeRepaired = canBeRepaired;
         this.buildingClass = buildingClass;
+        this.canOnlyBuiltOn = canOnlyBuiltOn;
     }
 
     public String getName() {
@@ -161,6 +165,10 @@ public enum BuildingType {
 
     public String getBuildingClass() {
         return buildingClass;
+    }
+
+    public Vector<Texture> getCanOnlyBuiltOn() {
+        return canOnlyBuiltOn;
     }
 
     public BuildingType getBuildingTypeFromName(String name) {
