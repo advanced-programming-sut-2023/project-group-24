@@ -1,14 +1,14 @@
 package model;
 
 public class User {
+    private final int recoveryQuestionNumber;
+    private final String recoveryAnswer;
     private String username;
     private String password;
     private String nickname;
     private String slogan;
     private String email;
     private int highScore;
-    private final int recoveryQuestionNumber;
-    private final String recoveryAnswer;
 
     public User(String username, String password, String nickname, String slogan,
                 String email, int recoveryQuestionNumber, String recoveryAnswer) {
@@ -20,7 +20,6 @@ public class User {
         this.recoveryQuestionNumber = recoveryQuestionNumber;
         this.recoveryAnswer = recoveryAnswer;
     }
-
 
 
     public String getUsername() {
@@ -39,20 +38,20 @@ public class User {
         return email;
     }
 
-    public String getSlogan() {
-        return slogan;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setNickName(String nickName) {
-        this.nickname = nickName;
+    public String getSlogan() {
+        return slogan;
     }
 
     public void setSlogan(String slogan) {
         this.slogan = slogan;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNickName(String nickName) {
+        this.nickname = nickName;
     }
 
     public void changePasswords(String newPassword) {

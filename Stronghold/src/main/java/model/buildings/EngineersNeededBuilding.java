@@ -1,8 +1,13 @@
 package model.buildings;
 
+import model.Kingdom;
+import model.People;
+import model.army.Soldier;
+import model.map.Cell;
+
 import java.util.ArrayList;
 
-public class EngineersNeededBuilding extends WorkersNeededBuilding{
+public class EngineersNeededBuilding extends WorkersNeededBuilding {
     private ArrayList<Soldier> engineers;
 
     public EngineersNeededBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {

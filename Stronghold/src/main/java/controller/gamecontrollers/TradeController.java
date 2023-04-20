@@ -4,7 +4,7 @@ import model.GameDatabase;
 import utils.enums.messages.TradeControllerMessages;
 
 public class TradeController {
-    private GameDatabase gameDatabase;
+    private final GameDatabase gameDatabase;
 
     public TradeController(GameDatabase gameDatabase) {
         this.gameDatabase = gameDatabase;

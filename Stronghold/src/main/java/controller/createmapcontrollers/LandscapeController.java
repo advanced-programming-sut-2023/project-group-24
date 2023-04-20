@@ -1,15 +1,10 @@
 package controller.createmapcontrollers;
 
-import model.GameDatabase;
+import model.map.Map;
 import utils.enums.messages.CreateMapMessages;
 
 public class LandscapeController {
-    private GameDatabase gameDatabase;
-
-    public LandscapeController(GameDatabase gameDatabase) {
-        this.gameDatabase = gameDatabase;
-    }
-
+    private Map map;
     public CreateMapMessages setTexture(int x, int y, String texture) {
         //TODO
         return null;

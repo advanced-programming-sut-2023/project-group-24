@@ -1,7 +1,11 @@
 package model.army;
 
+import model.StringFunctions;
+
 public enum ArmyType {
-    ARCHER(12, 5, 23, 4);
+    LORD(12, 12, 12, 4),
+    ARCHER(12, 5, 23, 4),
+    CROSSBOWMEN(12, 2, 3, 4);
     private final int maxHp;
     private final int range;
     private final int damage;
@@ -15,7 +19,10 @@ public enum ArmyType {
     }
 
     public static ArmyType stringToEnum(String name) {
-        //TODO ...
+        String string = StringFunctions.turnSpaceToUnderline(name);
+        for (ArmyType value : values())
+            if (string.equalsIgnoreCase(value.toString()))
+                return value;
         return null;
     }
 
@@ -34,4 +41,5 @@ public enum ArmyType {
     public int getSpeed() {
         return speed;
     }
+
 }

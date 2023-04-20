@@ -1,12 +1,13 @@
 package model.army;
 
+import model.Kingdom;
 import model.map.Cell;
 
 public class Soldier extends Army {
     private final SoldierType soldierType;
 
-    public Soldier(Cell location, ArmyType armyType, SoldierType soldierType) {
-        super(location, armyType);
+    public Soldier(Cell location, ArmyType armyType, Kingdom owner, SoldierType soldierType) {
+        super(location, armyType, owner);
         this.soldierType = soldierType;
     }
 

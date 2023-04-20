@@ -1,5 +1,7 @@
 package model.army;
 
+import model.StringFunctions;
+
 public enum WarMachineType {
     SIEGE_TOWER(2);
 
@@ -10,7 +12,10 @@ public enum WarMachineType {
     }
 
     public static WarMachineType stringToEnum(String name) {
-        //TODO ...
+        String string = StringFunctions.turnSpaceToUnderline(name);
+        for (WarMachineType value : values())
+            if (string.equalsIgnoreCase(value.toString()))
+                return value;
         return null;
     }
 

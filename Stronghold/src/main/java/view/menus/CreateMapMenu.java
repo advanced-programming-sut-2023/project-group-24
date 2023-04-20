@@ -6,12 +6,17 @@ import controller.createmapcontrollers.LandscapeController;
 import java.util.regex.Matcher;
 
 public class CreateMapMenu {
-    private LandscapeController landscapeController;
-    private CastleController castleController;
+    private final LandscapeController landscapeController;
+    private final CastleController castleController;
 
     public CreateMapMenu(LandscapeController landscapeController, CastleController castleController) {
         this.landscapeController = landscapeController;
         this.castleController = castleController;
+    }
+
+    public void run() {
+        getSizeOfMap();
+
     }
 
     private void setTexture(Matcher matcher) {
@@ -30,13 +35,14 @@ public class CreateMapMenu {
         //TODO
     }
 
-    private void setCurrentKingdom(Matcher matcher) {
+    private void setCurrentKingdom(Matcher matcher) {//set color
         //TODO
     }
 
     private void dropBuilding(Matcher matcher) {
         //TODO
     }
+
     private void dropUnit(Matcher matcher) {
         //TODO
     }

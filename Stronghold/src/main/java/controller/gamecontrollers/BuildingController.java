@@ -1,11 +1,10 @@
 package controller.gamecontrollers;
 
 import model.GameDatabase;
-import model.buildings.Building;
 import utils.enums.messages.BuildingControllerMessages;
 
 public class BuildingController {
-    private GameDatabase gameDatabase;
+    private final GameDatabase gameDatabase;
 
     public BuildingController(GameDatabase gameDatabase) {
         this.gameDatabase = gameDatabase;

@@ -1,14 +1,12 @@
 package controller.createmapcontrollers;
 
-import model.GameDatabase;
+import model.Kingdom;
+import model.map.Map;
 import utils.enums.messages.CreateMapMessages;
 
 public class CastleController {
-    private GameDatabase gameDatabase;
-
-    public CastleController(GameDatabase gameDatabase) {
-        this.gameDatabase = gameDatabase;
-    }
+    private Kingdom currentKingdom;
+    private Map map;
 
     public void setCurrentKingdom(String color) {
         //TODO
@@ -18,6 +16,7 @@ public class CastleController {
         //TODO
         return null;
     }
+
     public CreateMapMessages dropUnit(int x, int y, String type, int count) {
         //TODO
         return null;

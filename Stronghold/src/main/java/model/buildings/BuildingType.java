@@ -1,12 +1,14 @@
 package model.buildings;
 
 import model.Direction;
+import model.Item;
+import model.army.Soldier;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
-public enum BuildingType {;
+public enum BuildingType {
+    ;
 //    SMALL_STONE_GATEHOUSE("small stone gatehouse", "Castle", null, 0, 100, 0, 8, 0, 0, 0, 0, 0, null, null, 0, false);
 
     private String name;

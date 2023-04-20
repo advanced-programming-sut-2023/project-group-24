@@ -1,15 +1,14 @@
 package model.map;
 
 import model.Kingdom;
-import model.map.Cell;
 
 import java.util.ArrayList;
 
 public class Map {
-    private int size;
-    private Cell[][] map;
-    private String id;
     private final ArrayList<Kingdom> kingdoms;
+    private final int size;
+    private final Cell[][] map;
+    private final String id;
 
     public Map(int size, String id) {
         this.size = size;

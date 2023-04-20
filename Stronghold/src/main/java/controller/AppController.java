@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class AppController {
     private static User loggedInUser;
-    private static Database database = new Database();
+    private static final Database database = new Database();
     private static GameDatabase gameDatabase;
     private static MenusName currentMenu;
 

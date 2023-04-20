@@ -4,7 +4,7 @@ import model.GameDatabase;
 import utils.enums.messages.UnitControllerMessages;
 
 public class UnitController {
-    private GameDatabase gameDatabase;
+    private final GameDatabase gameDatabase;
 
     public UnitController(GameDatabase gameDatabase) {
         this.gameDatabase = gameDatabase;

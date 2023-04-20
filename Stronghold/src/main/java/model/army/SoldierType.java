@@ -1,17 +1,17 @@
 package model.army;
 
-import model.storage.Armor;
-import model.storage.Weapon;
+import model.Item;
+import model.StringFunctions;
 
 public enum SoldierType {
     ;
-    private final Armor armor;
-    private final Weapon weapon;
+    private final Item armor;
+    private final Item weapon;
     private final boolean canClimbLadder;
     private final Nation nation;
     private final boolean canDig;
 
-    SoldierType(Armor armor, Weapon weapon, boolean canClimbLadder,
+    SoldierType(Item armor, Item weapon, boolean canClimbLadder,
                 Nation nation, boolean canDig) {
         this.armor = armor;
         this.weapon = weapon;
@@ -21,15 +21,18 @@ public enum SoldierType {
     }
 
     public static SoldierType stringToEnum(String name) {
-        //TODO ...
+        String string = StringFunctions.turnSpaceToUnderline(name);
+        for (SoldierType value : values())
+            if (string.equalsIgnoreCase(value.toString()))
+                return value;
         return null;
     }
 
-    public Armor getArmor() {
+    public Item getArmor() {
         return armor;
     }
 
-    public Weapon getWeapon() {
+    public Item getWeapon() {
         return weapon;
     }
 

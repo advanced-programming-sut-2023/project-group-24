@@ -2,11 +2,10 @@ package model;
 
 import model.map.Map;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 public class Database {
-    private Vector<User> allUsers;
+    private final Vector<User> allUsers;
     private Vector<Map> maps;
     private User stayedLoggedInUser;
 
@@ -14,13 +13,13 @@ public class Database {
         allUsers = new Vector<>();
     }
 
+    public User getStayedLoggedInUser() {
+        return stayedLoggedInUser;
+    }
+
     public void setStayedLoggedInUser(User user) {
         stayedLoggedInUser = user;
         //TODO save it in file
-    }
-
-    public User getStayedLoggedInUser() {
-        return stayedLoggedInUser;
     }
 
     public void loadDataFromFile() {

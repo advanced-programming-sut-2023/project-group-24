@@ -5,17 +5,21 @@ import model.map.Cell;
 
 import java.util.ArrayList;
 
-public abstract class Army {
+public class Army {
+    private final ArrayList<Cell> path;
+    //Todo patrol
+    private final Kingdom owner;
+    private final ArmyType armyType;
     private Cell location;
     private UnitState unitState;
-    private ArrayList<Cell> path;
     private int hp;
-    private Kingdom owner;
 
-    public Army(Cell location, ArmyType armyType) {
+    public Army(Cell location, ArmyType armyType, Kingdom owner) {
+        this.armyType = armyType;
         this.location = location;
         this.hp = armyType.getMaxHp();
         path = new ArrayList<>();
+        this.owner = owner;
     }
 
     public boolean isDead() {
@@ -26,11 +30,7 @@ public abstract class Army {
         return location;
     }
 
-    public void move(Cell location) {
-        this.location = location;
-    }
-
-    public UnitState getState() {
+    public UnitState getUnitState() {
         return unitState;
     }
 
@@ -42,7 +42,7 @@ public abstract class Army {
         return hp;
     }
 
-    public boolean takeDamage(int amount){
+    public boolean takeDamage(int amount) {
         hp -= amount;
         return isDead();
     }
@@ -54,5 +54,13 @@ public abstract class Army {
     public void setPath(ArrayList<Cell> path) {
         this.path.clear();
         this.path.addAll(path);
+    }
+
+    public Kingdom getOwner() {
+        return owner;
+    }
+
+    public ArmyType getArmyType() {
+        return armyType;
     }
 }

@@ -11,10 +11,6 @@ public class Trade {
         //TODO
     }
 
-    public void setAcceptingMessage(String acceptingMessage) {
-        this.acceptingMessage = acceptingMessage;
-    }
-
     public Item getResourceType() {
         return resourceType;
     }
@@ -33,5 +29,9 @@ public class Trade {
 
     public String getAcceptingMessage() {
         return acceptingMessage;
+    }
+
+    public void setAcceptingMessage(String acceptingMessage) {
+        this.acceptingMessage = acceptingMessage;
     }
 }

@@ -2,7 +2,9 @@ package utils.enums;
 
 public enum Slogan {
 
-    FIRST("I fight for peace");
+    FIRST("I fight for peace"),
+    SECOND("I'm not in DANGER , I am the DANGER"),
+    THIRD("");
     private final String slogan;
 
     Slogan(String slogan) {

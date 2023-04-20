@@ -1,12 +1,16 @@
 package model.buildings;
 
+import model.Kingdom;
+import model.map.Cell;
+
 public class Building {
+    private final Cell location;
     private Kingdom kingdom;
-    private Cell cell;
     private BuildingType buildingType;
     private int hp;
 
-    public Building(Kingdom kingdom, Cell cell, BuildingType buildingType) {
+    public Building(Kingdom kingdom, Cell location, BuildingType buildingType) {
+        this.location = location;
         //TODO
     }
 
@@ -24,5 +28,9 @@ public class Building {
 
     public void takeDamage(int amount) {
         //TODO
+    }
+
+    public Cell getLocation() {
+        return location;
     }
 }

@@ -2,6 +2,7 @@ package model.buildings;
 
 public class OxTether extends Building {
     ProducerBuilding quarry;
+
     public DefenceBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         //TODO
     }
