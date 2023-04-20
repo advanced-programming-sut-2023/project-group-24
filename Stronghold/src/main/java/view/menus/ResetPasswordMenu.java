@@ -1,6 +1,10 @@
 package view.menus;
 
+import controller.AppController;
 import controller.ResetPasswordMenuController;
+import utils.enums.MenusName;
+import view.enums.commands.Commands;
+import view.enums.messages.ResetPasswordMessages;
 
 import java.util.regex.Matcher;
 
@@ -13,18 +17,54 @@ public class ResetPasswordMenu {
     }
 
     public void run() {
-        //TODO get commands from GetInputFromUser func anc check that
+        String command;
+        Matcher matcher;
+        while (AppController.getCurrentMenu() == MenusName.RESET_PASSWORD_MENU) {
+            command = GetInputFromUser.getUserInput();
+            if ((matcher = Commands.getMatcher(command, Commands.RESET_PASSWORD)) != null)
+                checkUserUsername(matcher);
+            else System.out.println("Invalid command!");
+        }
     }
 
     private void checkUserUsername(Matcher matcher) {
-        //TODO check user username and set currentUser for database
+        String username = matcher.group("username");
+        ResetPasswordMessages message = resetPasswordMenuController.checkUserUsername(username);
+        switch (message) {
+            case USER_NOT_FOUND -> System.out.println("User not found!");
+            case USER_FOUND -> getAndCheckUserRecoveryAnswer();
+            default -> {
+            }
+        }
     }
 
     private void getAndCheckUserRecoveryAnswer() {
-        //TODO get user Recovery Answer
+        String recoveryQuestion = resetPasswordMenuController.getUserRecoveryQuestion();
+        System.out.println(recoveryQuestion);
+        String recoveryAnswer = GetInputFromUser.getUserInput();
+        ResetPasswordMessages message = resetPasswordMenuController.checkUserRecoveryAnswer(recoveryAnswer);
+        switch (message) {
+            case INCORRECT_ANSWER -> System.out.println("Your answer is not correct!");
+            case CORRECT_ANSWER -> changePassword();
+            default -> {
+            }
+        }
     }
 
     private void changePassword() {
-        //TODO get new password from user and change pass
+        System.out.println("Enter your new password: ");
+        String newPassword = GetInputFromUser.getUserInput();
+        System.out.println("Re-enter your new password: ");
+        String newPasswordConfirm = GetInputFromUser.getUserInput();
+        ResetPasswordMessages message = resetPasswordMenuController.checkAndChangeNewPassword(newPassword, newPasswordConfirm);
+        switch (message) {
+            case SUCCESS -> {
+                System.out.println("Your password has been successfully changed");
+                AppController.setCurrentMenu(MenusName.LOGIN_MENU);
+            }
+            case PASSWORD_REPETITION_DO_NOT_MATCH -> System.out.println("The password and its repetition do not match");
+            default -> {
+            }
+        }
     }
 }
