@@ -16,17 +16,17 @@ public enum Item {
     CHEESE(8, Category.FOOD),
     BREAD(8, Category.FOOD),
     WHEAT(23, Category.MATERIAL),
-    FLOUR(0, Category.MATERIAL),//todo
+    FLOUR(32, Category.MATERIAL),
     HOPS(15, Category.MATERIAL),
     ALE(20, Category.MATERIAL),
     STONE(14, Category.MATERIAL),
     IRON(45, Category.MATERIAL),
-    PITCH(0, Category.MATERIAL);//toDO
+    PITCH(20, Category.MATERIAL);
 
     private final Category category;
 
     private final int price;
-    public static final List<Item> Values = List.of(values());//TODO ASK ...
+    public static final List<Item> Values = List.of(values());
 
     Item(int price, Category category) {
         this.category = category;

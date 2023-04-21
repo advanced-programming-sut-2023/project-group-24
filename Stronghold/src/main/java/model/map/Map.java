@@ -24,11 +24,19 @@ public class Map {
         return id;
     }
 
-    public void addKingdom(Color color) {
-        kingdoms.add(new Kingdom(color));
+    public void addKingdom(Kingdom kingdom) {
+        kingdoms.add(kingdom);
     }
 
     public ArrayList<Kingdom> getKingdoms() {
         return kingdoms;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public Cell[][] getMap() {
+        return map;
     }
 }

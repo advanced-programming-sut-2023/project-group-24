@@ -1,4 +1,4 @@
-package utils.enums;
+package model;
 
 public enum Color {
     //Color end string, color reset

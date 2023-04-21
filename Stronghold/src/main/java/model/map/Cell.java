@@ -85,9 +85,19 @@ public class Cell {
 
     public void removeArmy(Army army) {
         for (int i = 0; i < armies.size(); i++)
-            if (armies.get(i).equals(army))
+            if (armies.get(i).equals(army)) {
                 armies.remove(i);
+                break;
+            }
     }
 
-
+    public void clear(Map map) {
+        for (Kingdom kingdom : map.getKingdoms())
+            kingdom.removeArmies(armies);
+        armies.clear();
+        existingBuilding.getKingdom().removeBuilding(existingBuilding);
+        existingBuilding = null;
+        texture = Texture.GROUND;
+        isRock = false;
+    }
 }

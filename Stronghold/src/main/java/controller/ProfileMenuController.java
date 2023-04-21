@@ -2,7 +2,7 @@ package controller;
 
 import model.Database;
 import model.User;
-import utils.enums.messages.ProfileMenuMessages;
+import view.menus.messages.ProfileMenuMessages;
 
 public class ProfileMenuController {
     private final Database database;

@@ -4,56 +4,64 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="595dce4f-0ef9-4748-902f-c9703fcbd2f1" name="Default Changelist" comment="UML:PEOPLE">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/StringFunctions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/enums/Color.java" afterDir="false" />
+    <list default="true" id="595dce4f-0ef9-4748-902f-c9703fcbd2f1" name="Default Changelist" comment="reset CreateMapMenu, rebase storage, finish Item, Texture and Color enums.">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_10_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Stronghold.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Stronghold.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Default_Changelist]/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/captchacontrollers/Captcha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/captchacontrollers/Captcha.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/createmapcontrollers/CastleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/createmapcontrollers/CastleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/createmapcontrollers/LandscapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/createmapcontrollers/LandscapeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ResetPasswordMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ResetPasswordMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/createmapcontrollers/CastleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/createmapcontrollers/LandscapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShowMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShowMapController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/TradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/TradeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Direction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/GameDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/GameDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/LadderState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/LadderState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Trade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Trade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/Army.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/Army.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/Soldier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/Soldier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/SoldierType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/SoldierType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/UnitState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/UnitState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/WarMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/WarMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/WarMachineType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/WarMachineType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/Building.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/EngineersNeededBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/EngineersNeededBuilding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/OxTether.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/OxTether.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/ProducerBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/ProducerBuilding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/StorageBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/StorageBuilding.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Texture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/storage/Armor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/storage/Food.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/storage/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/storage/Material.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/storage/Storage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/storage/Weapon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/Slogan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/enums/Slogan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/MenusName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/MenusName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/RecoveryQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RecoveryQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/Slogan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Slogan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/commands/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/commands/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/messages/BuildingControllerMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/messages/BuildingControllerMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/messages/CreateMapMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/messages/CreateMapMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/messages/LoginMenuMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/messages/LoginMenuMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/messages/MainMenuMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/messages/MainMenuMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/messages/ProfileMenuMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/messages/ProfileMenuMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/messages/RegisterMenuMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/messages/RegisterMenuMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/messages/ResetPasswordMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/messages/ResetPasswordMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/messages/ShopMenuMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/messages/ShopMenuMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/messages/TradeControllerMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/messages/TradeControllerMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/messages/UnitControllerMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/messages/UnitControllerMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/CaptchaMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/CaptchaMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShopMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShowMapMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShowMapMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/TradeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/TradeMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/LoginMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/LoginMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/army/ArmyType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/army/Soldier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/army/WarMachine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/army/WarMachineType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/storage/Armor.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,23 +97,23 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -114,8 +122,18 @@
       <option name="presentableId" value="Default" />
       <updated>1681901476943</updated>
       <workItem from="1681901478321" duration="23010000" />
-      <workItem from="1681982291335" duration="7914000" />
+      <workItem from="1681982291335" duration="9183000" />
+      <workItem from="1681991662922" duration="9199000" />
+      <workItem from="1682071675930" duration="8015000" />
     </task>
+    <task id="LOCAL-00001" summary="reset CreateMapMenu, rebase storage, finish Item, Texture and Color enums.">
+      <created>1681990519415</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681990519415</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,5 +149,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="reset CreateMapMenu, rebase storage, finish Item, Texture and Color enums." />
+    <option name="LAST_COMMIT_MESSAGE" value="reset CreateMapMenu, rebase storage, finish Item, Texture and Color enums." />
   </component>
 </project>

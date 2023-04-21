@@ -1,4 +1,4 @@
-package utils.enums.messages;
+package view.menus.messages;
 
 public enum BuildingControllerMessages {
     //TODO add messages

@@ -1,4 +1,4 @@
-package utils.enums;
+package view.menus;
 
 public enum MenusName {
     MAIN_MENU,

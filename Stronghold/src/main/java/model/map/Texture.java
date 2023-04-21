@@ -1,7 +1,7 @@
 package model.map;
 
 import model.StringFunctions;
-import utils.enums.Color;
+import model.Color;
 
 public enum Texture {
     GROUND(true, true, Color.YELLOW_BACKGROUND),

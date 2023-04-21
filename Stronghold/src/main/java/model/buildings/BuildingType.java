@@ -1,7 +1,7 @@
 package model.buildings;
 
+import model.Item;
 import model.army.Army;
-import model.storage.Item;
 import utils.Pair;
 
 import java.util.Vector;

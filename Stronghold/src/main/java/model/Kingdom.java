@@ -3,8 +3,9 @@ package model;
 import model.army.Army;
 import model.army.ArmyType;
 import model.buildings.Building;
+import model.buildings.StorageBuilding;
+import utils.Pair;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,10 +27,10 @@ public class Kingdom {
         this.color = color;
         this.gateHouse = gateHouse;
         this.lord = new Army(gateHouse.getLocation(), ArmyType.LORD, this);
-        setKingdomArrayList();
+        setKingdomAttribute();
     }
 
-    private void setKingdomArrayList() {//TODO
+    private void setKingdomAttribute() {//TODO
         popularity = 75;
         buildings = new ArrayList<>();
         buildings.add(gateHouse);
@@ -100,11 +101,11 @@ public class Kingdom {
     }
 
     public void removeArmy(Army army) {
-        for (int i = 0; i < armies.size(); i++)
-            if (armies.get(i).equals(army)) {
-                armies.remove(i);
-                break;
-            }
+        armies.remove(army);
+    }
+
+    public void removeArmies(ArrayList<Army> deadArmies) {
+        armies.removeAll(deadArmies);
     }
 
     public Color getColor() {
@@ -119,15 +120,26 @@ public class Kingdom {
         return storage.get(item);
     }
 
-    public void changeStockNumber(Item item, int amount) {
-        storage.replace(item, getStockedNumber(item) + amount);//Todo it works?
+    public void changeStockNumber(Pair<Item, Integer> item) {
+        storage.replace(item.getObject1(), getStockedNumber(item.getObject1()) + item.getObject2());
     }
 
     public void setStorage() {
         storage = new HashMap<>();
         for (Item value : Item.values())
             storage.put(value, 0);
-        //TODO
+        for (Building building : buildings)
+            if (building instanceof StorageBuilding)
+                for (Item value : Item.values())
+                    changeStockNumber(new Pair<> (value , ((StorageBuilding) building).getStockedNumber(value)));
+    }
+
+    public void removeBuilding(Building destroyedBuilding) {
+        buildings.remove(destroyedBuilding);
+    }
+
+    public void addBuilding(Building building) {
+        buildings.add(building);
     }
 
     private enum Factor {

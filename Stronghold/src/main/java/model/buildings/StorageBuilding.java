@@ -1,8 +1,8 @@
 package model.buildings;
 
+import model.Item;
 import model.Kingdom;
 import model.map.Cell;
-import model.storage.Item;
 import utils.Pair;
 
 import java.util.HashMap;
@@ -52,5 +52,9 @@ public class StorageBuilding extends Building {
         }
         storage.remove(items.getObject1());
         return new Pair<>(items.getObject1(), -numberOfItemsLeft);
+    }
+
+    public int getStockedNumber(Item item) {
+        return storage.get(item);
     }
 }
