@@ -1,6 +1,6 @@
 package model;
 
-public class User {
+public class User implements Comparable<User>{
     private String username;
     private String password;
     private String nickname;
@@ -77,5 +77,10 @@ public class User {
 
     public void setHighScore(int highScore) {
         this.highScore = highScore;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return o.highScore - highScore;
     }
 }

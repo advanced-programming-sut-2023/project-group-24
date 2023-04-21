@@ -11,7 +11,7 @@ public enum BuildingType {
     SMALL_STONE_GATEHOUSE("small stone gatehouse", "castle", null, 0, 1000,
             0, 8, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
-            true, true, "building", null);
+            true, true, Building.class, null);
 
     private String name;
     private String category;
@@ -34,7 +34,7 @@ public enum BuildingType {
     private Vector<Item> itemsItCanMove;
     private boolean canBeDestroyedByTunnels;
     private boolean canBeRepaired;
-    private String buildingClass;
+    private Class buildingClass;
     private Vector<Texture> canOnlyBuiltOn;
 
     BuildingType(String name,
@@ -57,7 +57,7 @@ public enum BuildingType {
                  Vector<Item> itemsItCanMove,
                  boolean canBeDestroyedByTunnels,
                  boolean canBeRepaired,
-                 String buildingClass,
+                 Class buildingClass,
                  Vector<Texture> canOnlyBuiltOn) {
         this.name = name;
         this.category = category;
@@ -163,7 +163,7 @@ public enum BuildingType {
         return canBeRepaired;
     }
 
-    public String getBuildingClass() {
+    public Class getBuildingClass() {
         return buildingClass;
     }
 

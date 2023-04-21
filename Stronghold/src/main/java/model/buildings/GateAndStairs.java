@@ -6,11 +6,11 @@ import model.map.Cell;
 
 public class GateAndStairs extends DefenceBuilding {
     private boolean closed;
-    private final Direction direction;
+    private Direction direction;
 
-    public GateAndStairs(Kingdom kingdom, Cell cell, BuildingType buildingType, Direction direction) {
+    public GateAndStairs(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         super(kingdom, cell, buildingType);
-        this.direction = direction;
+        direction = Direction.UP;
         closed = false;
     }
 
@@ -20,6 +20,10 @@ public class GateAndStairs extends DefenceBuilding {
 
     public Direction getDirection() {
         return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     public void changeClosedState() {
