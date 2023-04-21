@@ -18,12 +18,12 @@ public class DefenceBuilding extends Building {
         return ladderState;
     }
 
-    public LadderState getStaircase() {
-        return staircase;
-    }
-
     public void setLadderState(LadderState ladderState) {
         this.ladderState = ladderState;
+    }
+
+    public LadderState getStaircase() {
+        return staircase;
     }
 
     public void setStaircase(LadderState staircase) {

@@ -16,6 +16,16 @@ public class Building {
         this.hp = buildingType.getMaxHp();
     }
 
+    public static Building getBuildingFromBuildingType(Kingdom kingdom, Cell location, BuildingType buildingType) {
+        try {
+            Building building = (Building) buildingType.getBuildingClass().getConstructor(Kingdom.class,
+                    Cell.class, BuildingType.class).newInstance(kingdom, location, buildingType);
+            return building;
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
     public BuildingType getBuildingType() {
         return buildingType;
     }
@@ -38,15 +48,5 @@ public class Building {
 
     public void repair() {
         hp = buildingType.getMaxHp();
-    }
-
-    public static Building getBuildingFromBuildingType(Kingdom kingdom, Cell location, BuildingType buildingType) {
-        try {
-            Building building = (Building) buildingType.getBuildingClass().getConstructor(Kingdom.class,
-                    Cell.class, BuildingType.class).newInstance(kingdom, location, buildingType);
-            return building;
-        } catch (Exception ignored) {
-            return null;
-        }
     }
 }

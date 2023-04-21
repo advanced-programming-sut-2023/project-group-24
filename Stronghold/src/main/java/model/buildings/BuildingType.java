@@ -11,7 +11,7 @@ public enum BuildingType {
     SMALL_STONE_GATEHOUSE("small stone gatehouse", "castle", null, 0, 1000,
             0, 8, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
-            true, true, Building.class, null);
+            true, true, null, Building.class);
 
     private String name;
     private String category;
@@ -34,8 +34,8 @@ public enum BuildingType {
     private Vector<Item> itemsItCanMove;
     private boolean canBeDestroyedByTunnels;
     private boolean canBeRepaired;
-    private Class buildingClass;
     private Vector<Texture> canOnlyBuiltOn;
+    private Class buildingClass;
 
     BuildingType(String name,
                  String category,
@@ -57,8 +57,8 @@ public enum BuildingType {
                  Vector<Item> itemsItCanMove,
                  boolean canBeDestroyedByTunnels,
                  boolean canBeRepaired,
-                 Class buildingClass,
-                 Vector<Texture> canOnlyBuiltOn) {
+                 Vector<Texture> canOnlyBuiltOn,
+                 Class buildingClass) {
         this.name = name;
         this.category = category;
         this.materialToBuild = materialToBuild;
@@ -79,8 +79,15 @@ public enum BuildingType {
         this.itemsItCanMove = itemsItCanMove;
         this.canBeDestroyedByTunnels = canBeDestroyedByTunnels;
         this.canBeRepaired = canBeRepaired;
-        this.buildingClass = buildingClass;
         this.canOnlyBuiltOn = canOnlyBuiltOn;
+        this.buildingClass = buildingClass;
+    }
+
+    public static BuildingType getBuildingTypeFromName(String name) {
+        for (BuildingType buildingType : values()) {
+            if (buildingType.name.equals(name)) return buildingType;
+        }
+        return null;
     }
 
     public String getName() {
@@ -169,10 +176,5 @@ public enum BuildingType {
 
     public Vector<Texture> getCanOnlyBuiltOn() {
         return canOnlyBuiltOn;
-    }
-
-    public BuildingType getBuildingTypeFromName(String name) {
-        //TODO do a for loop of all building types
-        return null;
     }
 }
