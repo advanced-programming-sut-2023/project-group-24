@@ -24,7 +24,6 @@ public class StorageBuilding extends Building {
     }
 
     public Pair<Item, Integer> putItem(Pair<Item, Integer> items) {
-        //TODO add the items to the storage as much as possible. the return value is the number of items left to add. don't forget to call the kingdom's storage
         int capacityLeft = getBuildingType().getStorageCapacity() - getNumberOfItemsInStorage();
         if (storage.containsKey(items.getObject1())) {
             if (items.getObject2() <= capacityLeft) {
@@ -43,7 +42,6 @@ public class StorageBuilding extends Building {
     }
 
     public Pair<Item, Integer> removeItem(Pair<Item, Integer> items) {
-        //TODO pretty much the same as putting items. don't forget to call the kingdom's storage.
         if (!storage.containsKey(items.getObject1())) return items;
         int numberOfItemsLeft = storage.get(items.getObject1()) - items.getObject2();
         if (numberOfItemsLeft < 0) {

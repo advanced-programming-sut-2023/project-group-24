@@ -27,7 +27,9 @@ public enum ArmyType {
     BATTERING_RAMS(150, 1000, 1, 334, 1),
     CATAPULT(150, 150, 5, 200, 2),
     TREBUCHETS(150, 400, 7, 334, 0),
-    FIRE_BALLISTA(150, 150, 6, 70, 2);
+    FIRE_BALLISTA(150, 150, 6, 70, 2),
+    //LORD
+    LORD(0, 0, 0, 0, 0);
     private final int price;
     private final int maxHp;
     private final int range;

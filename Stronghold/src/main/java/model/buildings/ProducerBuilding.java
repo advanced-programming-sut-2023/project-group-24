@@ -33,6 +33,15 @@ public class ProducerBuilding extends WorkersNeededBuilding {
     }
 
     public void produceItem() {
-        //TODO call the kingdom class to use the material needed and produce the produce. also check if it has workers. also check for its capacity.
+        if (!hasEnoughWorkers()) return;
+        if (getBuildingType().getName().equals("quarry")) {
+            numberOfItemsWaitingToBeLoaded += getBuildingType().getProduces().get(0).getObject2();
+            return;
+        }
+        if (getBuildingType().getUses() != null) {
+            for (Pair<Item, Integer> use : getBuildingType().getUses())
+                getKingdom().changeStockNumber(use);
+        }
+        getKingdom().changeStockNumber(itemToProduce);
     }
 }

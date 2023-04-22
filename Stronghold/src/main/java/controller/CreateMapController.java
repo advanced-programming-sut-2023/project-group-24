@@ -168,7 +168,7 @@ public class CreateMapController {
         if (checkLocation(x) || checkLocation(y))
             return CreateMapMessages.INVALID_LOCATION;
         Cell cell = map.getMap()[x][y];
-        BuildingType buildingType = BuildingType.stringToEnum(type);
+        BuildingType buildingType = BuildingType.getBuildingTypeFromName(type);
         if (buildingType == null)
             return CreateMapMessages.INVALID_TYPE;
         //TODO ...

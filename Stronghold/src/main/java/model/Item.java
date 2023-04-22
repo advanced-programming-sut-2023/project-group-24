@@ -21,7 +21,9 @@ public enum Item {
     ALE(20, Category.MATERIAL),
     STONE(14, Category.MATERIAL),
     IRON(45, Category.MATERIAL),
-    PITCH(20, Category.MATERIAL);
+    PITCH(20, Category.MATERIAL),
+    WOOD(4, Category.MATERIAL);
+
 
     private final Category category;
 
@@ -49,7 +51,7 @@ public enum Item {
         return category;
     }
 
-    private enum Category {
+    public enum Category {
         WEAPON,
         FOOD,
         ARMOR,

@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Stronghold" target="19" />
+      <module name="Stronghold" target="1.11" />
     </bytecodeTargetLevel>
   </component>
 </project>
