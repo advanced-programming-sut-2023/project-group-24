@@ -20,7 +20,7 @@ public enum Commands {
     DROP_UNIT("DFDS"),
     CHANGE_KINGDOM("YYF"),
     NEW_KINGDOM("vhj"),//x, y, color
-
+    EXIT("^exit"),
 
 
     //Captcha Menu commands

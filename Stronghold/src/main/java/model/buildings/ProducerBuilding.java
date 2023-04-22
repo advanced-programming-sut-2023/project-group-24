@@ -6,7 +6,7 @@ import model.map.Cell;
 import utils.Pair;
 
 public class ProducerBuilding extends WorkersNeededBuilding {
-    private int numberOfItemsWaitingToBeLoaded;
+    private final int numberOfItemsWaitingToBeLoaded;
     private Pair<Item, Integer> itemToProduce;
 
     public ProducerBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {

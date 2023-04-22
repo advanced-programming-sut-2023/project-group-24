@@ -1,8 +1,8 @@
 package model.buildings;
 
+import model.Item;
 import model.army.Army;
 import model.map.Texture;
-import model.storage.Item;
 import utils.Pair;
 
 import java.util.Vector;
@@ -13,29 +13,29 @@ public enum BuildingType {
             null, null, 0, null, null, null,
             true, true, null, Building.class);
 
-    private String name;
-    private String category;
-    private Pair<Item, Integer> materialToBuild;
-    private int price;
-    private int maxHp;
+    private final String name;
+    private final String category;
+    private final Pair<Item, Integer> materialToBuild;
+    private final int price;
+    private final int maxHp;
 
-    private int workersNeeded;
-    private int homeCapacity;
-    private int height;
-    private int storageCapacity;
-    private int attackPoint;
-    private int popularityRate;
-    private int produceRate;
-    private Vector<Pair<Item, Integer>> uses;
-    private Vector<Pair<Item, Integer>> produces;
-    private int producePrice;
-    private Vector<Army> troopsItCanMake;
-    private Vector<Item> itemsItCanHold;
-    private Vector<Item> itemsItCanMove;
-    private boolean canBeDestroyedByTunnels;
-    private boolean canBeRepaired;
-    private Vector<Texture> canOnlyBuiltOn;
-    private Class buildingClass;
+    private final int workersNeeded;
+    private final int homeCapacity;
+    private final int height;
+    private final int storageCapacity;
+    private final int attackPoint;
+    private final int popularityRate;
+    private final int produceRate;
+    private final Vector<Pair<Item, Integer>> uses;
+    private final Vector<Pair<Item, Integer>> produces;
+    private final int producePrice;
+    private final Vector<Army> troopsItCanMake;
+    private final Vector<Item> itemsItCanHold;
+    private final Vector<Item> itemsItCanMove;
+    private final boolean canBeDestroyedByTunnels;
+    private final boolean canBeRepaired;
+    private final Vector<Texture> canOnlyBuiltOn;
+    private final Class buildingClass;
 
     BuildingType(String name,
                  String category,

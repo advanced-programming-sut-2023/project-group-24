@@ -4,7 +4,7 @@ import model.Item;
 import model.StringFunctions;
 
 public enum SoldierType {
-    ARCHER(null, Item.BOW, true, Type.EUROPEAN,true),
+    ARCHER(null, Item.BOW, true, Type.EUROPEAN, true),
     CROSSBOWMAN(Item.LEATHER_ARMOR, Item.CROSSBOW, false, Type.EUROPEAN, false),
     SPEARMAN(null, Item.CROSSBOW, true, Type.EUROPEAN, true),
     PIKE_MAN(Item.METAL_ARMOR, Item.PIKE, false, Type.EUROPEAN, true),

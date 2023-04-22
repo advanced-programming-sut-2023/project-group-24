@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public class Cell {
     private final int x;
     private final int y;
+    private final ArrayList<Army> armies = new ArrayList<>();
     private Texture texture;
     private Building existingBuilding = null;
-    private final ArrayList<Army> armies = new ArrayList<>();
     private boolean isRock;
     private Tree tree;
     private Direction direction;

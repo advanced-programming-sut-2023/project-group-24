@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="595dce4f-0ef9-4748-902f-c9703fcbd2f1" name="Default Changelist" comment="">
+    <list default="true" id="595dce4f-0ef9-4748-902f-c9703fcbd2f1" name="Default Changelist" comment="FINISH ENUMS!">
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/KingdomTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/army/ArmyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Stronghold.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Stronghold.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/Building.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/allUsers.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/allUsers.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/GameDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/GameDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/Army.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/Army.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/SoldierType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/SoldierType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/DefenceBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/DefenceBuilding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/ProducerBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/ProducerBuilding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/StorageBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/StorageBuilding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Pair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/commands/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/commands/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/messages/CreateMapMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/messages/CreateMapMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/army/Nation.class" beforeDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,77 +54,46 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="2OEN2y0ixiGjGQIg9h0A0LTxLIk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="PropertiesComponent">
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../tamrin 1/Clash Royal" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default"
+  }
+}]]></component>
   <component name="RecentsManager">
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="model" />
-    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="model" />
+      <recent name="model.army" />
+    </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="JUnit.DatabaseTest">
-    <configuration name="DatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.KingdomTest.changePopularity">
+    <configuration name="ArmyTest.takeDamage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
+          <option name="PATTERN" value="model.army.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DatabaseTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DatabaseTest.testGettingUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DatabaseTest" />
-      <option name="METHOD_NAME" value="testGettingUser" />
+      <option name="PACKAGE_NAME" value="model.army" />
+      <option name="MAIN_CLASS_NAME" value="model.army.ArmyTest" />
+      <option name="METHOD_NAME" value="takeDamage" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTest.testGettingUserRank" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="KingdomTest.changePopularity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
@@ -107,14 +102,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DatabaseTest" />
-      <option name="METHOD_NAME" value="testGettingUserRank" />
+      <option name="MAIN_CLASS_NAME" value="model.KingdomTest" />
+      <option name="METHOD_NAME" value="changePopularity" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTest.testSaveAndLoad" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="KingdomTest.getOwner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
@@ -123,14 +118,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DatabaseTest" />
-      <option name="METHOD_NAME" value="testSaveAndLoad" />
+      <option name="MAIN_CLASS_NAME" value="model.KingdomTest" />
+      <option name="METHOD_NAME" value="getOwner" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTest.testSavingAndLoadingMaps" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="KingdomTest.getPopularity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
@@ -139,8 +134,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DatabaseTest" />
-      <option name="METHOD_NAME" value="testSavingAndLoadingMaps" />
+      <option name="MAIN_CLASS_NAME" value="model.KingdomTest" />
+      <option name="METHOD_NAME" value="getPopularity" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KingdomTest.setOwner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.KingdomTest" />
+      <option name="METHOD_NAME" value="setOwner" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,11 +159,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DatabaseTest" />
-        <item itemvalue="JUnit.DatabaseTest.testGettingUserRank" />
-        <item itemvalue="JUnit.DatabaseTest.testSavingAndLoadingMaps" />
-        <item itemvalue="JUnit.DatabaseTest.testGettingUser" />
-        <item itemvalue="JUnit.DatabaseTest.testSaveAndLoad" />
+        <item itemvalue="JUnit.KingdomTest.changePopularity" />
+        <item itemvalue="JUnit.KingdomTest.getPopularity" />
+        <item itemvalue="JUnit.KingdomTest.getOwner" />
+        <item itemvalue="JUnit.KingdomTest.setOwner" />
+        <item itemvalue="JUnit.ArmyTest.takeDamage" />
       </list>
     </recent_temporary>
   </component>
@@ -174,22 +185,23 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testSaveAndLoad.ic" NAME="DatabaseTest.testSaveAndLoad Coverage Results" MODIFIED="1682076942761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1682079403879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testSavingAndLoadingMaps.ic" NAME="DatabaseTest.testSavingAndLoadingMaps Coverage Results" MODIFIED="1682077340662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$ArmyTest.ic" NAME="ArmyTest Coverage Results" MODIFIED="1682183975345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.army.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testSaveAndLoad.ic" NAME="DatabaseTest.testSaveAndLoad Coverage Results" MODIFIED="1682076942761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testSave.ic" NAME="DatabaseTest.testSave Coverage Results" MODIFIED="1682013877841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

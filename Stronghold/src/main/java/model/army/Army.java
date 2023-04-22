@@ -10,7 +10,7 @@ public class Army {
     //Todo patrol
     private final Kingdom owner;
     private final ArmyType armyType;
-    private Cell location;
+    private final Cell location;
     private UnitState unitState;
     private int hp;
 
@@ -20,6 +20,9 @@ public class Army {
         this.hp = armyType.getMaxHp();
         path = new ArrayList<>();
         this.owner = owner;
+        unitState = UnitState.STANDING;
+        location.addArmy(this);
+        owner.addArmy(this);
     }
 
     public boolean isDead() {
@@ -43,7 +46,12 @@ public class Army {
     }
 
     public boolean takeDamage(int amount) {
-        hp -= amount;
+        if (amount >= hp) {
+            hp = 0;
+            location.removeArmy(this);
+            owner.removeArmy(this);
+        } else
+            hp -= amount;
         return isDead();
     }
 
