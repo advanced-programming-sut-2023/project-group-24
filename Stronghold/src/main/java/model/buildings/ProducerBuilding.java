@@ -1,8 +1,8 @@
 package model.buildings;
 
+import model.Item;
 import model.Kingdom;
 import model.map.Cell;
-import model.storage.Item;
 import utils.Pair;
 
 public class ProducerBuilding extends WorkersNeededBuilding {

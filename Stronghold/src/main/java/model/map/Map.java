@@ -1,16 +1,14 @@
 package model.map;
 
 import model.Kingdom;
-import model.map.Cell;
-import utils.enums.Color;
 
 import java.util.ArrayList;
 
 public class Map {
-    private int size;
-    private Cell[][] map;
-    private String id;
     private final ArrayList<Kingdom> kingdoms;
+    private final int size;
+    private final Cell[][] map;
+    private final String id;
 
     public Map(int size, String id) {
         this.size = size;
@@ -26,11 +24,19 @@ public class Map {
         return id;
     }
 
-    public void addKingdom(Color color) {
-        kingdoms.add(new Kingdom(color));
+    public void addKingdom(Kingdom kingdom) {
+        kingdoms.add(kingdom);
     }
 
     public ArrayList<Kingdom> getKingdoms() {
         return kingdoms;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public Cell[][] getMap() {
+        return map;
     }
 }

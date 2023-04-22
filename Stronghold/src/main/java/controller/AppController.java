@@ -5,7 +5,7 @@ import model.Database;
 import model.GameDatabase;
 import model.User;
 import model.map.Map;
-import utils.enums.MenusName;
+import view.menus.MenusName;
 import view.menus.LoginMenu;
 import view.menus.MainMenu;
 import view.menus.ProfileMenu;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class AppController {
     private static User loggedInUser;
-    private static Database database = new Database();
+    private static final Database database = new Database();
     private static GameDatabase gameDatabase;
     private static MenusName currentMenu;
 
