@@ -1,6 +1,7 @@
 package model.buildings;
 
 import model.Item;
+import model.StringFunctions;
 import model.army.Army;
 import utils.Pair;
 
@@ -163,8 +164,11 @@ public enum BuildingType {
         return buildingClass;
     }
 
-    public BuildingType getBuildingTypeFromName(String name) {
-        //TODO do a for loop of all building types
+    public static BuildingType stringToEnum(String name) {
+        String string = StringFunctions.turnSpaceToUnderline(name);
+        for (BuildingType value : values())
+            if (string.equalsIgnoreCase(value.toString()))
+                return value;
         return null;
     }
 }

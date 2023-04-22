@@ -15,6 +15,7 @@ public class Cell {
     private Building existingBuilding = null;
     private final ArrayList<Army> armies = new ArrayList<>();
     private boolean isRock;
+    private Tree tree;
     private Direction direction;
 
     public Cell(int x, int y) {
@@ -84,20 +85,40 @@ public class Cell {
     }
 
     public void removeArmy(Army army) {
-        for (int i = 0; i < armies.size(); i++)
-            if (armies.get(i).equals(army)) {
-                armies.remove(i);
-                break;
-            }
+        armies.remove(army);
     }
 
     public void clear(Map map) {
-        for (Kingdom kingdom : map.getKingdoms())
-            kingdom.removeArmies(armies);
-        armies.clear();
+        clearArmies(map);
         existingBuilding.getKingdom().removeBuilding(existingBuilding);
         existingBuilding = null;
         texture = Texture.GROUND;
         isRock = false;
+    }
+
+    public void clearArmies(Map map) {
+        for (Kingdom kingdom : map.getKingdoms())
+            kingdom.removeArmies(armies);
+        armies.clear();
+    }
+
+    public ArrayList<Army> getArmies() {
+        return armies;
+    }
+
+    public Tree getTree() {
+        return tree;
+    }
+
+    public void setTree(Tree tree) {
+        this.tree = tree;
+    }
+
+    public boolean canBuild() {
+        return tree == null && !isRock && existingBuilding == null && texture.isCanBuild();
+    }
+
+    public boolean canDropUnit() {
+        return tree == null && !isRock && texture.isCanPass();
     }
 }

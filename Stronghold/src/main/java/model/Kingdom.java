@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Kingdom {
-    private final Color color;
+    private final KingdomColor color;
     private User owner;
     private Building gateHouse;
     private Army lord;
@@ -23,7 +23,7 @@ public class Kingdom {
     private HashMap<Factor, Integer> popularityFactors;
     private int gold;
 
-    public Kingdom(Color color, Building gateHouse) {
+    public Kingdom(KingdomColor color, Building gateHouse) {
         this.color = color;
         this.gateHouse = gateHouse;
         this.lord = new Army(gateHouse.getLocation(), ArmyType.LORD, this);
@@ -108,7 +108,7 @@ public class Kingdom {
         armies.removeAll(deadArmies);
     }
 
-    public Color getColor() {
+    public KingdomColor getColor() {
         return color;
     }
 

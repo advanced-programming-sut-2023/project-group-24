@@ -10,7 +10,7 @@ public enum Commands {
 
     //CreateMapMenu commands
 
-    CREATE_MAP("QD"),//ID and size
+    CREATE_MAP("QD"),//id and size
     SET_TEXTURE("DSAF"),
     SET_TEXTURE_MULTIPLE("DSFA"),
     CLEAR("D"),
@@ -19,7 +19,7 @@ public enum Commands {
     DROP_BUILDING("DS"),
     DROP_UNIT("DFDS"),
     CHANGE_KINGDOM("YYF"),
-    NEW_KINGDOM("vhj"),
+    NEW_KINGDOM("vhj"),//x, y, color
 
 
 
