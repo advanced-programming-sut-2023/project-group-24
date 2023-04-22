@@ -3,7 +3,11 @@ package model.map;
 import model.StringFunctions;
 
 public enum Tree {
-    erger;
+    DATE_PALM,
+    COCONUT_PALM,
+    CHERRY_PALM,
+    OLIVE_TREE,
+    DESERT_SHRUB;
     public static Tree stringToEnum(String name) {
         String string = StringFunctions.turnSpaceToUnderline(name);
         for (Tree value : values())

@@ -116,8 +116,7 @@ public class CreateMapMenu {
         int y = Integer.parseInt(matcher.group("y"));
         String type = matcher.group("type");
         int count = 1;
-        if (matcher.group("count") != null)
-            count = Integer.parseInt(matcher.group("count"));
+        if (matcher.group("count") != null) count = Integer.parseInt(matcher.group("count"));
         CreateMapMessages messages = createMapController.dropUnit(x, y, type, count);
         handleMessage(messages);
     }
