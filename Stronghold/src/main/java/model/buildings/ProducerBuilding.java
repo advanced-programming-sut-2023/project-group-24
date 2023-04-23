@@ -7,26 +7,27 @@ import utils.Pair;
 
 public class ProducerBuilding extends WorkersNeededBuilding {
     private int numberOfItemsWaitingToBeLoaded;
-    private Pair<Item, Integer> itemToProduce;
+    private int itemToProduce;
 
     public ProducerBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         super(kingdom, cell, buildingType);
         numberOfItemsWaitingToBeLoaded = 0;
-        itemToProduce = buildingType.getProduces().get(0);
+        itemToProduce = 0;
     }
 
     public int getNumberOfItemsWaitingToBeLoaded() {
         return numberOfItemsWaitingToBeLoaded;
     }
 
-    public Pair<Item, Integer> getItemToProduce() {
+    public int getItemToProduce() {
         return itemToProduce;
     }
 
     public void setItemToProduce(Item item) {
-        for (Pair<Item, Integer> produce : getBuildingType().getProduces()) {
+        for (int i = 0; i < getBuildingType().getProduces().size(); i++) {
+            Pair<Item, Integer> produce = getBuildingType().getProduces().get(i);
             if (produce.getObject1().equals(item)) {
-                itemToProduce = produce;
+                itemToProduce = i;
                 return;
             }
         }
@@ -39,9 +40,8 @@ public class ProducerBuilding extends WorkersNeededBuilding {
             return;
         }
         if (getBuildingType().getUses() != null) {
-            for (Pair<Item, Integer> use : getBuildingType().getUses())
-                getKingdom().changeStockNumber(use);
+            getKingdom().changeStockNumber(getBuildingType().getUses().get(itemToProduce));
         }
-        getKingdom().changeStockNumber(itemToProduce);
+        getKingdom().changeStockNumber(getBuildingType().getProduces().get(itemToProduce));
     }
 }

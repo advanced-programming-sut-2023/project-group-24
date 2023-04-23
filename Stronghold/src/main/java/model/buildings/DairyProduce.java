@@ -23,7 +23,7 @@ public class DairyProduce extends ProducerBuilding {
     }
 
     public void produceCheese() {
-        if (numberOfAnimals >= 3) getKingdom().changeStockNumber(new Pair<Item, Integer>(Item.CHEESE, 4));
+        if (numberOfAnimals >= 3) getKingdom().changeStockNumber(new Pair<>(Item.CHEESE, 4));
     }
 
     public void useAnimal() {
