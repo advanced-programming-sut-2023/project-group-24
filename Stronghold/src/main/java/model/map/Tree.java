@@ -8,6 +8,7 @@ public enum Tree {
     CHERRY_PALM,
     OLIVE_TREE,
     DESERT_SHRUB;
+
     public static Tree stringToEnum(String name) {
         String string = StringFunctions.turnSpaceToUnderline(name);
         for (Tree value : values())

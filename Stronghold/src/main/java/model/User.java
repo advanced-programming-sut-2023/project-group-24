@@ -1,6 +1,6 @@
 package model;
 
-public class User implements Comparable<User>{
+public class User implements Comparable<User> {
     private final int recoveryQuestionNumber;
     private final String recoveryAnswer;
     private String username;
