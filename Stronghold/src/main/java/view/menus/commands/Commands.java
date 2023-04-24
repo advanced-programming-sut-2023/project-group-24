@@ -1,30 +1,63 @@
-package view.menus.commands;
+package utils.enums.commands;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum Commands {
-    //TODO add commands
-    //Login menu commands
+    //Register menu
+    CREATE_USER("^(?=.* -u (?<username>(\".*\")|(\\S+)))(?=.* -p (?<password>\\S+))^user create( -[up] ((\".*\")|(\\S+))){2}$"),
+    QUESTION_PICK("(?=.* -q (?<questionNumber>\\w+))(?=.* -a (?<answer>(\".*\")|(\\S+)))(?=.* -c (?<answerConfirm>((\".*\")|(\\S+))))^question pick( -[qac] ((\".*\")|(\\S+))){3}$"),
+
+    //Login menu
+    LOGIN_USER("^(?=.* -u (?<username>(\".*\")|(\\S+)))(?=.* -p (?<password>(\".*\")|(\\S+)))user login( -[up] ((\".*\")|(\\S+))){2}(?<stayLoggedIn> --stay-logged-in)?$"),
     FORGOT_PASSWORD("^forgot my password$"),
+    ENTER_REGISTER_MENU("^I don't have account$"),
+
+    //Reset password menu
+    RESET_PASSWORD("^reset password -u (?<username>(\".*\")|(\\S+))$"),
+
+    //Captcha menu
+    CHANGE_CODE("^change code$"),
+
+    //Profile menu
+    CHANGE_USERNAME("^profile change -u (?<username>(\".*\")|(\\S+))$"),
+    CHANGE_NICKNAME("^profile change -n (?<nickname>(\".*\")|(\\S+))$"),
+    CHANGE_PASSWORD("(?=.* -o (?<oldPassword>(\".*\")|(\\S+)))(?=.* -n (?<newPassword>(\".*\")|(\\S+)))^profile change password( -[on] ((\".*\")|(\\S+))){2}$"),
+    CHANGE_EMAIL("^profile change -e (?<email>(\".*\")|(\\S+))$"),
+    CHANGE_SLOGAN("^profile change slogan -s (?<slogan>(\".*\")|(\\S+))$"),
+    REMOVE_SLOGAN("^profile remove slogan$"),
+    DISPLAY_HIGHSCORE("^profile display highscore$"),
+    DISPLAY_RANK("^profile display rank$"),
+    DISPLAY_SLOGAN("^profile display slogan$"),
+    PROFILE_DISPLAY("^profile display$"),
+
+    //Main menu
+    ENTER_PROFILE_MENU("^enter profile menu$"),
+    START_GAME("^start game$"),
+    ENTER_CREATE_MAP("^enter create map menu$"),
+    LOGOUT("^user logout$"),
 
     //CreateMapMenu commands
+    CREATE_MAP("(?=.* -i (?<id>\\S+))(?=.* -s (?<size>\\w+))^create map( -[is] \\S+){2}$"),//ID and size
+    SET_TEXTURE("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -t (?<type>(\".*\")|(\\S+)))^settexture( -[xyt] (\".*\")|(\\S+)){3}$"),
+    SET_TEXTURE_MULTIPLE("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -t (?<type>(\".*\")|(\\S+)))^settexture( -[xyt] (\".*\")|(\\S+)){3}$"),
+    CLEAR("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))^clear( -[xy] \\S+){2}$"),
+    DROP_ROCK("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -d (?<direction>\\S+))^droprock( -[xyd] \\S+){3}$"),
+    DROP_TREE("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -t (?<type>(\".*\")|(\\S+)))^droptree( -[xyt] (\".*\")|(\\S+)){3}$"),
+    DROP_BUILDING("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -t (?<type>(\".*\")|(\\S+)))^dropbuilding( -[xyt] (\".*\")|(\\S+)){3}$"),
+    DROP_UNIT("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -t (?<type>(\".*\")|(\\S+)))(?=.* -c (?<count>\\w+))^dropunit( -[xytc] (\".*\")|(\\S+)){4}$"),
+    CHANGE_KINGDOM("^change kingdom -c (?<color>\\S+)$"),
+    NEW_KINGDOM("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -c (?<color>\\S+))^new kingdom( -[xyc] \\S+){3}$"),
+    EXIT("^exit$"),
 
-    CREATE_MAP("QD"),//id and size
-    SET_TEXTURE("DSAF"),
-    SET_TEXTURE_MULTIPLE("DSFA"),
-    CLEAR("D"),
-    DROP_ROCK("DSF"),
-    DROP_TREE("DSFS"),
-    DROP_BUILDING("DS"),
-    DROP_UNIT("DFDS"),
-    CHANGE_KINGDOM("YYF"),
-    NEW_KINGDOM("vhj"),//x, y, color
+    //Valid formats
+    VALID_USERNAME("^[\\w_]+$"),
+    VALID_EMAIL("^[\\w_.]+@[\\w_.]+.[\\w_.]+$"),
+    PASSWORD_SIZE("^\\S{8,}"),
+    PASSWORD_CAPITAL("^(?=.*[A-Z]).+$"),
+    PASSWORD_NUMBER("^(?=.*\\d).+$"),
+    PASSWORD_SMALL_CHAR("^(?=.*[a-z]).+$");
 
-
-
-    //Captcha Menu commands
-    CHANGE_CODE("^change code$");
     private final String regex;
 
     Commands(String regex) {

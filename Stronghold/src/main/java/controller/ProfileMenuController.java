@@ -2,7 +2,11 @@ package controller;
 
 import model.Database;
 import model.User;
-import view.menus.messages.ProfileMenuMessages;
+import view.enums.messages.CommonMessages;
+import view.enums.messages.ProfileMenuMessages;
+import view.menus.CaptchaMenu;
+
+import java.util.Vector;
 
 public class ProfileMenuController {
     private final Database database;
@@ -14,57 +18,97 @@ public class ProfileMenuController {
     }
 
     public ProfileMenuMessages changeUsername(String newUsername) {
-        //TODO change username
-        return null;
+        if (newUsername == null) return ProfileMenuMessages.NULL_FIELD;
+        else if (MainController.isUsernameValid(newUsername)) return ProfileMenuMessages.INVALID_USERNAME;
+        else if (database.getUserByUsername(newUsername) != null) return ProfileMenuMessages.DUPLICATE_USERNAME;
+        currentUser.setUsername(newUsername);
+        return ProfileMenuMessages.SUCCESS;
     }
 
     public ProfileMenuMessages changeNickname(String newNickname) {
-        //TODO change nickname
-        return null;
+        if (newNickname == null) return ProfileMenuMessages.NULL_FIELD;
+        currentUser.setNickName(newNickname);
+        return ProfileMenuMessages.SUCCESS;
     }
 
     public ProfileMenuMessages checkChangePasswordErrors(String oldPassword, String newPassword) {
-        //TODO just check errors
-        return null;
+        if (oldPassword == null || newPassword == null) return ProfileMenuMessages.NULL_FIELD;
+        String oldPasswordSHA = MainController.getSHA256(oldPassword);
+        if (!currentUser.isPasswordCorrect(oldPasswordSHA))
+            return ProfileMenuMessages.INCORRECT_PASSWORD;
+        CommonMessages message = MainController.whatIsPasswordProblem(newPassword);
+        switch (message) {
+            case OK -> {
+            }
+            case SHORT_PASSWORD -> {
+                return ProfileMenuMessages.SHORT_PASSWORD;
+            }
+            case NON_CAPITAL_PASSWORD -> {
+                return ProfileMenuMessages.NON_CAPITAL_PASSWORD;
+            }
+            case NON_SMALL_PASSWORD -> {
+                return ProfileMenuMessages.NON_SMALL_PASSWORD;
+            }
+            case NON_NUMBER_PASSWORD -> {
+                return ProfileMenuMessages.NON_NUMBER_PASSWORD;
+            }
+        }
+        if (oldPassword.equals(newPassword)) return ProfileMenuMessages.DUPLICATE_PASSWORD;
+        if (!CaptchaMenu.runCaptcha()) return ProfileMenuMessages.INCORRECT_CAPTCHA;
+        return ProfileMenuMessages.SUCCESS;
     }
 
-    public ProfileMenuMessages changePassword(String newPassword) {
-        //TODO check errors and change pass
-        return null;
+    public ProfileMenuMessages changePassword(String newPassword, String newPasswordConfirm) {
+        if (newPasswordConfirm == null) return ProfileMenuMessages.NULL_FIELD;
+        if (!newPassword.equals(newPasswordConfirm)) return ProfileMenuMessages.INVALID_PASSWORD_CONFIRM;
+        String newPasswordAsSHA = MainController.getSHA256(newPassword);
+        currentUser.changePasswords(newPasswordAsSHA);
+        return ProfileMenuMessages.SUCCESS;
     }
 
     public ProfileMenuMessages changeEmail(String newEmail) {
-        //TODO change email
-        return null;
+        if (newEmail == null) return ProfileMenuMessages.NULL_FIELD;
+        else if (MainController.isEmailValid(newEmail)) return ProfileMenuMessages.INVALID_EMAIL_FORMAT;
+        currentUser.setEmail(newEmail);
+        return ProfileMenuMessages.SUCCESS;
     }
 
     public ProfileMenuMessages changeSlogan(String newSlogan) {
-        //TODO change slogan
-        return null;
+        if (newSlogan == null) return ProfileMenuMessages.NULL_FIELD;
+        currentUser.setSlogan(newSlogan);
+        return ProfileMenuMessages.SUCCESS;
     }
 
     public ProfileMenuMessages removeSlogan() {
-        //TODO remove Slogan
-        return null;
+        if (currentUser.getSlogan() == null) return ProfileMenuMessages.EMPTY_SLOGAN;
+        currentUser.setSlogan(null);
+        return ProfileMenuMessages.SUCCESS;
     }
 
     public String showHighScore() {
-        //TODO get highScore and return it
-        return null;
+        int highScore = currentUser.getHighScore();
+        return "Your highscore is " + highScore;
     }
 
-    public String showRand() {
-        //TODO get rank and return it
+    public String showRank() {
+        Vector<User> sortedUsers = database.getAllUsersByRank();
+        for (int i = 0; i < sortedUsers.size(); i++) {
+            if (sortedUsers.get(i).equals(currentUser))
+                return "Your rank is " + (i + 1);
+        }
         return null;
     }
 
     public String showSlogan() {
-        //TODO get slogan and return it
-        return null;
+        return currentUser.getSlogan();
     }
 
     public String showProfile() {
-        //TODO get profile data and return it
-        return null;
+        String username = "Username: " + currentUser.getUsername();
+        String nickname = "Nickname: " + currentUser.getNickname();
+        String email = "Email: " + currentUser.getEmail();
+        String rank = "Rank: " + showRank();
+        String slogan = "Slogan: " + showSlogan();
+        return username + "\n" + nickname + "\n" + email + "\n" + rank + "\n" + slogan;
     }
 }
