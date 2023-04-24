@@ -1,0 +1,22 @@
+[
+  {
+    "username": "username1",
+    "password": "password1",
+    "nickname": "nickname1",
+    "slogan": "slogan1",
+    "email": "email1",
+    "highScore": 0,
+    "recoveryQuestionNumber": 1,
+    "recoveryAnswer": "recoveryAnswer1"
+  },
+  {
+    "username": "username2",
+    "password": "password2",
+    "nickname": "nickname2",
+    "slogan": "slogan2",
+    "email": "email2",
+    "highScore": 0,
+    "recoveryQuestionNumber": 2,
+    "recoveryAnswer": "recoveryAnswer2"
+  }
+]
