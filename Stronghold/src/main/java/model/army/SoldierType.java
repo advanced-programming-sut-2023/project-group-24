@@ -1,18 +1,35 @@
 package model.army;
 
-import model.storage.Armor;
-import model.storage.Weapon;
+import model.Item;
+import model.StringFunctions;
 
 public enum SoldierType {
-    ;
-    private final Armor armor;
-    private final Weapon weapon;
+    ARCHER(null, Item.BOW, true, Type.EUROPEAN,true),
+    CROSSBOWMAN(Item.LEATHER_ARMOR, Item.CROSSBOW, false, Type.EUROPEAN, false),
+    SPEARMAN(null, Item.CROSSBOW, true, Type.EUROPEAN, true),
+    PIKE_MAN(Item.METAL_ARMOR, Item.PIKE, false, Type.EUROPEAN, true),
+    MACE_MAN(Item.LEATHER_ARMOR, Item.MACE, true, Type.EUROPEAN, true),
+    SWORD_MAN(Item.METAL_ARMOR, Item.SWORD, false, Type.EUROPEAN, false),
+    KNIGHT(Item.METAL_ARMOR, Item.SWORD, false, Type.EUROPEAN, false),
+    TUNNELLER(null, null, false, Type.EUROPEAN, false),
+    LADDER_MAN(null, null, false, Type.ENGINEER, false),
+    ENGINEER(null, null, false, Type.ENGINEER, true),
+    BLACK_MONK(null, null, false, Type.CHURCH, false),
+    ARCHER_BOW(null, null, false, Type.ARABIAN, true),
+    SLAVE(null, null, false, Type.ARABIAN, true),
+    SLINGER(null, null, false, Type.ARABIAN, false),
+    ASSASSIN(null, null, false, Type.ARABIAN, false),
+    HORSE_ARCHER(null, null, false, Type.ARABIAN, false),
+    ARABIAN_SWORD_MAN(null, null, false, Type.ARABIAN, false),
+    FIRE_THROWER(null, null, false, Type.ARABIAN, false);
+    private final Item armor;
+    private final Item weapon;
     private final boolean canClimbLadder;
-    private final Nation nation;
+    private final Type nation;
     private final boolean canDig;
 
-    SoldierType(Armor armor, Weapon weapon, boolean canClimbLadder,
-                Nation nation, boolean canDig) {
+    SoldierType(Item armor, Item weapon, boolean canClimbLadder,
+                Type nation, boolean canDig) {
         this.armor = armor;
         this.weapon = weapon;
         this.canClimbLadder = canClimbLadder;
@@ -21,15 +38,18 @@ public enum SoldierType {
     }
 
     public static SoldierType stringToEnum(String name) {
-        //TODO ...
+        String string = StringFunctions.turnSpaceToUnderline(name);
+        for (SoldierType value : values())
+            if (string.equalsIgnoreCase(value.toString()))
+                return value;
         return null;
     }
 
-    public Armor getArmor() {
+    public Item getArmor() {
         return armor;
     }
 
-    public Weapon getWeapon() {
+    public Item getWeapon() {
         return weapon;
     }
 
@@ -37,7 +57,7 @@ public enum SoldierType {
         return canClimbLadder;
     }
 
-    public Nation getNation() {
+    public Type getNation() {
         return nation;
     }
 }

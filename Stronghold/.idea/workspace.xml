@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="595dce4f-0ef9-4748-902f-c9703fcbd2f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/DairyProduce.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/DairyProduce.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/ProducerBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/ProducerBuilding.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,14 +14,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="190" />
+    <option name="myElementSize" value="181" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -39,7 +41,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../maven test 1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../tamrin 1/Clash Royal" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -64,14 +66,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DatabaseTest.testSave">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Stronghold" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.DatabaseTest">
     <configuration name="DatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
@@ -87,7 +82,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTest.testSave" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DatabaseTest.testGettingUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
@@ -97,7 +92,55 @@
       </extension>
       <option name="PACKAGE_NAME" value="model" />
       <option name="MAIN_CLASS_NAME" value="model.DatabaseTest" />
-      <option name="METHOD_NAME" value="testSave" />
+      <option name="METHOD_NAME" value="testGettingUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatabaseTest.testGettingUserRank" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.DatabaseTest" />
+      <option name="METHOD_NAME" value="testGettingUserRank" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatabaseTest.testSaveAndLoad" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.DatabaseTest" />
+      <option name="METHOD_NAME" value="testSaveAndLoad" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatabaseTest.testSavingAndLoadingMaps" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.DatabaseTest" />
+      <option name="METHOD_NAME" value="testSavingAndLoadingMaps" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -105,9 +148,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DatabaseTest.testSave" />
         <item itemvalue="JUnit.DatabaseTest" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.DatabaseTest.testGettingUserRank" />
+        <item itemvalue="JUnit.DatabaseTest.testSavingAndLoadingMaps" />
+        <item itemvalue="JUnit.DatabaseTest.testGettingUser" />
+        <item itemvalue="JUnit.DatabaseTest.testSaveAndLoad" />
       </list>
     </recent_temporary>
   </component>
@@ -138,7 +183,13 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1681997784782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testSaveAndLoad.ic" NAME="DatabaseTest.testSaveAndLoad Coverage Results" MODIFIED="1682076942761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1682079403879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testSavingAndLoadingMaps.ic" NAME="DatabaseTest.testSavingAndLoadingMaps Coverage Results" MODIFIED="1682077340662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testSave.ic" NAME="DatabaseTest.testSave Coverage Results" MODIFIED="1682013877841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

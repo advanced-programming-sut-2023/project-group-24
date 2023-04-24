@@ -1,11 +1,11 @@
 package controller.gamecontrollers;
 
 import model.GameDatabase;
-import model.storage.Item;
-import utils.enums.messages.TradeControllerMessages;
+import model.Item;
+import view.menus.messages.TradeControllerMessages;
 
 public class TradeController {
-    private GameDatabase gameDatabase;
+    private final GameDatabase gameDatabase;
 
     public TradeController(GameDatabase gameDatabase) {
         this.gameDatabase = gameDatabase;

@@ -1,7 +1,9 @@
 package model.buildings;
 
+import model.Item;
 import model.Kingdom;
 import model.map.Cell;
+import utils.Pair;
 
 public class PopularityBoosterBuilding extends ProducerBuilding {
     public PopularityBoosterBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
@@ -9,6 +11,11 @@ public class PopularityBoosterBuilding extends ProducerBuilding {
     }
 
     public void addPopularity() {
-        //TODO check for the needed material, if there are any
+        if (!hasEnoughWorkers()) return;
+        if (getBuildingType().getUses() != null) {
+            for (Pair<Item, Integer> use : getBuildingType().getUses())
+                getKingdom().changeStockNumber(use);
+        }
+        getKingdom().changePopularity(getBuildingType().getPopularityRate());
     }
 }

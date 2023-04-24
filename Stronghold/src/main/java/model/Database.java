@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -25,6 +26,8 @@ public class Database {
 
     public Database() {
         allUsers = new Vector<>();
+        maps = new Vector<>();
+        stayedLoggedInUser = null;
     }
 
     public void setStayedLoggedInUser(User user) throws IOException {
@@ -38,6 +41,11 @@ public class Database {
     }
 
     public Vector<User> getAllUsers() {
+        return allUsers;
+    }
+
+    public Vector<User> getAllUsersByRank() {
+        Collections.sort(allUsers);
         return allUsers;
     }
 

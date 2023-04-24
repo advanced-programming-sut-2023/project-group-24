@@ -3,7 +3,7 @@ package controller.gamecontrollers;
 import model.GameDatabase;
 
 public class ShowMapController {
-    private GameDatabase gameDatabase;
+    private final GameDatabase gameDatabase;
     private int currentMapX;
     private int currentMapY;
 

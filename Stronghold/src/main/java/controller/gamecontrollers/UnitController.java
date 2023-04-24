@@ -1,10 +1,10 @@
 package controller.gamecontrollers;
 
 import model.GameDatabase;
-import utils.enums.messages.UnitControllerMessages;
+import view.menus.messages.UnitControllerMessages;
 
 public class UnitController {
-    private GameDatabase gameDatabase;
+    private final GameDatabase gameDatabase;
 
     public UnitController(GameDatabase gameDatabase) {
         this.gameDatabase = gameDatabase;

@@ -5,5 +5,5 @@ public enum LadderState {
     UP,
     DOWN,
     RIGHT,
-    LEFT;
+    LEFT
 }

@@ -1,6 +1,5 @@
 package model;
 
-import controller.gamecontrollers.KingdomController;
 import model.army.Army;
 import model.buildings.Building;
 import model.map.Map;
@@ -11,8 +10,8 @@ public class GameDatabase {
     private Kingdom currentKingdom;
     private ArrayList<Kingdom> kingdoms;
     private Building currentBuilding;
-    private ArrayList<Army> selectedUnits;
-    private Map map;
+    private final ArrayList<Army> selectedUnits;
+    private final Map map;
 
     public GameDatabase(ArrayList<User> players, Map map) {
         selectedUnits = new ArrayList<Army>();
@@ -28,13 +27,13 @@ public class GameDatabase {
         return currentKingdom;
     }
 
+    public ArrayList getSelectedUnits() {
+        return selectedUnits;
+    }
+
     public void setSelectedUnits(ArrayList<Army> selectedUnits) {
         selectedUnits.clear();
         selectedUnits.addAll(selectedUnits);
-    }
-
-    public ArrayList getSelectedUnits() {
-        return selectedUnits;
     }
 
     public Map getMap() {

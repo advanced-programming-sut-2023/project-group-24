@@ -1,10 +1,10 @@
 package controller.gamecontrollers;
 
 import model.GameDatabase;
-import utils.enums.messages.ShopMenuMessages;
+import view.menus.messages.ShopMenuMessages;
 
 public class ShopController {
-    private GameDatabase gameDatabase;
+    private final GameDatabase gameDatabase;
 
     public ShopController(GameDatabase gameDatabase) {
         this.gameDatabase = gameDatabase;
