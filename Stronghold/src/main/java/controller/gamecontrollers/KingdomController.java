@@ -1,9 +1,9 @@
 package controller.gamecontrollers;
 
-import model.GameDatabase;
+import model.databases.GameDatabase;
 
 public class KingdomController {
-    private GameDatabase gameDatabase;
+    private final GameDatabase gameDatabase;
 
     public KingdomController(GameDatabase gameDatabase) {
         this.gameDatabase = gameDatabase;

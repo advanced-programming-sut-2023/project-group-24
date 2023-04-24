@@ -1,5 +1,7 @@
 package model;
 
+import model.enums.Item;
+
 public class Trade {
     private Item resourceType;
     private int resourceAmount;
@@ -9,10 +11,6 @@ public class Trade {
 
     public Trade(Kingdom requester, Item resourceType, int resourceAmount, int price, String message) {
         //TODO
-    }
-
-    public void setAcceptingMessage(String acceptingMessage) {
-        this.acceptingMessage = acceptingMessage;
     }
 
     public Item getResourceType() {
@@ -33,5 +31,9 @@ public class Trade {
 
     public String getAcceptingMessage() {
         return acceptingMessage;
+    }
+
+    public void setAcceptingMessage(String acceptingMessage) {
+        this.acceptingMessage = acceptingMessage;
     }
 }

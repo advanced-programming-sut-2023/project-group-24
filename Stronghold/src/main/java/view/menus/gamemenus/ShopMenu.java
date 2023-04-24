@@ -5,7 +5,7 @@ import controller.gamecontrollers.ShopController;
 import java.util.regex.Matcher;
 
 public class ShopMenu {
-    private ShopController shopController;
+    private final ShopController shopController;
 
     public ShopMenu(ShopController shopController) {
         this.shopController = shopController;

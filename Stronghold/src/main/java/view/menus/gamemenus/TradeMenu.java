@@ -5,7 +5,7 @@ import controller.gamecontrollers.TradeController;
 import java.util.regex.Matcher;
 
 public class TradeMenu {
-    private TradeController tradeController;
+    private final TradeController tradeController;
 
     public TradeMenu(TradeController tradeController) {
         this.tradeController = tradeController;

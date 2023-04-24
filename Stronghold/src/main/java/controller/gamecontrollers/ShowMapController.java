@@ -1,9 +1,9 @@
 package controller.gamecontrollers;
 
-import model.GameDatabase;
+import model.databases.GameDatabase;
 
 public class ShowMapController {
-    private GameDatabase gameDatabase;
+    private final GameDatabase gameDatabase;
     private int currentMapX;
     private int currentMapY;
 

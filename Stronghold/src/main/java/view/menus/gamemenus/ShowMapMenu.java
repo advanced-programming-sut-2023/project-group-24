@@ -5,7 +5,7 @@ import controller.gamecontrollers.ShowMapController;
 import java.util.regex.Matcher;
 
 public class ShowMapMenu {
-    private ShowMapController showMapController;
+    private final ShowMapController showMapController;
 
     public ShowMapMenu(ShowMapController showMapController) {
         this.showMapController = showMapController;

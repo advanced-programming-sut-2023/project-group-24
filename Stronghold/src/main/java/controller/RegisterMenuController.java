@@ -1,13 +1,13 @@
 package controller;
 
-import model.Database;
+import model.databases.Database;
+import model.enums.Slogan;
 import model.User;
-import utils.enums.Slogan;
+import utils.Pair;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.RegisterMenuMessages;
 import view.menus.CaptchaMenu;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -44,8 +44,6 @@ public class RegisterMenuController {
     public RegisterMenuMessages checkPasswordErrors(String password, String passwordConfirmation) {
         CommonMessages passwordMessage = MainController.whatIsPasswordProblem(password);
         switch (passwordMessage) {
-            case OK -> {
-            }
             case SHORT_PASSWORD -> {
                 return RegisterMenuMessages.SHORT_PASSWORD;
             }
@@ -106,13 +104,9 @@ public class RegisterMenuController {
         if (!CaptchaMenu.runCaptcha()) return RegisterMenuMessages.INCORRECT_CAPTCHA;
         String passwordAsSHA = MainController.getSHA256(password);
         String recoveryAnswerAsSHA = MainController.getSHA256(recoveryAnswer);
-        //TODO make pair
-        database.addUser(username, passwordAsSHA, nickname, slogan, email, recoveryQuestionNumber, recoveryAnswerAsSHA);
-        try {
-            database.saveDataIntoFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Pair<Integer, String> recovery = new Pair<>(recoveryQuestionNumber, recoveryAnswerAsSHA);
+        database.addUser(username, passwordAsSHA, nickname, slogan, email, recovery);
+        database.saveDataIntoFile();
         return RegisterMenuMessages.SUCCESS;
     }
 }
