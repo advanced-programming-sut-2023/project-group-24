@@ -1,8 +1,9 @@
 package controller.gamecontrollers;
 
-import model.GameDatabase;
-
-import java.util.ArrayList;
+import model.databases.GameDatabase;
+import model.Kingdom;
+import model.army.Army;
+import model.map.Cell;
 
 public class GameController {
     GameDatabase gameDatabase;
@@ -12,78 +13,80 @@ public class GameController {
     }
 
     public void nextTurn() {
-        //TODO call functions which have to call when we go next turn
+        //TODO call annother funcs
+    }
+
+    private void checkPopulationGrowth() {
+        //TODO check factors and add population
     }
 
     private void moveCurrentPlayerUnits() {
-        //TODO move units' of current player
+        //TODO just move units
     }
 
     private void checkWarsAndFight() {
-        //TODO check all cells has fight and do them
-    }
-
-    private boolean willWarHappenedInThisCell(Cell cell) {
-        //TODO check that if war will happen in this cell return true
-        return true;
+        //TODO check wars and it's needed call fight func
     }
 
     private void fight(Cell cell) {
-        //TODO fight all units in that cell
+        //TODO fight soldiers
+    }
+
+    private void checkAndUSeTrap(Cell cell) {
+        //TODO call doesTrapExist func and if it's needed call activeTrap func
     }
 
     private boolean doesTrapExist(Cell cell) {
-        //TODO if trap existed in that cell return true
-        return true;
-    }
-
-    private boolean canPitchDitchLightOn(Cell cell) {
-        //TODO check that can pith bitch light on or not
+        //TODO just check that trap existed in that cell or not
         return true;
     }
 
     private void activeTrap(Cell cell) {
-        //TODO damage the armies which in that cell and remove trap
+        //TODO active trap and remove that and take damage units
     }
 
-    private void removeArmyFromCell(Cell cell, Army army) {
-        //TODO remove unit from that cell if it's dead
+    private boolean canPitchDitchBurn(Cell cell) {
+        //check that
+        return true;
     }
 
-    private void checkBurnOilAndBurn(Cell cell) {
-        //TODO check that if oil can burn in that cell and call burn oil func
+    private void checkAndBurnOil(Cell cell) {
+        //TODO if it's ok call burn func
     }
 
     private void burnOil(Cell cell) {
-        //TODO if boilingOil and engineer existed it happen
+        //TODO burn oil
     }
 
-    private void hasSoldierDrowned(Cell cell) {
-        //TODO check that if pitch is in that cell soldiers will die
-    }
-
-    private void checkCaptureGateAndCapture(Cell cell) {
-        //TODO check that can gate captured and call capture gate
+    private void canGateBeCaptured(Cell cell) {
+        //TODO if it's ok call capure func
     }
 
     private void captureGate(Cell cell) {
-        //TODO capture gate and open it
+        //TODO open gate
     }
 
-    private void checkTunnelUnderBuilding(Cell cell) {
-        //TODO call destroy function
+    private void checkTunnelUnderCell(Cell cell) {
+        //TODO if it's correct call destroy building func
     }
 
     private void destroyBuilding(Cell cell) {
-        //TODO just destroy in that cell
+        //TODO destroy building in that cell
     }
 
-    private void checkFallenKingdom() {
-        //TODO check that which kingdom had fallen
+    private void removeArmy(Army army) {
+        //TODO remove Army
+    }
+
+    private void willSoldierDrown(Cell cell) {
+        //TODO if it's ok call removeArmy func
+    }
+
+    private void hasKingdomsFallen() {
+
     }
 
     private void removeKingdom(Kingdom kingdom) {
-        //TODO remove kingdom and its buildings and units
+        //TODO remove kingdom and its soldiers and its building
     }
-
 }

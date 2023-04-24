@@ -1,8 +1,8 @@
 package controller;
 
-import model.Database;
+import model.databases.Database;
+import model.enums.RecoveryQuestion;
 import model.User;
-import utils.enums.RecoveryQuestion;
 import view.enums.messages.ResetPasswordMessages;
 
 public class ResetPasswordMenuController {

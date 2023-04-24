@@ -51,4 +51,8 @@ public class MainController {
         }
         return hexString.toString();
     }
+
+    public static String turnSpaceToUnderline(String string) {
+        return string.replaceAll(" ", "_");
+    }
 }

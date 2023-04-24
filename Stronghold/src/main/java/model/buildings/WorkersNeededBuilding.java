@@ -1,5 +1,9 @@
 package model.buildings;
 
+import model.Kingdom;
+import model.People;
+import model.map.Cell;
+
 import java.util.ArrayList;
 
 public class WorkersNeededBuilding extends Building {
@@ -7,18 +11,25 @@ public class WorkersNeededBuilding extends Building {
     private boolean isSleeping;
 
     public WorkersNeededBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
-        //TODO
+        super(kingdom, cell, buildingType);
+        workers = new ArrayList<>();
+        isSleeping = false;
+    }
+
+    public boolean isSleeping() {
+        return isSleeping;
     }
 
     public void assignWorker(People person) {
-        //TODO assign the said worker
+        workers.add(person);
     }
 
     public boolean hasEnoughWorkers() {
-        //TODO i think its so obvious, it doesnt need proper punctuation, except commas
+        return workers.size() == getBuildingType().getWorkersNeeded();
     }
 
     public void changeSleepingMode() {
-        //TODO obvious
+        isSleeping = true;
+        workers = new ArrayList<>();
     }
 }

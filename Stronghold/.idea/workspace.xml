@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="just add them in my branch">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" afterDir="false" />
-    </list>
+    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="just add them in my branch" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,6 +59,8 @@
       <updated>1681491800681</updated>
       <workItem from="1681491802014" duration="857000" />
       <workItem from="1681492677173" duration="868000" />
+      <workItem from="1682359402664" duration="84000" />
+      <workItem from="1682359646520" duration="16000" />
     </task>
     <task id="LOCAL-00001" summary="just add them in my branch">
       <created>1681491902726</created>

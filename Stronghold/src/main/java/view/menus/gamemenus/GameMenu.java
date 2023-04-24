@@ -2,16 +2,14 @@ package view.menus.gamemenus;
 
 import controller.gamecontrollers.BuildingController;
 import controller.gamecontrollers.KingdomController;
-import controller.gamecontrollers.ShowMapController;
 import controller.gamecontrollers.UnitController;
-import utils.enums.messages.UnitControllerMessages;
 
 import java.util.regex.Matcher;
 
 public class GameMenu {
-    private KingdomController kingdomController;
-    private UnitController unitController;
-    private BuildingController buildingController;
+    private final KingdomController kingdomController;
+    private final UnitController unitController;
+    private final BuildingController buildingController;
 
     public GameMenu(KingdomController kingdomController, UnitController unitController, BuildingController buildingController) {
         this.kingdomController = kingdomController;
@@ -75,6 +73,10 @@ public class GameMenu {
         //TODO connect BuildingController and sout result
     }
 
+    private void createResources(Matcher matcher) {
+        //TODO connect BuildingController and sout result
+    }
+
     private void selectUnit(Matcher matcher) {
         //TODO connect UnitController and sout result
     }
@@ -129,9 +131,5 @@ public class GameMenu {
 
     private void fillMoat(Matcher matcher) {
         //TODO connect unit controller
-    }
-
-    private void nextTurn() {
-        //TODO connect to war controller
     }
 }

@@ -1,6 +1,6 @@
 package controller;
 
-import model.Database;
+import model.databases.Database;
 import view.enums.messages.MainMenuMessages;
 
 public class MainMenuController {

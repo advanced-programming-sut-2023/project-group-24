@@ -1,24 +1,12 @@
 package controller.captchacontrollers;
 
 public class Captcha {
-    private String code;
     private final AsciiArt asciiArt;
+    private String code;
 
     private Captcha() {
         code = null;
         asciiArt = new AsciiArt(-1);
-    }
-
-    public AsciiArt getAsciiArt() {
-        return asciiArt;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    private void setCode(String code) {
-        this.code = code;
     }
 
     public static Captcha generateRandomCaptcha() {
@@ -34,5 +22,17 @@ public class Captcha {
         captcha.setCode(codeBuilder.toString());
         captcha.asciiArt.addNoise();
         return captcha;
+    }
+
+    public AsciiArt getAsciiArt() {
+        return asciiArt;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    private void setCode(String code) {
+        this.code = code;
     }
 }
