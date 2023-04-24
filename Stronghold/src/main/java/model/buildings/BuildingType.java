@@ -105,16 +105,40 @@ public enum BuildingType {;
         return produceRate;
     }
 
-    public NumberOfThings getProduces() {
-        return produces;
-    }
-
-    public NumberOfThings getUses() {
+    public HashMap<Item, Integer> getUses() {
         return uses;
     }
 
-    public boolean CanHaveBlazer() {
-        return canHaveBlazer;
+    public HashMap<Item, Integer> getProduces() {
+        return produces;
+    }
+
+    public int getProducePrice() {
+        return producePrice;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public Vector<Troop> getTroopsItCanMake() {
+        return troopsItCanMake;
+    }
+
+    public Vector<Item> getItemsItCanHold() {
+        return itemsItCanHold;
+    }
+
+    public Vector<Item> getItemsItCanMove() {
+        return itemsItCanMove;
+    }
+
+    public boolean canBeDestroyedByTunnels() {
+        return canBeDestroyedByTunnels;
+    }
+
+    public boolean canBeRepaired() {
+        return canBeRepaired;
     }
 
     public BuildingType getBuildingTypeFromName(String name) {
