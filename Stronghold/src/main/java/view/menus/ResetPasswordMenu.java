@@ -2,8 +2,7 @@ package view.menus;
 
 import controller.AppController;
 import controller.ResetPasswordMenuController;
-import utils.enums.MenusName;
-import view.enums.commands.Commands;
+import utils.enums.commands.Commands;
 import view.enums.messages.ResetPasswordMessages;
 
 import java.util.regex.Matcher;

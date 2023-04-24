@@ -30,36 +30,14 @@ public class Database {
         stayedLoggedInUser = null;
     }
 
-    private static String fileToString(String filePath) throws FileNotFoundException {
-        File file = new File(filePath);
-        Scanner scanner = new Scanner(file);
-        StringBuilder builder = new StringBuilder();
-        while (scanner.hasNextLine())
-            builder.append(scanner.nextLine()).append('\n');
-        return builder.toString();
-    }
-
-    private static void saveObjectToFile(String filePath, Object object) {
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
-
-        try (FileWriter file = new FileWriter(filePath)) {
-            file.write(gson.toJson(object));
-            file.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public User getStayedLoggedInUser() {
-        return stayedLoggedInUser;
-    }
-
     public void setStayedLoggedInUser(User user) throws IOException {
         stayedLoggedInUser = user;
         checkForSavingDirectory();
         saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
+    }
+
+    public User getStayedLoggedInUser() {
+        return stayedLoggedInUser;
     }
 
     public Vector<User> getAllUsers() {
@@ -75,10 +53,8 @@ public class Database {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
-        Type allUsersType = new TypeToken<Vector<User>>() {
-        }.getType();
-        Type mapsType = new TypeToken<Vector<Map>>() {
-        }.getType();
+        Type allUsersType = new TypeToken<Vector<User>>(){}.getType();
+        Type mapsType = new TypeToken<Vector<Map>>(){}.getType();
 
         try {
             allUsers = gson.fromJson(fileToString(FILE_TO_SAVE_ALL_USERS), allUsersType);
@@ -91,6 +67,15 @@ public class Database {
         }
     }
 
+    private static String fileToString(String filePath) throws FileNotFoundException {
+        File file = new File(filePath);
+        Scanner scanner = new Scanner(file);
+        StringBuilder builder = new StringBuilder();
+        while (scanner.hasNextLine())
+            builder.append(scanner.nextLine()).append('\n');
+        return builder.toString();
+    }
+
     public void saveDataIntoFile() throws IOException {
         checkForSavingDirectory();
         saveObjectToFile(FILE_TO_SAVE_ALL_USERS, allUsers);
@@ -98,10 +83,22 @@ public class Database {
         saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
     }
 
+    private static void saveObjectToFile(String filePath, Object object) {
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(gson.toJson(object));
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void checkForSavingDirectory() throws IOException {
         File directory = new File(DIRECTORY_TO_SAVE_INFO);
-        if (!directory.exists())
-            if (!directory.mkdirs()) throw new IOException("couldn't make directory to save files");
+        if (!directory.exists()) if (!directory.mkdirs()) throw new IOException("couldn't make directory to save files");
     }
 
     public User getUserByUsername(String username) {
