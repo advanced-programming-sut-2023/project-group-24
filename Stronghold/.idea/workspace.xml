@@ -1,184 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="ALL" />
+    <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="595dce4f-0ef9-4748-902f-c9703fcbd2f1" name="Default Changelist" comment="FINISH ENUMS!">
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/KingdomTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/army/ArmyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Stronghold.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Stronghold.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/info/allUsers.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/allUsers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/GameDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/GameDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/Army.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/Army.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/SoldierType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/SoldierType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/BuildingType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/ProducerBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/ProducerBuilding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/StorageBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/StorageBuilding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Texture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Pair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/commands/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/commands/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/messages/CreateMapMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/messages/CreateMapMessages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/army/Nation.class" beforeDir="false" />
+    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="just add them in my branch">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CoverageViewManager">
-    <option name="myElementSize" value="181" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
-        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="2OEN2y0ixiGjGQIg9h0A0LTxLIk" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2OQTRugUndJRwlKxjmBp4mKtIvG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "U:/AdvancedProgramming/Project/Codes/Stronghold"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="model" />
-      <recent name="model.army" />
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="controller.gamecontrollers" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.KingdomTest.changePopularity">
-    <configuration name="ArmyTest.takeDamage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.army.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.army" />
-      <option name="MAIN_CLASS_NAME" value="model.army.ArmyTest" />
-      <option name="METHOD_NAME" value="takeDamage" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomTest.changePopularity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.KingdomTest" />
-      <option name="METHOD_NAME" value="changePopularity" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomTest.getOwner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.KingdomTest" />
-      <option name="METHOD_NAME" value="getOwner" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomTest.getPopularity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.KingdomTest" />
-      <option name="METHOD_NAME" value="getPopularity" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomTest.setOwner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.KingdomTest" />
-      <option name="METHOD_NAME" value="setOwner" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.KingdomTest.changePopularity" />
-        <item itemvalue="JUnit.KingdomTest.getPopularity" />
-        <item itemvalue="JUnit.KingdomTest.getOwner" />
-        <item itemvalue="JUnit.KingdomTest.setOwner" />
-        <item itemvalue="JUnit.ArmyTest.takeDamage" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="595dce4f-0ef9-4748-902f-c9703fcbd2f1" name="Default Changelist" comment="" />
-      <created>1681121577491</created>
+      <changelist id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="" />
+      <created>1681491800681</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1681121577491</updated>
+      <updated>1681491800681</updated>
+      <workItem from="1681491802014" duration="857000" />
+      <workItem from="1681492677173" duration="868000" />
     </task>
+    <task id="LOCAL-00001" summary="just add them in my branch">
+      <created>1681491902726</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681491902726</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -191,21 +87,8 @@
       </map>
     </option>
   </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1682079403879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testSavingAndLoadingMaps.ic" NAME="DatabaseTest.testSavingAndLoadingMaps Coverage Results" MODIFIED="1682077340662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$ArmyTest.ic" NAME="ArmyTest Coverage Results" MODIFIED="1682183975345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.army.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testSaveAndLoad.ic" NAME="DatabaseTest.testSaveAndLoad Coverage Results" MODIFIED="1682076942761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testSave.ic" NAME="DatabaseTest.testSave Coverage Results" MODIFIED="1682013877841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.*</FILTER>
-    </SUITE>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="just add them in my branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="just add them in my branch" />
   </component>
 </project>

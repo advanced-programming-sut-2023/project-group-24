@@ -2,14 +2,16 @@ package view.menus.gamemenus;
 
 import controller.gamecontrollers.BuildingController;
 import controller.gamecontrollers.KingdomController;
+import controller.gamecontrollers.ShowMapController;
 import controller.gamecontrollers.UnitController;
+import utils.enums.messages.UnitControllerMessages;
 
 import java.util.regex.Matcher;
 
 public class GameMenu {
-    private final KingdomController kingdomController;
-    private final UnitController unitController;
-    private final BuildingController buildingController;
+    private KingdomController kingdomController;
+    private UnitController unitController;
+    private BuildingController buildingController;
 
     public GameMenu(KingdomController kingdomController, UnitController unitController, BuildingController buildingController) {
         this.kingdomController = kingdomController;
