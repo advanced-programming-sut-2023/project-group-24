@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class AppController {
     private static User loggedInUser;
-    private static Database database = new Database();
+    private static final Database database = new Database();
     private static GameDatabase gameDatabase;
     private static MenusName currentMenu;
 
@@ -95,6 +95,10 @@ public class AppController {
                     ShopMenu shopMenu = new ShopMenu(shopController);
                     shopMenu.run();
                     break;
+                case CREATE_MAP_MENU:
+                    CreateMapController createMapController = new CreateMapController(database);
+                    CreateMapMenu createMapMenu = new CreateMapMenu(createMapController);
+                    createMapMenu.run();
             }
         }
     }

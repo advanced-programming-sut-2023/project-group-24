@@ -6,6 +6,8 @@ import view.enums.messages.CommonMessages;
 import view.enums.messages.ProfileMenuMessages;
 import view.menus.CaptchaMenu;
 
+import java.util.Vector;
+
 public class ProfileMenuController {
     private final Database database;
     private final User currentUser;
@@ -89,7 +91,11 @@ public class ProfileMenuController {
     }
 
     public String showRank() {
-        //TODO ?
+        Vector<User> sortedUsers = database.getAllUsersByRank();
+        for (int i = 0; i < sortedUsers.size(); i++) {
+            if (sortedUsers.get(i).equals(currentUser))
+                return "Your rank is " + (i + 1);
+        }
         return null;
     }
 

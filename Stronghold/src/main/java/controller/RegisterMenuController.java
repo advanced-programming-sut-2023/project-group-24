@@ -106,6 +106,7 @@ public class RegisterMenuController {
         if (!CaptchaMenu.runCaptcha()) return RegisterMenuMessages.INCORRECT_CAPTCHA;
         String passwordAsSHA = MainController.getSHA256(password);
         String recoveryAnswerAsSHA = MainController.getSHA256(recoveryAnswer);
+        //TODO make pair
         database.addUser(username, passwordAsSHA, nickname, slogan, email, recoveryQuestionNumber, recoveryAnswerAsSHA);
         try {
             database.saveDataIntoFile();
