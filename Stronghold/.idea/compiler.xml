@@ -9,5 +9,8 @@
         <module name="Stronghold" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Stronghold" target="19" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,6 +1,7 @@
 package model;
 
 import model.army.Army;
+import model.army.ArmyType;
 import model.buildings.Building;
 import model.buildings.StorageBuilding;
 import utils.Pair;
@@ -11,6 +12,8 @@ import java.util.HashMap;
 public class Kingdom {
     private final KingdomColor color;
     private User owner;
+    private Building gateHouse;
+    private Army lord;
     private ArrayList<Building> buildings;
     private ArrayList<Army> armies;
     private HashMap<Item, Integer> storage;
@@ -20,21 +23,25 @@ public class Kingdom {
     private HashMap<Factor, Integer> popularityFactors;
     private int gold;
 
-    public Kingdom(KingdomColor color) {
+    public Kingdom(KingdomColor color, Building gateHouse) {
         this.color = color;
+        this.gateHouse = gateHouse;
         setKingdomAttribute();
     }
 
-    private void setKingdomAttribute() {
+    private void setKingdomAttribute() {//TODO
         popularity = 75;
+        gold = 200;
         buildings = new ArrayList<>();
+        buildings.add(gateHouse);
         trades = new ArrayList<>();
         armies = new ArrayList<>();
-        popularityFactors = new HashMap<>();
-        popularityFactors.put(Factor.FEAR, 0);
-        popularityFactors.put(Factor.FOOD, 0);
-        popularityFactors.put(Factor.RELIGION, 0);
-        popularityFactors.put(Factor.TAX, 0);
+        population = new ArrayList<>();
+        armies.add(lord);
+        popularityFactors.put(Factor.FEAR , 0);
+        popularityFactors.put(Factor.FOOD , 0);
+        popularityFactors.put(Factor.RELIGION , 0);
+        popularityFactors.put(Factor.TAX , 0);
         setStorage();
     }
 
@@ -46,16 +53,16 @@ public class Kingdom {
         this.owner = owner;
     }
 
+    public Building getGateHouse() {
+        return gateHouse;
+    }
+
     public int getPopularity() {
         return popularity;
     }
 
-    public void changePopularity(int amount) {
-        this.popularity += amount;
-        if (popularity < 0)
-            popularity = 0;
-        if (popularity > 100)
-            popularity = 100;
+    public void changePopularity(int popularity) {
+        this.popularity = popularity;
     }
 
     public int getPopulation() {
@@ -72,6 +79,10 @@ public class Kingdom {
             if (!people.isWorking())
                 unemployment++;
         return unemployment;
+    }
+
+    public Army getLord() {
+        return lord;
     }
 
     public int getGold() {
@@ -121,7 +132,7 @@ public class Kingdom {
         for (Building building : buildings)
             if (building instanceof StorageBuilding)
                 for (Item value : Item.values())
-                    changeStockNumber(new Pair<>(value, ((StorageBuilding) building).getStockedNumber(value)));
+                    changeStockNumber(new Pair<> (value , ((StorageBuilding) building).getStockedNumber(value)));
     }
 
     public void removeBuilding(Building destroyedBuilding) {
@@ -132,10 +143,12 @@ public class Kingdom {
         buildings.add(building);
     }
 
-    private enum Factor {
+    public enum Factor {
         FOOD,
         FEAR,
         RELIGION,
         TAX
     }
+
+
 }

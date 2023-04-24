@@ -1,7 +1,7 @@
 package model.map;
 
-import model.Color;
 import model.StringFunctions;
+import model.Color;
 
 public enum Texture {
     GROUND(true, true, Color.YELLOW_BACKGROUND),
@@ -30,14 +30,6 @@ public enum Texture {
         this.color = color;
     }
 
-    public static Texture stringToEnum(String name) {
-        String string = StringFunctions.turnSpaceToUnderline(name);
-        for (Texture value : values())
-            if (string.equalsIgnoreCase(value.toString()))
-                return value;
-        return null;
-    }
-
     public boolean isCanPass() {
         return canPass;
     }
@@ -48,5 +40,13 @@ public enum Texture {
 
     public Color getColor() {
         return color;
+    }
+
+    public static Texture stringToEnum(String name) {
+        String string = StringFunctions.turnSpaceToUnderline(name);
+        for (Texture value : values())
+            if (string.equalsIgnoreCase(value.toString()))
+                return value;
+        return null;
     }
 }

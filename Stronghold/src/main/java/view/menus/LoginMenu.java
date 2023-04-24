@@ -2,9 +2,8 @@ package view.menus;
 
 import controller.AppController;
 import controller.LoginMenuController;
-import utils.enums.MenusName;
-import view.enums.commands.Commands;
 import view.enums.messages.LoginMenuMessages;
+import view.menus.commands.Commands;
 
 import java.util.regex.Matcher;
 

@@ -24,9 +24,10 @@ public enum Item {
     PITCH(20, Category.MATERIAL),
     WOOD(4, Category.MATERIAL);
 
-    public static final List<Item> Values = List.of(values());
     private final Category category;
+
     private final int price;
+    public static final List<Item> Values = List.of(values());
 
     Item(int price, Category category) {
         this.category = category;
@@ -49,7 +50,7 @@ public enum Item {
         return category;
     }
 
-    private enum Category {
+    public enum Category {
         WEAPON,
         FOOD,
         ARMOR,

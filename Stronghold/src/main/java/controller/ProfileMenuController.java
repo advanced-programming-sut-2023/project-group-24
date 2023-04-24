@@ -38,20 +38,16 @@ public class ProfileMenuController {
             return ProfileMenuMessages.INCORRECT_PASSWORD;
         CommonMessages message = MainController.whatIsPasswordProblem(newPassword);
         switch (message) {
-            case OK -> {
-            }
-            case SHORT_PASSWORD -> {
+            case OK:
+                break;
+            case SHORT_PASSWORD:
                 return ProfileMenuMessages.SHORT_PASSWORD;
-            }
-            case NON_CAPITAL_PASSWORD -> {
+            case NON_CAPITAL_PASSWORD:
                 return ProfileMenuMessages.NON_CAPITAL_PASSWORD;
-            }
-            case NON_SMALL_PASSWORD -> {
+            case NON_SMALL_PASSWORD:
                 return ProfileMenuMessages.NON_SMALL_PASSWORD;
-            }
-            case NON_NUMBER_PASSWORD -> {
+            case NON_NUMBER_PASSWORD:
                 return ProfileMenuMessages.NON_NUMBER_PASSWORD;
-            }
         }
         if (oldPassword.equals(newPassword)) return ProfileMenuMessages.DUPLICATE_PASSWORD;
         if (!CaptchaMenu.runCaptcha()) return ProfileMenuMessages.INCORRECT_CAPTCHA;

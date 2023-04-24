@@ -7,11 +7,11 @@ import model.map.Map;
 import java.util.ArrayList;
 
 public class GameDatabase {
-    private final ArrayList<Army> selectedUnits;
-    private final Map map;
     private Kingdom currentKingdom;
     private ArrayList<Kingdom> kingdoms;
     private Building currentBuilding;
+    private final ArrayList<Army> selectedUnits;
+    private final Map map;
 
     public GameDatabase(ArrayList<User> players, Map map) {
         selectedUnits = new ArrayList<Army>();

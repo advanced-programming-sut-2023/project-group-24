@@ -2,9 +2,8 @@ package view.menus;
 
 import controller.AppController;
 import controller.ProfileMenuController;
-import utils.enums.MenusName;
-import view.enums.commands.Commands;
 import view.enums.messages.ProfileMenuMessages;
+import utils.enums.commands.Commands;
 
 import java.util.regex.Matcher;
 
@@ -21,7 +20,7 @@ public class ProfileMenu {
         Matcher matcher;
         while (AppController.getCurrentMenu() == MenusName.PROFILE_MENU) {
             command = GetInputFromUser.getUserInput();
-            if ((matcher = Commands.getMatcher(command, Commands.CHANGE_USERNAME)) != null)
+            if ((matcher = utils.enums.commands.Commands.getMatcher(command, Commands.CHANGE_USERNAME)) != null)
                 changeUsername(matcher);
             else if ((matcher = Commands.getMatcher(command, Commands.CHANGE_NICKNAME)) != null)
                 changeNickname(matcher);
