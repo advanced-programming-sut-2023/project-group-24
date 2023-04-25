@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public enum Commands {
     //Register menu
-    CREATE_USER("^(?=.* -u (?<username>(\".*\")|(\\S+)))(?=.* -p (?<password>\\S+))^user create( -[up] ((\".*\")|(\\S+))){2}$"),//TODO fix it
+    CREATE_USER("^user create -u (?<username>\\S+) -p (?<password>\\S+)( )?(?<passwordConfirm>\\S+)? -e (?<email>\\S+) -n (?<nickname>\\S+)(?<sloganTag> -s (?<slogan>\\S+))?$"),
     QUESTION_PICK("(?=.* -q (?<questionNumber>\\w+))(?=.* -a (?<answer>(\".*\")|(\\S+)))(?=.* -c (?<answerConfirm>((\".*\")|(\\S+))))^question pick( -[qac] ((\".*\")|(\\S+))){3}$"),
 
     //Login menu

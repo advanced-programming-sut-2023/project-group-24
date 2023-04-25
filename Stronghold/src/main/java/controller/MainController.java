@@ -11,11 +11,11 @@ import java.security.NoSuchAlgorithmException;
 public class MainController {
 
     public static boolean isUsernameValid(String username) {
-        return Commands.getMatcher(username, Commands.VALID_USERNAME) != null;
+        return Commands.getMatcher(username, Commands.VALID_USERNAME) == null;
     }
 
     public static boolean isEmailValid(String email) {
-        return Commands.getMatcher(email, Commands.VALID_EMAIL) != null;
+        return Commands.getMatcher(email, Commands.VALID_EMAIL) == null;
     }
 
     public static CommonMessages whatIsPasswordProblem(String password) {

@@ -43,7 +43,7 @@ public class RegisterMenu {
                 email, sloganTag, slogan);
         switch (message) {
             case SUCCESS -> {
-                slogan = checkAndSetSlogan(slogan);
+                if(sloganTag != null) slogan = checkAndSetSlogan(slogan);
                 password = checkAndSetPassword(password);
                 if (password == null) return;
                 String getRecovery = getRecoveryQuestion();
@@ -111,12 +111,13 @@ public class RegisterMenu {
 
     private String getRecoveryQuestion() {
         System.out.println("""
-                Pick your security question: 1. What is my father's name?
+                Pick your security question:
+                1. What is my father's name?
                 2. What was my first pet's name?
                 3. What is my mother's last name?""");
-        String command = GetInputFromUser.getUserInput();
         Matcher matcher;
         while (true) {
+            String command = GetInputFromUser.getUserInput();
             if ((matcher = Commands.getMatcher(command, Commands.QUESTION_PICK)) != null) break;
             else System.out.println("Invalid command!");
         }

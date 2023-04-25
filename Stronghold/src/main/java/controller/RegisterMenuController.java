@@ -1,8 +1,8 @@
 package controller;
 
+import model.User;
 import model.databases.Database;
 import model.enums.Slogan;
-import model.User;
 import utils.Pair;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.RegisterMenuMessages;
