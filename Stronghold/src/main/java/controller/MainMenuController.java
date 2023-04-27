@@ -1,8 +1,7 @@
 package controller;
 
-import model.Database;
-import model.User;
-import view.menus.messages.MainMenuMessages;
+import model.databases.Database;
+import view.enums.messages.MainMenuMessages;
 
 public class MainMenuController {
 
@@ -12,15 +11,9 @@ public class MainMenuController {
         this.database = database;
     }
 
-    public MainMenuMessages enterProfileMenu() {
+    public MainMenuMessages enterGameMenu(String[] opponentsUsername) {
+        //TODO connect to game controller
         return null;
     }
 
-    public MainMenuMessages enterGameMenu(User[] opponents) {
-        return null;
-    }
-
-    public MainMenuMessages enterCreateMapMenu() {
-        return null;
-    }
 }

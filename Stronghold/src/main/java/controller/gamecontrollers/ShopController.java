@@ -1,7 +1,7 @@
 package controller.gamecontrollers;
 
-import model.GameDatabase;
-import view.menus.messages.ShopMenuMessages;
+import model.databases.GameDatabase;
+import view.enums.messages.ShopMenuMessages;
 
 public class ShopController {
     private final GameDatabase gameDatabase;

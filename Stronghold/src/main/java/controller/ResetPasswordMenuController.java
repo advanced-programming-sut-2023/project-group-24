@@ -1,28 +1,44 @@
 package controller;
 
-import model.Database;
-import view.menus.messages.LoginMenuMessages;
-import view.menus.messages.ResetPasswordMessages;
+import model.databases.Database;
+import model.enums.RecoveryQuestion;
+import model.User;
+import view.enums.messages.ResetPasswordMessages;
 
 public class ResetPasswordMenuController {
 
-    Database database;
+    private final Database database;
+    private User currentUser;
 
     public ResetPasswordMenuController(Database database) {
         this.database = database;
     }
 
     public ResetPasswordMessages checkUserUsername(String username) {
-        //TODO check answer and if it's correct change pass
-        return null;
+        currentUser = database.getUserByUsername(username);
+        if (currentUser == null) return ResetPasswordMessages.USER_NOT_FOUND;
+        else return ResetPasswordMessages.USER_FOUND;
     }
 
-    public LoginMenuMessages checkUserRecoveryAnswer(String username, String password, String passwordConfirm) {
-        //TODO check errors and if it was correct change password
-        return null;
+    public ResetPasswordMessages checkUserRecoveryAnswer(String recoveryAnswer) {
+        String recoveryAnswerAsSHA = MainController.getSHA256(recoveryAnswer);
+        if (currentUser.isRecoveryAnswerCorrect(recoveryAnswerAsSHA)) return ResetPasswordMessages.CORRECT_ANSWER;
+        else return ResetPasswordMessages.INCORRECT_ANSWER;
+    }
+
+    public ResetPasswordMessages checkAndChangeNewPassword(String newPassword, String newPasswordConfirm) {
+        if (!newPassword.equals(newPasswordConfirm)) return ResetPasswordMessages.PASSWORD_REPETITION_DO_NOT_MATCH;
+        String newPasswordAsSHA = MainController.getSHA256(newPassword);
+        changePassword(newPasswordAsSHA);
+        return ResetPasswordMessages.SUCCESS;
+    }
+
+    public String getUserRecoveryQuestion() {
+        int numberOfQuestion = currentUser.getRecoveryQuestionNumber();
+        return RecoveryQuestion.getRecoveryQuestionByNumber(numberOfQuestion);
     }
 
     public void changePassword(String newPassword) {
-        //TODO change password
+        currentUser.changePasswords(newPassword);
     }
 }

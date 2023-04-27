@@ -1,8 +1,8 @@
 package controller.gamecontrollers;
 
-import model.GameDatabase;
-import model.Item;
-import view.menus.messages.TradeControllerMessages;
+import model.databases.GameDatabase;
+import model.enums.Item;
+import view.enums.messages.TradeControllerMessages;
 
 public class TradeController {
     private final GameDatabase gameDatabase;

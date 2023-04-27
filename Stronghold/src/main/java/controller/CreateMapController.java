@@ -1,9 +1,9 @@
 package controller;
 
-import model.Database;
-import model.Direction;
+import model.databases.Database;
+import model.enums.Direction;
 import model.Kingdom;
-import model.KingdomColor;
+import model.enums.KingdomColor;
 import model.army.*;
 import model.buildings.Building;
 import model.buildings.BuildingType;
@@ -11,7 +11,8 @@ import model.map.Cell;
 import model.map.Map;
 import model.map.Texture;
 import model.map.Tree;
-import view.menus.messages.CreateMapMessages;
+import utils.enums.MenusName;
+import view.enums.messages.CreateMapMessages;
 
 public class CreateMapController {
     private final Database database;
@@ -90,30 +91,22 @@ public class CreateMapController {
     }
 
     private Direction getDirection(String direction) {
-        switch (direction) {
-            case "n":
-                return Direction.UP;
-            case "e":
-                return Direction.RIGHT;
-            case "w":
-                return Direction.LEFT;
-            default:
-                return Direction.DOWN;
-        }
+        return switch (direction) {
+            case "n" -> Direction.UP;
+            case "e" -> Direction.RIGHT;
+            case "w" -> Direction.LEFT;
+            default -> Direction.DOWN;
+        };
     }
 
     private String randomDirection() {
         int direct = (int) (Math.random() * 4);
-        switch (direct) {
-            case 0:
-                return "n";
-            case 1:
-                return "e";
-            case 2:
-                return "w";
-            default:
-                return "s";
-        }
+        return switch (direct) {
+            case 0 -> "n";
+            case 1 -> "e";
+            case 2 -> "w";
+            default -> "s";
+        };
     }
 
     public CreateMapMessages dropTree(int x, int y, String type) {
@@ -152,8 +145,15 @@ public class CreateMapController {
         Cell cell1 = map.getMap()[x][y + 1];
         if (!(cell.canBuild() && cell1.canBuild()))
             return CreateMapMessages.NOT_HERE;
-        //TODO ...
+        createKingdom(cell, cell1, color1);
         return CreateMapMessages.SUCCESS;
+    }
+
+    private void createKingdom(Cell townHallLocation, Cell stockPileLocation, KingdomColor kingdomColor) {
+        Kingdom kingdom = new Kingdom(kingdomColor);
+        new Building(kingdom, townHallLocation, BuildingType.TOWN_HALL);
+        new Building(kingdom, stockPileLocation, BuildingType.STOCKPILE);
+        //TODO create lord
     }
 
     private Kingdom getKingdomWithColor(KingdomColor color) {
@@ -162,24 +162,66 @@ public class CreateMapController {
                 return kingdom;
         return null;
     }
+
     public CreateMapMessages dropBuilding(int x, int y, String type) {
         if (currentKingdom == null)
-            return CreateMapMessages.CURRENT_KINGSOM_NULL;
+            return CreateMapMessages.CURRENT_KINGDOM_NULL;
         if (checkLocation(x) || checkLocation(y))
             return CreateMapMessages.INVALID_LOCATION;
         Cell cell = map.getMap()[x][y];
         BuildingType buildingType = BuildingType.getBuildingTypeFromName(type);
         if (buildingType == null)
             return CreateMapMessages.INVALID_TYPE;
-        //TODO ...
         if (!cell.canBuild())
             return CreateMapMessages.NOT_HERE;
+        if (!checkDropBuilding(cell, buildingType))
+            return CreateMapMessages.NOT_HERE;
+        Building.getBuildingFromBuildingType(currentKingdom, cell, buildingType);
         return CreateMapMessages.SUCCESS;
+    }
+
+    private boolean checkDropBuilding(Cell cell, BuildingType buildingType) {
+        if (buildingType.getCanOnlyBuiltOn() != null)
+            if (!buildingType.getCanOnlyBuiltOn().contains(cell.getTexture()))
+                return false;
+        if (buildingType.equals(BuildingType.STAIR))
+            if (!(checkNeighbor(cell, BuildingType.SMALL_STONE_GATEHOUSE) || checkNeighbor(cell, BuildingType.
+                    LARGE_STONE_GATEHOUSE) || checkNeighbor(cell, BuildingType.LOW_WALL)
+                    || checkNeighbor(cell, BuildingType.HIGH_WALL)))
+                return false;
+        if (buildingType.getCategory().equals(BuildingType.Category.STORAGE))
+            if (!checkNeighbor(cell, buildingType))
+                return false;
+        if (buildingType.equals(BuildingType.DRAWBRIDGE))
+            return checkNeighbor(cell, BuildingType.SMALL_STONE_GATEHOUSE) &&
+                    (!checkNeighbor(cell, BuildingType.LARGE_STONE_GATEHOUSE));
+        return true;
+    }
+
+    private boolean checkNeighbor(Cell cell, BuildingType neededBuildingType) {
+        int x = cell.getX();
+        int y = cell.getY();
+        if (x != 0)
+            if (map.getMap()[x - 1][y].getExistingBuilding().getBuildingType().equals(neededBuildingType)
+                    && map.getMap()[x - 1][y].getExistingBuilding().getKingdom().equals(currentKingdom))
+                return true;
+        if (y != 0)
+            if (map.getMap()[x][y - 1].getExistingBuilding().getBuildingType().equals(neededBuildingType)
+                    && map.getMap()[x][y - 1].getExistingBuilding().getKingdom().equals(currentKingdom))
+                return true;
+        if (x != map.getSize())
+            if (map.getMap()[x + 1][y].getExistingBuilding().getBuildingType().equals(neededBuildingType)
+                    && map.getMap()[x + 1][y].getExistingBuilding().getKingdom().equals(currentKingdom))
+                return true;
+        if (y != map.getSize())
+            return map.getMap()[x][y + 1].getExistingBuilding().getBuildingType().equals(neededBuildingType)
+                    && map.getMap()[x][y + 1].getExistingBuilding().getKingdom().equals(currentKingdom);
+        return false;
     }
 
     public CreateMapMessages dropUnit(int x, int y, String type, int count) {
         if (currentKingdom == null)
-            return CreateMapMessages.CURRENT_KINGSOM_NULL;
+            return CreateMapMessages.CURRENT_KINGDOM_NULL;
         if (checkLocation(x) || checkLocation(y))
             return CreateMapMessages.INVALID_LOCATION;
         Cell cell = map.getMap()[x][y];
@@ -190,27 +232,18 @@ public class CreateMapController {
             return CreateMapMessages.INVALID_COUNT;
         if (!cell.canDropUnit())
             return CreateMapMessages.NOT_HERE;
-        SoldierType soldierType = SoldierType.stringToEnum(type);
-        if (soldierType != null)
-            createSoldier(cell, armyType, soldierType, count);
-        else createWarMachine(cell, armyType, WarMachineType.stringToEnum(type), count);
+        if (SoldierType.stringToEnum(type) != null) for (int i = 0; i < count; i++)
+            new Soldier(cell, armyType, currentKingdom, SoldierType.stringToEnum(type));
+        else for (int i = 0; i < count; i++)
+            new WarMachine(cell, armyType, currentKingdom, WarMachineType.stringToEnum(type));
         return CreateMapMessages.SUCCESS;
     }
 
-    private void createWarMachine(Cell cell, ArmyType armyType, WarMachineType warMachineType, int count) {
-        for (int i = 0; i < count; i++) {
-            WarMachine warMachine = new WarMachine(cell, armyType, currentKingdom, warMachineType);
-            cell.addArmy(warMachine);
-            currentKingdom.addArmy(warMachine);
-        }
+    public CreateMapMessages exitCreateMapMenu() {
+        if (map.getKingdoms().size() < 2)
+            return CreateMapMessages.FEW_KINGDOM;
+        //TODO save map.
+        AppController.setCurrentMenu(MenusName.MAIN_MENU);
+        return CreateMapMessages.SUCCESS;
     }
-
-    private void createSoldier(Cell cell, ArmyType armyType, SoldierType soldierType, int count) {
-        for (int i = 0; i < count; i++) {
-            Soldier soldier = new Soldier(cell, armyType, currentKingdom, soldierType);
-            cell.addArmy(soldier);
-            currentKingdom.addArmy(soldier);
-        }
-    }
-
 }

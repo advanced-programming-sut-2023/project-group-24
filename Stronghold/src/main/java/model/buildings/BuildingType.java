@@ -1,6 +1,6 @@
 package model.buildings;
 
-import model.Item;
+import model.enums.Item;
 import model.army.Type;
 import model.map.Texture;
 import utils.Pair;
@@ -193,7 +193,7 @@ public enum BuildingType {
             new Vector<>(List.of(new Pair<>(Item.IRON, -1))), new Vector<>(List.of(new Pair<>(Item.METAL_ARMOR, 1))),
             0, null, null, null,
             false, false, null, ProducerBuilding.class),
-    POLE_TURNER("poleturner", Category.WEAPON, new Pair<>(Item.WOOD, -10), 100, 150,
+    POLETURNER("poleturner", Category.WEAPON, new Pair<>(Item.WOOD, -10), 100, 150,
             1, 0, 0, 0, 0, 0, 0,
             new Vector<>(List.of(new Pair<>(Item.WOOD, -1), new Pair<>(Item.WOOD, -2))),
             new Vector<>(List.of(new Pair<>(Item.SPEAR, 1), new Pair<>(Item.PIKE, 1))),
@@ -217,29 +217,29 @@ public enum BuildingType {
             false, false, null, Building.class);
 
     //TODO add good and bad things, etc
-    private String name;
-    private Category category;
-    private Pair<Item, Integer> materialToBuild;
-    private int price;
-    private int maxHp;
+    private final String name;
+    private final Category category;
+    private final Pair<Item, Integer> materialToBuild;
+    private final int price;
+    private final int maxHp;
 
-    private int workersNeeded;
-    private int homeCapacity;
-    private int height;
-    private int storageCapacity;
-    private int attackPoint;
-    private int popularityRate;
-    private int produceRate;
-    private Vector<Pair<Item, Integer>> uses;
-    private Vector<Pair<Item, Integer>> produces;
-    private int producePrice;
-    private Type troopsItCanMake;
-    private Item.Category itemsItCanHold;
-    private Vector<Item> itemsItCanMove;
-    private boolean canBeDestroyedByTunnels;
-    private boolean canBeRepaired;
-    private Vector<Texture> canOnlyBuiltOn;
-    private Class buildingClass;
+    private final int workersNeeded;
+    private final int homeCapacity;
+    private final int height;
+    private final int storageCapacity;
+    private final int attackPoint;
+    private final int popularityRate;
+    private final int produceRate;
+    private final Vector<Pair<Item, Integer>> uses;
+    private final Vector<Pair<Item, Integer>> produces;
+    private final int producePrice;
+    private final Type troopsItCanMake;
+    private final Item.Category itemsItCanHold;
+    private final Vector<Item> itemsItCanMove;
+    private final boolean canBeDestroyedByTunnels;
+    private final boolean canBeRepaired;
+    private final Vector<Texture> canOnlyBuiltOn;
+    private final Class buildingClass;
 
     BuildingType(String name,
                  Category category,

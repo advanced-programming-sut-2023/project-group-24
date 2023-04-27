@@ -1,8 +1,9 @@
 package model;
 
-public class User implements Comparable<User>{
-    private final int recoveryQuestionNumber;
-    private final String recoveryAnswer;
+import utils.Pair;
+
+public class User implements Comparable<User> {
+    private final Pair<Integer, String> recovery;
     private String username;
     private String password;
     private String nickname;
@@ -11,14 +12,13 @@ public class User implements Comparable<User>{
     private int highScore;
 
     public User(String username, String password, String nickname, String slogan,
-                String email, int recoveryQuestionNumber, String recoveryAnswer) {
+                String email, Pair<Integer, String> recovery) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
         this.slogan = slogan;
         this.email = email;
-        this.recoveryQuestionNumber = recoveryQuestionNumber;
-        this.recoveryAnswer = recoveryAnswer;
+        this.recovery = recovery;
     }
 
 
@@ -63,11 +63,11 @@ public class User implements Comparable<User>{
     }
 
     public boolean isRecoveryAnswerCorrect(String answer) {
-        return this.recoveryAnswer.equals(answer);
+        return this.recovery.getObject2().equals(answer);
     }
 
     public int getRecoveryQuestionNumber() {
-        return recoveryQuestionNumber;
+        return recovery.getObject1();
     }
 
     public int getHighScore() {

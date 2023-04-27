@@ -47,6 +47,11 @@ public class Army {
         return isDead();
     }
 
+    public void moveArmy() {
+        location = path.get(0);
+        path.remove(0);
+    }
+
     public ArrayList<Cell> getPath() {
         return path;
     }

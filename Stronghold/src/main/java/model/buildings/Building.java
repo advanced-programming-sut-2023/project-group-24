@@ -14,15 +14,14 @@ public class Building {
         this.location = location;
         this.buildingType = buildingType;
         this.hp = buildingType.getMaxHp();
+        location.setExistingBuilding(this);
+        kingdom.addBuilding(this);
     }
 
     public static Building getBuildingFromBuildingType(Kingdom kingdom, Cell location, BuildingType buildingType) {
         try {
-            Building building = (Building) buildingType.getBuildingClass().getConstructor(Kingdom.class,
+            return (Building) buildingType.getBuildingClass().getConstructor(Kingdom.class,
                     Cell.class, BuildingType.class).newInstance(kingdom, location, buildingType);
-            kingdom.addBuilding(building);
-            location.setExistingBuilding(building);
-            return building;
         } catch (Exception ignored) {
             return null;
         }

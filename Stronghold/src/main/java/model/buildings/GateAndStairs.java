@@ -1,6 +1,6 @@
 package model.buildings;
 
-import model.Direction;
+import model.enums.Direction;
 import model.Kingdom;
 import model.map.Cell;
 

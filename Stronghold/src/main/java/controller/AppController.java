@@ -1,25 +1,22 @@
 package controller;
 
 import controller.gamecontrollers.*;
-import model.Database;
-import model.GameDatabase;
+import model.databases.Database;
+import model.databases.GameDatabase;
 import model.User;
 import model.map.Map;
-import view.menus.MenusName;
-import view.menus.LoginMenu;
-import view.menus.MainMenu;
-import view.menus.ProfileMenu;
-import view.menus.RegisterMenu;
+import utils.enums.MenusName;
 import view.menus.gamemenus.GameMenu;
 import view.menus.gamemenus.ShopMenu;
 import view.menus.gamemenus.ShowMapMenu;
 import view.menus.gamemenus.TradeMenu;
+import view.menus.*;
 
 import java.util.ArrayList;
 
 public class AppController {
-    private static User loggedInUser;
     private static final Database database = new Database();
+    private static User loggedInUser;
     private static GameDatabase gameDatabase;
     private static MenusName currentMenu;
 
@@ -67,6 +64,10 @@ public class AppController {
                     RegisterMenu registerMenu = new RegisterMenu(registerMenuController);
                     registerMenu.run();
                     break;
+                case RESET_PASSWORD_MENU:
+                    ResetPasswordMenuController resetPasswordMenuController = new ResetPasswordMenuController(database);
+                    ResetPasswordMenu resetPasswordMenu = new ResetPasswordMenu(resetPasswordMenuController);
+                    resetPasswordMenu.run();
                 case MAIN_MENU:
                     MainMenuController mainMenuController = new MainMenuController(database);
                     MainMenu mainMenu = new MainMenu(mainMenuController);
@@ -94,6 +95,10 @@ public class AppController {
                     ShopMenu shopMenu = new ShopMenu(shopController);
                     shopMenu.run();
                     break;
+                case CREATE_MAP_MENU:
+                    CreateMapController createMapController = new CreateMapController(database);
+                    CreateMapMenu createMapMenu = new CreateMapMenu(createMapController);
+                    createMapMenu.run();
             }
         }
     }

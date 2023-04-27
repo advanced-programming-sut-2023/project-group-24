@@ -1,6 +1,6 @@
 package model.buildings;
 
-import model.Item;
+import model.enums.Item;
 import model.Kingdom;
 import model.map.Cell;
 import utils.Pair;
@@ -8,7 +8,7 @@ import utils.Pair;
 import java.util.HashMap;
 
 public class StorageBuilding extends Building {
-    private HashMap<Item, Integer> storage;
+    private final HashMap<Item, Integer> storage;
 
     public StorageBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         super(kingdom, cell, buildingType);

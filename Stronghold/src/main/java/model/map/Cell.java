@@ -1,6 +1,6 @@
 package model.map;
 
-import model.Direction;
+import model.enums.Direction;
 import model.Kingdom;
 import model.army.Army;
 import model.army.ArmyType;
@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public class Cell {
     private final int x;
     private final int y;
+    private final ArrayList<Army> armies;
     private Texture texture;
-    private Building existingBuilding = null;
-    private final ArrayList<Army> armies = new ArrayList<>();
+    private Building existingBuilding;
     private boolean isRock;
     private Tree tree;
     private Direction direction;
@@ -22,6 +22,8 @@ public class Cell {
         this.x = x;
         this.y = y;
         this.texture = Texture.GROUND;
+        existingBuilding = null;
+        armies = new ArrayList<>();
     }
 
     public Texture getTexture() {

@@ -1,6 +1,6 @@
 package controller.gamecontrollers;
 
-import model.GameDatabase;
+import model.databases.GameDatabase;
 
 public class ShowMapController {
     private final GameDatabase gameDatabase;

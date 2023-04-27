@@ -1,8 +1,2 @@
-
-*.xml
-*.xml
-*.iml
-*.xml
-*.xml
-*.xml
-*.json
+/target/
+/.idea/

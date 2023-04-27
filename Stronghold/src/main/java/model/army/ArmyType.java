@@ -1,6 +1,6 @@
 package model.army;
 
-import model.StringFunctions;
+import controller.MainController;
 
 public enum ArmyType {
     ARCHER(12, 96, 5, 16, 4),
@@ -23,7 +23,7 @@ public enum ArmyType {
     FIRE_THROWER(100, 96, 3, 32, 5),
     //WAR_MACHINES:
     SIEGE_TOWER(150, 600, 0, 0, 1),
-    PORTABLE_SHIELDS(5, 300, 0,0, 1),
+    PORTABLE_SHIELDS(5, 300, 0, 0, 1),
     BATTERING_RAMS(150, 1000, 1, 334, 1),
     CATAPULT(150, 150, 5, 200, 2),
     TREBUCHETS(150, 400, 7, 334, 0),
@@ -45,7 +45,7 @@ public enum ArmyType {
     }
 
     public static ArmyType stringToEnum(String name) {
-        String string = StringFunctions.turnSpaceToUnderline(name);
+        String string = MainController.turnSpaceToUnderline(name);
         for (ArmyType value : values())
             if (string.equalsIgnoreCase(value.toString()))
                 return value;

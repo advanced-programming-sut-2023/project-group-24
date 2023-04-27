@@ -1,6 +1,6 @@
 package model.buildings;
 
-import model.Item;
+import model.enums.Item;
 import model.Kingdom;
 import model.map.Cell;
 import utils.Pair;

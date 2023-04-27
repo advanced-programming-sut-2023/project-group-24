@@ -2,8 +2,9 @@ package view.menus;
 
 import controller.AppController;
 import controller.CreateMapController;
-import view.menus.commands.Commands;
-import view.menus.messages.CreateMapMessages;
+import utils.enums.MenusName;
+import view.enums.commands.Commands;
+import view.enums.messages.CreateMapMessages;
 
 import java.util.regex.Matcher;
 
@@ -28,6 +29,7 @@ public class CreateMapMenu {
             if ((matcher = Commands.getMatcher(input, Commands.DROP_ROCK)) != null) dropRock(matcher);
             else if ((matcher = Commands.getMatcher(input, Commands.DROP_TREE)) != null) dropTree(matcher);
             else if ((matcher = Commands.getMatcher(input, Commands.CLEAR)) != null) clear(matcher);
+            else if (Commands.getMatcher(input, Commands.EXIT) != null) exitCreateMap();
             else if ((matcher = Commands.getMatcher(input, Commands.SET_TEXTURE)) != null) setTexture(matcher);
             else if ((matcher = Commands.getMatcher(input, Commands.SET_TEXTURE_MULTIPLE)) != null)
                 setTextureMultiple(matcher);
@@ -38,6 +40,10 @@ public class CreateMapMenu {
                 setCurrentKingdom(matcher);
             else System.out.println("Invalid command!");
         }
+    }
+
+    private void exitCreateMap() {
+        handleMessage(createMapController.exitCreateMapMenu());
     }
 
     private void newKingdom(Matcher matcher) {
@@ -123,20 +129,20 @@ public class CreateMapMenu {
 
     private void handleMessage(CreateMapMessages messages) {
         switch (messages) {
-            case INVALID_LOCATION: System.out.println("\033[0;31mLocation out of bounds!\033[0m"); break;
-            case INVALID_DIRECTION: System.out.println("\033[0;31mInvalid direction!\033[0m"); break;
-            case NOT_HERE: System.out.println("\033[0;31mNot here!\033[0m"); break;
-            case ID_EXIST: System.out.println("\033[0;31mId already exist!\033[0m"); break;
-            case INVALID_SIZE: System.out.println("\033[0;31msize out of bound!\033[0m"); break;
-            case FEW_KINGDOM: System.out.println("\033[0;31mNot enough kingdom!\033[0m"); break;
-            case INVALID_COLOR: System.out.println("\033[0;31mInvalid color!\033[0m"); break;
-            case KINGDOM_NOT_EXIST: System.out.println("\033[0;31mNo kingdom with this color exist!\033[0m"); break;
-            case INVALID_TEXTURE: System.out.println("\033[0;31mInvalid texture!\033[0m"); break;
-            case INVALID_TYPE: System.out.println("\033[0;31mInvalid Type!\033[0m"); break;
-            case CURRENT_KINGSOM_NULL: System.out.println("\033[0;31mSet a kingdom first!\033[0m"); break;
-            case INVALID_COUNT: System.out.println("\033[0;31mInvalid count!\033[0m"); break;
-            case KINGDOM_EXIST: System.out.println("\033[0;31mKingdom with this color allready exist!\033[0m"); break;
-            case SUCCESS: System.out.println("\033[0;32mSuccess\033[0m"); break;
+            case INVALID_LOCATION -> System.out.println("\033[0;31mLocation out of bounds!\033[0m");
+            case INVALID_DIRECTION -> System.out.println("\033[0;31mInvalid direction!\033[0m");
+            case NOT_HERE -> System.out.println("\033[0;31mNot here!\033[0m");
+            case ID_EXIST -> System.out.println("\033[0;31mId already exist!\033[0m");
+            case INVALID_SIZE -> System.out.println("\033[0;31msize out of bound!\033[0m");
+            case FEW_KINGDOM -> System.out.println("\033[0;31mNot enough kingdom!\033[0m");
+            case INVALID_COLOR -> System.out.println("\033[0;31mInvalid color!\033[0m");
+            case KINGDOM_NOT_EXIST -> System.out.println("\033[0;31mNo kingdom with this color exist!\033[0m");
+            case INVALID_TEXTURE -> System.out.println("\033[0;31mInvalid texture!\033[0m");
+            case INVALID_TYPE -> System.out.println("\033[0;31mInvalid Type!\033[0m");
+            case CURRENT_KINGDOM_NULL -> System.out.println("\033[0;31mSet a kingdom first!\033[0m");
+            case INVALID_COUNT -> System.out.println("\033[0;31mInvalid count!\033[0m");
+            case KINGDOM_EXIST -> System.out.println("\033[0;31mKingdom with this color allready exist!\033[0m");
+            case SUCCESS -> System.out.println("\033[0;32mSuccess\033[0m");
         }
     }
 }

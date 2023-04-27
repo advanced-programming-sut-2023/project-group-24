@@ -1,6 +1,6 @@
 package model.army;
 
-import model.StringFunctions;
+import controller.MainController;
 
 public enum UnitState {
     STANDING,
@@ -8,7 +8,7 @@ public enum UnitState {
     OFFENSIVE;
 
     public static UnitState stringToEnum(String unitState) {
-        String string = StringFunctions.turnSpaceToUnderline(unitState);
+        String string = MainController.turnSpaceToUnderline(unitState);
         for (UnitState value : values())
             if (string.equalsIgnoreCase(value.toString()))
                 return value;

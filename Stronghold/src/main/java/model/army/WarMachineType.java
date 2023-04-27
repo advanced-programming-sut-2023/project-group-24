@@ -1,6 +1,6 @@
 package model.army;
 
-import model.StringFunctions;
+import controller.MainController;
 
 public enum WarMachineType {
     SIEGE_TOWER(4),
@@ -18,7 +18,7 @@ public enum WarMachineType {
     }
 
     public static WarMachineType stringToEnum(String name) {
-        String string = StringFunctions.turnSpaceToUnderline(name);
+        String string = MainController.turnSpaceToUnderline(name);
         for (WarMachineType value : values())
             if (string.equalsIgnoreCase(value.toString()))
                 return value;

@@ -1,6 +1,6 @@
 package controller.gamecontrollers;
 
-import model.GameDatabase;
+import model.databases.GameDatabase;
 import model.Kingdom;
 import model.army.Army;
 import model.map.Cell;

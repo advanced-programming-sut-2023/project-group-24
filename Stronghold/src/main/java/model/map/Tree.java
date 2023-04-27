@@ -1,6 +1,6 @@
 package model.map;
 
-import model.StringFunctions;
+import controller.MainController;
 
 public enum Tree {
     DATE_PALM,
@@ -8,8 +8,9 @@ public enum Tree {
     CHERRY_PALM,
     OLIVE_TREE,
     DESERT_SHRUB;
+
     public static Tree stringToEnum(String name) {
-        String string = StringFunctions.turnSpaceToUnderline(name);
+        String string = MainController.turnSpaceToUnderline(name);
         for (Tree value : values())
             if (string.equalsIgnoreCase(value.toString()))
                 return value;

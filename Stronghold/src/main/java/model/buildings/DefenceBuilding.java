@@ -1,40 +1,40 @@
 package model.buildings;
 
+import model.enums.Direction;
 import model.Kingdom;
-import model.LadderState;
 import model.map.Cell;
 
 public class DefenceBuilding extends Building {
-    private LadderState ladderState;
-    private LadderState staircase;
+    private Direction ladderState;
+    private Direction staircase;
 
     public DefenceBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {
         super(kingdom, cell, buildingType);
-        ladderState = LadderState.NONE;
-        staircase = LadderState.NONE;
+        ladderState = Direction.NONE;
+        staircase = Direction.NONE;
     }
 
-    public LadderState getLadderState() {
+    public Direction getLadderState() {
         return ladderState;
     }
 
-    public void setLadderState(LadderState ladderState) {
+    public void setLadderState(Direction ladderState) {
         this.ladderState = ladderState;
     }
 
-    public LadderState getStaircase() {
+    public Direction getStaircase() {
         return staircase;
     }
 
-    public void setStaircase(LadderState staircase) {
+    public void setStaircase(Direction staircase) {
         this.staircase = staircase;
     }
 
-    public void addLadder(LadderState ladderState) {
+    public void addLadder(Direction ladderState) {
         this.ladderState = ladderState;
     }
 
-    public void addStaircase(LadderState staircase) {
+    public void addStaircase(Direction staircase) {
         this.staircase = staircase;
     }
 }

@@ -1,7 +1,7 @@
 package controller.gamecontrollers;
 
-import model.GameDatabase;
-import view.menus.messages.BuildingControllerMessages;
+import model.databases.GameDatabase;
+import view.enums.messages.BuildingControllerMessages;
 
 public class BuildingController {
     private final GameDatabase gameDatabase;

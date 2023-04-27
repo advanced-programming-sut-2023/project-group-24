@@ -18,7 +18,8 @@ public class TroopMakerBuilding extends Building {
         SoldierType soldierType = SoldierType.stringToEnum(name);
         if (soldierType == null) return false;
         if (soldierType.getArmor() != null && getKingdom().getStockedNumber(soldierType.getArmor()) == 0) return false;
-        if (soldierType.getWeapon() != null && getKingdom().getStockedNumber(soldierType.getWeapon()) == 0) return false;
+        if (soldierType.getWeapon() != null && getKingdom().getStockedNumber(soldierType.getWeapon()) == 0)
+            return false;
         return getKingdom().getGold() >= Objects.requireNonNull(ArmyType.stringToEnum(name)).getPrice();
         //TODO check for the available population of that kingdom
     }
