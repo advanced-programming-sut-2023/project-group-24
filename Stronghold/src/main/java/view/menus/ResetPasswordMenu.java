@@ -31,8 +31,12 @@ public class ResetPasswordMenu {
         String username = matcher.group("username");
         ResetPasswordMessages message = resetPasswordMenuController.checkUserUsername(username);
         switch (message) {
-            case USER_NOT_FOUND -> System.out.println("User not found!");
-            case USER_FOUND -> getAndCheckUserRecoveryAnswer();
+            case USER_NOT_FOUND:
+                System.out.println("User not found!");
+                break;
+            case USER_FOUND:
+                getAndCheckUserRecoveryAnswer();
+                break;
         }
     }
 
@@ -42,8 +46,12 @@ public class ResetPasswordMenu {
         String recoveryAnswer = GetInputFromUser.getUserInput();
         ResetPasswordMessages message = resetPasswordMenuController.checkUserRecoveryAnswer(recoveryAnswer);
         switch (message) {
-            case INCORRECT_ANSWER -> System.out.println("Your answer is not correct!");
-            case CORRECT_ANSWER -> changePassword();
+            case INCORRECT_ANSWER:
+                System.out.println("Your answer is not correct!");
+                break;
+            case CORRECT_ANSWER:
+                changePassword();
+                break;
         }
     }
 
@@ -54,11 +62,13 @@ public class ResetPasswordMenu {
         String newPasswordConfirm = GetInputFromUser.getUserInput();
         ResetPasswordMessages message = resetPasswordMenuController.checkAndChangeNewPassword(newPassword, newPasswordConfirm);
         switch (message) {
-            case SUCCESS -> {
+            case SUCCESS:
                 System.out.println("Your password has been successfully changed");
                 AppController.setCurrentMenu(MenusName.LOGIN_MENU);
-            }
-            case PASSWORD_REPETITION_DO_NOT_MATCH -> System.out.println("The password and its repetition do not match");
+                break;
+            case PASSWORD_REPETITION_DO_NOT_MATCH:
+                System.out.println("The password and its repetition do not match");
+                break;
         }
     }
 }

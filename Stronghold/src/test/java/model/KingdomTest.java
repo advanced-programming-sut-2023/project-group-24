@@ -6,6 +6,7 @@ import model.enums.KingdomColor;
 import model.map.Cell;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import utils.Pair;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +15,7 @@ class KingdomTest {
     Cell cell = new Cell(0, 0);
     Kingdom kingdom = new Kingdom(KingdomColor.RED);
     Army army = new Army(cell, ArmyType.ARCHER, kingdom);
-    User user = new User("olala", "asdf", "dasf", "dsfsa", "asfd", 1, "ads");
+    User user = new User("olala", "asdf", "dasf", "dsfsa", "asfd", new Pair<>(1, "ads"));
 
     @Test
     void getOwner() {

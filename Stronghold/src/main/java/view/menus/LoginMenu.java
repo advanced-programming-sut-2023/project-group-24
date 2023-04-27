@@ -38,16 +38,20 @@ public class LoginMenu {
         boolean stayLoggedIn = matcher.group("stayLoggedIn") != null;
         LoginMenuMessages message = loginMenuController.loginUser(username, password, stayLoggedIn);
         switch (message) {
-            case SUCCESS -> {
+            case SUCCESS:
                 System.out.println("user logged in successfully!");
                 enterMainMenu();
-            }
-            case USER_NOT_FOUND -> System.out.println("User not found!");
-            case INCORRECT_PASSWORD -> {
+                break;
+            case USER_NOT_FOUND:
+                System.out.println("User not found!");
+                break;
+            case INCORRECT_PASSWORD:
                 System.out.println("Incorrect password!\nYou have to wait for a while");
                 loginMenuController.makeDelayForIncorrectPassword();
-            }
-            case INCORRECT_CAPTCHA -> System.out.println("You entered the captcha code incorrectly!");
+                break;
+            case INCORRECT_CAPTCHA:
+                System.out.println("You entered the captcha code incorrectly!");
+                break;
         }
     }
 
