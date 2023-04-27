@@ -1,6 +1,7 @@
 package model;
 
 import model.army.Army;
+import model.army.Soldier;
 import model.buildings.Building;
 import model.buildings.StorageBuilding;
 import model.enums.Item;

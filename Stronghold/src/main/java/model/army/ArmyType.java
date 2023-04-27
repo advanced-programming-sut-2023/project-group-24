@@ -3,6 +3,7 @@ package model.army;
 import controller.MainController;
 
 public enum ArmyType {
+    LORD(0, 500, 0, 100, 1),
     ARCHER(12, 96, 5, 16, 4),
     CROSSBOWMEN(20, 128, 3, 24, 2),
     SPEARMAN(8, 64, 0, 24, 3),
@@ -27,9 +28,7 @@ public enum ArmyType {
     BATTERING_RAMS(150, 1000, 1, 334, 1),
     CATAPULT(150, 150, 5, 200, 2),
     TREBUCHETS(150, 400, 7, 334, 0),
-    FIRE_BALLISTA(150, 150, 6, 70, 2),
-    //LORD
-    LORD(0, 0, 0, 0, 0);
+    FIRE_BALLISTA(150, 150, 6, 70, 2);
     private final int price;
     private final int maxHp;
     private final int range;

@@ -20,6 +20,8 @@ public class Army {
         this.hp = armyType.getMaxHp();
         path = new ArrayList<>();
         this.owner = owner;
+        location.addArmy(this);
+        owner.addArmy(this);
     }
 
     public boolean isDead() {
