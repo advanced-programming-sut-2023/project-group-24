@@ -5,20 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="first checkpoint final version">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/map/PathFinder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/map/PathFinderCellDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stronghold.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/captchacontrollers/AsciiArt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/captchacontrollers/AsciiArt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/RecoveryQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/RecoveryQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/CaptchaNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/enums/CaptchaNumbers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/LoginMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/LoginMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/ProfileMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/RegisterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/ResetPasswordMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/ResetPasswordMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/DatabaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/DatabaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +36,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="extract.method.default.visibility" value="private" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
