@@ -65,4 +65,8 @@ public enum SoldierType {
     public boolean isCanDig() {
         return canDig;
     }
+
+    public String toString() {
+        return super.toString().toLowerCase().replaceAll("-", " ");
+    }
 }

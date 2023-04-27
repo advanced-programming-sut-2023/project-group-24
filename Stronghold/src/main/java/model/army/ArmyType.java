@@ -70,4 +70,8 @@ public enum ArmyType {
     public int getPrice() {
         return price;
     }
+
+    public String toString() {
+        return super.toString().toLowerCase().replaceAll("-", " ");
+    }
 }
