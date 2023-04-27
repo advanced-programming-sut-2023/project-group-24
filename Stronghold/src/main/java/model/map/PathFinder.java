@@ -52,17 +52,16 @@ public class PathFinder {
         int newI = newCoordinates.getObject1(), newJ = newCoordinates.getObject2();
         if (isValid(newI, newJ)) {
             if (isDestination(newI, newJ)) {
-                cellDetails[newI][newJ].setAll(i, j, 0, 0, 0);
+                cellDetails[newI][newJ].setAll(i, j, 0, 0);
                 return true;
             }
             else if (!closedList[newI][newJ] && canMoveTo(i, j, newI, newJ)) {
                 int gNew = cellDetails[i][j].getG() + 1;
-                int hNew = calculateHValue(newI, newJ);
-                int fNew = gNew + hNew;
+                int fNew = gNew + calculateHValue(newI, newJ);
                 if (cellDetails[newI][newJ].getF() == PathFinderCellDetails.FLT_MAX
                         || cellDetails[newI][newJ].getF() > fNew) {
                     openList.add(new Pair<>(fNew, new Pair<>(newI, newJ)));
-                    cellDetails[newI][newJ].setAll(i, j, fNew, gNew, hNew);
+                    cellDetails[newI][newJ].setAll(i, j, fNew, gNew);
                 }
             }
         }
@@ -102,11 +101,7 @@ public class PathFinder {
             }
         }
         int i = src.getObject1(), j = src.getObject2();
-        cellDetails[i][j].setF(0);
-        cellDetails[i][j].setG(0);
-        cellDetails[i][j].setH(0);
-        cellDetails[i][j].setParentX(i);
-        cellDetails[i][j].setParentY(j);
+        cellDetails[i][j].setAll(i, j, 0, 0);
     }
 
     private boolean isBlocked(int x, int y) {
