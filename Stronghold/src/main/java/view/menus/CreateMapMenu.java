@@ -22,7 +22,7 @@ public class CreateMapMenu {
             input = GetInputFromUser.getUserInput();
             if ((matcher = Commands.getMatcher(input, Commands.CREATE_MAP)) != null) {
                 if (createMap(matcher)) break;
-            } else System.out.println("Invalid commands!");
+            } else System.out.println("\033[0;31mInvalid command!\033[0m");
         }
         while (AppController.getCurrentMenu().equals(MenusName.CREATE_MAP_MENU)) {
             input = GetInputFromUser.getUserInput();
@@ -38,7 +38,7 @@ public class CreateMapMenu {
             else if ((matcher = Commands.getMatcher(input, Commands.NEW_KINGDOM)) != null) newKingdom(matcher);
             else if ((matcher = Commands.getMatcher(input, Commands.CHANGE_KINGDOM)) != null)
                 setCurrentKingdom(matcher);
-            else System.out.println("Invalid command!");
+            else System.out.println("\033[0;31mInvalid command!\033[0m");
         }
     }
 

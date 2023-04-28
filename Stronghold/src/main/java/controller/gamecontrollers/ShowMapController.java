@@ -44,6 +44,10 @@ public class ShowMapController {
         return outputMap.toString();
     }
 
+    public boolean checkInvalidIndex(int x, int y) {
+        return x > map.length || y > map.length;
+    }
+
     private void checkIndex(int x, int y) {
         if (x < width) currentMapX = width;
         else if (x >= map[1].length - width) currentMapX = map.length - width - 1;
@@ -58,7 +62,8 @@ public class ShowMapController {
         Building building = cell.getExistingBuilding();
         char buildingIcon = 'B';
         if (building == null) buildingIcon = ' ';
-        else if (building instanceof DefenceBuilding || building.getBuildingType().getName().contains("tower") || building.getBuildingType().getName().contains("turret"))
+        else if (building instanceof DefenceBuilding || building.getBuildingType().getName().contains("tower") ||
+                building.getBuildingType().getName().contains("turret"))
             buildingIcon = 'W';
         char troop = ' ';
         for (Army army : cell.getArmies())
@@ -82,14 +87,13 @@ public class ShowMapController {
         return cell.getTexture().getColor().toString() + " " + movingTroop + ' ' + tree + " " + Color.RESET;
     }
 
-    public String moveMap(int up, int down, int right, int left) {
-        return showMap(currentMapX + right - left, currentMapY + up - down);
+    public String moveMap(int changeY, int changeX) {
+        return showMap(currentMapX + changeX, currentMapY + changeY);
     }
 
     public String showDetails(int x, int y) {
-        if (x < 0 || x >= map.length || y < 0 || y >= map.length) return "Index out of bounds!";
+        if (x < 0 || x >= map.length || y < 0 || y >= map.length) return "\033[0;31mIndex out of bounds!\033[0m";
         Cell cell = map[x][y];
-        String outputMap = "";
         String building = "";
         if (cell.getExistingBuilding() != null)
             building = "building: " + cell.getExistingBuilding().getBuildingType().getName() + "    ";
@@ -97,7 +101,7 @@ public class ShowMapController {
         String tree = "";
         if (cell.getTree() != null) tree = "tree: " + cell.getTree().name() + "    ";
         String army = getArmiesString(cell.getArmies());
-        return cell.getTexture().getColor().toString() + " " + building + texture + tree + '\n' + army;
+        return cell.getTexture().getColor().toString() + " " + building + texture + tree + '\n' + army + Color.RESET;
     }
 
     private String getArmiesString(ArrayList<Army> armies) {

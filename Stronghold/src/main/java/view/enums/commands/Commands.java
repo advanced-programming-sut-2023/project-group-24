@@ -5,11 +5,14 @@ import java.util.regex.Pattern;
 
 public enum Commands {
     //Register menu
-    CREATE_USER("^user create -u (?<username>\\S+) -p (?<password>\\S+)( )?(?<passwordConfirm>\\S+)? -e (?<email>\\S+) -n (?<nickname>\\S+)(?<sloganTag> -s (?<slogan>\\S+))?$"),
-    QUESTION_PICK("(?=.* -q (?<questionNumber>\\w+))(?=.* -a (?<answer>(\".*\")|(\\S+)))(?=.* -c (?<answerConfirm>((\".*\")|(\\S+))))^question pick( -[qac] ((\".*\")|(\\S+))){3}$"),
+    CREATE_USER("^user create -u (?<username>\\S+) -p (?<password>\\S+)( )?(?<passwordConfirm>\\S+)? -e " +
+            "(?<email>\\S+) -n (?<nickname>\\S+)(?<sloganTag> -s (?<slogan>\\S+))?$"),
+    QUESTION_PICK("(?=.* -q (?<questionNumber>\\w+))(?=.* -a (?<answer>(\".*\")|(\\S+)))(?=.* -c " +
+            "(?<answerConfirm>((\".*\")|(\\S+))))^question pick( -[qac] ((\".*\")|(\\S+))){3}$"),
 
     //Login menu
-    LOGIN_USER("^(?=.* -u (?<username>(\".*\")|(\\S+)))(?=.* -p (?<password>(\".*\")|(\\S+)))user login( -[up] ((\".*\")|(\\S+))){2}(?<stayLoggedIn> --stay-logged-in)?$"),
+    LOGIN_USER("^(?=.* -u (?<username>(\".*\")|(\\S+)))(?=.* -p (?<password>(\".*\")|(\\S+)))user login( -[up]" +
+            " ((\".*\")|(\\S+))){2}(?<stayLoggedIn> --stay-logged-in)?$"),
     FORGOT_PASSWORD("^forgot my password$"),
     ENTER_REGISTER_MENU("^I don't have account$"),
 
@@ -22,7 +25,8 @@ public enum Commands {
     //Profile menu
     CHANGE_USERNAME("^profile change -u (?<username>(\".*\")|(\\S+))$"),
     CHANGE_NICKNAME("^profile change -n (?<nickname>(\".*\")|(\\S+))$"),
-    CHANGE_PASSWORD("(?=.* -o (?<oldPassword>(\".*\")|(\\S+)))(?=.* -n (?<newPassword>(\".*\")|(\\S+)))^profile change password( -[on] ((\".*\")|(\\S+))){2}$"),
+    CHANGE_PASSWORD("(?=.* -o (?<oldPassword>(\".*\")|(\\S+)))(?=.* -n (?<newPassword>(\".*\")|(\\S+)))^profile" +
+            " change password( -[on] ((\".*\")|(\\S+))){2}$"),
     CHANGE_EMAIL("^profile change -e (?<email>(\".*\")|(\\S+))$"),
     CHANGE_SLOGAN("^profile change slogan -s (?<slogan>(\".*\")|(\\S+))$"),
     REMOVE_SLOGAN("^profile remove slogan$"),
@@ -36,6 +40,12 @@ public enum Commands {
     START_GAME("^start game$"), //TODO hichi maloom nist
     ENTER_CREATE_MAP("^enter create map menu$"),
     LOGOUT("^user logout$"),
+
+    //ShowMapMenu commands
+    SHOW_MAP("^show map -x (?<x>\\d+) -y (?<y>\\d+)"),
+    MOVE_MAP("^map(( up(?<up> \\d+)?)|( down(?<down> \\d+)?))?(( right(?<right> \\d+)?)|( left(?<left> \\d+)?))?$"),
+    SHOW_DETAILS("^show details -x (?<x>\\d+) -y (?<y>\\d+)$"),
+
 
     //CreateMapMenu commands
     CREATE_MAP("(?=.* -i (?<id>\\S+))(?=.* -s (?<size>\\w+))^create map( -[is] \\S+){2}$"),//ID and size

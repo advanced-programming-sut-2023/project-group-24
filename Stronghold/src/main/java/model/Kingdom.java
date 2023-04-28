@@ -6,6 +6,7 @@ import model.buildings.Building;
 import model.buildings.StorageBuilding;
 import model.enums.Item;
 import model.enums.KingdomColor;
+import model.enums.PopularityFactor;
 import utils.Pair;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class Kingdom {
     private ArrayList<Trade> trades;
     private ArrayList<People> population;//TODO
     private int popularity;
-    private HashMap<Factor, Integer> popularityFactors;
+    private HashMap<PopularityFactor, Integer> popularityFactors;
     private int gold;
 
     public Kingdom(KingdomColor color) {
@@ -36,10 +37,10 @@ public class Kingdom {
         armies = new ArrayList<>();
         popularityFactors = new HashMap<>();
         population = new ArrayList<>();
-        popularityFactors.put(Factor.FEAR, 0);
-        popularityFactors.put(Factor.FOOD, 0);
-        popularityFactors.put(Factor.RELIGION, 0);
-        popularityFactors.put(Factor.TAX, 0);
+        popularityFactors.put(PopularityFactor.FEAR, 0);
+        popularityFactors.put(PopularityFactor.FOOD, 0);
+        popularityFactors.put(PopularityFactor.RELIGION, 0);
+        popularityFactors.put(PopularityFactor.TAX, 0);
         setStorage();
     }
 
@@ -87,7 +88,7 @@ public class Kingdom {
         return gold;
     }
 
-    public HashMap<Factor, Integer> getPopularityFactors() {
+    public HashMap<PopularityFactor, Integer> getPopularityFactors() {
         return popularityFactors;
     }
 
@@ -141,10 +142,4 @@ public class Kingdom {
         buildings.add(building);
     }
 
-    private enum Factor {
-        FOOD,
-        FEAR,
-        RELIGION,
-        TAX
-    }
 }
