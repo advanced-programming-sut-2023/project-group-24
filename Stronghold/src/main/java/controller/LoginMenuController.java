@@ -5,10 +5,9 @@ import model.databases.Database;
 import utils.enums.MenusName;
 import view.enums.messages.LoginMenuMessages;
 import view.menus.CaptchaMenu;
-import view.menus.GetInputFromUser;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class LoginMenuController {
     private final Database database;
@@ -35,15 +34,25 @@ public class LoginMenuController {
     }
 
     public void makeDelayForIncorrectPassword() {
-        Timer timer = new Timer();
         int delayTime = (numberOfIncorrectPassword * 5) * 1000;
-        long start = System.currentTimeMillis();
-        long end = start + delayTime;
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
+        try {
+            Robot robot = new Robot();
+            changeConsole(robot);
+            robot.delay(delayTime);
+            changeConsole(robot);
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-            }
-        }, end);
+    private void changeConsole(Robot robot) {
+        robot.delay(300);
+        robot.mouseMove(1700, 950);
+        robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
+        robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
+        robot.mouseMove(1725, 975);
+        robot.delay(10);
+        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
     }
 }

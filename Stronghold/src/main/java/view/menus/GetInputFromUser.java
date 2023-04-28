@@ -10,8 +10,4 @@ public class GetInputFromUser {
         userInput = scanner.nextLine();
         return userInput;
     }
-
-    public static boolean closeScanner() {
-        return scanner.hasNextLine();
-    }
 }
