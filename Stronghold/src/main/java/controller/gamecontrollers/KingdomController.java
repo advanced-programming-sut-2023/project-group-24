@@ -2,6 +2,7 @@ package controller.gamecontrollers;
 
 import model.Kingdom;
 import model.databases.GameDatabase;
+import model.enums.Item;
 import model.enums.PopularityFactor;
 
 import java.util.HashMap;
@@ -14,41 +15,56 @@ public class KingdomController {
     }
 
     public String showPopularityFactors() {
-        HashMap<PopularityFactor, Integer> popularityFactors = gameDatabase.getCurrentKingdom().getPopularityFactors();
-        return "fear: " + popularityFactors.get(PopularityFactor.FEAR) + " food: " +
-                popularityFactors.get(PopularityFactor.FOOD) +" tax: " + popularityFactors.get(PopularityFactor.TAX) +
-                " religion: " + popularityFactors.get(PopularityFactor.RELIGION);
+        Kingdom kingdom = gameDatabase.getCurrentKingdom();
+        return "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) +
+                " food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) +
+                " tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) +
+                " religion: " + kingdom.getPopularityFactor(PopularityFactor.RELIGION);
     }
 
     public int showPopularity() {
         return gameDatabase.getCurrentKingdom().getPopularity();
     }
 
-    public void setFoodRate(int foodRate) {
-        //TODO
+    public String setFoodRate(int foodRate) {
+        if (foodRate < -2 || foodRate > 2)
+            return "Invalid foodRate!\n";
+        gameDatabase.getCurrentKingdom().setFoodRate(foodRate);
+        return "";
+    }
+
+    public String showFoodList() {
+        Kingdom kingdom = gameDatabase.getCurrentKingdom();
+        StringBuilder foodList= new StringBuilder();
+        for (Item item : Item.values()) {
+            if (item.getCategory().equals(Item.Category.FOOD))
+                if (kingdom.getStockedNumber(item) > 0)
+                    foodList.append(item.name()).append(kingdom.getStockedNumber(item)).append("\n");
+        }
+        return foodList.toString();
     }
 
     public int showFoodRate() {
-        return gameDatabase.getCurrentKingdom().getPopularityFactors().get(PopularityFactor.FOOD);
+        return gameDatabase.getCurrentKingdom().getFoodRate();
     }
 
-    public void setTaxRate(int taxRate) {
-        //TODO set that
+    public String setTaxRate(int taxRate) {
+        if (taxRate < -3 || taxRate > 8)
+            return "Invalid taxRate!\n";
+        gameDatabase.getCurrentKingdom().setTaxRate(taxRate);
+        return "";
     }
 
     public int showTaxRate() {
-        return gameDatabase.getCurrentKingdom().getPopularityFactors().get(PopularityFactor.TAX);
+        return gameDatabase.getCurrentKingdom().getTaxRate();
     }
 
-    public int showReligionRate() {
-        return gameDatabase.getCurrentKingdom().getPopularityFactors().get(PopularityFactor.RELIGION);
+    public void setReligionFactor() {
+        //TODO
     }
 
-    public void setFearRate(int fearRate) {
-        //TODO set that
+    public void setFearFactor() {
+        //TODO
     }
 
-    public int showFearRate() {
-        return gameDatabase.getCurrentKingdom().getPopularityFactors().get(PopularityFactor.FEAR);
-    }
 }

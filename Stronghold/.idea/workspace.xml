@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="showMapMenuController finish!">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/enums/PopularityFactor.java" afterDir="false" />
+    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="showMapMenu finish!&#10;Handle Lord.&#10;Start KingdomController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShowMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShowMapController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/enums/commands/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/enums/commands/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShowMapMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShowMapMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +84,7 @@
       <workItem from="1682448930810" duration="214000" />
       <workItem from="1682588914689" duration="9808000" />
       <workItem from="1682620875671" duration="860000" />
-      <workItem from="1682675394198" duration="9812000" />
+      <workItem from="1682675394198" duration="12200000" />
     </task>
     <task id="LOCAL-00001" summary="just add them in my branch">
       <created>1681491902726</created>
@@ -134,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682617244300</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="showMapMenu finish!&#10;Handle Lord.&#10;Start KingdomController">
+      <created>1682720713298</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682720713298</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +157,7 @@
     <MESSAGE value="first checkpoint" />
     <MESSAGE value="first checkpoint final version" />
     <MESSAGE value="showMapMenuController finish!" />
-    <option name="LAST_COMMIT_MESSAGE" value="showMapMenuController finish!" />
+    <MESSAGE value="showMapMenu finish!&#10;Handle Lord.&#10;Start KingdomController" />
+    <option name="LAST_COMMIT_MESSAGE" value="showMapMenu finish!&#10;Handle Lord.&#10;Start KingdomController" />
   </component>
 </project>

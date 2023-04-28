@@ -23,6 +23,8 @@ public class Kingdom {
     private int popularity;
     private HashMap<PopularityFactor, Integer> popularityFactors;
     private int gold;
+    private int foodRate;
+    private int taxRate;
 
     public Kingdom(KingdomColor color) {
         this.color = color;
@@ -32,6 +34,8 @@ public class Kingdom {
     private void setKingdomAttribute() {
         popularity = 75;
         gold = 1000;
+        foodRate = 0;
+        taxRate = 0;
         buildings = new ArrayList<>();
         trades = new ArrayList<>();
         armies = new ArrayList<>();
@@ -88,8 +92,12 @@ public class Kingdom {
         return gold;
     }
 
-    public HashMap<PopularityFactor, Integer> getPopularityFactors() {
-        return popularityFactors;
+    public int getPopularityFactor(PopularityFactor factor) {
+        return popularityFactors.get(factor);
+    }
+
+    public void  setPopularityFactor(PopularityFactor factor, int amount) {
+        popularityFactors.replace(factor, amount);
     }
 
     public void changeGold(int amount) {
@@ -142,4 +150,19 @@ public class Kingdom {
         buildings.add(building);
     }
 
+    public int getFoodRate() {
+        return foodRate;
+    }
+
+    public void setFoodRate(int foodRate) {
+        this.foodRate = foodRate;
+    }
+
+    public int getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(int taxRate) {
+        this.taxRate = taxRate;
+    }
 }
