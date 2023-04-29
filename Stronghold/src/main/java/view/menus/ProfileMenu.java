@@ -44,6 +44,8 @@ public class ProfileMenu {
                 showAllOfProfile();
             else if (Commands.getMatcher(command, Commands.EXIT) != null)
                 enterMainMenu();
+            else
+                System.out.println("Invalid command!");
         }
     }
 
