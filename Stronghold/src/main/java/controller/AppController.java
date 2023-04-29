@@ -44,6 +44,7 @@ public class AppController {
         gameDatabase = new GameDatabase(players, map);
     }
 
+
     public void run() {
         database.loadDataFromFile();
         checkLoggedInUSer();
