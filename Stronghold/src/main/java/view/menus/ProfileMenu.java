@@ -1,6 +1,5 @@
 package view.menus;
 
-import com.sun.tools.javac.Main;
 import controller.AppController;
 import controller.MainController;
 import controller.ProfileMenuController;
@@ -43,7 +42,14 @@ public class ProfileMenu {
                 showSlogan();
             else if (Commands.getMatcher(command, Commands.PROFILE_DISPLAY) != null)
                 showAllOfProfile();
+            else if (Commands.getMatcher(command, Commands.EXIT) != null)
+                enterMainMenu();
         }
+    }
+
+    private void enterMainMenu() {
+        AppController.setCurrentMenu(MenusName.MAIN_MENU);
+        System.out.println("You are in main menu now!");
     }
 
     private void changeUsername(Matcher matcher) {

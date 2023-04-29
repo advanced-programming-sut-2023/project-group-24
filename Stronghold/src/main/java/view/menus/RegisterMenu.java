@@ -24,8 +24,15 @@ public class RegisterMenu {
             command = GetInputFromUser.getUserInput();
             if ((matcher = Commands.getMatcher(command, Commands.CREATE_USER)) != null)
                 checkRegisterErrors(matcher);
+            else if (Commands.getMatcher(command, Commands.EXIT) != null)
+                enterLoginMenu();
             else System.out.println("Invalid command!");
         }
+    }
+
+    private void enterLoginMenu() {
+        AppController.setCurrentMenu(MenusName.LOGIN_MENU);
+        System.out.println("Your are in login menu now!");
     }
 
     private void checkRegisterErrors(Matcher matcher) {

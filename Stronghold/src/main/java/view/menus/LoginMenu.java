@@ -41,7 +41,7 @@ public class LoginMenu {
         LoginMenuMessages message = loginMenuController.loginUser(username, password, stayLoggedIn);
         switch (message) {
             case SUCCESS -> {
-                System.out.println("user logged in successfully!");
+                System.out.println("user logged in successfully!\nNow you're in main menu!");
                 enterMainMenu();
             }
             case USER_NOT_FOUND -> System.out.println("User not found!");
@@ -56,10 +56,12 @@ public class LoginMenu {
 
     private void enterResetPasswordMenu() {
         AppController.setCurrentMenu(MenusName.RESET_PASSWORD_MENU);
+        System.out.println("You are in reset password menu now!");
     }
 
     private void enterRegisterMenu() {
         AppController.setCurrentMenu(MenusName.REGISTER_MENU);
+        System.out.println("Now you can sign up!");
     }
 
     private void enterMainMenu() {
