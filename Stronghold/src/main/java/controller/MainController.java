@@ -55,4 +55,9 @@ public class MainController {
     public static String turnSpaceToUnderline(String string) {
         return string.replaceAll(" ", "_");
     }
+
+    public static String fixInputString(String string) {
+        if (string.startsWith("\"")) return string.substring(1, string.length() - 1);
+        return string;
+    }
 }

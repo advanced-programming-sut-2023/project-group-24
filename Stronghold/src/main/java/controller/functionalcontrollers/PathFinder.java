@@ -1,30 +1,36 @@
-package model.map;
+package controller.functionalcontrollers;
 
 import model.enums.Direction;
+import model.map.Cell;
+import model.map.Map;
 import utils.Pair;
 
 import java.util.*;
 
+/*
+* HOW TO USE THIS CLASS (for our project's future use):
+* STEP 1: use the constructor and create an object for the map and the starting point
+* STEP 2: use the search method so the object finds the best path from the starting point to the destination
+*       this method will return if there was an error or it was successful
+* STEP 3: use the findPath method to get the path as a meaningful ArrayList, rather than some random data in the object
+* */
+
 public class PathFinder {
-    private Map map;
+    private model.map.Map map;
     private PathFinderCellDetails[][] cellDetails;
     private Pair<Integer, Integer> dest;
     private Pair<Integer, Integer> src;
     private Stack<Pair<Integer, Integer>> path;
 
-    public PathFinder(Map map, Pair<Integer, Integer> startingPoint, Pair<Integer, Integer> destination) {
+    public PathFinder(Map map, Pair<Integer, Integer> startingPoint) {
         this.map = map;
         this.src = startingPoint;
-        this.dest = destination;
         this.cellDetails = new PathFinderCellDetails[map.getSize()][map.getSize()];
         setupCellDetails();
     }
 
-    public void setDestination(Pair<Integer, Integer> destination) {
+    public OutputState search(Pair<Integer, Integer> destination) {
         this.dest = destination;
-    }
-
-    public OutputState search() {
         if (checkForErrors() != OutputState.NO_ERRORS) return checkForErrors();
 
         boolean[][] closedList = new boolean[map.getSize()][map.getSize()];
@@ -69,10 +75,10 @@ public class PathFinder {
     }
 
 
-    public Vector<Cell> findPath() {
+    public ArrayList<Cell> findPath() {
         tracePath();
         if (path == null || path.size() == 0) return null;
-        Vector<Cell> output = new Vector<>();
+        ArrayList<Cell> output = new ArrayList<>();
         while (path.size() > 0) {
             Pair<Integer, Integer> cellCoordinates = path.pop();
             output.add(map.getMap()[cellCoordinates.getObject1()][cellCoordinates.getObject2()]);
