@@ -5,13 +5,10 @@ import java.util.regex.Pattern;
 
 public enum Commands {
     //Register menu
-    CREATE_USER_WITHOUT_SLOGAN("(?=.* -u (?<username>(\"[^\"]*\")|(\\S*)))(?=.* -e (?<email>(\"[^\"]*\")|(\\S*)))" +
-            "(?=.* -n (?<nickname>(\"[^\"]*\")|(\\S*)))(?=.* -p (?<password>(\"[^\"]*\")|(\\S*)))" +
-            "(?=.* -c (?<passwordConfirm>(\"[^\"]*\")|(\\S*)))?^user create( -[unpce] ((\"[^\"]*\")|(\\S*))){4,5}$"),
-    CREATE_USER_WITH_SLOGAN("(?=.* -u (?<username>(\"[^\"]*\")|(\\S*)))(?=.* -e (?<email>(\"[^\"]*\")|(\\S*)))" +
-            "(?=.* -n (?<nickname>(\"[^\"]*\")|(\\S*)))(?=.* -s (?<slogan>(\"[^\"]*\")|(\\S*)))" +
+    CREATE_USER("(?=.* -u (?<username>(\"[^\"]*\")|(\\S*)))(?=.* -e (?<email>(\"[^\"]*\")|(\\S*)))" +
+            "(?=.* -n (?<nickname>(\"[^\"]*\")|(\\S*)))(?=.* -s (?<slogan>(\"[^\"]*\")|(\\S*)))?" +
             "(?=.* -p (?<password>(\"[^\"]*\")|(\\S*)))(?=.* -c (?<passwordConfirm>(\"[^\"]*\")|(\\S*)))" +
-            "?^user create( -[unpces] ((\"[^\"]*\")|(\\S*))){5,6}$"),
+            "?^user create( -[unpces] ((\"[^\"]*\")|(\\S*))){4,6}$"),
     QUESTION_PICK("(?=.* -q (?<questionNumber>\\w+))(?=.* -a (?<answer>(\"[^\"]*\")|(\\S*)))" +
             "(?=.* -c (?<answerConfirm>((\"[^\"]*\")|(\\S*))))^question pick( -[qac] ((\"[^\"]*\")|(\\S*))){3}$"),
 

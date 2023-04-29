@@ -22,22 +22,19 @@ public class RegisterMenu {
         Matcher matcher;
         while (AppController.getCurrentMenu() == MenusName.REGISTER_MENU) {
             command = GetInputFromUser.getUserInput();
-            if ((matcher = Commands.getMatcher(command, Commands.CREATE_USER_WITH_SLOGAN)) != null)
-                checkRegisterErrors(matcher);
-            else if ((matcher = Commands.getMatcher(command, Commands.CREATE_USER_WITHOUT_SLOGAN)) != null)
+            if ((matcher = Commands.getMatcher(command, Commands.CREATE_USER)) != null)
                 checkRegisterErrors(matcher);
             else System.out.println("Invalid command!");
         }
     }
 
     private void checkRegisterErrors(Matcher matcher) {
-        String slogan = null;
         String username = MainController.removeDoubleQuotation(matcher.group("username"));
         String password = MainController.removeDoubleQuotation(matcher.group("password"));
         String passwordConfirm = MainController.removeDoubleQuotation(matcher.group("passwordConfirm"));
         String nickname = MainController.removeDoubleQuotation(matcher.group("nickname"));
         String email = MainController.removeDoubleQuotation(matcher.group("email"));
-        if (matcher.groupCount() == 22) slogan = MainController.removeDoubleQuotation(matcher.group("slogan"));
+        String slogan = MainController.removeDoubleQuotation(matcher.group("slogan"));
         int recoveryQuestion;
         String recoveryAnswer;
         RegisterMenuMessages message = registerMenuController.checkErrorsForRegister(
