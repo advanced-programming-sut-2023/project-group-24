@@ -2,12 +2,14 @@ package model.army;
 
 import model.Kingdom;
 import model.map.Cell;
+import utils.Pair;
 
 import java.util.ArrayList;
 
-public class Army {
+public abstract class Army {
     private final ArrayList<Cell> path;
-    //Todo patrol
+    private Pair<Cell, Cell> patrol;
+    private Army target;
     private final Kingdom owner;
     private final ArmyType armyType;
     private Cell location;
@@ -19,7 +21,9 @@ public class Army {
         this.location = location;
         this.hp = armyType.getMaxHp();
         path = new ArrayList<>();
+        patrol = null;
         this.owner = owner;
+        target = null;
         location.addArmy(this);
         owner.addArmy(this);
     }
@@ -69,5 +73,21 @@ public class Army {
 
     public ArmyType getArmyType() {
         return armyType;
+    }
+
+    public Army getTarget() {
+        return target;
+    }
+
+    public void setTarget(Army target) {
+        this.target = target;
+    }
+
+    public Pair<Cell, Cell> getPatrol() {
+        return patrol;
+    }
+
+    public void setPatrol(Pair<Cell, Cell> patrol) {
+        this.patrol = patrol;
     }
 }

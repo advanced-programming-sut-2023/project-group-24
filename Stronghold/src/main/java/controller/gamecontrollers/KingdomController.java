@@ -47,7 +47,6 @@ public class KingdomController {
                 if (0 == newPair.getObject2())
                     break;
             }
-        gameDatabase.getCurrentKingdom().changeStockNumber(new Pair<>(pair.getObject1(), -newPair.getObject2()));
     }
 
     private BuildingType getBuildingType(Item.Category category) {
