@@ -1,4 +1,4 @@
-package controller.functionalcontrollers;
+package model.map;
 
 class PathFinderCellDetails {
     static final int FLT_MAX = 100000000;

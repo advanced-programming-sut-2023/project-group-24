@@ -2,7 +2,6 @@ package controller.gamecontrollers;
 
 import model.databases.GameDatabase;
 import model.enums.Item;
-import view.enums.messages.ProfileMenuMessages;
 import view.enums.messages.TradeControllerMessages;
 
 public class TradeController {
@@ -12,7 +11,7 @@ public class TradeController {
         this.gameDatabase = gameDatabase;
     }
 
-    public TradeControllerMessages addTrade(String resourceType, int resourceAmount, int price, String message) {
+    public TradeControllerMessages addTrade(Item resourceType, int resourceAmount, int price, String message) {
         //TODO add trade to the game database
         return null;
     }
