@@ -45,7 +45,8 @@ public class UnitController {
         Cell startingCell = gameDatabase.getSelectedUnits().get(0).getLocation();
         Pair<Integer, Integer> startLocation = new Pair<>(startingCell.getX(), startingCell.getY());
         Pair<Integer, Integer> destination = new Pair<>(x, y);
-        PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), startLocation);
+        boolean isAssassin = isAssassin(selectedUnit);
+        PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), startLocation, isAssassin);
         PathFinder.OutputState outputState = pathFinder.search(destination);
         switch (outputState) {
             case BLOCKED:
@@ -57,6 +58,14 @@ public class UnitController {
         for (Army e : gameDatabase.getSelectedUnits())
             e.setPath(path);
         return UnitControllerMessages.SUCCESS;
+    }
+
+    private boolean isAssassin(ArrayList<Army> selectedUnit) {
+        for (Army e : selectedUnit) {
+            if(!e.getArmyType().equals(ArmyType.ASSASSIN))
+                return false;
+        }
+        return true;
     }
 
     public UnitControllerMessages patrolUnit(int x1, int y1, int x2, int y2) {
