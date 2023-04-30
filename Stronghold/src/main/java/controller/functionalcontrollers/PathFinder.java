@@ -5,27 +5,30 @@ import model.map.Cell;
 import model.map.Map;
 import utils.Pair;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Stack;
 
 /*
-* HOW TO USE THIS CLASS (for our project's future use):
-* STEP 1: use the constructor and create an object for the map and the starting point
-* STEP 2: use the search method so the object finds the best path from the starting point to the destination
-*       this method will return if there was an error or it was successful
-* STEP 3: use the findPath method to get the path as a meaningful ArrayList, rather than some random data in the object
-* */
+ * HOW TO USE THIS CLASS (for our project's future use):
+ * STEP 1: use the constructor and create an object for the map and the starting point
+ * STEP 2: use the search method so the object finds the best path from the starting point to the destination
+ *       this method will return if there was an error or it was successful
+ * STEP 3: use the findPath method to get the path as a meaningful ArrayList, rather than some random data in the object
+ * */
 
 public class PathFinder {
-    private model.map.Map map;
-    private PathFinderCellDetails[][] cellDetails;
+    private final Map map;
+    private final PathFinderCellDetails[][] cellDetails;
+    private final boolean isAssassin;
+    private final Pair<Integer, Integer> src;
     private Pair<Integer, Integer> dest;
-    private Pair<Integer, Integer> src;
     private Stack<Pair<Integer, Integer>> path;
 
-    public PathFinder(Map map, Pair<Integer, Integer> startingPoint) {
+    public PathFinder(Map map, Pair<Integer, Integer> startingPoint, boolean isAssassin) {
         this.map = map;
         this.src = startingPoint;
         this.cellDetails = new PathFinderCellDetails[map.getSize()][map.getSize()];
+        this.isAssassin = isAssassin;
         setupCellDetails();
     }
 
@@ -49,7 +52,7 @@ public class PathFinder {
                     || moveToDirection(closedList, openList, new Pair<>(pairX, pairY), new Pair<>(pairX, pairY + 1)))
                 return OutputState.NO_ERRORS;
         }
-        return OutputState.CANNOT_REACH_DESTINATION;
+        return OutputState.BLOCKED;
     }
 
     private boolean moveToDirection(boolean[][] closedList, ArrayList<Pair<Integer, Pair<Integer, Integer>>> openList,
@@ -60,8 +63,7 @@ public class PathFinder {
             if (isDestination(newI, newJ)) {
                 cellDetails[newI][newJ].setAll(i, j, 0, 0);
                 return true;
-            }
-            else if (!closedList[newI][newJ] && canMoveTo(i, j, newI, newJ)) {
+            } else if (!closedList[newI][newJ] && canMoveTo(i, j, newI, newJ)) {
                 int gNew = cellDetails[i][j].getG() + 1;
                 int fNew = gNew + calculateHValue(newI, newJ);
                 if (cellDetails[newI][newJ].getF() == PathFinderCellDetails.FLT_MAX
@@ -88,10 +90,6 @@ public class PathFinder {
     }
 
     private OutputState checkForErrors() {
-        if (!isValid(src.getObject1(), src.getObject2())) return OutputState.INVALID_STARTING_POINT;
-
-        if (!isValid(dest.getObject1(), dest.getObject2())) return OutputState.INVALID_DESTINATION;
-
         if (isBlocked(src.getObject1(), src.getObject2()) || isBlocked(dest.getObject1(), dest.getObject2()))
             return OutputState.BLOCKED;
 
@@ -120,13 +118,13 @@ public class PathFinder {
 
     private boolean canMoveTo(int x1, int y1, int x2, int y2) {
         if (x1 - 1 == x2 && y1 == y2)
-            return map.getMap()[x1][x2].canMove(Direction.UP);
+            return map.getMap()[x1][x2].canMove(Direction.UP, isAssassin);
         if (x1 + 1 == x2 && y1 == y2)
-            return map.getMap()[x1][x2].canMove(Direction.DOWN);
+            return map.getMap()[x1][x2].canMove(Direction.DOWN, isAssassin);
         if (x1 == x2 && y1 - 1 == y2)
-            return map.getMap()[x1][x2].canMove(Direction.LEFT);
+            return map.getMap()[x1][x2].canMove(Direction.LEFT, isAssassin);
         if (x1 == x2 && y1 + 1 == y2)
-            return map.getMap()[x1][x2].canMove(Direction.RIGHT);
+            return map.getMap()[x1][x2].canMove(Direction.RIGHT, isAssassin);
         return false;
     }
 
@@ -154,11 +152,8 @@ public class PathFinder {
     }
 
     public enum OutputState {
-        INVALID_STARTING_POINT,
-        INVALID_DESTINATION,
         ALREADY_AT_DESTINATION,
         BLOCKED,
-        CANNOT_REACH_DESTINATION,
         NO_ERRORS
     }
 }
