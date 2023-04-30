@@ -5,6 +5,5 @@ public enum CommonMessages {
     NON_NUMBER_PASSWORD,
     NON_CAPITAL_PASSWORD,
     NON_SMALL_PASSWORD,
-    NON_SPECIFIC_PASSWORD,
     OK
 }

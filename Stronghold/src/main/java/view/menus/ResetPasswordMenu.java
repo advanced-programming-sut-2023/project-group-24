@@ -1,7 +1,6 @@
 package view.menus;
 
 import controller.AppController;
-import controller.MainController;
 import controller.ResetPasswordMenuController;
 import utils.enums.MenusName;
 import view.enums.commands.Commands;
@@ -29,7 +28,7 @@ public class ResetPasswordMenu {
     }
 
     private void checkUserUsername(Matcher matcher) {
-        String username = MainController.removeDoubleQuotation(matcher.group("username"));
+        String username = matcher.group("username");
         ResetPasswordMessages message = resetPasswordMenuController.checkUserUsername(username);
         switch (message) {
             case USER_NOT_FOUND:

@@ -31,7 +31,7 @@ public class GameDatabase {
         return currentKingdom;
     }
 
-    public ArrayList<Army> getSelectedUnits() {
+    public ArrayList getSelectedUnits() {
         return selectedUnits;
     }
 

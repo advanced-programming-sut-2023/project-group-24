@@ -1,6 +1,12 @@
 package view.menus.gamemenus;
 
+import controller.AppController;
+import controller.MainController;
 import controller.gamecontrollers.TradeController;
+import utils.enums.MenusName;
+import view.enums.commands.Commands;
+import view.enums.messages.TradeControllerMessages;
+import view.menus.GetInputFromUser;
 
 import java.util.regex.Matcher;
 
@@ -12,11 +18,22 @@ public class TradeMenu {
     }
 
     public void run() {
-        //TODO get input from GetInputFromUser class and check command
+        String command;
+        Matcher matcher;
+        while (AppController.getCurrentMenu() == MenusName.TRADE_MENU) {
+            command = GetInputFromUser.getUserInput();
+            if ((matcher = Commands.getMatcher(command, Commands.TRADE_REQUEST)) != null)
+                requestTrade(matcher);
+        }
     }
 
     private void requestTrade(Matcher matcher) {
-        //TODO connect tradeController check errors and sout
+        String resourceType = MainController.fixInputString(matcher.group("resourceType"));
+        int resourceAmount = Integer.parseInt(MainController.fixInputString(matcher.group("resourceAmount")));
+        int price = Integer.parseInt(MainController.fixInputString(matcher.group("price")));
+        String message = MainController.fixInputString(matcher.group("message"));
+
+        TradeControllerMessages errorMessage = tradeController.addTrade(resourceType, resourceAmount, price, message);
     }
 
     private void tradeList() {
