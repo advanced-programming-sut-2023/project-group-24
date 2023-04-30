@@ -96,11 +96,7 @@ public class GameMenu {
         int y = Integer.parseInt(matcher.group("y"));
         UnitControllerMessages message = unitController.moveUnit(x, y);
         switch (message) {
-            case SUCCESS -> System.out.println("Your selected units are moving!");
-            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
-            case NULL_SELECTED_UNIT -> System.out.println("Please select the unit first!");
-            case BLOCK -> System.out.println("You can not move unit in that location!");
-            case ALREADY_IN_DESTINATION -> System.out.println("Your selected units are already in that location!");
+            case SUCCESS -> System.out.println("");
         }
     }
 

@@ -28,11 +28,10 @@ public class TradeMenu {
     }
 
     private void requestTrade(Matcher matcher) {
-        String resourceType = MainController.removeDoubleQuotation(matcher.group("resourceType"));
-        int resourceAmount = Integer.parseInt(MainController.removeDoubleQuotation(matcher.group(
-                "resourceAmount")));
-        int price = Integer.parseInt(MainController.removeDoubleQuotation(matcher.group("price")));
-        String message = MainController.removeDoubleQuotation(matcher.group("message"));
+        String resourceType = MainController.fixInputString(matcher.group("resourceType"));
+        int resourceAmount = Integer.parseInt(MainController.fixInputString(matcher.group("resourceAmount")));
+        int price = Integer.parseInt(MainController.fixInputString(matcher.group("price")));
+        String message = MainController.fixInputString(matcher.group("message"));
 
         TradeControllerMessages errorMessage = tradeController.addTrade(resourceType, resourceAmount, price, message);
     }

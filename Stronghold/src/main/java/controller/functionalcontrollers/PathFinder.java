@@ -19,10 +19,10 @@ import java.util.Stack;
 public class PathFinder {
     private final Map map;
     private final PathFinderCellDetails[][] cellDetails;
-    private final boolean isAssassin;
     private final Pair<Integer, Integer> src;
     private Pair<Integer, Integer> dest;
     private Stack<Pair<Integer, Integer>> path;
+    private final boolean isAssassin;
 
     public PathFinder(Map map, Pair<Integer, Integer> startingPoint, boolean isAssassin) {
         this.map = map;
