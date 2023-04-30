@@ -61,6 +61,13 @@ public enum Commands {
     NEW_KINGDOM("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -c (?<color>\\S+))^new kingdom( -[xyc] \\S+){3}$"),
     EXIT("^exit$"),
 
+    //Trade
+    OPEN_TRADE_MENU("^open trade menu$"),
+    TRADE_REQUEST("^(?=.* -t (?<resourceType>(\\\".*\\\")|(\\S+)))(?=.* -a (?<resourceAmount>(\\\".*\\\")|(\\S+)))(?=.* -p (?<price>(\\\".*\\\")|(\\S+)))(?=.* -m (?<message>(\\\".*\\\")|(\\S+)))trade( -[tapm] ((\\\".*\\\")|(\\S+))){4}$"),
+    TRADE_LIST("^trade list$"),
+    TRADE_ACCEPT("^(?=.* -i (?<id>(\\\".*\\\")|(\\S+)))(?=.* -m (?<message>(\\\".*\\\")|(\\S+)))trade accept( -[im] ((\\\".*\\\")|(\\S+))){2}$"),
+    TRADE_HISTORY("^trade history$"),
+
     //Valid formats
     VALID_USERNAME("^[\\w_]+$"),
     VALID_EMAIL("^[\\w_.]+\\@[\\w_.]+\\.[\\w_.]+$"),
