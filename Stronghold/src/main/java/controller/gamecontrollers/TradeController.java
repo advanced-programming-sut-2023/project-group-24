@@ -41,24 +41,33 @@ public class TradeController {
 
     public TradeControllerMessages tradeAccept(int id, String message, KingdomController kingdomController) {
         for (int i = 0; i < gameDatabase.getCurrentKingdom().getTrades().size(); i++) {
-            if (gameDatabase.getCurrentKingdom().getTrades().get(i).getAcceptingKingdom() == null)
+            Trade trade = gameDatabase.getCurrentKingdom().getTrades().get(i);
+            if (trade.getAcceptingKingdom() == null)
                 id--;
             if (id == 0) {
-                gameDatabase.getCurrentKingdom().getTrades().get(i).accept(gameDatabase.getCurrentKingdom(), message);
-                kingdomController.changeStockedNumber(new
-                        Pair<>(gameDatabase.getCurrentKingdom().getTrades().get(i).getResourceType(),
-                        gameDatabase.getCurrentKingdom().getTrades().get(i).getResourceAmount()));
-                gameDatabase.getCurrentKingdom().changeGold(
-                        gameDatabase.getCurrentKingdom().getTrades().get(i).getPrice());
+                trade.accept(gameDatabase.getCurrentKingdom(), message);
+                kingdomController.changeStockedNumber(new Pair<>(trade.getResourceType(), trade.getResourceAmount()));
+                gameDatabase.getCurrentKingdom().changeGold(trade.getPrice());
+                for (Kingdom kingdom : gameDatabase.getKingdoms()) {
+                    kingdom.getNotifications().remove(trade);
+                    if (kingdom != trade.getRequester() && kingdom != trade.getAcceptingKingdom())
+                        kingdom.getTrades().remove(trade);
+                }
+                trade.getRequester().getNotifications().add(trade);
                 return TradeControllerMessages.SUCCESS;
             }
         }
         return TradeControllerMessages.ID_OUT_OF_BOUNDS;
     }
 
-    public String tradeHistory() {
-        //TODO show all the accepted/declined trades
-        return null;
+    public ArrayList<String> tradeHistory() {
+        ArrayList<String> output = new ArrayList<>();
+        for (Trade trade : gameDatabase.getCurrentKingdom().getTrades()) {
+            if (trade.getRequester() == gameDatabase.getCurrentKingdom()
+                    || trade.getAcceptingKingdom() == gameDatabase.getCurrentKingdom())
+                output.add(trade.toString());
+        }
+        return output;
     }
 
     public String[] getNotifications() {

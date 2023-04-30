@@ -34,6 +34,8 @@ public class TradeMenu {
                 tradeList();
             else if ((matcher = Commands.getMatcher(command, Commands.TRADE_ACCEPT)) != null)
                 acceptTrade(matcher);
+            else if (Commands.getMatcher(command, Commands.TRADE_HISTORY) != null)
+                tradeHistory();
         }
     }
 
@@ -71,5 +73,20 @@ public class TradeMenu {
         int id = Integer.parseInt(matcher.group("id"));
         String acceptingMessage = MainController.removeDoubleQuotation(matcher.group("message"));
         TradeControllerMessages message = tradeController.tradeAccept(id, acceptingMessage, kingdomController);
+        switch (message) {
+            case ID_OUT_OF_BOUNDS:
+                System.out.println(Color.RED + "trade with this id doesn't exist" + Color.RESET);
+                break;
+            case SUCCESS:
+                System.out.println(Color.GREEN + "trade was done successfully" + Color.RESET);
+                break;
+        }
+    }
+
+    private void tradeHistory() {
+        ArrayList<String> trades = tradeController.tradeHistory();
+        for (String trade : trades) {
+            System.out.println(trade);
+        }
     }
 }
