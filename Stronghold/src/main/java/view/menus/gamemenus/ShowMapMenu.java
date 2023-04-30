@@ -23,6 +23,7 @@ public class ShowMapMenu {
             if ((matcher = Commands.getMatcher(input, Commands.SHOW_MAP)) != null) showMap(matcher);
             else if ((matcher = Commands.getMatcher(input, Commands.MOVE_MAP)) != null) moveMap(matcher);
             else if ((matcher = Commands.getMatcher(input, Commands.SHOW_DETAILS)) != null) showDetails(matcher);
+            else if ((matcher = Commands.getMatcher(input, Commands.EXIT)) != null) exitShowMapMenu();
             else System.out.println("\033[0;31mInvalid command!\033[0m");
         }
     }
@@ -37,19 +38,33 @@ public class ShowMapMenu {
     private void moveMap(Matcher matcher) {
         int changeY = 0;
         int changeX = 0;
-        if (matcher.group("up") != null)
-            changeY = Integer.parseInt(matcher.group("up"));
-        if (matcher.group("down") != null)
-            changeY = -Integer.parseInt(matcher.group("down"));
-        if (matcher.group("right") != null)
-            changeX = Integer.parseInt(matcher.group("right"));
-        if (matcher.group("left") != null)
-            changeX = Integer.parseInt(matcher.group("left"));
+        if (matcher.group("up") != null) {
+            changeY = 1;
+            if (matcher.group("upCount") != null)
+                changeY = Integer.parseInt(matcher.group("upCount"));
+        } else if (matcher.group("down") != null) {
+            changeY = -1;
+            if (matcher.group("downCount") != null)
+                changeY = -Integer.parseInt(matcher.group("downCount"));
+        }
+        if (matcher.group("right") != null) {
+            changeX = 1;
+            if (matcher.group("rightCount") != null)
+                changeX = Integer.parseInt(matcher.group("rightCount"));
+        } else if (matcher.group("left") != null) {
+            changeX = -1;
+            if (matcher.group("leftCount") != null)
+                changeX = Integer.parseInt(matcher.group("leftCount"));
+        }
         System.out.println(showMapController.moveMap(changeY, changeX));
     }
 
     private void showDetails(Matcher matcher) {
         System.out.println(showMapController.showDetails
                 (Integer.parseInt(matcher.group("x")), Integer.parseInt(matcher.group("y"))));
+    }
+
+    private void exitShowMapMenu() {
+        showMapController.exit();
     }
 }

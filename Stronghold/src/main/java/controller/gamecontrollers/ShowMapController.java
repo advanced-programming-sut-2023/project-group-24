@@ -123,6 +123,6 @@ public class ShowMapController {
     }
 
     public void exit() {
-        AppController.setCurrentMenu(MenusName.GAME_MENU);//TODO Ask...
+        AppController.setCurrentMenu(MenusName.GAME_MENU);
     }
 }
