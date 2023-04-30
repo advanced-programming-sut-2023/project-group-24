@@ -58,13 +58,36 @@ public enum Commands {
     DROP_UNIT("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -t (?<type>(\".*\")|(\\S+)))(?=.* -c (?<count>\\w+))^dropunit( -[xytc] (\".*\")|(\\S+)){4}$"),
     CHANGE_KINGDOM("^change kingdom -c (?<color>\\S+)$"),
     NEW_KINGDOM("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -c (?<color>\\S+))^new kingdom( -[xyc] \\S+){3}$"),
+
+    //Shop menu commands
+    SHOW_PRICE_LIST("^show price list$"),
+    BUY_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S+))(?=.* -a (?<itemAmount>\\w+))^buy( -[ia] ((\"[^\"]*\")|(\\S+))){2}$"),
+    SELL_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S+))(?=.* -a (?<itemAmount>\\w+))^sell( -[ia] ((\"[^\"]*\")|(\\S+))){2}$"),
+
+    //Game menu commands
+    SELECT_UNIT("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -t (?<type>(\"[^\"]*\")|(\\S+)))" +
+            "^select unit( -[xyt] ((\"[^\"]*\")|(\\S+))){2,2}$"),
+    MOVE_UNIT("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))^move unit to( -[xy] \\w+){2}$"),
+    PATROL_UNIT("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))" +
+            "^patrol unit( -[xy] \\w+){2}$"),
+    SET_STATE("^set (?<state>\\S+)$"),
+    ATTACK("^attack -e (?<enemyX>\\w+) (?<enemyY>\\w+)$"),
+    ATTACK_ARCHER("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))^attack( -[xy] \\w+){2}$"),
+    POUR_OIL("^pour oil -d (?<direction>\\S+)$"),
+    DIG_TUNNEL("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))^dig tunnel( -[xy] \\w+){2}$"),
+    BUILD("^build -q (?<equipmentType>(\"[^\"]*\")|(\\S+))$"),
+    DISBAND("^disband unit$"),
+
+
+    //Common commands
     EXIT("^exit$"),
 
     //Trade
     OPEN_TRADE_MENU("^open trade menu$"),
-    TRADE_REQUEST("^(?=.* -t (?<resourceType>(\\\".*\\\")|(\\S+)))(?=.* -a (?<resourceAmount>(\\\".*\\\")|(\\S+)))(?=.* -p (?<price>(\\\".*\\\")|(\\S+)))(?=.* -m (?<message>(\\\".*\\\")|(\\S+)))trade( -[tapm] ((\\\".*\\\")|(\\S+))){4}$"),
+    TRADE_REQUEST("(?=.* -t (?<resourceType>(\".*\")|(\\S+)))(?=.* -a (?<resourceAmount>(\".*\")|(\\S+)))" +
+            "(?=.* -p (?<price>(\".*\")|(\\S+)))(?=.* -m (?<message>(\".*\")|(\\S+)))^trade( -[tapm] ((\".*\")|(\\S*))){4}$"),
     TRADE_LIST("^trade list$"),
-    TRADE_ACCEPT("^(?=.* -i (?<id>(\\\".*\\\")|(\\S+)))(?=.* -m (?<message>(\\\".*\\\")|(\\S+)))trade accept( -[im] ((\\\".*\\\")|(\\S+))){2}$"),
+    TRADE_ACCEPT("(?=.* -i (?<id>(\".*\")|(\\S+)))(?=.* -m (?<message>(\".*\")|(\\S+)))^trade accept( -[im] ((\".*\")|(\\S+))){2}$"),
     TRADE_HISTORY("^trade history$"),
 
     //Valid formats
