@@ -1,8 +1,10 @@
 package view.menus.gamemenus;
 
+import controller.MainController;
 import controller.gamecontrollers.BuildingController;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.UnitController;
+import view.enums.messages.UnitControllerMessages;
 
 import java.util.regex.Matcher;
 
@@ -78,11 +80,24 @@ public class GameMenu {
     }
 
     private void selectUnit(Matcher matcher) {
-        //TODO connect UnitController and sout result
+        int x = Integer.parseInt(matcher.group("x"));
+        int y = Integer.parseInt(matcher.group("y"));
+        String type = MainController.removeDoubleQuotation(matcher.group("type"));
+        UnitControllerMessages message = unitController.selectUnit(x, y, type);
+        switch (message) {
+            case SUCCESS -> System.out.println("You successfully select units!");
+            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
+            case INVALID_TYPE -> System.out.println("You entered invalid type of soldier!");
+        }
     }
 
     private void moveUnit(Matcher matcher) {
-        //TODO connect UnitController and sout result
+        int x = Integer.parseInt(matcher.group("x"));
+        int y = Integer.parseInt(matcher.group("y"));
+        UnitControllerMessages message = unitController.moveUnit(x, y);
+        switch (message) {
+            case SUCCESS -> System.out.println("");
+        }
     }
 
     private void patrolUnit(Matcher matcher) {
