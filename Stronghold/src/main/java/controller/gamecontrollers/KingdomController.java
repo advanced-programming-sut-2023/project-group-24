@@ -1,10 +1,15 @@
 package controller.gamecontrollers;
 
 import model.Kingdom;
+import model.buildings.Building;
+import model.buildings.BuildingType;
+import model.buildings.StorageBuilding;
 import model.databases.GameDatabase;
 import model.enums.Item;
 import model.enums.PopularityFactor;
 import utils.Pair;
+
+import java.util.ArrayList;
 
 public class KingdomController {
     private final GameDatabase gameDatabase;
@@ -22,8 +27,32 @@ public class KingdomController {
 
     }
 
-    public void changeStockedNumber(Pair<Item, Integer> pair) {
+    public void ChangeStockedNumber(Pair<Item, Integer> pair) {
+        gameDatabase.getCurrentKingdom().changeStockNumber(pair);
+        ArrayList<Building> buildings = gameDatabase.getCurrentKingdom().getBuildings();
+        BuildingType type = getBuildingType(pair.getObject1().getCategory());
+        Pair<Item, Integer> newPair = null;
+        for (Building building : buildings)
+            if (building.getBuildingType().equals(type)) {
+                newPair = ((StorageBuilding) building).changeItemCount(pair);
+                if (0 == newPair.getObject2())
+                    break;
+            }
+        gameDatabase.getCurrentKingdom().changeStockNumber(new Pair<>(pair.getObject1(), -newPair.getObject2()));
+    }
 
+    private BuildingType getBuildingType(Item.Category category) {
+        switch (category) {
+            case FOOD -> {
+                return BuildingType.GRANARY;
+            }
+            case MATERIAL -> {
+                return BuildingType.STOCKPILE;
+            }
+            default -> {
+                return BuildingType.ARMOURY;
+            }
+        }
     }
 
     public String showPopularityFactors() {
@@ -81,6 +110,10 @@ public class KingdomController {
     }
 
     public void setFearFactor() {
+        //TODO
+    }
+
+    public void setInnFactor() {
         //TODO
     }
 

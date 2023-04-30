@@ -58,7 +58,6 @@ public enum Commands {
     DROP_UNIT("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -t (?<type>(\".*\")|(\\S+)))(?=.* -c (?<count>\\w+))^dropunit( -[xytc] (\".*\")|(\\S+)){4}$"),
     CHANGE_KINGDOM("^change kingdom -c (?<color>\\S+)$"),
     NEW_KINGDOM("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -c (?<color>\\S+))^new kingdom( -[xyc] \\S+){3}$"),
-    EXIT("^exit$"),
 
     //Valid formats
     VALID_USERNAME("^[\\w_]+$"),

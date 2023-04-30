@@ -125,7 +125,10 @@ public class Cell {
     }
 
     public boolean canMove(Direction direction) {
-        //TODO ...
+        if (!(tree == null && !isRock && texture.isCanPass()))
+            return false;
+
+
         return true;
     }
 }

@@ -23,7 +23,7 @@ public class ShowMapMenu {
             if ((matcher = Commands.getMatcher(input, Commands.SHOW_MAP)) != null) showMap(matcher);
             else if ((matcher = Commands.getMatcher(input, Commands.MOVE_MAP)) != null) moveMap(matcher);
             else if ((matcher = Commands.getMatcher(input, Commands.SHOW_DETAILS)) != null) showDetails(matcher);
-            else if ((matcher = Commands.getMatcher(input, Commands.EXIT)) != null) showDetails(matcher);
+            else if ((matcher = Commands.getMatcher(input, Commands.EXIT)) != null) exitShowMapMenu();
             else System.out.println("\033[0;31mInvalid command!\033[0m");
         }
     }
@@ -62,5 +62,9 @@ public class ShowMapMenu {
     private void showDetails(Matcher matcher) {
         System.out.println(showMapController.showDetails
                 (Integer.parseInt(matcher.group("x")), Integer.parseInt(matcher.group("y"))));
+    }
+
+    private void exitShowMapMenu() {
+        showMapController.exit();
     }
 }
