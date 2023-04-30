@@ -8,9 +8,15 @@ public class Trade {
     private int price;
     private String requesterMessage;
     private String acceptingMessage;
+    private Kingdom requester;
+    private Kingdom acceptingKingdom;
 
     public Trade(Kingdom requester, Item resourceType, int resourceAmount, int price, String message) {
-        //TODO
+        this.requester = requester;
+        this.resourceType = resourceType;
+        this.resourceAmount = resourceAmount;
+        this.price = price;
+        this.requesterMessage = message;
     }
 
     public Item getResourceType() {
@@ -29,11 +35,20 @@ public class Trade {
         return price;
     }
 
+    public Kingdom getRequester() {
+        return requester;
+    }
+
     public String getAcceptingMessage() {
         return acceptingMessage;
     }
 
-    public void setAcceptingMessage(String acceptingMessage) {
+    public Kingdom getAcceptingKingdom() {
+        return acceptingKingdom;
+    }
+
+    public void accept(Kingdom acceptingKingdom, String acceptingMessage) {
         this.acceptingMessage = acceptingMessage;
+        this.acceptingKingdom = acceptingKingdom;
     }
 }
