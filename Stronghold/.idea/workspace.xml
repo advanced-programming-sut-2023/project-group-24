@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="fix some problem in KingdomController">
+    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="patrol and target">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/Army.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/Army.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/UnitState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/UnitState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +87,7 @@
       <workItem from="1682620875671" duration="860000" />
       <workItem from="1682675394198" duration="12309000" />
       <workItem from="1682764134418" duration="4181000" />
-      <workItem from="1682870681196" duration="15378000" />
+      <workItem from="1682870681196" duration="18104000" />
     </task>
     <task id="LOCAL-00001" summary="just add them in my branch">
       <created>1681491902726</created>
@@ -160,7 +159,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682887699000</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="free space!">
+      <created>1682889127270</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682889127270</updated>
+    </task>
+    <task id="LOCAL-00012" summary="patrol and target">
+      <created>1682890096799</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682890096799</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +199,8 @@
     <MESSAGE value="continue" />
     <MESSAGE value="start handling nextTurn" />
     <MESSAGE value="fix some problem in KingdomController" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix some problem in KingdomController" />
+    <MESSAGE value="free space!" />
+    <MESSAGE value="patrol and target" />
+    <option name="LAST_COMMIT_MESSAGE" value="patrol and target" />
   </component>
 </project>

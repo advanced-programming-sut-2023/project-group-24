@@ -127,7 +127,11 @@ public class Cell {
     public boolean canMove(Direction direction, Cell cell) {
         if (!(tree == null && !isRock && texture.isCanPass()))
             return false;
-
+        if (wallHandle())
+            return false;
         return true;
+    }
+
+    private boolean wallHandle() {
     }
 }
