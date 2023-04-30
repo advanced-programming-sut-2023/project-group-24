@@ -15,7 +15,6 @@ public class GameDatabase {
     private Kingdom currentKingdom;
     private ArrayList<Kingdom> kingdoms;
     private Building currentBuilding;
-    private ArrayList<Trade> trades; //todo
 
     public GameDatabase(ArrayList<User> players, Map map) {
         selectedUnits = new ArrayList<>();
@@ -52,15 +51,7 @@ public class GameDatabase {
         this.currentBuilding = currentBuilding;
     }
 
-    public void addTrade(Trade trade) {
-        this.trades.add(trade);
-    }
-
-    public void removeTrade(Trade trade) {
-        this.trades.remove(trade);
-    }
-
-    public void removeTrade(int index) {
-        this.trades.remove(index); 
+    public ArrayList<Kingdom> getKingdoms() {
+        return kingdoms;
     }
 }

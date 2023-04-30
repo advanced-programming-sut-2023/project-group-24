@@ -52,9 +52,9 @@ public enum Commands {
 
     //Trade
     OPEN_TRADE_MENU("^open trade menu$"),
-    TRADE_REQUEST("^(?=.* -t (?<resourceType>(\\\".*\\\")|(\\S+)))(?=.* -a (?<resourceAmount>(\\\".*\\\")|(\\S+)))(?=.* -p (?<price>(\\\".*\\\")|(\\S+)))(?=.* -m (?<message>(\\\".*\\\")|(\\S+)))trade( -[tapm] ((\\\".*\\\")|(\\S+))){4}$"),
+    TRADE_REQUEST("^(?=.* -t (?<resourceType>(\\\".*\\\")|(\\S+)))(?=.* -a (?<resourceAmount>(\\d+)))(?=.* -p (?<price>(\\d+)))(?=.* -m (?<message>(\\\".*\\\")|(\\S+)))trade( -[tapm] ((\\\".*\\\")|(\\S+))){4}$"),
     TRADE_LIST("^trade list$"),
-    TRADE_ACCEPT("^(?=.* -i (?<id>(\\\".*\\\")|(\\S+)))(?=.* -m (?<message>(\\\".*\\\")|(\\S+)))trade accept( -[im] ((\\\".*\\\")|(\\S+))){2}$"),
+    TRADE_ACCEPT("^(?=.* -i (?<id>(\\d+)))(?=.* -m (?<message>(\\\".*\\\")|(\\S+)))trade accept( -[im] ((\\\".*\\\")|(\\S+))){2}$"),
     TRADE_HISTORY("^trade history$"),
 
     //Valid formats

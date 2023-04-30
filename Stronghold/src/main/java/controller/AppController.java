@@ -73,13 +73,14 @@ public class AppController {
                     MainMenu mainMenu = new MainMenu(mainMenuController);
                     mainMenu.run();
                     break;
-                case GAME_MENU:
+                case GAME_MENU: {
                     KingdomController kingdomController = new KingdomController(gameDatabase);
                     UnitController unitController = new UnitController(gameDatabase);
                     BuildingController buildingController = new BuildingController(gameDatabase);
                     GameMenu gameMenu = new GameMenu(kingdomController, unitController, buildingController);
                     gameMenu.run();
                     break;
+                }
                 case SHOW_MAP_MENU:
                     ShowMapController showMapController = new ShowMapController(gameDatabase);
                     ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
@@ -87,7 +88,8 @@ public class AppController {
                     break;
                 case TRADE_MENU:
                     TradeController tradeController = new TradeController(gameDatabase);
-                    TradeMenu tradeMenu = new TradeMenu(tradeController);
+                    KingdomController kingdomController = new KingdomController(gameDatabase);
+                    TradeMenu tradeMenu = new TradeMenu(tradeController, kingdomController);
                     tradeMenu.run();
                     break;
                 case SHOP_MENU:

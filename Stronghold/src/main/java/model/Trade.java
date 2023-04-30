@@ -10,6 +10,7 @@ public class Trade {
     private String acceptingMessage;
     private Kingdom requester;
     private Kingdom acceptingKingdom;
+    private boolean canBeGotten;
 
     public Trade(Kingdom requester, Item resourceType, int resourceAmount, int price, String message) {
         this.requester = requester;
@@ -19,6 +20,7 @@ public class Trade {
         this.requesterMessage = message;
         this.acceptingKingdom = null;
         this.acceptingMessage = null;
+        canBeGotten = false;
     }
 
     public Item getResourceType() {
@@ -52,10 +54,23 @@ public class Trade {
     public void accept(Kingdom acceptingKingdom, String acceptingMessage) {
         this.acceptingMessage = acceptingMessage;
         this.acceptingKingdom = acceptingKingdom;
+        this.canBeGotten = true;
+    }
+
+    public void acquireItems() {
+        this.canBeGotten = false;
     }
 
     @Override
     public String toString() {
-        if (acceptingKingdom == null) return String.format("O %20s - %15s - ")
+        if (acceptingKingdom == null) return String.format("O %6s - %15s - %3d - \"%s\"",
+                getRequester().getColor().toString().toLowerCase(),
+                resourceType.toString().replaceAll("_", " ").toLowerCase(),
+                resourceAmount, requesterMessage);
+        return String.format("X %6s - %15s - %3d - \"%s\" - accepted by %6s: \"%s\"",
+                requester.getColor().toString().toLowerCase(),
+                resourceType.toString().replaceAll("_", " ").toLowerCase(),
+                resourceAmount, requesterMessage,
+                acceptingKingdom.getColor().toString().toLowerCase(), acceptingMessage);
     }
 }

@@ -1,6 +1,8 @@
 package controller.gamecontrollers;
 
 import model.databases.GameDatabase;
+import model.enums.Item;
+import utils.Pair;
 
 public class KingdomController {
     private final GameDatabase gameDatabase;
@@ -37,5 +39,8 @@ public class KingdomController {
 
     public void setFearRate(int fearRate) {
         //TODO set that
+    }
+
+    public void changeStockedNumber(Pair<Item, Integer> itemIntegerPair) {
     }
 }
