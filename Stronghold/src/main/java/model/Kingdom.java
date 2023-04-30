@@ -17,6 +17,7 @@ public class Kingdom {
     private ArrayList<Army> armies;
     private HashMap<Item, Integer> storage;
     private ArrayList<Trade> trades;
+    private ArrayList<Trade> notifications;
     private ArrayList<People> population;//TODO
     private int popularity;
     private HashMap<Factor, Integer> popularityFactors;
@@ -116,6 +117,10 @@ public class Kingdom {
 
     public int getStockedNumber(Item item) {
         return storage.get(item);
+    }
+
+    public ArrayList<Trade> getNotifications() {
+        return notifications;
     }
 
     public void changeStockNumber(Pair<Item, Integer> item) {

@@ -20,6 +20,7 @@ public class TradeMenu {
     public void run() {
         String command;
         Matcher matcher;
+//        printNotifications(tradeController.getNotifications());
         while (AppController.getCurrentMenu() == MenusName.TRADE_MENU) {
             command = GetInputFromUser.getUserInput();
             if ((matcher = Commands.getMatcher(command, Commands.TRADE_REQUEST)) != null)
