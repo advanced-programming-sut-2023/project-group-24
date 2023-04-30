@@ -216,7 +216,4 @@ public class Kingdom {
         return churchAmount;
     }
 
-
-
-
 }
