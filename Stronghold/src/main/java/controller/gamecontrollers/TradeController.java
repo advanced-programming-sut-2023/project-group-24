@@ -31,4 +31,10 @@ public class TradeController {
         //TODO show all the accepted/declined trades
         return null;
     }
+
+    public String[] getNotifications() {
+        //TODO get notifs
+        gameDatabase.getCurrentKingdom().getNotifications()
+        return null;
+    }
 }

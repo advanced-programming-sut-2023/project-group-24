@@ -17,6 +17,8 @@ public class Trade {
         this.resourceAmount = resourceAmount;
         this.price = price;
         this.requesterMessage = message;
+        this.acceptingKingdom = null;
+        this.acceptingMessage = null;
     }
 
     public Item getResourceType() {
@@ -50,5 +52,10 @@ public class Trade {
     public void accept(Kingdom acceptingKingdom, String acceptingMessage) {
         this.acceptingMessage = acceptingMessage;
         this.acceptingKingdom = acceptingKingdom;
+    }
+
+    @Override
+    public String toString() {
+        if (acceptingKingdom == null) return String.format("O %20s - %15s - ")
     }
 }
