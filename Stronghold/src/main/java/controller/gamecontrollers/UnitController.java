@@ -3,6 +3,7 @@ package controller.gamecontrollers;
 import controller.functionalcontrollers.PathFinder;
 import model.army.Army;
 import model.army.ArmyType;
+import model.army.UnitState;
 import model.databases.GameDatabase;
 import model.map.Cell;
 import utils.Pair;
@@ -62,13 +63,13 @@ public class UnitController {
 
     private boolean isAssassin(ArrayList<Army> selectedUnit) {
         for (Army e : selectedUnit) {
-            if(!e.getArmyType().equals(ArmyType.ASSASSIN))
+            if (!e.getArmyType().equals(ArmyType.ASSASSIN))
                 return false;
         }
         return true;
     }
 
-    public UnitControllerMessages patrolUnit(int x1, int y1, int x2, int y2) {
+    public UnitControllerMessages patrolUnit(int x, int y) {
         //TODO move unit between these two location
         return null;
     }
@@ -78,19 +79,59 @@ public class UnitController {
         return null;
     }
 
-    public UnitControllerMessages setModeForUnits(int x, int y, String unitState) {
-        //TODO set mode for units
-        return null;
+    public UnitControllerMessages setStateForUnits(String unitState) {
+        if (gameDatabase.getSelectedUnits() == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        UnitState state = UnitState.stringToEnum(unitState);
+        if (state == null) return UnitControllerMessages.INVALID_STATE;
+        for (Army e : gameDatabase.getSelectedUnits()) {
+            e.changeState(state);
+        }
+        return UnitControllerMessages.SUCCESS;
     }
 
     public UnitControllerMessages attackEnemy(int enemyX, int enemyY) {
-        //TODO selected unit attack enemy
-        return null;
+        if (enemyX < 0 || enemyX >= gameDatabase.getMap().getSize() ||
+                enemyY < 0 || enemyY >= gameDatabase.getMap().getSize())
+            return UnitControllerMessages.INVALID_LOCATION;
+        ArrayList<Army> armies = gameDatabase.getMap().getMap()[enemyX][enemyY].getArmies();
+        ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
+        if (armies == null) return UnitControllerMessages.NOT_ENEMY;
+        boolean isEnemyExist = false;
+        for (Army e : armies) {
+            if (!e.getOwner().equals(gameDatabase.getCurrentKingdom())) {
+                isEnemyExist = true;
+                UnitControllerMessages moveMessage = moveUnit(enemyX, enemyY);
+                if (!moveMessage.equals(UnitControllerMessages.SUCCESS)) return moveMessage;
+                for (Army f : selectedUnits)
+                    f.setTarget(e);
+                break;
+            }
+        }
+        if (!isEnemyExist) return UnitControllerMessages.NOT_ENEMY;
+        return UnitControllerMessages.SUCCESS;
     }
 
     public UnitControllerMessages archerAttack(int x, int y) {
-        //TODO archers attack that location
-        return null;
+        if (x < 0 || x >= gameDatabase.getMap().getSize() ||
+                y < 0 || y >= gameDatabase.getMap().getSize())
+            return UnitControllerMessages.INVALID_LOCATION;
+        boolean isArcherExist = false;
+        Cell targetCell = gameDatabase.getMap().getMap()[x][y];
+        int distance = getDistance(x, y);
+        for (Army e : gameDatabase.getSelectedUnits()) {
+            if (e.getArmyType().getRange() >= distance) {
+                isArcherExist = true;
+                e.setTargetCell(targetCell);
+            }
+        }
+        if (!isArcherExist) return UnitControllerMessages.NOT_ARCHER;
+        return UnitControllerMessages.SUCCESS;
+    }
+
+    private int getDistance(int x2, int y2) {
+        int x1 = gameDatabase.getSelectedUnits().get(0).getLocation().getX();
+        int y1 = gameDatabase.getSelectedUnits().get(0).getLocation().getY();
+        return (int) (Math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2));
     }
 
     public UnitControllerMessages pourOil(String direction) {

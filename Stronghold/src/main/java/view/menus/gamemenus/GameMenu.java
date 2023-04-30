@@ -96,7 +96,11 @@ public class GameMenu {
         int y = Integer.parseInt(matcher.group("y"));
         UnitControllerMessages message = unitController.moveUnit(x, y);
         switch (message) {
-            case SUCCESS -> System.out.println("");
+            case SUCCESS -> System.out.println("Your units will move in this location!");
+            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
+            case BLOCK -> System.out.println("You can not move to that cell!");
+            case ALREADY_IN_DESTINATION -> System.out.println("Your armies already is in this location!");
         }
     }
 
@@ -108,16 +112,39 @@ public class GameMenu {
         //TODO connect UnitController and sout result
     }
 
-    private void setModeForUnits(Matcher matcher) {
-        //TODO connect UnitController and sout result
+    private void setStateForUnits(Matcher matcher) {
+        String state = matcher.group("state");
+        UnitControllerMessages message = unitController.setStateForUnits(state);
+        switch (message) {
+            case SUCCESS -> System.out.println("Successfully set!");
+            case INVALID_STATE -> System.out.println("Invalid state!");
+            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+        }
     }
 
     private void attackEnemy(Matcher matcher) {
-        //TODO connect UnitController and sout result
+        int enemyX = Integer.parseInt(matcher.group("enemyX"));
+        int enemyY = Integer.parseInt(matcher.group("enemyY"));
+        UnitControllerMessages message = unitController.attackEnemy(enemyX, enemyY);
+        switch (message) {
+            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
+            case NOT_ENEMY -> System.out.println("There aren't any enemy in that cell!");
+            case SUCCESS -> System.out.println("Your armies will attack that enemies!");
+            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+            case BLOCK -> System.out.println("You can not move to that cell!");
+            case ALREADY_IN_DESTINATION -> System.out.println("Your armies already is in this location!");
+        }
     }
 
     private void archerAttack(Matcher matcher) {
-        //TODO connect UnitController and sout result
+        int x = Integer.parseInt(matcher.group("x"));
+        int y = Integer.parseInt(matcher.group("y"));
+        UnitControllerMessages message = unitController.archerAttack(x, y);
+        switch (message) {
+            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
+            case SUCCESS -> System.out.println("Your archers will attack that enemies!");
+            case NOT_ARCHER -> System.out.println("You can not attack this cell with this units!");
+        }
     }
 
     private void pourOil(Matcher matcher) {
