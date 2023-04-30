@@ -10,6 +10,7 @@ public abstract class Army {
     private final ArrayList<Cell> path;
     private Pair<Cell, Cell> patrol;
     private Army target;
+    private Cell targetCell;
     private final Kingdom owner;
     private final ArmyType armyType;
     private Cell location;
@@ -22,6 +23,7 @@ public abstract class Army {
         this.hp = armyType.getMaxHp();
         path = new ArrayList<>();
         patrol = null;
+        targetCell = null;
         this.owner = owner;
         target = null;
         location.addArmy(this);
@@ -89,5 +91,13 @@ public abstract class Army {
 
     public void setPatrol(Pair<Cell, Cell> patrol) {
         this.patrol = patrol;
+    }
+
+    public Cell getTargetCell() {
+        return targetCell;
+    }
+
+    public void setTargetCell(Cell targetCell) {
+        this.targetCell = targetCell;
     }
 }
