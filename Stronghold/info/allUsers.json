@@ -5,7 +5,9 @@
     "nickname": "nickname1",
     "slogan": "slogan1",
     "email": "email1",
-    "highScore": 0
+    "highScore": 0,
+    "recoveryQuestionNumber": 1,
+    "recoveryAnswer": "recoveryAnswer1"
   },
   {
     "username": "username2",
@@ -13,28 +15,8 @@
     "nickname": "nickname2",
     "slogan": "slogan2",
     "email": "email2",
-    "highScore": 0
-  },
-  {
-    "recovery": {
-      "object1": 1,
-      "object2": "aa5e28e95f100388a3c453c4f719df1f45bf694f6559bc449ef106bbc9ca7d4b"
-    },
-    "username": "pouria_1",
-    "password": "bf181637541aec689a4b3c15255cb1a698b30a22d35f81dde0967cc0fa2145be",
-    "nickname": "Pouria",
-    "email": "pouria@gmail.com",
-    "highScore": 0
-  },
-  {
-    "recovery": {
-      "object1": 1,
-      "object2": "0582bd2c13fff71d7f40ef5586e3f4da05a3a61fe5ba9f0b4d06e99905ab83ea"
-    },
-    "username": "pouria_",
-    "password": "11aff81255b692412bd22f658f660b40088b2f255dc6792b6347fc51799bd6c6",
-    "nickname": "Pouria",
-    "email": "pourias@gmail.com",
-    "highScore": 0
+    "highScore": 0,
+    "recoveryQuestionNumber": 2,
+    "recoveryAnswer": "recoveryAnswer2"
   }
 ]

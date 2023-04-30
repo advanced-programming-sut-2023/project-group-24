@@ -1,7 +1,7 @@
 package controller;
 
-import model.User;
 import model.databases.Database;
+import model.User;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.ProfileMenuMessages;
 import view.menus.CaptchaMenu;
@@ -48,8 +48,6 @@ public class ProfileMenuController {
                 return ProfileMenuMessages.NON_SMALL_PASSWORD;
             case NON_NUMBER_PASSWORD:
                 return ProfileMenuMessages.NON_NUMBER_PASSWORD;
-            case NON_SPECIFIC_PASSWORD:
-                return ProfileMenuMessages.NON_SPECIFIC_PASSWORD;
         }
         if (oldPassword.equals(newPassword)) return ProfileMenuMessages.DUPLICATE_PASSWORD;
         if (!CaptchaMenu.runCaptcha()) return ProfileMenuMessages.INCORRECT_CAPTCHA;

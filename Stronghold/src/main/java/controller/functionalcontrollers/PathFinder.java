@@ -19,14 +19,16 @@ import java.util.Stack;
 public class PathFinder {
     private final Map map;
     private final PathFinderCellDetails[][] cellDetails;
+    private final boolean isAssassin;
     private final Pair<Integer, Integer> src;
     private Pair<Integer, Integer> dest;
     private Stack<Pair<Integer, Integer>> path;
 
-    public PathFinder(Map map, Pair<Integer, Integer> startingPoint) {
+    public PathFinder(Map map, Pair<Integer, Integer> startingPoint, boolean isAssassin) {
         this.map = map;
         this.src = startingPoint;
         this.cellDetails = new PathFinderCellDetails[map.getSize()][map.getSize()];
+        this.isAssassin = isAssassin;
         setupCellDetails();
     }
 
@@ -116,13 +118,13 @@ public class PathFinder {
 
     private boolean canMoveTo(int x1, int y1, int x2, int y2) {
         if (x1 - 1 == x2 && y1 == y2)
-            return map.getMap()[x1][x2].canMove(Direction.UP);
+            return map.getMap()[x1][x2].canMove(Direction.UP, isAssassin);
         if (x1 + 1 == x2 && y1 == y2)
-            return map.getMap()[x1][x2].canMove(Direction.DOWN);
+            return map.getMap()[x1][x2].canMove(Direction.DOWN, isAssassin);
         if (x1 == x2 && y1 - 1 == y2)
-            return map.getMap()[x1][x2].canMove(Direction.LEFT);
+            return map.getMap()[x1][x2].canMove(Direction.LEFT, isAssassin);
         if (x1 == x2 && y1 + 1 == y2)
-            return map.getMap()[x1][x2].canMove(Direction.RIGHT);
+            return map.getMap()[x1][x2].canMove(Direction.RIGHT, isAssassin);
         return false;
     }
 

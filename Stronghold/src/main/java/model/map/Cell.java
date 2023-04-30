@@ -124,7 +124,7 @@ public class Cell {
         return tree == null && !isRock && texture.isCanPass();
     }
 
-    public boolean canMove(Direction direction) {
+    public boolean canMove(Direction direction, boolean isAssassin) {
         //TODO ...
         return false;
     }
