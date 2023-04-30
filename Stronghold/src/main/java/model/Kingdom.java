@@ -1,8 +1,8 @@
 package model;
 
 import model.army.Army;
-import model.army.Soldier;
 import model.buildings.Building;
+import model.buildings.BuildingType;
 import model.buildings.StorageBuilding;
 import model.enums.Item;
 import model.enums.KingdomColor;
@@ -19,12 +19,16 @@ public class Kingdom {
     private ArrayList<Army> armies;
     private HashMap<Item, Integer> storage;
     private ArrayList<Trade> trades;
+    private ArrayList<Trade> notifications;
     private ArrayList<People> population;//TODO
+    private int populationCapacity;
     private int popularity;
     private HashMap<PopularityFactor, Integer> popularityFactors;
     private int gold;
     private int foodRate;
+    private int wantedFoodRate;
     private int taxRate;
+    private int wantedTaxRate;
 
     public Kingdom(KingdomColor color) {
         this.color = color;
@@ -36,6 +40,7 @@ public class Kingdom {
         gold = 1000;
         foodRate = 0;
         taxRate = 0;
+        populationCapacity = 8;
         buildings = new ArrayList<>();
         trades = new ArrayList<>();
         armies = new ArrayList<>();
@@ -45,6 +50,7 @@ public class Kingdom {
         popularityFactors.put(PopularityFactor.FOOD, 0);
         popularityFactors.put(PopularityFactor.RELIGION, 0);
         popularityFactors.put(PopularityFactor.TAX, 0);
+        popularityFactors.put(PopularityFactor.INN, 0);
         setStorage();
     }
 
@@ -66,10 +72,8 @@ public class Kingdom {
 
     public void changePopularity(int amount) {
         this.popularity += amount;
-        if (popularity < 0)
-            popularity = 0;
-        if (popularity > 100)
-            popularity = 100;
+        if (popularity < 0) popularity = 0;
+        if (popularity > 100) popularity = 100;
     }
 
     public int getPopulation() {
@@ -83,8 +87,7 @@ public class Kingdom {
     public int getUnemployment() {
         int unemployment = 0;
         for (People people : population)
-            if (!people.isWorking())
-                unemployment++;
+            if (!people.isWorking()) unemployment++;
         return unemployment;
     }
 
@@ -96,7 +99,7 @@ public class Kingdom {
         return popularityFactors.get(factor);
     }
 
-    public void  setPopularityFactor(PopularityFactor factor, int amount) {
+    public void setPopularityFactor(PopularityFactor factor, int amount) {
         popularityFactors.replace(factor, amount);
     }
 
@@ -137,9 +140,8 @@ public class Kingdom {
         for (Item value : Item.values())
             storage.put(value, 0);
         for (Building building : buildings)
-            if (building instanceof StorageBuilding)
-                for (Item value : Item.values())
-                    changeStockNumber(new Pair<>(value, ((StorageBuilding) building).getStockedNumber(value)));
+            if (building instanceof StorageBuilding) for (Item value : Item.values())
+                changeStockNumber(new Pair<>(value, ((StorageBuilding) building).getStockedNumber(value)));
     }
 
     public void removeBuilding(Building destroyedBuilding) {
@@ -165,4 +167,56 @@ public class Kingdom {
     public void setTaxRate(int taxRate) {
         this.taxRate = taxRate;
     }
+
+    public int getWantedFoodRate() {
+        return wantedFoodRate;
+    }
+
+    public void setWantedFoodRate(int wantedFoodRate) {
+        this.wantedFoodRate = wantedFoodRate;
+    }
+
+    public int getWantedTaxRate() {
+        return wantedTaxRate;
+    }
+
+    public void setWantedTaxRate(int wantedTaxRate) {
+        this.wantedTaxRate = wantedTaxRate;
+    }
+
+    public ArrayList<Building> getBuildings() {
+        return buildings;
+    }
+
+    public ArrayList<Trade> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(ArrayList<Trade> notifications) {
+        this.notifications = notifications;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
+    }
+
+    public void setPopulationCapacity() {
+        populationCapacity = BuildingType.TOWN_HALL.getHomeCapacity();
+        for (Building building : buildings)
+            if (building.getBuildingType().equals(BuildingType.HOVEL))
+                populationCapacity += BuildingType.HOVEL.getHomeCapacity();
+    }
+
+    public int getChurchNumber() {
+        int churchAmount = 0;
+        for (Building building : buildings)
+            if (building.getBuildingType().equals(BuildingType.CHURCH) ||
+                    building.getBuildingType().equals(BuildingType.CATHEDRAL))
+                churchAmount++;
+        return churchAmount;
+    }
+
+
+
+
 }

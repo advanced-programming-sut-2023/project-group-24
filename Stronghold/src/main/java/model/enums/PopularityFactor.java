@@ -4,5 +4,6 @@ public enum PopularityFactor {
     FOOD,
     FEAR,
     RELIGION,
-    TAX
+    TAX,
+    INN
 }

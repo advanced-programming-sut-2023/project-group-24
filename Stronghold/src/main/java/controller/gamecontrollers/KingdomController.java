@@ -4,8 +4,7 @@ import model.Kingdom;
 import model.databases.GameDatabase;
 import model.enums.Item;
 import model.enums.PopularityFactor;
-
-import java.util.HashMap;
+import utils.Pair;
 
 public class KingdomController {
     private final GameDatabase gameDatabase;
@@ -14,10 +13,24 @@ public class KingdomController {
         this.gameDatabase = gameDatabase;
     }
 
+    public void handleKingdomPopularity() {
+        //Todo use food;
+    }
+
+    public void beginningTurn() {
+        Kingdom kingdom = gameDatabase.getCurrentKingdom();
+
+    }
+
+    public void changeStockedNumber(Pair<Item, Integer> pair) {
+
+    }
+
     public String showPopularityFactors() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
         return "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) +
                 " food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) +
+                " Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) +
                 " tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) +
                 " religion: " + kingdom.getPopularityFactor(PopularityFactor.RELIGION);
     }
@@ -33,9 +46,13 @@ public class KingdomController {
         return "";
     }
 
+    public void setFoodFactor() {
+
+    }
+
     public String showFoodList() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
-        StringBuilder foodList= new StringBuilder();
+        StringBuilder foodList = new StringBuilder();
         for (Item item : Item.values()) {
             if (item.getCategory().equals(Item.Category.FOOD))
                 if (kingdom.getStockedNumber(item) > 0)

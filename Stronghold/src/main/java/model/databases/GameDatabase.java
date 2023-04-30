@@ -14,11 +14,26 @@ public class GameDatabase {
     private Kingdom currentKingdom;
     private ArrayList<Kingdom> kingdoms;
     private Building currentBuilding;
+    private int turnPlayed;
 
     public GameDatabase(ArrayList<User> players, Map map) {
         selectedUnits = new ArrayList<>();
         this.map = map;
+        turnPlayed = 0;
         //TODO add kingdoms of current player
+    }
+
+    public void nextTurn() {
+    currentKingdom = kingdoms.get(turnPlayed++ % kingdoms.size());
+    }
+
+    public void removeKingdom() {
+        //TODO ...
+    }
+
+    public int turnPlayed() {
+        //Todo ...
+        return 0;
     }
 
     public void setCurrentPlayer(Kingdom currentKingdom) {

@@ -42,8 +42,8 @@ public enum Commands {
     LOGOUT("^user logout$"),
 
     //ShowMapMenu commands
-    SHOW_MAP("^show map -x (?<x>\\d+) -y (?<y>\\d+)"),
-    MOVE_MAP("^map(( up(?<up> \\d+)?)|( down(?<down> \\d+)?))?(( right(?<right> \\d+)?)|( left(?<left> \\d+)?))?$"),
+    SHOW_MAP("^show map -x (?<x>\\d+) -y (?<y>\\d+)$"),
+    MOVE_MAP("^map((?<up> up(?<upCount> \\d+)?)|(?<down> down(?<downCount> \\d+)?))?((?<right> right(?<rightCount> \\d+)?)|(?<left> left(?<leftCount> \\d+)?))?$"),
     SHOW_DETAILS("^show details -x (?<x>\\d+) -y (?<y>\\d+)$"),
 
 
