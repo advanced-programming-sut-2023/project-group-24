@@ -1,10 +1,12 @@
 package model;
 
 import model.army.Army;
+import model.army.Soldier;
 import model.buildings.Building;
 import model.buildings.StorageBuilding;
 import model.enums.Item;
 import model.enums.KingdomColor;
+import model.enums.PopularityFactor;
 import utils.Pair;
 
 import java.util.ArrayList;
@@ -19,8 +21,10 @@ public class Kingdom {
     private ArrayList<Trade> trades;
     private ArrayList<People> population;//TODO
     private int popularity;
-    private HashMap<Factor, Integer> popularityFactors;
+    private HashMap<PopularityFactor, Integer> popularityFactors;
     private int gold;
+    private int foodRate;
+    private int taxRate;
 
     public Kingdom(KingdomColor color) {
         this.color = color;
@@ -30,15 +34,17 @@ public class Kingdom {
     private void setKingdomAttribute() {
         popularity = 75;
         gold = 1000;
+        foodRate = 0;
+        taxRate = 0;
         buildings = new ArrayList<>();
         trades = new ArrayList<>();
         armies = new ArrayList<>();
         popularityFactors = new HashMap<>();
         population = new ArrayList<>();
-        popularityFactors.put(Factor.FEAR, 0);
-        popularityFactors.put(Factor.FOOD, 0);
-        popularityFactors.put(Factor.RELIGION, 0);
-        popularityFactors.put(Factor.TAX, 0);
+        popularityFactors.put(PopularityFactor.FEAR, 0);
+        popularityFactors.put(PopularityFactor.FOOD, 0);
+        popularityFactors.put(PopularityFactor.RELIGION, 0);
+        popularityFactors.put(PopularityFactor.TAX, 0);
         setStorage();
     }
 
@@ -86,8 +92,12 @@ public class Kingdom {
         return gold;
     }
 
-    public HashMap<Factor, Integer> getPopularityFactors() {
-        return popularityFactors;
+    public int getPopularityFactor(PopularityFactor factor) {
+        return popularityFactors.get(factor);
+    }
+
+    public void  setPopularityFactor(PopularityFactor factor, int amount) {
+        popularityFactors.replace(factor, amount);
     }
 
     public void changeGold(int amount) {
@@ -140,10 +150,19 @@ public class Kingdom {
         buildings.add(building);
     }
 
-    private enum Factor {
-        FOOD,
-        FEAR,
-        RELIGION,
-        TAX
+    public int getFoodRate() {
+        return foodRate;
+    }
+
+    public void setFoodRate(int foodRate) {
+        this.foodRate = foodRate;
+    }
+
+    public int getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(int taxRate) {
+        this.taxRate = taxRate;
     }
 }

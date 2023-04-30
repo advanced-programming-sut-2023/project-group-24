@@ -49,4 +49,9 @@ public enum Texture {
     public Color getColor() {
         return color;
     }
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase().replaceAll("-", " ");
+    }
 }

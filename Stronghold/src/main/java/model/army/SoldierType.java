@@ -4,6 +4,7 @@ import controller.MainController;
 import model.enums.Item;
 
 public enum SoldierType {
+    LORD(null, null, false, Type.EUROPEAN, false),
     ARCHER(null, Item.BOW, true, Type.EUROPEAN, true),
     CROSSBOWMAN(Item.LEATHER_ARMOR, Item.CROSSBOW, false, Type.EUROPEAN, false),
     SPEARMAN(null, Item.CROSSBOW, true, Type.EUROPEAN, true),
@@ -59,5 +60,13 @@ public enum SoldierType {
 
     public Type getNation() {
         return nation;
+    }
+
+    public boolean isCanDig() {
+        return canDig;
+    }
+
+    public String toString() {
+        return super.toString().toLowerCase().replaceAll("-", " ");
     }
 }
