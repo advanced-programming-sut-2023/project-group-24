@@ -1,7 +1,14 @@
 package controller.gamecontrollers;
 
+import controller.functionalcontrollers.PathFinder;
+import model.army.Army;
+import model.army.ArmyType;
 import model.databases.GameDatabase;
+import model.map.Cell;
+import utils.Pair;
 import view.enums.messages.UnitControllerMessages;
+
+import java.util.ArrayList;
 
 public class UnitController {
     private final GameDatabase gameDatabase;
@@ -11,13 +18,51 @@ public class UnitController {
     }
 
     public UnitControllerMessages selectUnit(int x, int y, String unitType) {
-        //TODO check selected cell and save selected unit in game database
-        return null;
+        if (x < 0 || x >= gameDatabase.getMap().getSize() ||
+                y < 0 || y >= gameDatabase.getMap().getSize())
+            return UnitControllerMessages.INVALID_LOCATION;
+        ArmyType armyType = null;
+        ArrayList<Army> armies;
+        if (unitType != null) {
+            armyType = ArmyType.stringToEnum(unitType);
+            if (armyType == null) return UnitControllerMessages.INVALID_TYPE;
+        }
+        Cell cell = gameDatabase.getMap().getMap()[x][y];
+        if (armyType == null)
+            armies = cell.selectUnits(gameDatabase.getCurrentKingdom());
+        else
+            armies = cell.selectUnits(armyType, gameDatabase.getCurrentKingdom());
+        gameDatabase.setSelectedUnits(armies);
+        return UnitControllerMessages.SUCCESS;
     }
 
     public UnitControllerMessages moveUnit(int x, int y) {
-        //TODO move selected unit into that location
-        return null;
+        if (x < 0 || x >= gameDatabase.getMap().getSize() ||
+                y < 0 || y >= gameDatabase.getMap().getSize())
+            return UnitControllerMessages.INVALID_LOCATION;
+        ArrayList<Army> selectedUnit = gameDatabase.getSelectedUnits();
+        if (selectedUnit == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        Cell startingCell = gameDatabase.getSelectedUnits().get(0).getLocation();
+        boolean isAssassin = true;
+        for (Army e : gameDatabase.getSelectedUnits())
+            if (!e.getArmyType().equals(ArmyType.ASSASSIN)) {
+                isAssassin = false;
+                break;
+            }
+        Pair<Integer, Integer> startLocation = new Pair<>(startingCell.getX(), startingCell.getY());
+        Pair<Integer, Integer> destination = new Pair<>(x, y);
+        PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), startLocation, isAssassin);
+        PathFinder.OutputState outputState = pathFinder.search(destination);
+        switch (outputState) {
+            case BLOCKED:
+                return UnitControllerMessages.BLOCK;
+            case ALREADY_AT_DESTINATION:
+                return UnitControllerMessages.ALREADY_IN_DESTINATION;
+        }
+        ArrayList<Cell> path = pathFinder.findPath();
+        for (Army e : gameDatabase.getSelectedUnits())
+            e.setPath(path);
+        return UnitControllerMessages.SUCCESS;
     }
 
     public UnitControllerMessages patrolUnit(int x1, int y1, int x2, int y2) {
