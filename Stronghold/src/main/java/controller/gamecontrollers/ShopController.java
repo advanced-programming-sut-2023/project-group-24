@@ -27,7 +27,7 @@ public class ShopController {
         if (item == null) return ShopMenuMessages.INVALID_NAME;
         int price = amount * item.getPrice();
         if (amount <= 0) return ShopMenuMessages.INVALID_AMOUNT;
-            //TODO check storage
+        else if (kingdomController.freeSpace(item) < amount) return ShopMenuMessages.FULL_STORAGE;
         else if (price > currentKingdom.getGold()) return ShopMenuMessages.NOT_ENOUGH_GOLD;
         Pair<Item, Integer> itemAndCount = new Pair<>(item, amount);
         kingdomController.changeStockedNumber(itemAndCount);
