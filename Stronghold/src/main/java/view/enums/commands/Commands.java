@@ -39,14 +39,14 @@ public enum Commands {
 
     //Main menu
     ENTER_PROFILE_MENU("^enter profile menu$"),
-    START_GAME("^start game$"), //TODO hichi maloom nist
+    START_GAME("^start game$"),
     ENTER_CREATE_MAP("^enter create map menu$"),
     LOGOUT("^user logout$"),
 
     //ShowMapMenu commands
-    SHOW_MAP("^show map -x (?<x>\\d+) -y (?<y>\\d+)"),
+    SHOW_MAP("(?=.* -x (?<x>\\d+))(?=.* -y (?<y>\\d+))^show map( -[xy] \\d+)[2}"),
     MOVE_MAP("^map(( up(?<up> \\d+)?)|( down(?<down> \\d+)?))?(( right(?<right> \\d+)?)|( left(?<left> \\d+)?))?$"),
-    SHOW_DETAILS("^show details -x (?<x>\\d+) -y (?<y>\\d+)$"),
+    SHOW_DETAILS("(?=.* -x (?<x>\\d+))(?=.* -y (?<y>\\d+))^show details( -[xy] \\d+){2}$"),
 
 
     //CreateMapMenu commands
@@ -85,7 +85,6 @@ public enum Commands {
     DIG_TUNNEL("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))^dig tunnel( -[xy] \\w+){2}$"),
     BUILD("^build -q (?<equipmentType>(\"[^\"]*\")|(\\S+))$"),
     DISBAND("^disband unit$"),
-
 
     //Common commands
     EXIT("^exit$"),
