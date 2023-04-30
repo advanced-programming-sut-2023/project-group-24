@@ -27,7 +27,16 @@ public class KingdomController {
 
     }
 
-    public void ChangeStockedNumber(Pair<Item, Integer> pair) {
+    public int freeSpace(Item item) {
+        int freeSpace = 0;
+        for (Building building : gameDatabase.getCurrentKingdom().getBuildings()) {
+            if (building.getBuildingType().getItemsItCanHold().equals(item.getCategory()))
+                freeSpace += (building.getBuildingType().getStorageCapacity() - ((StorageBuilding)building).getNumberOfItemsInStorage());
+        }
+        return freeSpace;
+    }
+
+    public void changeStockedNumber(Pair<Item, Integer> pair) {
         gameDatabase.getCurrentKingdom().changeStockNumber(pair);
         ArrayList<Building> buildings = gameDatabase.getCurrentKingdom().getBuildings();
         BuildingType type = getBuildingType(pair.getObject1().getCategory());

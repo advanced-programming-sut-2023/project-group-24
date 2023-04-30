@@ -128,7 +128,6 @@ public class Cell {
         if (!(tree == null && !isRock && texture.isCanPass()))
             return false;
 
-
         return true;
     }
 }
