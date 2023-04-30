@@ -27,7 +27,7 @@ public class KingdomController {
 
     }
 
-    public void ChangeStockedNumber(Pair<Item, Integer> pair) {
+    public void changeStockedNumber(Pair<Item, Integer> pair) {
         gameDatabase.getCurrentKingdom().changeStockNumber(pair);
         ArrayList<Building> buildings = gameDatabase.getCurrentKingdom().getBuildings();
         BuildingType type = getBuildingType(pair.getObject1().getCategory());

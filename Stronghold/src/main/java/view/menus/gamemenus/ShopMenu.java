@@ -1,8 +1,8 @@
 package view.menus.gamemenus;
 
-import com.sun.net.httpserver.Authenticator;
 import controller.AppController;
 import controller.MainController;
+import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.ShopController;
 import utils.enums.MenusName;
 import view.enums.commands.Commands;
@@ -14,9 +14,11 @@ import java.util.regex.Matcher;
 
 public class ShopMenu {
     private final ShopController shopController;
+    private final KingdomController kingdomController;
 
-    public ShopMenu(ShopController shopController) {
+    public ShopMenu(ShopController shopController, KingdomController kingdomController) {
         this.shopController = shopController;
+        this.kingdomController = kingdomController;
     }
 
     public void run() {
@@ -56,7 +58,7 @@ public class ShopMenu {
     private void buyItem(Matcher matcher) {
         String itemName = MainController.removeDoubleQuotation(matcher.group("itemName"));
         int itemAmount = Integer.parseInt(matcher.group("itemAmount"));
-        ShopMenuMessages message = shopController.buyItem(itemName, itemAmount);
+        ShopMenuMessages message = shopController.buyItem(itemName, itemAmount, kingdomController);
         switch (message) {
             case FULL_STORAGE -> System.out.println("Your storage is full!");
             case SUCCESS -> System.out.println("The item successfully purchased!");
@@ -68,7 +70,7 @@ public class ShopMenu {
     private void sellItem(Matcher matcher) {
         String itemName = MainController.removeDoubleQuotation(matcher.group("itemName"));
         int itemAmount = Integer.parseInt(matcher.group("itemAmount"));
-        ShopMenuMessages message = shopController.sellItem(itemName, itemAmount);
+        ShopMenuMessages message = shopController.sellItem(itemName, itemAmount, kingdomController);
         switch (message) {
             case SUCCESS -> System.out.println("The item successfully sold!");
             case INVALID_AMOUNT -> System.out.println("You entered invalid amount!");

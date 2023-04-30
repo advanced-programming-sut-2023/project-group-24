@@ -22,7 +22,7 @@ public class ShopController {
         return list;
     }
 
-    public ShopMenuMessages buyItem(String name, int amount) {
+    public ShopMenuMessages buyItem(String name, int amount, KingdomController kingdomController) {
         Item item = Item.stringToEnum(name);
         if (item == null) return ShopMenuMessages.INVALID_NAME;
         int price = amount * item.getPrice();
@@ -30,19 +30,19 @@ public class ShopController {
             //TODO check storage
         else if (price > currentKingdom.getGold()) return ShopMenuMessages.NOT_ENOUGH_GOLD;
         Pair<Item, Integer> itemAndCount = new Pair<>(item, amount);
-        currentKingdom.changeStockNumber(itemAndCount);
+        kingdomController.changeStockedNumber(itemAndCount);
         currentKingdom.changeGold(-price);
         return ShopMenuMessages.SUCCESS;
     }
 
-    public ShopMenuMessages sellItem(String name, int amount) {
+    public ShopMenuMessages sellItem(String name, int amount, KingdomController kingdomController) {
         Item item = Item.stringToEnum(name);
         if (item == null) return ShopMenuMessages.INVALID_NAME;
         int price = amount * (int) Math.ceil((double) item.getPrice() / 2);
         if (amount <= 0) return ShopMenuMessages.INVALID_AMOUNT;
         else if (currentKingdom.getStockedNumber(item) < amount) return ShopMenuMessages.NOT_ENOUGH_AMOUNT;
         Pair<Item, Integer> itemAndCount = new Pair<>(item, -amount);
-        currentKingdom.changeStockNumber(itemAndCount);
+        kingdomController.changeStockedNumber(itemAndCount);
         currentKingdom.changeGold(price);
         return ShopMenuMessages.SUCCESS;
     }
