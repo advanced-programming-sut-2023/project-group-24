@@ -33,7 +33,11 @@ public class KingdomController {
 
     public void handleInn() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
-
+        int aleNeeded = BuildingType.INN.getUses().get(0).getObject2();
+        boolean isParty = kingdom.getStockedNumber(Item.ALE) >= aleNeeded;
+        if (isParty)
+            changeStockedNumber(new Pair<>(Item.ALE, aleNeeded));
+        setInnFactor(isParty);
     }
 
     private void checkFoodRate(Kingdom kingdom) {
@@ -159,11 +163,15 @@ public class KingdomController {
             if (building.getBuildingType().equals(BuildingType.BAD_THING))
                 fearFactor -= 1;
         }
+        fearFactor /= 2;
         gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.RELIGION, fearFactor / 2);
     }
 
-    public void setInnFactor() {
-        //TODO
+    public void setInnFactor(boolean inn) {
+        int innAmount = 0;
+        if (inn)
+            innAmount = 2;
+        gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.INN, innAmount);
     }
 
 }
