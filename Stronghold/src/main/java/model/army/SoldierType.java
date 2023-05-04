@@ -15,6 +15,7 @@ public enum SoldierType {
     TUNNELLER(null, null, false, Type.EUROPEAN, false),
     LADDER_MAN(null, null, false, Type.ENGINEER, false),
     ENGINEER(null, null, false, Type.ENGINEER, true),
+    ENGINEER_WITH_OIL(null, null, false, Type.ENGINEER, true),
     BLACK_MONK(null, null, false, Type.CHURCH, false),
     ARCHER_BOW(null, null, false, Type.ARABIAN, true),
     SLAVE(null, null, false, Type.ARABIAN, true),

@@ -18,13 +18,52 @@ public class KingdomController {
         this.gameDatabase = gameDatabase;
     }
 
-    public void handleKingdomPopularity() {
-        //Todo use food;
+    public void handleFood() {
+        Kingdom kingdom = gameDatabase.getCurrentKingdom();
+        checkFoodRate(kingdom);
+        int foodNeeded = kingdom.getPopulation() * (2 + kingdom.getFoodRate()) / 4;
+        if (foodNeeded < kingdom.getFoodNumber()) {
+            useFood(kingdom.getFoodNumber());
+            kingdom.setWantedFoodRate(kingdom.getFoodRate());
+            kingdom.setFoodRate(-2);
+        } else
+            useFood(foodNeeded);
+        kingdom.setPopularityFactor(PopularityFactor.FOOD, kingdom.getFoodRate() * 4);
+    }
+
+    public void handleInn() {
+        Kingdom kingdom = gameDatabase.getCurrentKingdom();
+
+    }
+
+    private void checkFoodRate(Kingdom kingdom) {
+        if (-2 == kingdom.getFoodRate() && kingdom.getWantedFoodRate() != -2 && kingdom.getFoodNumber() >=
+                kingdom.getPopulation() * (2 + kingdom.getWantedFoodRate()) / 4)
+            kingdom.setFoodRate(kingdom.getWantedFoodRate());
+    }
+
+    private void useFood(int foodNumber) {
+        ArrayList<Building> buildings = gameDatabase.getCurrentKingdom().getBuildings();
+        for (Building building : buildings) {
+            if (building.getBuildingType().equals(BuildingType.GRANARY)) {
+                foodNumber = ((StorageBuilding) building).useFood(foodNumber);
+                if (0 == foodNumber) break;
+            }
+        }
     }
 
     public void beginningTurn() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
+    }
 
+    public int getFreeSpace(Item item) {
+        int freeSpace = 0;
+        for (Building building : gameDatabase.getCurrentKingdom().getBuildings()) {
+            if (building.getBuildingType().getItemsItCanHold().equals(item.getCategory()))
+                freeSpace += (building.getBuildingType().getStorageCapacity() - ((StorageBuilding) building).
+                        getNumberOfItemsInStorage());
+        }
+        return freeSpace;
     }
 
     public void changeStockedNumber(Pair<Item, Integer> pair) {
@@ -38,7 +77,6 @@ public class KingdomController {
                 if (0 == newPair.getObject2())
                     break;
             }
-        gameDatabase.getCurrentKingdom().changeStockNumber(new Pair<>(pair.getObject1(), -newPair.getObject2()));
     }
 
     private BuildingType getBuildingType(Item.Category category) {
@@ -75,9 +113,6 @@ public class KingdomController {
         return "";
     }
 
-    public void setFoodFactor() {
-
-    }
 
     public String showFoodList() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
@@ -95,6 +130,8 @@ public class KingdomController {
     }
 
     public String setTaxRate(int taxRate) {
+        if (!gameDatabase.getCurrentBuilding().getBuildingType().equals(BuildingType.TOWN_HALL))
+            return "";
         if (taxRate < -3 || taxRate > 8)
             return "Invalid taxRate!\n";
         gameDatabase.getCurrentKingdom().setTaxRate(taxRate);
@@ -105,12 +142,24 @@ public class KingdomController {
         return gameDatabase.getCurrentKingdom().getTaxRate();
     }
 
-    public void setReligionFactor() {
-        //TODO
+    public void setReligionFactor(ArrayList<Building> buildings) {
+        int religionFactor = 0;
+        for (Building building : buildings)
+            if (building.getBuildingType().equals(BuildingType.CHURCH) || building.getBuildingType().equals(BuildingType.CATHEDRAL))
+                religionFactor += 2;
+        gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.RELIGION, religionFactor);
     }
 
-    public void setFearFactor() {
-        //TODO
+    //right 7 left 8 up down 4
+    public void setFearFactor(ArrayList<Building> buildings) {
+        int fearFactor = 0;
+        for (Building building : buildings) {
+            if (building.getBuildingType().equals(BuildingType.GOOD_THING))
+                fearFactor += 1;
+            if (building.getBuildingType().equals(BuildingType.BAD_THING))
+                fearFactor -= 1;
+        }
+        gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.RELIGION, fearFactor / 2);
     }
 
     public void setInnFactor() {

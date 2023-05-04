@@ -14,6 +14,7 @@ public enum ArmyType {
     TUNNELLER(30, 64, 0, 24, 4),
     LADDER_MAN(4, 64, 0, 0, 4),
     ENGINEER(30, 64, 0, 0, 3),
+    ENGINEER_WITH_OIL(30, 64, 0, 0, 3),
     BLACK_MONK(10, 128, 0, 24, 1),
     ARCHER_BOW(75, 96, 5, 16, 4),
     SLAVE(5, 48, 0, 8, 4),
