@@ -70,6 +70,10 @@ public class Kingdom {
         return popularity;
     }
 
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
+    }
+
     public void changePopularity(int amount) {
         this.popularity += amount;
         if (popularity < 0) popularity = 0;
@@ -196,15 +200,19 @@ public class Kingdom {
         this.notifications = notifications;
     }
 
-    public void setPopularity(int popularity) {
-        this.popularity = popularity;
-    }
-
     public void setPopulationCapacity() {
         populationCapacity = BuildingType.TOWN_HALL.getHomeCapacity();
         for (Building building : buildings)
             if (building.getBuildingType().equals(BuildingType.HOVEL))
                 populationCapacity += BuildingType.HOVEL.getHomeCapacity();
+    }
+
+    public int getFoodNumber() {
+        int foodNumber = 0;
+        for (Item item : storage.keySet())
+            if (item.getCategory().equals(Item.Category.FOOD))
+                foodNumber++;
+        return foodNumber;
     }
 
     public int getChurchNumber() {

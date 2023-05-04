@@ -133,5 +133,6 @@ public class Cell {
     }
 
     private boolean wallHandle() {
+        return true;
     }
 }
