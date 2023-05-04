@@ -20,7 +20,7 @@ public class GameMenu {
     }
 
     public void run() {
-        //TODO get inputs from GetInput class and check input of user
+        String command;
     }
 
     private void showMap() {
@@ -105,11 +105,25 @@ public class GameMenu {
     }
 
     private void patrolUnit(Matcher matcher) {
-        //TODO connect UnitController and sout result
+        int x = Integer.parseInt(matcher.group("x"));
+        int y = Integer.parseInt(matcher.group("y"));
+        UnitControllerMessages message = unitController.patrolUnit(x, y);
+        switch (message) {
+            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
+            case BLOCK -> System.out.println("You can not move to that cell!");
+            case ALREADY_IN_DESTINATION -> System.out.println("Your armies already is in this location!");
+            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+            case SUCCESS -> System.out.println("Successful!");
+        }
     }
 
-    private void stopUnitsPatrol(Matcher matcher) {
-        //TODO connect UnitController and sout result
+    private void stopUnitsPatrol() {
+        UnitControllerMessages message = unitController.stopUnitsPatrol();
+        switch (message) {
+            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+            case NOT_PATROL -> System.out.println("Selected units aren't patrolling!");
+            case SUCCESS -> System.out.println("Patrolling of selected units has been stopped");
+        }
     }
 
     private void setStateForUnits(Matcher matcher) {
@@ -147,6 +161,14 @@ public class GameMenu {
         }
     }
 
+    private void stop() {
+        UnitControllerMessages message = unitController.stop();
+        switch (message) {
+            case SUCCESS -> System.out.println("The selected units have been stopped successfully!");
+            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+        }
+    }
+
     private void pourOil(Matcher matcher) {
         //TODO connect UnitController and sout result
     }
@@ -160,7 +182,11 @@ public class GameMenu {
     }
 
     private void disbandUnit() {
-        //TODO connect UnitController and sout result
+        UnitControllerMessages message = unitController.disbandUnit();
+        switch (message) {
+            case SUCCESS -> System.out.println("Selected units successfully disband!");
+            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+        }
     }
 
     private void digMoat(Matcher matcher) {
