@@ -1,6 +1,9 @@
 package controller.gamecontrollers;
 
 import model.Kingdom;
+import model.army.ArmyType;
+import model.army.Soldier;
+import model.army.SoldierType;
 import model.buildings.Building;
 import model.buildings.BuildingType;
 import model.databases.GameDatabase;
@@ -17,7 +20,7 @@ public class BuildingController {
     }
 
     public BuildingControllerMessages dropBuilding(int x, int y, String type, KingdomController kingdomController) {
-        if (!checkLocationInBounds(x, y))
+        if (checkLocationOutOfBounds(x, y))
             return BuildingControllerMessages.LOCATION_OUT_OF_BOUNDS;
         Cell cell = gameDatabase.getMap().getMap()[x][y];
         BuildingType buildingType = BuildingType.getBuildingTypeFromName(type);
@@ -38,22 +41,40 @@ public class BuildingController {
     }
 
     public BuildingControllerMessages selectBuilding(int x, int y) {
-        //TODO check if there is a building in that cell and the owner is the current player. then set the current building.
-        return null;
+        if (checkLocationOutOfBounds(x, y))
+            return BuildingControllerMessages.LOCATION_OUT_OF_BOUNDS;
+        Cell cell = gameDatabase.getMap().getMap()[x][y];
+        if (cell.getExistingBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS;
+        if (cell.getExistingBuilding().getKingdom() != gameDatabase.getCurrentKingdom())
+            return BuildingControllerMessages.NOT_OWNER;
+        gameDatabase.setCurrentBuilding(cell.getExistingBuilding()); //TODO remember to deselect building on next turn
+        return BuildingControllerMessages.SUCCESS;
     }
 
     public BuildingControllerMessages createUnit(String name, int count) {
-        //TODO check if the building can create a troop, check if it can create this troop, and check for resources
-        return null;
+        if (gameDatabase.getCurrentBuilding().getBuildingType().getCategory() != BuildingType.Category.ARMY_MAKER)
+            return BuildingControllerMessages.INCORRECT_BUILDING;
+        if (count <= 0)
+            return BuildingControllerMessages.INCORRECT_COUNT;
+        ArmyType armyType = ArmyType.stringToEnum(name);
+        SoldierType soldierType = SoldierType.stringToEnum(name);
+        if (soldierType == null || armyType == null)
+            return BuildingControllerMessages.INVALID_TYPE;
+        Kingdom currentKingdom = gameDatabase.getCurrentKingdom();
+        if (doesNotHaveEnoughResources(count, armyType, soldierType, currentKingdom))
+            return BuildingControllerMessages.NOT_ENOUGH_MATERIAL;
+        //TODO check if there are enough unemployed people and employ them
+        if (gameDatabase.getCurrentBuilding().getBuildingType().getTroopsItCanMake() != soldierType.getNation())
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        for (int i = 0; i < count; i++)
+            new Soldier(gameDatabase.getCurrentBuilding().getLocation(), armyType, currentKingdom, soldierType);
+        return BuildingControllerMessages.SUCCESS;
     }
 
     public BuildingControllerMessages repair() {
         //TODO check if the current building can be repaired
-        return null;
-    }
-
-    public BuildingControllerMessages setTaxRate(int taxRate) {
-        //TODO setTaxRate
+        
         return null;
     }
 
@@ -62,8 +83,8 @@ public class BuildingController {
         return null;
     }
 
-    private boolean checkLocationInBounds(int x, int y) {
-        return x >= 0 && x < gameDatabase.getMap().getSize() && y >= 0 && y < gameDatabase.getMap().getSize();
+    private boolean checkLocationOutOfBounds(int x, int y) {
+        return x < 0 || x >= gameDatabase.getMap().getSize() || y < 0 || y >= gameDatabase.getMap().getSize();
     }
 
     private boolean canDropBuilding(Cell cell, BuildingType buildingType) {
@@ -105,5 +126,11 @@ public class BuildingController {
     private boolean hasEnoughMaterialToBuild(Pair<Item, Integer> materialToBuild) {
         Kingdom currentKingdom = gameDatabase.getCurrentKingdom();
         return currentKingdom.getStockedNumber(materialToBuild.getObject1()) >= -materialToBuild.getObject2();
+    }
+
+    private boolean doesNotHaveEnoughResources(int count, ArmyType armyType, SoldierType soldierType, Kingdom kingdom) {
+        return !((soldierType.getWeapon() == null || kingdom.getStockedNumber(soldierType.getWeapon()) >= count)
+                && (soldierType.getArmor() == null || kingdom.getStockedNumber(soldierType.getArmor()) >= count)
+                && kingdom.getGold() >= armyType.getPrice() * count);
     }
 }
