@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 public abstract class Army {
     private final ArrayList<Cell> path;
+    private final Kingdom owner;
+    private ArmyType armyType;
     private Pair<Cell, Cell> patrol;
     private Army target;
     private Cell targetCell;
-    private final Kingdom owner;
-    private final ArmyType armyType;
     private Cell location;
     private UnitState unitState;
     private int hp;
@@ -30,8 +30,9 @@ public abstract class Army {
         owner.addArmy(this);
     }
 
-    public boolean isDead() {
-        return hp <= 0;
+    public void isDead() {
+        this.getLocation().removeArmy(this);
+        this.getOwner().removeArmy(this);
     }
 
     public Cell getLocation() {
@@ -50,9 +51,10 @@ public abstract class Army {
         return hp;
     }
 
-    public boolean takeDamage(int amount) {
+    public void takeDamage(int amount) {
         hp -= amount;
-        return isDead();
+        if (hp <= 0)
+            isDead();
     }
 
     public void moveArmy() {
@@ -99,5 +101,16 @@ public abstract class Army {
 
     public void setTargetCell(Cell targetCell) {
         this.targetCell = targetCell;
+    }
+
+    public void changeEngineerState() {
+        if (this.getArmyType().equals(ArmyType.ENGINEER))
+            this.setArmyType(ArmyType.ENGINEER_WITH_OIL);
+        if (this.getArmyType().equals(ArmyType.ENGINEER_WITH_OIL))
+            this.setArmyType(ArmyType.ENGINEER);
+    }
+
+    public void setArmyType(ArmyType armyType) {
+        this.armyType = armyType;
     }
 }
