@@ -20,7 +20,7 @@ public class Kingdom {
     private HashMap<Item, Integer> storage;
     private ArrayList<Trade> trades;
     private ArrayList<Trade> notifications;
-    private ArrayList<People> population;//TODO
+    private ArrayList<People> population;
     private int populationCapacity;
     private int popularity;
     private HashMap<PopularityFactor, Integer> popularityFactors;
@@ -29,6 +29,7 @@ public class Kingdom {
     private int wantedFoodRate;
     private int taxRate;
     private int wantedTaxRate;
+    private double fearRate;// it has effect on workers and unit!
 
     public Kingdom(KingdomColor color) {
         this.color = color;
@@ -40,6 +41,7 @@ public class Kingdom {
         gold = 1000;
         foodRate = 0;
         taxRate = 0;
+        fearRate = 0;
         populationCapacity = 8;
         buildings = new ArrayList<>();
         trades = new ArrayList<>();
@@ -93,6 +95,25 @@ public class Kingdom {
         for (People people : population)
             if (!people.isWorking()) unemployment++;
         return unemployment;
+    }
+
+    public int getUnEmployedPeople() {
+        int unEmployedPeople = 0;
+        for (People people : population)
+            if (!people.isWorking())
+                unEmployedPeople++;
+        return unEmployedPeople;
+    }
+
+    public void assignToArmy(int number) {
+        for (int i = 0; i < number; i++) {
+            for (People people : population) {
+                if (!people.isWorking()) {
+                    population.remove(people);
+                    break;
+                }
+            }
+        }
     }
 
     public int getGold() {
@@ -224,4 +245,11 @@ public class Kingdom {
         return churchAmount;
     }
 
+    public double getFearRate() {
+        return fearRate;
+    }
+
+    public void setFearRate(double fearRate) {
+        this.fearRate = fearRate;
+    }
 }

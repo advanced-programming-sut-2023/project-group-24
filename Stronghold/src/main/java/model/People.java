@@ -3,20 +3,20 @@ package model;
 import model.map.Cell;
 
 public class People {
-    private Cell location;
+    private Kingdom owner;
     private boolean isWorking;
 
-    public People(Cell location) {
-        this.location = location;
+    public People(Kingdom owner) {
+        this.owner = owner;
         isWorking = false;
     }
 
-    public Cell getLocation() {
-        return location;
+    public Kingdom getOwner() {
+        return owner;
     }
 
-    public void setLocation(Cell location) {
-        this.location = location;
+    public void setOwner(Kingdom owner) {
+        this.owner = owner;
     }
 
     public boolean isWorking() {

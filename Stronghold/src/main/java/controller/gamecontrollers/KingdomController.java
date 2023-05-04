@@ -31,6 +31,19 @@ public class KingdomController {
         kingdom.setPopularityFactor(PopularityFactor.FOOD, kingdom.getFoodRate() * 4);
     }
 
+    public void handleTax() {
+        Kingdom kingdom = gameDatabase.getCurrentKingdom();
+        checkTaxRate(kingdom);
+        int tax =
+    }
+
+    private void checkTaxRate(Kingdom kingdom) {
+        if (kingdom.getWantedTaxRate() < 0 && kingdom.getTaxRate() == 0 &&
+                -(kingdom.getPopulation() * getTax(kingdom)) <= kingdom.getGold()) {
+            kingdom.setTaxRate(kingdom.getWantedTaxRate());
+        }
+    }
+
     public void handleInn() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
         int aleNeeded = BuildingType.INN.getUses().get(0).getObject2();
@@ -135,11 +148,41 @@ public class KingdomController {
 
     public String setTaxRate(int taxRate) {
         if (!gameDatabase.getCurrentBuilding().getBuildingType().equals(BuildingType.TOWN_HALL))
-            return "";
+            return "select TownHall first\n";
         if (taxRate < -3 || taxRate > 8)
             return "Invalid taxRate!\n";
-        gameDatabase.getCurrentKingdom().setTaxRate(taxRate);
+        handleTaxFactor(gameDatabase.getCurrentKingdom(), taxRate);
         return "";
+    }
+
+    private double getTax(Kingdom kingdom) {
+        int taxRate = kingdom.getTaxRate();
+        if (taxRate > 0)
+            return 0.6 + taxRate * 0.2;
+        if (taxRate < 0)
+            return -0.6 + taxRate * 0.2;
+        else
+            return 0;
+    }
+
+    private void handleTaxFactor(Kingdom currentKingdom, int taxRate) {
+        int taxFactor = 0;
+        switch (taxRate) {
+            case -3 -> taxFactor = 7;
+            case -2 -> taxFactor = 5;
+            case -1 -> taxFactor = 3;
+            case 0 -> taxFactor = 1;
+            case 1 -> taxFactor = -2;
+            case 2 -> taxFactor = -4;
+            case 3 -> taxFactor = -6;
+            case 4 -> taxFactor = -8;
+            case 5 -> taxFactor = -12;
+            case 6 -> taxFactor = -16;
+            case 7 -> taxFactor = -20;
+            case 8 -> taxFactor = -24;
+        }
+        currentKingdom.setPopularityFactor(PopularityFactor.TAX, taxFactor);
+
     }
 
     public int showTaxRate() {
@@ -164,7 +207,12 @@ public class KingdomController {
                 fearFactor -= 1;
         }
         fearFactor /= 2;
-        gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.RELIGION, fearFactor / 2);
+        if (fearFactor > 5)
+            fearFactor = 5;
+        if (fearFactor < -5)
+            fearFactor = -5;
+        gameDatabase.getCurrentKingdom().setFearRate(1 - fearFactor * 0.05);
+        gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.RELIGION, fearFactor);
     }
 
     public void setInnFactor(boolean inn) {
