@@ -1,10 +1,15 @@
 package view.menus.gamemenus;
 
+import controller.AppController;
 import controller.MainController;
 import controller.gamecontrollers.BuildingController;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.UnitController;
+import utils.enums.MenusName;
+import view.enums.commands.Commands;
+import view.enums.messages.BuildingControllerMessages;
 import view.enums.messages.UnitControllerMessages;
+import view.menus.GetInputFromUser;
 
 import java.util.regex.Matcher;
 
@@ -21,22 +26,96 @@ public class GameMenu {
 
     public void run() {
         String command;
+        Matcher matcher;
+        while (AppController.getCurrentMenu().equals(MenusName.GAME_MENU)) {
+            command = GetInputFromUser.getUserInput();
+            if (Commands.getMatcher(command, Commands.SHOW_MAP) != null)
+                showMap();
+            else if (Commands.getMatcher(command, Commands.OPEN_TRADE_MENU) != null)
+                tradeMenu();
+            else if (Commands.getMatcher(command, Commands.OPEN_SHOP_MENU) != null)
+                shopMenu();
+            else if (Commands.getMatcher(command, Commands.SHOW_POPULARITY_FACTORS) != null)
+                showPopularityFactors();
+            else if (Commands.getMatcher(command, Commands.SHOW_POPULARITY) != null)
+                showPopularity();
+            else if ((matcher = Commands.getMatcher(command, Commands.FOOD_RATE)) != null)
+                setFoodRate(matcher);
+            else if (Commands.getMatcher(command, Commands.FOOD_RATE_SHOW) != null)
+                showFoodRate();
+            else if ((matcher = Commands.getMatcher(command, Commands.SET_TEXTURE)) != null)
+                setTaxRate(matcher);
+            else if (Commands.getMatcher(command, Commands.TAX_RATE_SHOW) != null)
+                showTaxRate();
+            else if ((matcher = Commands.getMatcher(command, Commands.FEAR_RATE)) != null)
+                setFearRate(matcher);
+            else if ((matcher = Commands.getMatcher(command, Commands.DROP_BUILDING)) != null)
+                dropBuilding(matcher);
+            else if ((matcher = Commands.getMatcher(command, Commands.SELECT_BUILDING)) != null)
+                selectBuilding(matcher);
+            else if ((matcher = Commands.getMatcher(command, Commands.CREATE_UNIT)) != null)
+                createUnit(matcher);
+            else if (Commands.getMatcher(command, Commands.REPAIR) != null)
+                repair();
+            //CREATE RESOURCE???????????????
+            else if ((matcher = Commands.getMatcher(command, Commands.SELECT_UNIT)) != null)
+                selectUnit(matcher);
+            else if ((matcher = Commands.getMatcher(command, Commands.MOVE_UNIT)) != null)
+                moveUnit(matcher);
+            else if ((matcher = Commands.getMatcher(command, Commands.PATROL_UNIT)) != null)
+                patrolUnit(matcher);
+            else if (Commands.getMatcher(command, Commands.STOP_PATROL) != null)
+                stopUnitsPatrol();
+            else if ((matcher = Commands.getMatcher(command, Commands.SET_STATE)) != null)
+                setStateForUnits(matcher);
+            else if ((matcher = Commands.getMatcher(command, Commands.ATTACK)) != null)
+                attackEnemy(matcher);
+            else if ((matcher = Commands.getMatcher(command, Commands.ATTACK_ARCHER)) != null)
+                archerAttack(matcher);
+            else if (Commands.getMatcher(command, Commands.STOP) != null)
+                stop();
+            else if ((matcher = Commands.getMatcher(command, Commands.POUR_OIL)) != null)
+                pourOil(matcher);
+            else if ((matcher = Commands.getMatcher(command, Commands.DIG_TUNNEL)) != null)
+                digTunnel(matcher);
+            else if ((matcher = Commands.getMatcher(command, Commands.BUILD)) != null)
+                buildEquipment(matcher);
+            else if (Commands.getMatcher(command, Commands.DISBAND) != null)
+                disbandUnit();
+            else if ((matcher = Commands.getMatcher(command, Commands.DIG_MOAT)) != null)
+                digMoat(matcher);
+            else if ((matcher = Commands.getMatcher(command, Commands.REMOVE_MOAT)) != null)
+                removeMoat(matcher);
+            else if ((matcher = Commands.getMatcher(command, Commands.FILL_MOAT)) != null)
+                fillMoat(matcher);
+        }
     }
 
     private void showMap() {
-        //TODO set current menu as showMap
+        AppController.setCurrentMenu(MenusName.SHOW_MAP_MENU);
+    }
+
+    private void tradeMenu() {
+        AppController.setCurrentMenu(MenusName.TRADE_MENU);
+    }
+
+    private void shopMenu() {
+        AppController.setCurrentMenu(MenusName.SHOP_MENU);
     }
 
     private void showPopularityFactors() {
-        //TODO connect KingdomController and sout result
+        String result = kingdomController.showPopularityFactors();
+        System.out.println(result);
     }
 
     private void showPopularity() {
-        //TODO connect KingdomController and sout result
+        int result = kingdomController.showPopularity();
+        System.out.println(result);
     }
 
     private void setFoodRate(Matcher matcher) {
-        //TODO connect KingdomController and sout result
+        int foodRate = Integer.parseInt(matcher.group("RateNumber"));
+        
     }
 
     private void showFoodRate() {
@@ -60,15 +139,43 @@ public class GameMenu {
     }
 
     private void dropBuilding(Matcher matcher) {
-        //TODO connect BuildingController and sout result
+        int x = Integer.parseInt(matcher.group("x"));
+        int y = Integer.parseInt(matcher.group("y"));
+        String type = matcher.group("type");
+        BuildingControllerMessages message = buildingController.dropBuilding(x, y, type, kingdomController);
+        switch (message) {
+            case LOCATION_OUT_OF_BOUNDS -> System.out.println("You entered invalid location!");
+            case INVALID_TYPE -> System.out.println("You entered invalid type of building!");
+            case CANNOT_BUILD_HERE -> System.out.println("You can not drop building here!");
+            case NOT_ENOUGH_MATERIAL -> System.out.println("You don't have enough material to build this building!");
+            case NOT_ENOUGH_GOLD -> System.out.println("You don't have enough gold to build this building!");
+            case SUCCESS -> System.out.println("The building was successfully built!");
+        }
     }
 
     private void selectBuilding(Matcher matcher) {
-        //TODO connect BuildingController and sout result
-    }
+        int x = Integer.parseInt(matcher.group("x"));
+        int y = Integer.parseInt(matcher.group("y"));
+        BuildingControllerMessages message = buildingController.selectBuilding(x, y);
+        switch (message) {
+            case LOCATION_OUT_OF_BOUNDS -> System.out.println("You entered invalid location!");
+            case NO_BUILDINGS -> System.out.println("There is no building to select!");
+            case NOT_OWNER -> System.out.println("You are not the owner of this building!");
+            case SUCCESS -> System.out.println("The building was successfully selected!");
+        }
+;    }
 
     private void createUnit(Matcher matcher) {
-        //TODO connect BuildingController and sout result
+        String type = matcher.group("type");
+        int count = Integer.parseInt(matcher.group("count"));
+        BuildingControllerMessages message = buildingController.createUnit(type, count);
+        switch (message) {
+            case INCORRECT_BUILDING, IRRELEVANT_BUILDING -> System.out.println("You can not create this unit in selected building!");
+            case INCORRECT_COUNT -> System.out.println("You entered invalid count!");
+            case INVALID_TYPE -> System.out.println("Unit with this type does not exist!");
+            case NOT_ENOUGH_MATERIAL -> System.out.println("You don't have enough weapons to create this unit!");
+            case SUCCESS -> System.out.println("The units were successfully created!");
+        }
     }
 
     private void repair() {
