@@ -12,7 +12,7 @@ import java.util.Stack;
  * HOW TO USE THIS CLASS (for our project's future use):
  * STEP 1: use the constructor and create an object for the map and the starting point
  * STEP 2: use the search method so the object finds the best path from the starting point to the destination
- *       this method will return if there was an error or it was successful
+ *       this method will return if there was an error or, it was successful
  * STEP 3: use the findPath method to get the path as a meaningful ArrayList, rather than some random data in the object
  * */
 
