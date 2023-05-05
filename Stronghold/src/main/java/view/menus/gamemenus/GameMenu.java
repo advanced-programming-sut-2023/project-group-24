@@ -57,7 +57,7 @@ public class GameMenu {
                 createUnit(matcher);
             else if (Commands.getMatcher(command, Commands.REPAIR) != null)
                 repair();
-            //CREATE RESOURCE???????????????
+                //CREATE RESOURCE???????????????
             else if ((matcher = Commands.getMatcher(command, Commands.SELECT_UNIT)) != null)
                 selectUnit(matcher);
             else if ((matcher = Commands.getMatcher(command, Commands.MOVE_UNIT)) != null)
@@ -115,7 +115,7 @@ public class GameMenu {
 
     private void setFoodRate(Matcher matcher) {
         int foodRate = Integer.parseInt(matcher.group("RateNumber"));
-        
+
     }
 
     private void showFoodRate() {
@@ -163,14 +163,16 @@ public class GameMenu {
             case NOT_OWNER -> System.out.println("You are not the owner of this building!");
             case SUCCESS -> System.out.println("The building was successfully selected!");
         }
-;    }
+        ;
+    }
 
     private void createUnit(Matcher matcher) {
         String type = matcher.group("type");
         int count = Integer.parseInt(matcher.group("count"));
         BuildingControllerMessages message = buildingController.createUnit(type, count);
         switch (message) {
-            case INCORRECT_BUILDING, IRRELEVANT_BUILDING -> System.out.println("You can not create this unit in selected building!");
+            case INCORRECT_BUILDING, IRRELEVANT_BUILDING ->
+                    System.out.println("You can not create this unit in selected building!");
             case INCORRECT_COUNT -> System.out.println("You entered invalid count!");
             case INVALID_TYPE -> System.out.println("Unit with this type does not exist!");
             case NOT_ENOUGH_MATERIAL -> System.out.println("You don't have enough weapons to create this unit!");
@@ -254,6 +256,7 @@ public class GameMenu {
             case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
             case BLOCK -> System.out.println("You can not move to that cell!");
             case ALREADY_IN_DESTINATION -> System.out.println("Your armies already is in this location!");
+            case OUT_OF_RANGE -> System.out.println("Enemy is out of range!");
         }
     }
 
@@ -265,6 +268,7 @@ public class GameMenu {
             case INVALID_LOCATION -> System.out.println("You entered invalid location!");
             case SUCCESS -> System.out.println("Your archers will attack that enemies!");
             case NOT_ARCHER -> System.out.println("You can not attack this cell with this units!");
+            case OUT_OF_RANGE -> System.out.println("Enemy is out of range!");
         }
     }
 

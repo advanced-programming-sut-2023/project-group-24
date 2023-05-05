@@ -15,4 +15,5 @@ public enum UnitControllerMessages {
     NOT_SELECT_OIL,
     CAN_NOT_POUR_OIL,
     NOT_SELECTED_ENGINEER,
+    OUT_OF_RANGE
 }

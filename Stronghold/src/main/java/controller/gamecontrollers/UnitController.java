@@ -107,12 +107,19 @@ public class UnitController {
 
     public UnitControllerMessages attackEnemy(int enemyX, int enemyY) {
         if (checkXY(enemyX, enemyY)) return UnitControllerMessages.INVALID_LOCATION;
-        ArrayList<Army> armies = gameDatabase.getMap().getMap()[enemyX][enemyY].getArmies();
+        Cell enemyCell = gameDatabase.getMap().getMap()[enemyX][enemyY];
+        ArrayList<Army> enemies = enemyCell.getArmies();
         ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
-        if (armies == null) return UnitControllerMessages.NOT_ENEMY;
+        if (enemies == null) return UnitControllerMessages.NOT_ENEMY;
         boolean isEnemyExist = false;
-        for (Army e : armies) {
+        boolean outOfRange = true;
+        int distance = getDistance(enemyX, enemyY);
+        for (Army e : enemies) {
             if (!e.getOwner().equals(gameDatabase.getCurrentKingdom())) {
+                int range = e.getLocation().getExistingBuilding().getBuildingType().getAttackPoint() -
+                        enemyCell.getExistingBuilding().getBuildingType().getAttackPoint();
+                if (e.getArmyType().getRange() > 0 && e.getArmyType().getRange() + range < distance)
+                    outOfRange = false;
                 isEnemyExist = true;
                 UnitControllerMessages moveMessage = moveUnit(enemyX, enemyY);
                 if (!moveMessage.equals(UnitControllerMessages.SUCCESS)) return moveMessage;
@@ -121,22 +128,30 @@ public class UnitController {
                 break;
             }
         }
-        if (!isEnemyExist) return UnitControllerMessages.NOT_ENEMY;
+        if (!outOfRange) return UnitControllerMessages.OUT_OF_RANGE;
+        else if (!isEnemyExist) return UnitControllerMessages.NOT_ENEMY;
         return UnitControllerMessages.SUCCESS;
     }
 
     public UnitControllerMessages archerAttack(int x, int y) {
         if (checkXY(x, y)) return UnitControllerMessages.INVALID_LOCATION;
         boolean isArcherExist = false;
+        boolean canArcherAttack = false;
         Cell targetCell = gameDatabase.getMap().getMap()[x][y];
         int distance = getDistance(x, y);
         for (Army e : gameDatabase.getSelectedUnits()) {
-            if (e.getArmyType().getRange() >= distance) {
+            int range = e.getLocation().getExistingBuilding().getBuildingType().getAttackPoint() -
+                    targetCell.getExistingBuilding().getBuildingType().getAttackPoint();
+            if (e.getArmyType().getRange() > 0) {
                 isArcherExist = true;
-                e.setTargetCell(targetCell);
+                if (distance <= e.getArmyType().getRange() + range) {
+                    canArcherAttack = true;
+                    e.setTargetCell(targetCell);
+                }
             }
         }
         if (!isArcherExist) return UnitControllerMessages.NOT_ARCHER;
+        if (!canArcherAttack) return UnitControllerMessages.OUT_OF_RANGE;
         return UnitControllerMessages.SUCCESS;
     }
 
