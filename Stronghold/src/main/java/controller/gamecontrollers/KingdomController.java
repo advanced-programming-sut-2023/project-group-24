@@ -1,9 +1,11 @@
 package controller.gamecontrollers;
 
 import model.Kingdom;
+import model.People;
 import model.buildings.Building;
 import model.buildings.BuildingType;
 import model.buildings.StorageBuilding;
+import model.buildings.WorkersNeededBuilding;
 import model.databases.GameDatabase;
 import model.enums.Item;
 import model.enums.PopularityFactor;
@@ -31,15 +33,81 @@ public class KingdomController {
         kingdom.setPopularityFactor(PopularityFactor.FOOD, kingdom.getFoodRate() * 4);
     }
 
+    public void nextTurn() {
+        //Todo ...
+    }
+
+    private void handlePopularity() {
+        Kingdom kingdom = gameDatabase.getCurrentKingdom();
+        int changePopularity = 0;
+        for (PopularityFactor value : PopularityFactor.values())
+            changePopularity += kingdom.getPopularityFactor(value);
+        changePopularity += kingdom.getPopularity();
+        if (changePopularity < 0)
+            changePopularity = 0;
+        else if (changePopularity > 100)
+            changePopularity = 100;
+        kingdom.setPopularity(changePopularity);
+    }
+
+    private void handlePopulation() {
+        Kingdom kingdom = gameDatabase.getCurrentKingdom();
+        int peopleChange = (2 * (kingdom.getPopularity() - 1) / 25 - 1);
+        if (peopleChange < 0)
+            removePeople(kingdom, -peopleChange);
+        else
+            for (int i = 0; i < peopleChange; i++)
+                new People(kingdom);
+    }
+
+    private void handleProduct() {
+        //TODO ...
+    }
+
+    private void handleWorkers() {
+        Kingdom kingdom = gameDatabase.getCurrentKingdom();
+        ArrayList<Building> buildings = kingdom.getBuildings();
+        outer:
+        while (kingdom.getUnemployment() > 0) {
+            for (Building building : buildings) {
+                if (building instanceof WorkersNeededBuilding) {
+                    if (!((WorkersNeededBuilding) building).hasEnoughWorkers()) {
+                        ((WorkersNeededBuilding) building).assignWorker(kingdom.getUnemploymentPeople());
+                        continue outer;
+                    }
+                }
+            }
+            break;
+        }
+    }
+
+    private void removePeople(Kingdom kingdom, int peopleWhoLeft) {
+        if (kingdom.getUnemployment() > peopleWhoLeft) {
+            kingdom.removeUnemploymentPeople(peopleWhoLeft);
+            return;
+        }
+        peopleWhoLeft -= kingdom.getUnemployment();
+        kingdom.removeUnemploymentPeople(kingdom.getUnemployment());
+        for (int i = 0; i < peopleWhoLeft; i++)
+            kingdom.removeEmploymentPeople();
+    }
+
     public void handleTax() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
         checkTaxRate(kingdom);
-        int tax =
+        int tax = (int) (kingdom.getPopulation() * getTax(kingdom.getWantedTaxRate()));
+        if (kingdom.getGold() + tax >= 0)
+            kingdom.changeGold(tax);
+        else {
+            kingdom.changeGold(kingdom.getGold());
+            setTaxRate(0);
+            kingdom.setWantedTaxRate(kingdom.getTaxRate());
+        }
     }
 
     private void checkTaxRate(Kingdom kingdom) {
         if (kingdom.getWantedTaxRate() < 0 && kingdom.getTaxRate() == 0 &&
-                -(kingdom.getPopulation() * getTax(kingdom)) <= kingdom.getGold()) {
+                -(kingdom.getPopulation() * getTax(kingdom.getWantedTaxRate())) <= kingdom.getGold()) {
             kingdom.setTaxRate(kingdom.getWantedTaxRate());
         }
     }
@@ -116,6 +184,7 @@ public class KingdomController {
                 " food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) +
                 " Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) +
                 " tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) +
+                " homeless: " + kingdom.getPopularityFactor(PopularityFactor.HOMELESS) +
                 " religion: " + kingdom.getPopularityFactor(PopularityFactor.RELIGION);
     }
 
@@ -128,6 +197,15 @@ public class KingdomController {
             return "Invalid foodRate!\n";
         gameDatabase.getCurrentKingdom().setFoodRate(foodRate);
         return "";
+    }
+
+    public void handleHomeless() {
+        Kingdom kingdom = gameDatabase.getCurrentKingdom();
+        kingdom.setPopularityFactor(PopularityFactor.HOMELESS, 0);
+        if (kingdom.getPopulation() > kingdom.getPopulationCapacity())
+            kingdom.setPopularityFactor(PopularityFactor.HOMELESS, -4);
+        else
+            kingdom.setPopularityFactor(PopularityFactor.HOMELESS, 0);
     }
 
 
@@ -155,8 +233,7 @@ public class KingdomController {
         return "";
     }
 
-    private double getTax(Kingdom kingdom) {
-        int taxRate = kingdom.getTaxRate();
+    private double getTax(int taxRate) {
         if (taxRate > 0)
             return 0.6 + taxRate * 0.2;
         if (taxRate < 0)

@@ -53,6 +53,7 @@ public class Kingdom {
         popularityFactors.put(PopularityFactor.RELIGION, 0);
         popularityFactors.put(PopularityFactor.TAX, 0);
         popularityFactors.put(PopularityFactor.INN, 0);
+        popularityFactors.put(PopularityFactor.HOMELESS, 0);
         setStorage();
     }
 
@@ -93,22 +94,21 @@ public class Kingdom {
     public int getUnemployment() {
         int unemployment = 0;
         for (People people : population)
-            if (!people.isWorking()) unemployment++;
+            if (people.getWorkStation() == null) unemployment++;
         return unemployment;
     }
 
-    public int getUnEmployedPeople() {
-        int unEmployedPeople = 0;
+    public People getUnemploymentPeople() {
         for (People people : population)
-            if (!people.isWorking())
-                unEmployedPeople++;
-        return unEmployedPeople;
+            if (people.getWorkStation() == null)
+                return people;
+        return null;
     }
 
-    public void assignToArmy(int number) {
+    public void removeUnemploymentPeople(int number) {
         for (int i = 0; i < number; i++) {
             for (People people : population) {
-                if (!people.isWorking()) {
+                if (people.getWorkStation() == null) {
                     population.remove(people);
                     break;
                 }
@@ -228,6 +228,10 @@ public class Kingdom {
                 populationCapacity += BuildingType.HOVEL.getHomeCapacity();
     }
 
+    public int getPopulationCapacity() {
+        return populationCapacity;
+    }
+
     public int getFoodNumber() {
         int foodNumber = 0;
         for (Item item : storage.keySet())
@@ -251,5 +255,12 @@ public class Kingdom {
 
     public void setFearRate(double fearRate) {
         this.fearRate = fearRate;
+    }
+
+    public void removeEmploymentPeople() {
+        if (0 == population.size())
+            return;
+        population.get(population.size() - 1).getWorkStation().unAssignWorker(population.get(population.size() - 1));
+        population.remove(population.size() - 1);
     }
 }

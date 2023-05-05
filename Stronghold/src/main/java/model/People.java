@@ -1,14 +1,15 @@
 package model;
 
+import model.buildings.Building;
 import model.map.Cell;
 
 public class People {
     private Kingdom owner;
-    private boolean isWorking;
+    private Building workStation;
 
     public People(Kingdom owner) {
         this.owner = owner;
-        isWorking = false;
+        workStation = null;
     }
 
     public Kingdom getOwner() {
@@ -19,11 +20,11 @@ public class People {
         this.owner = owner;
     }
 
-    public boolean isWorking() {
-        return isWorking;
+    public Building getWorkStation() {
+        return workStation;
     }
 
-    public void setWorking(boolean working) {
-        isWorking = working;
+    public void setWorkStation(Building workStation) {
+        this.workStation = workStation;
     }
 }

@@ -1,9 +1,11 @@
 package controller.gamecontrollers;
 
 import controller.AppController;
+import model.Kingdom;
 import model.army.Army;
 import model.army.ArmyType;
 import model.buildings.Building;
+import model.buildings.BuildingType;
 import model.buildings.DefenceBuilding;
 import model.databases.GameDatabase;
 import model.enums.Color;
@@ -58,13 +60,14 @@ public class ShowMapController {
     }
 
     private String SecondLine(int i, int j) {
+        Kingdom kingdom = gameDatabase.getCurrentKingdom();
         Cell cell = map[i][j];
         Building building = cell.getExistingBuilding();
         char buildingIcon = 'B';
-        if (building == null) buildingIcon = ' ';
+        if (building == null || (building.getBuildingType().equals(BuildingType.KILLING_PIT)
+                && !building.getKingdom().equals(kingdom))) buildingIcon = ' ';
         else if (building instanceof DefenceBuilding || building.getBuildingType().getName().contains("tower") ||
-                building.getBuildingType().getName().contains("turret"))
-            buildingIcon = 'W';
+                building.getBuildingType().getName().contains("turret")) buildingIcon = 'W';
         char troop = ' ';
         for (Army army : cell.getArmies())
             if (army.getPath() == null) {
