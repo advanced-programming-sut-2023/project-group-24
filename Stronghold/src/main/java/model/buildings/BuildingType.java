@@ -65,7 +65,7 @@ public enum BuildingType {
             1, 0, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
             false, false, null, EngineersNeededBuilding.class),
-    PITCH_DITCH("pitch ditch", Category.TRAP, new Pair<>(Item.PITCH, -1), 0, 1,
+    PITCH_DITCH("pitch ditch", Category.TRAP, new Pair<>(Item.PITCH, -1), 0, 1,//todo remove (prob)
             0, 0, 0, 0, 225, 0, 0,
             null, null, 0, null, null, null,
             false, false, null, Building.class),
@@ -76,7 +76,7 @@ public enum BuildingType {
     SIEGE_TENT("siege tent", Category.CASTLE, null, 0, 1,
             1, 0, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
-            false, false, null, EngineersNeededBuilding.class),
+            false, false, null, SiegeTent.class),
     STABLE("stable", Category.CASTLE, new Pair<>(Item.WOOD, -20), 400, 100,
             0, 0, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
@@ -213,6 +213,14 @@ public enum BuildingType {
             true, true, null, GateAndStairs.class),
     TOWN_HALL("town hall", Category.CASTLE, null, 0, 2000,
             0, 8, 0, 0, 0, 0, 0,
+            null, null, 0, null, null, null,
+            false, false, null, Building.class),
+    GOOD_THING("good thing", Category.TOWN, new Pair<>(Item.WOOD, -10), 0, 50,
+            0, 0, 0, 0, 0, 0, 0,
+            null, null, 0, null, null, null,
+            false, false, null, Building.class),
+    BAD_THING("bad thing", Category.TOWN, new Pair<>(Item.WOOD, -10), 0, 50,
+            0, 0, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
             false, false, null, Building.class);
 
