@@ -28,6 +28,8 @@ public enum ArmyType {
     CATAPULT(150, 150, 5, 200, 2),
     TREBUCHETS(150, 400, 7, 334, 0),
     FIRE_BALLISTA(150, 150, 6, 70, 2),
+    //DOG
+    DOG(0, 8, 0, 32, 5),
     //LORD
     LORD(0, 0, 0, 0, 0);
     private final int price;

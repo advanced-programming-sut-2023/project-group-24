@@ -86,7 +86,7 @@ public enum BuildingType {
             null, new Vector<>(List.of(new Pair<>(Item.APPLE, 6))), 0, null,
             null, null, false, false,
             new Vector<>(List.of(Texture.GRASS, Texture.CONDENSED)), ProducerBuilding.class),
-    DIARY_FARM("dairy farmer", Category.FARM, new Pair<>(Item.WOOD, -10), 0, 100,
+    DAIRY_FARM("dairy farmer", Category.FARM, new Pair<>(Item.WOOD, -10), 0, 100,
             1, 0, 0, 0, 0, 0, 1,
             null, null, 0, null, null,
             null, false, false,

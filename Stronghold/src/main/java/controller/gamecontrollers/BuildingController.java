@@ -7,11 +7,11 @@ import model.army.Soldier;
 import model.army.SoldierType;
 import model.buildings.Building;
 import model.buildings.BuildingType;
+import model.buildings.DairyProduce;
 import model.buildings.GateAndStairs;
 import model.databases.GameDatabase;
 import model.enums.Item;
 import model.map.Cell;
-import model.map.Map;
 import utils.Pair;
 import view.enums.messages.BuildingControllerMessages;
 
@@ -101,8 +101,32 @@ public class BuildingController {
         return BuildingControllerMessages.SUCCESS;
     }
 
-    public  BuildingControllerMessages openDogCage(KingdomController kingdomController) {
-        
+    public  BuildingControllerMessages openDogCage() {
+        Building building = gameDatabase.getCurrentBuilding();
+        if (gameDatabase.getCurrentBuilding().getBuildingType() != BuildingType.CAGED_WAR_DOGS)
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        for (int i = 0; i < 3; i++)
+            new Soldier(building.getLocation(), ArmyType.DOG, gameDatabase.getCurrentKingdom(), SoldierType.DOG);
+        building.takeDamage(building.getHp());
+        gameDatabase.getCurrentKingdom().removeBuilding(building);
+        return BuildingControllerMessages.SUCCESS;
+    }
+
+    public String[] showDetails() {
+        //TODO list all the information
+        return null;
+    }
+
+    public BuildingControllerMessages produceLeather(KingdomController kingdomController) {
+        if (gameDatabase.getCurrentBuilding().getBuildingType() != BuildingType.DAIRY_FARM)
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        //TODO is there empty space?
+        DairyProduce dairyProduce = (DairyProduce) gameDatabase.getCurrentBuilding();
+        if (dairyProduce.getNumberOfAnimals() == 0)
+            return BuildingControllerMessages.NOT_ENOUGH_COWS;
+        dairyProduce.produceLeather();
+        kingdomController.changeStockedNumber(new Pair<>(Item.LEATHER_ARMOR, 1));
+        return BuildingControllerMessages.SUCCESS;
     }
 
     private boolean checkLocationOutOfBounds(int x, int y) {
