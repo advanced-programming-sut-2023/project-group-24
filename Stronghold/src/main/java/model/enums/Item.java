@@ -52,6 +52,10 @@ public enum Item {
         return category;
     }
 
+    public String getName() {
+        return this.toString().toLowerCase().replaceAll("_", " ");
+    }
+
     public enum Category {
         WEAPON,
         FOOD,

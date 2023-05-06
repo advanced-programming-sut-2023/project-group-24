@@ -7,10 +7,14 @@ import model.army.Soldier;
 import model.army.SoldierType;
 import model.buildings.*;
 import model.databases.GameDatabase;
+import model.enums.Color;
 import model.enums.Item;
 import model.map.Cell;
 import utils.Pair;
 import view.enums.messages.BuildingControllerMessages;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BuildingController {
     private final GameDatabase gameDatabase;
@@ -119,9 +123,10 @@ public class BuildingController {
         return BuildingControllerMessages.SUCCESS;
     }
 
-    public String[] showDetails() {
-        //TODO list all the information
-        return null;
+    public ArrayList<String> showDetails() {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return new ArrayList<>(List.of(Color.RED + "select a building first!" + Color.RESET));
+        return gameDatabase.getCurrentBuilding().showDetails();
     }
 
     public BuildingControllerMessages produceLeather(KingdomController kingdomController) {
@@ -129,7 +134,7 @@ public class BuildingController {
             return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
         if (gameDatabase.getCurrentBuilding().getBuildingType() != BuildingType.DAIRY_FARM)
             return BuildingControllerMessages.IRRELEVANT_BUILDING;
-        //TODO is there empty space?
+        //TODO is there empty space on storage?
         DairyProduce dairyProduce = (DairyProduce) gameDatabase.getCurrentBuilding();
         if (dairyProduce.getNumberOfAnimals() == 0)
             return BuildingControllerMessages.NOT_ENOUGH_COWS;

@@ -5,6 +5,8 @@ import model.Kingdom;
 import model.map.Cell;
 import utils.Pair;
 
+import java.util.ArrayList;
+
 public class ProducerBuilding extends WorkersNeededBuilding {
     private int numberOfItemsWaitingToBeLoaded;
     private int itemToProduce;
@@ -34,8 +36,6 @@ public class ProducerBuilding extends WorkersNeededBuilding {
         return false;
     }
 
-    //todo Pair<Pair<Item, Integer>, Pair<Item, Integer>>
-
     public Pair<Pair<Item, Integer>, Pair<Item, Integer>> produceItem() {
         if (!hasEnoughWorkers()) return null;
         if (getBuildingType().getName().equals("quarry")) {
@@ -53,5 +53,26 @@ public class ProducerBuilding extends WorkersNeededBuilding {
 
     public void loadItem(int amount) {
         numberOfItemsWaitingToBeLoaded -= amount;
+    }
+
+    @Override
+    public ArrayList<String> showDetails() {
+        ArrayList<String> output = super.showDetails();
+        if (getBuildingType().getProduces() != null) {
+            output.add("items this building can produce:");
+            for (int i = 0; i < getBuildingType().getProduces().size(); i++) {
+                Pair<Item, Integer> pair = getBuildingType().getProduces().get(i);
+                String item = String.format("%d) %s - %d", i + 1, pair.getObject1().getName(), pair.getObject2());
+                if (getBuildingType().getUses() != null)
+                    output.add(item + String.format("requires: %s - %d",
+                            getBuildingType().getUses().get(i).getObject1().getName(), -pair.getObject2()));
+                else
+                    output.add(item);
+            }
+        }
+        if (getBuildingType() == BuildingType.QUARRY)
+            output.add(String.format("items waiting to be loaded: %d/%d", numberOfItemsWaitingToBeLoaded,
+                    getBuildingType().getStorageCapacity()));
+        return output;
     }
 }
