@@ -7,9 +7,11 @@ import model.army.Soldier;
 import model.army.SoldierType;
 import model.buildings.Building;
 import model.buildings.BuildingType;
+import model.buildings.GateAndStairs;
 import model.databases.GameDatabase;
 import model.enums.Item;
 import model.map.Cell;
+import model.map.Map;
 import utils.Pair;
 import view.enums.messages.BuildingControllerMessages;
 
@@ -89,9 +91,18 @@ public class BuildingController {
         return BuildingControllerMessages.SUCCESS;
     }
 
-    public BuildingControllerMessages createResources(String resourceName) {
-        //TODO check if it can make that resource
-        return null;
+    public BuildingControllerMessages changeGateClosedState() {
+        Building building = gameDatabase.getCurrentBuilding();
+        if (building.getBuildingType() != BuildingType.LARGE_STONE_GATEHOUSE
+                && building.getBuildingType() != BuildingType.SMALL_STONE_GATEHOUSE)
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        ((GateAndStairs) building).changeClosedState();
+        changeDrawBridgeClosedState(building.getLocation().getX(), building.getLocation().getY());
+        return BuildingControllerMessages.SUCCESS;
+    }
+
+    public  BuildingControllerMessages openDogCage(KingdomController kingdomController) {
+        
     }
 
     private boolean checkLocationOutOfBounds(int x, int y) {
@@ -168,5 +179,21 @@ public class BuildingController {
                 || (x < gameDatabase.getMap().getSize() - 1 && isThereAnEnemyHere(x + 1, y))
                 || (y > 0 && isThereAnEnemyHere(x, y - 1))
                 || (y < gameDatabase.getMap().getSize() - 1 && isThereAnEnemyHere(x, y + 1));
+    }
+
+    private void changeDrawBridgeClosedState(int x, int y) {
+        Cell[][] map = gameDatabase.getMap().getMap();
+        if (x != 0 && map[x - 1][y].getExistingBuilding().getBuildingType().equals(BuildingType.DRAWBRIDGE)
+                && map[x - 1][y].getExistingBuilding().getKingdom().equals(gameDatabase.getCurrentKingdom()))
+            ((GateAndStairs) map[x - 1][y].getExistingBuilding()).changeClosedState();
+        if (y != 0 && map[x][y - 1].getExistingBuilding().getBuildingType().equals(BuildingType.DRAWBRIDGE)
+                && map[x][y - 1].getExistingBuilding().getKingdom().equals(gameDatabase.getCurrentKingdom()))
+            ((GateAndStairs) map[x][y - 1].getExistingBuilding()).changeClosedState();
+        if (x != map.length - 1 && map[x + 1][y].getExistingBuilding().getBuildingType().equals(BuildingType.DRAWBRIDGE)
+                && map[x + 1][y].getExistingBuilding().getKingdom().equals(gameDatabase.getCurrentKingdom()))
+            ((GateAndStairs) map[x + 1][y].getExistingBuilding()).changeClosedState();
+        if (y != map.length - 1 && map[x][y + 1].getExistingBuilding().getBuildingType().equals(BuildingType.DRAWBRIDGE)
+                && map[x][y + 1].getExistingBuilding().getKingdom().equals(gameDatabase.getCurrentKingdom()))
+            ((GateAndStairs) map[x][y + 1].getExistingBuilding()).changeClosedState();
     }
 }
