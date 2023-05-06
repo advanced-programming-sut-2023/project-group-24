@@ -5,10 +5,7 @@ import model.army.Army;
 import model.army.ArmyType;
 import model.army.Soldier;
 import model.army.SoldierType;
-import model.buildings.Building;
-import model.buildings.BuildingType;
-import model.buildings.DairyProduce;
-import model.buildings.GateAndStairs;
+import model.buildings.*;
 import model.databases.GameDatabase;
 import model.enums.Item;
 import model.map.Cell;
@@ -52,10 +49,14 @@ public class BuildingController {
         if (cell.getExistingBuilding().getKingdom() != gameDatabase.getCurrentKingdom())
             return BuildingControllerMessages.NOT_OWNER;
         gameDatabase.setCurrentBuilding(cell.getExistingBuilding()); //TODO remember to deselect building on next turn
+        if (cell.getExistingBuilding().getBuildingType() == BuildingType.MARKET)
+            return BuildingControllerMessages.MARKET;
         return BuildingControllerMessages.SUCCESS;
     }
 
     public BuildingControllerMessages createUnit(String name, int count, KingdomController kingdomController) {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
         if (gameDatabase.getCurrentBuilding().getBuildingType().getCategory() != BuildingType.Category.ARMY_MAKER)
             return BuildingControllerMessages.INCORRECT_BUILDING;
         if (count <= 0)
@@ -77,6 +78,8 @@ public class BuildingController {
     }
 
     public BuildingControllerMessages repair(KingdomController kingdomController) {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
         Building building = gameDatabase.getCurrentBuilding();
         if (!building.getBuildingType().canBeRepaired())
             return BuildingControllerMessages.IRRELEVANT_BUILDING;
@@ -92,6 +95,8 @@ public class BuildingController {
     }
 
     public BuildingControllerMessages changeGateClosedState() {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
         Building building = gameDatabase.getCurrentBuilding();
         if (building.getBuildingType() != BuildingType.LARGE_STONE_GATEHOUSE
                 && building.getBuildingType() != BuildingType.SMALL_STONE_GATEHOUSE)
@@ -102,6 +107,8 @@ public class BuildingController {
     }
 
     public  BuildingControllerMessages openDogCage() {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
         Building building = gameDatabase.getCurrentBuilding();
         if (gameDatabase.getCurrentBuilding().getBuildingType() != BuildingType.CAGED_WAR_DOGS)
             return BuildingControllerMessages.IRRELEVANT_BUILDING;
@@ -118,6 +125,8 @@ public class BuildingController {
     }
 
     public BuildingControllerMessages produceLeather(KingdomController kingdomController) {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
         if (gameDatabase.getCurrentBuilding().getBuildingType() != BuildingType.DAIRY_FARM)
             return BuildingControllerMessages.IRRELEVANT_BUILDING;
         //TODO is there empty space?
@@ -126,6 +135,19 @@ public class BuildingController {
             return BuildingControllerMessages.NOT_ENOUGH_COWS;
         dairyProduce.produceLeather();
         kingdomController.changeStockedNumber(new Pair<>(Item.LEATHER_ARMOR, 1));
+        return BuildingControllerMessages.SUCCESS;
+    }
+
+    public BuildingControllerMessages selectItemToProduce(String name) {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
+        if (gameDatabase.getCurrentBuilding().getBuildingType().getProduces().size() <= 1)
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        if (Item.stringToEnum(name) == null)
+            return BuildingControllerMessages.ITEM_DOES_NOT_EXIST;
+        ProducerBuilding building = (ProducerBuilding) gameDatabase.getCurrentBuilding();
+        if (!building.setItemToProduce(Item.stringToEnum(name)))
+            return BuildingControllerMessages.CANNOT_PRODUCE_ITEM;
         return BuildingControllerMessages.SUCCESS;
     }
 
