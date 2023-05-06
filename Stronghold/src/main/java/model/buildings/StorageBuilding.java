@@ -51,6 +51,20 @@ public class StorageBuilding extends Building {
         else return removeItem(items);
     }
 
+    public int useFood(int count) {
+        if (this.getBuildingType() != BuildingType.GRANARY)
+            return count;
+        for (Item item : storage.keySet()) {
+            if (count <= storage.get(item)) {
+                storage.replace(item, storage.get(item) - count);
+                return 0;
+            }
+            count -= storage.get(item);
+            storage.replace(item, 0);
+        }
+        return count;
+    }
+
     public int getStockedNumber(Item item) {
         return storage.get(item);
     }

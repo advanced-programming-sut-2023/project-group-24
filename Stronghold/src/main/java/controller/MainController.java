@@ -10,6 +10,14 @@ import java.security.NoSuchAlgorithmException;
 
 public class MainController {
 
+    public static String removeDoubleQuotation(String input) {
+        if (input == null) return null;
+        String result;
+        result = input.replaceFirst("\"", "");
+        result = result.replaceFirst("\"$", "");
+        return result;
+    }
+
     public static boolean isUsernameValid(String username) {
         return Commands.getMatcher(username, Commands.VALID_USERNAME) == null;
     }
@@ -54,5 +62,10 @@ public class MainController {
 
     public static String turnSpaceToUnderline(String string) {
         return string.replaceAll(" ", "_");
+    }
+
+    public static String fixInputString(String string) {
+        if (string.startsWith("\"")) return string.substring(1, string.length() - 1);
+        return string;
     }
 }

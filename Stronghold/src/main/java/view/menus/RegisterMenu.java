@@ -1,6 +1,7 @@
 package view.menus;
 
 import controller.AppController;
+import controller.MainController;
 import controller.RegisterMenuController;
 import utils.enums.MenusName;
 import view.enums.commands.Commands;
@@ -23,27 +24,33 @@ public class RegisterMenu {
             command = GetInputFromUser.getUserInput();
             if ((matcher = Commands.getMatcher(command, Commands.CREATE_USER)) != null)
                 checkRegisterErrors(matcher);
+            else if (Commands.getMatcher(command, Commands.EXIT) != null)
+                enterLoginMenu();
             else System.out.println("Invalid command!");
         }
     }
 
+    private void enterLoginMenu() {
+        AppController.setCurrentMenu(MenusName.LOGIN_MENU);
+        System.out.println("Your are in login menu now!");
+    }
+
     private void checkRegisterErrors(Matcher matcher) {
-        String username = matcher.group("username");
-        String password = matcher.group("password");
-        String passwordConfirm = matcher.group("passwordConfirm");
-        String nickname = matcher.group("nickname");
-        String email = matcher.group("email");
-        String sloganTag = matcher.group("sloganTag");
-        String slogan = matcher.group("slogan");
+        String username = MainController.removeDoubleQuotation(matcher.group("username"));
+        String password = MainController.removeDoubleQuotation(matcher.group("password"));
+        String passwordConfirm = MainController.removeDoubleQuotation(matcher.group("passwordConfirm"));
+        String nickname = MainController.removeDoubleQuotation(matcher.group("nickname"));
+        String email = MainController.removeDoubleQuotation(matcher.group("email"));
+        String slogan = MainController.removeDoubleQuotation(matcher.group("slogan"));
         int recoveryQuestion;
         String recoveryAnswer;
         RegisterMenuMessages message = registerMenuController.checkErrorsForRegister(
                 username, password,
                 passwordConfirm, nickname,
-                email, sloganTag, slogan);
+                email, slogan);
         switch (message) {
             case SUCCESS -> {
-                if(sloganTag != null) slogan = checkAndSetSlogan(slogan);
+                if (slogan != null) slogan = checkAndSetSlogan(slogan);
                 password = checkAndSetPassword(password);
                 if (password == null) return;
                 String getRecovery = getRecoveryQuestion();
@@ -64,6 +71,7 @@ public class RegisterMenu {
             case NON_CAPITAL_PASSWORD -> System.out.println("The new password must contain uppercase characters!");
             case NON_SMALL_PASSWORD -> System.out.println("The new password must contain lowercase characters!");
             case NON_NUMBER_PASSWORD -> System.out.println("The new password must contain numbers!");
+            case NON_SPECIFIC_PASSWORD -> System.out.println("The new password must contain specific characters!");
             case INCORRECT_PASSWORD_CONFIRM -> System.out.println("Your password confirmation is not correct!");
             case DUPLICATE_EMAIL -> System.out.println("Your email is already used!");
             case INVALID_EMAIL -> System.out.println("Your email format is invalid!");
@@ -104,7 +112,7 @@ public class RegisterMenu {
             case SUCCESS -> {
                 return randomPassword;
             }
-            case INCORRECT_ANSWER_CONFIRMATION -> System.out.println("Your password conformation is not correct!");
+            case INCORRECT_PASSWORD_CONFIRM -> System.out.println("Your password conformation is not correct!");
         }
         return null;
     }
@@ -121,9 +129,9 @@ public class RegisterMenu {
             if ((matcher = Commands.getMatcher(command, Commands.QUESTION_PICK)) != null) break;
             else System.out.println("Invalid command!");
         }
-        String recoveryQuestion = matcher.group("questionNumber");
-        String answer = matcher.group("answer");
-        String answerConfirm = matcher.group("answerConfirm");
+        String recoveryQuestion = MainController.removeDoubleQuotation(matcher.group("questionNumber"));
+        String answer = MainController.removeDoubleQuotation(matcher.group("answer"));
+        String answerConfirm = MainController.removeDoubleQuotation(matcher.group("answerConfirm"));
         RegisterMenuMessages message = registerMenuController.checkErrorsForSecurityQuestion(recoveryQuestion, answer, answerConfirm);
         switch (message) {
             case SUCCESS -> {

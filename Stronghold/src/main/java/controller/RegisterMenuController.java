@@ -22,12 +22,12 @@ public class RegisterMenuController {
 
     public RegisterMenuMessages checkErrorsForRegister(String username, String password,
                                                        String passwordConfirmation, String nickname,
-                                                       String email, String sloganTag, String slogan) {
-        if (username == null) return RegisterMenuMessages.NULL_USERNAME;
-        else if (password == null) return RegisterMenuMessages.NULL_PASSWORD;
-        else if (nickname == null) return RegisterMenuMessages.NULL_NICKNAME;
-        else if (email == null) return RegisterMenuMessages.NULL_EMAIL;
-        else if (sloganTag != null && slogan == null) return RegisterMenuMessages.NULL_SLOGAN;
+                                                       String email, String slogan) {
+        if (username.equals("")) return RegisterMenuMessages.NULL_USERNAME;
+        else if (password.equals("")) return RegisterMenuMessages.NULL_PASSWORD;
+        else if (nickname.equals("")) return RegisterMenuMessages.NULL_NICKNAME;
+        else if (email.equals("")) return RegisterMenuMessages.NULL_EMAIL;
+        else if (slogan != null && slogan.equals("")) return RegisterMenuMessages.NULL_SLOGAN;
         else if (MainController.isUsernameValid(username)) return RegisterMenuMessages.INVALID_USERNAME;
         else if (database.getUserByUsername(username) != null) return RegisterMenuMessages.DUPLICATE_USERNAME;
         else if (!password.equals("random")) {
@@ -55,6 +55,9 @@ public class RegisterMenuController {
             }
             case NON_NUMBER_PASSWORD -> {
                 return RegisterMenuMessages.NON_NUMBER_PASSWORD;
+            }
+            case NON_SPECIFIC_PASSWORD -> {
+                return RegisterMenuMessages.NON_SPECIFIC_PASSWORD;
             }
         }
         if (!password.equals(passwordConfirmation)) return RegisterMenuMessages.INCORRECT_PASSWORD_CONFIRM;

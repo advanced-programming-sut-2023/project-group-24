@@ -1,7 +1,7 @@
 package model.databases;
 
 import model.Kingdom;
-import model.User;
+import model.Trade;
 import model.army.Army;
 import model.buildings.Building;
 import model.map.Map;
@@ -12,15 +12,16 @@ public class GameDatabase {
     private final ArrayList<Army> selectedUnits;
     private final Map map;
     private Kingdom currentKingdom;
-    private ArrayList<Kingdom> kingdoms;
+    private final ArrayList<Kingdom> kingdoms;
     private Building currentBuilding;
     private int turnPlayed;
+    private ArrayList<Trade> trades; //todo
 
-    public GameDatabase(ArrayList<User> players, Map map) {
+    public GameDatabase(ArrayList<Kingdom> kingdoms, Map map) {
         selectedUnits = new ArrayList<>();
         this.map = map;
         turnPlayed = 0;
-        //TODO add kingdoms of current player
+        this.kingdoms = new ArrayList<>(kingdoms);
     }
 
     public void nextTurn() {
@@ -44,7 +45,7 @@ public class GameDatabase {
         return currentKingdom;
     }
 
-    public ArrayList getSelectedUnits() {
+    public ArrayList<Army> getSelectedUnits() {
         return selectedUnits;
     }
 
@@ -63,5 +64,17 @@ public class GameDatabase {
 
     public void setCurrentBuilding(Building currentBuilding) {
         this.currentBuilding = currentBuilding;
+    }
+
+    public void addTrade(Trade trade) {
+        this.trades.add(trade);
+    }
+
+    public void removeTrade(Trade trade) {
+        this.trades.remove(trade);
+    }
+
+    public void removeTrade(int index) {
+        this.trades.remove(index);
     }
 }

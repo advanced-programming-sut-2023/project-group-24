@@ -1,6 +1,7 @@
 package view.menus;
 
 import controller.AppController;
+import controller.MainController;
 import controller.ProfileMenuController;
 import utils.enums.MenusName;
 import view.enums.commands.Commands;
@@ -41,11 +42,20 @@ public class ProfileMenu {
                 showSlogan();
             else if (Commands.getMatcher(command, Commands.PROFILE_DISPLAY) != null)
                 showAllOfProfile();
+            else if (Commands.getMatcher(command, Commands.EXIT) != null)
+                enterMainMenu();
+            else
+                System.out.println("Invalid command!");
         }
     }
 
+    private void enterMainMenu() {
+        AppController.setCurrentMenu(MenusName.MAIN_MENU);
+        System.out.println("You are in main menu now!");
+    }
+
     private void changeUsername(Matcher matcher) {
-        String username = matcher.group("username");
+        String username = MainController.removeDoubleQuotation(matcher.group("username"));
         ProfileMenuMessages message = profileMenuController.changeUsername(username);
         switch (message) {
             case SUCCESS -> System.out.println("Your username has been successfully changed");
@@ -58,7 +68,7 @@ public class ProfileMenu {
     }
 
     private void changeNickname(Matcher matcher) {
-        String nickname = matcher.group("nickname");
+        String nickname = MainController.removeDoubleQuotation(matcher.group("nickname"));
         ProfileMenuMessages message = profileMenuController.changeNickname(nickname);
         switch (message) {
             case SUCCESS -> System.out.println("Your nickname has been successfully changed");
@@ -67,8 +77,8 @@ public class ProfileMenu {
     }
 
     private void changePassword(Matcher matcher) {
-        String oldPassword = matcher.group("oldPassword");
-        String newPassword = matcher.group("newPassword");
+        String oldPassword = MainController.removeDoubleQuotation(matcher.group("oldPassword"));
+        String newPassword = MainController.removeDoubleQuotation(matcher.group("newPassword"));
         ProfileMenuMessages message = profileMenuController.checkChangePasswordErrors(oldPassword, newPassword);
         switch (message) {
             case SUCCESS -> checkPasswordConfirmAndChangeThat(newPassword);
@@ -78,6 +88,7 @@ public class ProfileMenu {
             case SHORT_PASSWORD -> System.out.println("The new password is too short!");
             case NON_CAPITAL_PASSWORD -> System.out.println("The new password must contain uppercase characters!");
             case NON_SMALL_PASSWORD -> System.out.println("The new password must contain lowercase characters!");
+            case NON_SPECIFIC_PASSWORD -> System.out.println("The new password must contain specific characters!");
             case NON_NUMBER_PASSWORD -> System.out.println("The new password must contain numbers!");
             case DUPLICATE_PASSWORD -> System.out.println("Please enter a new password!");
         }
@@ -95,7 +106,7 @@ public class ProfileMenu {
     }
 
     private void changeEmail(Matcher matcher) {
-        String email = matcher.group("email");
+        String email = MainController.removeDoubleQuotation(matcher.group("email"));
         ProfileMenuMessages message = profileMenuController.changeEmail(email);
         switch (message) {
             case SUCCESS -> System.out.println("Your email has been successfully changed!");
@@ -105,7 +116,7 @@ public class ProfileMenu {
     }
 
     private void changeSlogan(Matcher matcher) {
-        String slogan = matcher.group("slogan");
+        String slogan = MainController.removeDoubleQuotation(matcher.group("slogan"));
         ProfileMenuMessages message = profileMenuController.changeSlogan(slogan);
         switch (message) {
             case SUCCESS -> System.out.println("Your slogan has been successfully changed!");

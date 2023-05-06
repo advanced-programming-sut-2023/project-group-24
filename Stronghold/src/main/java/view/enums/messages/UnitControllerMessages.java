@@ -1,5 +1,19 @@
 package view.enums.messages;
 
 public enum UnitControllerMessages {
-    //TODO add messages
+    SUCCESS,
+    INVALID_LOCATION,
+    INVALID_TYPE,
+    NULL_SELECTED_UNIT,
+    BLOCK,
+    ALREADY_IN_DESTINATION,
+    INVALID_STATE,
+    NOT_ENEMY,
+    NOT_ARCHER,
+    NOT_PATROL,
+    INVALID_DIRECTION,
+    NOT_SELECT_OIL,
+    CAN_NOT_POUR_OIL,
+    NOT_SELECTED_ENGINEER,
+    OUT_OF_RANGE
 }
