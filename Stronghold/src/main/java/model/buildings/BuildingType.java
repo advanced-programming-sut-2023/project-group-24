@@ -222,7 +222,11 @@ public enum BuildingType {
     BAD_THING("bad thing", Category.TOWN, new Pair<>(Item.WOOD, -10), 0, 50,
             0, 0, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
-            false, false, null, Building.class);
+            false, false, null, Building.class),
+    MOAT("moat", Category.CASTLE, null, 0, 100000,
+            0, 0, -1, 0, 0, 0, 0,
+            null, null, 0, null, null, null,
+            false, false, null, DefenceBuilding.class);
 
     //TODO add good and bad things, etc
     private final String name;
