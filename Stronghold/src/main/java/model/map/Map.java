@@ -41,15 +41,4 @@ public class Map {
         return map;
     }
 
-    public boolean canMove(Cell cell, Direction direction) {
-        int x = cell.getX();
-        int y = cell.getY();
-        switch (direction) {
-            case DOWN -> x--;
-            case LEFT -> y--;
-            case UP -> x++;
-            case RIGHT -> y++;
-        }
-        return map[x][y].canMove(direction, cell);
-    }
 }

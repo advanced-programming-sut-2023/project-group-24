@@ -12,7 +12,10 @@ public class GameController {
         this.gameDatabase = gameDatabase;
     }
 
-    public void nextTurn() {
+    public void nextTurn(KingdomController kingdomController) {
+        //warController.nextTurn();
+        gameDatabase.nextTurn();
+        kingdomController.nextTurn();
         //TODO call annother funcs
     }
 
@@ -45,19 +48,6 @@ public class GameController {
         //TODO active trap and remove that and take damage units
     }
 
-    private boolean canPitchDitchBurn(Cell cell) {
-        //check that
-        return true;
-    }
-
-    private void checkAndBurnOil(Cell cell) {
-        //TODO if it's ok call burn func
-    }
-
-    private void burnOil(Cell cell) {
-        //TODO burn oil
-    }
-
     private void canGateBeCaptured(Cell cell) {
         //TODO if it's ok call capure func
     }
@@ -66,20 +56,12 @@ public class GameController {
         //TODO open gate
     }
 
-    private void checkTunnelUnderCell(Cell cell) {
-        //TODO if it's correct call destroy building func
-    }
-
     private void destroyBuilding(Cell cell) {
         //TODO destroy building in that cell
     }
 
     private void removeArmy(Army army) {
         //TODO remove Army
-    }
-
-    private void willSoldierDrown(Cell cell) {
-        //TODO if it's ok call removeArmy func
     }
 
     private void hasKingdomsFallen() {
