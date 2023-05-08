@@ -45,6 +45,7 @@ public class BuildingController {
     }
 
     public BuildingControllerMessages selectBuilding(int x, int y) {
+        //todo you cannot select siege tent and moats
         if (checkLocationOutOfBounds(x, y))
             return BuildingControllerMessages.LOCATION_OUT_OF_BOUNDS;
         Cell cell = gameDatabase.getMap().getMap()[x][y];
@@ -153,6 +154,18 @@ public class BuildingController {
         ProducerBuilding building = (ProducerBuilding) gameDatabase.getCurrentBuilding();
         if (!building.setItemToProduce(Item.stringToEnum(name)))
             return BuildingControllerMessages.CANNOT_PRODUCE_ITEM;
+        return BuildingControllerMessages.SUCCESS;
+    }
+
+    public BuildingControllerMessages removeMoat(int x, int y) {
+        if (checkLocationOutOfBounds(x, y)) return BuildingControllerMessages.LOCATION_OUT_OF_BOUNDS;
+        Building building = gameDatabase.getMap().getMap()[x][y].getExistingBuilding();
+        if (building == null || building.getBuildingType() != BuildingType.MOAT)
+            return BuildingControllerMessages.NO_MOATS_HERE;
+        if (building.getKingdom() != gameDatabase.getCurrentKingdom())
+            return BuildingControllerMessages.NOT_OWNER;
+        building.getKingdom().removeBuilding(building);
+        gameDatabase.getMap().getMap()[x][y].setExistingBuilding(null);
         return BuildingControllerMessages.SUCCESS;
     }
 

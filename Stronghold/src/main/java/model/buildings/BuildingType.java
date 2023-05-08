@@ -228,7 +228,6 @@ public enum BuildingType {
             null, null, 0, null, null, null,
             false, false, null, DefenceBuilding.class);
 
-    //TODO add good and bad things, etc
     private final String name;
     private final Category category;
     private final Pair<Item, Integer> materialToBuild;

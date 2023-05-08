@@ -18,6 +18,7 @@ public enum BuildingControllerMessages {
     ITEM_DOES_NOT_EXIST,
     CANNOT_PRODUCE_ITEM,
     NO_BUILDINGS_SELECTED,
+    NO_MOATS_HERE,
     SUCCESS
     //TODO add messages
 }
