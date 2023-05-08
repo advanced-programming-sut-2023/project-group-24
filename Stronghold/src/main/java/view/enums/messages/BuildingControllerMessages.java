@@ -19,6 +19,7 @@ public enum BuildingControllerMessages {
     CANNOT_PRODUCE_ITEM,
     NO_BUILDINGS_SELECTED,
     NO_MOATS_HERE,
+    INVALID_NUMBER,
     SUCCESS
     //TODO add messages
 }

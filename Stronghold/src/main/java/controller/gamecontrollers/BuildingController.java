@@ -169,6 +169,16 @@ public class BuildingController {
         return BuildingControllerMessages.SUCCESS;
     }
 
+    public BuildingControllerMessages setTaxRate(int taxRate, KingdomController kingdomController) {
+        if (gameDatabase.getCurrentBuilding() == null
+                || gameDatabase.getCurrentBuilding().getBuildingType() != BuildingType.TOWN_HALL)
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        if (taxRate < -3 || taxRate > 8)
+            return BuildingControllerMessages.INVALID_NUMBER;
+        kingdomController.handleTaxFactor(taxRate);
+        return BuildingControllerMessages.SUCCESS;
+    }
+
     private boolean checkLocationOutOfBounds(int x, int y) {
         return x < 0 || x >= gameDatabase.getMap().getSize() || y < 0 || y >= gameDatabase.getMap().getSize();
     }

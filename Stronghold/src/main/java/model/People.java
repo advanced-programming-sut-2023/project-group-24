@@ -1,29 +1,30 @@
 package model;
 
+import model.buildings.Building;
 import model.map.Cell;
 
 public class People {
-    private Cell location;
-    private boolean isWorking;
+    private Kingdom owner;
+    private Building workStation;
 
-    public People(Cell location) {
-        this.location = location;
-        isWorking = false;
+    public People(Kingdom owner) {
+        this.owner = owner;
+        workStation = null;
     }
 
-    public Cell getLocation() {
-        return location;
+    public Kingdom getOwner() {
+        return owner;
     }
 
-    public void setLocation(Cell location) {
-        this.location = location;
+    public void setOwner(Kingdom owner) {
+        this.owner = owner;
     }
 
-    public boolean isWorking() {
-        return isWorking;
+    public Building getWorkStation() {
+        return workStation;
     }
 
-    public void setWorking(boolean working) {
-        isWorking = working;
+    public void setWorkStation(Building workStation) {
+        this.workStation = workStation;
     }
 }
