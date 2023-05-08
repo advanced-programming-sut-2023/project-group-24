@@ -5,6 +5,7 @@ import model.People;
 import model.army.*;
 import model.buildings.Building;
 import model.buildings.BuildingType;
+import model.buildings.SiegeTent;
 import model.databases.GameDatabase;
 import model.enums.Direction;
 import model.map.Cell;
@@ -172,7 +173,7 @@ public class UnitController {
         int x = currentCell.getX();
         int y = currentCell.getY();
         if (!checkValidPourOil(direction, x, y)) return UnitControllerMessages.CAN_NOT_POUR_OIL;
-        Cell targetCell = getCellForPourOil(direction, x, y);
+        Cell targetCell = getCellWithDirection(direction, x, y);
         if (currentCell.getExistingBuilding().getBuildingType().getHeight()
                 >= targetCell.getExistingBuilding().getBuildingType().getHeight())
             killThemAll(targetCell);
@@ -182,7 +183,7 @@ public class UnitController {
 
     public UnitControllerMessages digTunnel(int x, int y) {
         if (checkXY(x, y)) return UnitControllerMessages.INVALID_LOCATION;
-        //add pathfinder
+        //gashtan be donbale nazdiktarin sakhteman ta shoaa 5  va damage 400 be on va remove kardan building mazkoor va mordan khode kharash
         return UnitControllerMessages.SUCCESS;
     }
 
@@ -194,24 +195,39 @@ public class UnitController {
         }
         WarMachineType warMachineType = WarMachineType.stringToEnum(equipmentType);
         if (warMachineType == null) return UnitControllerMessages.INVALID_TYPE;
-        new Building(gameDatabase.getCurrentKingdom(), selectedUnits.get(0).getLocation(), BuildingType.SIEGE_TENT);
-        //TODO check type of tent
+        SiegeTent tent = (SiegeTent) Building.getBuildingFromBuildingType
+                (gameDatabase.getCurrentKingdom(), selectedUnits.get(0).getLocation(), BuildingType.SIEGE_TENT);
+        assert tent != null;
+        tent.setProducingWarMachine(WarMachineType.stringToEnum(equipmentType));
         return UnitControllerMessages.SUCCESS;
     }
 
-    public UnitControllerMessages digMoat(int x, int y) {
-        //TODO dig moat
-        return null;
+    public UnitControllerMessages digMoat(Direction direction) {
+        ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
+        if (selectedUnits == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        for (Army e : selectedUnits)
+            if (!(e instanceof Soldier && ((Soldier) e).getSoldierType().isCanDig()))
+                return UnitControllerMessages.IRRELEVANT_UNIT;
+        Cell targetCell = getCellWithDirection
+                (direction, selectedUnits.get(0).getLocation().getX(), selectedUnits.get(0).getLocation().getY());
+        if (!targetCell.canBuild()) return UnitControllerMessages.CANNOT_BUILD;
+        Building.getBuildingFromBuildingType(gameDatabase.getCurrentKingdom(), targetCell, BuildingType.MOAT);
+        return UnitControllerMessages.SUCCESS;
     }
 
-    public UnitControllerMessages removeMoat(int x, int y) {
-        //TODO remove moat
-        return null;
-    }
-
-    public UnitControllerMessages fillMoat(int x, int y) {
-        //TODO fil opponent moat
-        return null;
+    public UnitControllerMessages fillMoat(Direction direction) {
+        ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
+        if (selectedUnits == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        for (Army e : selectedUnits)
+            if (!(e instanceof Soldier && ((Soldier) e).getSoldierType().isCanDig()))
+                return UnitControllerMessages.IRRELEVANT_UNIT;
+        Cell targetCell = getCellWithDirection
+                (direction, selectedUnits.get(0).getLocation().getX(), selectedUnits.get(0).getLocation().getY());
+        if (!targetCell.getExistingBuilding().getBuildingType().equals(BuildingType.MOAT))
+            return UnitControllerMessages.MOAT_DOES_NOT_EXIST;
+        targetCell.getExistingBuilding().getKingdom().removeBuilding(targetCell.getExistingBuilding());
+        targetCell.setExistingBuilding(null);
+        return UnitControllerMessages.SUCCESS;
     }
 
     public UnitControllerMessages stop() {
@@ -261,7 +277,7 @@ public class UnitController {
                 y < 0 || y >= gameDatabase.getMap().getSize();
     }
 
-    private Cell getCellForPourOil(Direction direction, int x, int y) {
+    private Cell getCellWithDirection(Direction direction, int x, int y) {
         Cell[][] cells = gameDatabase.getMap().getMap();
         if (direction.equals(Direction.UP))
             return cells[x + 1][y];

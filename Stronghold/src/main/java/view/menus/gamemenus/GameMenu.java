@@ -11,6 +11,7 @@ import view.enums.messages.BuildingControllerMessages;
 import view.enums.messages.UnitControllerMessages;
 import view.menus.GetInputFromUser;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 
 public class GameMenu {
@@ -47,6 +48,8 @@ public class GameMenu {
                 setTaxRate(matcher);
             else if (Commands.getMatcher(command, Commands.TAX_RATE_SHOW) != null)
                 showTaxRate();
+            else if ((matcher = Commands.getMatcher(command, Commands.PRODUCE_ITEM)) != null)
+                selectItemToProduce(matcher);
             else if ((matcher = Commands.getMatcher(command, Commands.FEAR_RATE)) != null)
                 setFearRate(matcher);
             else if ((matcher = Commands.getMatcher(command, Commands.DROP_BUILDING)) != null)
@@ -57,11 +60,18 @@ public class GameMenu {
                 createUnit(matcher);
             else if (Commands.getMatcher(command, Commands.REPAIR) != null)
                 repair();
-                //CREATE RESOURCE???????????????
+            else if (Commands.getMatcher(command, Commands.SHOW_BUILDING_DETAILS) != null)
+                showDetail();
+            else if (Commands.getMatcher(command, Commands.OPEN_DOG_CAGE) != null)
+                openDogCage();
+            else if (Commands.getMatcher(command, Commands.CHANGE_GATE_STATE) != null)
+                changeGateClosedState();
             else if ((matcher = Commands.getMatcher(command, Commands.SELECT_UNIT)) != null)
                 selectUnit(matcher);
             else if ((matcher = Commands.getMatcher(command, Commands.MOVE_UNIT)) != null)
                 moveUnit(matcher);
+            else if (Commands.getMatcher(command, Commands.PRODUCE_LEATHER) != null)
+                produceLeather();
             else if ((matcher = Commands.getMatcher(command, Commands.PATROL_UNIT)) != null)
                 patrolUnit(matcher);
             else if (Commands.getMatcher(command, Commands.STOP_PATROL) != null)
@@ -134,10 +144,6 @@ public class GameMenu {
         //TODO connect KingdomController and sout result
     }
 
-    private void checkPopulationGrowth() {
-        //TODO connect UnitController
-    }
-
     private void dropBuilding(Matcher matcher) {
         int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
@@ -185,13 +191,56 @@ public class GameMenu {
             case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any building!");
             case IRRELEVANT_BUILDING -> System.out.println("You can not repair this building!");
             case NOT_ENOUGH_MATERIAL -> System.out.println("You don't have enough material to repair this building!");
-            case ENEMY_IS_NEARBY -> System.out.println("You can not repair this building, enemy is nearby your building!");
+            case ENEMY_IS_NEARBY ->
+                    System.out.println("You can not repair this building, enemy is nearby your building!");
             case SUCCESS -> System.out.println("Your building was successfully repaired!");
         }
     }
 
-    private void createResources(Matcher matcher) {
-        //TODO connect BuildingController and sout result
+    private void changeGateClosedState() {
+        BuildingControllerMessages message = buildingController.changeGateClosedState();
+        switch (message) {
+            case SUCCESS -> System.out.println("Success!");
+            case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any buildings!");
+            case IRRELEVANT_BUILDING -> System.out.println("You didn't select a gate!");
+        }
+    }
+
+    private void openDogCage() {
+        BuildingControllerMessages message = buildingController.openDogCage();
+        switch (message) {
+            case SUCCESS -> System.out.println("Successful!");
+            case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any buildings!");
+            case IRRELEVANT_BUILDING -> System.out.println("You didn't select a dog cage!");
+        }
+    }
+
+    private void showDetail() {
+        ArrayList<String> details = buildingController.showDetails();
+        for (String e : details)
+            System.out.println(e);
+    }
+
+    private void produceLeather() {
+        BuildingControllerMessages message = buildingController.produceLeather(kingdomController);
+        switch (message) {
+            case SUCCESS -> System.out.println("Successful!");
+            case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any buildings!");
+            case IRRELEVANT_BUILDING -> System.out.println("You didn't select dairy farm!");
+            case NOT_ENOUGH_COWS -> System.out.println("You don't have enough cow to produce leather!");
+        }
+    }
+
+    private void selectItemToProduce(Matcher matcher) {
+        String name = MainController.removeDoubleQuotation(matcher.group("name"));
+        BuildingControllerMessages message = buildingController.selectItemToProduce(name);
+        switch (message) {
+            case SUCCESS -> System.out.println("Successful!");
+            case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any buildings!");
+            case IRRELEVANT_BUILDING -> System.out.println("You didn't select a dog cage!");
+            case ITEM_DOES_NOT_EXIST -> System.out.println("This item doesn't exist!");
+            case CANNOT_PRODUCE_ITEM -> System.out.println("This building can not produce this item!");
+        }
     }
 
     private void selectUnit(Matcher matcher) {
