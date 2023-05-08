@@ -163,13 +163,12 @@ public class GameMenu {
             case NOT_OWNER -> System.out.println("You are not the owner of this building!");
             case SUCCESS -> System.out.println("The building was successfully selected!");
         }
-        ;
     }
 
     private void createUnit(Matcher matcher) {
         String type = matcher.group("type");
         int count = Integer.parseInt(matcher.group("count"));
-        BuildingControllerMessages message = buildingController.createUnit(type, count);
+        BuildingControllerMessages message = buildingController.createUnit(type, count, kingdomController);
         switch (message) {
             case INCORRECT_BUILDING, IRRELEVANT_BUILDING ->
                     System.out.println("You can not create this unit in selected building!");
@@ -181,7 +180,14 @@ public class GameMenu {
     }
 
     private void repair() {
-        //TODO connect BuildingController and sout result
+        BuildingControllerMessages message = buildingController.repair(kingdomController);
+        switch (message) {
+            case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any building!");
+            case IRRELEVANT_BUILDING -> System.out.println("You can not repair this building!");
+            case NOT_ENOUGH_MATERIAL -> System.out.println("You don't have enough material to repair this building!");
+            case ENEMY_IS_NEARBY -> System.out.println("You can not repair this building, enemy is nearby your building!");
+            case SUCCESS -> System.out.println("Your building was successfully repaired!");
+        }
     }
 
     private void createResources(Matcher matcher) {
@@ -281,7 +287,14 @@ public class GameMenu {
     }
 
     private void pourOil(Matcher matcher) {
-        //TODO connect UnitController and sout result
+        String direction = matcher.group("direction");
+        UnitControllerMessages message = unitController.pourOil(direction);
+        switch (message) {
+            case NOT_SELECT_OIL -> System.out.println("You didn't select engineer with oil!");
+            case INVALID_DIRECTION -> System.out.println("You entered invalid direction!");
+            case CAN_NOT_POUR_OIL -> System.out.println("You can not pour oil in that direction!");
+            case SUCCESS -> System.out.println("The oil was successfully poured!");
+        }
     }
 
     private void digTunnel(Matcher matcher) {
