@@ -4,6 +4,8 @@ import model.enums.Direction;
 import model.Kingdom;
 import model.map.Cell;
 
+import java.util.ArrayList;
+
 public class DefenceBuilding extends Building {
     private Direction ladderState;
     private Direction staircase;
@@ -36,5 +38,12 @@ public class DefenceBuilding extends Building {
 
     public void addStaircase(Direction staircase) {
         this.staircase = staircase;
+    }
+
+    @Override
+    public ArrayList<String> showDetails() {
+         ArrayList<String> output = super.showDetails();
+         output.add(ladderState == Direction.NONE ? "there are no ladders here" : "there is a ladders here");
+         return output;
     }
 }

@@ -12,6 +12,12 @@ public enum BuildingControllerMessages {
     INCORRECT_BUILDING,
     INCORRECT_COUNT,
     IRRELEVANT_BUILDING,
+    ENEMY_IS_NEARBY,
+    NOT_ENOUGH_COWS,
+    MARKET,
+    ITEM_DOES_NOT_EXIST,
+    CANNOT_PRODUCE_ITEM,
+    NO_BUILDINGS_SELECTED,
     SUCCESS
     //TODO add messages
 }

@@ -24,6 +24,10 @@ public class WorkersNeededBuilding extends Building {
         workers.add(person);
     }
 
+    public void unAssignWorker(People person) {
+        workers.remove(person);
+    }
+
     public boolean hasEnoughWorkers() {
         return workers.size() == getBuildingType().getWorkersNeeded();
     }
@@ -31,5 +35,14 @@ public class WorkersNeededBuilding extends Building {
     public void changeSleepingMode() {
         isSleeping = true;
         workers = new ArrayList<>();
+    }
+
+    @Override
+    public ArrayList<String> showDetails() {
+        ArrayList<String> output = super.showDetails();
+        output.add(isSleeping ? "sleeping" : "not sleeping");
+        if (!(this instanceof EngineersNeededBuilding))
+            output.add(String.format("number of workers: %d/%d", workers.size(), getBuildingType().getWorkersNeeded()));
+        return output;
     }
 }

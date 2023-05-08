@@ -53,7 +53,7 @@ public enum Item {
     }
 
     public String getName() {
-        return this.toString().replaceAll("_", " ").toLowerCase();
+        return this.toString().toLowerCase().replaceAll("_", " ");
     }
 
     public enum Category {

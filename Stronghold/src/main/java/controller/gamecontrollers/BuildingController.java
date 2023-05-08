@@ -1,16 +1,20 @@
 package controller.gamecontrollers;
 
 import model.Kingdom;
+import model.army.Army;
 import model.army.ArmyType;
 import model.army.Soldier;
 import model.army.SoldierType;
-import model.buildings.Building;
-import model.buildings.BuildingType;
+import model.buildings.*;
 import model.databases.GameDatabase;
+import model.enums.Color;
 import model.enums.Item;
 import model.map.Cell;
 import utils.Pair;
 import view.enums.messages.BuildingControllerMessages;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BuildingController {
     private final GameDatabase gameDatabase;
@@ -49,10 +53,14 @@ public class BuildingController {
         if (cell.getExistingBuilding().getKingdom() != gameDatabase.getCurrentKingdom())
             return BuildingControllerMessages.NOT_OWNER;
         gameDatabase.setCurrentBuilding(cell.getExistingBuilding()); //TODO remember to deselect building on next turn
+        if (cell.getExistingBuilding().getBuildingType() == BuildingType.MARKET)
+            return BuildingControllerMessages.MARKET;
         return BuildingControllerMessages.SUCCESS;
     }
 
-    public BuildingControllerMessages createUnit(String name, int count) {
+    public BuildingControllerMessages createUnit(String name, int count, KingdomController kingdomController) {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
         if (gameDatabase.getCurrentBuilding().getBuildingType().getCategory() != BuildingType.Category.ARMY_MAKER)
             return BuildingControllerMessages.INCORRECT_BUILDING;
         if (count <= 0)
@@ -69,18 +77,83 @@ public class BuildingController {
             return BuildingControllerMessages.IRRELEVANT_BUILDING;
         for (int i = 0; i < count; i++)
             new Soldier(gameDatabase.getCurrentBuilding().getLocation(), armyType, currentKingdom, soldierType);
+        useResources(count, armyType, soldierType, currentKingdom, kingdomController);
         return BuildingControllerMessages.SUCCESS;
     }
 
-    public BuildingControllerMessages repair() {
-        //TODO check if the current building can be repaired
-        
-        return null;
+    public BuildingControllerMessages repair(KingdomController kingdomController) {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
+        Building building = gameDatabase.getCurrentBuilding();
+        if (!building.getBuildingType().canBeRepaired())
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        int stonesNeeded = building.getHp() * (-building.getBuildingType().getMaterialToBuild().getObject2())
+                / building.getBuildingType().getMaxHp();
+        if (gameDatabase.getCurrentKingdom().getStockedNumber(Item.STONE) < stonesNeeded)
+            return BuildingControllerMessages.NOT_ENOUGH_MATERIAL;
+        if (isThereAnEnemyNearby(building.getLocation().getX(), building.getLocation().getY()))
+            return BuildingControllerMessages.ENEMY_IS_NEARBY;
+        kingdomController.changeStockedNumber(new Pair<>(Item.STONE, -stonesNeeded));
+        gameDatabase.getCurrentBuilding().repair();
+        return BuildingControllerMessages.SUCCESS;
     }
 
-    public BuildingControllerMessages createResources(String resourceName) {
-        //TODO check if it can make that resource
-        return null;
+    public BuildingControllerMessages changeGateClosedState() {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
+        Building building = gameDatabase.getCurrentBuilding();
+        if (building.getBuildingType() != BuildingType.LARGE_STONE_GATEHOUSE
+                && building.getBuildingType() != BuildingType.SMALL_STONE_GATEHOUSE)
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        ((GateAndStairs) building).changeClosedState();
+        changeDrawBridgeClosedState(building.getLocation().getX(), building.getLocation().getY());
+        return BuildingControllerMessages.SUCCESS;
+    }
+
+    public  BuildingControllerMessages openDogCage() {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
+        Building building = gameDatabase.getCurrentBuilding();
+        if (gameDatabase.getCurrentBuilding().getBuildingType() != BuildingType.CAGED_WAR_DOGS)
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        for (int i = 0; i < 3; i++)
+            new Soldier(building.getLocation(), ArmyType.DOG, gameDatabase.getCurrentKingdom(), SoldierType.DOG);
+        building.takeDamage(building.getHp());
+        gameDatabase.getCurrentKingdom().removeBuilding(building);
+        return BuildingControllerMessages.SUCCESS;
+    }
+
+    public ArrayList<String> showDetails() {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return new ArrayList<>(List.of(Color.RED + "select a building first!" + Color.RESET));
+        return gameDatabase.getCurrentBuilding().showDetails();
+    }
+
+    public BuildingControllerMessages produceLeather(KingdomController kingdomController) {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
+        if (gameDatabase.getCurrentBuilding().getBuildingType() != BuildingType.DAIRY_FARM)
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        //TODO is there empty space on storage?
+        DairyProduce dairyProduce = (DairyProduce) gameDatabase.getCurrentBuilding();
+        if (dairyProduce.getNumberOfAnimals() == 0)
+            return BuildingControllerMessages.NOT_ENOUGH_COWS;
+        dairyProduce.produceLeather();
+        kingdomController.changeStockedNumber(new Pair<>(Item.LEATHER_ARMOR, 1));
+        return BuildingControllerMessages.SUCCESS;
+    }
+
+    public BuildingControllerMessages selectItemToProduce(String name) {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
+        if (gameDatabase.getCurrentBuilding().getBuildingType().getProduces().size() <= 1)
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        if (Item.stringToEnum(name) == null)
+            return BuildingControllerMessages.ITEM_DOES_NOT_EXIST;
+        ProducerBuilding building = (ProducerBuilding) gameDatabase.getCurrentBuilding();
+        if (!building.setItemToProduce(Item.stringToEnum(name)))
+            return BuildingControllerMessages.CANNOT_PRODUCE_ITEM;
+        return BuildingControllerMessages.SUCCESS;
     }
 
     private boolean checkLocationOutOfBounds(int x, int y) {
@@ -132,5 +205,46 @@ public class BuildingController {
         return !((soldierType.getWeapon() == null || kingdom.getStockedNumber(soldierType.getWeapon()) >= count)
                 && (soldierType.getArmor() == null || kingdom.getStockedNumber(soldierType.getArmor()) >= count)
                 && kingdom.getGold() >= armyType.getPrice() * count);
+    }
+
+    private void useResources(int count, ArmyType armyType,
+                                 SoldierType soldierType, Kingdom kingdom, KingdomController kingdomController) {
+        if (soldierType.getWeapon() != null)
+            kingdomController.changeStockedNumber(new Pair<>(soldierType.getWeapon(), -count));
+        if (soldierType.getArmor() != null)
+            kingdomController.changeStockedNumber(new Pair<>(soldierType.getArmor(), -count));
+        kingdom.changeGold(-armyType.getPrice() * count);
+    }
+
+    private boolean isThereAnEnemyHere(int x, int y) {
+        if (gameDatabase.getMap().getMap()[x][y].getArmies() == null) return false;
+        for (Army army : gameDatabase.getMap().getMap()[x][y].getArmies()) {
+            if (army.getOwner() != gameDatabase.getCurrentKingdom()) return true;
+        }
+        return false;
+    }
+
+    private boolean isThereAnEnemyNearby(int x, int y) {
+        return isThereAnEnemyHere(x, y)
+                || (x > 0 && isThereAnEnemyHere(x - 1, y))
+                || (x < gameDatabase.getMap().getSize() - 1 && isThereAnEnemyHere(x + 1, y))
+                || (y > 0 && isThereAnEnemyHere(x, y - 1))
+                || (y < gameDatabase.getMap().getSize() - 1 && isThereAnEnemyHere(x, y + 1));
+    }
+
+    private void changeDrawBridgeClosedState(int x, int y) {
+        Cell[][] map = gameDatabase.getMap().getMap();
+        if (x != 0 && map[x - 1][y].getExistingBuilding().getBuildingType().equals(BuildingType.DRAWBRIDGE)
+                && map[x - 1][y].getExistingBuilding().getKingdom().equals(gameDatabase.getCurrentKingdom()))
+            ((GateAndStairs) map[x - 1][y].getExistingBuilding()).changeClosedState();
+        if (y != 0 && map[x][y - 1].getExistingBuilding().getBuildingType().equals(BuildingType.DRAWBRIDGE)
+                && map[x][y - 1].getExistingBuilding().getKingdom().equals(gameDatabase.getCurrentKingdom()))
+            ((GateAndStairs) map[x][y - 1].getExistingBuilding()).changeClosedState();
+        if (x != map.length - 1 && map[x + 1][y].getExistingBuilding().getBuildingType().equals(BuildingType.DRAWBRIDGE)
+                && map[x + 1][y].getExistingBuilding().getKingdom().equals(gameDatabase.getCurrentKingdom()))
+            ((GateAndStairs) map[x + 1][y].getExistingBuilding()).changeClosedState();
+        if (y != map.length - 1 && map[x][y + 1].getExistingBuilding().getBuildingType().equals(BuildingType.DRAWBRIDGE)
+                && map[x][y + 1].getExistingBuilding().getKingdom().equals(gameDatabase.getCurrentKingdom()))
+            ((GateAndStairs) map[x][y + 1].getExistingBuilding()).changeClosedState();
     }
 }

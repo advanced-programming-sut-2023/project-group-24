@@ -23,7 +23,8 @@ public enum SoldierType {
     ASSASSIN(null, null, false, Type.ARABIAN, false),
     HORSE_ARCHER(null, null, false, Type.ARABIAN, false),
     ARABIAN_SWORD_MAN(null, null, false, Type.ARABIAN, false),
-    FIRE_THROWER(null, null, false, Type.ARABIAN, false);
+    FIRE_THROWER(null, null, false, Type.ARABIAN, false),
+    DOG(null, null, false, Type.DOG, false);
     private final Item armor;
     private final Item weapon;
     private final boolean canClimbLadder;

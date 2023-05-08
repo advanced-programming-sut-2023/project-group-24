@@ -5,6 +5,7 @@ import model.enums.Item;
 import model.map.Cell;
 import utils.Pair;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StorageBuilding extends Building {
@@ -67,5 +68,17 @@ public class StorageBuilding extends Building {
 
     public int getStockedNumber(Item item) {
         return storage.get(item);
+    }
+
+    @Override
+    public ArrayList<String> showDetails() {
+        ArrayList<String> output = super.showDetails();
+        output.add(String.format("number of items: %d/%d:", getNumberOfItemsInStorage(),
+                getBuildingType().getStorageCapacity()));
+        for (Item item : storage.keySet()) {
+            if (storage.get(item) == 0) continue;
+            output.add(item.getName() + ": " + storage.get(item));
+        }
+        return output;
     }
 }

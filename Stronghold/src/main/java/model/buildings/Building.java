@@ -3,6 +3,9 @@ package model.buildings;
 import model.Kingdom;
 import model.map.Cell;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Building {
     private final Kingdom kingdom;
     private final Cell location;
@@ -49,5 +52,9 @@ public class Building {
 
     public void repair() {
         hp = buildingType.getMaxHp();
+    }
+
+    public ArrayList<String> showDetails() {
+        return new ArrayList<>(List.of(buildingType.getName(), "hp = " + hp + "/" + buildingType.getMaxHp()));
     }
 }
