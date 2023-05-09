@@ -49,6 +49,10 @@ public class GameDatabase {
         return selectedUnits;
     }
 
+    public ArrayList<Kingdom> getKingdoms() {
+        return kingdoms;
+    }
+
     public void setSelectedUnits(ArrayList<Army> selectedUnits) {
         this.selectedUnits.clear();
         this.selectedUnits.addAll(selectedUnits);

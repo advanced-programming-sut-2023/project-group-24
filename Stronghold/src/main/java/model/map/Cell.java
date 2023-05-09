@@ -176,12 +176,13 @@ public class Cell {
 
     private boolean handleTunneller() {
         switch (this.texture) {
-            case SEA, RIVER, POND_BIG, POND_SMALL -> {
+            case SEA:
+            case RIVER:
+            case POND_BIG:
+            case POND_SMALL:
                 return false;
-            }
-            default -> {
+            default:
                 return true;
-            }
         }
     }
 

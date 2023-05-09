@@ -44,21 +44,16 @@ public class RegisterMenuController {
     public RegisterMenuMessages checkPasswordErrors(String password, String passwordConfirmation) {
         CommonMessages passwordMessage = MainController.whatIsPasswordProblem(password);
         switch (passwordMessage) {
-            case SHORT_PASSWORD -> {
+            case SHORT_PASSWORD:
                 return RegisterMenuMessages.SHORT_PASSWORD;
-            }
-            case NON_CAPITAL_PASSWORD -> {
+            case NON_CAPITAL_PASSWORD:
                 return RegisterMenuMessages.NON_CAPITAL_PASSWORD;
-            }
-            case NON_SMALL_PASSWORD -> {
+            case NON_SMALL_PASSWORD:
                 return RegisterMenuMessages.NON_SMALL_PASSWORD;
-            }
-            case NON_NUMBER_PASSWORD -> {
+            case NON_NUMBER_PASSWORD:
                 return RegisterMenuMessages.NON_NUMBER_PASSWORD;
-            }
-            case NON_SPECIFIC_PASSWORD -> {
+            case NON_SPECIFIC_PASSWORD:
                 return RegisterMenuMessages.NON_SPECIFIC_PASSWORD;
-            }
         }
         if (!password.equals(passwordConfirmation)) return RegisterMenuMessages.INCORRECT_PASSWORD_CONFIRM;
         return RegisterMenuMessages.SUCCESS;

@@ -150,12 +150,24 @@ public class GameMenu {
         String type = matcher.group("type");
         BuildingControllerMessages message = buildingController.dropBuilding(x, y, type, kingdomController);
         switch (message) {
-            case LOCATION_OUT_OF_BOUNDS -> System.out.println("You entered invalid location!");
-            case INVALID_TYPE -> System.out.println("You entered invalid type of building!");
-            case CANNOT_BUILD_HERE -> System.out.println("You can not drop building here!");
-            case NOT_ENOUGH_MATERIAL -> System.out.println("You don't have enough material to build this building!");
-            case NOT_ENOUGH_GOLD -> System.out.println("You don't have enough gold to build this building!");
-            case SUCCESS -> System.out.println("The building was successfully built!");
+            case LOCATION_OUT_OF_BOUNDS:
+                System.out.println("You entered invalid location!");
+                break;
+            case INVALID_TYPE:
+                System.out.println("You entered invalid type of building!");
+                break;
+            case CANNOT_BUILD_HERE:
+                System.out.println("You can not drop building here!");
+                break;
+            case NOT_ENOUGH_MATERIAL:
+                System.out.println("You don't have enough material to build this building!");
+                break;
+            case NOT_ENOUGH_GOLD:
+                System.out.println("You don't have enough gold to build this building!");
+                break;
+            case SUCCESS:
+                System.out.println("The building was successfully built!");
+                break;
         }
     }
 
@@ -164,10 +176,18 @@ public class GameMenu {
         int y = Integer.parseInt(matcher.group("y"));
         BuildingControllerMessages message = buildingController.selectBuilding(x, y);
         switch (message) {
-            case LOCATION_OUT_OF_BOUNDS -> System.out.println("You entered invalid location!");
-            case NO_BUILDINGS -> System.out.println("There is no building to select!");
-            case NOT_OWNER -> System.out.println("You are not the owner of this building!");
-            case SUCCESS -> System.out.println("The building was successfully selected!");
+            case LOCATION_OUT_OF_BOUNDS:
+                System.out.println("You entered invalid location!");
+                break;
+            case NO_BUILDINGS:
+                System.out.println("There is no building to select!");
+                break;
+            case NOT_OWNER:
+                System.out.println("You are not the owner of this building!");
+                break;
+            case SUCCESS:
+                System.out.println("The building was successfully selected!");
+                break;
         }
     }
 
@@ -176,42 +196,75 @@ public class GameMenu {
         int count = Integer.parseInt(matcher.group("count"));
         BuildingControllerMessages message = buildingController.createUnit(type, count, kingdomController);
         switch (message) {
-            case INCORRECT_BUILDING, IRRELEVANT_BUILDING ->
-                    System.out.println("You can not create this unit in selected building!");
-            case INCORRECT_COUNT -> System.out.println("You entered invalid count!");
-            case INVALID_TYPE -> System.out.println("Unit with this type does not exist!");
-            case NOT_ENOUGH_MATERIAL -> System.out.println("You don't have enough weapons to create this unit!");
-            case SUCCESS -> System.out.println("The units were successfully created!");
+            case INCORRECT_BUILDING:
+                System.out.println("This building cannot make troops!");
+                break;
+            case IRRELEVANT_BUILDING:
+                System.out.println("You cannot create this unit in selected building!");
+                break;
+            case INCORRECT_COUNT:
+                System.out.println("You entered invalid count!");
+                break;
+            case INVALID_TYPE:
+                System.out.println("Unit with this type does not exist!");
+                break;
+            case NOT_ENOUGH_MATERIAL:
+                System.out.println("You don't have enough weapons to create this unit!");
+                break;
+            case SUCCESS:
+                System.out.println("The units were successfully created!");
+                break;
         }
     }
 
     private void repair() {
         BuildingControllerMessages message = buildingController.repair(kingdomController);
         switch (message) {
-            case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any building!");
-            case IRRELEVANT_BUILDING -> System.out.println("You can not repair this building!");
-            case NOT_ENOUGH_MATERIAL -> System.out.println("You don't have enough material to repair this building!");
-            case ENEMY_IS_NEARBY ->
-                    System.out.println("You can not repair this building, enemy is nearby your building!");
-            case SUCCESS -> System.out.println("Your building was successfully repaired!");
+            case NO_BUILDINGS_SELECTED:
+                System.out.println("You didn't select any building!");
+                break;
+            case IRRELEVANT_BUILDING:
+                System.out.println("You can not repair this building!");
+                break;
+            case NOT_ENOUGH_MATERIAL:
+                System.out.println("You don't have enough material to repair this building!");
+                break;
+            case ENEMY_IS_NEARBY:
+                System.out.println("You can not repair this building, enemy is nearby your building!");
+                break;
+            case SUCCESS:
+                System.out.println("Your building was successfully repaired!");
+                break;
         }
     }
 
     private void changeGateClosedState() {
         BuildingControllerMessages message = buildingController.changeGateClosedState();
         switch (message) {
-            case SUCCESS -> System.out.println("Success!");
-            case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any buildings!");
-            case IRRELEVANT_BUILDING -> System.out.println("You didn't select a gate!");
+            case SUCCESS:
+                System.out.println("Success!");
+                break;
+            case NO_BUILDINGS_SELECTED:
+                System.out.println("You didn't select any buildings!");
+                break;
+            case IRRELEVANT_BUILDING:
+                System.out.println("You didn't select a gate!");
+                break;
         }
     }
 
     private void openDogCage() {
         BuildingControllerMessages message = buildingController.openDogCage();
         switch (message) {
-            case SUCCESS -> System.out.println("Successful!");
-            case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any buildings!");
-            case IRRELEVANT_BUILDING -> System.out.println("You didn't select a dog cage!");
+            case SUCCESS:
+                System.out.println("Successful!");
+                break;
+            case NO_BUILDINGS_SELECTED:
+                System.out.println("You didn't select any buildings!");
+                break;
+            case IRRELEVANT_BUILDING:
+                System.out.println("You didn't select a dog cage!");
+                break;
         }
     }
 
@@ -224,10 +277,18 @@ public class GameMenu {
     private void produceLeather() {
         BuildingControllerMessages message = buildingController.produceLeather(kingdomController);
         switch (message) {
-            case SUCCESS -> System.out.println("Successful!");
-            case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any buildings!");
-            case IRRELEVANT_BUILDING -> System.out.println("You didn't select dairy farm!");
-            case NOT_ENOUGH_COWS -> System.out.println("You don't have enough cow to produce leather!");
+            case SUCCESS:
+                System.out.println("Successful!");
+                break;
+            case NO_BUILDINGS_SELECTED:
+                System.out.println("You didn't select any buildings!");
+                break;
+            case IRRELEVANT_BUILDING:
+                System.out.println("You didn't select dairy farm!");
+                break;
+            case NOT_ENOUGH_COWS:
+                System.out.println("You don't have enough cow to produce leather!");
+                break;
         }
     }
 
@@ -235,11 +296,21 @@ public class GameMenu {
         String name = MainController.removeDoubleQuotation(matcher.group("name"));
         BuildingControllerMessages message = buildingController.selectItemToProduce(name);
         switch (message) {
-            case SUCCESS -> System.out.println("Successful!");
-            case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any buildings!");
-            case IRRELEVANT_BUILDING -> System.out.println("You didn't select a dog cage!");
-            case ITEM_DOES_NOT_EXIST -> System.out.println("This item doesn't exist!");
-            case CANNOT_PRODUCE_ITEM -> System.out.println("This building can not produce this item!");
+            case SUCCESS:
+                System.out.println("Successful!");
+                break;
+            case NO_BUILDINGS_SELECTED:
+                System.out.println("You didn't select any buildings!");
+                break;
+            case IRRELEVANT_BUILDING:
+                System.out.println("You didn't select a dog cage!");
+                break;
+            case ITEM_DOES_NOT_EXIST:
+                System.out.println("This item doesn't exist!");
+                break;
+            case CANNOT_PRODUCE_ITEM:
+                System.out.println("This building can not produce this item!");
+                break;
         }
     }
 
@@ -249,9 +320,15 @@ public class GameMenu {
         String type = MainController.removeDoubleQuotation(matcher.group("type"));
         UnitControllerMessages message = unitController.selectUnit(x, y, type);
         switch (message) {
-            case SUCCESS -> System.out.println("You successfully select units!");
-            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
-            case INVALID_TYPE -> System.out.println("You entered invalid type of soldier!");
+            case SUCCESS:
+                System.out.println("You successfully select units!");
+                break;
+            case INVALID_LOCATION:
+                System.out.println("You entered invalid location!");
+                break;
+            case INVALID_TYPE:
+                System.out.println("You entered invalid type of soldier!");
+                break;
         }
     }
 
@@ -260,11 +337,21 @@ public class GameMenu {
         int y = Integer.parseInt(matcher.group("y"));
         UnitControllerMessages message = unitController.moveUnit(x, y);
         switch (message) {
-            case SUCCESS -> System.out.println("Your units will move in this location!");
-            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
-            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
-            case BLOCK -> System.out.println("You can not move to that cell!");
-            case ALREADY_IN_DESTINATION -> System.out.println("Your armies already is in this location!");
+            case SUCCESS:
+                System.out.println("Your units will move in this location!");
+                break;
+            case NULL_SELECTED_UNIT:
+                System.out.println("You didn't select any unit!");
+                break;
+            case INVALID_LOCATION:
+                System.out.println("You entered invalid location!");
+                break;
+            case BLOCK:
+                System.out.println("You can not move to that cell!");
+                break;
+            case ALREADY_IN_DESTINATION:
+                System.out.println("Your armies already is in this location!");
+                break;
         }
     }
 
@@ -273,20 +360,36 @@ public class GameMenu {
         int y = Integer.parseInt(matcher.group("y"));
         UnitControllerMessages message = unitController.patrolUnit(x, y);
         switch (message) {
-            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
-            case BLOCK -> System.out.println("You can not move to that cell!");
-            case ALREADY_IN_DESTINATION -> System.out.println("Your armies already is in this location!");
-            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
-            case SUCCESS -> System.out.println("Successful!");
+            case INVALID_LOCATION:
+                System.out.println("You entered invalid location!");
+                break;
+            case BLOCK:
+                System.out.println("You can not move to that cell!");
+                break;
+            case ALREADY_IN_DESTINATION:
+                System.out.println("Your armies already is in this location!");
+                break;
+            case NULL_SELECTED_UNIT:
+                System.out.println("You didn't select any unit!");
+                break;
+            case SUCCESS:
+                System.out.println("Successful!");
+                break;
         }
     }
 
     private void stopUnitsPatrol() {
         UnitControllerMessages message = unitController.stopUnitsPatrol();
         switch (message) {
-            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
-            case NOT_PATROL -> System.out.println("Selected units aren't patrolling!");
-            case SUCCESS -> System.out.println("Patrolling of selected units has been stopped");
+            case NULL_SELECTED_UNIT:
+                System.out.println("You didn't select any unit!");
+                break;
+            case NOT_PATROL:
+                System.out.println("Selected units aren't patrolling!");
+                break;
+            case SUCCESS:
+                System.out.println("Patrolling of selected units has been stopped");
+                break;
         }
     }
 
@@ -294,9 +397,15 @@ public class GameMenu {
         String state = matcher.group("state");
         UnitControllerMessages message = unitController.setStateForUnits(state);
         switch (message) {
-            case SUCCESS -> System.out.println("Successfully set!");
-            case INVALID_STATE -> System.out.println("Invalid state!");
-            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+            case SUCCESS:
+                System.out.println("Successfully set!");
+                break;
+            case INVALID_STATE:
+                System.out.println("Invalid state!");
+                break;
+            case NULL_SELECTED_UNIT:
+                System.out.println("You didn't select any unit!");
+                break;
         }
     }
 
@@ -305,13 +414,27 @@ public class GameMenu {
         int enemyY = Integer.parseInt(matcher.group("enemyY"));
         UnitControllerMessages message = unitController.attackEnemy(enemyX, enemyY);
         switch (message) {
-            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
-            case NOT_ENEMY -> System.out.println("There aren't any enemy in that cell!");
-            case SUCCESS -> System.out.println("Your armies will attack that enemies!");
-            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
-            case BLOCK -> System.out.println("You can not move to that cell!");
-            case ALREADY_IN_DESTINATION -> System.out.println("Your armies already is in this location!");
-            case OUT_OF_RANGE -> System.out.println("Enemy is out of range!");
+            case INVALID_LOCATION:
+                System.out.println("You entered invalid location!");
+                break;
+            case NOT_ENEMY:
+                System.out.println("There aren't any enemy in that cell!");
+                break;
+            case SUCCESS:
+                System.out.println("Your armies will attack that enemies!");
+                break;
+            case NULL_SELECTED_UNIT:
+                System.out.println("You didn't select any unit!");
+                break;
+            case BLOCK:
+                System.out.println("You can not move to that cell!");
+                break;
+            case ALREADY_IN_DESTINATION:
+                System.out.println("Your armies already is in this location!");
+                break;
+            case OUT_OF_RANGE:
+                System.out.println("Enemy is out of range!");
+                break;
         }
     }
 
@@ -320,18 +443,30 @@ public class GameMenu {
         int y = Integer.parseInt(matcher.group("y"));
         UnitControllerMessages message = unitController.archerAttack(x, y);
         switch (message) {
-            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
-            case SUCCESS -> System.out.println("Your archers will attack that enemies!");
-            case NOT_ARCHER -> System.out.println("You can not attack this cell with this units!");
-            case OUT_OF_RANGE -> System.out.println("Enemy is out of range!");
+            case INVALID_LOCATION:
+                System.out.println("You entered invalid location!");
+                break;
+            case SUCCESS:
+                System.out.println("Your archers will attack that enemies!");
+                break;
+            case NOT_ARCHER:
+                System.out.println("You can not attack this cell with this units!");
+                break;
+            case OUT_OF_RANGE:
+                System.out.println("Enemy is out of range!");
+                break;
         }
     }
 
     private void stop() {
         UnitControllerMessages message = unitController.stop();
         switch (message) {
-            case SUCCESS -> System.out.println("The selected units have been stopped successfully!");
-            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+            case SUCCESS:
+                System.out.println("The selected units have been stopped successfully!");
+                break;
+            case NULL_SELECTED_UNIT:
+                System.out.println("You didn't select any unit!");
+                break;
         }
     }
 
@@ -339,10 +474,18 @@ public class GameMenu {
         String direction = matcher.group("direction");
         UnitControllerMessages message = unitController.pourOil(direction);
         switch (message) {
-            case NOT_SELECT_OIL -> System.out.println("You didn't select engineer with oil!");
-            case INVALID_DIRECTION -> System.out.println("You entered invalid direction!");
-            case CAN_NOT_POUR_OIL -> System.out.println("You can not pour oil in that direction!");
-            case SUCCESS -> System.out.println("The oil was successfully poured!");
+            case NOT_SELECT_OIL:
+                System.out.println("You didn't select engineer with oil!");
+                break;
+            case INVALID_DIRECTION:
+                System.out.println("You entered invalid direction!");
+                break;
+            case CAN_NOT_POUR_OIL:
+                System.out.println("You can not pour oil in that direction!");
+                break;
+            case SUCCESS:
+                System.out.println("The oil was successfully poured!");
+                break;
         }
     }
 
@@ -357,8 +500,12 @@ public class GameMenu {
     private void disbandUnit() {
         UnitControllerMessages message = unitController.disbandUnit();
         switch (message) {
-            case SUCCESS -> System.out.println("Selected units successfully disband!");
-            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+            case SUCCESS:
+                System.out.println("Selected units successfully disband!");
+                break;
+            case NULL_SELECTED_UNIT:
+                System.out.println("You didn't select any unit!");
+                break;
         }
     }
 

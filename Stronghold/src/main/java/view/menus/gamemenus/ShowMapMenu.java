@@ -45,10 +45,18 @@ public class ShowMapMenu {
             String numberAsString = e.replaceAll("(up)|(down)|(left)|(right)", "");
             int number = numberAsString.equals("") ? 1 : Integer.parseInt(numberAsString);
             switch (move) {
-                case "up" -> changeX -= number;
-                case "down" -> changeX += number;
-                case "left" -> changeY -= number;
-                default -> changeY += number;
+                case "up":
+                    changeX -= number;
+                    break;
+                case "down":
+                    changeX += number;
+                    break;
+                case "left":
+                    changeY -= number;
+                    break;
+                default:
+                    changeY += number;
+                    break;
             }
         }
         System.out.println(showMapController.moveMap(changeY, changeX));

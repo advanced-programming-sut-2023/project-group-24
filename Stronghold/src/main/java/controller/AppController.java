@@ -51,60 +51,62 @@ public class AppController {
         checkLoggedInUSer();
         while (true) {
             switch (currentMenu) {
-                case LOGIN_MENU -> {
+                case LOGIN_MENU:
                     LoginMenuController loginMenuController = new LoginMenuController(database);
                     LoginMenu loginMenu = new LoginMenu(loginMenuController);
                     loginMenu.run();
-                }
-                case PROFILE_MENU -> {
+                    break;
+                case PROFILE_MENU:
                     ProfileMenuController profileMenuController = new ProfileMenuController(database);
                     ProfileMenu profileMenu = new ProfileMenu(profileMenuController);
                     profileMenu.run();
-                }
-                case REGISTER_MENU -> {
+                    break;
+                case REGISTER_MENU:
                     RegisterMenuController registerMenuController = new RegisterMenuController(database);
                     RegisterMenu registerMenu = new RegisterMenu(registerMenuController);
                     registerMenu.run();
-                }
-                case RESET_PASSWORD_MENU -> {
+                    break;
+                case RESET_PASSWORD_MENU:
                     ResetPasswordMenuController resetPasswordMenuController = new ResetPasswordMenuController(database);
                     ResetPasswordMenu resetPasswordMenu = new ResetPasswordMenu(resetPasswordMenuController);
                     resetPasswordMenu.run();
-                }
-                case MAIN_MENU -> {
+                    break;
+                case MAIN_MENU:
                     MainMenuController mainMenuController = new MainMenuController(database);
                     MainMenu mainMenu = new MainMenu(mainMenuController);
                     mainMenu.run();
-                }
-                case GAME_MENU -> {
+                    break;
+                case GAME_MENU: {
                     KingdomController kingdomController = new KingdomController(gameDatabase);
                     UnitController unitController = new UnitController(gameDatabase);
                     BuildingController buildingController = new BuildingController(gameDatabase);
                     GameMenu gameMenu = new GameMenu(kingdomController, unitController, buildingController);
                     gameMenu.run();
+                    break;
                 }
-                case SHOW_MAP_MENU -> {
+                case SHOW_MAP_MENU:
                     ShowMapController showMapController = new ShowMapController(gameDatabase);
                     ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
                     showMapMenu.run();
-                }
-                case TRADE_MENU -> {
+                    break;
+                case TRADE_MENU: {
                     TradeController tradeController = new TradeController(gameDatabase);
                     KingdomController kingdomController = new KingdomController(gameDatabase);
                     TradeMenu tradeMenu = new TradeMenu(tradeController, kingdomController);
                     tradeMenu.run();
+                    break;
                 }
-                case SHOP_MENU -> {
+                case SHOP_MENU:
                     ShopController shopController = new ShopController(gameDatabase);
                     KingdomController kingdomController = new KingdomController(gameDatabase);
                     ShopMenu shopMenu = new ShopMenu(shopController, kingdomController);
                     shopMenu.run();
-                }
-                case CREATE_MAP_MENU -> {
+                    break;
+                case CREATE_MAP_MENU:
                     CreateMapController createMapController = new CreateMapController(database);
                     CreateMapMenu createMapMenu = new CreateMapMenu(createMapController);
                     createMapMenu.run();
-                }
+                    break;
             }
         }
     }

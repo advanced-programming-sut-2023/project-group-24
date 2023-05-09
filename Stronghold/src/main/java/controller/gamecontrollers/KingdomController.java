@@ -344,4 +344,13 @@ public class KingdomController {
         gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.INN, innAmount);
     }
 
+    public int freeSpace(Item item) {
+        int freeSpace = 0;
+        for (Building building : gameDatabase.getCurrentKingdom().getBuildings()) {
+            if (building.getBuildingType().getItemsItCanHold() == item.getCategory())
+                freeSpace += building.getBuildingType().getStorageCapacity()
+                        - ((StorageBuilding) building).getNumberOfItemsInStorage();
+        }
+        return freeSpace;
+    }
 }
