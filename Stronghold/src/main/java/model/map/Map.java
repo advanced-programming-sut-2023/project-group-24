@@ -1,6 +1,7 @@
 package model.map;
 
 import model.Kingdom;
+import model.enums.Direction;
 
 import java.util.ArrayList;
 
@@ -39,4 +40,5 @@ public class Map {
     public Cell[][] getMap() {
         return map;
     }
+
 }

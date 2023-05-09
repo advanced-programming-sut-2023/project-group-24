@@ -161,7 +161,7 @@ public class CreateMapController {
         Kingdom kingdom = new Kingdom(kingdomColor);
         new Building(kingdom, townHallLocation, BuildingType.TOWN_HALL);
         new Building(kingdom, stockPileLocation, BuildingType.STOCKPILE);
-        //TODO create lord
+        new Soldier(townHallLocation, ArmyType.LORD, kingdom, SoldierType.LORD);
     }
 
     private Kingdom getKingdomWithColor(KingdomColor color) {

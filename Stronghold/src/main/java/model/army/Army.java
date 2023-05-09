@@ -2,14 +2,17 @@ package model.army;
 
 import model.Kingdom;
 import model.map.Cell;
+import utils.Pair;
 
 import java.util.ArrayList;
 
-public class Army {
+public abstract class Army {
     private final ArrayList<Cell> path;
-    //Todo patrol
     private final Kingdom owner;
-    private final ArmyType armyType;
+    private ArmyType armyType;
+    private Pair<Cell, Cell> patrol;
+    private Army target;
+    private Cell targetCell;
     private Cell location;
     private UnitState unitState;
     private int hp;
@@ -19,11 +22,17 @@ public class Army {
         this.location = location;
         this.hp = armyType.getMaxHp();
         path = new ArrayList<>();
+        patrol = null;
+        targetCell = null;
         this.owner = owner;
+        target = null;
+        location.addArmy(this);
+        owner.addArmy(this);
     }
 
-    public boolean isDead() {
-        return hp <= 0;
+    public void isDead() {
+        this.getLocation().removeArmy(this);
+        this.getOwner().removeArmy(this);
     }
 
     public Cell getLocation() {
@@ -42,9 +51,10 @@ public class Army {
         return hp;
     }
 
-    public boolean takeDamage(int amount) {
+    public void takeDamage(int amount) {
         hp -= amount;
-        return isDead();
+        if (hp <= 0)
+            isDead();
     }
 
     public void moveArmy() {
@@ -67,5 +77,40 @@ public class Army {
 
     public ArmyType getArmyType() {
         return armyType;
+    }
+
+    public Army getTarget() {
+        return target;
+    }
+
+    public void setTarget(Army target) {
+        this.target = target;
+    }
+
+    public Pair<Cell, Cell> getPatrol() {
+        return patrol;
+    }
+
+    public void setPatrol(Pair<Cell, Cell> patrol) {
+        this.patrol = patrol;
+    }
+
+    public Cell getTargetCell() {
+        return targetCell;
+    }
+
+    public void setTargetCell(Cell targetCell) {
+        this.targetCell = targetCell;
+    }
+
+    public void changeEngineerState() {
+        if (this.getArmyType().equals(ArmyType.ENGINEER))
+            this.setArmyType(ArmyType.ENGINEER_WITH_OIL);
+        if (this.getArmyType().equals(ArmyType.ENGINEER_WITH_OIL))
+            this.setArmyType(ArmyType.ENGINEER);
+    }
+
+    public void setArmyType(ArmyType armyType) {
+        this.armyType = armyType;
     }
 }

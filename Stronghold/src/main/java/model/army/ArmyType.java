@@ -3,6 +3,7 @@ package model.army;
 import controller.MainController;
 
 public enum ArmyType {
+    LORD(0, 500, 0, 100, 1),
     ARCHER(12, 96, 5, 16, 4),
     CROSSBOWMEN(20, 128, 3, 24, 2),
     SPEARMAN(8, 64, 0, 24, 3),
@@ -13,6 +14,7 @@ public enum ArmyType {
     TUNNELLER(30, 64, 0, 24, 4),
     LADDER_MAN(4, 64, 0, 0, 4),
     ENGINEER(30, 64, 0, 0, 3),
+    ENGINEER_WITH_OIL(30, 64, 0, 0, 3),
     BLACK_MONK(10, 128, 0, 24, 1),
     ARCHER_BOW(75, 96, 5, 16, 4),
     SLAVE(5, 48, 0, 8, 4),
@@ -27,11 +29,7 @@ public enum ArmyType {
     BATTERING_RAMS(150, 1000, 1, 334, 1),
     CATAPULT(150, 150, 5, 200, 2),
     TREBUCHETS(150, 400, 7, 334, 0),
-    FIRE_BALLISTA(150, 150, 6, 70, 2),
-    //DOG
-    DOG(0, 8, 0, 32, 5),
-    //LORD
-    LORD(0, 0, 0, 0, 0);
+    FIRE_BALLISTA(150, 150, 6, 70, 2);
     private final int price;
     private final int maxHp;
     private final int range;
@@ -72,5 +70,9 @@ public enum ArmyType {
 
     public int getPrice() {
         return price;
+    }
+
+    public String toString() {
+        return super.toString().toLowerCase().replaceAll("-", " ");
     }
 }

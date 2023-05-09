@@ -16,4 +16,8 @@ public enum Tree {
                 return value;
         return null;
     }
+
+    public String toString() {
+        return super.toString().toLowerCase().replaceAll("-", " ");
+    }
 }

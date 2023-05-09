@@ -1,10 +1,14 @@
 package model.map;
 
-import model.enums.Direction;
 import model.Kingdom;
 import model.army.Army;
 import model.army.ArmyType;
 import model.buildings.Building;
+import model.buildings.BuildingType;
+import model.buildings.DefenceBuilding;
+import model.buildings.GateAndStairs;
+import model.enums.Direction;
+import model.enums.MovingType;
 
 import java.util.ArrayList;
 
@@ -124,8 +128,61 @@ public class Cell {
         return tree == null && !isRock && texture.isCanPass();
     }
 
-    public boolean canMove(Direction direction, boolean isAssassin) {
-        //TODO ...
+    public boolean canMove(Direction direction, Cell startPoint, MovingType movingType) {
+        int lastHeight = 0, nextHeight = 0;
+        if (startPoint.existingBuilding != null)
+            lastHeight = startPoint.existingBuilding.getBuildingType().getHeight();
+        if (existingBuilding != null)
+            nextHeight = existingBuilding.getBuildingType().getHeight();
+        if (!handleTunneller() || nextHeight == -1)
+            return false;
+        if (movingType.equals(MovingType.TUNNELLER))
+            return true;
+        if (!(tree == null && !isRock && texture.isCanPass()))
+            return false;
+        if (nextHeight == lastHeight)
+            return true;
+        if (movingType.equals(MovingType.ASSASSIN))
+            return true;
+        if (handleClimber(startPoint, direction))
+            return false;
+        return handleLadder(direction, movingType, startPoint);
+    }
+
+    private boolean handleLadder(Direction direction, MovingType movingType, Cell startPoint) {// need to be refactored!
+        if (startPoint.existingBuilding.getBuildingType().equals(BuildingType.STAIR) ||
+                existingBuilding.getBuildingType().equals(BuildingType.STAIR))
+            return true;
+        else if (movingType.equals(MovingType.CAN_NOT_CLIMB_LADDER))
+            return true;
+        if (existingBuilding instanceof DefenceBuilding)
+            if (((DefenceBuilding) existingBuilding).getLadderState().equals(direction))
+                return true;
+        if (startPoint.existingBuilding == null)
+            return false;
+        if (startPoint.existingBuilding instanceof DefenceBuilding)
+            return ((DefenceBuilding) startPoint.existingBuilding).getLadderState().equals(direction);
         return false;
     }
+
+    private boolean handleClimber(Cell startPoint, Direction direction) {
+        BuildingType type = existingBuilding.getBuildingType();
+        if (type.equals(BuildingType.SMALL_STONE_GATEHOUSE) || type.equals(BuildingType.LARGE_STONE_GATEHOUSE)) {
+            if (((GateAndStairs) startPoint.existingBuilding).isClosed())
+                return true;
+        }
+        return false;
+    }
+
+    private boolean handleTunneller() {
+        switch (this.texture) {
+            case SEA, RIVER, POND_BIG, POND_SMALL -> {
+                return false;
+            }
+            default -> {
+                return true;
+            }
+        }
+    }
+
 }

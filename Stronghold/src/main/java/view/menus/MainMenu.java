@@ -4,8 +4,9 @@ import controller.AppController;
 import controller.MainMenuController;
 import utils.enums.MenusName;
 import view.enums.commands.Commands;
+import view.enums.messages.MainMenuMessages;
 
-import java.util.regex.Matcher;
+import java.util.ArrayList;
 
 public class MainMenu {
 
@@ -17,7 +18,6 @@ public class MainMenu {
 
     public void run() {
         String command;
-        Matcher matcher;
         while (AppController.getCurrentMenu() == MenusName.MAIN_MENU) {
             command = GetInputFromUser.getUserInput();
             if (Commands.getMatcher(command, Commands.LOGOUT) != null)
@@ -26,8 +26,8 @@ public class MainMenu {
                 enterProfileMenu();
             else if (Commands.getMatcher(command, Commands.ENTER_CREATE_MAP) != null)
                 enterCreateMapMenu();
-            else if ((matcher = Commands.getMatcher(command, Commands.START_GAME)) != null)
-                enterGameMenu(matcher);
+            else if (Commands.getMatcher(command, Commands.START_GAME) != null)
+                enterGameMenu();
         }
     }
 
@@ -35,13 +35,27 @@ public class MainMenu {
         AppController.setCurrentMenu(MenusName.PROFILE_MENU);
     }
 
-    private void enterGameMenu(Matcher matcher) {
-        int numberOfUser = matcher.groupCount();
-        String[] usernames = new String[numberOfUser];
-        for (int i = 0; i < numberOfUser; i++) {
-            usernames[i] = matcher.group(i);
+    private void enterGameMenu() {
+        ArrayList<String> usernames = new ArrayList<>();
+        System.out.print("Please enter map id: ");
+        String mapId = GetInputFromUser.getUserInput();
+        int numberOfPlayers = mainMenuController.numberOfPlayerInMap(mapId);
+        if (numberOfPlayers == -1) {
+            System.out.println("Invalid map id!");
+            return;
         }
-        mainMenuController.enterGameMenu(usernames);
+        for (int i = 0; i < numberOfPlayers; i++) {
+            System.out.println("Enter username" + (i + 1) + " : ");
+            usernames.add(GetInputFromUser.getUserInput());
+        }
+        MainMenuMessages message = mainMenuController.enterGameMenu(usernames, mapId);
+        switch (message) {
+            case INVALID_USERNAME -> System.out.println("Invalid username!");
+            case SUCCESS -> {
+                System.out.println("Game started!");
+                AppController.setCurrentMenu(MenusName.GAME_MENU);
+            }
+        }
     }
 
     private void enterCreateMapMenu() {
