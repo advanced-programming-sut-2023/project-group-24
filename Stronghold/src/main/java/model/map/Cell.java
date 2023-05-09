@@ -96,7 +96,8 @@ public class Cell {
 
     public void clear(Map map) {
         clearArmies(map);
-        existingBuilding.getKingdom().removeBuilding(existingBuilding);
+        if (existingBuilding != null)
+            existingBuilding.getKingdom().removeBuilding(existingBuilding);
         existingBuilding = null;
         texture = Texture.GROUND;
         isRock = false;

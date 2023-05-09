@@ -47,9 +47,8 @@ public class Database {
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
-        try (FileWriter file = new FileWriter(filePath)) {
-            file.write(gson.toJson(object));
-            file.flush();
+        try {
+            gson.toJson(object, new FileWriter(filePath));
         } catch (IOException ignored) {
 
         }
@@ -102,7 +101,7 @@ public class Database {
     private void checkForSavingDirectory() {
         File directory = new File(DIRECTORY_TO_SAVE_INFO);
         File maps = new File(DIRECTORY_TO_SAVE_MAPS);
-        if (!directory.exists()) {
+        if (!maps.exists()) {
             directory.mkdirs();
             maps.mkdirs();
         }
@@ -130,7 +129,7 @@ public class Database {
         Gson gson = builder.create();
 
         try {
-            String content = fileToString(FILE_TO_SAVE_ALL_USERS);
+            String content = fileToString(DIRECTORY_TO_SAVE_MAPS + "/" + id + ".json");
             return gson.fromJson(content, Map.class);
         } catch (FileNotFoundException ignored) {
             return null;

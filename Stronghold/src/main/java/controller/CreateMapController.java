@@ -58,6 +58,8 @@ public class CreateMapController {
     public CreateMapMessages setTexture(int x1, int y1, int x2, int y2, String texture) {
         if (checkLocation(x1) || checkLocation(y1) || checkLocation(x2) || checkLocation(y2))
             return CreateMapMessages.INVALID_LOCATION;
+        if (Texture.stringToEnum(texture) == null)
+            return CreateMapMessages.INVALID_TEXTURE;
         for (int i = x1; i <= x2; i++)
             for (int j = y1; j <= y2; j++)
                 setTexture(i, j, texture);
@@ -142,7 +144,7 @@ public class CreateMapController {
     }
 
     public CreateMapMessages newKingdom(int x, int y, String color) {
-        if (checkLocation(x) || checkLocation(y) || y < map.getSize() - 1)
+        if (checkLocation(x) || checkLocation(y))
             return CreateMapMessages.INVALID_LOCATION;
         KingdomColor color1 = KingdomColor.stringToEnum(color);
         if (color1 == null)
@@ -159,6 +161,7 @@ public class CreateMapController {
 
     private void createKingdom(Cell townHallLocation, Cell stockPileLocation, KingdomColor kingdomColor) {
         Kingdom kingdom = new Kingdom(kingdomColor);
+        map.addKingdom(kingdom);
         new Building(kingdom, townHallLocation, BuildingType.TOWN_HALL);
         new Building(kingdom, stockPileLocation, BuildingType.STOCKPILE);
         new Soldier(townHallLocation, ArmyType.LORD, kingdom, SoldierType.LORD);
@@ -197,9 +200,14 @@ public class CreateMapController {
                     LARGE_STONE_GATEHOUSE) || checkNeighbor(cell, BuildingType.LOW_WALL)
                     || checkNeighbor(cell, BuildingType.HIGH_WALL)))
                 return false;
-        if (buildingType.getCategory().equals(BuildingType.Category.STORAGE))
-            if (!checkNeighbor(cell, buildingType))
-                return false;
+        if (buildingType.getCategory().equals(BuildingType.Category.STORAGE)) {
+            for (Building building : currentKingdom.getBuildings()) {
+                if (building.getBuildingType() == buildingType) {
+                    if (!checkNeighbor(cell, buildingType)) return false;
+                    else break;
+                }
+            }
+        }
         if (buildingType.equals(BuildingType.DRAWBRIDGE))
             return checkNeighbor(cell, BuildingType.SMALL_STONE_GATEHOUSE) &&
                     (!checkNeighbor(cell, BuildingType.LARGE_STONE_GATEHOUSE));
@@ -209,21 +217,29 @@ public class CreateMapController {
     private boolean checkNeighbor(Cell cell, BuildingType neededBuildingType) {
         int x = cell.getX();
         int y = cell.getY();
-        if (x != 0)
-            if (map.getMap()[x - 1][y].getExistingBuilding().getBuildingType().equals(neededBuildingType)
-                    && map.getMap()[x - 1][y].getExistingBuilding().getKingdom().equals(currentKingdom))
+        if (x != 0) {
+            Building building = map.getMap()[x - 1][y].getExistingBuilding();
+            if (building != null && building.getBuildingType() == neededBuildingType
+                    && building.getKingdom() == currentKingdom)
                 return true;
-        if (y != 0)
-            if (map.getMap()[x][y - 1].getExistingBuilding().getBuildingType().equals(neededBuildingType)
-                    && map.getMap()[x][y - 1].getExistingBuilding().getKingdom().equals(currentKingdom))
+        }
+        if (y != 0) {
+            Building building = map.getMap()[x][y - 1].getExistingBuilding();
+            if (building != null && building.getBuildingType().equals(neededBuildingType)
+                    && building.getKingdom().equals(currentKingdom))
                 return true;
-        if (x != map.getSize())
-            if (map.getMap()[x + 1][y].getExistingBuilding().getBuildingType().equals(neededBuildingType)
-                    && map.getMap()[x + 1][y].getExistingBuilding().getKingdom().equals(currentKingdom))
+        }
+        if (x != map.getSize() - 1) {
+            Building building = map.getMap()[x + 1][y].getExistingBuilding();
+            if (building != null && building.getBuildingType().equals(neededBuildingType)
+                    && building.getKingdom().equals(currentKingdom))
                 return true;
-        if (y != map.getSize())
-            return map.getMap()[x][y + 1].getExistingBuilding().getBuildingType().equals(neededBuildingType)
-                    && map.getMap()[x][y + 1].getExistingBuilding().getKingdom().equals(currentKingdom);
+        }
+        if (y != map.getSize() - 1) {
+            Building building = map.getMap()[x][y + 1].getExistingBuilding();
+            return building != null && building.getBuildingType().equals(neededBuildingType)
+                    && building.getKingdom().equals(currentKingdom);
+        }
         return false;
     }
 
@@ -250,7 +266,6 @@ public class CreateMapController {
     public CreateMapMessages exitCreateMapMenu() {
         if (map.getKingdoms().size() < 2)
             return CreateMapMessages.FEW_KINGDOM;
-        //TODO save map.
         AppController.setCurrentMenu(MenusName.MAIN_MENU);
         return CreateMapMessages.SUCCESS;
     }

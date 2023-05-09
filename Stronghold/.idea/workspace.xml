@@ -5,28 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="first checkpoint final version">
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/CreateMapControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stronghold.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Stronghold.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/captchacontrollers/AsciiArt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/captchacontrollers/AsciiArt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/functionalcontrollers/PathFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/functionalcontrollers/PathFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/databases/GameDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/databases/GameDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/allUsers.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/allUsers.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/databases/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/databases/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/enums/CaptchaNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/enums/CaptchaNumbers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/enums/messages/UnitControllerMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/enums/messages/UnitControllerMessages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/LoginMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/LoginMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/ProfileMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/RegisterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/ResetPasswordMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/ResetPasswordMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShopMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShowMapMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShowMapMenu.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +23,7 @@
       <list>
         <option value="Class" />
         <option value="Enum" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -55,6 +40,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../javafxWorkshop1" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -62,13 +50,19 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="U:\AdvancedProgramming\Project\Codes\Stronghold\src\main\java\controller" />
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="controller" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="view.enums.commands" />
       <recent name="view.menus" />
       <recent name="controller.gamecontrollers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="U:\AdvancedProgramming\Project\Codes\Stronghold\src\main\java\controller" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -83,25 +77,83 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+  <component name="RunManager" selected="JUnit.CreateMapControllerTest.exitCreateMapMenu">
+    <configuration name="CreateMapControllerTest.dropBuilding" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.CreateMapControllerTest" />
+      <option name="METHOD_NAME" value="dropBuilding" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CreateMapControllerTest.dropUnit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DatabaseTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.CreateMapControllerTest" />
+      <option name="METHOD_NAME" value="dropUnit" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CreateMapControllerTest.exitCreateMapMenu" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.CreateMapControllerTest" />
+      <option name="METHOD_NAME" value="exitCreateMapMenu" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CreateMapControllerTest.newKingdom" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.CreateMapControllerTest" />
+      <option name="METHOD_NAME" value="newKingdom" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CreateMapControllerTest.setCurrentKingdom" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.CreateMapControllerTest" />
+      <option name="METHOD_NAME" value="setCurrentKingdom" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -155,8 +207,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.DatabaseTest" />
+        <item itemvalue="JUnit.CreateMapControllerTest.exitCreateMapMenu" />
+        <item itemvalue="JUnit.CreateMapControllerTest.dropUnit" />
+        <item itemvalue="JUnit.CreateMapControllerTest.dropBuilding" />
+        <item itemvalue="JUnit.CreateMapControllerTest.setCurrentKingdom" />
+        <item itemvalue="JUnit.CreateMapControllerTest.newKingdom" />
       </list>
     </recent_temporary>
   </component>
