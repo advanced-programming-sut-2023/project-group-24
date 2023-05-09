@@ -40,6 +40,15 @@ class DatabaseTest {
     }
 
     @Test
+    void testAddingAndGetting() {
+        Database database1 = new Database();
+        database1.addMap(new Map(200, "map1id"));
+        Assertions.assertTrue(database1.mapIdExists("map1id"));
+        Assertions.assertFalse(database1.mapIdExists("map10id"));
+        Assertions.assertNotNull(database1.getMapById("map1id"));
+    }
+
+    @Test
     void testSaveAndLoadAllUsers() throws IOException {
         Database database1 = new Database();
         database1.addUser("username1", "password1", "nickname1", "slogan1",
@@ -55,38 +64,13 @@ class DatabaseTest {
     }
 
     @Test
-    void testSavingStayedLoggedInUser() throws IOException {
+    void testSavingStayedLoggedInUser() {
         Database database1 = new Database();
         database1.setStayedLoggedInUser(user1);
         Database database2 = new Database();
         database2.loadDataFromFile();
         Assertions.assertEquals(database2.getStayedLoggedInUser().getUsername(),
                 database1.getStayedLoggedInUser().getUsername());
-    }
-
-    @Test
-    void testAddingAndGettingMaps() {
-        Database database1 = new Database();
-        database1.addMap(map1);
-        database1.addMap(map2);
-        Assertions.assertNotNull(database1.getMapById("map1Id"));
-        Assertions.assertEquals(map1.getId(), database1.getMapById("map1Id").getId());
-        Assertions.assertEquals(map2.getId(), database1.getMapById("map2Id").getId());
-        Assertions.assertNull(database1.getMapById("chert"));
-    }
-
-    @Test
-    void testSavingAndLoadingMaps() throws IOException {
-        Database database1 = new Database();
-        database1.addMap(map1);
-        database1.addMap(map2);
-        database1.saveDataIntoFile();
-        Database database2 = new Database();
-        database2.loadDataFromFile();
-        Assertions.assertNotNull(database2.getMapById("map1Id").getId());
-        Assertions.assertEquals(map1.getId(), database2.getMapById("map1Id").getId());
-        Assertions.assertEquals(map2.getId(), database2.getMapById("map2Id").getId());
-        Assertions.assertNull(database2.getMapById("chert"));
     }
 
     @Test

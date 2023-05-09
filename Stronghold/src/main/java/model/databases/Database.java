@@ -24,13 +24,13 @@ public class Database {
     private static final String FILE_TO_SAVE_STAYED_LOGGED_IN_USER = DIRECTORY_TO_SAVE_INFO + "/loggedInUser.json";
 
     private Vector<User> allUsers;
-    private Vector<String> mapIds;
     private User stayedLoggedInUser;
+    private Vector<Map> maps;
 
     public Database() {
         allUsers = new Vector<>();
-        mapIds = new Vector<>();
         stayedLoggedInUser = null;
+        maps = new Vector<>();
     }
 
     private static String fileToString(String filePath) throws FileNotFoundException {
@@ -48,7 +48,9 @@ public class Database {
         Gson gson = builder.create();
 
         try {
-            gson.toJson(object, new FileWriter(filePath));
+            FileWriter fileWriter = new FileWriter(filePath);
+            fileWriter.write(gson.toJson(object));
+            fileWriter.flush();
         } catch (IOException ignored) {
 
         }
@@ -78,15 +80,13 @@ public class Database {
         builder.setPrettyPrinting();
         Gson gson = builder.create();
         Type allUsersType = new TypeToken<Vector<User>>() {}.getType();
-        Type mapsType = new TypeToken<Vector<String>>() {}.getType();
 
         try {
             allUsers = gson.fromJson(fileToString(FILE_TO_SAVE_ALL_USERS), allUsersType);
-            mapIds = gson.fromJson(fileToString(FILE_TO_SAVE_MAP_IDS), mapsType);
             stayedLoggedInUser = gson.fromJson(fileToString(FILE_TO_SAVE_STAYED_LOGGED_IN_USER), User.class);
         } catch (FileNotFoundException ignored) {
             allUsers = new Vector<>();
-            mapIds = new Vector<>();
+            maps = new Vector<>();
             stayedLoggedInUser = null;
         }
     }
@@ -94,7 +94,6 @@ public class Database {
     public void saveDataIntoFile() {
         checkForSavingDirectory();
         saveObjectToFile(FILE_TO_SAVE_ALL_USERS, allUsers);
-        saveObjectToFile(FILE_TO_SAVE_MAP_IDS, mapIds);
         saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
     }
 
@@ -122,27 +121,21 @@ public class Database {
     }
 
     public Map getMapById(String id) {
-        if (!mapIds.contains(id)) return null;
-
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
-
-        try {
-            String content = fileToString(DIRECTORY_TO_SAVE_MAPS + "/" + id + ".json");
-            return gson.fromJson(content, Map.class);
-        } catch (FileNotFoundException ignored) {
-            return null;
+        for (Map map : maps) {
+            if (map.getId().equals(id))
+                return map;
         }
+        return null;
     }
 
     public void addMap(Map map) {
-        mapIds.add(map.getId());
-        checkForSavingDirectory();
-        saveObjectToFile(DIRECTORY_TO_SAVE_MAPS + "/" + map.getId() + ".json", map);
+        maps.add(map);
     }
 
     public boolean mapIdExists(String id) {
-        return mapIds.contains(id);
+        for (Map map : maps) {
+            if (map.getId().equals(id)) return true;
+        }
+        return false;
     }
 }

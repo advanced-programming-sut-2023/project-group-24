@@ -24,7 +24,7 @@ public class CreateMapController {
     }
 
     public CreateMapMessages createMap(int size, String id) {
-        if (database.getMapById(id) != null)
+        if (database.mapIdExists(id))
             return CreateMapMessages.ID_EXIST;
         if (!(size == 200 || size == 400))
             return CreateMapMessages.INVALID_SIZE;

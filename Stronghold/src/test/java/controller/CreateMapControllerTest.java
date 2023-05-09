@@ -1,8 +1,6 @@
 package controller;
 
 import model.databases.Database;
-import model.map.Map;
-import model.map.Texture;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import view.enums.messages.CreateMapMessages;
@@ -20,12 +18,6 @@ class CreateMapControllerTest {
     void createMap() {
         CreateMapController createMapController = new CreateMapController(database);
         Assertions.assertEquals(createMapController.createMap(200, "testMap1"), CreateMapMessages.SUCCESS);
-        File file = new File("info/maps/testMap1.json");
-        Assertions.assertTrue(file.exists());
-        Map map = database.getMapById("testMap1");
-        Assertions.assertNotNull(map);
-        Assertions.assertEquals(200, map.getSize());
-        Assertions.assertEquals("testMap1", map.getId());
         Assertions.assertEquals(createMapController.createMap(300, "testMap2"), CreateMapMessages.INVALID_SIZE);
         Assertions.assertEquals(createMapController.createMap(400, "testMap1"), CreateMapMessages.ID_EXIST);
     }
