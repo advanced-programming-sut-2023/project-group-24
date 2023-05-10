@@ -22,10 +22,11 @@ public class GameDatabase {
         this.map = map;
         turnPlayed = 0;
         this.kingdoms = new ArrayList<>(kingdoms);
+        currentKingdom = kingdoms.get(0);
     }
 
     public void nextTurn() {
-    currentKingdom = kingdoms.get(turnPlayed++ % kingdoms.size());
+    currentKingdom = kingdoms.get(++turnPlayed % kingdoms.size());
     }
 
     public void removeKingdom() {

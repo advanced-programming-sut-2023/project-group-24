@@ -46,6 +46,7 @@ public class Kingdom {
         populationCapacity = 8;
         buildings = new ArrayList<>();
         trades = new ArrayList<>();
+        notifications = new ArrayList<>();
         armies = new ArrayList<>();
         popularityFactors = new HashMap<>();
         population = new ArrayList<>();
@@ -264,5 +265,9 @@ public class Kingdom {
         ((WorkersNeededBuilding)population.get(population.size() - 1).getWorkStation()).
                 unAssignWorker(population.get(population.size() - 1));
         population.remove(population.size() - 1);
+    }
+
+    public void resetNotifications() {
+        notifications = new ArrayList<>();
     }
 }

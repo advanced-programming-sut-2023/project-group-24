@@ -19,11 +19,13 @@ public class TradeController {
     public TradeControllerMessages addTrade(String resourceType, int resourceAmount, int price, String message) {
         if (Item.stringToEnum(resourceType) == null)
             return TradeControllerMessages.INVALID_RESOURCE_NAME;
+        if (resourceAmount < 1)
+            return TradeControllerMessages.INVALID_AMOUNT;
         Trade trade = new Trade(gameDatabase.getCurrentKingdom(),
                 Item.stringToEnum(resourceType), resourceAmount, price, message);
         for (Kingdom kingdom : gameDatabase.getKingdoms()) {
-            if (kingdom == gameDatabase.getCurrentKingdom()) continue;
             kingdom.getTrades().add(trade);
+            if (kingdom == gameDatabase.getCurrentKingdom()) continue;
             kingdom.getNotifications().add(trade);
         }
         return TradeControllerMessages.SUCCESS;
@@ -40,24 +42,24 @@ public class TradeController {
     }
 
     public TradeControllerMessages tradeAccept(int id, String message, KingdomController kingdomController) {
-        for (int i = 0; i < gameDatabase.getCurrentKingdom().getTrades().size(); i++) {
-            Trade trade = gameDatabase.getCurrentKingdom().getTrades().get(i);
-            if (trade.getAcceptingKingdom() == null)
-                id--;
-            if (id == 0) {
-                trade.accept(gameDatabase.getCurrentKingdom(), message);
-                kingdomController.changeStockedNumber(new Pair<>(trade.getResourceType(), trade.getResourceAmount()));
-                gameDatabase.getCurrentKingdom().changeGold(trade.getPrice());
-                for (Kingdom kingdom : gameDatabase.getKingdoms()) {
-                    kingdom.getNotifications().remove(trade);
-                    if (kingdom != trade.getRequester() && kingdom != trade.getAcceptingKingdom())
-                        kingdom.getTrades().remove(trade);
-                }
-                trade.getRequester().getNotifications().add(trade);
-                return TradeControllerMessages.SUCCESS;
-            }
+        Trade trade = getTradeFromId(id);
+        if (trade == null) return TradeControllerMessages.ID_OUT_OF_BOUNDS;
+        if (trade.getRequester() == gameDatabase.getCurrentKingdom()) return TradeControllerMessages.TRADE_IS_YOURS;
+        if (gameDatabase.getCurrentKingdom().getStockedNumber(trade.getResourceType())
+                < trade.getResourceAmount()) return TradeControllerMessages.NOT_ENOUGH_RESOURCES;
+
+        trade.accept(gameDatabase.getCurrentKingdom(), message);
+        kingdomController.changeStockedNumber(new Pair<>(trade.getResourceType(), -trade.getResourceAmount()));
+        gameDatabase.getCurrentKingdom().changeGold(trade.getPrice());
+
+        for (Kingdom kingdom : gameDatabase.getKingdoms()) {
+            kingdom.getNotifications().remove(trade);
+            if (kingdom != trade.getRequester() && kingdom != trade.getAcceptingKingdom())
+                kingdom.getTrades().remove(trade);
         }
-        return TradeControllerMessages.ID_OUT_OF_BOUNDS;
+
+        trade.getRequester().getNotifications().add(trade);
+        return TradeControllerMessages.SUCCESS;
     }
 
     public ArrayList<String> tradeHistory() {
@@ -76,6 +78,16 @@ public class TradeController {
         for (int i = 0; i < notifications.size(); i++) {
             output[i] = notifications.get(i).toString();
         }
+        gameDatabase.getCurrentKingdom().resetNotifications();
         return output;
+    }
+
+    private Trade getTradeFromId(int id) {
+        for (int i = 0; i < gameDatabase.getCurrentKingdom().getTrades().size(); i++) {
+            Trade trade = gameDatabase.getCurrentKingdom().getTrades().get(i);
+            if (trade.getAcceptingKingdom() == null) id--;
+            if (id == 0) return trade;
+        }
+        return null;
     }
 }

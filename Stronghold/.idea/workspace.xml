@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="first checkpoint final version">
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/TradeControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/TradeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/info/allUsers.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/allUsers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/databases/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/databases/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/controller/CreateMapControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/CreateMapControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/DatabaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/DatabaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/TradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/TradeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Trade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Trade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/databases/GameDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/databases/GameDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/enums/messages/TradeControllerMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/enums/messages/TradeControllerMessages.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +21,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="183" />
+    <option name="myElementSize" value="181" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -54,6 +56,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="controller.gamecontrollers" />
+      <recent name="model" />
       <recent name="controller" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -80,80 +84,81 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DatabaseTest.testAddingAndGetting">
-    <configuration name="CreateMapControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TradeControllerTest">
+    <configuration name="TradeControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.*" />
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.CreateMapControllerTest" />
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.TradeControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CreateMapControllerTest.dropUnit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TradeControllerTest.getNotifications" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.*" />
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.CreateMapControllerTest" />
-      <option name="METHOD_NAME" value="dropUnit" />
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.TradeControllerTest" />
+      <option name="METHOD_NAME" value="getNotifications" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CreateMapControllerTest.exitCreateMapMenu" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TradeControllerTest.tradeAccept" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.*" />
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.CreateMapControllerTest" />
-      <option name="METHOD_NAME" value="exitCreateMapMenu" />
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.TradeControllerTest" />
+      <option name="METHOD_NAME" value="tradeAccept" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TradeControllerTest.tradeHistory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DatabaseTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.TradeControllerTest" />
+      <option name="METHOD_NAME" value="tradeHistory" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTest.testAddingAndGetting" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TradeControllerTest.tradeList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DatabaseTest" />
-      <option name="METHOD_NAME" value="testAddingAndGetting" />
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.TradeControllerTest" />
+      <option name="METHOD_NAME" value="tradeList" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -208,11 +213,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DatabaseTest.testAddingAndGetting" />
-        <item itemvalue="JUnit.DatabaseTest" />
-        <item itemvalue="JUnit.CreateMapControllerTest" />
-        <item itemvalue="JUnit.CreateMapControllerTest.exitCreateMapMenu" />
-        <item itemvalue="JUnit.CreateMapControllerTest.dropUnit" />
+        <item itemvalue="JUnit.TradeControllerTest" />
+        <item itemvalue="JUnit.TradeControllerTest.getNotifications" />
+        <item itemvalue="JUnit.TradeControllerTest.tradeHistory" />
+        <item itemvalue="JUnit.TradeControllerTest.tradeAccept" />
+        <item itemvalue="JUnit.TradeControllerTest.tradeList" />
       </list>
     </recent_temporary>
   </component>
@@ -292,8 +297,14 @@
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1683658735890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$TradeTest.ic" NAME="TradeTest Coverage Results" MODIFIED="1683661520128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$CreateMapControllerTest.ic" NAME="CreateMapControllerTest Coverage Results" MODIFIED="1683658313265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$TradeControllerTest.ic" NAME="TradeControllerTest Coverage Results" MODIFIED="1683707810446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.gamecontrollers.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testAddingAndGetting.ic" NAME="DatabaseTest.testAddingAndGetting Coverage Results" MODIFIED="1683659035556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>

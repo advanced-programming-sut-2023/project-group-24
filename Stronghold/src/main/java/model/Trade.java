@@ -51,6 +51,10 @@ public class Trade {
         return acceptingKingdom;
     }
 
+    public boolean canBeGotten() {
+        return canBeGotten;
+    }
+
     public void accept(Kingdom acceptingKingdom, String acceptingMessage) {
         this.acceptingMessage = acceptingMessage;
         this.acceptingKingdom = acceptingKingdom;
@@ -63,14 +67,14 @@ public class Trade {
 
     @Override
     public String toString() {
-        if (acceptingKingdom == null) return String.format("O %6s - %15s - %3d - \"%s\"",
+        if (acceptingKingdom == null) return String.format("O %6s - %15s - %3d - price: %4d - \"%s\"",
                 getRequester().getColor().toString().toLowerCase(),
                 resourceType.toString().replaceAll("_", " ").toLowerCase(),
-                resourceAmount, requesterMessage);
-        return String.format("X %6s - %15s - %3d - \"%s\" - accepted by %6s: \"%s\"",
+                resourceAmount, price, requesterMessage);
+        return String.format("X %6s - %15s - %3d - price: %4d - \"%s\" - accepted by %6s: \"%s\"",
                 requester.getColor().toString().toLowerCase(),
                 resourceType.toString().replaceAll("_", " ").toLowerCase(),
-                resourceAmount, requesterMessage,
+                resourceAmount, price, requesterMessage,
                 acceptingKingdom.getColor().toString().toLowerCase(), acceptingMessage);
     }
 }
