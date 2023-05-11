@@ -20,6 +20,8 @@ public enum BuildingControllerMessages {
     NO_BUILDINGS_SELECTED,
     NO_MOATS_HERE,
     INVALID_NUMBER,
+    NOT_ENOUGH_SPACE,
+    NOT_ENOUGH_PEOPLE,
     SUCCESS
     //TODO add messages
 }

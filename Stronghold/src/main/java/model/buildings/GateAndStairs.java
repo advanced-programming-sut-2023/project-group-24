@@ -25,7 +25,8 @@ public class GateAndStairs extends DefenceBuilding {
     }
 
     public void setDirection(Direction direction) {
-        this.direction = direction;
+        if (direction == Direction.RIGHT || direction == Direction.LEFT) this.direction = Direction.RIGHT;
+        else this.direction = Direction.UP;
     }
 
     public void changeClosedState() {

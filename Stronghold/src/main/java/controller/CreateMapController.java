@@ -217,30 +217,21 @@ public class CreateMapController {
     private boolean checkNeighbor(Cell cell, BuildingType neededBuildingType) {
         int x = cell.getX();
         int y = cell.getY();
-        if (x != 0) {
-            Building building = map.getMap()[x - 1][y].getExistingBuilding();
-            if (building != null && building.getBuildingType() == neededBuildingType
-                    && building.getKingdom() == currentKingdom)
-                return true;
-        }
-        if (y != 0) {
-            Building building = map.getMap()[x][y - 1].getExistingBuilding();
-            if (building != null && building.getBuildingType().equals(neededBuildingType)
-                    && building.getKingdom().equals(currentKingdom))
-                return true;
-        }
-        if (x != map.getSize() - 1) {
-            Building building = map.getMap()[x + 1][y].getExistingBuilding();
-            if (building != null && building.getBuildingType().equals(neededBuildingType)
-                    && building.getKingdom().equals(currentKingdom))
-                return true;
-        }
-        if (y != map.getSize() - 1) {
-            Building building = map.getMap()[x][y + 1].getExistingBuilding();
-            return building != null && building.getBuildingType().equals(neededBuildingType)
-                    && building.getKingdom().equals(currentKingdom);
-        }
-        return false;
+
+        Building building1 = null, building2 = null, building3 = null, building4 = null;
+        if (x != 0) building1 = map.getMap()[x - 1][y].getExistingBuilding();
+        if (y != 0) building2 = map.getMap()[x][y - 1].getExistingBuilding();
+        if (x != map.getSize() - 1) building3 = map.getMap()[x + 1][y].getExistingBuilding();
+        if (y != map.getSize() - 1) building4 = map.getMap()[x][y + 1].getExistingBuilding();
+
+        if (building1 != null && building1.getBuildingType() == neededBuildingType
+                && building1.getKingdom() == currentKingdom) return true;
+        if (building2 != null && building2.getBuildingType() == neededBuildingType
+                && building2.getKingdom() == currentKingdom) return true;
+        if (building3 != null && building3.getBuildingType() == neededBuildingType
+                && building3.getKingdom() == currentKingdom) return true;
+        return  building4 != null && building4.getBuildingType() == neededBuildingType
+                && building4.getKingdom() == currentKingdom;
     }
 
     public CreateMapMessages dropUnit(int x, int y, String type, int count) {
