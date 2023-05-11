@@ -167,14 +167,45 @@ class BuildingControllerTest {
 
     @Test
     void openDogCage() {
+        kingdomController.changeStockedNumber(new Pair<>(Item.WOOD, 200));
+        kingdomController.changeStockedNumber(new Pair<>(Item.STONE, 99));
+        Assertions.assertEquals(buildingController.dropBuilding(2, 2, "market", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.dropBuilding(2, 4, "caged war dogs", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.openDogCage(), BuildingControllerMessages.NO_BUILDINGS_SELECTED);
+        Assertions.assertEquals(buildingController.selectBuilding(2, 2), BuildingControllerMessages.MARKET);
+        Assertions.assertEquals(buildingController.openDogCage(), BuildingControllerMessages.IRRELEVANT_BUILDING);
+        int oldArmyCount = kingdom1.getArmies().size();
+        Assertions.assertEquals(buildingController.selectBuilding(2, 4), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.openDogCage(), BuildingControllerMessages.SUCCESS);
+        int currentArmyCount = kingdom1.getArmies().size();
+        Assertions.assertEquals(currentArmyCount - oldArmyCount , 3);
+        Assertions.assertEquals(map.getMap()[2][4].getArmies().get(map.getMap()[2][4].getArmies().size() - 1).getArmyType() , ArmyType.DOG);
+        Assertions.assertEquals(buildingController.openDogCage(), BuildingControllerMessages.NO_BUILDINGS_SELECTED);
+        Assertions.assertEquals(buildingController.selectBuilding(2, 4), BuildingControllerMessages.NO_BUILDINGS);
     }
 
     @Test
     void showDetails() {
+        //TODO maybe fill out this one more thoroughly later? I'll just do one real quick
+        kingdomController.changeStockedNumber(new Pair<>(Item.WOOD, 200));
+        kingdomController.changeStockedNumber(new Pair<>(Item.STONE, 99));
+        Assertions.assertEquals(buildingController.dropBuilding(2, 2, "market", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.showDetails().size(), 1);
+        Assertions.assertEquals(buildingController.selectBuilding(2, 2), BuildingControllerMessages.MARKET);
+        Assertions.assertEquals(buildingController.showDetails().get(0), "market");
     }
 
     @Test
     void produceLeather() {
+        kingdomController.changeStockedNumber(new Pair<>(Item.WOOD, 200));
+        kingdomController.changeStockedNumber(new Pair<>(Item.STONE, 99));
+        Assertions.assertEquals(buildingController.dropBuilding(2, 2, "market", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.dropBuilding(2, 4, "dairy farmer", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.NO_BUILDINGS_SELECTED);
+        Assertions.assertEquals(buildingController.selectBuilding(2, 2), BuildingControllerMessages.MARKET);
+        Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.IRRELEVANT_BUILDING);
+        Assertions.assertEquals(buildingController.selectBuilding(2, 2), BuildingControllerMessages.MARKET);
+        Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.IRRELEVANT_BUILDING);
     }
 
     @Test

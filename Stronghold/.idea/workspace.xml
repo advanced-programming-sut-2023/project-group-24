@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="first checkpoint final version">
-      <change afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/BuildingControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/GateAndStairs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/GateAndStairs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/enums/messages/BuildingControllerMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/enums/messages/BuildingControllerMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/BuildingControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/BuildingControllerTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +80,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.BuildingControllerTest.changeGateClosedState">
+  <component name="RunManager" selected="JUnit.BuildingControllerTest.showDetails">
     <configuration name="BuildingControllerTest.changeGateClosedState" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
@@ -116,7 +113,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BuildingControllerTest.dropBuilding" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BuildingControllerTest.openDogCage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
@@ -126,7 +123,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
       <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.BuildingControllerTest" />
-      <option name="METHOD_NAME" value="dropBuilding" />
+      <option name="METHOD_NAME" value="openDogCage" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,7 +145,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BuildingControllerTest.selectBuilding" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BuildingControllerTest.showDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
@@ -158,7 +155,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
       <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.BuildingControllerTest" />
-      <option name="METHOD_NAME" value="selectBuilding" />
+      <option name="METHOD_NAME" value="showDetails" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -213,11 +210,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BuildingControllerTest.showDetails" />
+        <item itemvalue="JUnit.BuildingControllerTest.openDogCage" />
         <item itemvalue="JUnit.BuildingControllerTest.changeGateClosedState" />
         <item itemvalue="JUnit.BuildingControllerTest.repair" />
         <item itemvalue="JUnit.BuildingControllerTest.createUnit" />
-        <item itemvalue="JUnit.BuildingControllerTest.selectBuilding" />
-        <item itemvalue="JUnit.BuildingControllerTest.dropBuilding" />
       </list>
     </recent_temporary>
   </component>

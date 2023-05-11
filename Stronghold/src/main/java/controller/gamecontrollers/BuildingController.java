@@ -133,13 +133,15 @@ public class BuildingController {
         for (int i = 0; i < 3; i++)
             new Soldier(building.getLocation(), ArmyType.DOG, gameDatabase.getCurrentKingdom(), SoldierType.DOG);
         building.takeDamage(building.getHp());
+        building.getLocation().setExistingBuilding(null);
         gameDatabase.getCurrentKingdom().removeBuilding(building);
+        gameDatabase.setCurrentBuilding(null);
         return BuildingControllerMessages.SUCCESS;
     }
 
     public ArrayList<String> showDetails() {
         if (gameDatabase.getCurrentBuilding() == null)
-            return new ArrayList<>(List.of(Color.RED + "select a building first!" + Color.RESET));
+            return new ArrayList<>(List.of(Color.RED + "Select a building first!" + Color.RESET));
         return gameDatabase.getCurrentBuilding().showDetails();
     }
 
