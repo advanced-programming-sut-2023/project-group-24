@@ -17,6 +17,7 @@ public enum UnitControllerMessages {
     NOT_SELECTED_ENGINEER,
     OUT_OF_RANGE,
     IRRELEVANT_UNIT,
+    CANNOT_BUILD,
     MOAT_DOES_NOT_EXIST,
-    CANNOT_BUILD
+    BUILDING_NOT_FOUND
 }

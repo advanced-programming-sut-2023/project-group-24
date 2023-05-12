@@ -9,6 +9,7 @@ import model.buildings.SiegeTent;
 import model.databases.GameDatabase;
 import model.enums.Direction;
 import model.map.Cell;
+import model.map.Map;
 import utils.Pair;
 import view.enums.messages.UnitControllerMessages;
 
@@ -111,7 +112,15 @@ public class UnitController {
         Cell enemyCell = gameDatabase.getMap().getMap()[enemyX][enemyY];
         ArrayList<Army> enemies = enemyCell.getArmies();
         ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
-        if (enemies == null) return UnitControllerMessages.NOT_ENEMY;
+        if (selectedUnits == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        boolean isEnemy = false;
+        for (Army e : enemies)
+            if (!e.getOwner().equals(gameDatabase.getCurrentKingdom())) {
+                isEnemy = true;
+                break;
+            }
+        if (!isEnemy)
+            return UnitControllerMessages.NOT_ENEMY;
         boolean isEnemyExist = false;
         boolean outOfRange = true;
         int distance = getDistance(enemyX, enemyY);
@@ -136,6 +145,7 @@ public class UnitController {
 
     public UnitControllerMessages archerAttack(int x, int y) {
         if (checkXY(x, y)) return UnitControllerMessages.INVALID_LOCATION;
+        if (gameDatabase.getSelectedUnits() == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
         boolean isArcherExist = false;
         boolean canArcherAttack = false;
         Cell targetCell = gameDatabase.getMap().getMap()[x][y];
@@ -164,6 +174,7 @@ public class UnitController {
 
     public UnitControllerMessages pourOil(String stringDirection) {
         ArrayList<Army> selectedArmies = gameDatabase.getSelectedUnits();
+        if (selectedArmies == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
         for (Army e : selectedArmies)
             if (!e.getArmyType().equals(ArmyType.ENGINEER_WITH_OIL))
                 return UnitControllerMessages.NOT_SELECT_OIL;
@@ -181,10 +192,22 @@ public class UnitController {
         return UnitControllerMessages.SUCCESS;
     }
 
-    public UnitControllerMessages digTunnel(int x, int y) {
-        if (checkXY(x, y)) return UnitControllerMessages.INVALID_LOCATION;
-        //gashtan be donbale nazdiktarin sakhteman ta shoaa 5  va damage 400 be on va remove kardan building mazkoor va mordan khode kharash
-        return UnitControllerMessages.SUCCESS;
+    public UnitControllerMessages digTunnel() {
+        if (gameDatabase.getSelectedUnits() == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        for (Army e : gameDatabase.getSelectedUnits())
+            if (!e.getArmyType().equals(ArmyType.TUNNELLER)) return UnitControllerMessages.IRRELEVANT_UNIT;
+        for (int i = 1; i < 6; i++) {
+            Building building = findBuilding(i);
+            if (building == null) continue;
+            building.takeDamage(400);
+            if (building.getHp() <= 0) {
+                building.getLocation().setExistingBuilding(null);
+                building.getKingdom().removeBuilding(building);
+            }
+            gameDatabase.getSelectedUnits().get(0).isDead();
+            return UnitControllerMessages.SUCCESS;
+        }
+        return UnitControllerMessages.BUILDING_NOT_FOUND;
     }
 
     public UnitControllerMessages buildEquipment(String equipmentType) {
@@ -202,7 +225,9 @@ public class UnitController {
         return UnitControllerMessages.SUCCESS;
     }
 
-    public UnitControllerMessages digMoat(Direction direction) {
+    public UnitControllerMessages digMoat(String stringDirection) {
+        Direction direction = Direction.stringToEnum(stringDirection);
+        if (direction == null) return UnitControllerMessages.INVALID_DIRECTION;
         ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
         if (selectedUnits == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
         for (Army e : selectedUnits)
@@ -215,7 +240,9 @@ public class UnitController {
         return UnitControllerMessages.SUCCESS;
     }
 
-    public UnitControllerMessages fillMoat(Direction direction) {
+    public UnitControllerMessages fillMoat(String stringDirection) {
+        Direction direction = Direction.stringToEnum(stringDirection);
+        if (direction == null) return UnitControllerMessages.INVALID_DIRECTION;
         ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
         if (selectedUnits == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
         for (Army e : selectedUnits)
@@ -298,5 +325,24 @@ public class UnitController {
             }
         }
         return UnitControllerMessages.SUCCESS;
+    }
+
+    private Building findBuilding(int radius) {
+        Cell cell = gameDatabase.getSelectedUnits().get(0).getLocation();
+        int cellX = cell.getX();
+        int cellY = cell.getY();
+        Map map = gameDatabase.getMap();
+        for (int y = -1 * radius; y < 2 * radius; y++) {
+            for (int x = -1 * radius; x < 2 * radius; x++) {
+                if (!checkXY(cellX + x, cellY + y)) {
+                    Building building = map.getMap()[cellX + x][cellY + y].getExistingBuilding();
+                    if (building != null &&
+                            !building.getKingdom().equals(gameDatabase.getCurrentKingdom()) &&
+                            building.getBuildingType().canBeDestroyedByTunnels())
+                        return building;
+                }
+            }
+        }
+        return null;
     }
 }
