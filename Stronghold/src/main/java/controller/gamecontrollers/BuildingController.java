@@ -33,7 +33,7 @@ public class BuildingController {
         BuildingType buildingType = BuildingType.getBuildingTypeFromName(type);
         if (buildingType == null)
             return BuildingControllerMessages.INVALID_TYPE;
-        if (buildingType == BuildingType.MOAT)
+        if (buildingType == BuildingType.MOAT || buildingType == BuildingType.TOWN_HALL)
             return BuildingControllerMessages.IRRELEVANT_BUILDING;
         if (!cell.canBuild())
             return BuildingControllerMessages.CANNOT_BUILD_HERE;
@@ -119,6 +119,8 @@ public class BuildingController {
         if (building.getBuildingType() != BuildingType.LARGE_STONE_GATEHOUSE
                 && building.getBuildingType() != BuildingType.SMALL_STONE_GATEHOUSE)
             return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        if (isThereAnEnemyHere(building.getLocation().getX(), building.getLocation().getY()))
+            return BuildingControllerMessages.ENEMY_IS_NEARBY;
         ((GateAndStairs) building).changeClosedState();
         changeDrawBridgeClosedState(building.getLocation().getX(), building.getLocation().getY());
         return BuildingControllerMessages.SUCCESS;
