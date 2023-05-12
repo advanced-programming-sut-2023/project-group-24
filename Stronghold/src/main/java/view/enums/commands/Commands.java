@@ -63,12 +63,12 @@ public enum Commands {
             "^dropbuilding( -[xyt] ((\"[^\"]*\")|(\\d*))){3}$"),
     DROP_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
             "(?=.* -c (?<count>\\d*))^dropunit( -[xytc] ((\"[^\"]*\")|(\\S*))){4}$"),
-    CHANGE_KINGDOM("^change kingdom -c (?<color>\\S+)$"),
+    CHANGE_KINGDOM("^change kingdom -c (?<color>\\S*)$"),
     NEW_KINGDOM("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -c (?<color>\\S*))^new kingdom( -[xyc] \\S*){3}$"),
 
     //Shop menu commands
     SHOW_PRICE_LIST("^show price list$"),
-    BUY_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S*))(?=.* -a (?<itemAmount>\\d*))" +
+    BUY_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S*)))(?=.* -a (?<itemAmount>\\d*))" +
             "^buy( -[ia] ((\"[^\"]*\")|(\\S*))){2}$"),
     SELL_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S*))(?=.* -a (?<itemAmount>\\d*))" +
             "^sell( -[ia] ((\"[^\"]*\")|(\\S*))){2}$"),
@@ -87,6 +87,7 @@ public enum Commands {
             "^patrol unit( -[xy] \\d*){2}$"),
     STOP_PATROL("^stop patrol$"),
     SET_STATE("^set (?<state>\\S*)$"),
+    SET_LADDER("^set ladder -d (?<direction>\\S*)$"),
     ATTACK("^attack -e (?<enemyX>\\d*) (?<enemyY>\\d*)$"),
     ATTACK_ARCHER("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^attack( -[xy] \\d*){2}$"),
     POUR_OIL("^pour oil -d (?<direction>\\S*)$"),
@@ -124,17 +125,17 @@ public enum Commands {
     SHOW_CURRENT_MENU("^show current menu$"),
 
     //Trade
-    TRADE_REQUEST("(?=.* -t (?<resourceType>(\"[^\"]*\")|(\\S*)))(?=.* -a (?<resourceAmount>(\"[^\"]*\")|(\\S*)))" +
-            "(?=.* -p (?<price>(\"[^\"]*\")|(\\S*)))(?=.* -m (?<message>(\"[^\"]*\")|(\\S*)))^trade( -[tapm] ((\"[^\"]*\")|(\\S*))){4}$"),
+    TRADE_REQUEST("(?=.* -t (?<resourceType>(\"[^\"]*\")|(\\S*)))(?=.* -a (?<resourceAmount>\\d*))" +
+            "(?=.* -p (?<price>\\d*))(?=.* -m (?<message>(\"[^\"]*\")|(\\S*)))^trade( -[tapm] ((\"[^\"]*\")|(\\S*))){4}$"),
     TRADE_LIST("^trade list$"),
-    TRADE_ACCEPT("(?=.* -i (?<id>(\"[^\"]*\")|(\\S*)))(?=.* -m (?<message>(\"[^\"]*\")|(\\S*)))" +
+    TRADE_ACCEPT("(?=.* -i (?<id>\\d*))(?=.* -m (?<message>(\"[^\"]*\")|(\\S*)))" +
             "^trade accept( -[im] ((\"[^\"]*\")|(\\S*))){2}$"),
     TRADE_HISTORY("^trade history$"),
 
     //Valid formats
     VALID_USERNAME("^[\\w_]+$"),
     VALID_EMAIL("^[\\w_.]+@[\\w_.]+.[\\w_.]+$"),
-    PASSWORD_SIZE("^\\S{8,}"),
+    PASSWORD_SIZE("^.{8,}$"),
     PASSWORD_CAPITAL("^(?=.*[A-Z]).+$"),
     PASSWORD_NUMBER("^(?=.*\\d).+$"),
     PASSWORD_SMALL_CHAR("^(?=.*[a-z]).+$"),
