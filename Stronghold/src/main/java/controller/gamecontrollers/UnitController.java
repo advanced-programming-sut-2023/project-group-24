@@ -42,7 +42,7 @@ public class UnitController {
     public UnitControllerMessages moveUnit(int x, int y) {
         if (checkXY(x, y)) return UnitControllerMessages.INVALID_LOCATION;
         ArrayList<Army> selectedUnit = gameDatabase.getSelectedUnits();
-        if (selectedUnit == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (selectedUnit.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         Cell startingCell = gameDatabase.getSelectedUnits().get(0).getLocation();
         Pair<Integer, Integer> startLocation = new Pair<>(startingCell.getX(), startingCell.getY());
         Pair<Integer, Integer> destination = new Pair<>(x, y);
@@ -71,7 +71,7 @@ public class UnitController {
 
     public UnitControllerMessages patrolUnit(int x, int y) {
         if (checkXY(x, y)) return UnitControllerMessages.INVALID_LOCATION;
-        if (gameDatabase.getSelectedUnits() == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (gameDatabase.getSelectedUnits().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         UnitControllerMessages moveMessage = moveUnit(x, y);
         if (!moveMessage.equals(UnitControllerMessages.SUCCESS)) return moveMessage;
         ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
@@ -84,7 +84,7 @@ public class UnitController {
     }
 
     public UnitControllerMessages stopUnitsPatrol() {
-        if (gameDatabase.getSelectedUnits() == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (gameDatabase.getSelectedUnits().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
         boolean isPatrolling = false;
         for (Army e : selectedUnits) {
@@ -98,7 +98,7 @@ public class UnitController {
     }
 
     public UnitControllerMessages setStateForUnits(String unitState) {
-        if (gameDatabase.getSelectedUnits() == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (gameDatabase.getSelectedUnits().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         UnitState state = UnitState.stringToEnum(unitState);
         if (state == null) return UnitControllerMessages.INVALID_STATE;
         for (Army e : gameDatabase.getSelectedUnits()) {
@@ -112,7 +112,7 @@ public class UnitController {
         Cell enemyCell = gameDatabase.getMap().getMap()[enemyX][enemyY];
         ArrayList<Army> enemies = enemyCell.getArmies();
         ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
-        if (selectedUnits == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (selectedUnits.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         boolean isEnemy = false;
         for (Army e : enemies)
             if (!e.getOwner().equals(gameDatabase.getCurrentKingdom())) {
@@ -145,7 +145,7 @@ public class UnitController {
 
     public UnitControllerMessages archerAttack(int x, int y) {
         if (checkXY(x, y)) return UnitControllerMessages.INVALID_LOCATION;
-        if (gameDatabase.getSelectedUnits() == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (gameDatabase.getSelectedUnits().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         boolean isArcherExist = false;
         boolean canArcherAttack = false;
         Cell targetCell = gameDatabase.getMap().getMap()[x][y];
@@ -174,7 +174,7 @@ public class UnitController {
 
     public UnitControllerMessages pourOil(String stringDirection) {
         ArrayList<Army> selectedArmies = gameDatabase.getSelectedUnits();
-        if (selectedArmies == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (selectedArmies.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         for (Army e : selectedArmies)
             if (!e.getArmyType().equals(ArmyType.ENGINEER_WITH_OIL))
                 return UnitControllerMessages.NOT_SELECT_OIL;
@@ -193,7 +193,7 @@ public class UnitController {
     }
 
     public UnitControllerMessages digTunnel() {
-        if (gameDatabase.getSelectedUnits() == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (gameDatabase.getSelectedUnits().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         for (Army e : gameDatabase.getSelectedUnits())
             if (!e.getArmyType().equals(ArmyType.TUNNELLER)) return UnitControllerMessages.IRRELEVANT_UNIT;
         for (int i = 1; i < 6; i++) {
@@ -212,7 +212,7 @@ public class UnitController {
 
     public UnitControllerMessages buildEquipment(String equipmentType) {
         ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
-        if (selectedUnits == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (selectedUnits.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         for (Army e : selectedUnits) {
             if (!e.getArmyType().equals(ArmyType.ENGINEER)) return UnitControllerMessages.NOT_SELECTED_ENGINEER;
         }
@@ -229,7 +229,7 @@ public class UnitController {
         Direction direction = Direction.stringToEnum(stringDirection);
         if (direction == null) return UnitControllerMessages.INVALID_DIRECTION;
         ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
-        if (selectedUnits == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (selectedUnits.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         for (Army e : selectedUnits)
             if (!(e instanceof Soldier && ((Soldier) e).getSoldierType().isCanDig()))
                 return UnitControllerMessages.IRRELEVANT_UNIT;
@@ -244,7 +244,7 @@ public class UnitController {
         Direction direction = Direction.stringToEnum(stringDirection);
         if (direction == null) return UnitControllerMessages.INVALID_DIRECTION;
         ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
-        if (selectedUnits == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (selectedUnits.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         for (Army e : selectedUnits)
             if (!(e instanceof Soldier && ((Soldier) e).getSoldierType().isCanDig()))
                 return UnitControllerMessages.IRRELEVANT_UNIT;
@@ -260,7 +260,7 @@ public class UnitController {
     public UnitControllerMessages stop() {
         if (gameDatabase.getSelectedUnits() == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
         for (Army e : gameDatabase.getSelectedUnits()) {
-            e.setPath(null);
+            e.setPath(new ArrayList<>());
             e.setPatrol(null);
             e.setTarget(null);
             e.setTargetCell(null);
@@ -317,7 +317,7 @@ public class UnitController {
     }
 
     public UnitControllerMessages disbandUnit() {
-        if (gameDatabase.getSelectedUnits() == null) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (gameDatabase.getSelectedUnits().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         for (Army e : gameDatabase.getSelectedUnits()) {
             if (e instanceof Soldier) {
                 new People(e.getOwner());
