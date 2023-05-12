@@ -105,7 +105,7 @@ public enum Commands {
     DROP_BUILDING_GAME("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
             "^dropbuilding( -[xyt] ((\\S*)|(\"[^\"]*\"))){3}$"),
     SELECT_BUILDING("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^select building( -[xy] \\d*){2}$"),
-    CREATE_UNIT("(?=.* -c (?<count>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*))" +
+    CREATE_UNIT("(?=.* -c (?<count>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
             "^createunit( -[tc] ((\"[^\"]*\")|(\\S*))){2}$"),
     CHANGE_GATE_STATE("^change gate state$"),
     OPEN_DOG_CAGE("^open dog cage$"),
