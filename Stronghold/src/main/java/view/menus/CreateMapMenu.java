@@ -2,6 +2,7 @@ package view.menus;
 
 import controller.AppController;
 import controller.CreateMapController;
+import controller.MainController;
 import utils.enums.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.CreateMapMessages;
@@ -67,7 +68,7 @@ public class CreateMapMenu {
     private void setTexture(Matcher matcher) {
         int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
-        String texture = matcher.group("texture");
+        String texture = MainController.removeDoubleQuotation(matcher.group("texture"));
         CreateMapMessages messages = createMapController.setTexture(x, y, texture);
         handleMessage(messages);
     }
@@ -77,7 +78,7 @@ public class CreateMapMenu {
         int y1 = Integer.parseInt(matcher.group("y1"));
         int x2 = Integer.parseInt(matcher.group("x2"));
         int y2 = Integer.parseInt(matcher.group("y2"));
-        String texture = matcher.group("texture");
+        String texture = MainController.removeDoubleQuotation(matcher.group("texture"));
         CreateMapMessages messages = createMapController.setTexture(x1, y1, x2, y2, texture);
         handleMessage(messages);
     }
@@ -100,7 +101,7 @@ public class CreateMapMenu {
     private void dropTree(Matcher matcher) {
         int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
-        String type = matcher.group("type");
+        String type = MainController.removeDoubleQuotation(matcher.group("type"));
         CreateMapMessages messages = createMapController.dropTree(x, y, type);
         handleMessage(messages);
     }
@@ -114,7 +115,7 @@ public class CreateMapMenu {
     private void dropBuilding(Matcher matcher) {
         int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
-        String type = matcher.group("type");
+        String type = MainController.removeDoubleQuotation(matcher.group("type"));
         CreateMapMessages messages = createMapController.dropBuilding(x, y, type);
         handleMessage(messages);
     }
@@ -122,7 +123,7 @@ public class CreateMapMenu {
     private void dropUnit(Matcher matcher) {
         int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
-        String type = matcher.group("type");
+        String type = MainController.removeDoubleQuotation(matcher.group("type"));
         int count = 1;
         if (matcher.group("count") != null) count = Integer.parseInt(matcher.group("count"));
         CreateMapMessages messages = createMapController.dropUnit(x, y, type, count);

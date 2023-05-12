@@ -109,8 +109,22 @@ public class GameMenu {
                 System.out.println("Game menu");
             else if (Commands.getMatcher(command, Commands.TURN_PLAYED) != null)
                 turnPlayed();
+            else if ((matcher = Commands.getMatcher(command, Commands.ATTACK_BUILDING)) != null)
+                attackBuilding(matcher);
             else
                 System.out.println("Invalid command!");
+        }
+    }
+
+    private void attackBuilding(Matcher matcher) {
+        int x = Integer.parseInt(matcher.group("x"));
+        int y = Integer.parseInt(matcher.group("y"));
+        UnitControllerMessages message = unitController.attackBuilding(x, y);
+        switch (message) {
+            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+            case NULL_SELECTED_BUILDING -> System.out.println("There is no building in that location!");
+            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
+            case SUCCESS -> System.out.println("Your unit have this building as target!");
         }
     }
 
