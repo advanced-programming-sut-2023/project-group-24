@@ -85,7 +85,7 @@ public class AppController {
                     break;
                 }
                 case SHOW_MAP_MENU:
-                    ShowMapController showMapController = new ShowMapController(height, width, gameDatabase);
+                    ShowMapController showMapController = new ShowMapController(gameDatabase);
                     ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
                     showMapMenu.run();
                     break;
