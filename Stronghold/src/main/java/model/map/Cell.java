@@ -151,7 +151,8 @@ public class Cell {
     }
 
     private boolean handleLadder(Direction direction, MovingType movingType, Cell startPoint) {// need to be refactored!
-        if (startPoint.existingBuilding.getBuildingType().equals(BuildingType.STAIR) ||
+        Building building = startPoint.existingBuilding;
+        if (building != null && building.getBuildingType().equals(BuildingType.STAIR) ||
                 existingBuilding.getBuildingType().equals(BuildingType.STAIR))
             return true;
         else if (movingType.equals(MovingType.CAN_NOT_CLIMB_LADDER))

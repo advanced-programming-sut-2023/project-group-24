@@ -36,6 +36,8 @@ public class TradeMenu {
                 acceptTrade(matcher);
             else if (Commands.getMatcher(command, Commands.TRADE_HISTORY) != null)
                 tradeHistory();
+            else
+                System.out.println("Invalid command!");
         }
     }
 
