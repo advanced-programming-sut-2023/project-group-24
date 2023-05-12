@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="first checkpoint final version">
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/buildings/BuildingTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/buildings/BuildingTypeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/buildings/DairyProduceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/buildings/DefenceBuildingTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/buildings/WorkersNeededBuildingTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/allUsers.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/allUsers.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/DairyProduce.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/DairyProduce.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/DefenceBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/DefenceBuilding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/WorkersNeededBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/WorkersNeededBuilding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Pair.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/BuildingControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/BuildingControllerTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,6 +28,10 @@
   </component>
   <component name="CoverageViewManager">
     <option name="myElementSize" value="181" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OPEN_IN_BROWSER" value="true" />
+    <option name="OUTPUT_DIRECTORY" value="C:\hp\ap\javafxWorkshop1" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -42,7 +57,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="model.buildings.BuildingTest" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../javafxWorkshop1" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -52,17 +67,19 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="model.buildings" />
       <recent name="controller.gamecontrollers" />
       <recent name="model" />
       <recent name="controller" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="view.enums.commands" />
       <recent name="view.menus" />
       <recent name="controller.gamecontrollers" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="model.buildings.BuildingTest" />
+      <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="U:\AdvancedProgramming\Project\Codes\Stronghold\src\main\java\controller" />
@@ -80,83 +97,79 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.BuildingControllerTest.showDetails">
-    <configuration name="BuildingControllerTest.changeGateClosedState" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.WorkersNeededBuildingTest">
+    <configuration name="BuildingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.gamecontrollers.*" />
+          <option name="PATTERN" value="model.buildings.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.BuildingControllerTest" />
-      <option name="METHOD_NAME" value="changeGateClosedState" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="model.buildings" />
+      <option name="MAIN_CLASS_NAME" value="model.buildings.BuildingTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BuildingControllerTest.createUnit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DairyProduceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.gamecontrollers.*" />
+          <option name="PATTERN" value="model.buildings.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.BuildingControllerTest" />
-      <option name="METHOD_NAME" value="createUnit" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="model.buildings" />
+      <option name="MAIN_CLASS_NAME" value="model.buildings.DairyProduceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BuildingControllerTest.openDogCage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DefenceBuildingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.gamecontrollers.*" />
+          <option name="PATTERN" value="model.buildings.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.BuildingControllerTest" />
-      <option name="METHOD_NAME" value="openDogCage" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="model.buildings" />
+      <option name="MAIN_CLASS_NAME" value="model.buildings.DefenceBuildingTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BuildingControllerTest.repair" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DefenceBuildingTest.showDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.gamecontrollers.*" />
+          <option name="PATTERN" value="model.buildings.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.BuildingControllerTest" />
-      <option name="METHOD_NAME" value="repair" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BuildingControllerTest.showDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.gamecontrollers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.BuildingControllerTest" />
+      <option name="PACKAGE_NAME" value="model.buildings" />
+      <option name="MAIN_CLASS_NAME" value="model.buildings.DefenceBuildingTest" />
       <option name="METHOD_NAME" value="showDetails" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WorkersNeededBuildingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.buildings.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.buildings" />
+      <option name="MAIN_CLASS_NAME" value="model.buildings.WorkersNeededBuildingTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -210,11 +223,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BuildingControllerTest.showDetails" />
-        <item itemvalue="JUnit.BuildingControllerTest.openDogCage" />
-        <item itemvalue="JUnit.BuildingControllerTest.changeGateClosedState" />
-        <item itemvalue="JUnit.BuildingControllerTest.repair" />
-        <item itemvalue="JUnit.BuildingControllerTest.createUnit" />
+        <item itemvalue="JUnit.WorkersNeededBuildingTest" />
+        <item itemvalue="JUnit.DefenceBuildingTest" />
+        <item itemvalue="JUnit.DefenceBuildingTest.showDetails" />
+        <item itemvalue="JUnit.DairyProduceTest" />
+        <item itemvalue="JUnit.BuildingTest" />
       </list>
     </recent_temporary>
   </component>
@@ -291,17 +304,35 @@
     <option name="LAST_COMMIT_MESSAGE" value="first checkpoint final version" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1683658735890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1683876273235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$TradeTest.ic" NAME="TradeTest Coverage Results" MODIFIED="1683661520128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$BuildingTypeTest.ic" NAME="BuildingTypeTest Coverage Results" MODIFIED="1683877018647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.buildings.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$DefenceBuildingTest.ic" NAME="DefenceBuildingTest Coverage Results" MODIFIED="1683880401128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.buildings.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$BuildingControllerTest.ic" NAME="BuildingControllerTest Coverage Results" MODIFIED="1683876182676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.gamecontrollers.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$TradeTest.ic" NAME="TradeTest Coverage Results" MODIFIED="1683876295374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$CreateMapControllerTest.ic" NAME="CreateMapControllerTest Coverage Results" MODIFIED="1683658313265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$BuildingTest.ic" NAME="BuildingTest Coverage Results" MODIFIED="1683877719860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.buildings.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$CreateMapControllerTest.ic" NAME="CreateMapControllerTest Coverage Results" MODIFIED="1683876227485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$TradeControllerTest.ic" NAME="TradeControllerTest Coverage Results" MODIFIED="1683707810446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$DairyProduceTest.ic" NAME="DairyProduceTest Coverage Results" MODIFIED="1683878666951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.buildings.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$TradeControllerTest.ic" NAME="TradeControllerTest Coverage Results" MODIFIED="1683876212189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.gamecontrollers.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$WorkersNeededBuildingTest.ic" NAME="WorkersNeededBuildingTest Coverage Results" MODIFIED="1683881193357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.buildings.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testAddingAndGetting.ic" NAME="DatabaseTest.testAddingAndGetting Coverage Results" MODIFIED="1683659035556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>

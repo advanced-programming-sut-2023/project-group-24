@@ -163,7 +163,7 @@ public class BuildingController {
     public BuildingControllerMessages selectItemToProduce(String name) {
         if (gameDatabase.getCurrentBuilding() == null)
             return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
-        if (gameDatabase.getCurrentBuilding().getBuildingType().getProduces().size() <= 1)
+        if (gameDatabase.getCurrentBuilding().getBuildingType().getProduces() == null)
             return BuildingControllerMessages.IRRELEVANT_BUILDING;
         if (Item.stringToEnum(name) == null)
             return BuildingControllerMessages.ITEM_DOES_NOT_EXIST;
@@ -186,8 +186,9 @@ public class BuildingController {
     }
 
     public BuildingControllerMessages setTaxRate(int taxRate, KingdomController kingdomController) {
-        if (gameDatabase.getCurrentBuilding() == null
-                || gameDatabase.getCurrentBuilding().getBuildingType() != BuildingType.TOWN_HALL)
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
+        if (gameDatabase.getCurrentBuilding().getBuildingType() != BuildingType.TOWN_HALL)
             return BuildingControllerMessages.IRRELEVANT_BUILDING;
         if (taxRate < -3 || taxRate > 8)
             return BuildingControllerMessages.INVALID_NUMBER;

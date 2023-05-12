@@ -29,4 +29,10 @@ public class Pair<E, K> {
         this.object1 = object1;
         this.object2 = object2;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Pair)) return false;
+        return ((Pair) obj).getObject1().equals(object1) && ((Pair) obj).getObject2().equals(object2);
+    }
 }

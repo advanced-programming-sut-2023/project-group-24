@@ -5,12 +5,11 @@ import model.People;
 import model.army.ArmyType;
 import model.army.Soldier;
 import model.army.SoldierType;
-import model.buildings.Building;
-import model.buildings.BuildingType;
-import model.buildings.GateAndStairs;
+import model.buildings.*;
 import model.databases.GameDatabase;
 import model.enums.Item;
 import model.enums.KingdomColor;
+import model.enums.PopularityFactor;
 import model.map.Map;
 import model.map.Texture;
 import org.junit.jupiter.api.Assertions;
@@ -43,7 +42,7 @@ class BuildingControllerTest {
         kingdomController.changeStockedNumber(new Pair<>(Item.STONE, 200));
         Assertions.assertEquals(buildingController.dropBuilding(2, 2, "market", kingdomController), BuildingControllerMessages.SUCCESS);
         Assertions.assertEquals(buildingController.dropBuilding(-1, 2, "market", kingdomController), BuildingControllerMessages.LOCATION_OUT_OF_BOUNDS);
-        Assertions.assertEquals(buildingController.dropBuilding(2, 200, "market", kingdomController), BuildingControllerMessages.LOCATION_OUT_OF_BOUNDS);
+        Assertions.assertEquals(buildingController.dropBuilding(2, 10, "market", kingdomController), BuildingControllerMessages.LOCATION_OUT_OF_BOUNDS);
         Assertions.assertEquals(buildingController.dropBuilding(2, 3, "chert", kingdomController), BuildingControllerMessages.INVALID_TYPE);
         Assertions.assertEquals(buildingController.dropBuilding(2, 2, "market", kingdomController), BuildingControllerMessages.CANNOT_BUILD_HERE);
         Assertions.assertEquals(buildingController.dropBuilding(5, 5, "granary", kingdomController), BuildingControllerMessages.SUCCESS);
@@ -200,23 +199,64 @@ class BuildingControllerTest {
         kingdomController.changeStockedNumber(new Pair<>(Item.WOOD, 200));
         kingdomController.changeStockedNumber(new Pair<>(Item.STONE, 99));
         Assertions.assertEquals(buildingController.dropBuilding(2, 2, "market", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.dropBuilding(2, 4, "dairy farmer", kingdomController), BuildingControllerMessages.CANNOT_BUILD_HERE);
+        map.getMap()[2][4].changeTexture(Texture.CONDENSED);
         Assertions.assertEquals(buildingController.dropBuilding(2, 4, "dairy farmer", kingdomController), BuildingControllerMessages.SUCCESS);
         Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.NO_BUILDINGS_SELECTED);
         Assertions.assertEquals(buildingController.selectBuilding(2, 2), BuildingControllerMessages.MARKET);
         Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.IRRELEVANT_BUILDING);
-        Assertions.assertEquals(buildingController.selectBuilding(2, 2), BuildingControllerMessages.MARKET);
-        Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.IRRELEVANT_BUILDING);
+        Assertions.assertEquals(buildingController.selectBuilding(2, 4), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.NOT_ENOUGH_SPACE);
+        Assertions.assertEquals(buildingController.dropBuilding(2, 3, "armoury", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.NOT_ENOUGH_COWS);
+        ((DairyProduce) map.getMap()[2][4].getExistingBuilding()).produceAnimal();
+        Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.NOT_ENOUGH_COWS);
     }
 
     @Test
     void selectItemToProduce() {
+        kingdomController.changeStockedNumber(new Pair<>(Item.WOOD, 200));
+        kingdomController.changeStockedNumber(new Pair<>(Item.STONE, 99));
+        Assertions.assertEquals(buildingController.dropBuilding(2, 2, "market", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.dropBuilding(2, 4, "blacksmith", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.selectItemToProduce("mace"), BuildingControllerMessages.NO_BUILDINGS_SELECTED);
+        Assertions.assertEquals(buildingController.selectBuilding(2, 2), BuildingControllerMessages.MARKET);
+        Assertions.assertEquals(buildingController.selectItemToProduce("mace"), BuildingControllerMessages.IRRELEVANT_BUILDING);
+        Assertions.assertEquals(buildingController.selectBuilding(2, 4), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.selectItemToProduce("chert"), BuildingControllerMessages.ITEM_DOES_NOT_EXIST);
+        Assertions.assertEquals(buildingController.selectItemToProduce("spear"), BuildingControllerMessages.CANNOT_PRODUCE_ITEM);
+        Assertions.assertEquals(buildingController.selectItemToProduce("mace"), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.selectItemToProduce("sword"), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(((ProducerBuilding) map.getMap()[2][4].getExistingBuilding()).getItemToProduce(), 1);
+        Assertions.assertEquals(buildingController.selectItemToProduce("mace"), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(((ProducerBuilding) map.getMap()[2][4].getExistingBuilding()).getItemToProduce(), 0);
     }
 
     @Test
     void removeMoat() {
+        Assertions.assertEquals(buildingController.removeMoat(1, 200), BuildingControllerMessages.LOCATION_OUT_OF_BOUNDS);
+        Assertions.assertEquals(buildingController.removeMoat(-1, 2), BuildingControllerMessages.LOCATION_OUT_OF_BOUNDS);
+        Assertions.assertEquals(buildingController.removeMoat(2, 2), BuildingControllerMessages.NO_MOATS_HERE);
+        Building.getBuildingFromBuildingType(kingdom2, map.getMap()[1][2], BuildingType.MOAT);
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[2][2], BuildingType.MOAT);
+        Assertions.assertEquals(buildingController.removeMoat(1, 2), BuildingControllerMessages.NOT_OWNER);
+        Assertions.assertEquals(buildingController.removeMoat(2, 2), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.removeMoat(2, 2), BuildingControllerMessages.NO_MOATS_HERE);
     }
 
     @Test
     void setTaxRate() {
+        kingdomController.changeStockedNumber(new Pair<>(Item.WOOD, 200));
+        kingdomController.changeStockedNumber(new Pair<>(Item.STONE, 99));
+        Assertions.assertEquals(buildingController.dropBuilding(2, 2, "market", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.dropBuilding(2, 4, "town hall", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.setTaxRate(2, kingdomController), BuildingControllerMessages.NO_BUILDINGS_SELECTED);
+        Assertions.assertEquals(buildingController.selectBuilding(2, 2), BuildingControllerMessages.MARKET);
+        Assertions.assertEquals(buildingController.setTaxRate(2, kingdomController), BuildingControllerMessages.IRRELEVANT_BUILDING);
+        Assertions.assertEquals(buildingController.selectBuilding(2, 4), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.setTaxRate(10, kingdomController), BuildingControllerMessages.INVALID_NUMBER);
+        Assertions.assertEquals(buildingController.setTaxRate(3, kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(kingdom1.getPopularityFactor(PopularityFactor.TAX), -6);
     }
 }

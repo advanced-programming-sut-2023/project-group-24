@@ -28,10 +28,6 @@ public class DairyProduce extends ProducerBuilding {
         return null;
     }
 
-    public void useAnimal() {
-        numberOfAnimals--;
-    }
-
     public void produceAnimal() {
         numberOfAnimals++;
     }

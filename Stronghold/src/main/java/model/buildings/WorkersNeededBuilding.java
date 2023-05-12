@@ -33,16 +33,19 @@ public class WorkersNeededBuilding extends Building {
     }
 
     public void changeSleepingMode() {
-        isSleeping = true;
-        workers = new ArrayList<>();
+        if(isSleeping) isSleeping = false;
+        else {
+            isSleeping = true;
+            workers = new ArrayList<>();
+        }
     }
 
     @Override
     public ArrayList<String> showDetails() {
         ArrayList<String> output = super.showDetails();
-        output.add(isSleeping ? "sleeping" : "not sleeping");
         if (!(this instanceof EngineersNeededBuilding))
-            output.add(String.format("number of workers: %d/%d", workers.size(), getBuildingType().getWorkersNeeded()));
+            output.add(String.format("Number of workers: %d/%d !", workers.size(),
+                    getBuildingType().getWorkersNeeded()));
         return output;
     }
 }

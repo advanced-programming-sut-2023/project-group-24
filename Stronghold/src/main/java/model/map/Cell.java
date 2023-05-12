@@ -157,12 +157,12 @@ public class Cell {
         else if (movingType.equals(MovingType.CAN_NOT_CLIMB_LADDER))
             return true;
         if (existingBuilding instanceof DefenceBuilding)
-            if (((DefenceBuilding) existingBuilding).getLadderState().equals(direction))
+            if (((DefenceBuilding) existingBuilding).hasLadderState(direction))
                 return true;
         if (startPoint.existingBuilding == null)
             return false;
         if (startPoint.existingBuilding instanceof DefenceBuilding)
-            return ((DefenceBuilding) startPoint.existingBuilding).getLadderState().equals(direction);
+            return ((DefenceBuilding) startPoint.existingBuilding).hasLadderState(direction);
         return false;
     }
 
