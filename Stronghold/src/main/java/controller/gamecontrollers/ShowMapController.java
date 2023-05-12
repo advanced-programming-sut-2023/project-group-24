@@ -17,14 +17,16 @@ import java.util.HashMap;
 
 public class ShowMapController {
 
-    private final int height = 2;// real height = 2 * height + 1
-    private final int width = 5;// real width = 2 * height + 1
+    private final int height;// real height = 2 * height + 1
+    private final int width;// real width = 2 * height + 1
     private final GameDatabase gameDatabase;
     private final Cell[][] map;
     private int currentMapX;
     private int currentMapY;
 
     public ShowMapController(GameDatabase gameDatabase) {
+        this.height = 2;
+        this.width = 5;
         this.gameDatabase = gameDatabase;
         this.map = gameDatabase.getMap().getMap();
     }
@@ -70,7 +72,7 @@ public class ShowMapController {
                 building.getBuildingType().getName().contains("turret")) buildingIcon = 'W';
         char troop = ' ';
         for (Army army : cell.getArmies())
-            if (army.getPath() == null) {
+            if (army.getPath() .size() == 0) {
                 troop = 'S';
                 break;
             }
@@ -81,7 +83,7 @@ public class ShowMapController {
         Cell cell = map[i][j];
         char movingTroop = ' ';
         for (Army army : cell.getArmies())
-            if (army.getPath() != null) {
+            if (army.getPath().size() > 0) {
                 movingTroop = 'M';
                 break;
             }
@@ -104,7 +106,7 @@ public class ShowMapController {
         String tree = "";
         if (cell.getTree() != null) tree = "tree: " + cell.getTree().name() + "    ";
         String army = getArmiesString(cell.getArmies());
-        return cell.getTexture().getColor().toString() + " " + building + texture + tree + '\n' + army + Color.RESET;
+        return " " + building + texture + tree + '\n' + army;
     }
 
     private String getArmiesString(ArrayList<Army> armies) {

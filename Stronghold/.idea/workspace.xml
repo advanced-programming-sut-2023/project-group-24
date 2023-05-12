@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="can Move?">
+    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="merge with aref and complete slogun">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/Slogan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/Slogan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/allUsers.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/allUsers.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/loggedInUser.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/loggedInUser.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShowMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShowMapController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/enums/commands/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/enums/commands/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/CreateMapMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +98,7 @@
       <workItem from="1683361554615" duration="1751000" />
       <workItem from="1683375149236" duration="7886000" />
       <workItem from="1683479748664" duration="9710000" />
-      <workItem from="1683883523194" duration="1176000" />
+      <workItem from="1683883523194" duration="12078000" />
     </task>
     <task id="LOCAL-00001" summary="just add them in my branch">
       <created>1681491902726</created>
@@ -228,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683496523672</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="merge with aref and complete slogun">
+      <created>1683884750318</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1683884750318</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,6 +274,7 @@
     <MESSAGE value="KingdomController upgrade" />
     <MESSAGE value="KingdomController finish!" />
     <MESSAGE value="can Move?" />
-    <option name="LAST_COMMIT_MESSAGE" value="can Move?" />
+    <MESSAGE value="merge with aref and complete slogun" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge with aref and complete slogun" />
   </component>
 </project>

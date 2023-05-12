@@ -44,16 +44,16 @@ public enum Commands {
     LOGOUT("^user logout$"),
 
     //ShowMapMenu commands
-    SHOW_MAP("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^show map( -[xy] \\d*)[2}"),
+    SHOW_MAP("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^show map( -[xy] \\d*){2}"),
     MOVE_MAP("^map(?<direction>( ((up)|(down)|(left)|(right))\\d*)+)$"),
     SHOW_DETAILS("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^show details( -[xy] \\d*){2}$"),
 
 
     //CreateMapMenu commands
     CREATE_MAP("(?=.* -i (?<id>\\S*))(?=.* -s (?<size>\\d*))^create map( -[is] \\S*){2}$"),
-    SET_TEXTURE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
+    SET_TEXTURE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<texture>(\"[^\"]*\")|(\\S*)))" +
             "^settexture( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
-    SET_TEXTURE_MULTIPLE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
+    SET_TEXTURE_MULTIPLE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<texture>(\"[^\"]*\")|(\\S*)))" +
             "^settexture( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
     CLEAR("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^clear( -[xy] \\d*){2}$"),
     DROP_ROCK("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -d (?<direction>\\S*))^droprock( -[xyd] \\S*){3}$"),
@@ -105,8 +105,8 @@ public enum Commands {
     DROP_BUILDING_GAME("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
             "^dropbuilding( -[xyt] ((\\S*)|(\"[^\"]*\"))){3}$"),
     SELECT_BUILDING("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^select building( -[xy] \\d*){2}$"),
-    CREATE_UNIT("(?=.* -c (?<count>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*))" +
-            "^createunit( -[tc] ((\"[^\"]*\")|(\\S*)){2}$)"),
+    CREATE_UNIT("(?=.* -c (?<count>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
+            "^createunit( -[tc] ((\"[^\"]*\")|(\\S*))){2}$"),
     CHANGE_GATE_STATE("^change gate state$"),
     OPEN_DOG_CAGE("^open dog cage$"),
     REMOVE_MOAT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^remove moat( -[xy] \\d*){2}$"),
