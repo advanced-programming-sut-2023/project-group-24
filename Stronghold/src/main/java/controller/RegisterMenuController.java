@@ -35,7 +35,7 @@ public class RegisterMenuController {
             if (passwordCheckMessage != RegisterMenuMessages.SUCCESS) return passwordCheckMessage;
         }
         for (User e : database.getAllUsers()) {
-            if (e.getEmail().equals(email)) return RegisterMenuMessages.DUPLICATE_EMAIL;
+            if (e.getEmail().equalsIgnoreCase(email)) return RegisterMenuMessages.DUPLICATE_EMAIL;
         }
         if (MainController.isEmailValid(email)) return RegisterMenuMessages.INVALID_EMAIL;
         return RegisterMenuMessages.SUCCESS;

@@ -1,7 +1,7 @@
 package controller;
 
-import model.databases.Database;
 import model.User;
+import model.databases.Database;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.ProfileMenuMessages;
 import view.menus.CaptchaMenu;
@@ -68,6 +68,8 @@ public class ProfileMenuController {
     public ProfileMenuMessages changeEmail(String newEmail) {
         if (newEmail == null) return ProfileMenuMessages.NULL_FIELD;
         else if (MainController.isEmailValid(newEmail)) return ProfileMenuMessages.INVALID_EMAIL_FORMAT;
+        for (User e : database.getAllUsers())
+            if (e.getEmail().equalsIgnoreCase(newEmail)) return ProfileMenuMessages.DUPLICATE_EMAIL;
         currentUser.setEmail(newEmail);
         database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
@@ -87,18 +89,17 @@ public class ProfileMenuController {
         return ProfileMenuMessages.SUCCESS;
     }
 
-    public String showHighScore() {
-        int highScore = currentUser.getHighScore();
-        return "Your highscore is " + highScore;
+    public int showHighScore() {
+        return currentUser.getHighScore();
     }
 
-    public String showRank() {
+    public int showRank() {
         Vector<User> sortedUsers = database.getAllUsersByRank();
         for (int i = 0; i < sortedUsers.size(); i++) {
             if (sortedUsers.get(i).equals(currentUser))
-                return "Your rank is " + (i + 1);
+                return (i + 1);
         }
-        return null;
+        return 0;
     }
 
     public String showSlogan() {

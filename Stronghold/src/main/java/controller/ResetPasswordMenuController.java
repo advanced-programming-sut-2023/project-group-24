@@ -1,8 +1,8 @@
 package controller;
 
+import model.User;
 import model.databases.Database;
 import model.enums.RecoveryQuestion;
-import model.User;
 import view.enums.messages.ResetPasswordMessages;
 
 public class ResetPasswordMenuController {
@@ -27,6 +27,23 @@ public class ResetPasswordMenuController {
     }
 
     public ResetPasswordMessages checkAndChangeNewPassword(String newPassword, String newPasswordConfirm) {
+        switch (MainController.whatIsPasswordProblem(newPassword)) {
+            case NON_CAPITAL_PASSWORD -> {
+                return ResetPasswordMessages.NON_CAPITAL_PASSWORD;
+            }
+            case NON_NUMBER_PASSWORD -> {
+                return ResetPasswordMessages.NON_NUMBER_PASSWORD;
+            }
+            case NON_SMALL_PASSWORD -> {
+                return ResetPasswordMessages.NON_SMALL_PASSWORD;
+            }
+            case NON_SPECIFIC_PASSWORD -> {
+                return ResetPasswordMessages.NON_SPECIFIC_PASSWORD;
+            }
+            case SHORT_PASSWORD -> {
+                return ResetPasswordMessages.SHORT_PASSWORD;
+            }
+        }
         if (!newPassword.equals(newPasswordConfirm)) return ResetPasswordMessages.PASSWORD_REPETITION_DO_NOT_MATCH;
         String newPasswordAsSHA = MainController.getSHA256(newPassword);
         changePassword(newPasswordAsSHA);
@@ -40,5 +57,6 @@ public class ResetPasswordMenuController {
 
     public void changePassword(String newPassword) {
         currentUser.changePasswords(newPassword);
+        database.saveDataIntoFile();
     }
 }

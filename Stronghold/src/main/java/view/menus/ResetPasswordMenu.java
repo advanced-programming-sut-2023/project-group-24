@@ -26,8 +26,14 @@ public class ResetPasswordMenu {
                 checkUserUsername(matcher);
             else if (Commands.getMatcher(command, Commands.SHOW_CURRENT_MENU) != null)
                 System.out.println("Reset password menu");
+            else if (Commands.getMatcher(command, Commands.EXIT) != null)
+                loginMenu();
             else System.out.println("Invalid command!");
         }
+    }
+
+    private void loginMenu() {
+        AppController.setCurrentMenu(MenusName.LOGIN_MENU);
     }
 
     private void checkUserUsername(Matcher matcher) {
@@ -59,9 +65,14 @@ public class ResetPasswordMenu {
         switch (message) {
             case SUCCESS -> {
                 System.out.println("Your password has been successfully changed");
-                AppController.setCurrentMenu(MenusName.LOGIN_MENU);
+                loginMenu();
             }
             case PASSWORD_REPETITION_DO_NOT_MATCH -> System.out.println("The password and its repetition do not match");
+            case SHORT_PASSWORD -> System.out.println("The new password is too short!");
+            case NON_CAPITAL_PASSWORD -> System.out.println("The new password must contain uppercase characters!");
+            case NON_SMALL_PASSWORD -> System.out.println("The new password must contain lowercase characters!");
+            case NON_SPECIFIC_PASSWORD -> System.out.println("The new password must contain specific characters!");
+            case NON_NUMBER_PASSWORD -> System.out.println("The new password must contain numbers!");
         }
     }
 }
