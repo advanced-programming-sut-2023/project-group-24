@@ -176,14 +176,17 @@ public class GameMenu {
 
     private void showMap() {
         AppController.setCurrentMenu(MenusName.SHOW_MAP_MENU);
+        System.out.println("You are in show map menu!");
     }
 
     private void tradeMenu() {
         AppController.setCurrentMenu(MenusName.TRADE_MENU);
+        System.out.println("You are in trade menu!");
     }
 
     private void shopMenu() {
         AppController.setCurrentMenu(MenusName.SHOP_MENU);
+        System.out.println("You are in shop menu!");
     }
 
     private void showPopularityFactors() {
