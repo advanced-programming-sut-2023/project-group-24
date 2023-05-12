@@ -274,6 +274,7 @@ public class GameMenu {
             case SUCCESS -> System.out.println("You successfully select units!");
             case INVALID_LOCATION -> System.out.println("You entered invalid location!");
             case INVALID_TYPE -> System.out.println("You entered invalid type of soldier!");
+            case NULL_SELECTED_UNIT -> System.out.println("There is no unit to select!");
         }
     }
 
