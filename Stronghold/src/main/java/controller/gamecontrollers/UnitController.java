@@ -46,17 +46,17 @@ public class UnitController {
         Pair<Integer, Integer> startLocation = new Pair<>(startingCell.getX(), startingCell.getY());
         Pair<Integer, Integer> destination = new Pair<>(x, y);
         boolean isAssassin = isAssassin(selectedUnit);
-        PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), startLocation, isAssassin);
-        PathFinder.OutputState outputState = pathFinder.search(destination);
-        switch (outputState) {
-            case BLOCKED:
-                return UnitControllerMessages.BLOCK;
-            case ALREADY_AT_DESTINATION:
-                return UnitControllerMessages.ALREADY_IN_DESTINATION;
-        }
-        ArrayList<Cell> path = pathFinder.findPath();
-        for (Army e : gameDatabase.getSelectedUnits())
-            e.setPath(path);
+//        PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), startLocation, );
+//        PathFinder.OutputState outputState = pathFinder.search(destination);
+//        switch (outputState) {
+//            case BLOCKED:
+//                return UnitControllerMessages.BLOCK;
+//            case ALREADY_AT_DESTINATION:
+//                return UnitControllerMessages.ALREADY_IN_DESTINATION;
+//        }
+//        ArrayList<Cell> path = pathFinder.findPath();
+//        for (Army e : gameDatabase.getSelectedUnits())
+//            e.setPath(path);
         return UnitControllerMessages.SUCCESS;
     }
 
@@ -242,20 +242,20 @@ public class UnitController {
     }
 
     private void changeEngineerState(ArrayList<Army> armies, Pair<Integer, Integer> currentLocation) {
-        PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), currentLocation, false);
-        ArrayList<Cell> pathToOil = new ArrayList<>();
-        for (Building e : gameDatabase.getCurrentKingdom().getBuildings()) {
-            if (e.getBuildingType().equals(BuildingType.OIL_SMELTER)) {
-                pathFinder.search(new Pair<>(e.getLocation().getX(), e.getLocation().getY()));
-                ArrayList<Cell> path = pathFinder.findPath();
-                if (pathToOil.size() == 0 || pathToOil.size() < path.size())
-                    pathToOil = path;
-            }
-        }
-        for (Army e : armies) {
-            e.changeEngineerState();
-            e.setPath(pathToOil);
-        }
+//        PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), currentLocation, false);
+//        ArrayList<Cell> pathToOil = new ArrayList<>();
+//        for (Building e : gameDatabase.getCurrentKingdom().getBuildings()) {
+//            if (e.getBuildingType().equals(BuildingType.OIL_SMELTER)) {
+//                pathFinder.search(new Pair<>(e.getLocation().getX(), e.getLocation().getY()));
+//                ArrayList<Cell> path = pathFinder.findPath();
+//                if (pathToOil.size() == 0 || pathToOil.size() < path.size())
+//                    pathToOil = path;
+//            }
+//        }
+//        for (Army e : armies) {
+//            e.changeEngineerState();
+//            e.setPath(pathToOil);
+//        }
     }
 
     private void killThemAll(Cell cell) {

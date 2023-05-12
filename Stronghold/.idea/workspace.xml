@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="first checkpoint final version">
-      <change afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/KingdomControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/functionalcontrollers/PathFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/functionalcontrollers/PathFinder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/databases/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/databases/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/BuildingControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/BuildingControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/KingdomControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/KingdomControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/ShopControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/ShopControllerTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -88,8 +89,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.KingdomControllerTest.showPopularityFactors">
-    <configuration name="KingdomControllerTest.changeStockedNumber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.KingdomControllerTest">
+    <configuration name="KingdomControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
@@ -99,44 +100,12 @@
       </extension>
       <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
       <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.KingdomControllerTest" />
-      <option name="METHOD_NAME" value="changeStockedNumber" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomControllerTest.showPopularityFactors" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.gamecontrollers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.KingdomControllerTest" />
-      <option name="METHOD_NAME" value="showPopularityFactors" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShopControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.gamecontrollers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.ShopControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShopControllerTest.sellItem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="KingdomControllerTest.freeSpace" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
@@ -145,14 +114,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.ShopControllerTest" />
-      <option name="METHOD_NAME" value="sellItem" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.KingdomControllerTest" />
+      <option name="METHOD_NAME" value="freeSpace" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShopControllerTest.showPriceList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="KingdomControllerTest.handleTaxFactor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
@@ -161,8 +130,40 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.ShopControllerTest" />
-      <option name="METHOD_NAME" value="showPriceList" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.KingdomControllerTest" />
+      <option name="METHOD_NAME" value="handleTaxFactor" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KingdomControllerTest.showFoodRate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.KingdomControllerTest" />
+      <option name="METHOD_NAME" value="showFoodRate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KingdomControllerTest.showTaxRate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.KingdomControllerTest" />
+      <option name="METHOD_NAME" value="showTaxRate" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -217,11 +218,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.KingdomControllerTest.showPopularityFactors" />
-        <item itemvalue="JUnit.KingdomControllerTest.changeStockedNumber" />
-        <item itemvalue="JUnit.ShopControllerTest" />
-        <item itemvalue="JUnit.ShopControllerTest.showPriceList" />
-        <item itemvalue="JUnit.ShopControllerTest.sellItem" />
+        <item itemvalue="JUnit.KingdomControllerTest" />
+        <item itemvalue="JUnit.KingdomControllerTest.freeSpace" />
+        <item itemvalue="JUnit.KingdomControllerTest.handleTaxFactor" />
+        <item itemvalue="JUnit.KingdomControllerTest.showTaxRate" />
+        <item itemvalue="JUnit.KingdomControllerTest.showFoodRate" />
       </list>
     </recent_temporary>
   </component>
@@ -309,20 +310,11 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1683876273235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$BuildingTypeTest.ic" NAME="BuildingTypeTest Coverage Results" MODIFIED="1683877018647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.buildings.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$DefenceBuildingTest.ic" NAME="DefenceBuildingTest Coverage Results" MODIFIED="1683880401128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$BuildingControllerTest.ic" NAME="BuildingControllerTest Coverage Results" MODIFIED="1683876182676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.gamecontrollers.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$TradeTest.ic" NAME="TradeTest Coverage Results" MODIFIED="1683876295374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$BuildingTest.ic" NAME="BuildingTest Coverage Results" MODIFIED="1683877719860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
@@ -330,14 +322,26 @@
     <SUITE FILE_PATH="coverage/Stronghold$CreateMapControllerTest.ic" NAME="CreateMapControllerTest Coverage Results" MODIFIED="1683876227485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$DairyProduceTest.ic" NAME="DairyProduceTest Coverage Results" MODIFIED="1683878666951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.buildings.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$TradeControllerTest.ic" NAME="TradeControllerTest Coverage Results" MODIFIED="1683876212189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.gamecontrollers.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$WorkersNeededBuildingTest.ic" NAME="WorkersNeededBuildingTest Coverage Results" MODIFIED="1683881193357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1683876273235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$BuildingTypeTest.ic" NAME="BuildingTypeTest Coverage Results" MODIFIED="1683877018647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.buildings.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$TradeTest.ic" NAME="TradeTest Coverage Results" MODIFIED="1683876295374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$DairyProduceTest.ic" NAME="DairyProduceTest Coverage Results" MODIFIED="1683878666951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.buildings.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$KingdomControllerTest.ic" NAME="KingdomControllerTest Coverage Results" MODIFIED="1683905685202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.gamecontrollers.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testAddingAndGetting.ic" NAME="DatabaseTest.testAddingAndGetting Coverage Results" MODIFIED="1683659035556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>

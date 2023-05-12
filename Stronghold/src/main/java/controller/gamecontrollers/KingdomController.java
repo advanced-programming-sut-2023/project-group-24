@@ -247,7 +247,7 @@ public class KingdomController {
         StringBuilder foodList = new StringBuilder();
         for (Item item : Item.values()) {
             if (item.getCategory().equals(Item.Category.FOOD)) if (kingdom.getStockedNumber(item) > 0)
-                foodList.append(item.name()).append(kingdom.getStockedNumber(item)).append("\n");
+                foodList.append(item.getName()).append(" ").append(kingdom.getStockedNumber(item)).append("\n");
         }
         return foodList.toString();
     }
