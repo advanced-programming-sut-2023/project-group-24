@@ -111,8 +111,22 @@ public class GameMenu {
                 turnPlayed();
             else if ((matcher = Commands.getMatcher(command, Commands.ATTACK_BUILDING)) != null)
                 attackBuilding(matcher);
+            else if ((matcher = Commands.getMatcher(command, Commands.SET_LADDER)) != null)
+                setLadder(matcher);
             else
                 System.out.println("Invalid command!");
+        }
+    }
+
+    private void setLadder(Matcher matcher) {
+        String direction = matcher.group("direction");
+        UnitControllerMessages message = unitController.setLadder(direction);
+        switch (message) {
+            case SUCCESS -> System.out.println("Ladder add successfully!");
+            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any building!");
+            case NO_BUILDING -> System.out.println("There is no building in that direction!");
+            case IRRELEVANT_UNIT -> System.out.println("You can not do this with these units!");
+            case INVALID_DIRECTION -> System.out.println("You entered invalid direction!");
         }
     }
 
@@ -130,6 +144,10 @@ public class GameMenu {
 
     private void nexTurn() {
         gameController.nextTurn(kingdomController);
+        if (gameController.isGameDone()) {
+            System.out.println("User " + gameController.getWinner() + " win the game!");
+            AppController.setCurrentMenu(MenusName.MAIN_MENU);
+        }
     }
 
     private void turnPlayed() {

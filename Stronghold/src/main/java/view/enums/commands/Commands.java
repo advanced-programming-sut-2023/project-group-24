@@ -53,8 +53,9 @@ public enum Commands {
     CREATE_MAP("(?=.* -i (?<id>\\S*))(?=.* -s (?<size>\\d*))^create map( -[is] \\S*){2}$"),
     SET_TEXTURE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<texture>(\"[^\"]*\")|(\\S*)))" +
             "^settexture( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
-    SET_TEXTURE_MULTIPLE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<texture>(\"[^\"]*\")|(\\S*)))" +
-            "^settexture( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
+    SET_TEXTURE_MULTIPLE("(?=.* -x1 (?<x1>\\d*))(?=.* -y1 (?<y1>\\d*))(?=.* -x2 (?<x2>\\d*))(?=.* -y2 (?<y2>\\d*))" +
+            "(?=.* -t (?<texture>(\"[^\"]*\")|(\\S*)))" +
+            "^settexture( -((x1)|(y1)|(x2)|(y2)|(t)) ((\"[^\"]*\")|(\\S*))){5}$"),
     CLEAR("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^clear( -[xy] \\d*){2}$"),
     DROP_ROCK("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -d (?<direction>\\S*))^droprock( -[xyd] \\S*){3}$"),
     DROP_TREE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
@@ -63,12 +64,12 @@ public enum Commands {
             "^dropbuilding( -[xyt] ((\"[^\"]*\")|(\\d*))){3}$"),
     DROP_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
             "(?=.* -c (?<count>\\d*))^dropunit( -[xytc] ((\"[^\"]*\")|(\\S*))){4}$"),
-    CHANGE_KINGDOM("^change kingdom -c (?<color>\\S+)$"),
+    CHANGE_KINGDOM("^change kingdom -c (?<color>\\S*)$"),
     NEW_KINGDOM("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -c (?<color>\\S*))^new kingdom( -[xyc] \\S*){3}$"),
 
     //Shop menu commands
     SHOW_PRICE_LIST("^show price list$"),
-    BUY_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S*))(?=.* -a (?<itemAmount>\\d*))" +
+    BUY_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S*)))(?=.* -a (?<itemAmount>\\d*))" +
             "^buy( -[ia] ((\"[^\"]*\")|(\\S*))){2}$"),
     SELL_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S*))(?=.* -a (?<itemAmount>\\d*))" +
             "^sell( -[ia] ((\"[^\"]*\")|(\\S*))){2}$"),
@@ -85,8 +86,10 @@ public enum Commands {
     MOVE_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^move unit to( -[xy] \\d*){2}$"),
     PATROL_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))" +
             "^patrol unit( -[xy] \\d*){2}$"),
+    ATTACK_WALL("^attack wall -d (?<direction>\\s*)$"),
     STOP_PATROL("^stop patrol$"),
     SET_STATE("^set (?<state>\\S*)$"),
+    SET_LADDER("^set ladder -d (?<direction>\\S*)$"),
     ATTACK("^attack -e (?<enemyX>\\d*) (?<enemyY>\\d*)$"),
     ATTACK_ARCHER("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^attack( -[xy] \\d*){2}$"),
     POUR_OIL("^pour oil -d (?<direction>\\S*)$"),
@@ -124,17 +127,17 @@ public enum Commands {
     SHOW_CURRENT_MENU("^show current menu$"),
 
     //Trade
-    TRADE_REQUEST("(?=.* -t (?<resourceType>(\"[^\"]*\")|(\\S*)))(?=.* -a (?<resourceAmount>(\"[^\"]*\")|(\\S*)))" +
-            "(?=.* -p (?<price>(\"[^\"]*\")|(\\S*)))(?=.* -m (?<message>(\"[^\"]*\")|(\\S*)))^trade( -[tapm] ((\"[^\"]*\")|(\\S*))){4}$"),
+    TRADE_REQUEST("(?=.* -t (?<resourceType>(\"[^\"]*\")|(\\S*)))(?=.* -a (?<resourceAmount>\\d*))" +
+            "(?=.* -p (?<price>\\d*))(?=.* -m (?<message>(\"[^\"]*\")|(\\S*)))^trade( -[tapm] ((\"[^\"]*\")|(\\S*))){4}$"),
     TRADE_LIST("^trade list$"),
-    TRADE_ACCEPT("(?=.* -i (?<id>(\"[^\"]*\")|(\\S*)))(?=.* -m (?<message>(\"[^\"]*\")|(\\S*)))" +
+    TRADE_ACCEPT("(?=.* -i (?<id>\\d*))(?=.* -m (?<message>(\"[^\"]*\")|(\\S*)))" +
             "^trade accept( -[im] ((\"[^\"]*\")|(\\S*))){2}$"),
     TRADE_HISTORY("^trade history$"),
 
     //Valid formats
     VALID_USERNAME("^[\\w_]+$"),
     VALID_EMAIL("^[\\w_.]+@[\\w_.]+.[\\w_.]+$"),
-    PASSWORD_SIZE("^\\S{8,}"),
+    PASSWORD_SIZE("^.{8,}$"),
     PASSWORD_CAPITAL("^(?=.*[A-Z]).+$"),
     PASSWORD_NUMBER("^(?=.*\\d).+$"),
     PASSWORD_SMALL_CHAR("^(?=.*[a-z]).+$"),

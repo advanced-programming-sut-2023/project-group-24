@@ -36,6 +36,23 @@ public class GameController {
         canGateBeCaptured();
         kingdomController.nextTurn();
         hasKingdomsFallen();
+        giveLastPlayerScoreAndEndGame();
+    }
+
+    public boolean isGameDone() {
+        return gameDatabase.getKingdoms().size() == 1;
+    }
+
+    public String getWinner() {
+        return gameDatabase.getKingdoms().get(0).getOwner().getUsername();
+    }
+
+    private void giveLastPlayerScoreAndEndGame() {
+        if (gameDatabase.getKingdoms().size() == 1) {
+            int score = 2 * gameDatabase.getTurnPlayed();
+            if (gameDatabase.getKingdoms().get(0).getOwner().getHighScore() < score)
+                gameDatabase.getKingdoms().get(0).getOwner().setHighScore(score);
+        }
     }
 
     private void war() {
@@ -167,7 +184,7 @@ public class GameController {
         for (Kingdom kingdom : gameDatabase.getKingdoms()) {
             for (Building building : kingdom.getBuildings()) {
                 if (building.getBuildingType().equals(BuildingType.SMALL_STONE_GATEHOUSE) ||
-                building.getBuildingType().equals(BuildingType.LARGE_STONE_GATEHOUSE)) {
+                        building.getBuildingType().equals(BuildingType.LARGE_STONE_GATEHOUSE)) {
                     for (Army e : building.getLocation().getArmies()) {
                         if (!e.getOwner().equals(kingdom)) captureGate(building);
                     }
@@ -196,6 +213,9 @@ public class GameController {
             building.getLocation().setExistingBuilding(null);
         for (Army army : kingdom.getArmies())
             army.getLocation().removeArmy(army);
+        int score = gameDatabase.getTurnPlayed();
+        if (kingdom.getOwner().getHighScore() < score)
+            kingdom.getOwner().setHighScore(score);
         gameDatabase.removeKingdom(kingdom);
     }
 }

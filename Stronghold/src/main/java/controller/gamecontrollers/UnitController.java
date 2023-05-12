@@ -5,6 +5,7 @@ import model.People;
 import model.army.*;
 import model.buildings.Building;
 import model.buildings.BuildingType;
+import model.buildings.DefenceBuilding;
 import model.buildings.SiegeTent;
 import model.databases.GameDatabase;
 import model.enums.Direction;
@@ -365,6 +366,21 @@ public class UnitController {
             return UnitControllerMessages.NULL_SELECTED_BUILDING;
         for (Army e : gameDatabase.getSelectedUnits())
             e.setTargetBuilding(building);
+        return UnitControllerMessages.SUCCESS;
+    }
+
+    public UnitControllerMessages setLadder(String stringDirection) {
+        Direction direction = Direction.stringToEnum(stringDirection);
+        if (direction == null) return UnitControllerMessages.INVALID_DIRECTION;
+        if (gameDatabase.getSelectedUnits().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        for (Army e : gameDatabase.getSelectedUnits())
+            if (!e.getArmyType().equals(ArmyType.LADDER_MAN)) return UnitControllerMessages.IRRELEVANT_UNIT;
+        Cell currentCell = gameDatabase.getSelectedUnits().get(0).getLocation();
+        Cell targetCell = getCellWithDirection(direction, currentCell.getX(), currentCell.getY());
+        if (!(targetCell.getExistingBuilding() instanceof DefenceBuilding)) return UnitControllerMessages.NO_BUILDING;
+        ((DefenceBuilding) targetCell.getExistingBuilding()).addLadder(direction);
+        currentCell.removeArmy(gameDatabase.getSelectedUnits().get(0));
+        gameDatabase.getSelectedUnits().get(0).isDead();
         return UnitControllerMessages.SUCCESS;
     }
 }
