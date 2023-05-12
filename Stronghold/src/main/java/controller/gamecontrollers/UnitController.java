@@ -31,11 +31,11 @@ public class UnitController {
             if (armyType == null) return UnitControllerMessages.INVALID_TYPE;
         }
         Cell cell = gameDatabase.getMap().getMap()[x][y];
-        if (cell.getArmies().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         if (armyType == null)
             armies = cell.selectUnits(gameDatabase.getCurrentKingdom());
         else
             armies = cell.selectUnits(armyType, gameDatabase.getCurrentKingdom());
+        if (armies.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         gameDatabase.setSelectedUnits(armies);
         return UnitControllerMessages.SUCCESS;
     }
