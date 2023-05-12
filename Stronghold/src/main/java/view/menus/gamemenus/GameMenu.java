@@ -34,8 +34,6 @@ public class GameMenu {
                 showMap();
             else if (Commands.getMatcher(command, Commands.OPEN_TRADE_MENU) != null)
                 tradeMenu();
-            else if (Commands.getMatcher(command, Commands.OPEN_SHOP_MENU) != null)
-                shopMenu();
             else if (Commands.getMatcher(command, Commands.SHOW_POPULARITY_FACTORS) != null)
                 showPopularityFactors();
             else if (Commands.getMatcher(command, Commands.SHOW_POPULARITY) != null)
@@ -184,6 +182,10 @@ public class GameMenu {
             case NO_BUILDINGS -> System.out.println("There is no building to select!");
             case NOT_OWNER -> System.out.println("You are not the owner of this building!");
             case SUCCESS -> System.out.println("The building was successfully selected!");
+            case MARKET -> {
+                System.out.println("You are in shop menu!");
+                shopMenu();
+            }
         }
     }
 
@@ -406,8 +408,8 @@ public class GameMenu {
     }
 
     private void removeMoat(Matcher matcher) {
-       int x = Integer.parseInt(matcher.group("x"));
-       int y = Integer.parseInt(matcher.group("y"));
+        int x = Integer.parseInt(matcher.group("x"));
+        int y = Integer.parseInt(matcher.group("y"));
         BuildingControllerMessages message = buildingController.removeMoat(x, y);
         switch (message) {
             case LOCATION_OUT_OF_BOUNDS -> System.out.println("You entered invalid location!");

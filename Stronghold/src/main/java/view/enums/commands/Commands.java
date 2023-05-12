@@ -75,7 +75,6 @@ public enum Commands {
 
     //Game menu commands
     OPEN_TRADE_MENU("^open trade menu$"),
-    OPEN_SHOP_MENU("^open shop menu$"),
     OPEN_SHOW_MAP_MENU("^open show map menu$"),
     //Units
     SELECT_UNIT("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))(?=.* -t (?<type>(\"[^\"]*\")|(\\S+)))" +
@@ -88,7 +87,7 @@ public enum Commands {
     ATTACK("^attack -e (?<enemyX>\\w+) (?<enemyY>\\w+)$"),
     ATTACK_ARCHER("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))^attack( -[xy] \\w+){2}$"),
     POUR_OIL("^pour oil -d (?<direction>\\S+)$"),
-    DIG_TUNNEL("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))^dig tunnel( -[xy] \\w+){2}$"),
+    DIG_TUNNEL("^dig tunnel$"),
     BUILD("^build -q (?<equipmentType>(\"[^\"]*\")|(\\S+))$"),
     DISBAND("^disband unit$"),
     DIG_MOAT("^dig moat -d (?<direction>\\S*)$"),
@@ -102,7 +101,6 @@ public enum Commands {
     FOOD_RATE_SHOW("^food rate show$"),
     TAX_RATE("^tax rate -r (?<rateNumber>-?\\d+)$"),
     TAX_RATE_SHOW("^tax rate show$"),
-    FEAR_RATE("^fear rate -r (?<rateNumber>-?\\d+)$"),
     //Building
     DROP_BUILDING_GAME("(?=.* -x (?<x>\\d+))(?=.* -y (?<y>\\d+))(?=.* -t (?<type>(\"[^\"]*\")|(\\S+)))" +
             "^dropbuilding( -[xyt] ((\\S*)|(\"[^\"]*\"))){3}$"),
