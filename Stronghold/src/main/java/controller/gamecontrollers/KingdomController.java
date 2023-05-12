@@ -201,6 +201,7 @@ public class KingdomController {
             if (building.getBuildingType().equals(type)) {
                 newPair = ((StorageBuilding) building).changeItemCount(pair);
                 if (0 == newPair.getObject2()) break;
+                pair = newPair;
             }
     }
 
@@ -217,12 +218,12 @@ public class KingdomController {
 
     public String showPopularityFactors() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
-        return "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) + '\n' +
-                " food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) + '\n' +
-                " Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) + '\n' +
-                " tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) + '\n' +
-                " homeless: " + kingdom.getPopularityFactor(PopularityFactor.HOMELESS) + '\n' +
-                " religion: " + kingdom.getPopularityFactor(PopularityFactor.RELIGION);
+        return  "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) + '\n' +
+                "food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) + '\n' +
+                "Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) + '\n' +
+                "tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) + '\n' +
+                "homeless: " + kingdom.getPopularityFactor(PopularityFactor.HOMELESS) + '\n' +
+                "religion: " + kingdom.getPopularityFactor(PopularityFactor.RELIGION);
     }
 
     public int showPopularity() {

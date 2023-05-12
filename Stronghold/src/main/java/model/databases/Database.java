@@ -18,9 +18,7 @@ import java.util.Vector;
 
 public class Database {
     private static final String DIRECTORY_TO_SAVE_INFO = "info";
-    private static final String DIRECTORY_TO_SAVE_MAPS = DIRECTORY_TO_SAVE_INFO + "/maps";
     private static final String FILE_TO_SAVE_ALL_USERS = DIRECTORY_TO_SAVE_INFO + "/allUsers.json";
-    private static final String FILE_TO_SAVE_MAP_IDS = DIRECTORY_TO_SAVE_INFO + "/maps.json";
     private static final String FILE_TO_SAVE_STAYED_LOGGED_IN_USER = DIRECTORY_TO_SAVE_INFO + "/loggedInUser.json";
 
     private Vector<User> allUsers;
@@ -62,7 +60,11 @@ public class Database {
 
     public void setStayedLoggedInUser(User user) {
         stayedLoggedInUser = user;
-        checkForSavingDirectory();
+        try {
+            checkForSavingDirectory();
+        } catch (IOException ignored) {
+
+        }
         saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
     }
 
@@ -92,18 +94,20 @@ public class Database {
     }
 
     public void saveDataIntoFile() {
-        checkForSavingDirectory();
-        saveObjectToFile(FILE_TO_SAVE_ALL_USERS, allUsers);
-        saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
+        try {
+            checkForSavingDirectory();
+            saveObjectToFile(FILE_TO_SAVE_ALL_USERS, allUsers);
+            saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
+        }
+        catch (IOException ignored) {
+
+        }
     }
 
-    private void checkForSavingDirectory() {
+    private void checkForSavingDirectory() throws IOException {
         File directory = new File(DIRECTORY_TO_SAVE_INFO);
-        File maps = new File(DIRECTORY_TO_SAVE_MAPS);
-        if (!maps.exists()) {
-            directory.mkdirs();
-            maps.mkdirs();
-        }
+        if (directory.mkdirs())
+            throw new IOException("couldn't make directory");
     }
 
     public User getUserByUsername(String username) {

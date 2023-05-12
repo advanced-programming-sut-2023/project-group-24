@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="first checkpoint final version">
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/KingdomControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/functionalcontrollers/PathFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/functionalcontrollers/PathFinder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/databases/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/databases/Database.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +48,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="model.buildings.BuildingTest" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../javafxWorkshop1" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -67,8 +69,8 @@
       <recent name="controller.gamecontrollers" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
-      <recent name="model.buildings.BuildingTest" />
       <recent name="" />
+      <recent name="model.buildings.BuildingTest" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="U:\AdvancedProgramming\Project\Codes\Stronghold\src\main\java\controller" />
@@ -86,7 +88,39 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ShopControllerTest">
+  <component name="RunManager" selected="JUnit.KingdomControllerTest.showPopularityFactors">
+    <configuration name="KingdomControllerTest.changeStockedNumber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.KingdomControllerTest" />
+      <option name="METHOD_NAME" value="changeStockedNumber" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KingdomControllerTest.showPopularityFactors" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.KingdomControllerTest" />
+      <option name="METHOD_NAME" value="showPopularityFactors" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ShopControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
@@ -98,22 +132,6 @@
       <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
       <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.ShopControllerTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShopControllerTest.buyItem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.gamecontrollers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.ShopControllerTest" />
-      <option name="METHOD_NAME" value="buyItem" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -146,21 +164,6 @@
       <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.ShopControllerTest" />
       <option name="METHOD_NAME" value="showPriceList" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WorkersNeededBuildingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.buildings.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.buildings" />
-      <option name="MAIN_CLASS_NAME" value="model.buildings.WorkersNeededBuildingTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -214,11 +217,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.KingdomControllerTest.showPopularityFactors" />
+        <item itemvalue="JUnit.KingdomControllerTest.changeStockedNumber" />
         <item itemvalue="JUnit.ShopControllerTest" />
         <item itemvalue="JUnit.ShopControllerTest.showPriceList" />
         <item itemvalue="JUnit.ShopControllerTest.sellItem" />
-        <item itemvalue="JUnit.ShopControllerTest.buyItem" />
-        <item itemvalue="JUnit.WorkersNeededBuildingTest" />
       </list>
     </recent_temporary>
   </component>
@@ -293,6 +296,17 @@
     <MESSAGE value="first checkpoint" />
     <MESSAGE value="first checkpoint final version" />
     <option name="LAST_COMMIT_MESSAGE" value="first checkpoint final version" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/buildings/StorageBuilding.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1683876273235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
