@@ -52,17 +52,17 @@ public enum Commands {
     //CreateMapMenu commands
     CREATE_MAP("(?=.* -i (?<id>\\S*))(?=.* -s (?<size>\\d*))^create map( -[is] \\S*){2}$"),
     SET_TEXTURE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
-            "^settexture( -[xyt] (\"[^\"]*\")|(\\S*)){3}$"),
+            "^settexture( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
     SET_TEXTURE_MULTIPLE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
-            "^settexture( -[xyt] (\"[^\"]*\")|(\\S*)){3}$"),
+            "^settexture( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
     CLEAR("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^clear( -[xy] \\d*){2}$"),
     DROP_ROCK("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -d (?<direction>\\S*))^droprock( -[xyd] \\S*){3}$"),
     DROP_TREE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
-            "^droptree( -[xyt] (\"[^\"]*\")|(\\S*)){3}$"),
+            "^droptree( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
     DROP_BUILDING("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\d*)))" +
-            "^dropbuilding( -[xyt] (\"[^\"]*\")|(\\d*)){3}$"),
+            "^dropbuilding( -[xyt] ((\"[^\"]*\")|(\\d*))){3}$"),
     DROP_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
-            "(?=.* -c (?<count>\\d*))^dropunit( -[xytc] (\"[^\"]*\")|(\\S*)){4}$"),
+            "(?=.* -c (?<count>\\d*))^dropunit( -[xytc] ((\"[^\"]*\")|(\\S*))){4}$"),
     CHANGE_KINGDOM("^change kingdom -c (?<color>\\S+)$"),
     NEW_KINGDOM("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -c (?<color>\\S*))^new kingdom( -[xyc] \\S*){3}$"),
 

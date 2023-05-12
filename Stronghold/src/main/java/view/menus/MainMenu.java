@@ -62,7 +62,7 @@ public class MainMenu {
 
     private void enterCreateMapMenu() {
         AppController.setCurrentMenu(MenusName.CREATE_MAP_MENU);
-        System.out.println("You are in map making menu!");
+        System.out.println("You are in create map menu!");
     }
 
     private void enterLoginMenu() {
