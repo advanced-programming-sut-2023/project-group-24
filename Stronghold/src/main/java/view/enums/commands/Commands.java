@@ -53,8 +53,9 @@ public enum Commands {
     CREATE_MAP("(?=.* -i (?<id>\\S*))(?=.* -s (?<size>\\d*))^create map( -[is] \\S*){2}$"),
     SET_TEXTURE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<texture>(\"[^\"]*\")|(\\S*)))" +
             "^settexture( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
-    SET_TEXTURE_MULTIPLE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<texture>(\"[^\"]*\")|(\\S*)))" +
-            "^settexture( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
+    SET_TEXTURE_MULTIPLE("(?=.* -x1 (?<x1>\\d*))(?=.* -y1 (?<y1>\\d*))(?=.* -x2 (?<x2>\\d*))(?=.* -y2 (?<y2>\\d*))" +
+            "(?=.* -t (?<texture>(\"[^\"]*\")|(\\S*)))" +
+            "^settexture( -((x1)|(y1)|(x2)|(y2)|(t)) ((\"[^\"]*\")|(\\S*))){5}$"),
     CLEAR("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^clear( -[xy] \\d*){2}$"),
     DROP_ROCK("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -d (?<direction>\\S*))^droprock( -[xyd] \\S*){3}$"),
     DROP_TREE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
@@ -85,6 +86,7 @@ public enum Commands {
     MOVE_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^move unit to( -[xy] \\d*){2}$"),
     PATROL_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))" +
             "^patrol unit( -[xy] \\d*){2}$"),
+    ATTACK_WALL("^attack wall -d (?<direction>\\s*)$"),
     STOP_PATROL("^stop patrol$"),
     SET_STATE("^set (?<state>\\S*)$"),
     SET_LADDER("^set ladder -d (?<direction>\\S*)$"),
