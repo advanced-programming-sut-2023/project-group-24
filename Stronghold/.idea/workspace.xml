@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="first checkpoint final version">
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/LoginMenuControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/RegisterMenuControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/functionalcontrollers/PathFinderTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/buildings/StorageBuildingTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/Army.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/Army.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/army/ArmyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/army/ArmyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/buildings/DefenceBuildingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/buildings/DefenceBuildingTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,11 +60,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="model.army" />
+      <recent name="controller.functionalcontrollers" />
       <recent name="controller" />
-      <recent name="controller.gamecontrollers" />
       <recent name="model.buildings" />
-      <recent name="model" />
+      <recent name="model.army" />
+      <recent name="controller.gamecontrollers" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="view.enums.commands" />
@@ -87,80 +91,75 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ArmyTest">
-    <configuration name="ArmyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.All in Stronghold">
+    <configuration name="All in Stronghold" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="PARAMETERS" value="" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CreateMapControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.army.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.army" />
-      <option name="MAIN_CLASS_NAME" value="model.army.ArmyTest" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.CreateMapControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArmyTest.changeEngineerState" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginMenuControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.army.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.army" />
-      <option name="MAIN_CLASS_NAME" value="model.army.ArmyTest" />
-      <option name="METHOD_NAME" value="changeEngineerState" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.LoginMenuControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArmyTest.isDead" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RegisterMenuControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.army.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.army" />
-      <option name="MAIN_CLASS_NAME" value="model.army.ArmyTest" />
-      <option name="METHOD_NAME" value="isDead" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.RegisterMenuControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArmyTest.setPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TradeControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.army.*" />
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.army" />
-      <option name="MAIN_CLASS_NAME" value="model.army.ArmyTest" />
-      <option name="METHOD_NAME" value="setPath" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WarMachineTypeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.army.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.army" />
-      <option name="MAIN_CLASS_NAME" value="model.army.WarMachineTypeTest" />
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.TradeControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -213,13 +212,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.All in Stronghold" />
+      <item itemvalue="JUnit.CreateMapControllerTest" />
+      <item itemvalue="JUnit.LoginMenuControllerTest" />
+      <item itemvalue="JUnit.RegisterMenuControllerTest" />
+      <item itemvalue="JUnit.TradeControllerTest" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ArmyTest" />
-        <item itemvalue="JUnit.ArmyTest.setPath" />
-        <item itemvalue="JUnit.ArmyTest.changeEngineerState" />
-        <item itemvalue="JUnit.ArmyTest.isDead" />
-        <item itemvalue="JUnit.WarMachineTypeTest" />
+        <item itemvalue="JUnit.All in Stronghold" />
+        <item itemvalue="JUnit.RegisterMenuControllerTest" />
+        <item itemvalue="JUnit.LoginMenuControllerTest" />
+        <item itemvalue="JUnit.CreateMapControllerTest" />
+        <item itemvalue="JUnit.TradeControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -295,73 +301,72 @@
     <MESSAGE value="first checkpoint final version" />
     <option name="LAST_COMMIT_MESSAGE" value="first checkpoint final version" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/buildings/StorageBuilding.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Stronghold$ArmyTest.ic" NAME="ArmyTest Coverage Results" MODIFIED="1683916050459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$ArmyTest.ic" NAME="ArmyTest Coverage Results" MODIFIED="1683920574118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.army.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$DefenceBuildingTest.ic" NAME="DefenceBuildingTest Coverage Results" MODIFIED="1683880401128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$DefenceBuildingTest.ic" NAME="DefenceBuildingTest Coverage Results" MODIFIED="1683920675895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$BuildingControllerTest.ic" NAME="BuildingControllerTest Coverage Results" MODIFIED="1683876182676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$BuildingControllerTest.ic" NAME="BuildingControllerTest Coverage Results" MODIFIED="1683918340822" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.gamecontrollers.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$BuildingTest.ic" NAME="BuildingTest Coverage Results" MODIFIED="1683877719860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$BuildingTest.ic" NAME="BuildingTest Coverage Results" MODIFIED="1683920633376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$CreateMapControllerTest.ic" NAME="CreateMapControllerTest Coverage Results" MODIFIED="1683876227485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$ProfileMenuControllerTest.ic" NAME="ProfileMenuControllerTest Coverage Results" MODIFIED="1683911403414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$SoldierTypeTest.ic" NAME="SoldierTypeTest Coverage Results" MODIFIED="1683913208253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$SoldierTypeTest.ic" NAME="SoldierTypeTest Coverage Results" MODIFIED="1683920606518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.army.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$TradeControllerTest.ic" NAME="TradeControllerTest Coverage Results" MODIFIED="1683876212189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$CreateMapControllerTest.ic" NAME="CreateMapControllerTest Coverage Results" MODIFIED="1683920779991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$RegisterMenuControllerTest.ic" NAME="RegisterMenuControllerTest Coverage Results" MODIFIED="1683920810826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$TradeControllerTest.ic" NAME="TradeControllerTest Coverage Results" MODIFIED="1683920769703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.gamecontrollers.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$WorkersNeededBuildingTest.ic" NAME="WorkersNeededBuildingTest Coverage Results" MODIFIED="1683881193357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$StorageBuildingTest.ic" NAME="StorageBuildingTest Coverage Results" MODIFIED="1683920687696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$WarMachineTypeTest.ic" NAME="WarMachineTypeTest Coverage Results" MODIFIED="1683913676034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$WorkersNeededBuildingTest.ic" NAME="WorkersNeededBuildingTest Coverage Results" MODIFIED="1683920702479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.buildings.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$WarMachineTypeTest.ic" NAME="WarMachineTypeTest Coverage Results" MODIFIED="1683920617805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.army.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1683876273235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$BuildingTypeTest.ic" NAME="BuildingTypeTest Coverage Results" MODIFIED="1683877018647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$BuildingTypeTest.ic" NAME="BuildingTypeTest Coverage Results" MODIFIED="1683920646689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1683920732069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$All_in_Stronghold.ic" NAME="All in Stronghold Coverage Results" MODIFIED="1683921132925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Stronghold$TradeTest.ic" NAME="TradeTest Coverage Results" MODIFIED="1683876295374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$ArmyTypeTest_stringToEnum.ic" NAME="ArmyTypeTest.stringToEnum Coverage Results" MODIFIED="1683912637121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.army.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$DairyProduceTest.ic" NAME="DairyProduceTest Coverage Results" MODIFIED="1683878666951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$DairyProduceTest.ic" NAME="DairyProduceTest Coverage Results" MODIFIED="1683920664080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$KingdomControllerTest.ic" NAME="KingdomControllerTest Coverage Results" MODIFIED="1683905685202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$KingdomControllerTest.ic" NAME="KingdomControllerTest Coverage Results" MODIFIED="1683920745817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.gamecontrollers.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$ArmyTypeTest.ic" NAME="ArmyTypeTest Coverage Results" MODIFIED="1683912651219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$ArmyTypeTest.ic" NAME="ArmyTypeTest Coverage Results" MODIFIED="1683920593143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.army.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testAddingAndGetting.ic" NAME="DatabaseTest.testAddingAndGetting Coverage Results" MODIFIED="1683659035556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$ShopControllerTest.ic" NAME="ShopControllerTest Coverage Results" MODIFIED="1683883234508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$LoginMenuControllerTest.ic" NAME="LoginMenuControllerTest Coverage Results" MODIFIED="1683920799689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$ShopControllerTest.ic" NAME="ShopControllerTest Coverage Results" MODIFIED="1683920756877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.gamecontrollers.*</FILTER>
     </SUITE>
   </component>

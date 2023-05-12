@@ -107,4 +107,20 @@ public class RegisterMenuController {
         database.saveDataIntoFile();
         return RegisterMenuMessages.SUCCESS;
     }
+
+    public String makeNewUsername(String username) {
+        StringBuilder newUsername = new StringBuilder(username);
+        int length = (int) (Math.random() * 2) + 1;
+        String[] usernameCharacters = new String[]{"0123456789", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                "abcdefghijklmnopqrstuvwxyz", "`~!@#$%^&*()_+=-*/><?{}[]|\\/:\\;\",."};
+        for (int i = 0; i < length; i++) {
+            int stringIndex = (int) (Math.random() * 4);
+            int characterIndex = (int) (Math.random() * usernameCharacters[stringIndex].length());
+            newUsername.append(usernameCharacters[stringIndex].charAt(characterIndex));
+        }
+        if (database.getUserByUsername(newUsername.toString()) != null)
+            return makeNewUsername(username);
+        else
+            return newUsername.toString();
+    }
 }
