@@ -35,13 +35,13 @@ public class ShowMapController {
         checkIndex(x, y);
         StringBuilder outputMap = new StringBuilder();
         String boarder = "\n|" + "-".repeat(65) + "|\n";
-        for (int j = currentMapY - height; j <= currentMapY + height; j++) {
+        for (int i = currentMapY - height; i <= currentMapY + height; i++) {
             outputMap.append('|');
-            for (int i = currentMapX - width; i <= currentMapX + width; i++)
+            for (int j = currentMapX - width; j <= currentMapX + width; j++)
                 outputMap.append(FirstLine(i, j)).append('|');
             outputMap.append("\n");
             outputMap.append('|');
-            for (int i = currentMapX - width; i <= currentMapX + width; i++)
+            for (int j = currentMapX - width; j <= currentMapX + width; j++)
                 outputMap.append(SecondLine(i, j)).append('|');
             outputMap.append(boarder);
         }
@@ -93,7 +93,7 @@ public class ShowMapController {
     }
 
     public String moveMap(int changeY, int changeX) {
-        return showMap(currentMapX + changeX, currentMapY + changeY);
+        return showMap(currentMapX + changeY, currentMapY + changeX);
     }
 
     public String showDetails(int x, int y) {
