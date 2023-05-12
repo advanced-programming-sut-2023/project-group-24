@@ -133,7 +133,7 @@ public class Cell {
         if (nextHeight == lastHeight || movingType.equals(MovingType.ASSASSIN)) return true;
         if ((existingBuilding != null && existingBuilding.getBuildingType().equals(BuildingType.STAIR)) || (startPoint.
                 existingBuilding != null && startPoint.existingBuilding.getBuildingType().equals(BuildingType.STAIR)) ||
-            checkGate()) return true;
+            checkGate() || checkGate(startPoint)) return true;
         if (movingType.equals(MovingType.CAN_NOT_CLIMB_LADDER))
             return false;
         return handleClimber(startPoint, direction);
@@ -146,6 +146,13 @@ public class Cell {
         if (type.equals(BuildingType.SMALL_STONE_GATEHOUSE) || type.equals(BuildingType.LARGE_STONE_GATEHOUSE))
             return !((GateAndStairs) existingBuilding).isClosed();
         return false;
+    }
+
+    private boolean checkGate(Cell cell) {
+        if (cell.existingBuilding == null)
+            return false;
+        BuildingType type = cell.existingBuilding.getBuildingType();
+        return type.equals(BuildingType.SMALL_STONE_GATEHOUSE) || type.equals(BuildingType.LARGE_STONE_GATEHOUSE);
     }
 
     private boolean handleClimber(Cell startPoint, Direction direction) {
