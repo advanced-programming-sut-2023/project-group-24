@@ -5,13 +5,19 @@ import model.enums.KingdomColor;
 import model.map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import utils.Pair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArmyTest {
     private Map map = new Map(10, "test");
     private Kingdom kingdom = new Kingdom(KingdomColor.RED);
+    private Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
     private Army army = new Soldier(map.getMap()[2][2], ArmyType.ARABIAN_SWORD_MAN, kingdom, SoldierType.ARABIAN_SWORD_MAN);
+    private Army army2 = new Soldier(map.getMap()[4][2], ArmyType.ENGINEER, kingdom2, SoldierType.ENGINEER);
 
     @Test
     void isDead() {
@@ -35,67 +41,95 @@ class ArmyTest {
     @Test
     void changeState() {
         army.changeState(UnitState.DEFENSIVE);
-        Assertions.assertEquals(army.getUnitState(), UnitState.STANDING);
-        army.changeState(UnitState.stringToEnum());
+        Assertions.assertEquals(army.getUnitState(), UnitState.DEFENSIVE);
+        army.changeState(UnitState.stringToEnum("offensive"));
+        Assertions.assertEquals(army.getUnitState(), UnitState.OFFENSIVE);
     }
 
     @Test
     void getHp() {
+        Assertions.assertEquals(army.getHp(), 150);
     }
 
     @Test
     void takeDamage() {
+        army.takeDamage(10);
+        Assertions.assertEquals(army.getHp(), 140);
     }
 
     @Test
     void moveArmy() {
+        army.setPath(new ArrayList<>(List.of(map.getMap()[2][3], map.getMap()[3][3])));
+        army.moveArmy();
+        Assertions.assertEquals(army.getLocation(), map.getMap()[2][3]);
+        army.moveArmy();
+        Assertions.assertEquals(army.getLocation(), map.getMap()[3][3]);
     }
 
     @Test
     void getPath() {
+        Assertions.assertEquals(army.getPath().size(), 0);
     }
 
     @Test
     void setPath() {
+        army.setPath(new ArrayList<>(List.of(map.getMap()[2][3], map.getMap()[3][3])));
+        Assertions.assertEquals(army.getPath().size(), 2);
+        army.moveArmy();
+        Assertions.assertEquals(army.getPath().size(), 1);
     }
 
     @Test
     void getOwner() {
+        Assertions.assertEquals(army.getOwner(), kingdom);
     }
 
     @Test
     void getArmyType() {
+        Assertions.assertEquals(army.getArmyType(), ArmyType.ARABIAN_SWORD_MAN);
     }
 
     @Test
     void getTarget() {
+        Assertions.assertNull(army.getTarget());
     }
 
     @Test
     void setTarget() {
+        army.setTarget(army2);
+        Assertions.assertEquals(army.getTarget(), army2);
     }
 
     @Test
     void getPatrol() {
+        Assertions.assertNull(army.getPatrol());
     }
 
     @Test
     void setPatrol() {
+        army.setPatrol(new Pair<>(map.getMap()[2][2], map.getMap()[7][7]));
+        Assertions.assertNotNull(army.getPatrol());
     }
 
     @Test
     void getTargetCell() {
+        Assertions.assertNull(army.getTargetCell());
     }
 
     @Test
     void setTargetCell() {
+        army.setTargetCell(map.getMap()[4][4]);
+        Assertions.assertEquals(army.getTargetCell(), map.getMap()[4][4]);
     }
 
     @Test
     void changeEngineerState() {
-    }
-
-    @Test
-    void setArmyType() {
+        army.changeEngineerState();
+        Assertions.assertEquals(army.getArmyType(), ArmyType.ARABIAN_SWORD_MAN);
+        Assertions.assertEquals(army2.getArmyType(), ArmyType.ENGINEER);
+        army2.changeEngineerState();
+        Assertions.assertEquals(army2.getArmyType(), ArmyType.ENGINEER_WITH_OIL);
+        army2.changeEngineerState();
+        Assertions.assertEquals(army2.getArmyType(), ArmyType.ENGINEER);
     }
 }

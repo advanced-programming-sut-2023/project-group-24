@@ -105,13 +105,9 @@ public abstract class Army {
     }
 
     public void changeEngineerState() {
-        if (this.getArmyType().equals(ArmyType.ENGINEER))
-            this.setArmyType(ArmyType.ENGINEER_WITH_OIL);
-        if (this.getArmyType().equals(ArmyType.ENGINEER_WITH_OIL))
-            this.setArmyType(ArmyType.ENGINEER);
-    }
-
-    public void setArmyType(ArmyType armyType) {
-        this.armyType = armyType;
+        if (this.armyType == ArmyType.ENGINEER)
+            this.armyType = ArmyType.ENGINEER_WITH_OIL;
+        else if (this.armyType == ArmyType.ENGINEER_WITH_OIL)
+            this.armyType = ArmyType.ENGINEER;
     }
 }
