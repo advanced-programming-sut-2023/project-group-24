@@ -51,8 +51,8 @@ public class CreateMapMenu {
     private void newKingdom(Matcher matcher) {
         int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
-        String texture = matcher.group("texture");
-        CreateMapMessages messages = createMapController.newKingdom(x, y, texture);
+        String color = matcher.group("color");
+        CreateMapMessages messages = createMapController.newKingdom(x, y, color);
         handleMessage(messages);
     }
 

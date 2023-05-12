@@ -22,5 +22,29 @@
     "slogan": "slogan2",
     "email": "email2",
     "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 2,
+      "object2": "d9ef5294fc8f32c4a3b2bcdbb05b9b1974e950a68a2d1794f02b1b8b6d400215"
+    },
+    "username": "omid",
+    "password": "92b8d75deef26cc8d00b22e2306a507cba3c343928ece69d6d9c387fc5a202ec",
+    "nickname": "omid",
+    "slogan": "I fight for peace",
+    "email": "Omid@gmail.com",
+    "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 2,
+      "object2": "43c32458f48b0a4949db9583fbaa1d799d8b9a1708dffe7044a32fdb308d54b8"
+    },
+    "username": "pouria",
+    "password": "c52299448e10c6085a54cd6c252c8378c1892f6e884f3b695d19d8599d798380",
+    "nickname": "pouri",
+    "slogan": "It\u0027s not hard to defeat me, It\u0027s Impossible",
+    "email": "P@gmail.com",
+    "highScore": 0
   }
 ]
