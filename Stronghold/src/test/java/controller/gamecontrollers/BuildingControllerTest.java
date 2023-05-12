@@ -22,26 +22,18 @@ import java.util.List;
 
 class BuildingControllerTest {
 
-    private Map map = new Map(10, "test");
-    private Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
-    private Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
-    private Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final Map map = new Map(10, "test");
+    private final Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
+    private final Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
+    private final Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
     {
         map.addKingdom(kingdom1);
         map.addKingdom(kingdom2);
         map.addKingdom(kingdom3);
-        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[9][3], BuildingType.ARMOURY);
-        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[9][4], BuildingType.ARMOURY);
-        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[9][5], BuildingType.ARMOURY);
-        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[9][6], BuildingType.STOCKPILE);
-        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[9][7], BuildingType.STOCKPILE);
-        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[9][8], BuildingType.STOCKPILE);
-        Building.getBuildingFromBuildingType(kingdom2, map.getMap()[9][9], BuildingType.STOCKPILE);
-        Building.getBuildingFromBuildingType(kingdom3, map.getMap()[8][9], BuildingType.STOCKPILE);
     }
-    private GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private BuildingController buildingController = new BuildingController(gameDatabase);
-    private KingdomController kingdomController = new KingdomController(gameDatabase);
+    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
+    private final BuildingController buildingController = new BuildingController(gameDatabase);
+    private final KingdomController kingdomController = new KingdomController(gameDatabase);
 
     @Test
     void dropBuilding() {
@@ -60,12 +52,12 @@ class BuildingControllerTest {
         Assertions.assertEquals(buildingController.dropBuilding(4, 5, "granary", kingdomController), BuildingControllerMessages.SUCCESS);
         Assertions.assertEquals(buildingController.dropBuilding(6, 5, "granary", kingdomController), BuildingControllerMessages.SUCCESS);
         Assertions.assertEquals(buildingController.dropBuilding(8, 8, "large stone gatehouse", kingdomController), BuildingControllerMessages.SUCCESS);
-        Assertions.assertEquals(buildingController.dropBuilding(8, 7, "drawbridge", kingdomController), BuildingControllerMessages.SUCCESS);
-        Assertions.assertEquals(buildingController.dropBuilding(7, 8, "drawbridge", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.dropBuilding(8, 9, "drawbridge", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.dropBuilding(9, 8, "drawbridge", kingdomController), BuildingControllerMessages.SUCCESS);
         Assertions.assertNotEquals(((GateAndStairs) kingdom1.getBuildings().get(kingdom1.getBuildings().size() - 1)).getDirection(), ((GateAndStairs) kingdom1.getBuildings().get(kingdom1.getBuildings().size() - 2)).getDirection());
         Assertions.assertEquals(buildingController.dropBuilding(7, 7, "cathedral", kingdomController), BuildingControllerMessages.SUCCESS);
-        Assertions.assertEquals(buildingController.dropBuilding(7, 2, "cathedral", kingdomController), BuildingControllerMessages.NOT_ENOUGH_GOLD);
-        Assertions.assertEquals(buildingController.dropBuilding(6, 3, "moat", kingdomController), BuildingControllerMessages.IRRELEVANT_BUILDING);
+        Assertions.assertEquals(buildingController.dropBuilding(7, 8, "cathedral", kingdomController), BuildingControllerMessages.NOT_ENOUGH_GOLD);
+        Assertions.assertEquals(buildingController.dropBuilding(9, 3, "moat", kingdomController), BuildingControllerMessages.IRRELEVANT_BUILDING);
         gameDatabase.getMap().getMap()[1][1].changeTexture(Texture.SEA);
         Assertions.assertEquals(buildingController.dropBuilding(1, 1, "market", kingdomController), BuildingControllerMessages.CANNOT_BUILD_HERE);
     }
@@ -214,9 +206,8 @@ class BuildingControllerTest {
         Assertions.assertEquals(buildingController.selectBuilding(2, 2), BuildingControllerMessages.MARKET);
         Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.IRRELEVANT_BUILDING);
         Assertions.assertEquals(buildingController.selectBuilding(2, 4), BuildingControllerMessages.SUCCESS);
-        kingdomController.changeStockedNumber(new Pair<>(Item.SWORD, 10000));
         Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.NOT_ENOUGH_SPACE);
-        Assertions.assertEquals(buildingController.dropBuilding(8, 5, "armoury", kingdomController), BuildingControllerMessages.SUCCESS);
+        Assertions.assertEquals(buildingController.dropBuilding(2, 3, "armoury", kingdomController), BuildingControllerMessages.SUCCESS);
         Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.NOT_ENOUGH_COWS);
         ((DairyProduce) map.getMap()[2][4].getExistingBuilding()).produceAnimal();
         Assertions.assertEquals(buildingController.produceLeather(kingdomController), BuildingControllerMessages.SUCCESS);

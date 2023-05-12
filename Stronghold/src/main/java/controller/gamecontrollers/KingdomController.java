@@ -201,29 +201,25 @@ public class KingdomController {
             if (building.getBuildingType().equals(type)) {
                 newPair = ((StorageBuilding) building).changeItemCount(pair);
                 if (0 == newPair.getObject2()) break;
-                pair = newPair;
             }
     }
 
     private BuildingType getBuildingType(Item.Category category) {
-        switch (category) {
-            case FOOD:
-                return BuildingType.GRANARY;
-            case MATERIAL:
-                return BuildingType.STOCKPILE;
-            default:
-                return BuildingType.ARMOURY;
-        }
+        return switch (category) {
+            case FOOD -> BuildingType.GRANARY;
+            case MATERIAL -> BuildingType.STOCKPILE;
+            default -> BuildingType.ARMOURY;
+        };
     }
 
     public String showPopularityFactors() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
-        return  "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) + '\n' +
-                "food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) + '\n' +
-                "Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) + '\n' +
-                "tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) + '\n' +
-                "homeless: " + kingdom.getPopularityFactor(PopularityFactor.HOMELESS) + '\n' +
-                "religion: " + kingdom.getPopularityFactor(PopularityFactor.RELIGION);
+        return "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) + '\n' +
+                " food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) + '\n' +
+                " Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) + '\n' +
+                " tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) + '\n' +
+                " homeless: " + kingdom.getPopularityFactor(PopularityFactor.HOMELESS) + '\n' +
+                " religion: " + kingdom.getPopularityFactor(PopularityFactor.RELIGION);
     }
 
     public int showPopularity() {
@@ -247,7 +243,7 @@ public class KingdomController {
         StringBuilder foodList = new StringBuilder();
         for (Item item : Item.values()) {
             if (item.getCategory().equals(Item.Category.FOOD)) if (kingdom.getStockedNumber(item) > 0)
-                foodList.append(item.getName()).append(" ").append(kingdom.getStockedNumber(item)).append("\n");
+                foodList.append(item.name()).append(kingdom.getStockedNumber(item)).append("\n");
         }
         return foodList.toString();
     }
@@ -263,45 +259,21 @@ public class KingdomController {
     }
 
     public void handleTaxFactor(int taxRate) {
-        int taxFactor = 0;
-        switch (taxRate) {
-            case -3:
-                taxFactor = 7;
-                break;
-            case -2:
-                taxFactor = 5;
-                break;
-            case -1:
-                taxFactor = 3;
-                break;
-            case 0:
-                taxFactor = 1;
-                break;
-            case 1:
-                taxFactor = -2;
-                break;
-            case 2:
-                taxFactor = -4;
-                break;
-            case 3:
-                taxFactor = -6;
-                break;
-            case 4:
-                taxFactor = -8;
-                break;
-            case 5:
-                taxFactor = -12;
-                break;
-            case 6:
-                taxFactor = -16;
-                break;
-            case 7:
-                taxFactor = -20;
-                break;
-            case 8:
-                taxFactor = -24;
-                break;
-        }
+        int taxFactor = switch (taxRate) {
+            case -3 -> 7;
+            case -2 -> 5;
+            case -1 -> 3;
+            case 0 -> 1;
+            case 1 -> -2;
+            case 2 -> -4;
+            case 3 -> -6;
+            case 4 -> -8;
+            case 5 -> -12;
+            case 6 -> -16;
+            case 7 -> -20;
+            case 8 -> -24;
+            default -> 0;
+        };
         gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.TAX, taxFactor);
     }
 
@@ -356,5 +328,13 @@ public class KingdomController {
 
     private boolean isInBounds(int x, int y) {
         return x >= 0 && y >= 0 && x < gameDatabase.getMap().getSize() && y < gameDatabase.getMap().getSize();
+    }
+
+    public int turnPlayed() {
+        return gameDatabase.getTurnPlayed();
+    }
+
+    public int roundPlayed() {
+        return gameDatabase.getRoundPlayed();
     }
 }

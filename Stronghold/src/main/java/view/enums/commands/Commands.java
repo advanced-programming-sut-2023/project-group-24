@@ -76,6 +76,9 @@ public enum Commands {
     //Game menu commands
     OPEN_TRADE_MENU("^open trade menu$"),
     OPEN_SHOW_MAP_MENU("^open show map menu$"),
+    TURN_PLAYED("^how many turn played$"),
+    ROUND_PLAYED("^how many round played$"),
+    NEXT_TURN("^next turn$"),
     //Units
     SELECT_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))?" +
             "^select unit( -[xyt] ((\"[^\"]*\")|(\\S*))){2,3}$"),
@@ -133,7 +136,8 @@ public enum Commands {
     PASSWORD_SIZE("^\\S{8,}"),
     PASSWORD_CAPITAL("^(?=.*[A-Z]).+$"),
     PASSWORD_NUMBER("^(?=.*\\d).+$"),
-    PASSWORD_SMALL_CHAR("^(?=.*[a-z]).+$");
+    PASSWORD_SMALL_CHAR("^(?=.*[a-z]).+$"),
+    PASSWORD_SPECIFIC_CHAR("^`~!@#\\$%\\^&\\*\\(\\)_-=\\+\";:\\?\\/\\.<,>\\$");
 
 
     private final String regex;

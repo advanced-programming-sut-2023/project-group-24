@@ -1,7 +1,6 @@
 package model.databases;
 
 import model.Kingdom;
-import model.Trade;
 import model.army.Army;
 import model.buildings.Building;
 import model.map.Map;
@@ -11,35 +10,37 @@ import java.util.ArrayList;
 public class GameDatabase {
     private final ArrayList<Army> selectedUnits;
     private final Map map;
-    private Kingdom currentKingdom;
     private final ArrayList<Kingdom> kingdoms;
+    private Kingdom currentKingdom;
     private Building currentBuilding;
     private int turnPlayed;
-    private ArrayList<Trade> trades; //todo
+    private int roundPlayed;
 
     public GameDatabase(ArrayList<Kingdom> kingdoms, Map map) {
         selectedUnits = new ArrayList<>();
         this.map = map;
         turnPlayed = 0;
+        roundPlayed = 0;
         this.kingdoms = new ArrayList<>(kingdoms);
         currentKingdom = kingdoms.get(0);
     }
 
+    public int getTurnPlayed() {
+        return turnPlayed;
+    }
+
+    public int getRoundPlayed() {
+        return roundPlayed;
+    }
+
     public void nextTurn() {
-    currentKingdom = kingdoms.get(++turnPlayed % kingdoms.size());
+        if (kingdoms.get(kingdoms.size() - 1).equals(currentKingdom)) roundPlayed++;
+        currentKingdom = kingdoms.get((kingdoms.indexOf(currentKingdom) + 1) % kingdoms.size());
+        turnPlayed++;
     }
 
-    public void removeKingdom() {
-        //TODO ...
-    }
-
-    public int turnPlayed() {
-        //Todo ...
-        return 0;
-    }
-
-    public void setCurrentPlayer(Kingdom currentKingdom) {
-        this.currentKingdom = currentKingdom;
+    public void removeKingdom(Kingdom kingdom) {
+        kingdoms.remove(kingdom);
     }
 
     public Kingdom getCurrentKingdom() {
@@ -50,13 +51,13 @@ public class GameDatabase {
         return selectedUnits;
     }
 
-    public ArrayList<Kingdom> getKingdoms() {
-        return kingdoms;
-    }
-
     public void setSelectedUnits(ArrayList<Army> selectedUnits) {
         this.selectedUnits.clear();
         this.selectedUnits.addAll(selectedUnits);
+    }
+
+    public ArrayList<Kingdom> getKingdoms() {
+        return kingdoms;
     }
 
     public Map getMap() {

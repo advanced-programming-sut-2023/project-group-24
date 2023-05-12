@@ -18,8 +18,9 @@ public enum WarMachineType {
     }
 
     public static WarMachineType stringToEnum(String name) {
+        String string = MainController.turnSpaceToUnderline(name);
         for (WarMachineType value : values())
-            if (name.equalsIgnoreCase(value.toString()))
+            if (string.equalsIgnoreCase(value.toString()))
                 return value;
         return null;
     }

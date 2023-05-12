@@ -16,18 +16,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ShopControllerTest {
-    private Map map = new Map(10, "test");
-    private Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
-    private Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
-    private Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final Map map = new Map(10, "test");
+    private final Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
+    private final Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
+    private final Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
     {
         map.addKingdom(kingdom1);
         map.addKingdom(kingdom2);
         map.addKingdom(kingdom3);
     }
-    private GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private ShopController shopController = new ShopController(gameDatabase);
-    private KingdomController kingdomController = new KingdomController(gameDatabase);
+    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
+    private final ShopController shopController = new ShopController(gameDatabase);
+    private final KingdomController kingdomController = new KingdomController(gameDatabase);
 
     @Test
     void showPriceList() {
@@ -53,7 +53,6 @@ class ShopControllerTest {
         Assertions.assertEquals(shopController.sellItem("chert", 1, kingdomController), ShopMenuMessages.INVALID_NAME);
         Assertions.assertEquals(shopController.sellItem("wood", 0, kingdomController), ShopMenuMessages.INVALID_AMOUNT);
         Assertions.assertEquals(shopController.sellItem("wood", 1, kingdomController), ShopMenuMessages.NOT_ENOUGH_AMOUNT);
-        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[2][2], BuildingType.STOCKPILE);
         kingdomController.changeStockedNumber(new Pair<>(Item.WOOD, 200));
         Assertions.assertEquals(shopController.sellItem("wood", 1, kingdomController), ShopMenuMessages.SUCCESS);
         Assertions.assertEquals(kingdom1.getGold(), 1002);

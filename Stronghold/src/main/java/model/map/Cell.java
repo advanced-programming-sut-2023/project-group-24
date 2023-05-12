@@ -46,10 +46,6 @@ public class Cell {
         this.existingBuilding = existingBuilding;
     }
 
-    public boolean isRock() {
-        return isRock;
-    }
-
     public void setRock(boolean rock) {
         isRock = rock;
     }
@@ -176,15 +172,10 @@ public class Cell {
     }
 
     private boolean handleTunneller() {
-        switch (this.texture) {
-            case SEA:
-            case RIVER:
-            case POND_BIG:
-            case POND_SMALL:
-                return false;
-            default:
-                return true;
-        }
+        return switch (this.texture) {
+            case SEA, RIVER, POND_BIG, POND_SMALL -> false;
+            default -> true;
+        };
     }
 
 }

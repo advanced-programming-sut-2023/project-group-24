@@ -51,62 +51,63 @@ public class AppController {
         checkLoggedInUSer();
         while (true) {
             switch (currentMenu) {
-                case LOGIN_MENU:
+                case LOGIN_MENU -> {
                     LoginMenuController loginMenuController = new LoginMenuController(database);
                     LoginMenu loginMenu = new LoginMenu(loginMenuController);
                     loginMenu.run();
-                    break;
-                case PROFILE_MENU:
+                }
+                case PROFILE_MENU -> {
                     ProfileMenuController profileMenuController = new ProfileMenuController(database);
                     ProfileMenu profileMenu = new ProfileMenu(profileMenuController);
                     profileMenu.run();
-                    break;
-                case REGISTER_MENU:
+                }
+                case REGISTER_MENU -> {
                     RegisterMenuController registerMenuController = new RegisterMenuController(database);
                     RegisterMenu registerMenu = new RegisterMenu(registerMenuController);
                     registerMenu.run();
-                    break;
-                case RESET_PASSWORD_MENU:
+                }
+                case RESET_PASSWORD_MENU -> {
                     ResetPasswordMenuController resetPasswordMenuController = new ResetPasswordMenuController(database);
                     ResetPasswordMenu resetPasswordMenu = new ResetPasswordMenu(resetPasswordMenuController);
                     resetPasswordMenu.run();
-                    break;
-                case MAIN_MENU:
+                }
+                case MAIN_MENU -> {
                     MainMenuController mainMenuController = new MainMenuController(database);
                     MainMenu mainMenu = new MainMenu(mainMenuController);
                     mainMenu.run();
-                    break;
-                case GAME_MENU: {
+                }
+                case GAME_MENU -> {
+                    GameController gameController = new GameController(gameDatabase);
                     KingdomController kingdomController = new KingdomController(gameDatabase);
                     UnitController unitController = new UnitController(gameDatabase);
                     BuildingController buildingController = new BuildingController(gameDatabase);
-                    GameMenu gameMenu = new GameMenu(kingdomController, unitController, buildingController);
+                    GameMenu gameMenu = new GameMenu(kingdomController, unitController, buildingController, gameController);
                     gameMenu.run();
                     break;
                 }
-                case SHOW_MAP_MENU:
+                case SHOW_MAP_MENU -> {
                     ShowMapController showMapController = new ShowMapController(gameDatabase);
                     ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
                     showMapMenu.run();
-                    break;
-                case TRADE_MENU: {
+                }
+                case TRADE_MENU -> {
                     TradeController tradeController = new TradeController(gameDatabase);
                     KingdomController kingdomController = new KingdomController(gameDatabase);
                     TradeMenu tradeMenu = new TradeMenu(tradeController, kingdomController);
                     tradeMenu.run();
                     break;
                 }
-                case SHOP_MENU:
+                case SHOP_MENU -> {
                     ShopController shopController = new ShopController(gameDatabase);
                     KingdomController kingdomController = new KingdomController(gameDatabase);
                     ShopMenu shopMenu = new ShopMenu(shopController, kingdomController);
                     shopMenu.run();
-                    break;
-                case CREATE_MAP_MENU:
+                }
+                case CREATE_MAP_MENU -> {
                     CreateMapController createMapController = new CreateMapController(database);
                     CreateMapMenu createMapMenu = new CreateMapMenu(createMapController);
                     createMapMenu.run();
-                    break;
+                }
             }
         }
     }

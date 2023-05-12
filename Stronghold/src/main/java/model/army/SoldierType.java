@@ -41,8 +41,9 @@ public enum SoldierType {
     }
 
     public static SoldierType stringToEnum(String name) {
+        String string = MainController.turnSpaceToUnderline(name);
         for (SoldierType value : values())
-            if (name.equalsIgnoreCase(value.toString()))
+            if (string.equalsIgnoreCase(value.toString()))
                 return value;
         return null;
     }
@@ -68,6 +69,6 @@ public enum SoldierType {
     }
 
     public String toString() {
-        return super.toString().toLowerCase().replaceAll("_", " ");
+        return super.toString().toLowerCase().replaceAll("-", " ");
     }
 }
