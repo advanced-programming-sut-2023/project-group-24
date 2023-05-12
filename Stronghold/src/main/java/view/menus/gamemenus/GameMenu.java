@@ -30,7 +30,7 @@ public class GameMenu {
         Matcher matcher;
         while (AppController.getCurrentMenu().equals(MenusName.GAME_MENU)) {
             command = GetInputFromUser.getUserInput();
-            if (Commands.getMatcher(command, Commands.SHOW_MAP) != null)
+            if (Commands.getMatcher(command, Commands.OPEN_SHOW_MAP_MENU) != null)
                 showMap();
             else if (Commands.getMatcher(command, Commands.OPEN_TRADE_MENU) != null)
                 tradeMenu();
@@ -96,6 +96,8 @@ public class GameMenu {
                 removeMoat(matcher);
             else if ((matcher = Commands.getMatcher(command, Commands.FILL_MOAT)) != null)
                 fillMoat(matcher);
+            else if (Commands.getMatcher(command, Commands.SHOW_CURRENT_MENU) != null)
+                System.out.println("Game menu");
             else
                 System.out.println("Invalid command!");
         }

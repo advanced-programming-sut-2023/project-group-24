@@ -38,6 +38,10 @@ public class TradeMenu {
                 tradeHistory();
             else if (Commands.getMatcher(command, Commands.EXIT) != null)
                 enterMainMenu();
+            else if (Commands.getMatcher(command, Commands.SHOW_CURRENT_MENU) != null)
+                System.out.println("Trade menu");
+            else
+                System.out.println("Invalid command!");
         }
     }
 

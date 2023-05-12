@@ -24,6 +24,8 @@ public class ResetPasswordMenu {
             command = GetInputFromUser.getUserInput();
             if ((matcher = Commands.getMatcher(command, Commands.RESET_PASSWORD)) != null)
                 checkUserUsername(matcher);
+            else if (Commands.getMatcher(command, Commands.SHOW_CURRENT_MENU) != null)
+                System.out.println("Reset password menu");
             else System.out.println("Invalid command!");
         }
     }
@@ -32,12 +34,8 @@ public class ResetPasswordMenu {
         String username = MainController.removeDoubleQuotation(matcher.group("username"));
         ResetPasswordMessages message = resetPasswordMenuController.checkUserUsername(username);
         switch (message) {
-            case USER_NOT_FOUND:
-                System.out.println("User not found!");
-                break;
-            case USER_FOUND:
-                getAndCheckUserRecoveryAnswer();
-                break;
+            case USER_NOT_FOUND -> System.out.println("User not found!");
+            case USER_FOUND -> getAndCheckUserRecoveryAnswer();
         }
     }
 
@@ -47,12 +45,8 @@ public class ResetPasswordMenu {
         String recoveryAnswer = GetInputFromUser.getUserInput();
         ResetPasswordMessages message = resetPasswordMenuController.checkUserRecoveryAnswer(recoveryAnswer);
         switch (message) {
-            case INCORRECT_ANSWER:
-                System.out.println("Your answer is not correct!");
-                break;
-            case CORRECT_ANSWER:
-                changePassword();
-                break;
+            case INCORRECT_ANSWER -> System.out.println("Your answer is not correct!");
+            case CORRECT_ANSWER -> changePassword();
         }
     }
 
@@ -63,13 +57,11 @@ public class ResetPasswordMenu {
         String newPasswordConfirm = GetInputFromUser.getUserInput();
         ResetPasswordMessages message = resetPasswordMenuController.checkAndChangeNewPassword(newPassword, newPasswordConfirm);
         switch (message) {
-            case SUCCESS:
+            case SUCCESS -> {
                 System.out.println("Your password has been successfully changed");
                 AppController.setCurrentMenu(MenusName.LOGIN_MENU);
-                break;
-            case PASSWORD_REPETITION_DO_NOT_MATCH:
-                System.out.println("The password and its repetition do not match");
-                break;
+            }
+            case PASSWORD_REPETITION_DO_NOT_MATCH -> System.out.println("The password and its repetition do not match");
         }
     }
 }
