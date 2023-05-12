@@ -28,6 +28,8 @@ public class MainMenu {
                 enterCreateMapMenu();
             else if (Commands.getMatcher(command, Commands.START_GAME) != null)
                 enterGameMenu();
+            else if (Commands.getMatcher(command, Commands.SHOW_CURRENT_MENU) != null)
+                System.out.println("Main menu");
             else
                 System.out.println("Invalid command!");
         }
@@ -35,6 +37,7 @@ public class MainMenu {
 
     private void enterProfileMenu() {
         AppController.setCurrentMenu(MenusName.PROFILE_MENU);
+        System.out.println("You are in profile menu!");
     }
 
     private void enterGameMenu() {
@@ -46,9 +49,16 @@ public class MainMenu {
             System.out.println("Invalid map id!");
             return;
         }
-        for (int i = 0; i < numberOfPlayers; i++) {
-            System.out.println("Enter username" + (i + 1) + " : ");
-            usernames.add(GetInputFromUser.getUserInput());
+        for (int i = 1; i < numberOfPlayers; i++) {
+            System.out.print("Enter username" + (i + 1) + " : ");
+            String newUsername = GetInputFromUser.getUserInput();
+            switch (mainMenuController.checkDuplicationOfUsername(newUsername, usernames)) {
+                case SUCCESS -> usernames.add(newUsername);
+                case DUPLICATE_USERNAME -> {
+                    System.out.println("You entered repetitious username!");
+                    i--;
+                }
+            }
         }
         MainMenuMessages message = mainMenuController.enterGameMenu(usernames, mapId);
         switch (message) {

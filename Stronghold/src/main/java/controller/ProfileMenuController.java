@@ -22,12 +22,14 @@ public class ProfileMenuController {
         else if (MainController.isUsernameValid(newUsername)) return ProfileMenuMessages.INVALID_USERNAME;
         else if (database.getUserByUsername(newUsername) != null) return ProfileMenuMessages.DUPLICATE_USERNAME;
         currentUser.setUsername(newUsername);
+        database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
     }
 
     public ProfileMenuMessages changeNickname(String newNickname) {
         if (newNickname == null) return ProfileMenuMessages.NULL_FIELD;
         currentUser.setNickName(newNickname);
+        database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
     }
 
@@ -59,6 +61,7 @@ public class ProfileMenuController {
         if (!newPassword.equals(newPasswordConfirm)) return ProfileMenuMessages.INVALID_PASSWORD_CONFIRM;
         String newPasswordAsSHA = MainController.getSHA256(newPassword);
         currentUser.changePasswords(newPasswordAsSHA);
+        database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
     }
 
@@ -66,18 +69,21 @@ public class ProfileMenuController {
         if (newEmail == null) return ProfileMenuMessages.NULL_FIELD;
         else if (MainController.isEmailValid(newEmail)) return ProfileMenuMessages.INVALID_EMAIL_FORMAT;
         currentUser.setEmail(newEmail);
+        database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
     }
 
     public ProfileMenuMessages changeSlogan(String newSlogan) {
         if (newSlogan == null) return ProfileMenuMessages.NULL_FIELD;
         currentUser.setSlogan(newSlogan);
+        database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
     }
 
     public ProfileMenuMessages removeSlogan() {
         if (currentUser.getSlogan() == null) return ProfileMenuMessages.EMPTY_SLOGAN;
         currentUser.setSlogan(null);
+        database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
     }
 

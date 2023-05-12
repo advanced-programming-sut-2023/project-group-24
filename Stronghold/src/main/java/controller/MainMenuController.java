@@ -21,6 +21,7 @@ public class MainMenuController {
     }
 
     public MainMenuMessages enterGameMenu(ArrayList<String> usernames, String mapId) {
+        usernames.add(0, AppController.getLoggedInUser().getUsername());
         for (String e : usernames) {
             if (database.getUserByUsername(e) == null)
                 return MainMenuMessages.INVALID_USERNAME;
@@ -34,4 +35,9 @@ public class MainMenuController {
         return MainMenuMessages.SUCCESS;
     }
 
+    public MainMenuMessages checkDuplicationOfUsername(String newUsername, ArrayList<String> usernames) {
+        if (usernames.contains(newUsername))
+            return MainMenuMessages.DUPLICATE_USERNAME;
+        return MainMenuMessages.SUCCESS;
+    }
 }

@@ -24,6 +24,8 @@ public class ShowMapMenu {
             else if ((matcher = Commands.getMatcher(input, Commands.MOVE_MAP)) != null) moveMap(matcher);
             else if ((matcher = Commands.getMatcher(input, Commands.SHOW_DETAILS)) != null) showDetails(matcher);
             else if (Commands.getMatcher(input, Commands.EXIT) != null) exitShowMapMenu();
+            else if (Commands.getMatcher(input, Commands.SHOW_CURRENT_MENU) != null)
+                System.out.println("Show map menu");
             else System.out.println("\033[0;31mInvalid command!\033[0m");
         }
     }
@@ -45,18 +47,10 @@ public class ShowMapMenu {
             String numberAsString = e.replaceAll("(up)|(down)|(left)|(right)", "");
             int number = numberAsString.equals("") ? 1 : Integer.parseInt(numberAsString);
             switch (move) {
-                case "up":
-                    changeX -= number;
-                    break;
-                case "down":
-                    changeX += number;
-                    break;
-                case "left":
-                    changeY -= number;
-                    break;
-                default:
-                    changeY += number;
-                    break;
+                case "up" -> changeX -= number;
+                case "down" -> changeX += number;
+                case "left" -> changeY -= number;
+                default -> changeY += number;
             }
         }
         System.out.println(showMapController.moveMap(changeY, changeX));
