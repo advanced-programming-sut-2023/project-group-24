@@ -55,7 +55,7 @@ public class KingdomController {
     }
 
     private void handlePopulation(Kingdom kingdom) {
-        int peopleChange = (2 * (kingdom.getPopularity() - 1) / 25 - 1);
+        int peopleChange = (2 * ((kingdom.getPopularity() - 1) / 25 - 1));
         if (peopleChange < 0) removePeople(kingdom, -peopleChange);
         else for (int i = 0; i < peopleChange; i++)
             new People(kingdom);
@@ -76,10 +76,10 @@ public class KingdomController {
     }
 
     private boolean removeMaterialNeeded(Pair<Item, Integer> neededItem) {
-        if (neededItem == null) return false;
-        if (gameDatabase.getCurrentKingdom().getStockedNumber(neededItem.getObject1()) < neededItem.getObject2())
+        if (neededItem == null) return true;
+        if (gameDatabase.getCurrentKingdom().getStockedNumber(neededItem.getObject1()) < -neededItem.getObject2())
             return false;
-        changeStockedNumber(new Pair<>(neededItem.getObject1(), -neededItem.getObject2()));
+        changeStockedNumber(new Pair<>(neededItem.getObject1(), neededItem.getObject2()));
         return true;
     }
 
@@ -88,13 +88,14 @@ public class KingdomController {
         int stoneCanBeMoved = building.getBuildingType().getStorageCapacity();
         int x = building.getLocation().getX();
         int y = building.getLocation().getY();
-        if (map[x][y + 1].getExistingBuilding().getBuildingType().equals(BuildingType.QUARRY))
+        BuildingType quarry = BuildingType.QUARRY;
+        if (isInBounds(x, y + 1) && map[x][y + 1].getExistingBuilding().getBuildingType().equals(quarry))
             if ((stoneCanBeMoved = oxTetherWorks((ProducerBuilding) building, stoneCanBeMoved)) == 0) return;
-        if (map[x][y - 1].getExistingBuilding().getBuildingType().equals(BuildingType.QUARRY))
+        if (isInBounds(x, y - 1) && map[x][y - 1].getExistingBuilding().getBuildingType().equals(quarry))
             if ((stoneCanBeMoved = oxTetherWorks((ProducerBuilding) building, stoneCanBeMoved)) == 0) return;
-        if (map[x + 1][y].getExistingBuilding().getBuildingType().equals(BuildingType.QUARRY))
+        if (isInBounds(x + 1, y) && map[x + 1][y].getExistingBuilding().getBuildingType().equals(quarry))
             if ((stoneCanBeMoved = oxTetherWorks((ProducerBuilding) building, stoneCanBeMoved)) == 0) return;
-        if (map[x - 1][y].getExistingBuilding().getBuildingType().equals(BuildingType.QUARRY))
+        if (isInBounds(x - 1, y) && map[x - 1][y].getExistingBuilding().getBuildingType().equals(quarry))
             oxTetherWorks((ProducerBuilding) building, stoneCanBeMoved);
     }
 
@@ -165,6 +166,10 @@ public class KingdomController {
     }
 
     private void handleInn(Kingdom kingdom) {
+        if (!innExists(kingdom)) {
+            setInnFactor(false);
+            return;
+        }
         int aleNeeded = BuildingType.INN.getUses().get(0).getObject2();
         boolean isParty = kingdom.getStockedNumber(Item.ALE) >= aleNeeded;
         if (isParty) changeStockedNumber(new Pair<>(Item.ALE, aleNeeded));
@@ -185,17 +190,6 @@ public class KingdomController {
                 if (0 == foodNumber) break;
             }
         }
-    }
-
-    public int getFreeSpace(Item item) {
-        int freeSpace = 0;
-        for (Building building : gameDatabase.getCurrentKingdom().getBuildings()) {
-            if (building.getBuildingType().getItemsItCanHold().equals(item.getCategory()))
-                freeSpace += (building.getBuildingType().getStorageCapacity() -
-
-                        ((StorageBuilding) building).getNumberOfItemsInStorage());
-        }
-        return freeSpace;
     }
 
     public void changeStockedNumber(Pair<Item, Integer> pair) {
@@ -223,11 +217,11 @@ public class KingdomController {
 
     public String showPopularityFactors() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
-        return "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) +
-                " food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) +
-                " Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) +
-                " tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) +
-                " homeless: " + kingdom.getPopularityFactor(PopularityFactor.HOMELESS) +
+        return "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) + '\n' +
+                " food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) + '\n' +
+                " Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) + '\n' +
+                " tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) + '\n' +
+                " homeless: " + kingdom.getPopularityFactor(PopularityFactor.HOMELESS) + '\n' +
                 " religion: " + kingdom.getPopularityFactor(PopularityFactor.RELIGION);
     }
 
@@ -235,10 +229,8 @@ public class KingdomController {
         return gameDatabase.getCurrentKingdom().getPopularity();
     }
 
-    public String setFoodRate(int foodRate) {
-        if (foodRate < -2 || foodRate > 2) return "Invalid foodRate!\n";
+    void setFoodRate(int foodRate) {
         gameDatabase.getCurrentKingdom().setFoodRate(foodRate);
-        return "";
     }
 
     private void handleHomeless(Kingdom kingdom) {
@@ -335,10 +327,10 @@ public class KingdomController {
         if (fearFactor > 5) fearFactor = 5;
         if (fearFactor < -5) fearFactor = -5;
         gameDatabase.getCurrentKingdom().setFearRate(1 - fearFactor * 0.05);
-        gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.RELIGION, fearFactor);
+        gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.FEAR, fearFactor);
     }
 
-    public void setInnFactor(boolean inn) {
+    private void setInnFactor(boolean inn) {
         int innAmount = 0;
         if (inn) innAmount = 2;
         gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.INN, innAmount);
@@ -352,5 +344,16 @@ public class KingdomController {
                         - ((StorageBuilding) building).getNumberOfItemsInStorage();
         }
         return freeSpace;
+    }
+
+    private boolean innExists(Kingdom kingdom) {
+        for (Building building : kingdom.getBuildings()) {
+            if (building.getBuildingType() == BuildingType.INN) return true;
+        }
+        return false;
+    }
+
+    private boolean isInBounds(int x, int y) {
+        return x >= 0 && y >= 0 && x < gameDatabase.getMap().getSize() && y < gameDatabase.getMap().getSize();
     }
 }

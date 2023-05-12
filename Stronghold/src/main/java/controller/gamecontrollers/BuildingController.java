@@ -196,6 +196,17 @@ public class BuildingController {
         return BuildingControllerMessages.SUCCESS;
     }
 
+    public BuildingControllerMessages setFoodRate(int foodRate, KingdomController kingdomController) {
+        if (gameDatabase.getCurrentBuilding() == null)
+            return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
+        if (gameDatabase.getCurrentBuilding().getBuildingType() != BuildingType.GRANARY)
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        if (foodRate < -2 || foodRate > 2)
+            return BuildingControllerMessages.INVALID_NUMBER;
+        kingdomController.setFoodRate(foodRate);
+        return BuildingControllerMessages.SUCCESS;
+    }
+
     private boolean checkLocationOutOfBounds(int x, int y) {
         return x < 0 || x >= gameDatabase.getMap().getSize() || y < 0 || y >= gameDatabase.getMap().getSize();
     }
