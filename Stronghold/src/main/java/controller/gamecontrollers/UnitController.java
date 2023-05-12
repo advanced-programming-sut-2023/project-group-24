@@ -356,4 +356,15 @@ public class UnitController {
         }
         return null;
     }
+
+    public UnitControllerMessages attackBuilding(int x, int y) {
+        if (checkXY(x, y)) return UnitControllerMessages.INVALID_LOCATION;
+        if (gameDatabase.getSelectedUnits().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        Building building = gameDatabase.getMap().getMap()[x][y].getExistingBuilding();
+        if (building == null || building.getKingdom().equals(gameDatabase.getCurrentKingdom()))
+            return UnitControllerMessages.NULL_SELECTED_BUILDING;
+        for (Army e : gameDatabase.getSelectedUnits())
+            e.setTargetBuilding(building);
+        return UnitControllerMessages.SUCCESS;
+    }
 }

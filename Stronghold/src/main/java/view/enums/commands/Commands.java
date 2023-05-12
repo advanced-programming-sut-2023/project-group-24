@@ -95,6 +95,7 @@ public enum Commands {
     DISBAND("^disband unit$"),
     DIG_MOAT("^dig moat -d (?<direction>\\S*)$"),
     FILL_MOAT("fill moat -d (?<direction>\\S*)}$"),
+    ATTACK_BUILDING("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^attackbuilding( -[xy] \\d*){2}$"),
     STOP("^stop$"),
     //Kingdom
     SHOW_POPULARITY_FACTORS("^show popularity factors$"),
@@ -137,7 +138,7 @@ public enum Commands {
     PASSWORD_CAPITAL("^(?=.*[A-Z]).+$"),
     PASSWORD_NUMBER("^(?=.*\\d).+$"),
     PASSWORD_SMALL_CHAR("^(?=.*[a-z]).+$"),
-    PASSWORD_SPECIFIC_CHAR("^`~!@#\\$%\\^&\\*\\(\\)_-=\\+\";:\\?\\/\\.<,>\\$");
+    PASSWORD_SPECIFIC_CHAR("^.*[`~!@#\\$%\\^&\\*\\(\\)_\\-=\\+\";:\\?\\/\\.<,>]+.*$");
 
 
     private final String regex;
