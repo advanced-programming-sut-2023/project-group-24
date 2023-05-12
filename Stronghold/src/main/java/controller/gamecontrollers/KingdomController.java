@@ -201,6 +201,7 @@ public class KingdomController {
             if (building.getBuildingType().equals(type)) {
                 newPair = ((StorageBuilding) building).changeItemCount(pair);
                 if (0 == newPair.getObject2()) break;
+                pair = newPair;
             }
     }
 
@@ -217,12 +218,12 @@ public class KingdomController {
 
     public String showPopularityFactors() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
-        return "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) + '\n' +
-                " food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) + '\n' +
-                " Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) + '\n' +
-                " tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) + '\n' +
-                " homeless: " + kingdom.getPopularityFactor(PopularityFactor.HOMELESS) + '\n' +
-                " religion: " + kingdom.getPopularityFactor(PopularityFactor.RELIGION);
+        return  "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) + '\n' +
+                "food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) + '\n' +
+                "Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) + '\n' +
+                "tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) + '\n' +
+                "homeless: " + kingdom.getPopularityFactor(PopularityFactor.HOMELESS) + '\n' +
+                "religion: " + kingdom.getPopularityFactor(PopularityFactor.RELIGION);
     }
 
     public int showPopularity() {
@@ -246,7 +247,7 @@ public class KingdomController {
         StringBuilder foodList = new StringBuilder();
         for (Item item : Item.values()) {
             if (item.getCategory().equals(Item.Category.FOOD)) if (kingdom.getStockedNumber(item) > 0)
-                foodList.append(item.name()).append(kingdom.getStockedNumber(item)).append("\n");
+                foodList.append(item.getName()).append(" ").append(kingdom.getStockedNumber(item)).append("\n");
         }
         return foodList.toString();
     }

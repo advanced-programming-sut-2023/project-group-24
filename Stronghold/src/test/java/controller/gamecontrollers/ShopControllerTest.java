@@ -53,6 +53,7 @@ class ShopControllerTest {
         Assertions.assertEquals(shopController.sellItem("chert", 1, kingdomController), ShopMenuMessages.INVALID_NAME);
         Assertions.assertEquals(shopController.sellItem("wood", 0, kingdomController), ShopMenuMessages.INVALID_AMOUNT);
         Assertions.assertEquals(shopController.sellItem("wood", 1, kingdomController), ShopMenuMessages.NOT_ENOUGH_AMOUNT);
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[2][2], BuildingType.STOCKPILE);
         kingdomController.changeStockedNumber(new Pair<>(Item.WOOD, 200));
         Assertions.assertEquals(shopController.sellItem("wood", 1, kingdomController), ShopMenuMessages.SUCCESS);
         Assertions.assertEquals(kingdom1.getGold(), 1002);

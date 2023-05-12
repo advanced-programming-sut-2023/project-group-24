@@ -46,9 +46,8 @@ public enum ArmyType {
     }
 
     public static ArmyType stringToEnum(String name) {
-        String string = MainController.turnSpaceToUnderline(name);
         for (ArmyType value : values())
-            if (string.equalsIgnoreCase(value.toString()))
+            if (name.equalsIgnoreCase(value.toString()))
                 return value;
         return null;
     }
@@ -73,7 +72,8 @@ public enum ArmyType {
         return price;
     }
 
+    @Override
     public String toString() {
-        return super.toString().toLowerCase().replaceAll("-", " ");
+        return super.toString().toLowerCase().replaceAll("_", " ");
     }
 }

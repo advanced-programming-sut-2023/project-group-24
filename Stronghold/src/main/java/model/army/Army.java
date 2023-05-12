@@ -26,6 +26,7 @@ public abstract class Army {
         targetCell = null;
         this.owner = owner;
         target = null;
+        unitState = UnitState.STANDING;
         location.addArmy(this);
         owner.addArmy(this);
     }
