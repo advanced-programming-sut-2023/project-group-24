@@ -30,12 +30,10 @@ public class GameMenu {
         Matcher matcher;
         while (AppController.getCurrentMenu().equals(MenusName.GAME_MENU)) {
             command = GetInputFromUser.getUserInput();
-            if (Commands.getMatcher(command, Commands.SHOW_MAP) != null)
+            if (Commands.getMatcher(command, Commands.OPEN_SHOW_MAP_MENU) != null)
                 showMap();
             else if (Commands.getMatcher(command, Commands.OPEN_TRADE_MENU) != null)
                 tradeMenu();
-            else if (Commands.getMatcher(command, Commands.OPEN_SHOP_MENU) != null)
-                shopMenu();
             else if (Commands.getMatcher(command, Commands.SHOW_POPULARITY_FACTORS) != null)
                 showPopularityFactors();
             else if (Commands.getMatcher(command, Commands.SHOW_POPULARITY) != null)
@@ -44,14 +42,18 @@ public class GameMenu {
                 setFoodRate(matcher);
             else if (Commands.getMatcher(command, Commands.FOOD_RATE_SHOW) != null)
                 showFoodRate();
-            else if ((matcher = Commands.getMatcher(command, Commands.SET_TEXTURE)) != null)
-                setTaxRate(matcher);
+//            else if (Commands.getMatcher(command, Commands.NEXT_TURN) != null)
+//                nexTurn();
+//            else if (Commands.getMatcher(command, Commands.ROUND_PLAYED) != null)
+//                roundPlayed();
+//            else if ((matcher = Commands.getMatcher(command, Commands.TAX_RATE)) != null)
+//                setTaxRate(matcher);
+//            else if (Commands.getMatcher(command, Commands.SHOW_FOOD_LIST) != null)
+//                showFoodList();
             else if (Commands.getMatcher(command, Commands.TAX_RATE_SHOW) != null)
                 showTaxRate();
             else if ((matcher = Commands.getMatcher(command, Commands.PRODUCE_ITEM)) != null)
                 selectItemToProduce(matcher);
-            else if ((matcher = Commands.getMatcher(command, Commands.FEAR_RATE)) != null)
-                setFearRate(matcher);
             else if ((matcher = Commands.getMatcher(command, Commands.DROP_BUILDING)) != null)
                 dropBuilding(matcher);
             else if ((matcher = Commands.getMatcher(command, Commands.SELECT_BUILDING)) != null)
@@ -86,8 +88,8 @@ public class GameMenu {
                 stop();
             else if ((matcher = Commands.getMatcher(command, Commands.POUR_OIL)) != null)
                 pourOil(matcher);
-            else if ((matcher = Commands.getMatcher(command, Commands.DIG_TUNNEL)) != null)
-                digTunnel(matcher);
+//            else if (Commands.getMatcher(command, Commands.DIG_TUNNEL) != null)
+//                digTunnel();
             else if ((matcher = Commands.getMatcher(command, Commands.BUILD)) != null)
                 buildEquipment(matcher);
             else if (Commands.getMatcher(command, Commands.DISBAND) != null)
@@ -98,6 +100,14 @@ public class GameMenu {
                 removeMoat(matcher);
             else if ((matcher = Commands.getMatcher(command, Commands.FILL_MOAT)) != null)
                 fillMoat(matcher);
+            else if (Commands.getMatcher(command, Commands.SHOW_CURRENT_MENU) != null)
+                System.out.println("Game menu");
+//            else if (Commands.getMatcher(command, Commands.TURN_PLAYED) != null)
+//                turnPlayed();
+//            else if ((matcher = Commands.getMatcher(command, Commands.ATTACK_BUILDING)) != null)
+//                attackBuilding(matcher);
+            else
+                System.out.println("Invalid command!");
         }
     }
 

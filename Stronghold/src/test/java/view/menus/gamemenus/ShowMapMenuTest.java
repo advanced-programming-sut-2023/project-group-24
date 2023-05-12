@@ -2,7 +2,8 @@ package view.menus.gamemenus;
 
 import controller.AppController;
 import controller.gamecontrollers.KingdomController;
-import controller.gamecontrollers.TradeController;
+import controller.gamecontrollers.ShopController;
+import controller.gamecontrollers.ShowMapController;
 import model.Kingdom;
 import model.databases.GameDatabase;
 import model.enums.KingdomColor;
@@ -11,22 +12,19 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import utils.enums.MenusName;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TradeMenuTest {
-    private Map map = new Map(10, "test");
+class ShowMapMenuTest {
+    private Map map = new Map(200, "test");
     private Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
     private Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
     private Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
@@ -36,9 +34,8 @@ class TradeMenuTest {
         map.addKingdom(kingdom3);
     }
     private GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private TradeController tradeController = new TradeController(gameDatabase);
-    private KingdomController kingdomController = new KingdomController(gameDatabase);
-    private TradeMenu tradeMenu = new TradeMenu(tradeController, kingdomController);
+    private ShowMapController showMapController = new ShowMapController(gameDatabase);
+    private ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -59,19 +56,19 @@ class TradeMenuTest {
 
     @Test
     void testRun() {
-        AppController.setCurrentMenu(MenusName.TRADE_MENU);
-        String data = "trade -t \"chert va pert\" -a 3 -p 2 -m \"12\"\n" +
-                "trade -t \"stone\" -a 3 -p 2 -m \"12\"\n" +
-                "trade -t \"stone\" -a 0 -p 2 -m \"12\"\n" +
-                "trade -t \"stone\" -a 3 -p 0 -m \"12\"\n" +
-                "trade list\n" +
-                "trade history\n" +
-                "trade accept -i 1 -m hello\n" +
+        AppController.setCurrentMenu(MenusName.SHOW_MAP_MENU);
+        String data = "show map -x 1 -y 2\n" +
+                "show map -x 999 -y 2\n" +
+                "show map -x 1 -y 999\n" +
+                "show details -x 1 -y 2\n" +
+                "show details -x 999 -y 2\n" +
+                "show details -x 1 -y 999\n" +
+                "map right up 2 right 3 up\n" +
                 "chert\n";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Assertions.assertDoesNotThrow(() -> {
             try {
-                tradeMenu.run();
+                showMapMenu.run();
             }
             catch (NoSuchElementException ignored) {
 

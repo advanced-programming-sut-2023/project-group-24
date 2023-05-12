@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="first checkpoint final version">
-      <change afterPath="$PROJECT_DIR$/src/test/java/view/menus/gamemenus/TradeMenuTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/menus/gamemenus/ShopMenuTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/menus/gamemenus/ShowMapMenuTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/TradeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/TradeMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/controller/functionalcontrollers/PathFinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/functionalcontrollers/PathFinderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/enums/commands/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/enums/commands/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/BuildingControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/BuildingControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/view/menus/gamemenus/TradeMenuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/view/menus/gamemenus/TradeMenuTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +20,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="181" />
+    <option name="myElementSize" value="184" />
   </component>
   <component name="ExportToHTMLSettings">
     <option name="OPEN_IN_BROWSER" value="true" />
@@ -48,7 +50,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="view.menus.gamemenus.TradeMenu" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../checkGroup24/aStarAlgorithmTest" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -70,8 +72,8 @@
       <recent name="controller.gamecontrollers" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
-      <recent name="view.menus.gamemenus.TradeMenu" />
       <recent name="" />
+      <recent name="view.menus.gamemenus.TradeMenu" />
       <recent name="model.buildings.BuildingTest" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -90,46 +92,40 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TradeMenuTest.testRun">
-    <configuration name="All in Stronghold" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ShowMapMenuTest">
+    <configuration name="All in Stronghold (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
-      <option name="PARAMETERS" value="" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PathFinderTest.findPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShopMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.functionalcontrollers.*" />
+          <option name="PATTERN" value="view.menus.gamemenus.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller.functionalcontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.functionalcontrollers.PathFinderTest" />
-      <option name="METHOD_NAME" value="findPath" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="view.menus.gamemenus" />
+      <option name="MAIN_CLASS_NAME" value="view.menus.gamemenus.ShopMenuTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RegisterMenuControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShowMapMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.*" />
+          <option name="PATTERN" value="view.menus.gamemenus.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.RegisterMenuControllerTest" />
+      <option name="PACKAGE_NAME" value="view.menus.gamemenus" />
+      <option name="MAIN_CLASS_NAME" value="view.menus.gamemenus.ShowMapMenuTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -214,19 +210,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.All in Stronghold" />
-      <item itemvalue="JUnit.RegisterMenuControllerTest" />
-      <item itemvalue="JUnit.PathFinderTest.findPath" />
       <item itemvalue="JUnit.TradeMenuTest.testRun" />
       <item itemvalue="JUnit.TradeMenuTest" />
+      <item itemvalue="JUnit.All in Stronghold (1)" />
+      <item itemvalue="JUnit.ShopMenuTest" />
+      <item itemvalue="JUnit.ShowMapMenuTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ShowMapMenuTest" />
+        <item itemvalue="JUnit.ShopMenuTest" />
+        <item itemvalue="JUnit.All in Stronghold (1)" />
         <item itemvalue="JUnit.TradeMenuTest.testRun" />
         <item itemvalue="JUnit.TradeMenuTest" />
-        <item itemvalue="JUnit.PathFinderTest.findPath" />
-        <item itemvalue="JUnit.All in Stronghold" />
-        <item itemvalue="JUnit.RegisterMenuControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -306,6 +302,9 @@
     <SUITE FILE_PATH="coverage/Stronghold$ArmyTest.ic" NAME="ArmyTest Coverage Results" MODIFIED="1683920574118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.army.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$ShowMapMenuTest.ic" NAME="ShowMapMenuTest Coverage Results" MODIFIED="1683928100023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>view.menus.gamemenus.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$TradeMenuTest.ic" NAME="TradeMenuTest Coverage Results" MODIFIED="1683925404817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.menus.gamemenus.*</FILTER>
     </SUITE>
@@ -324,6 +323,10 @@
     <SUITE FILE_PATH="coverage/Stronghold$StorageBuildingTest.ic" NAME="StorageBuildingTest Coverage Results" MODIFIED="1683920687696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$ShopMenuTest.ic" NAME="ShopMenuTest Coverage Results" MODIFIED="1683927415271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>view.menus.gamemenus.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$All_in_Stronghold__1_.ic" NAME="All in Stronghold (1) Coverage Results" MODIFIED="1683926432776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Stronghold$DairyProduceTest.ic" NAME="DairyProduceTest Coverage Results" MODIFIED="1683920664080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
     </SUITE>

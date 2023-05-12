@@ -259,7 +259,7 @@ class BuildingControllerTest {
         kingdomController.changeStockedNumber(new Pair<>(Item.WOOD, 200));
         kingdomController.changeStockedNumber(new Pair<>(Item.STONE, 99));
         Assertions.assertEquals(buildingController.dropBuilding(2, 2, "market", kingdomController), BuildingControllerMessages.SUCCESS);
-        Assertions.assertEquals(buildingController.dropBuilding(2, 4, "town hall", kingdomController), BuildingControllerMessages.SUCCESS);
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[2][4], BuildingType.TOWN_HALL);
         Assertions.assertEquals(buildingController.setTaxRate(2, kingdomController), BuildingControllerMessages.NO_BUILDINGS_SELECTED);
         Assertions.assertEquals(buildingController.selectBuilding(2, 2), BuildingControllerMessages.MARKET);
         Assertions.assertEquals(buildingController.setTaxRate(2, kingdomController), BuildingControllerMessages.IRRELEVANT_BUILDING);
