@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="first checkpoint final version">
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/buildings/BuildingTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/buildings/BuildingTypeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/buildings/DairyProduceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/buildings/DefenceBuildingTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/buildings/WorkersNeededBuildingTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/ShopControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/info/allUsers.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/allUsers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/DairyProduce.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/DairyProduce.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/DefenceBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/DefenceBuilding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/WorkersNeededBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/WorkersNeededBuilding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Pair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/BuildingControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/BuildingControllerTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,8 +55,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="model.buildings" />
       <recent name="controller.gamecontrollers" />
+      <recent name="model.buildings" />
       <recent name="model" />
       <recent name="controller" />
     </key>
@@ -97,63 +85,65 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.WorkersNeededBuildingTest">
-    <configuration name="BuildingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ShopControllerTest">
+    <configuration name="ShopControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.buildings.*" />
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.buildings" />
-      <option name="MAIN_CLASS_NAME" value="model.buildings.BuildingTest" />
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.ShopControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DairyProduceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShopControllerTest.buyItem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.buildings.*" />
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.buildings" />
-      <option name="MAIN_CLASS_NAME" value="model.buildings.DairyProduceTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.ShopControllerTest" />
+      <option name="METHOD_NAME" value="buyItem" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DefenceBuildingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShopControllerTest.sellItem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.buildings.*" />
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.buildings" />
-      <option name="MAIN_CLASS_NAME" value="model.buildings.DefenceBuildingTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.ShopControllerTest" />
+      <option name="METHOD_NAME" value="sellItem" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DefenceBuildingTest.showDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShopControllerTest.showPriceList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.buildings.*" />
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.buildings" />
-      <option name="MAIN_CLASS_NAME" value="model.buildings.DefenceBuildingTest" />
-      <option name="METHOD_NAME" value="showDetails" />
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.ShopControllerTest" />
+      <option name="METHOD_NAME" value="showPriceList" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -223,11 +213,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ShopControllerTest" />
+        <item itemvalue="JUnit.ShopControllerTest.showPriceList" />
+        <item itemvalue="JUnit.ShopControllerTest.sellItem" />
+        <item itemvalue="JUnit.ShopControllerTest.buyItem" />
         <item itemvalue="JUnit.WorkersNeededBuildingTest" />
-        <item itemvalue="JUnit.DefenceBuildingTest" />
-        <item itemvalue="JUnit.DefenceBuildingTest.showDetails" />
-        <item itemvalue="JUnit.DairyProduceTest" />
-        <item itemvalue="JUnit.BuildingTest" />
       </list>
     </recent_temporary>
   </component>
@@ -336,6 +326,9 @@
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testAddingAndGetting.ic" NAME="DatabaseTest.testAddingAndGetting Coverage Results" MODIFIED="1683659035556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$ShopControllerTest.ic" NAME="ShopControllerTest Coverage Results" MODIFIED="1683883234508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.gamecontrollers.*</FILTER>
     </SUITE>
   </component>
 </project>
