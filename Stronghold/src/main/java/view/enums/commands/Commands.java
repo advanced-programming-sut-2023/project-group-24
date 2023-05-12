@@ -91,9 +91,8 @@ public enum Commands {
     DIG_TUNNEL("(?=.* -x (?<x>\\w+))(?=.* -y (?<y>\\w+))^dig tunnel( -[xy] \\w+){2}$"),
     BUILD("^build -q (?<equipmentType>(\"[^\"]*\")|(\\S+))$"),
     DISBAND("^disband unit$"),
-    DIG_MOAT("(?=.* -x (?<x>\\d+))(?=.* -y (?<y>\\d+))^dig moat( -[xy] \\d+){2}$"),
-    FILL_MOAT("(?=.* -x (?<x>\\d+))(?=.* -y (?<y>\\d+))^fill moat( -[xy] \\d+){2}$"),
-    REMOVE_MOAT("(?=.* -x (?<x>\\d+))(?=.* -y (?<y>\\d+))^remove moat( -[xy] \\d+){2}$"),
+    DIG_MOAT("^dig moat -d (?<direction>\\S*)$"),
+    FILL_MOAT("fill moat -d (?<direction>\\S*)}$"),
     STOP("^stop$"),
     //Kingdom
     SHOW_POPULARITY_FACTORS("^show popularity factors$"),
@@ -110,6 +109,12 @@ public enum Commands {
     SELECT_BUILDING("(?=.* -x (?<x>\\d+))(?=.* -y (?<y>\\d+))^select building( -[xy] \\d+){2}$"),
     CREATE_UNIT("(?=.* -c (?<count>\\d+))(?=.* -t (?<type>(\"[^\"]*\")|(\\S+))" +
             "^createunit( -[tc] ((\"[^\"]*\")|(\\S+)){2}$)"),
+    CHANGE_GATE_STATE("^change gate state$"),
+    OPEN_DOG_CAGE("^open dog cage$"),
+    REMOVE_MOAT("(?=.* -x (?<x>\\d+))(?=.* -y (?<y>\\d+))^remove moat( -[xy] \\w+){2}$"),
+    SHOW_BUILDING_DETAILS("^show building details$"),
+    PRODUCE_LEATHER("^produce leather$"),
+    PRODUCE_ITEM("^produce item -n (?<name>(\\S*)|(\"[^\"]*\"))$"),
     REPAIR("^repair$"),
 
     //Common commands

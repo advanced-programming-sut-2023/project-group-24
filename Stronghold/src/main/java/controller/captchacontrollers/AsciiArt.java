@@ -51,19 +51,30 @@ public class AsciiArt {
     }
 
     private String getArtFromDigit(int digit) {
-        return switch (digit) {
-            case 0 -> CaptchaNumbers.ZERO.getAsciiArt();
-            case 1 -> CaptchaNumbers.ONE.getAsciiArt();
-            case 2 -> CaptchaNumbers.TWO.getAsciiArt();
-            case 3 -> CaptchaNumbers.THREE.getAsciiArt();
-            case 4 -> CaptchaNumbers.FOUR.getAsciiArt();
-            case 5 -> CaptchaNumbers.FIVE.getAsciiArt();
-            case 6 -> CaptchaNumbers.SIX.getAsciiArt();
-            case 7 -> CaptchaNumbers.SEVEN.getAsciiArt();
-            case 8 -> CaptchaNumbers.EIGHT.getAsciiArt();
-            case 9 -> CaptchaNumbers.NINE.getAsciiArt();
-            default -> CaptchaNumbers.EMPTY.getAsciiArt();
-        };
+        switch (digit) {
+            case 0:
+                return CaptchaNumbers.ZERO.getAsciiArt();
+            case 1:
+                return CaptchaNumbers.ONE.getAsciiArt();
+            case 2:
+                return CaptchaNumbers.TWO.getAsciiArt();
+            case 3:
+                return CaptchaNumbers.THREE.getAsciiArt();
+            case 4:
+                return CaptchaNumbers.FOUR.getAsciiArt();
+            case 5:
+                return CaptchaNumbers.FIVE.getAsciiArt();
+            case 6:
+                return CaptchaNumbers.SIX.getAsciiArt();
+            case 7:
+                return CaptchaNumbers.SEVEN.getAsciiArt();
+            case 8:
+                return CaptchaNumbers.EIGHT.getAsciiArt();
+            case 9:
+                return CaptchaNumbers.NINE.getAsciiArt();
+            default:
+                return CaptchaNumbers.EMPTY.getAsciiArt();
+        }
     }
 
     private void append(AsciiArt asciiArt) {

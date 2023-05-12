@@ -14,7 +14,7 @@ public class EngineersNeededBuilding extends WorkersNeededBuilding {
         engineers = new ArrayList<>();
     }
 
-    protected ArrayList<Soldier> getEngineers() {
+    public ArrayList<Soldier> getEngineers() {
         return engineers;
     }
 
@@ -25,5 +25,13 @@ public class EngineersNeededBuilding extends WorkersNeededBuilding {
     @Override
     public boolean hasEnoughWorkers() {
         return engineers.size() >= getBuildingType().getWorkersNeeded();
+    }
+
+    @Override
+    public ArrayList<String> showDetails() {
+        ArrayList<String> output = super.showDetails();
+        if (!(this instanceof SiegeTent))
+            output.add(String.format("number of engineers: %d/%d", engineers.size(), getBuildingType().getWorkersNeeded()));
+        return output;
     }
 }

@@ -50,11 +50,13 @@ public class MainMenu {
         }
         MainMenuMessages message = mainMenuController.enterGameMenu(usernames, mapId);
         switch (message) {
-            case INVALID_USERNAME -> System.out.println("Invalid username!");
-            case SUCCESS -> {
+            case INVALID_USERNAME:
+                System.out.println("Invalid username!");
+                break;
+            case SUCCESS:
                 System.out.println("Game started!");
                 AppController.setCurrentMenu(MenusName.GAME_MENU);
-            }
+                break;
         }
     }
 

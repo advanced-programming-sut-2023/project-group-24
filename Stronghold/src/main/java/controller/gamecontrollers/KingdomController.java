@@ -102,12 +102,12 @@ public class KingdomController {
         int stones = building.getNumberOfItemsWaitingToBeLoaded();
         if (stones > stoneCanBeMoved) {
             changeStockedNumber(new Pair<>(Item.STONE, stoneCanBeMoved));
-            building.setNumberOfItemsWaitingToBeLoaded(stones - stoneCanBeMoved);
+            building.loadItem(stoneCanBeMoved);
             return 0;
         }
         if (stones > 0) {
             changeStockedNumber(new Pair<>(Item.STONE, stones));
-            building.setNumberOfItemsWaitingToBeLoaded(0);
+            building.loadItem(stones);
             return stoneCanBeMoved - stones;
         }
         return stoneCanBeMoved;
@@ -212,15 +212,12 @@ public class KingdomController {
 
     private BuildingType getBuildingType(Item.Category category) {
         switch (category) {
-            case FOOD -> {
+            case FOOD:
                 return BuildingType.GRANARY;
-            }
-            case MATERIAL -> {
+            case MATERIAL:
                 return BuildingType.STOCKPILE;
-            }
-            default -> {
+            default:
                 return BuildingType.ARMOURY;
-            }
         }
     }
 
@@ -275,18 +272,42 @@ public class KingdomController {
     public void handleTaxFactor(int taxRate) {
         int taxFactor = 0;
         switch (taxRate) {
-            case -3 -> taxFactor = 7;
-            case -2 -> taxFactor = 5;
-            case -1 -> taxFactor = 3;
-            case 0 -> taxFactor = 1;
-            case 1 -> taxFactor = -2;
-            case 2 -> taxFactor = -4;
-            case 3 -> taxFactor = -6;
-            case 4 -> taxFactor = -8;
-            case 5 -> taxFactor = -12;
-            case 6 -> taxFactor = -16;
-            case 7 -> taxFactor = -20;
-            case 8 -> taxFactor = -24;
+            case -3:
+                taxFactor = 7;
+                break;
+            case -2:
+                taxFactor = 5;
+                break;
+            case -1:
+                taxFactor = 3;
+                break;
+            case 0:
+                taxFactor = 1;
+                break;
+            case 1:
+                taxFactor = -2;
+                break;
+            case 2:
+                taxFactor = -4;
+                break;
+            case 3:
+                taxFactor = -6;
+                break;
+            case 4:
+                taxFactor = -8;
+                break;
+            case 5:
+                taxFactor = -12;
+                break;
+            case 6:
+                taxFactor = -16;
+                break;
+            case 7:
+                taxFactor = -20;
+                break;
+            case 8:
+                taxFactor = -24;
+                break;
         }
         gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.TAX, taxFactor);
     }
@@ -323,4 +344,13 @@ public class KingdomController {
         gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.INN, innAmount);
     }
 
+    public int freeSpace(Item item) {
+        int freeSpace = 0;
+        for (Building building : gameDatabase.getCurrentKingdom().getBuildings()) {
+            if (building.getBuildingType().getItemsItCanHold() == item.getCategory())
+                freeSpace += building.getBuildingType().getStorageCapacity()
+                        - ((StorageBuilding) building).getNumberOfItemsInStorage();
+        }
+        return freeSpace;
+    }
 }

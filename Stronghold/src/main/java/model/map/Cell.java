@@ -96,7 +96,8 @@ public class Cell {
 
     public void clear(Map map) {
         clearArmies(map);
-        existingBuilding.getKingdom().removeBuilding(existingBuilding);
+        if (existingBuilding != null)
+            existingBuilding.getKingdom().removeBuilding(existingBuilding);
         existingBuilding = null;
         texture = Texture.GROUND;
         isRock = false;
@@ -156,12 +157,12 @@ public class Cell {
         else if (movingType.equals(MovingType.CAN_NOT_CLIMB_LADDER))
             return true;
         if (existingBuilding instanceof DefenceBuilding)
-            if (((DefenceBuilding) existingBuilding).getLadderState().equals(direction))
+            if (((DefenceBuilding) existingBuilding).hasLadderState(direction))
                 return true;
         if (startPoint.existingBuilding == null)
             return false;
         if (startPoint.existingBuilding instanceof DefenceBuilding)
-            return ((DefenceBuilding) startPoint.existingBuilding).getLadderState().equals(direction);
+            return ((DefenceBuilding) startPoint.existingBuilding).hasLadderState(direction);
         return false;
     }
 
@@ -176,12 +177,13 @@ public class Cell {
 
     private boolean handleTunneller() {
         switch (this.texture) {
-            case SEA, RIVER, POND_BIG, POND_SMALL -> {
+            case SEA:
+            case RIVER:
+            case POND_BIG:
+            case POND_SMALL:
                 return false;
-            }
-            default -> {
+            default:
                 return true;
-            }
         }
     }
 

@@ -117,14 +117,14 @@ public class PathFinder {
     }
 
     private boolean canMoveTo(int x1, int y1, int x2, int y2) {
-        if (x1 - 1 == x2 && y1 == y2)
-            return map.getMap()[x1][x2].canMove(Direction.UP, isAssassin);
-        if (x1 + 1 == x2 && y1 == y2)
-            return map.getMap()[x1][x2].canMove(Direction.DOWN, isAssassin);
-        if (x1 == x2 && y1 - 1 == y2)
-            return map.getMap()[x1][x2].canMove(Direction.LEFT, isAssassin);
-        if (x1 == x2 && y1 + 1 == y2)
-            return map.getMap()[x1][x2].canMove(Direction.RIGHT, isAssassin);
+//        if (x1 - 1 == x2 && y1 == y2)
+//            return map.getMap()[x1][x2].canMove(Direction.UP, isAssassin);
+//        if (x1 + 1 == x2 && y1 == y2)
+//            return map.getMap()[x1][x2].canMove(Direction.DOWN, isAssassin);
+//        if (x1 == x2 && y1 - 1 == y2)
+//            return map.getMap()[x1][x2].canMove(Direction.LEFT, isAssassin);
+//        if (x1 == x2 && y1 + 1 == y2)
+//            return map.getMap()[x1][x2].canMove(Direction.RIGHT, isAssassin);
         return false;
     }
 

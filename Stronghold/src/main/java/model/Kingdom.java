@@ -4,6 +4,7 @@ import model.army.Army;
 import model.buildings.Building;
 import model.buildings.BuildingType;
 import model.buildings.StorageBuilding;
+import model.buildings.WorkersNeededBuilding;
 import model.enums.Item;
 import model.enums.KingdomColor;
 import model.enums.PopularityFactor;
@@ -45,6 +46,7 @@ public class Kingdom {
         populationCapacity = 8;
         buildings = new ArrayList<>();
         trades = new ArrayList<>();
+        notifications = new ArrayList<>();
         armies = new ArrayList<>();
         popularityFactors = new HashMap<>();
         population = new ArrayList<>();
@@ -260,7 +262,12 @@ public class Kingdom {
     public void removeEmploymentPeople() {
         if (0 == population.size())
             return;
-        population.get(population.size() - 1).getWorkStation().unAssignWorker(population.get(population.size() - 1));
+        ((WorkersNeededBuilding)population.get(population.size() - 1).getWorkStation()).
+                unAssignWorker(population.get(population.size() - 1));
         population.remove(population.size() - 1);
+    }
+
+    public void resetNotifications() {
+        notifications = new ArrayList<>();
     }
 }

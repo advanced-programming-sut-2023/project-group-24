@@ -60,10 +60,18 @@ public class ShopMenu {
         int itemAmount = Integer.parseInt(matcher.group("itemAmount"));
         ShopMenuMessages message = shopController.buyItem(itemName, itemAmount, kingdomController);
         switch (message) {
-            case FULL_STORAGE -> System.out.println("Your storage is full!");
-            case SUCCESS -> System.out.println("The item successfully purchased!");
-            case INVALID_AMOUNT -> System.out.println("You entered invalid amount!");
-            case INVALID_NAME -> System.out.println("You entered invalid name!");
+            case FULL_STORAGE:
+                System.out.println("Your storage is full!");
+                break;
+            case SUCCESS:
+                System.out.println("The item successfully purchased!");
+                break;
+            case INVALID_AMOUNT:
+                System.out.println("You entered invalid amount!");
+                break;
+            case INVALID_NAME:
+                System.out.println("You entered invalid name!");
+                break;
         }
     }
 
@@ -72,10 +80,18 @@ public class ShopMenu {
         int itemAmount = Integer.parseInt(matcher.group("itemAmount"));
         ShopMenuMessages message = shopController.sellItem(itemName, itemAmount, kingdomController);
         switch (message) {
-            case SUCCESS -> System.out.println("The item successfully sold!");
-            case INVALID_AMOUNT -> System.out.println("You entered invalid amount!");
-            case INVALID_NAME -> System.out.println("You entered invalid name!");
-            case NOT_ENOUGH_AMOUNT -> System.out.println("You don't have enough item in storage!");
+            case SUCCESS:
+                System.out.println("The item successfully sold!");
+                break;
+            case INVALID_AMOUNT:
+                System.out.println("You entered invalid amount!");
+                break;
+            case INVALID_NAME:
+                System.out.println("You entered invalid name!");
+                break;
+            case NOT_ENOUGH_AMOUNT:
+                System.out.println("You don't have enough item in storage!");
+                break;
         }
     }
 }

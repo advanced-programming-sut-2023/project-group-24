@@ -23,6 +23,7 @@ public enum ArmyType {
     HORSE_ARCHER(80, 128, 5, 24, 5),
     ARABIAN_SWORD_MAN(80, 150, 0, 32, 5),
     FIRE_THROWER(100, 96, 3, 32, 5),
+    DOG(0, 5, 0, 60, 5),
     //WAR_MACHINES:
     SIEGE_TOWER(150, 600, 0, 0, 1),
     PORTABLE_SHIELDS(5, 300, 0, 0, 1),

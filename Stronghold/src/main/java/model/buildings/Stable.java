@@ -3,6 +3,8 @@ package model.buildings;
 import model.Kingdom;
 import model.map.Cell;
 
+import java.util.ArrayList;
+
 public class Stable extends Building {
     private int numberOfHorses;
     private int numberOfAvailableHorses;
@@ -31,5 +33,13 @@ public class Stable extends Building {
 
     public void killHorse() {
         numberOfHorses--;
+    }
+
+    @Override
+    public ArrayList<String> showDetails() {
+        ArrayList<String> output = super.showDetails();
+        output.add("number of horses: " + numberOfHorses);
+        output.add("number of available horses: " + numberOfAvailableHorses);
+        return output;
     }
 }
