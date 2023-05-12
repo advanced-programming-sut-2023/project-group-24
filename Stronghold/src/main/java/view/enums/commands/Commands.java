@@ -51,9 +51,9 @@ public enum Commands {
 
     //CreateMapMenu commands
     CREATE_MAP("(?=.* -i (?<id>\\S*))(?=.* -s (?<size>\\d*))^create map( -[is] \\S*){2}$"),
-    SET_TEXTURE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
+    SET_TEXTURE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<texture>(\"[^\"]*\")|(\\S*)))" +
             "^settexture( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
-    SET_TEXTURE_MULTIPLE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
+    SET_TEXTURE_MULTIPLE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<texture>(\"[^\"]*\")|(\\S*)))" +
             "^settexture( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
     CLEAR("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^clear( -[xy] \\d*){2}$"),
     DROP_ROCK("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -d (?<direction>\\S*))^droprock( -[xyd] \\S*){3}$"),
@@ -77,7 +77,7 @@ public enum Commands {
     OPEN_TRADE_MENU("^open trade menu$"),
     OPEN_SHOW_MAP_MENU("^open show map menu$"),
     //Units
-    SELECT_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
+    SELECT_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))?" +
             "^select unit( -[xyt] ((\"[^\"]*\")|(\\S*))){2,3}$"),
     MOVE_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^move unit to( -[xy] \\d*){2}$"),
     PATROL_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))" +
