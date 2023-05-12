@@ -8,6 +8,7 @@ import model.buildings.BuildingType;
 import model.buildings.SiegeTent;
 import model.databases.GameDatabase;
 import model.enums.Direction;
+import model.enums.MovingType;
 import model.map.Cell;
 import model.map.Map;
 import utils.Pair;
@@ -31,11 +32,11 @@ public class UnitController {
             if (armyType == null) return UnitControllerMessages.INVALID_TYPE;
         }
         Cell cell = gameDatabase.getMap().getMap()[x][y];
-        if (cell.getArmies().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         if (armyType == null)
             armies = cell.selectUnits(gameDatabase.getCurrentKingdom());
         else
             armies = cell.selectUnits(armyType, gameDatabase.getCurrentKingdom());
+        if (armies.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         gameDatabase.setSelectedUnits(armies);
         return UnitControllerMessages.SUCCESS;
     }
@@ -47,8 +48,8 @@ public class UnitController {
         Cell startingCell = gameDatabase.getSelectedUnits().get(0).getLocation();
         Pair<Integer, Integer> startLocation = new Pair<>(startingCell.getX(), startingCell.getY());
         Pair<Integer, Integer> destination = new Pair<>(x, y);
-        boolean isAssassin = isAssassin(selectedUnit);
-        PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), startLocation, isAssassin);
+        MovingType movingType = getMovingType(selectedUnit);
+        PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), startLocation, movingType);
         PathFinder.OutputState outputState = pathFinder.search(destination);
         switch (outputState) {
             case BLOCKED:
@@ -62,12 +63,21 @@ public class UnitController {
         return UnitControllerMessages.SUCCESS;
     }
 
-    private boolean isAssassin(ArrayList<Army> selectedUnit) {
-        for (Army e : selectedUnit) {
-            if (!e.getArmyType().equals(ArmyType.ASSASSIN))
-                return false;
+    private MovingType getMovingType(ArrayList<Army> armies) {
+        boolean isAssassin = false;
+        boolean canClimbLadder = false;
+        for (Army army : armies) {
+            if (army.getArmyType().equals(ArmyType.ASSASSIN))
+                isAssassin = true;
+            if (army instanceof Soldier)
+                if (((Soldier) army).getSoldierType().isCanClimbLadder())
+                    canClimbLadder = true;
         }
-        return true;
+        if (isAssassin)
+            return MovingType.ASSASSIN;
+        if (canClimbLadder)
+            return MovingType.CAN_CLIMB_LADDER;
+        return MovingType.CAN_NOT_CLIMB_LADDER;
     }
 
     public UnitControllerMessages patrolUnit(int x, int y) {
@@ -106,6 +116,12 @@ public class UnitController {
             e.changeState(state);
         }
         return UnitControllerMessages.SUCCESS;
+    }
+
+    private int getDistance(int x2, int y2) {
+        int x1 = gameDatabase.getSelectedUnits().get(0).getLocation().getX();
+        int y1 = gameDatabase.getSelectedUnits().get(0).getLocation().getY();
+        return (int) (Math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2));
     }
 
     public UnitControllerMessages attackEnemy(int enemyX, int enemyY) {
@@ -165,12 +181,6 @@ public class UnitController {
         if (!isArcherExist) return UnitControllerMessages.NOT_ARCHER;
         if (!canArcherAttack) return UnitControllerMessages.OUT_OF_RANGE;
         return UnitControllerMessages.SUCCESS;
-    }
-
-    private int getDistance(int x2, int y2) {
-        int x1 = gameDatabase.getSelectedUnits().get(0).getLocation().getX();
-        int y1 = gameDatabase.getSelectedUnits().get(0).getLocation().getY();
-        return (int) (Math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2));
     }
 
     public UnitControllerMessages pourOil(String stringDirection) {
@@ -270,7 +280,7 @@ public class UnitController {
     }
 
     private void changeEngineerState(ArrayList<Army> armies, Pair<Integer, Integer> currentLocation) {
-        PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), currentLocation, false);
+        PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), currentLocation, MovingType.CAN_NOT_CLIMB_LADDER);
         ArrayList<Cell> pathToOil = new ArrayList<>();
         for (Building e : gameDatabase.getCurrentKingdom().getBuildings()) {
             if (e.getBuildingType().equals(BuildingType.OIL_SMELTER)) {

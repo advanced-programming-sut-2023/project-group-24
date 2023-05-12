@@ -20,7 +20,6 @@ public class Database {
     private static final String DIRECTORY_TO_SAVE_INFO = "info";
     private static final String DIRECTORY_TO_SAVE_MAPS = DIRECTORY_TO_SAVE_INFO + "/maps";
     private static final String FILE_TO_SAVE_ALL_USERS = DIRECTORY_TO_SAVE_INFO + "/allUsers.json";
-    private static final String FILE_TO_SAVE_MAP_IDS = DIRECTORY_TO_SAVE_INFO + "/maps.json";
     private static final String FILE_TO_SAVE_STAYED_LOGGED_IN_USER = DIRECTORY_TO_SAVE_INFO + "/loggedInUser.json";
 
     private Vector<User> allUsers;

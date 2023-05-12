@@ -1,6 +1,7 @@
 package model.army;
 
 import model.Kingdom;
+import model.buildings.Building;
 import model.map.Cell;
 import utils.Pair;
 
@@ -13,6 +14,7 @@ public abstract class Army {
     private Pair<Cell, Cell> patrol;
     private Army target;
     private Cell targetCell;
+    private Building targetBuilding;
     private Cell location;
     private UnitState unitState;
     private int hp;
@@ -58,8 +60,10 @@ public abstract class Army {
     }
 
     public void moveArmy() {
+        location.removeArmy(this);
         location = path.get(0);
         path.remove(0);
+        location.addArmy(this);
     }
 
     public ArrayList<Cell> getPath() {
@@ -77,6 +81,14 @@ public abstract class Army {
 
     public ArmyType getArmyType() {
         return armyType;
+    }
+
+    public Building getTargetBuilding() {
+        return targetBuilding;
+    }
+
+    public void setTargetBuilding(Building targetBuilding) {
+        this.targetBuilding = targetBuilding;
     }
 
     public Army getTarget() {
@@ -104,13 +116,21 @@ public abstract class Army {
     }
 
     public void changeEngineerState() {
-        if (this.getArmyType().equals(ArmyType.ENGINEER))
-            this.setArmyType(ArmyType.ENGINEER_WITH_OIL);
-        if (this.getArmyType().equals(ArmyType.ENGINEER_WITH_OIL))
-            this.setArmyType(ArmyType.ENGINEER);
+        if (this.armyType == ArmyType.ENGINEER)
+            this.armyType = ArmyType.ENGINEER_WITH_OIL;
+        else if (this.armyType == ArmyType.ENGINEER_WITH_OIL)
+            this.armyType = ArmyType.ENGINEER;
     }
 
-    public void setArmyType(ArmyType armyType) {
-        this.armyType = armyType;
+    public boolean canAttack() {
+        return getDistance() <= armyType.getRange();
+    }
+
+    public int getDistance() {
+        int x = location.getX();
+        int y = location.getY();
+        int x1 = target.location.getX();
+        int y1 = target.location.getY();
+        return (int) (Math.sqrt((x - x1) ^ 2 + (y - y1) ^ 2));
     }
 }

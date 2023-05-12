@@ -1,6 +1,7 @@
 package controller.functionalcontrollers;
 
 import model.enums.Direction;
+import model.enums.MovingType;
 import model.map.Cell;
 import model.map.Map;
 import utils.Pair;
@@ -20,15 +21,15 @@ public class PathFinder {
     private final Map map;
     private final PathFinderCellDetails[][] cellDetails;
     private final Pair<Integer, Integer> src;
+    private final MovingType movingType;
     private Pair<Integer, Integer> dest;
     private Stack<Pair<Integer, Integer>> path;
-    private final boolean isAssassin;
 
-    public PathFinder(Map map, Pair<Integer, Integer> startingPoint, boolean isAssassin) {
+    public PathFinder(Map map, Pair<Integer, Integer> startingPoint, MovingType movingType) {
         this.map = map;
         this.src = startingPoint;
         this.cellDetails = new PathFinderCellDetails[map.getSize()][map.getSize()];
-        this.isAssassin = isAssassin;
+        this.movingType = movingType;
         setupCellDetails();
     }
 
@@ -85,6 +86,7 @@ public class PathFinder {
             Pair<Integer, Integer> cellCoordinates = path.pop();
             output.add(map.getMap()[cellCoordinates.getObject1()][cellCoordinates.getObject2()]);
         }
+        output.remove(0);
 
         return output;
     }
@@ -117,14 +119,14 @@ public class PathFinder {
     }
 
     private boolean canMoveTo(int x1, int y1, int x2, int y2) {
-//        if (x1 - 1 == x2 && y1 == y2)
-//            return map.getMap()[x1][x2].canMove(Direction.UP, isAssassin);
-//        if (x1 + 1 == x2 && y1 == y2)
-//            return map.getMap()[x1][x2].canMove(Direction.DOWN, isAssassin);
-//        if (x1 == x2 && y1 - 1 == y2)
-//            return map.getMap()[x1][x2].canMove(Direction.LEFT, isAssassin);
-//        if (x1 == x2 && y1 + 1 == y2)
-//            return map.getMap()[x1][x2].canMove(Direction.RIGHT, isAssassin);
+        if (x1 - 1 == x2 && y1 == y2)
+            return map.getMap()[x2][y2].canMove(Direction.UP, map.getMap()[x1][y1], movingType);
+        if (x1 + 1 == x2 && y1 == y2)
+            return map.getMap()[x2][y2].canMove(Direction.DOWN, map.getMap()[x1][y1], movingType);
+        if (x1 == x2 && y1 - 1 == y2)
+            return map.getMap()[x2][y2].canMove(Direction.LEFT, map.getMap()[x1][y1], movingType);
+        if (x1 == x2 && y1 + 1 == y2)
+            return map.getMap()[x2][y2].canMove(Direction.RIGHT, map.getMap()[x1][y1], movingType);
         return false;
     }
 

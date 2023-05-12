@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DefenceBuildingTest extends BuildingTest {
     private Kingdom kingdom = new Kingdom(KingdomColor.RED);
     private Map map = new Map(10, "testMap");
-    private DefenceBuilding defenceBuilding = new DefenceBuilding(kingdom, map.getMap()[2][2], BuildingType.DAIRY_FARM);
+    private DefenceBuilding defenceBuilding = new DefenceBuilding(kingdom, map.getMap()[2][2], BuildingType.LOW_WALL);
 
     @Test
     void hasLadderState() {

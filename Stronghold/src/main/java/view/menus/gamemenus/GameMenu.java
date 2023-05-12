@@ -3,6 +3,7 @@ package view.menus.gamemenus;
 import controller.AppController;
 import controller.MainController;
 import controller.gamecontrollers.BuildingController;
+import controller.gamecontrollers.GameController;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.UnitController;
 import utils.enums.MenusName;
@@ -18,11 +19,15 @@ public class GameMenu {
     private final KingdomController kingdomController;
     private final UnitController unitController;
     private final BuildingController buildingController;
+    private final GameController gameController;
 
-    public GameMenu(KingdomController kingdomController, UnitController unitController, BuildingController buildingController) {
+    public GameMenu(KingdomController kingdomController, UnitController unitController,
+                    BuildingController buildingController, GameController gameController) {
         this.kingdomController = kingdomController;
         this.unitController = unitController;
         this.buildingController = buildingController;
+        this.gameController = gameController;
+
     }
 
     public void run() {
@@ -42,6 +47,10 @@ public class GameMenu {
                 setFoodRate(matcher);
             else if (Commands.getMatcher(command, Commands.FOOD_RATE_SHOW) != null)
                 showFoodRate();
+            else if (Commands.getMatcher(command, Commands.NEXT_TURN) != null)
+                nexTurn();
+            else if (Commands.getMatcher(command, Commands.ROUND_PLAYED) != null)
+                roundPlayed();
             else if ((matcher = Commands.getMatcher(command, Commands.TAX_RATE)) != null)
                 setTaxRate(matcher);
             else if (Commands.getMatcher(command, Commands.SHOW_FOOD_LIST) != null)
@@ -98,9 +107,25 @@ public class GameMenu {
                 fillMoat(matcher);
             else if (Commands.getMatcher(command, Commands.SHOW_CURRENT_MENU) != null)
                 System.out.println("Game menu");
+            else if (Commands.getMatcher(command, Commands.TURN_PLAYED) != null)
+                turnPlayed();
             else
                 System.out.println("Invalid command!");
         }
+    }
+
+    private void nexTurn() {
+        gameController.nextTurn(kingdomController);
+    }
+
+    private void turnPlayed() {
+        int result = kingdomController.turnPlayed();
+        System.out.println("You played " + result + " turns!");
+    }
+
+    private void roundPlayed() {
+        int result = kingdomController.roundPlayed();
+        System.out.println("you played " + result + " rounds!");
     }
 
     private void showMap() {

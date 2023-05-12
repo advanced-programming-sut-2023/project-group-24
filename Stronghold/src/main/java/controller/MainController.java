@@ -35,6 +35,8 @@ public class MainController {
             return CommonMessages.NON_SMALL_PASSWORD;
         else if (Commands.getMatcher(password, Commands.PASSWORD_NUMBER) == null)
             return CommonMessages.NON_NUMBER_PASSWORD;
+        else if (Commands.getMatcher(password, Commands.PASSWORD_SPECIFIC_CHAR) == null)
+            return CommonMessages.NON_SPECIFIC_PASSWORD;
         else return CommonMessages.OK;
     }
 
@@ -62,10 +64,5 @@ public class MainController {
 
     public static String turnSpaceToUnderline(String string) {
         return string.replaceAll(" ", "_");
-    }
-
-    public static String fixInputString(String string) {
-        if (string.startsWith("\"")) return string.substring(1, string.length() - 1);
-        return string;
     }
 }

@@ -46,5 +46,17 @@
     "slogan": "It\u0027s not hard to defeat me, It\u0027s Impossible",
     "email": "P@gmail.com",
     "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 1,
+      "object2": "aa5e28e95f100388a3c453c4f719df1f45bf694f6559bc449ef106bbc9ca7d4b"
+    },
+    "username": "pouria_GH",
+    "password": "548d8cf86e2d301f6e1f5dc621cba2e409e8e814ba35ca1feeff6b0b995d848f",
+    "nickname": "nickname",
+    "slogan": "salap",
+    "email": "a@c.g",
+    "highScore": 0
   }
 ]
