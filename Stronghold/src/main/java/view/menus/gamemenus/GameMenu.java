@@ -96,6 +96,8 @@ public class GameMenu {
                 removeMoat(matcher);
             else if ((matcher = Commands.getMatcher(command, Commands.FILL_MOAT)) != null)
                 fillMoat(matcher);
+            else
+                System.out.println("Invalid command!");
         }
     }
 

@@ -28,6 +28,8 @@ public class MainMenu {
                 enterCreateMapMenu();
             else if (Commands.getMatcher(command, Commands.START_GAME) != null)
                 enterGameMenu();
+            else
+                System.out.println("Invalid command!");
         }
     }
 
@@ -50,13 +52,11 @@ public class MainMenu {
         }
         MainMenuMessages message = mainMenuController.enterGameMenu(usernames, mapId);
         switch (message) {
-            case INVALID_USERNAME:
-                System.out.println("Invalid username!");
-                break;
-            case SUCCESS:
+            case INVALID_USERNAME -> System.out.println("Invalid username!");
+            case SUCCESS -> {
                 System.out.println("Game started!");
                 AppController.setCurrentMenu(MenusName.GAME_MENU);
-                break;
+            }
         }
     }
 
