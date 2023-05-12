@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="first checkpoint final version">
-      <change afterPath="$PROJECT_DIR$/src/test/java/controller/ProfileMenuControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/army/ArmyTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/army/ArmyTypeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/army/SoldierTypeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/army/WarMachineTypeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/functionalcontrollers/PathFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/functionalcontrollers/PathFinder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/army/Army.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/Army.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/SoldierType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/SoldierType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/WarMachineType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/WarMachineType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/databases/GameDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/databases/GameDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/army/ArmyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/army/ArmyTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +87,38 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ArmyTest.isDead">
+  <component name="RunManager" selected="JUnit.ArmyTest">
+    <configuration name="ArmyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.army.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.army" />
+      <option name="MAIN_CLASS_NAME" value="model.army.ArmyTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArmyTest.changeEngineerState" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.army.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.army" />
+      <option name="MAIN_CLASS_NAME" value="model.army.ArmyTest" />
+      <option name="METHOD_NAME" value="changeEngineerState" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ArmyTest.isDead" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
@@ -113,7 +135,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArmyTypeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArmyTest.setPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
@@ -122,39 +144,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="model.army" />
-      <option name="MAIN_CLASS_NAME" value="model.army.ArmyTypeTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ArmyTypeTest.stringToEnum" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.army.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.army" />
-      <option name="MAIN_CLASS_NAME" value="model.army.ArmyTypeTest" />
-      <option name="METHOD_NAME" value="stringToEnum" />
+      <option name="MAIN_CLASS_NAME" value="model.army.ArmyTest" />
+      <option name="METHOD_NAME" value="setPath" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SoldierTypeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.army.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.army" />
-      <option name="MAIN_CLASS_NAME" value="model.army.SoldierTypeTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -223,11 +215,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ArmyTest" />
+        <item itemvalue="JUnit.ArmyTest.setPath" />
+        <item itemvalue="JUnit.ArmyTest.changeEngineerState" />
         <item itemvalue="JUnit.ArmyTest.isDead" />
         <item itemvalue="JUnit.WarMachineTypeTest" />
-        <item itemvalue="JUnit.SoldierTypeTest" />
-        <item itemvalue="JUnit.ArmyTypeTest" />
-        <item itemvalue="JUnit.ArmyTypeTest.stringToEnum" />
       </list>
     </recent_temporary>
   </component>
@@ -315,6 +307,9 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Stronghold$ArmyTest.ic" NAME="ArmyTest Coverage Results" MODIFIED="1683916050459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.army.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$DefenceBuildingTest.ic" NAME="DefenceBuildingTest Coverage Results" MODIFIED="1683880401128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
     </SUITE>
