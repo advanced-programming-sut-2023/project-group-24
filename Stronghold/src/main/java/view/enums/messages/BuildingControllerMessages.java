@@ -12,6 +12,7 @@ public enum BuildingControllerMessages {
     INCORRECT_BUILDING,
     INCORRECT_COUNT,
     IRRELEVANT_BUILDING,
+    ENEMY_IS_NEARBY,
     SUCCESS
     //TODO add messages
 }

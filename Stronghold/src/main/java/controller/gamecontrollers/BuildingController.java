@@ -1,6 +1,7 @@
 package controller.gamecontrollers;
 
 import model.Kingdom;
+import model.army.Army;
 import model.army.ArmyType;
 import model.army.Soldier;
 import model.army.SoldierType;
@@ -52,7 +53,7 @@ public class BuildingController {
         return BuildingControllerMessages.SUCCESS;
     }
 
-    public BuildingControllerMessages createUnit(String name, int count) {
+    public BuildingControllerMessages createUnit(String name, int count, KingdomController kingdomController) {
         if (gameDatabase.getCurrentBuilding().getBuildingType().getCategory() != BuildingType.Category.ARMY_MAKER)
             return BuildingControllerMessages.INCORRECT_BUILDING;
         if (count <= 0)
@@ -69,13 +70,23 @@ public class BuildingController {
             return BuildingControllerMessages.IRRELEVANT_BUILDING;
         for (int i = 0; i < count; i++)
             new Soldier(gameDatabase.getCurrentBuilding().getLocation(), armyType, currentKingdom, soldierType);
+        useResources(count, armyType, soldierType, currentKingdom, kingdomController);
         return BuildingControllerMessages.SUCCESS;
     }
 
-    public BuildingControllerMessages repair() {
-        //TODO check if the current building can be repaired
-        
-        return null;
+    public BuildingControllerMessages repair(KingdomController kingdomController) {
+        Building building = gameDatabase.getCurrentBuilding();
+        if (!building.getBuildingType().canBeRepaired())
+            return BuildingControllerMessages.IRRELEVANT_BUILDING;
+        int stonesNeeded = building.getHp() * (-building.getBuildingType().getMaterialToBuild().getObject2())
+                / building.getBuildingType().getMaxHp();
+        if (gameDatabase.getCurrentKingdom().getStockedNumber(Item.STONE) < stonesNeeded)
+            return BuildingControllerMessages.NOT_ENOUGH_MATERIAL;
+        if (isThereAnEnemyNearby(building.getLocation().getX(), building.getLocation().getY()))
+            return BuildingControllerMessages.ENEMY_IS_NEARBY;
+        kingdomController.changeStockedNumber(new Pair<>(Item.STONE, -stonesNeeded));
+        gameDatabase.getCurrentBuilding().repair();
+        return BuildingControllerMessages.SUCCESS;
     }
 
     public BuildingControllerMessages createResources(String resourceName) {
@@ -132,5 +143,30 @@ public class BuildingController {
         return !((soldierType.getWeapon() == null || kingdom.getStockedNumber(soldierType.getWeapon()) >= count)
                 && (soldierType.getArmor() == null || kingdom.getStockedNumber(soldierType.getArmor()) >= count)
                 && kingdom.getGold() >= armyType.getPrice() * count);
+    }
+
+    private void useResources(int count, ArmyType armyType,
+                                 SoldierType soldierType, Kingdom kingdom, KingdomController kingdomController) {
+        if (soldierType.getWeapon() != null)
+            kingdomController.changeStockedNumber(new Pair<>(soldierType.getWeapon(), -count));
+        if (soldierType.getArmor() != null)
+            kingdomController.changeStockedNumber(new Pair<>(soldierType.getArmor(), -count));
+        kingdom.changeGold(-armyType.getPrice() * count);
+    }
+
+    private boolean isThereAnEnemyHere(int x, int y) {
+        if (gameDatabase.getMap().getMap()[x][y].getArmies() == null) return false;
+        for (Army army : gameDatabase.getMap().getMap()[x][y].getArmies()) {
+            if (army.getOwner() != gameDatabase.getCurrentKingdom()) return true;
+        }
+        return false;
+    }
+
+    private boolean isThereAnEnemyNearby(int x, int y) {
+        return isThereAnEnemyHere(x, y)
+                || (x > 0 && isThereAnEnemyHere(x - 1, y))
+                || (x < gameDatabase.getMap().getSize() - 1 && isThereAnEnemyHere(x + 1, y))
+                || (y > 0 && isThereAnEnemyHere(x, y - 1))
+                || (y < gameDatabase.getMap().getSize() - 1 && isThereAnEnemyHere(x, y + 1));
     }
 }

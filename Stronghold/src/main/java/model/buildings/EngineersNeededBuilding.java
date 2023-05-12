@@ -14,6 +14,10 @@ public class EngineersNeededBuilding extends WorkersNeededBuilding {
         engineers = new ArrayList<>();
     }
 
+    protected ArrayList<Soldier> getEngineers() {
+        return engineers;
+    }
+
     public void assignEngineers(Soldier soldier) {
         engineers.add(soldier);
     }

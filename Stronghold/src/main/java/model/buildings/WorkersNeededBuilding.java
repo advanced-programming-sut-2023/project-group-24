@@ -24,6 +24,10 @@ public class WorkersNeededBuilding extends Building {
         workers.add(person);
     }
 
+    public void unAssignWorker(People person) {
+        workers.remove(person);
+    }
+
     public boolean hasEnoughWorkers() {
         return workers.size() == getBuildingType().getWorkersNeeded();
     }

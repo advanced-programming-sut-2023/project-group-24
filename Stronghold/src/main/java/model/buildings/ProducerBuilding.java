@@ -33,15 +33,24 @@ public class ProducerBuilding extends WorkersNeededBuilding {
         }
     }
 
-    public void produceItem() {
-        if (!hasEnoughWorkers()) return;
+    //todo Pair<Pair<Item, Integer>, Pair<Item, Integer>>
+
+    public Pair<Pair<Item, Integer>, Pair<Item, Integer>> produceItem() {
+        if (!hasEnoughWorkers()) return null;
         if (getBuildingType().getName().equals("quarry")) {
             numberOfItemsWaitingToBeLoaded += getBuildingType().getProduces().get(0).getObject2();
-            return;
+            if (numberOfItemsWaitingToBeLoaded > getBuildingType().getStorageCapacity())
+                numberOfItemsWaitingToBeLoaded = getBuildingType().getStorageCapacity();
+            return null;
         }
         if (getBuildingType().getUses() != null) {
-            getKingdom().changeStockNumber(getBuildingType().getUses().get(itemToProduce));
+            return new Pair<>(getBuildingType().getUses().get(itemToProduce),
+                    getBuildingType().getProduces().get(itemToProduce));
         }
-        getKingdom().changeStockNumber(getBuildingType().getProduces().get(itemToProduce));
+        return new Pair<>(null, getBuildingType().getProduces().get(itemToProduce));
+    }
+
+    public void loadItem(int amount) {
+        numberOfItemsWaitingToBeLoaded -= amount;
     }
 }
