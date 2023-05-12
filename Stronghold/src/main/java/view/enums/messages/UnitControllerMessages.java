@@ -21,5 +21,6 @@ public enum UnitControllerMessages {
     MOAT_DOES_NOT_EXIST,
     BUILDING_NOT_FOUND,
     NULL_SELECTED_BUILDING,
-    NO_BUILDING
+    NO_BUILDING,
+    NOT_ENOUGH_ENGINEER
 }

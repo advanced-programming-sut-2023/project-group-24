@@ -225,15 +225,22 @@ public class UnitController {
     public UnitControllerMessages buildEquipment(String equipmentType) {
         ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
         if (selectedUnits.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        int numberOfEngineer = 0;
         for (Army e : selectedUnits) {
             if (!e.getArmyType().equals(ArmyType.ENGINEER)) return UnitControllerMessages.NOT_SELECTED_ENGINEER;
+            numberOfEngineer++;
         }
         WarMachineType warMachineType = WarMachineType.stringToEnum(equipmentType);
         if (warMachineType == null) return UnitControllerMessages.INVALID_TYPE;
+        if (numberOfEngineer < warMachineType.getEngineerNeeded()) return UnitControllerMessages.NOT_ENOUGH_ENGINEER;
         SiegeTent tent = (SiegeTent) Building.getBuildingFromBuildingType
                 (gameDatabase.getCurrentKingdom(), selectedUnits.get(0).getLocation(), BuildingType.SIEGE_TENT);
         assert tent != null;
         tent.setProducingWarMachine(WarMachineType.stringToEnum(equipmentType));
+        for (int i = 0; i < warMachineType.getEngineerNeeded(); i++) {
+            gameDatabase.getCurrentKingdom().removeArmy(selectedUnits.get(0));
+            selectedUnits.remove(0);
+        }
         return UnitControllerMessages.SUCCESS;
     }
 
@@ -381,6 +388,25 @@ public class UnitController {
         ((DefenceBuilding) targetCell.getExistingBuilding()).addLadder(direction);
         currentCell.removeArmy(gameDatabase.getSelectedUnits().get(0));
         gameDatabase.getSelectedUnits().get(0).isDead();
+        return UnitControllerMessages.SUCCESS;
+    }
+
+    public UnitControllerMessages attackWall(String stringDirection) {
+        Direction direction = Direction.stringToEnum(stringDirection);
+        ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
+        if (selectedUnits.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (direction == null) return UnitControllerMessages.INVALID_DIRECTION;
+        for (Army e : selectedUnits)
+            if (!e.getArmyType().equals(ArmyType.SIEGE_TOWER)) return UnitControllerMessages.IRRELEVANT_UNIT;
+        Cell currentCell = gameDatabase.getSelectedUnits().get(0).getLocation();
+        Cell targetCell = getCellWithDirection(direction, currentCell.getX(), currentCell.getY());
+        if (!(targetCell.getExistingBuilding().getBuildingType().equals(BuildingType.LOW_WALL) ||
+                targetCell.getExistingBuilding().getBuildingType().equals(BuildingType.HIGH_WALL)) ||
+                targetCell.getExistingBuilding().getKingdom().equals(gameDatabase.getCurrentKingdom()))
+            return UnitControllerMessages.NO_BUILDING;
+        currentCell.getArmies().remove(0);
+        targetCell.setExistingBuilding(Building.getBuildingFromBuildingType
+                (gameDatabase.getCurrentKingdom(), currentCell, BuildingType.STAIR));
         return UnitControllerMessages.SUCCESS;
     }
 }

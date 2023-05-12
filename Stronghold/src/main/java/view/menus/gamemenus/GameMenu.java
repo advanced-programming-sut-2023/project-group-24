@@ -109,12 +109,26 @@ public class GameMenu {
                 System.out.println("Game menu");
             else if (Commands.getMatcher(command, Commands.TURN_PLAYED) != null)
                 turnPlayed();
+            else if ((matcher = Commands.getMatcher(command, Commands.ATTACK_WALL)) != null)
+                attackWall(matcher);
             else if ((matcher = Commands.getMatcher(command, Commands.ATTACK_BUILDING)) != null)
                 attackBuilding(matcher);
             else if ((matcher = Commands.getMatcher(command, Commands.SET_LADDER)) != null)
                 setLadder(matcher);
             else
                 System.out.println("Invalid command!");
+        }
+    }
+
+    private void attackWall(Matcher matcher) {
+        String direction = matcher.group("direction");
+        UnitControllerMessages message = unitController.attackWall(direction);
+        switch (message) {
+            case SUCCESS -> System.out.println("Successful!");
+            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any building!");
+            case INVALID_DIRECTION -> System.out.println("You entered invalid location!");
+            case IRRELEVANT_UNIT -> System.out.println("You can not do this with these units!");
+            case NO_BUILDING -> System.out.println("There is no building to connect to it!");
         }
     }
 
