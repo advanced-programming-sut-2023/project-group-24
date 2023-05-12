@@ -86,6 +86,7 @@ public class PathFinder {
             Pair<Integer, Integer> cellCoordinates = path.pop();
             output.add(map.getMap()[cellCoordinates.getObject1()][cellCoordinates.getObject2()]);
         }
+        output.remove(0);
 
         return output;
     }
