@@ -73,6 +73,7 @@ public class GameController {
         }
     }
 
+
     private void checkStateOfUnits() {
         for (Army army : currentKingdom.getArmies())
             if (army.getTarget() == null || army.getTargetBuilding() == null || army.getTargetCell() == null)
