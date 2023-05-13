@@ -1,6 +1,7 @@
 package model.buildings;
 
 import model.Kingdom;
+import model.People;
 import model.map.Cell;
 
 import java.util.ArrayList;
@@ -48,6 +49,15 @@ public class Building {
 
     public void takeDamage(int amount) {
         hp -= amount;
+        if (hp <= 0) {
+            location.setExistingBuilding(null);
+            kingdom.removeBuilding(this);
+            if (this instanceof WorkersNeededBuilding) {
+                for (People worker : ((WorkersNeededBuilding) this).getWorkers()) {
+                    kingdom.removePeople(worker);
+                }
+            }
+        }
     }
 
     public void repair() {

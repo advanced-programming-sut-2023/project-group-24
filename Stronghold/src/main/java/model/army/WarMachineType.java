@@ -1,7 +1,5 @@
 package model.army;
 
-import controller.MainController;
-
 public enum WarMachineType {
     SIEGE_TOWER(4),
     PORTABLE_SHIELDS(1),
@@ -18,14 +16,18 @@ public enum WarMachineType {
     }
 
     public static WarMachineType stringToEnum(String name) {
-        String string = MainController.turnSpaceToUnderline(name);
         for (WarMachineType value : values())
-            if (string.equalsIgnoreCase(value.toString()))
+            if (name.equalsIgnoreCase(value.toString()))
                 return value;
         return null;
     }
 
     public int getEngineerNeeded() {
         return engineerNeeded;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase().replaceAll("_", " ");
     }
 }

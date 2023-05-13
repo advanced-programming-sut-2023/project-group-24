@@ -1,6 +1,5 @@
 package model.army;
 
-import controller.MainController;
 import model.enums.Item;
 
 public enum SoldierType {
@@ -41,9 +40,8 @@ public enum SoldierType {
     }
 
     public static SoldierType stringToEnum(String name) {
-        String string = MainController.turnSpaceToUnderline(name);
         for (SoldierType value : values())
-            if (string.equalsIgnoreCase(value.toString()))
+            if (name.equalsIgnoreCase(value.toString()))
                 return value;
         return null;
     }
@@ -68,7 +66,8 @@ public enum SoldierType {
         return canDig;
     }
 
+    @Override
     public String toString() {
-        return super.toString().toLowerCase().replaceAll("-", " ");
+        return super.toString().toLowerCase().replaceAll("_", " ");
     }
 }

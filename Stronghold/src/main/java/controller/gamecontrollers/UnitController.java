@@ -4,10 +4,7 @@ import controller.functionalcontrollers.Pair;
 import controller.functionalcontrollers.PathFinder;
 import model.People;
 import model.army.*;
-import model.buildings.Building;
-import model.buildings.BuildingType;
-import model.buildings.DefenceBuilding;
-import model.buildings.SiegeTent;
+import model.buildings.*;
 import model.databases.GameDatabase;
 import model.enums.Direction;
 import model.enums.MovingType;
@@ -189,8 +186,12 @@ public class UnitController {
                 for (Army f : gameDatabase.getSelectedUnits())
                     if (f.getArmyType().getRange() > 0 && f.getArmyType().getRange() + getRange(enemyCell, e) < distance)
                         return UnitControllerMessages.OUT_OF_RANGE;
-                UnitControllerMessages moveMessage = moveUnit(enemyX, enemyY);
-                if (!moveMessage.equals(UnitControllerMessages.SUCCESS)) return moveMessage;
+                for (Army f : gameDatabase.getSelectedUnits()) {
+                    if (f.getArmyType().getRange() == 0) {
+                        UnitControllerMessages moveMessage = moveUnit(enemyX, enemyY);
+                        if (!moveMessage.equals(UnitControllerMessages.SUCCESS)) return moveMessage;
+                    }
+                }
                 setTarget(gameDatabase.getSelectedUnits(), e);
                 break;
             }
@@ -340,7 +341,8 @@ public class UnitController {
         PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), currentLocation, MovingType.CAN_NOT_CLIMB_LADDER);
         ArrayList<Cell> pathToOil = new ArrayList<>();
         for (Building e : gameDatabase.getCurrentKingdom().getBuildings()) {
-            if (e.getBuildingType().equals(BuildingType.OIL_SMELTER)) {
+            if (e.getBuildingType().equals(BuildingType.OIL_SMELTER) &&
+                    ((EngineersNeededBuilding) e).hasEnoughWorkers()) {
                 pathFinder.search(new Pair<>(e.getLocation().getX(), e.getLocation().getY()));
                 ArrayList<Cell> path = pathFinder.findPath();
                 if (pathToOil.size() == 0 || pathToOil.size() < path.size())
@@ -476,8 +478,31 @@ public class UnitController {
                 targetCell.getExistingBuilding().getKingdom().equals(gameDatabase.getCurrentKingdom()))
             return UnitControllerMessages.NO_BUILDING;
         currentCell.getArmies().remove(0);
-        targetCell.setExistingBuilding(Building.getBuildingFromBuildingType
+        currentCell.setExistingBuilding(Building.getBuildingFromBuildingType
                 (gameDatabase.getCurrentKingdom(), currentCell, BuildingType.STAIR));
+        return UnitControllerMessages.SUCCESS;
+    }
+
+    public UnitControllerMessages assignEngineer(int x, int y) {
+        if (!checkXY(x, y)) return UnitControllerMessages.INVALID_LOCATION;
+        ArrayList<Army> selectedUnits = gameDatabase.getSelectedUnits();
+        if (selectedUnits.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        for (Army e : selectedUnits)
+            if (!e.getArmyType().equals(ArmyType.ENGINEER)) return UnitControllerMessages.IRRELEVANT_UNIT;
+        Building building = gameDatabase.getMap().getMap()[x][y].getExistingBuilding();
+        if (building == null ||
+                !building.getBuildingType().equals(BuildingType.OIL_SMELTER) ||
+                !building.getKingdom().equals(gameDatabase.getCurrentKingdom()))
+            return UnitControllerMessages.BUILDING_NOT_FOUND;
+        if (((EngineersNeededBuilding) building).hasEnoughWorkers()) return UnitControllerMessages.ALREADY_WORKING;
+        Pair<Integer, Integer> current =
+                new Pair<>(selectedUnits.get(0).getLocation().getX(), selectedUnits.get(0).getLocation().getY());
+        PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), current, getMovingType(selectedUnits));
+        PathFinder.OutputState moveMessage = pathFinder.search(new Pair<>(x, y));
+        if (!moveMessage.equals(PathFinder.OutputState.NO_ERRORS)) return UnitControllerMessages.BLOCK;
+        ArrayList<Cell> path = pathFinder.findPath();
+        for (Army e : selectedUnits)
+            e.setPath(path);
         return UnitControllerMessages.SUCCESS;
     }
 }

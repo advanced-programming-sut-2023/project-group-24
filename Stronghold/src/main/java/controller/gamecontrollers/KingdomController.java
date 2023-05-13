@@ -21,6 +21,7 @@ public class KingdomController {
     public void nextTurn() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
         ArrayList<Building> buildings = kingdom.getBuildings();
+        kingdom.setPopulationCapacity();
         handleFood(kingdom);
         handleHomeless(kingdom);
         handleInn(kingdom);
@@ -31,6 +32,7 @@ public class KingdomController {
         handleProduct(buildings);
         handlePopulation(kingdom);
         handleWorkers(kingdom, buildings);
+        handleHorse();
     }
 
     private void handleFood(Kingdom kingdom) {
@@ -69,6 +71,30 @@ public class KingdomController {
             else if (building instanceof ProducerBuilding) if (((ProducerBuilding) building).hasEnoughWorkers())
                 if ((efficiency = fearChance()) > 0) for (int i = 0; i < efficiency; i++)
                     if ((product = ((ProducerBuilding) building).produceItem()) != null) checkProduce(product);
+    }
+
+    private void handleHorse() {
+        for (Building building : gameDatabase.getCurrentKingdom().getBuildings()) {
+            if (building instanceof Stable && ((Stable) building).getNumberOfHorses() < 4)
+                ((Stable) building).produceHorse();
+        }
+    }
+
+    public void useHorse() {
+        for (Building building : gameDatabase.getCurrentKingdom().getBuildings()) {
+            if (building instanceof Stable && ((Stable) building).getNumberOfAvailableHorses() > 0) {
+                ((Stable) building).useHorse();
+                break;
+            }
+        }
+    }
+
+    public int getNumberOfAvailableHorses() {
+        int availableHorses = 0;
+        for (Building building : gameDatabase.getCurrentKingdom().getBuildings()) {
+            if (building instanceof Stable) availableHorses += ((Stable) building).getNumberOfAvailableHorses();
+        }
+        return availableHorses;
     }
 
     private void checkProduce(Pair<Pair<Item, Integer>, Pair<Item, Integer>> product) {

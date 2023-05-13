@@ -1,10 +1,9 @@
 package model;
 
 import model.buildings.Building;
-import model.map.Cell;
 
 public class People {
-    private Kingdom owner;
+    private final Kingdom owner;
     private Building workStation;
 
     public People(Kingdom owner) {
@@ -14,10 +13,6 @@ public class People {
 
     public Kingdom getOwner() {
         return owner;
-    }
-
-    public void setOwner(Kingdom owner) {
-        this.owner = owner;
     }
 
     public Building getWorkStation() {

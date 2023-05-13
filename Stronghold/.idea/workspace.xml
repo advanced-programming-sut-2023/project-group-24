@@ -4,20 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="debug">
+    <list default="true" id="b21a023a-3d5d-42b9-8331-10b0ddae466a" name="Changes" comment="debug">
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/army/ArmyTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/army/ArmyTypeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/army/SoldierTypeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/army/WarMachineTypeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/menus/RegisterMenuTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/info/allUsers.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/allUsers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/loggedInUser.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/loggedInUser.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/captchacontrollers/CaptchaNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/captchacontrollers/CaptchaNumbers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/functionalcontrollers/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/functionalcontrollers/Pair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/BuildingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/TradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/TradeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShowMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShowMapController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Kingdom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/People.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/People.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/army/Army.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/Army.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/enums/messages/TradeControllerMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/enums/messages/TradeControllerMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/ArmyType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/SoldierType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/SoldierType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/army/WarMachineType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/army/WarMachineType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/Building.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/DefenceBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/DefenceBuilding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/PopularityBoosterBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/PopularityBoosterBuilding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/ProducerBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/ProducerBuilding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/buildings/WorkersNeededBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/buildings/WorkersNeededBuilding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/databases/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/databases/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/RecoveryQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/RecoveryQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/enums/commands/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/enums/commands/Commands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/enums/messages/UnitControllerMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/enums/messages/UnitControllerMessages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/TradeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/TradeMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/GameControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +63,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -54,18 +81,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "last_opened_file_path": "U:/AdvancedProgramming/Project/Codes/Stronghold",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15234375",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;U:/AdvancedProgramming/Project/Codes/Stronghold&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15234375&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="U:\AdvancedProgramming\Project\Codes\Stronghold\src\main\java\controller" />
@@ -79,11 +106,11 @@
       <recent name="controller" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="model.army" />
       <recent name="view.menus" />
       <recent name="controller.gamecontrollers" />
       <recent name="controller" />
       <recent name="view.menus.gamemenus" />
-      <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="view.enums.commands" />
@@ -91,7 +118,14 @@
       <recent name="controller.gamecontrollers" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in Stronghold">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Stronghold" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in Stronghold" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <option name="PACKAGE_NAME" value="" />
@@ -100,61 +134,46 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CreateMapMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BuildingControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="view.menus.*" />
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="view.menus" />
-      <option name="MAIN_CLASS_NAME" value="view.menus.CreateMapMenuTest" />
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.BuildingControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProfileMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="view.menus.*" />
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="view.menus" />
-      <option name="MAIN_CLASS_NAME" value="view.menus.ProfileMenuTest" />
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.GameControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShowMapMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PathFinderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="view.menus.gamemenus.*" />
+          <option name="PATTERN" value="controller.functionalcontrollers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="view.menus.gamemenus" />
-      <option name="MAIN_CLASS_NAME" value="view.menus.gamemenus.ShowMapMenuTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TradeMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="view.menus.gamemenus.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="view.menus.gamemenus" />
-      <option name="MAIN_CLASS_NAME" value="view.menus.gamemenus.TradeMenuTest" />
+      <option name="PACKAGE_NAME" value="controller.functionalcontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.functionalcontrollers.PathFinderTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,11 +192,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in Stronghold" />
-        <item itemvalue="JUnit.ProfileMenuTest" />
-        <item itemvalue="JUnit.CreateMapMenuTest" />
-        <item itemvalue="JUnit.TradeMenuTest" />
-        <item itemvalue="JUnit.ShowMapMenuTest" />
+        <item itemvalue="JUnit.PathFinderTest" />
+        <item itemvalue="JUnit.BuildingControllerTest" />
+        <item itemvalue="JUnit.GameControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -519,13 +538,16 @@
     <SUITE FILE_PATH="coverage/Stronghold$DairyProduceTest.ic" NAME="DairyProduceTest Coverage Results" MODIFIED="1683878666951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$ArmyTypeTest.ic" NAME="ArmyTypeTest Coverage Results" MODIFIED="1683912651219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$ArmyTypeTest.ic" NAME="ArmyTypeTest Coverage Results" MODIFIED="1684000772289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.army.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$TradeControllerTest.ic" NAME="TradeControllerTest Coverage Results" MODIFIED="1683876212189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$CreateMapMenuTest.ic" NAME="CreateMapMenuTest Coverage Results" MODIFIED="1684000707119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>view.menus.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$TradeControllerTest.ic" NAME="TradeControllerTest Coverage Results" MODIFIED="1684000814273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.gamecontrollers.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1683876273235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1684000749311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$BuildingTest.ic" NAME="BuildingTest Coverage Results" MODIFIED="1683877719860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -537,25 +559,31 @@
     <SUITE FILE_PATH="coverage/Stronghold$GameMenuTest_run.ic" NAME="GameMenuTest.run Coverage Results" MODIFIED="1683937415619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.menus.gamemenus.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$BuildingControllerTest.ic" NAME="BuildingControllerTest Coverage Results" MODIFIED="1683876182676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>controller.gamecontrollers.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$ProfileMenuControllerTest.ic" NAME="ProfileMenuControllerTest Coverage Results" MODIFIED="1683911403414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>controller.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$ArmyTypeTest_stringToEnum.ic" NAME="ArmyTypeTest.stringToEnum Coverage Results" MODIFIED="1683912637121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.army.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$KingdomControllerTest.ic" NAME="KingdomControllerTest Coverage Results" MODIFIED="1683905685202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>controller.gamecontrollers.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$CreateMapControllerTest.ic" NAME="CreateMapControllerTest Coverage Results" MODIFIED="1683876227485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$ProfileMenuControllerTest.ic" NAME="ProfileMenuControllerTest Coverage Results" MODIFIED="1684000793654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$GameControllerTest.ic" NAME="GameControllerTest Coverage Results" MODIFIED="1683949116662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$KingdomControllerTest.ic" NAME="KingdomControllerTest Coverage Results" MODIFIED="1684000823875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.gamecontrollers.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$WarMachineTypeTest.ic" NAME="WarMachineTypeTest Coverage Results" MODIFIED="1683913676034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$BuildingControllerTest.ic" NAME="BuildingControllerTest Coverage Results" MODIFIED="1684000837250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.gamecontrollers.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$CreateMapControllerTest.ic" NAME="CreateMapControllerTest Coverage Results" MODIFIED="1684000803721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$RegisterMenuTest_testRun.ic" NAME="RegisterMenuTest.testRun Coverage Results" MODIFIED="1683995880280" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>view.menus.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$GameControllerTest.ic" NAME="GameControllerTest Coverage Results" MODIFIED="1684000831167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.gamecontrollers.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$ArmyTest.ic" NAME="ArmyTest Coverage Results" MODIFIED="1684000779496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.army.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$WarMachineTypeTest.ic" NAME="WarMachineTypeTest Coverage Results" MODIFIED="1684000757012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.army.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$DefenceBuildingTest.ic" NAME="DefenceBuildingTest Coverage Results" MODIFIED="1683880401128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -564,32 +592,47 @@
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest_testAddingAndGetting.ic" NAME="DatabaseTest.testAddingAndGetting Coverage Results" MODIFIED="1683659035556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$TradeMenuTest.ic" NAME="TradeMenuTest Coverage Results" MODIFIED="1683969741124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$TradeMenuTest.ic" NAME="TradeMenuTest Coverage Results" MODIFIED="1684000715065" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.menus.gamemenus.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$TradeTest.ic" NAME="TradeTest Coverage Results" MODIFIED="1683876295374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$TradeTest.ic" NAME="TradeTest Coverage Results" MODIFIED="1684000743252" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$PathFinderTest.ic" NAME="PathFinderTest Coverage Results" MODIFIED="1684000843296" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.functionalcontrollers.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$RegisterMenuControllerTest.ic" NAME="RegisterMenuControllerTest Coverage Results" MODIFIED="1684000786858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$LoginMenuControllerTest.ic" NAME="LoginMenuControllerTest Coverage Results" MODIFIED="1684000799013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Stronghold$CreateMapMenuTest_testRun.ic" NAME="CreateMapMenuTest.testRun Coverage Results" MODIFIED="1683969623986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.menus.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$ShopControllerTest.ic" NAME="ShopControllerTest Coverage Results" MODIFIED="1683883234508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$ShopControllerTest.ic" NAME="ShopControllerTest Coverage Results" MODIFIED="1684000819321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.gamecontrollers.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$ShowMapMenuTest.ic" NAME="ShowMapMenuTest Coverage Results" MODIFIED="1683969800113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>view.menus.gamemenus.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$All_in_Stronghold.ic" NAME="All in Stronghold Coverage Results" MODIFIED="1683970249629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/Stronghold$ProfileMenuTest.ic" NAME="ProfileMenuTest Coverage Results" MODIFIED="1683969965661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$RegisterMenuTest.ic" NAME="RegisterMenuTest Coverage Results" MODIFIED="1684000694511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.menus.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$SoldierTypeTest.ic" NAME="SoldierTypeTest Coverage Results" MODIFIED="1683913208253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.army.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$GameMenuTest.ic" NAME="GameMenuTest Coverage Results" MODIFIED="1683969956824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$ShowMapMenuTest.ic" NAME="ShowMapMenuTest Coverage Results" MODIFIED="1684000721139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.menus.gamemenus.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$ShopMenuTest.ic" NAME="ShopMenuTest Coverage Results" MODIFIED="1683969944140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Stronghold$All_in_Stronghold.ic" NAME="All in Stronghold Coverage Results" MODIFIED="1684000851339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Stronghold$UnitControllerTest.ic" NAME="UnitControllerTest Coverage Results" MODIFIED="1684000809391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.gamecontrollers.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$ProfileMenuTest.ic" NAME="ProfileMenuTest Coverage Results" MODIFIED="1684000701274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>view.menus.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$SoldierTypeTest.ic" NAME="SoldierTypeTest Coverage Results" MODIFIED="1684000764099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.army.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$GameMenuTest.ic" NAME="GameMenuTest Coverage Results" MODIFIED="1684000735800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>view.menus.gamemenus.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Stronghold$ShopMenuTest.ic" NAME="ShopMenuTest Coverage Results" MODIFIED="1684000727002" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.menus.gamemenus.*</FILTER>
     </SUITE>
   </component>

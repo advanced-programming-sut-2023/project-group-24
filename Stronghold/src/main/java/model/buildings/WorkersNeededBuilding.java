@@ -16,12 +16,17 @@ public class WorkersNeededBuilding extends Building {
         isSleeping = false;
     }
 
+    public ArrayList<People> getWorkers() {
+        return workers;
+    }
+
     public boolean isSleeping() {
         return isSleeping;
     }
 
     public void assignWorker(People person) {
         workers.add(person);
+        person.setWorkStation(this);
     }
 
     public void unAssignWorker(People person) {
@@ -33,7 +38,7 @@ public class WorkersNeededBuilding extends Building {
     }
 
     public void changeSleepingMode() {
-        if(isSleeping) isSleeping = false;
+        if (isSleeping) isSleeping = false;
         else {
             isSleeping = true;
             workers = new ArrayList<>();

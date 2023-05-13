@@ -3,9 +3,9 @@ package model.databases;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import controller.functionalcontrollers.Pair;
 import model.User;
 import model.map.Map;
-import controller.functionalcontrollers.Pair;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -78,7 +78,8 @@ public class Database {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
-        Type allUsersType = new TypeToken<Vector<User>>() {}.getType();
+        Type allUsersType = new TypeToken<Vector<User>>() {
+        }.getType();
 
         try {
             allUsers = gson.fromJson(fileToString(FILE_TO_SAVE_ALL_USERS), allUsersType);
@@ -88,6 +89,7 @@ public class Database {
             maps = new Vector<>();
             stayedLoggedInUser = null;
         }
+        if (allUsers == null) allUsers = new Vector<>();
     }
 
     public void saveDataIntoFile() {
@@ -106,6 +108,7 @@ public class Database {
     }
 
     public User getUserByUsername(String username) {
+        if (allUsers == null) return null;
         for (User user : allUsers)
             if (user.getUsername().equals(username))
                 return user;

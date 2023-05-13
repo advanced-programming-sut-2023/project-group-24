@@ -67,6 +67,8 @@ public class GameMenu {
                 createUnit(matcher);
             else if (Commands.getMatcher(command, Commands.REPAIR) != null)
                 repair();
+            else if ((matcher = Commands.getMatcher(command, Commands.ASSIGN_ENGINEER_OIL)) != null)
+                assignEngineer(matcher);
             else if (Commands.getMatcher(command, Commands.SHOW_BUILDING_DETAILS) != null)
                 showDetail();
             else if (Commands.getMatcher(command, Commands.OPEN_DOG_CAGE) != null)
@@ -117,6 +119,21 @@ public class GameMenu {
                 setLadder(matcher);
             else
                 System.out.println("Invalid command!");
+        }
+    }
+
+    private void assignEngineer(Matcher matcher) {
+        int x = Integer.parseInt(matcher.group("x"));
+        int y = Integer.parseInt(matcher.group("y"));
+        UnitControllerMessages message = unitController.assignEngineer(x, y);
+        switch (message) {
+            case SUCCESS -> System.out.println("Your engineer will work there!");
+            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+            case BUILDING_NOT_FOUND -> System.out.println("There is no oil smelter");
+            case ALREADY_WORKING -> System.out.println("This building has enough worker!");
+            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
+            case BLOCK -> System.out.println("You engineer can't move there!");
+            case IRRELEVANT_UNIT -> System.out.println("You can not do that with these units!");
         }
     }
 

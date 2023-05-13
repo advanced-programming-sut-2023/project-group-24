@@ -1,12 +1,15 @@
 package controller;
 
-import model.databases.Database;
-import model.enums.Direction;
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
-import model.enums.KingdomColor;
 import model.army.*;
 import model.buildings.Building;
 import model.buildings.BuildingType;
+import model.buildings.StorageBuilding;
+import model.databases.Database;
+import model.enums.Direction;
+import model.enums.Item;
+import model.enums.KingdomColor;
 import model.map.Cell;
 import model.map.Map;
 import model.map.Texture;
@@ -162,6 +165,8 @@ public class CreateMapController {
         map.addKingdom(kingdom);
         Building.getBuildingFromBuildingType(kingdom, townHallLocation, BuildingType.TOWN_HALL);
         Building.getBuildingFromBuildingType(kingdom, stockPileLocation, BuildingType.STOCKPILE);
+        ((StorageBuilding) kingdom.getBuildings().get(1)).changeItemCount(new Pair<>(Item.WOOD, 50));
+        ((StorageBuilding) kingdom.getBuildings().get(1)).changeItemCount(new Pair<>(Item.STONE, 20));
         new Soldier(townHallLocation, ArmyType.LORD, kingdom, SoldierType.LORD);
     }
 
@@ -228,7 +233,7 @@ public class CreateMapController {
                 && building2.getKingdom() == currentKingdom) return true;
         if (building3 != null && building3.getBuildingType() == neededBuildingType
                 && building3.getKingdom() == currentKingdom) return true;
-        return  building4 != null && building4.getBuildingType() == neededBuildingType
+        return building4 != null && building4.getBuildingType() == neededBuildingType
                 && building4.getKingdom() == currentKingdom;
     }
 

@@ -7,6 +7,7 @@ public enum UnitControllerMessages {
     NULL_SELECTED_UNIT,
     BLOCK,
     ALREADY_IN_DESTINATION,
+    ALREADY_WORKING,
     INVALID_STATE,
     NOT_ENEMY,
     NOT_ARCHER,

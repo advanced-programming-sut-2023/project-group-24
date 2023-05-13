@@ -84,9 +84,10 @@ public enum Commands {
     SELECT_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))?" +
             "^select unit( -[xyt] ((\"[^\"]*\")|(\\S*))){2,3}$"),
     MOVE_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^move unit to( -[xy] \\d*){2}$"),
+    ASSIGN_ENGINEER_OIL("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^assign engineer( -[xy] \\d*){2}$"),
     PATROL_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))" +
             "^patrol unit( -[xy] \\d*){2}$"),
-    ATTACK_WALL("^attack wall -d (?<direction>\\s*)$"),
+    ATTACK_WALL("^attack wall -d (?<direction>\\S*)$"),
     STOP_PATROL("^stop patrol$"),
     SET_STATE("^set (?<state>\\S*)$"),
     SET_LADDER("^set ladder -d (?<direction>\\S*)$"),

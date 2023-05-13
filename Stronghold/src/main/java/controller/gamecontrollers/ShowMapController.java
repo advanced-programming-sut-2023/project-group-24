@@ -1,6 +1,7 @@
 package controller.gamecontrollers;
 
 import controller.AppController;
+import controller.MenusName;
 import model.Kingdom;
 import model.army.Army;
 import model.army.ArmyType;
@@ -11,7 +12,6 @@ import model.buildings.DefenceBuilding;
 import model.databases.GameDatabase;
 import model.enums.Color;
 import model.map.Cell;
-import controller.MenusName;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,7 +73,7 @@ public class ShowMapController {
                 building.getBuildingType().getName().contains("turret")) buildingIcon = 'W';
         char troop = ' ';
         for (Army army : cell.getArmies()) {
-            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+            if (army.getArmyType().equals(ArmyType.ASSASSIN) && !army.getOwner().equals(gameDatabase.getCurrentKingdom())
                     && !((Soldier) army).visibility())
                 continue;
             if (army.getPath().size() == 0) {
@@ -88,7 +88,7 @@ public class ShowMapController {
         Cell cell = map[i][j];
         char movingTroop = ' ';
         for (Army army : cell.getArmies()) {
-            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+            if (army.getArmyType().equals(ArmyType.ASSASSIN) && !army.getOwner().equals(gameDatabase.getCurrentKingdom())
                     && !((Soldier) army).visibility())
                 continue;
             if (army.getPath().size() > 0) {
@@ -122,7 +122,7 @@ public class ShowMapController {
         StringBuilder outputArmy = new StringBuilder();
         HashMap<ArmyType, Integer> armyCount = new HashMap<>();
         for (Army army : armies) {
-            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+            if (army.getArmyType().equals(ArmyType.ASSASSIN) && !army.getOwner().equals(gameDatabase.getCurrentKingdom())
                     && !((Soldier) army).visibility())
                 continue;
             ArmyType armyType = army.getArmyType();
