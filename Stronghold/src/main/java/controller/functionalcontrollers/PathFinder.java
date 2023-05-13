@@ -21,9 +21,9 @@ public class PathFinder {
     private final Map map;
     private final PathFinderCellDetails[][] cellDetails;
     private final Pair<Integer, Integer> src;
-    private final MovingType movingType;
     private Pair<Integer, Integer> dest;
     private Stack<Pair<Integer, Integer>> path;
+    private final MovingType movingType;
 
     public PathFinder(Map map, Pair<Integer, Integer> startingPoint, MovingType movingType) {
         this.map = map;
@@ -63,7 +63,7 @@ public class PathFinder {
         if (isValid(newI, newJ)) {
             if (isDestination(newI, newJ)) {
                 cellDetails[newI][newJ].setAll(i, j, 0, 0);
-                return true;
+                return canMoveTo(i, j, newI, newJ);
             } else if (!closedList[newI][newJ] && canMoveTo(i, j, newI, newJ)) {
                 int gNew = cellDetails[i][j].getG() + 1;
                 int fNew = gNew + calculateHValue(newI, newJ);
@@ -86,6 +86,7 @@ public class PathFinder {
             Pair<Integer, Integer> cellCoordinates = path.pop();
             output.add(map.getMap()[cellCoordinates.getObject1()][cellCoordinates.getObject2()]);
         }
+
         return output;
     }
 
