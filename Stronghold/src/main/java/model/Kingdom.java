@@ -8,7 +8,7 @@ import model.buildings.WorkersNeededBuilding;
 import model.enums.Item;
 import model.enums.KingdomColor;
 import model.enums.PopularityFactor;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;

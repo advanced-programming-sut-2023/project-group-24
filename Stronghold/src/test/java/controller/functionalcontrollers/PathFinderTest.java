@@ -19,15 +19,12 @@ import model.map.Cell;
 import model.map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import utils.Pair;
-import utils.enums.MenusName;
+import controller.MenusName;
 import view.enums.messages.CreateMapMessages;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PathFinderTest {
     private Database database = new Database();

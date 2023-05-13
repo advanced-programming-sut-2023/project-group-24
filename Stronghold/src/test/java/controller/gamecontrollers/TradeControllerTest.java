@@ -7,7 +7,7 @@ import model.enums.KingdomColor;
 import model.map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 import view.enums.messages.TradeControllerMessages;
 
 import java.util.ArrayList;

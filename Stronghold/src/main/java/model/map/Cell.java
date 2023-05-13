@@ -69,7 +69,8 @@ public class Cell {
     public ArrayList<Army> selectUnits(Kingdom owner) {
         ArrayList<Army> selectedUnit = new ArrayList<>();
         for (Army army : armies)
-            if (army.getOwner().equals(owner))
+            if (army.getOwner().equals(owner) &&
+                    !army.getArmyType().equals(ArmyType.DOG))
                 selectedUnit.add(army);
         return selectedUnit;
     }
@@ -177,10 +178,14 @@ public class Cell {
 
     private Direction backWardDirection(Direction direction) {
         switch (direction) {
-            case DOWN : return Direction.UP;
-            case RIGHT: return Direction.LEFT;
-            case LEFT: return Direction.RIGHT;
-            default: return Direction.DOWN;
+            case DOWN:
+                return Direction.UP;
+            case RIGHT:
+                return Direction.LEFT;
+            case LEFT:
+                return Direction.RIGHT;
+            default:
+                return Direction.DOWN;
         }
     }
 

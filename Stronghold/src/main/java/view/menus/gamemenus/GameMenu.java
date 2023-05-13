@@ -6,7 +6,7 @@ import controller.gamecontrollers.BuildingController;
 import controller.gamecontrollers.GameController;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.UnitController;
-import utils.enums.MenusName;
+import controller.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.BuildingControllerMessages;
 import view.enums.messages.UnitControllerMessages;

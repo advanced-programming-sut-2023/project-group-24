@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 import java.io.IOException;
 import java.util.Vector;

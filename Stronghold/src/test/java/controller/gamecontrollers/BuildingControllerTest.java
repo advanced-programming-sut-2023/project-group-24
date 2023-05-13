@@ -14,7 +14,7 @@ import model.map.Map;
 import model.map.Texture;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 import view.enums.messages.BuildingControllerMessages;
 
 import java.util.ArrayList;

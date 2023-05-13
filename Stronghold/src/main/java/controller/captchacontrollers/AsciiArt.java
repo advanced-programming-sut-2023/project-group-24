@@ -1,7 +1,5 @@
 package controller.captchacontrollers;
 
-import utils.enums.CaptchaNumbers;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 

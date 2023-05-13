@@ -3,10 +3,8 @@ package controller;
 import model.databases.Database;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 import view.enums.messages.RegisterMenuMessages;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class RegisterMenuControllerTest {
     Database database = new Database();
@@ -21,7 +19,7 @@ class RegisterMenuControllerTest {
         Assertions.assertEquals(RegisterMenuMessages.NULL_SLOGAN, registerMenuController.checkErrorsForRegister("vavasv", "ascasc", "csacs","csac", "casca",""));
         Assertions.assertEquals(RegisterMenuMessages.INVALID_USERNAME, registerMenuController.checkErrorsForRegister("pouria`", "ascasc", "caca","casc", "casca","casc"));
         Assertions.assertEquals(RegisterMenuMessages.DUPLICATE_USERNAME, registerMenuController.checkErrorsForRegister("pouria", "ascasc", "caca","casc", "casca","casc"));
-//        Assertions.assertEquals(RegisterMenuMessages.NON_SPECIFIC_PASSWORD, registerMenuController.checkErrorsForRegister("pouria1", "Pouria12", "Pouria12","casc", "casca","casc"));
+        Assertions.assertEquals(RegisterMenuMessages.NON_SPECIFIC_PASSWORD, registerMenuController.checkErrorsForRegister("pouria1", "Pouria12", "Pouria12","casc", "casca","casc"));
         Assertions.assertEquals(RegisterMenuMessages.NON_CAPITAL_PASSWORD, registerMenuController.checkErrorsForRegister("pouria1", "pouria@12", "pouria@12\"","casc", "casca","casc"));
         Assertions.assertEquals(RegisterMenuMessages.NON_NUMBER_PASSWORD, registerMenuController.checkErrorsForRegister("pouria1", "Pouria@@", "Pouria@@","casc", "casca","casc"));
         Assertions.assertEquals(RegisterMenuMessages.NON_SMALL_PASSWORD, registerMenuController.checkErrorsForRegister("pouria1", "POURIA2@@", "POURIA2@@","casc", "casca","casc"));
@@ -49,7 +47,7 @@ class RegisterMenuControllerTest {
 
     @Test
     void makeRandomSlogan() {
-        Assertions.assertTrue(registerMenuController.makeRandomSlogan().length() >= 0);
+        Assertions.assertTrue(registerMenuController.makeRandomSlogan().length() >= 1);
     }
 
     @Test

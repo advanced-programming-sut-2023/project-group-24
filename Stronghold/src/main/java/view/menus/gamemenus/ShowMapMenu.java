@@ -2,7 +2,7 @@ package view.menus.gamemenus;
 
 import controller.AppController;
 import controller.gamecontrollers.ShowMapController;
-import utils.enums.MenusName;
+import controller.MenusName;
 import view.enums.commands.Commands;
 import view.menus.GetInputFromUser;
 

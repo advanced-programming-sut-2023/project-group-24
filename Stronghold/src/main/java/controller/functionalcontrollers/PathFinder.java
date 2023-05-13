@@ -4,7 +4,6 @@ import model.enums.Direction;
 import model.enums.MovingType;
 import model.map.Cell;
 import model.map.Map;
-import utils.Pair;
 
 import java.util.ArrayList;
 import java.util.Stack;

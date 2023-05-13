@@ -12,7 +12,7 @@ import model.enums.Direction;
 import model.enums.MovingType;
 import model.map.Cell;
 import model.map.Texture;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 import java.util.ArrayList;
 

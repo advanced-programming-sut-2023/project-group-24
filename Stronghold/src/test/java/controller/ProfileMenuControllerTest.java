@@ -4,7 +4,7 @@ import model.User;
 import model.databases.Database;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 import view.enums.messages.ProfileMenuMessages;
 
 class ProfileMenuControllerTest {

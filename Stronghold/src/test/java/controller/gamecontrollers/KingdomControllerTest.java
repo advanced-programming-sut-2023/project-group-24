@@ -11,28 +11,48 @@ import model.enums.PopularityFactor;
 import model.map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class KingdomControllerTest {
-    private Map map = new Map(10, "test");
+    private Map map = new Map(200, "test");
     private Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
     private Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
     private Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
+    private KingdomController kingdomController = new KingdomController(gameDatabase);
+
     {
         map.addKingdom(kingdom1);
         map.addKingdom(kingdom2);
         map.addKingdom(kingdom3);
     }
-    private GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private KingdomController kingdomController = new KingdomController(gameDatabase);
 
     @Test
     void nextTurn() {
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[2][2], BuildingType.STOCKPILE);
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[2][3], BuildingType.STOCKPILE);
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[2][4], BuildingType.ARMOURY);
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[2][5], BuildingType.ARMOURY);
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[2][6], BuildingType.GRANARY);
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[2][7], BuildingType.GRANARY);
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[2][8], BuildingType.GRANARY);
+        kingdomController.changeStockedNumber(new Pair<>(Item.WOOD, 3));
+        kingdomController.changeStockedNumber(new Pair<>(Item.SWORD, 70));
+        kingdomController.changeStockedNumber(new Pair<>(Item.APPLE, 600));
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[5][5], BuildingType.HOVEL);
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[5][6], BuildingType.HOVEL);
+        Building.getBuildingFromBuildingType(kingdom1, map.getMap()[5][7], BuildingType.HOVEL);
+        for (int i = 0; i < BuildingType.values().length; i++) {
+            Building.getBuildingFromBuildingType(kingdom1, map.getMap()[0][i], BuildingType.values()[i]);
+        }
+        kingdomController.nextTurn();
+        kingdomController.nextTurn();
+        kingdomController.nextTurn();
+        kingdomController.nextTurn();
+        kingdomController.nextTurn();
         kingdomController.nextTurn();
     }
 

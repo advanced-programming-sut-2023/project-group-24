@@ -11,7 +11,6 @@ import model.map.Cell;
 import model.map.Map;
 import model.map.Texture;
 import model.map.Tree;
-import utils.enums.MenusName;
 import view.enums.messages.CreateMapMessages;
 
 public class CreateMapController {

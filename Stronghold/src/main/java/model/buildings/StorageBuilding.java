@@ -3,7 +3,7 @@ package model.buildings;
 import model.Kingdom;
 import model.enums.Item;
 import model.map.Cell;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;

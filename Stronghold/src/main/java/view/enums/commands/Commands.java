@@ -71,7 +71,7 @@ public enum Commands {
     SHOW_PRICE_LIST("^show price list$"),
     BUY_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S*)))(?=.* -a (?<itemAmount>\\d*))" +
             "^buy( -[ia] ((\"[^\"]*\")|(\\S*))){2}$"),
-    SELL_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S*))(?=.* -a (?<itemAmount>\\d*))" +
+    SELL_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S*)))(?=.* -a (?<itemAmount>\\d*))" +
             "^sell( -[ia] ((\"[^\"]*\")|(\\S*))){2}$"),
 
     //Game menu commands

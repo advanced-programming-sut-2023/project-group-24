@@ -1,4 +1,4 @@
-package utils.enums;
+package controller.captchacontrollers;
 
 public enum CaptchaNumbers {
     ZERO("  ___  \n" +

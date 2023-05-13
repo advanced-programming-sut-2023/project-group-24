@@ -7,7 +7,7 @@ import model.databases.GameDatabase;
 import model.enums.Item;
 import model.enums.PopularityFactor;
 import model.map.Cell;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 import java.util.ArrayList;
 
@@ -89,13 +89,17 @@ public class KingdomController {
         int x = building.getLocation().getX();
         int y = building.getLocation().getY();
         BuildingType quarry = BuildingType.QUARRY;
-        if (isInBounds(x, y + 1) && map[x][y + 1].getExistingBuilding().getBuildingType().equals(quarry))
+        if (isInBounds(x, y + 1) && map[x][y + 1].getExistingBuilding() != null
+                && map[x][y + 1].getExistingBuilding().getBuildingType().equals(quarry))
             if ((stoneCanBeMoved = oxTetherWorks((ProducerBuilding) building, stoneCanBeMoved)) == 0) return;
-        if (isInBounds(x, y - 1) && map[x][y - 1].getExistingBuilding().getBuildingType().equals(quarry))
+        if (isInBounds(x, y - 1) && map[x][y - 1].getExistingBuilding() != null
+                && map[x][y - 1].getExistingBuilding().getBuildingType().equals(quarry))
             if ((stoneCanBeMoved = oxTetherWorks((ProducerBuilding) building, stoneCanBeMoved)) == 0) return;
-        if (isInBounds(x + 1, y) && map[x + 1][y].getExistingBuilding().getBuildingType().equals(quarry))
+        if (isInBounds(x + 1, y) && map[x + 1][y].getExistingBuilding() != null
+                && map[x + 1][y].getExistingBuilding().getBuildingType().equals(quarry))
             if ((stoneCanBeMoved = oxTetherWorks((ProducerBuilding) building, stoneCanBeMoved)) == 0) return;
-        if (isInBounds(x - 1, y) && map[x - 1][y].getExistingBuilding().getBuildingType().equals(quarry))
+        if (isInBounds(x - 1, y) && map[x - 1][y].getExistingBuilding() != null
+                && map[x - 1][y].getExistingBuilding().getBuildingType().equals(quarry))
             oxTetherWorks((ProducerBuilding) building, stoneCanBeMoved);
     }
 
@@ -201,6 +205,7 @@ public class KingdomController {
             if (building.getBuildingType().equals(type)) {
                 newPair = ((StorageBuilding) building).changeItemCount(pair);
                 if (0 == newPair.getObject2()) break;
+                pair = newPair;
             }
     }
 
@@ -214,12 +219,12 @@ public class KingdomController {
 
     public String showPopularityFactors() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
-        return "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) + '\n' +
-                " food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) + '\n' +
-                " Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) + '\n' +
-                " tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) + '\n' +
-                " homeless: " + kingdom.getPopularityFactor(PopularityFactor.HOMELESS) + '\n' +
-                " religion: " + kingdom.getPopularityFactor(PopularityFactor.RELIGION);
+        return  "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) + '\n' +
+                "food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) + '\n' +
+                "Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) + '\n' +
+                "tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) + '\n' +
+                "homeless: " + kingdom.getPopularityFactor(PopularityFactor.HOMELESS) + '\n' +
+                "religion: " + kingdom.getPopularityFactor(PopularityFactor.RELIGION);
     }
 
     public int showPopularity() {

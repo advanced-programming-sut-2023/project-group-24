@@ -2,7 +2,6 @@ package controller;
 
 import model.User;
 import model.databases.Database;
-import utils.enums.MenusName;
 import view.enums.messages.LoginMenuMessages;
 import view.menus.CaptchaMenu;
 

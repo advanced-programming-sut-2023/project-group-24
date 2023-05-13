@@ -6,7 +6,6 @@ import model.User;
 import model.databases.Database;
 import model.databases.GameDatabase;
 import model.map.Map;
-import utils.enums.MenusName;
 import view.menus.*;
 import view.menus.gamemenus.GameMenu;
 import view.menus.gamemenus.ShopMenu;

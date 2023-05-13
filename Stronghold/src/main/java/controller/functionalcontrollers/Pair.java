@@ -1,4 +1,4 @@
-package utils;
+package controller.functionalcontrollers;
 
 public class Pair<E, K> {
     private E object1;

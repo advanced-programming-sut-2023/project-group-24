@@ -5,7 +5,7 @@ import controller.MainController;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.TradeController;
 import model.enums.Color;
-import utils.enums.MenusName;
+import controller.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.TradeControllerMessages;
 import view.menus.GetInputFromUser;

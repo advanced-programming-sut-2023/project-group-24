@@ -3,7 +3,7 @@ package model.army;
 import model.Kingdom;
 import model.buildings.Building;
 import model.map.Cell;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 import java.util.ArrayList;
 

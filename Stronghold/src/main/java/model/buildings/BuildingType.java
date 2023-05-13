@@ -3,7 +3,7 @@ package model.buildings;
 import model.enums.Item;
 import model.army.Type;
 import model.map.Texture;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 import java.util.List;
 import java.util.Vector;

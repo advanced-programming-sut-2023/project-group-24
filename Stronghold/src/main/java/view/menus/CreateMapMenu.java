@@ -3,7 +3,7 @@ package view.menus;
 import controller.AppController;
 import controller.CreateMapController;
 import controller.MainController;
-import utils.enums.MenusName;
+import controller.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.CreateMapMessages;
 

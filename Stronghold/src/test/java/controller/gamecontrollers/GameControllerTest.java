@@ -9,16 +9,12 @@ import model.buildings.Building;
 import model.buildings.BuildingType;
 import model.databases.GameDatabase;
 import model.enums.KingdomColor;
-import model.map.Cell;
 import model.map.Map;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GameControllerTest {
     private final Map map = new Map(10, "test");

@@ -7,15 +7,14 @@ import controller.gamecontrollers.TradeController;
 import model.Kingdom;
 import model.databases.Database;
 import model.databases.GameDatabase;
-import model.enums.Direction;
 import model.enums.KingdomColor;
 import model.map.Map;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.Pair;
-import utils.enums.MenusName;
+import controller.functionalcontrollers.Pair;
+import controller.MenusName;
 import view.menus.gamemenus.TradeMenu;
 
 import java.io.ByteArrayInputStream;
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class ProfileMenuTest {
     private Map map = new Map(10, "test");

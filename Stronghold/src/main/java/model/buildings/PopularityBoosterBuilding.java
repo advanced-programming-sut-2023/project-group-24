@@ -3,7 +3,7 @@ package model.buildings;
 import model.enums.Item;
 import model.Kingdom;
 import model.map.Cell;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 public class PopularityBoosterBuilding extends ProducerBuilding {
     public PopularityBoosterBuilding(Kingdom kingdom, Cell cell, BuildingType buildingType) {

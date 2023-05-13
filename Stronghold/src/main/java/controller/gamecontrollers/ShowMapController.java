@@ -11,7 +11,7 @@ import model.buildings.DefenceBuilding;
 import model.databases.GameDatabase;
 import model.enums.Color;
 import model.map.Cell;
-import utils.enums.MenusName;
+import controller.MenusName;
 
 import java.util.ArrayList;
 import java.util.HashMap;

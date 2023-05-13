@@ -3,7 +3,7 @@ package controller;
 import model.User;
 import model.databases.Database;
 import model.enums.Slogan;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.RegisterMenuMessages;
 import view.menus.CaptchaMenu;

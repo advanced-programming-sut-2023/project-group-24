@@ -1,8 +1,6 @@
 package view.menus.gamemenus;
 
 import controller.AppController;
-import controller.gamecontrollers.KingdomController;
-import controller.gamecontrollers.ShopController;
 import controller.gamecontrollers.ShowMapController;
 import model.Kingdom;
 import model.databases.GameDatabase;
@@ -12,7 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.enums.MenusName;
+import controller.MenusName;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -20,8 +18,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ShowMapMenuTest {
     private Map map = new Map(200, "test");

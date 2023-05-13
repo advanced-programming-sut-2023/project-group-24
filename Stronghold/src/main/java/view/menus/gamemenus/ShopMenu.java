@@ -4,7 +4,7 @@ import controller.AppController;
 import controller.MainController;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.ShopController;
-import utils.enums.MenusName;
+import controller.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.ShopMenuMessages;
 import view.menus.GetInputFromUser;

@@ -123,7 +123,7 @@ class UnitControllerTest {
         Assertions.assertEquals(unitController.attackEnemy(7, 7), UnitControllerMessages.NOT_ENEMY);
         Assertions.assertEquals(unitController.attackEnemy(2, 7), UnitControllerMessages.SUCCESS);
         Assertions.assertEquals(unitController.selectUnit(9, 9, null), UnitControllerMessages.SUCCESS);
-//        Assertions.assertEquals(unitController.attackEnemy(0, 0), UnitControllerMessages.OUT_OF_RANGE);
+        Assertions.assertEquals(unitController.attackEnemy(0, 0), UnitControllerMessages.OUT_OF_RANGE);
     }
 
     @Test
@@ -156,10 +156,10 @@ class UnitControllerTest {
         Assertions.assertEquals(unitController.pourOil("right"), UnitControllerMessages.NOT_SELECT_OIL);
         Assertions.assertEquals(unitController.selectUnit(2, 2, null), UnitControllerMessages.SUCCESS);
         Building.getBuildingFromBuildingType(kingdom1, map.getMap()[1][2], BuildingType.ROUND_TOWER);
-//        Assertions.assertEquals(unitController.pourOil("up"), UnitControllerMessages.CAN_NOT_POUR_OIL);
+        Assertions.assertEquals(unitController.pourOil("up"), UnitControllerMessages.CAN_NOT_POUR_OIL);
         Assertions.assertEquals(unitController.pourOil("c"), UnitControllerMessages.INVALID_DIRECTION);
-//        Assertions.assertEquals(unitController.pourOil("right"), UnitControllerMessages.SUCCESS);
-//        Assertions.assertEquals(kingdom1.getArmies().size(), 2);
+        Assertions.assertEquals(unitController.pourOil("right"), UnitControllerMessages.SUCCESS);
+        Assertions.assertEquals(kingdom1.getArmies().size(), 2);
     }
 
     @Test
@@ -269,15 +269,15 @@ class UnitControllerTest {
 
     @Test
     void attackWall() {
-        Assertions.assertEquals(unitController.setLadder("up"), UnitControllerMessages.NULL_SELECTED_UNIT);
+        Assertions.assertEquals(unitController.attackWall("up"), UnitControllerMessages.NULL_SELECTED_UNIT);
         new Soldier(map.getMap()[2][2], ArmyType.TUNNELLER, kingdom1, SoldierType.TUNNELLER);
         new WarMachine(map.getMap()[2][3], ArmyType.SIEGE_TOWER, kingdom1, WarMachineType.SIEGE_TOWER);
         Building.getBuildingFromBuildingType(kingdom2, map.getMap()[1][3], BuildingType.LOW_WALL);
         Assertions.assertEquals(unitController.selectUnit(2, 2, null), UnitControllerMessages.SUCCESS);
-        Assertions.assertEquals(unitController.setLadder("up"), UnitControllerMessages.IRRELEVANT_UNIT);
+        Assertions.assertEquals(unitController.attackWall("up"), UnitControllerMessages.IRRELEVANT_UNIT);
         Assertions.assertEquals(unitController.selectUnit(2, 3, null), UnitControllerMessages.SUCCESS);
-        Assertions.assertEquals(unitController.setLadder("chert"), UnitControllerMessages.INVALID_DIRECTION);
-//        Assertions.assertEquals(unitController.setLadder("down"), UnitControllerMessages.NO_BUILDING);
-//        Assertions.assertEquals(unitController.setLadder("up"), UnitControllerMessages.SUCCESS);
+        Assertions.assertEquals(unitController.attackWall("chert"), UnitControllerMessages.INVALID_DIRECTION);
+        Assertions.assertEquals(unitController.attackWall("down"), UnitControllerMessages.NO_BUILDING);
+        Assertions.assertEquals(unitController.attackWall("up"), UnitControllerMessages.SUCCESS);
     }
 }

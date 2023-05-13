@@ -12,10 +12,9 @@ import model.enums.Direction;
 import model.enums.Item;
 import model.map.Cell;
 import model.map.Map;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 import view.enums.messages.BuildingControllerMessages;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 

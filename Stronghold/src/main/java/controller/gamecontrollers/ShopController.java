@@ -3,7 +3,7 @@ package controller.gamecontrollers;
 import model.Kingdom;
 import model.databases.GameDatabase;
 import model.enums.Item;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 import view.enums.messages.ShopMenuMessages;
 
 public class ShopController {

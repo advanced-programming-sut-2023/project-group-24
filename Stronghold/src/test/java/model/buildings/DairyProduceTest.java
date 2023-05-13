@@ -6,9 +6,7 @@ import model.enums.KingdomColor;
 import model.map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import utils.Pair;
-
-import static org.junit.jupiter.api.Assertions.*;
+import controller.functionalcontrollers.Pair;
 
 class DairyProduceTest {
     private Kingdom kingdom = new Kingdom(KingdomColor.RED);

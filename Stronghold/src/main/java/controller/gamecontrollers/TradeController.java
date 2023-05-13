@@ -4,7 +4,7 @@ import model.Kingdom;
 import model.Trade;
 import model.databases.GameDatabase;
 import model.enums.Item;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 import view.enums.messages.TradeControllerMessages;
 
 import java.util.ArrayList;

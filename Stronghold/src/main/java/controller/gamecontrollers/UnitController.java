@@ -12,7 +12,7 @@ import model.enums.Direction;
 import model.enums.MovingType;
 import model.map.Cell;
 import model.map.Map;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 import view.enums.messages.UnitControllerMessages;
 
 import java.util.ArrayList;
@@ -23,6 +23,44 @@ public class UnitController {
 
     public UnitController(GameDatabase gameDatabase) {
         this.gameDatabase = gameDatabase;
+    }
+
+    private static int getRange(Cell enemyCell, Army e) {
+        int ourHeight = 0, enemyHeight = 0;
+        if (e.getLocation().getExistingBuilding() != null)
+            ourHeight = e.getLocation().getExistingBuilding().getBuildingType().getHeight();
+        if (enemyCell.getExistingBuilding() != null)
+            enemyHeight = enemyCell.getExistingBuilding().getBuildingType().getHeight();
+        return ourHeight - enemyHeight;
+    }
+
+    private static void setTarget(ArrayList<Army> selectedUnits, Army e) {
+        for (Army f : selectedUnits) {
+            f.setTargetBuilding(null);
+            f.setTarget(null);
+            f.setTargetCell(null);
+            f.setTarget(e);
+        }
+    }
+
+    private static boolean setArcherTarget(boolean canArcherAttack, Cell targetCell, int distance, Army e) {
+        if (distance <= e.getArmyType().getRange() + getRange(targetCell, e)) {
+            canArcherAttack = true;
+            e.setTargetBuilding(null);
+            e.setTarget(null);
+            e.setTargetCell(null);
+            e.setTargetCell(targetCell);
+        }
+        return canArcherAttack;
+    }
+
+    private static boolean hasEnoughHeight(Cell currentCell, Cell targetCell) {
+        int height = 0, targetHeight = 0;
+        if (currentCell.getExistingBuilding() != null)
+            height = currentCell.getExistingBuilding().getBuildingType().getHeight();
+        if (targetCell.getExistingBuilding() != null)
+            targetHeight = targetCell.getExistingBuilding().getBuildingType().getHeight();
+        return height >= targetHeight;
     }
 
     public UnitControllerMessages selectUnit(int x, int y, String unitType) {
@@ -145,46 +183,25 @@ public class UnitController {
         Cell enemyCell = gameDatabase.getMap().getMap()[enemyX][enemyY];
         if (gameDatabase.getSelectedUnits().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         if (!isEnemy(enemyCell.getArmies())) return UnitControllerMessages.NOT_ENEMY;
-        boolean isEnemyExist = false, outOfRange = true;
         int distance = getDistance(enemyX, enemyY);
         for (Army e : enemyCell.getArmies()) {
             if (isVisible(e)) continue;
             if (!e.getOwner().equals(gameDatabase.getCurrentKingdom())) {
-                if (e.getArmyType().getRange() > 0 && e.getArmyType().getRange() + getRange(enemyCell, e) < distance)
-                    outOfRange = false;
-                isEnemyExist = true;
+                for (Army f : gameDatabase.getSelectedUnits())
+                    if (f.getArmyType().getRange() > 0 && f.getArmyType().getRange() + getRange(enemyCell, e) < distance)
+                        return UnitControllerMessages.OUT_OF_RANGE;
                 UnitControllerMessages moveMessage = moveUnit(enemyX, enemyY);
                 if (!moveMessage.equals(UnitControllerMessages.SUCCESS)) return moveMessage;
                 setTarget(gameDatabase.getSelectedUnits(), e);
                 break;
             }
         }
-        if (!outOfRange) return UnitControllerMessages.OUT_OF_RANGE;
-        if (!isEnemyExist) return UnitControllerMessages.NOT_ENEMY;
         return UnitControllerMessages.SUCCESS;
     }
 
     private boolean isVisible(Army e) {
         return e.getArmyType().equals(ArmyType.ASSASSIN) && !e.getOwner().equals(gameDatabase.getCurrentKingdom())
                 && !((Soldier) e).visibility();
-    }
-
-    private static int getRange(Cell enemyCell, Army e) {
-        int ourHeight = 0, enemyHeight = 0;
-        if (e.getLocation().getExistingBuilding() != null)
-            ourHeight = e.getLocation().getExistingBuilding().getBuildingType().getHeight();
-        if (enemyCell.getExistingBuilding() != null)
-            enemyHeight = enemyCell.getExistingBuilding().getBuildingType().getHeight();
-        return ourHeight - enemyHeight;
-    }
-
-    private static void setTarget(ArrayList<Army> selectedUnits, Army e) {
-        for (Army f : selectedUnits) {
-            f.setTargetBuilding(null);
-            f.setTarget(null);
-            f.setTargetCell(null);
-            f.setTarget(e);
-        }
     }
 
     private boolean isEnemy(ArrayList<Army> enemies) {
@@ -215,17 +232,6 @@ public class UnitController {
         return UnitControllerMessages.SUCCESS;
     }
 
-    private static boolean setArcherTarget(boolean canArcherAttack, Cell targetCell, int distance, Army e) {
-        if (distance <= e.getArmyType().getRange() + getRange(targetCell, e)) {
-            canArcherAttack = true;
-            e.setTargetBuilding(null);
-            e.setTarget(null);
-            e.setTargetCell(null);
-            e.setTargetCell(targetCell);
-        }
-        return canArcherAttack;
-    }
-
     public UnitControllerMessages pourOil(String stringDirection) {
         ArrayList<Army> selectedArmies = gameDatabase.getSelectedUnits();
         if (selectedArmies.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
@@ -239,19 +245,11 @@ public class UnitController {
         int y = currentCell.getY();
         if (!checkValidPourOil(direction, x, y)) return UnitControllerMessages.CAN_NOT_POUR_OIL;
         Cell targetCell = getCellWithDirection(direction, x, y);
+        if (targetCell.getExistingBuilding() != null) return UnitControllerMessages.CAN_NOT_POUR_OIL;
         if (hasEnoughHeight(currentCell, targetCell))
             killThemAll(targetCell);
         changeEngineerState(selectedArmies, new Pair<>(x, y));
         return UnitControllerMessages.SUCCESS;
-    }
-
-    private static boolean hasEnoughHeight(Cell currentCell, Cell targetCell) {
-        int height = 0, targetHeight = 0;
-        if (currentCell.getExistingBuilding() != null)
-            height = currentCell.getExistingBuilding().getBuildingType().getHeight();
-        if (targetCell.getExistingBuilding() != null)
-            targetHeight = targetCell.getExistingBuilding().getBuildingType().getHeight();
-        return height >= targetHeight;
     }
 
     public UnitControllerMessages digTunnel() {
@@ -357,8 +355,13 @@ public class UnitController {
     }
 
     private void killThemAll(Cell cell) {
-        for (Army e : cell.getArmies()) {
-            e.takeDamage(1000);
+        out:
+        while (true) {
+            for (Army e : cell.getArmies()) {
+                e.takeDamage(1000);
+                continue out;
+            }
+            break;
         }
     }
 
@@ -427,8 +430,7 @@ public class UnitController {
             return UnitControllerMessages.NULL_SELECTED_BUILDING;
         for (Army e : selectedArmies) if (isOutOfRange(x, y, e)) return UnitControllerMessages.OUT_OF_RANGE;
         for (Army e : selectedArmies) {
-            if (getDistance(x, y) > 1)
-            {
+            if (getDistance(x, y) > 1) {
                 ArrayList<Army> oneArmy = new ArrayList<>(List.of(e));
                 PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), new Pair<>(x, y), getMovingType(oneArmy));
                 if (!pathFinder.search(new Pair<>(x, y)).equals(PathFinder.OutputState.NO_ERRORS))
@@ -468,11 +470,13 @@ public class UnitController {
         if (selectedUnits.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         if (direction == null) return UnitControllerMessages.INVALID_DIRECTION;
         for (Army e : selectedUnits)
-            if (!e.getArmyType().equals(ArmyType.SIEGE_TOWER)) return UnitControllerMessages.IRRELEVANT_UNIT;
+            if (!(e instanceof WarMachine) || !((WarMachine) e).getWarMachineType().equals(WarMachineType.SIEGE_TOWER))
+                return UnitControllerMessages.IRRELEVANT_UNIT;
         Cell currentCell = gameDatabase.getSelectedUnits().get(0).getLocation();
         Cell targetCell = getCellWithDirection(direction, currentCell.getX(), currentCell.getY());
-        if (!(targetCell.getExistingBuilding().getBuildingType().equals(BuildingType.LOW_WALL) ||
-                targetCell.getExistingBuilding().getBuildingType().equals(BuildingType.HIGH_WALL)) ||
+        if (targetCell.getExistingBuilding() == null ||
+                !(targetCell.getExistingBuilding().getBuildingType().equals(BuildingType.LOW_WALL) ||
+                        targetCell.getExistingBuilding().getBuildingType().equals(BuildingType.HIGH_WALL)) ||
                 targetCell.getExistingBuilding().getKingdom().equals(gameDatabase.getCurrentKingdom()))
             return UnitControllerMessages.NO_BUILDING;
         currentCell.getArmies().remove(0);

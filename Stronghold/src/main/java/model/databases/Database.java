@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import model.User;
 import model.map.Map;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 import java.io.File;
 import java.io.FileNotFoundException;
