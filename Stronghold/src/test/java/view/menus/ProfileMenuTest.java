@@ -27,8 +27,8 @@ import java.util.NoSuchElementException;
 
 class ProfileMenuTest {
     private final Database database = new Database();
-    private final ProfileMenuController profileMenuController = new ProfileMenuController(database);
-    private final ProfileMenu profileMenu = new ProfileMenu(profileMenuController);
+    private final ProfileMenuController profileMenuController;
+    private final ProfileMenu profileMenu;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -52,6 +52,8 @@ class ProfileMenuTest {
         database.addUser("username", "pass", "nick", "s", "e", new Pair<>(1, "h"));
         AppController.setLoggedInUser(database.getUserByUsername("username"));
         AppController.setCurrentMenu(MenusName.PROFILE_MENU);
+        profileMenuController = new ProfileMenuController(database);
+        profileMenu = new ProfileMenu(profileMenuController);
     }
 
     @BeforeEach
