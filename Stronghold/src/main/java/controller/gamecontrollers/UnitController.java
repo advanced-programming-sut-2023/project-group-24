@@ -136,7 +136,7 @@ public class UnitController {
     private int getDistance(int x2, int y2) {
         int x1 = gameDatabase.getSelectedUnits().get(0).getLocation().getX();
         int y1 = gameDatabase.getSelectedUnits().get(0).getLocation().getY();
-        return (int) (Math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2));
+        return (int) (Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2)));
     }
 
     public UnitControllerMessages attackEnemy(int enemyX, int enemyY) {
