@@ -3,7 +3,7 @@ package model.buildings;
 import model.enums.Item;
 import model.army.Type;
 import model.map.Texture;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 import java.util.List;
 import java.util.Vector;
@@ -65,7 +65,7 @@ public enum BuildingType {
             1, 0, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
             false, false, null, EngineersNeededBuilding.class),
-    PITCH_DITCH("pitch ditch", Category.TRAP, new Pair<>(Item.PITCH, -1), 0, 1,
+    PITCH_DITCH("pitch ditch", Category.TRAP, new Pair<>(Item.PITCH, -1), 0, 1,//todo remove (prob)
             0, 0, 0, 0, 225, 0, 0,
             null, null, 0, null, null, null,
             false, false, null, Building.class),
@@ -76,7 +76,7 @@ public enum BuildingType {
     SIEGE_TENT("siege tent", Category.CASTLE, null, 0, 1,
             1, 0, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
-            false, false, null, EngineersNeededBuilding.class),
+            false, false, null, SiegeTent.class),
     STABLE("stable", Category.CASTLE, new Pair<>(Item.WOOD, -20), 400, 100,
             0, 0, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
@@ -86,7 +86,7 @@ public enum BuildingType {
             null, new Vector<>(List.of(new Pair<>(Item.APPLE, 6))), 0, null,
             null, null, false, false,
             new Vector<>(List.of(Texture.GRASS, Texture.CONDENSED)), ProducerBuilding.class),
-    DIARY_FARM("dairy farmer", Category.FARM, new Pair<>(Item.WOOD, -10), 0, 100,
+    DAIRY_FARM("dairy farmer", Category.FARM, new Pair<>(Item.WOOD, -10), 0, 100,
             1, 0, 0, 0, 0, 0, 1,
             null, null, 0, null, null,
             null, false, false,
@@ -113,7 +113,7 @@ public enum BuildingType {
             false, false, null, ProducerBuilding.class),
     BREWER("brewer", Category.FOOD_PROCESSING, new Pair<>(Item.WOOD, -10), 0, 100,
             1, 0, 0, 0, 0, 0, 1,
-            new Vector<>(List.of(new Pair<>(Item.HOPS, -1))), new Vector<>(List.of(new Pair<>(Item.ALE, 1))),
+            new Vector<>(List.of(new Pair<>(Item.HOPS, -2))), new Vector<>(List.of(new Pair<>(Item.ALE, 1))),
             0, null, null, null,
             false, false, null, ProducerBuilding.class),
     GRANARY("granary", Category.STORAGE, new Pair<>(Item.WOOD, -5), 0, 150,
@@ -121,7 +121,7 @@ public enum BuildingType {
             null, null, 0, null, Item.Category.FOOD, null,
             false, false, null, StorageBuilding.class),
     INN("inn", Category.FOOD_PROCESSING, new Pair<>(Item.WOOD, -20), 100, 150,
-            1, 0, 0, 0, 0, 4, 1,
+            1, 0, 0, 0, 0, 2, 1,
             new Vector<>(List.of(new Pair<>(Item.ALE, -1))), null,
             0, null, null, null,
             false, false, null, PopularityBoosterBuilding.class),
@@ -214,9 +214,20 @@ public enum BuildingType {
     TOWN_HALL("town hall", Category.CASTLE, null, 0, 2000,
             0, 8, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
-            false, false, null, Building.class);
+            false, false, null, Building.class),
+    GOOD_THING("good thing", Category.TOWN, new Pair<>(Item.WOOD, -10), 0, 50,
+            0, 0, 0, 0, 0, 0, 0,
+            null, null, 0, null, null, null,
+            false, false, null, Building.class),
+    BAD_THING("bad thing", Category.TOWN, new Pair<>(Item.WOOD, -10), 0, 50,
+            0, 0, 0, 0, 0, 0, 0,
+            null, null, 0, null, null, null,
+            false, false, null, Building.class),
+    MOAT("moat", Category.CASTLE, null, 0, 100000,
+            0, 0, -1, 0, 0, 0, 0,
+            null, null, 0, null, null, null,
+            false, false, null, DefenceBuilding.class);
 
-    //TODO add good and bad things, etc
     private final String name;
     private final Category category;
     private final Pair<Item, Integer> materialToBuild;

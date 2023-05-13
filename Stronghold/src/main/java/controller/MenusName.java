@@ -1,4 +1,4 @@
-package utils.enums;
+package controller;
 
 public enum MenusName {
     MAIN_MENU,

@@ -1,5 +1,8 @@
 package view.enums.messages;
 
 public enum MainMenuMessages {
-    //TODO add messages
+    INVALID_USERNAME,
+    INVALID_MAP_ID,
+    SUCCESS,
+    DUPLICATE_USERNAME
 }

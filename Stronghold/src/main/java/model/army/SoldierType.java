@@ -4,6 +4,7 @@ import controller.MainController;
 import model.enums.Item;
 
 public enum SoldierType {
+    LORD(null, null, false, Type.EUROPEAN, false),
     ARCHER(null, Item.BOW, true, Type.EUROPEAN, true),
     CROSSBOWMAN(Item.LEATHER_ARMOR, Item.CROSSBOW, false, Type.EUROPEAN, false),
     SPEARMAN(null, Item.CROSSBOW, true, Type.EUROPEAN, true),
@@ -14,6 +15,7 @@ public enum SoldierType {
     TUNNELLER(null, null, false, Type.EUROPEAN, false),
     LADDER_MAN(null, null, false, Type.ENGINEER, false),
     ENGINEER(null, null, false, Type.ENGINEER, true),
+    ENGINEER_WITH_OIL(null, null, false, Type.ENGINEER, true),
     BLACK_MONK(null, null, false, Type.CHURCH, false),
     ARCHER_BOW(null, null, false, Type.ARABIAN, true),
     SLAVE(null, null, false, Type.ARABIAN, true),
@@ -21,7 +23,8 @@ public enum SoldierType {
     ASSASSIN(null, null, false, Type.ARABIAN, false),
     HORSE_ARCHER(null, null, false, Type.ARABIAN, false),
     ARABIAN_SWORD_MAN(null, null, false, Type.ARABIAN, false),
-    FIRE_THROWER(null, null, false, Type.ARABIAN, false);
+    FIRE_THROWER(null, null, false, Type.ARABIAN, false),
+    DOG(null, null, false, Type.DOG, false);
     private final Item armor;
     private final Item weapon;
     private final boolean canClimbLadder;
@@ -59,5 +62,13 @@ public enum SoldierType {
 
     public Type getNation() {
         return nation;
+    }
+
+    public boolean isCanDig() {
+        return canDig;
+    }
+
+    public String toString() {
+        return super.toString().toLowerCase().replaceAll("-", " ");
     }
 }

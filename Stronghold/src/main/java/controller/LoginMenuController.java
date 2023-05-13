@@ -2,7 +2,6 @@ package controller;
 
 import model.User;
 import model.databases.Database;
-import utils.enums.MenusName;
 import view.enums.messages.LoginMenuMessages;
 import view.menus.CaptchaMenu;
 
@@ -51,7 +50,7 @@ public class LoginMenuController {
         robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
         robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
         robot.mouseMove(1725, 975);
-        robot.delay(10);
+        robot.delay(30);
         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
     }

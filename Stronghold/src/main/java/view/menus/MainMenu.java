@@ -2,10 +2,11 @@ package view.menus;
 
 import controller.AppController;
 import controller.MainMenuController;
-import utils.enums.MenusName;
+import controller.MenusName;
 import view.enums.commands.Commands;
+import view.enums.messages.MainMenuMessages;
 
-import java.util.regex.Matcher;
+import java.util.ArrayList;
 
 public class MainMenu {
 
@@ -17,7 +18,6 @@ public class MainMenu {
 
     public void run() {
         String command;
-        Matcher matcher;
         while (AppController.getCurrentMenu() == MenusName.MAIN_MENU) {
             command = GetInputFromUser.getUserInput();
             if (Commands.getMatcher(command, Commands.LOGOUT) != null)
@@ -26,27 +26,53 @@ public class MainMenu {
                 enterProfileMenu();
             else if (Commands.getMatcher(command, Commands.ENTER_CREATE_MAP) != null)
                 enterCreateMapMenu();
-            else if ((matcher = Commands.getMatcher(command, Commands.START_GAME)) != null)
-                enterGameMenu(matcher);
+            else if (Commands.getMatcher(command, Commands.START_GAME) != null)
+                enterGameMenu();
+            else if (Commands.getMatcher(command, Commands.SHOW_CURRENT_MENU) != null)
+                System.out.println("Main menu");
+            else
+                System.out.println("Invalid command!");
         }
     }
 
     private void enterProfileMenu() {
         AppController.setCurrentMenu(MenusName.PROFILE_MENU);
+        System.out.println("You are in profile menu!");
     }
 
-    private void enterGameMenu(Matcher matcher) {
-        int numberOfUser = matcher.groupCount();
-        String[] usernames = new String[numberOfUser];
-        for (int i = 0; i < numberOfUser; i++) {
-            usernames[i] = matcher.group(i);
+    private void enterGameMenu() {
+        ArrayList<String> usernames = new ArrayList<>();
+        System.out.print("Please enter map id: ");
+        String mapId = GetInputFromUser.getUserInput();
+        int numberOfPlayers = mainMenuController.numberOfPlayerInMap(mapId);
+        if (numberOfPlayers == -1) {
+            System.out.println("Invalid map id!");
+            return;
         }
-        mainMenuController.enterGameMenu(usernames);
+        for (int i = 1; i < numberOfPlayers; i++) {
+            System.out.print("Enter username" + (i + 1) + " : ");
+            String newUsername = GetInputFromUser.getUserInput();
+            switch (mainMenuController.checkDuplicationOfUsername(newUsername, usernames)) {
+                case SUCCESS -> usernames.add(newUsername);
+                case DUPLICATE_USERNAME -> {
+                    System.out.println("You entered repetitious username!");
+                    i--;
+                }
+            }
+        }
+        MainMenuMessages message = mainMenuController.enterGameMenu(usernames, mapId);
+        switch (message) {
+            case INVALID_USERNAME -> System.out.println("Invalid username!");
+            case SUCCESS -> {
+                System.out.println("Game started!");
+                AppController.setCurrentMenu(MenusName.GAME_MENU);
+            }
+        }
     }
 
     private void enterCreateMapMenu() {
         AppController.setCurrentMenu(MenusName.CREATE_MAP_MENU);
-        System.out.println("You are in map making menu!");
+        System.out.println("You are in create map menu!");
     }
 
     private void enterLoginMenu() {

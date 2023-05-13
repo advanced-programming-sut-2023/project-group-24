@@ -1,0 +1,38 @@
+how many round played
+how many turn played
+next turn
+select unit -x 1 -y 2 -t type
+move unit to -x 1 -y 2
+patrol unit -x 2 -y 2
+stop patrol
+set offensive
+set ladder -d up
+attack -e 2 3
+attack -x 1 -y 2
+pour oil -d up
+dig tunnel
+build -q "siege tower"
+disband unit
+dig moat -d up
+fill moat -d up
+attackbuilding -x 1 -y 2
+stop
+show popularity factors
+show popularity
+show food list
+food rate -r 3
+food rate show
+tax rate -r 3
+tax rate show
+drop building -x 2 -y 1 -t "town hall"
+select building -x 2 -y 2
+create unit -t archer -c 2
+change gate state
+open dog cage
+remove moate -x 1 -y 2
+show building details
+produce leather
+produce item -n "sword"
+repair
+show current menu
+chert

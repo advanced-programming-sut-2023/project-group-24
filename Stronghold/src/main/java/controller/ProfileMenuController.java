@@ -14,7 +14,7 @@ public class ProfileMenuController {
 
     public ProfileMenuController(Database database) {
         this.database = database;
-        currentUser = AppController.getLoggedInUser();
+        currentUser = database.getUserByUsername(AppController.getLoggedInUser().getUsername());
     }
 
     public ProfileMenuMessages changeUsername(String newUsername) {
@@ -22,12 +22,14 @@ public class ProfileMenuController {
         else if (MainController.isUsernameValid(newUsername)) return ProfileMenuMessages.INVALID_USERNAME;
         else if (database.getUserByUsername(newUsername) != null) return ProfileMenuMessages.DUPLICATE_USERNAME;
         currentUser.setUsername(newUsername);
+        database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
     }
 
     public ProfileMenuMessages changeNickname(String newNickname) {
         if (newNickname == null) return ProfileMenuMessages.NULL_FIELD;
         currentUser.setNickName(newNickname);
+        database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
     }
 
@@ -48,8 +50,6 @@ public class ProfileMenuController {
                 return ProfileMenuMessages.NON_SMALL_PASSWORD;
             case NON_NUMBER_PASSWORD:
                 return ProfileMenuMessages.NON_NUMBER_PASSWORD;
-            case NON_SPECIFIC_PASSWORD:
-                return ProfileMenuMessages.NON_SPECIFIC_PASSWORD;
         }
         if (oldPassword.equals(newPassword)) return ProfileMenuMessages.DUPLICATE_PASSWORD;
         if (!CaptchaMenu.runCaptcha()) return ProfileMenuMessages.INCORRECT_CAPTCHA;
@@ -61,40 +61,45 @@ public class ProfileMenuController {
         if (!newPassword.equals(newPasswordConfirm)) return ProfileMenuMessages.INVALID_PASSWORD_CONFIRM;
         String newPasswordAsSHA = MainController.getSHA256(newPassword);
         currentUser.changePasswords(newPasswordAsSHA);
+        database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
     }
 
     public ProfileMenuMessages changeEmail(String newEmail) {
         if (newEmail == null) return ProfileMenuMessages.NULL_FIELD;
         else if (MainController.isEmailValid(newEmail)) return ProfileMenuMessages.INVALID_EMAIL_FORMAT;
+        for (User e : database.getAllUsers())
+            if (e.getEmail().equalsIgnoreCase(newEmail)) return ProfileMenuMessages.DUPLICATE_EMAIL;
         currentUser.setEmail(newEmail);
+        database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
     }
 
     public ProfileMenuMessages changeSlogan(String newSlogan) {
         if (newSlogan == null) return ProfileMenuMessages.NULL_FIELD;
         currentUser.setSlogan(newSlogan);
+        database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
     }
 
     public ProfileMenuMessages removeSlogan() {
         if (currentUser.getSlogan() == null) return ProfileMenuMessages.EMPTY_SLOGAN;
         currentUser.setSlogan(null);
+        database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
     }
 
-    public String showHighScore() {
-        int highScore = currentUser.getHighScore();
-        return "Your highscore is " + highScore;
+    public int showHighScore() {
+        return currentUser.getHighScore();
     }
 
-    public String showRank() {
+    public int showRank() {
         Vector<User> sortedUsers = database.getAllUsersByRank();
         for (int i = 0; i < sortedUsers.size(); i++) {
             if (sortedUsers.get(i).equals(currentUser))
-                return "Your rank is " + (i + 1);
+                return i + 1;
         }
-        return null;
+        return 0;
     }
 
     public String showSlogan() {

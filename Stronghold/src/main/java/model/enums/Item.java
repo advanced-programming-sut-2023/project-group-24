@@ -11,8 +11,8 @@ public enum Item {
     PIKE(36, Category.WEAPON),
     MACE(58, Category.WEAPON),
     SWORD(58, Category.WEAPON),
-    LEATHER_ARMOR(25, Category.ARMOR),
-    METAL_ARMOR(58, Category.ARMOR),
+    LEATHER_ARMOR(25, Category.WEAPON),
+    METAL_ARMOR(58, Category.WEAPON),
     MEAT(8, Category.FOOD),
     APPLE(8, Category.FOOD),
     CHEESE(8, Category.FOOD),
@@ -52,10 +52,13 @@ public enum Item {
         return category;
     }
 
+    public String getName() {
+        return this.toString().toLowerCase().replaceAll("_", " ");
+    }
+
     public enum Category {
         WEAPON,
         FOOD,
-        ARMOR,
         MATERIAL
     }
 }

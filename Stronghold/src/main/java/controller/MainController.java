@@ -35,7 +35,7 @@ public class MainController {
             return CommonMessages.NON_SMALL_PASSWORD;
         else if (Commands.getMatcher(password, Commands.PASSWORD_NUMBER) == null)
             return CommonMessages.NON_NUMBER_PASSWORD;
-        else if (Commands.getMatcher(password, Commands.PASSWORD_SPECIFIC) == null)
+        else if (Commands.getMatcher(password, Commands.PASSWORD_SPECIFIC_CHAR) == null)
             return CommonMessages.NON_SPECIFIC_PASSWORD;
         else return CommonMessages.OK;
     }

@@ -3,7 +3,9 @@ package model.buildings;
 import model.enums.Item;
 import model.Kingdom;
 import model.map.Cell;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
+
+import java.util.ArrayList;
 
 public class DairyProduce extends ProducerBuilding {
     private int numberOfAnimals;
@@ -18,19 +20,22 @@ public class DairyProduce extends ProducerBuilding {
     }
 
     public void produceLeather() {
-        getKingdom().changeStockNumber(new Pair<>(Item.LEATHER_ARMOR, 3));
         numberOfAnimals--;
     }
 
-    public void produceCheese() {
-        if (numberOfAnimals >= 3) getKingdom().changeStockNumber(new Pair<>(Item.CHEESE, 4));
-    }
-
-    public void useAnimal() {
-        numberOfAnimals--;
+    public Pair<Item, Integer> produceCheese() {
+        if (numberOfAnimals >= 3) return new Pair<>(Item.CHEESE, 4);
+        return null;
     }
 
     public void produceAnimal() {
         numberOfAnimals++;
+    }
+
+    @Override
+    public ArrayList<String> showDetails() {
+        ArrayList<String> output = super.showDetails();
+        output.add(String.format("number of cows: %d/3", numberOfAnimals));
+        return output;
     }
 }

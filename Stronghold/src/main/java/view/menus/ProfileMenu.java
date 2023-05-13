@@ -3,7 +3,7 @@ package view.menus;
 import controller.AppController;
 import controller.MainController;
 import controller.ProfileMenuController;
-import utils.enums.MenusName;
+import controller.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.ProfileMenuMessages;
 
@@ -44,6 +44,10 @@ public class ProfileMenu {
                 showAllOfProfile();
             else if (Commands.getMatcher(command, Commands.EXIT) != null)
                 enterMainMenu();
+            else if (Commands.getMatcher(command, Commands.SHOW_CURRENT_MENU) != null)
+                System.out.println("Profile menu");
+            else
+                System.out.println("Invalid command!");
         }
     }
 
@@ -110,6 +114,7 @@ public class ProfileMenu {
             case SUCCESS -> System.out.println("Your email has been successfully changed!");
             case NULL_FIELD -> System.out.println("Please enter your new email!");
             case INVALID_EMAIL_FORMAT -> System.out.println("Your email format is invalid!");
+            case DUPLICATE_EMAIL -> System.out.println("This has been used by another user!");
         }
     }
 
@@ -131,13 +136,13 @@ public class ProfileMenu {
     }
 
     private void showHighScore() {
-        String result = profileMenuController.showHighScore();
-        System.out.println(result);
+        int result = profileMenuController.showHighScore();
+        System.out.println("Your high score is: " + result);
     }
 
     private void showRank() {
-        String result = profileMenuController.showRank();
-        System.out.println(result);
+        int result = profileMenuController.showRank();
+        System.out.println("Your rank is: " + result);
     }
 
     private void showSlogan() {

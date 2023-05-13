@@ -2,7 +2,8 @@ package view.menus;
 
 import controller.AppController;
 import controller.CreateMapController;
-import utils.enums.MenusName;
+import controller.MainController;
+import controller.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.CreateMapMessages;
 
@@ -22,7 +23,7 @@ public class CreateMapMenu {
             input = GetInputFromUser.getUserInput();
             if ((matcher = Commands.getMatcher(input, Commands.CREATE_MAP)) != null) {
                 if (createMap(matcher)) break;
-            } else System.out.println("Invalid commands!");
+            } else System.out.println("\033[0;31mInvalid command!\033[0m");
         }
         while (AppController.getCurrentMenu().equals(MenusName.CREATE_MAP_MENU)) {
             input = GetInputFromUser.getUserInput();
@@ -38,7 +39,9 @@ public class CreateMapMenu {
             else if ((matcher = Commands.getMatcher(input, Commands.NEW_KINGDOM)) != null) newKingdom(matcher);
             else if ((matcher = Commands.getMatcher(input, Commands.CHANGE_KINGDOM)) != null)
                 setCurrentKingdom(matcher);
-            else System.out.println("Invalid command!");
+            else if (Commands.getMatcher(input, Commands.SHOW_CURRENT_MENU) != null)
+                System.out.println("Create map menu");
+            else System.out.println("\033[0;31mInvalid command!\033[0m");
         }
     }
 
@@ -49,8 +52,8 @@ public class CreateMapMenu {
     private void newKingdom(Matcher matcher) {
         int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
-        String texture = matcher.group("texture");
-        CreateMapMessages messages = createMapController.newKingdom(x, y, texture);
+        String color = matcher.group("color");
+        CreateMapMessages messages = createMapController.newKingdom(x, y, color);
         handleMessage(messages);
     }
 
@@ -65,7 +68,7 @@ public class CreateMapMenu {
     private void setTexture(Matcher matcher) {
         int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
-        String texture = matcher.group("texture");
+        String texture = MainController.removeDoubleQuotation(matcher.group("texture"));
         CreateMapMessages messages = createMapController.setTexture(x, y, texture);
         handleMessage(messages);
     }
@@ -75,7 +78,7 @@ public class CreateMapMenu {
         int y1 = Integer.parseInt(matcher.group("y1"));
         int x2 = Integer.parseInt(matcher.group("x2"));
         int y2 = Integer.parseInt(matcher.group("y2"));
-        String texture = matcher.group("texture");
+        String texture = MainController.removeDoubleQuotation(matcher.group("texture"));
         CreateMapMessages messages = createMapController.setTexture(x1, y1, x2, y2, texture);
         handleMessage(messages);
     }
@@ -98,7 +101,7 @@ public class CreateMapMenu {
     private void dropTree(Matcher matcher) {
         int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
-        String type = matcher.group("type");
+        String type = MainController.removeDoubleQuotation(matcher.group("type"));
         CreateMapMessages messages = createMapController.dropTree(x, y, type);
         handleMessage(messages);
     }
@@ -112,7 +115,7 @@ public class CreateMapMenu {
     private void dropBuilding(Matcher matcher) {
         int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
-        String type = matcher.group("type");
+        String type = MainController.removeDoubleQuotation(matcher.group("type"));
         CreateMapMessages messages = createMapController.dropBuilding(x, y, type);
         handleMessage(messages);
     }
@@ -120,7 +123,7 @@ public class CreateMapMenu {
     private void dropUnit(Matcher matcher) {
         int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
-        String type = matcher.group("type");
+        String type = MainController.removeDoubleQuotation(matcher.group("type"));
         int count = 1;
         if (matcher.group("count") != null) count = Integer.parseInt(matcher.group("count"));
         CreateMapMessages messages = createMapController.dropUnit(x, y, type, count);
@@ -141,6 +144,7 @@ public class CreateMapMenu {
             case INVALID_TYPE -> System.out.println("\033[0;31mInvalid Type!\033[0m");
             case CURRENT_KINGDOM_NULL -> System.out.println("\033[0;31mSet a kingdom first!\033[0m");
             case INVALID_COUNT -> System.out.println("\033[0;31mInvalid count!\033[0m");
+            case DONT_PLAY_WITH_TOWN_HALL -> System.out.println("\033[0;31mDon't play with townHall!\033[0m");
             case KINGDOM_EXIST -> System.out.println("\033[0;31mKingdom with this color allready exist!\033[0m");
             case SUCCESS -> System.out.println("\033[0;32mSuccess\033[0m");
         }

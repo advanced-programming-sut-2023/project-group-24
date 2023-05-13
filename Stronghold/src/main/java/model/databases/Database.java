@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import model.User;
 import model.map.Map;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,18 +18,18 @@ import java.util.Vector;
 
 public class Database {
     private static final String DIRECTORY_TO_SAVE_INFO = "info";
+    private static final String DIRECTORY_TO_SAVE_MAPS = DIRECTORY_TO_SAVE_INFO + "/maps";
     private static final String FILE_TO_SAVE_ALL_USERS = DIRECTORY_TO_SAVE_INFO + "/allUsers.json";
-    private static final String FILE_TO_SAVE_MAPS = DIRECTORY_TO_SAVE_INFO + "/maps.json";
     private static final String FILE_TO_SAVE_STAYED_LOGGED_IN_USER = DIRECTORY_TO_SAVE_INFO + "/loggedInUser.json";
 
     private Vector<User> allUsers;
-    private Vector<Map> maps;
     private User stayedLoggedInUser;
+    private Vector<Map> maps;
 
     public Database() {
         allUsers = new Vector<>();
-        maps = new Vector<>();
         stayedLoggedInUser = null;
+        maps = new Vector<>();
     }
 
     private static String fileToString(String filePath) throws FileNotFoundException {
@@ -46,9 +46,10 @@ public class Database {
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
-        try (FileWriter file = new FileWriter(filePath)) {
-            file.write(gson.toJson(object));
-            file.flush();
+        try {
+            FileWriter fileWriter = new FileWriter(filePath);
+            fileWriter.write(gson.toJson(object));
+            fileWriter.flush();
         } catch (IOException ignored) {
 
         }
@@ -77,14 +78,10 @@ public class Database {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
-        Type allUsersType = new TypeToken<Vector<User>>() {
-        }.getType();
-        Type mapsType = new TypeToken<Vector<Map>>() {
-        }.getType();
+        Type allUsersType = new TypeToken<Vector<User>>() {}.getType();
 
         try {
             allUsers = gson.fromJson(fileToString(FILE_TO_SAVE_ALL_USERS), allUsersType);
-            maps = gson.fromJson(fileToString(FILE_TO_SAVE_MAPS), mapsType);
             stayedLoggedInUser = gson.fromJson(fileToString(FILE_TO_SAVE_STAYED_LOGGED_IN_USER), User.class);
         } catch (FileNotFoundException ignored) {
             allUsers = new Vector<>();
@@ -96,14 +93,15 @@ public class Database {
     public void saveDataIntoFile() {
         checkForSavingDirectory();
         saveObjectToFile(FILE_TO_SAVE_ALL_USERS, allUsers);
-        saveObjectToFile(FILE_TO_SAVE_MAPS, maps);
         saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
     }
 
     private void checkForSavingDirectory() {
         File directory = new File(DIRECTORY_TO_SAVE_INFO);
-        if (!directory.exists()) {
+        File maps = new File(DIRECTORY_TO_SAVE_MAPS);
+        if (!maps.exists()) {
             directory.mkdirs();
+            maps.mkdirs();
         }
     }
 
@@ -122,13 +120,21 @@ public class Database {
     }
 
     public Map getMapById(String id) {
-        for (Map map : maps)
+        for (Map map : maps) {
             if (map.getId().equals(id))
                 return map;
+        }
         return null;
     }
 
     public void addMap(Map map) {
         maps.add(map);
+    }
+
+    public boolean mapIdExists(String id) {
+        for (Map map : maps) {
+            if (map.getId().equals(id)) return true;
+        }
+        return false;
     }
 }

@@ -3,7 +3,7 @@ package controller;
 import model.User;
 import model.databases.Database;
 import model.enums.Slogan;
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.RegisterMenuMessages;
 import view.menus.CaptchaMenu;
@@ -35,7 +35,7 @@ public class RegisterMenuController {
             if (passwordCheckMessage != RegisterMenuMessages.SUCCESS) return passwordCheckMessage;
         }
         for (User e : database.getAllUsers()) {
-            if (e.getEmail().equals(email)) return RegisterMenuMessages.DUPLICATE_EMAIL;
+            if (e.getEmail().equalsIgnoreCase(email)) return RegisterMenuMessages.DUPLICATE_EMAIL;
         }
         if (MainController.isEmailValid(email)) return RegisterMenuMessages.INVALID_EMAIL;
         return RegisterMenuMessages.SUCCESS;
@@ -44,21 +44,16 @@ public class RegisterMenuController {
     public RegisterMenuMessages checkPasswordErrors(String password, String passwordConfirmation) {
         CommonMessages passwordMessage = MainController.whatIsPasswordProblem(password);
         switch (passwordMessage) {
-            case SHORT_PASSWORD -> {
+            case SHORT_PASSWORD:
                 return RegisterMenuMessages.SHORT_PASSWORD;
-            }
-            case NON_CAPITAL_PASSWORD -> {
+            case NON_CAPITAL_PASSWORD:
                 return RegisterMenuMessages.NON_CAPITAL_PASSWORD;
-            }
-            case NON_SMALL_PASSWORD -> {
+            case NON_SMALL_PASSWORD:
                 return RegisterMenuMessages.NON_SMALL_PASSWORD;
-            }
-            case NON_NUMBER_PASSWORD -> {
+            case NON_NUMBER_PASSWORD:
                 return RegisterMenuMessages.NON_NUMBER_PASSWORD;
-            }
-            case NON_SPECIFIC_PASSWORD -> {
+            case NON_SPECIFIC_PASSWORD:
                 return RegisterMenuMessages.NON_SPECIFIC_PASSWORD;
-            }
         }
         if (!password.equals(passwordConfirmation)) return RegisterMenuMessages.INCORRECT_PASSWORD_CONFIRM;
         return RegisterMenuMessages.SUCCESS;
@@ -111,5 +106,21 @@ public class RegisterMenuController {
         database.addUser(username, passwordAsSHA, nickname, slogan, email, recovery);
         database.saveDataIntoFile();
         return RegisterMenuMessages.SUCCESS;
+    }
+
+    public String makeNewUsername(String username) {
+        StringBuilder newUsername = new StringBuilder(username);
+        int length = (int) (Math.random() * 2) + 1;
+        String[] usernameCharacters = new String[]{"0123456789", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                "abcdefghijklmnopqrstuvwxyz", "`~!@#$%^&*()_+=-*/><?{}[]|\\/:\\;\",."};
+        for (int i = 0; i < length; i++) {
+            int stringIndex = (int) (Math.random() * 4);
+            int characterIndex = (int) (Math.random() * usernameCharacters[stringIndex].length());
+            newUsername.append(usernameCharacters[stringIndex].charAt(characterIndex));
+        }
+        if (database.getUserByUsername(newUsername.toString()) != null)
+            return makeNewUsername(username);
+        else
+            return newUsername.toString();
     }
 }

@@ -13,8 +13,9 @@ public class CaptchaMenu {
             String asciiArt = captcha.getAsciiArt().getArtAsString();
             System.out.println(asciiArt);
             String userInput = GetInputFromUser.getUserInput();
-            if (Commands.getMatcher(userInput, Commands.CHANGE_CODE) == null)
-                return code.equals(userInput);
+            if (Commands.getMatcher(userInput, Commands.CHANGE_CODE) != null)
+                return runCaptcha();
+            return code.equals(userInput);
         }
     }
 }

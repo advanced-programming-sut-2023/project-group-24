@@ -3,7 +3,7 @@ package view.menus;
 import controller.AppController;
 import controller.LoginMenuController;
 import controller.MainController;
-import utils.enums.MenusName;
+import controller.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.LoginMenuMessages;
 
@@ -29,6 +29,8 @@ public class LoginMenu {
                 enterResetPasswordMenu();
             else if (Commands.getMatcher(command, Commands.ENTER_REGISTER_MENU) != null)
                 enterRegisterMenu();
+            else if (Commands.getMatcher(command, Commands.SHOW_CURRENT_MENU) != null)
+                System.out.println("Login menu");
             else
                 System.out.println("Invalid command!");
         }

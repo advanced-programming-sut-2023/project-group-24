@@ -3,7 +3,7 @@ package view.menus;
 import controller.AppController;
 import controller.MainController;
 import controller.RegisterMenuController;
-import utils.enums.MenusName;
+import controller.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.RegisterMenuMessages;
 
@@ -26,6 +26,8 @@ public class RegisterMenu {
                 checkRegisterErrors(matcher);
             else if (Commands.getMatcher(command, Commands.EXIT) != null)
                 enterLoginMenu();
+            else if (Commands.getMatcher(command, Commands.SHOW_CURRENT_MENU) != null)
+                System.out.println("Register menu");
             else System.out.println("Invalid command!");
         }
     }
@@ -66,7 +68,11 @@ public class RegisterMenu {
             case NULL_EMAIL -> System.out.println("Please enter your email!");
             case NULL_SLOGAN -> System.out.println("Please enter your slogan!");
             case INVALID_USERNAME -> System.out.println("Username format is invalid!");
-            case DUPLICATE_USERNAME -> System.out.println("Username is already used!");
+            case DUPLICATE_USERNAME -> {
+                System.out.println("Username is already used!");
+                String newUsername = registerMenuController.makeNewUsername(username);
+                System.out.println("Recommended username: " + newUsername);
+            }
             case SHORT_PASSWORD -> System.out.println("The new password is too short!");
             case NON_CAPITAL_PASSWORD -> System.out.println("The new password must contain uppercase characters!");
             case NON_SMALL_PASSWORD -> System.out.println("The new password must contain lowercase characters!");
@@ -109,20 +115,22 @@ public class RegisterMenu {
         String passwordConfirm = GetInputFromUser.getUserInput();
         RegisterMenuMessages message = registerMenuController.checkPasswordErrors(randomPassword, passwordConfirm);
         switch (message) {
-            case SUCCESS -> {
+            case SUCCESS:
                 return randomPassword;
-            }
-            case INCORRECT_PASSWORD_CONFIRM -> System.out.println("Your password conformation is not correct!");
+            case INCORRECT_PASSWORD_CONFIRM:
+                System.out.println("Your password conformation is not correct!");
+                break;
         }
         return null;
     }
 
     private String getRecoveryQuestion() {
-        System.out.println("""
-                Pick your security question:
-                1. What is my father's name?
-                2. What was my first pet's name?
-                3. What is my mother's last name?""");
+        System.out.println(
+                """
+                        Pick your security question:
+                        1. What is my father's name?
+                        2. What was my first pet's name?
+                        3. What is my mother's last name?""");
         Matcher matcher;
         while (true) {
             String command = GetInputFromUser.getUserInput();
@@ -134,11 +142,14 @@ public class RegisterMenu {
         String answerConfirm = MainController.removeDoubleQuotation(matcher.group("answerConfirm"));
         RegisterMenuMessages message = registerMenuController.checkErrorsForSecurityQuestion(recoveryQuestion, answer, answerConfirm);
         switch (message) {
-            case SUCCESS -> {
+            case SUCCESS:
                 return recoveryQuestion + answer;
-            }
-            case INCORRECT_ANSWER_CONFIRMATION -> System.out.println("Your answer confirmation is not correct!");
-            case INVALID_NUMBER -> System.out.println("Your number should between 1 and 3!");
+            case INCORRECT_ANSWER_CONFIRMATION:
+                System.out.println("Your answer confirmation is not correct!");
+                break;
+            case INVALID_NUMBER:
+                System.out.println("Your number should between 1 and 3!");
+                break;
         }
         return null;
     }

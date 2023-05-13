@@ -14,4 +14,12 @@ public class Soldier extends Army {
     public SoldierType getSoldierType() {
         return soldierType;
     }
+
+    public boolean visibility() {
+        for (Army army : getLocation().getArmies()) {
+            if (!army.getOwner().equals(getOwner()))
+                return true;
+        }
+        return false;
+    }
 }
