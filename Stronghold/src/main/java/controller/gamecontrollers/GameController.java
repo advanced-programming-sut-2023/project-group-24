@@ -117,6 +117,7 @@ public class GameController {
         for (Army army : currentKingdom.getArmies()) {
             if (army.getPath().size() == 0) continue;
             for (int i = 0; i < army.getArmyType().getSpeed(); i++) {
+                if (army.getPath().size() == 0) break;
                 if (!army.getPath().get(0).canMove(getDirection(army), army.getLocation(), getMovingType(army))) {
                     PathFinder pathFinder = new PathFinder(gameDatabase.getMap(),
                             new Pair<>(army.getLocation().getX(), army.getLocation().getY()), getMovingType(army));
@@ -170,7 +171,7 @@ public class GameController {
     }
 
     private void checkAndUseTrap(Cell cell) {
-        if (cell.getExistingBuilding().getBuildingType().equals(BuildingType.KILLING_PIT))
+        if (cell.getExistingBuilding() != null || cell.getExistingBuilding().getBuildingType().equals(BuildingType.KILLING_PIT))
             activeTrap(cell);
     }
 
