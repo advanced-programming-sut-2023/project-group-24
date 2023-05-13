@@ -2,13 +2,11 @@ package controller.gamecontrollers;
 
 import controller.functionalcontrollers.PathFinder;
 import model.Kingdom;
-import model.army.Army;
-import model.army.ArmyType;
-import model.army.Soldier;
-import model.army.UnitState;
+import model.army.*;
 import model.buildings.Building;
 import model.buildings.BuildingType;
 import model.buildings.GateAndStairs;
+import model.buildings.SiegeTent;
 import model.databases.GameDatabase;
 import model.enums.Direction;
 import model.enums.MovingType;
@@ -30,6 +28,7 @@ public class GameController {
         gameDatabase.setSelectedUnits(new ArrayList<>());
         gameDatabase.setCurrentBuilding(null);
         currentKingdom = gameDatabase.getCurrentKingdom();
+        makeWarMachines();
         checkStateOfUnits();
         moveUnits();
         war();
@@ -38,6 +37,23 @@ public class GameController {
         kingdomController.nextTurn();
         hasKingdomsFallen();
         giveLastPlayerScoreAndEndGame();
+    }
+
+    private void makeWarMachines() {
+        outer:
+        while (true){
+            for (Building building : currentKingdom.getBuildings()) {
+                if (building.getBuildingType().equals(BuildingType.SIEGE_TENT)) {
+                    WarMachineType warMachineType = ((SiegeTent) building).getProducingWarMachine();
+                    ArmyType armyType = ArmyType.stringToEnum(warMachineType.toString());
+                    new WarMachine(building.getLocation(), armyType, currentKingdom, warMachineType);
+                    currentKingdom.removeBuilding(building);
+                    building.getLocation().setExistingBuilding(null);
+                    continue outer;
+                }
+            }
+            break;
+        }
     }
 
     public boolean isGameDone() {

@@ -239,6 +239,7 @@ public class UnitController {
         tent.setProducingWarMachine(WarMachineType.stringToEnum(equipmentType));
         for (int i = 0; i < warMachineType.getEngineerNeeded(); i++) {
             gameDatabase.getCurrentKingdom().removeArmy(selectedUnits.get(0));
+            tent.getLocation().getArmies().remove(0);
             selectedUnits.remove(0);
         }
         return UnitControllerMessages.SUCCESS;

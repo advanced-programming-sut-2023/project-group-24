@@ -202,7 +202,7 @@ public class GameMenu {
     }
 
     private void setFoodRate(Matcher matcher) {
-        int foodRate = Integer.parseInt(matcher.group("RateNumber"));
+        int foodRate = Integer.parseInt(matcher.group("rateNumber"));
         BuildingControllerMessages message = buildingController.setFoodRate(foodRate, kingdomController);
         switch (message) {
             case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any building!");
