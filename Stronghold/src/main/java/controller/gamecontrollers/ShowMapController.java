@@ -54,11 +54,11 @@ public class ShowMapController {
     }
 
     private void checkIndex(int x, int y) {
-        if (x < width) currentMapX = width;
-        else if (x >= map[1].length - width) currentMapX = map.length - width - 1;
+        if (x < height) currentMapX = height;
+        else if (x >= map[1].length - height) currentMapX = map.length - height - 1;
         else currentMapX = x;
-        if (y < height) currentMapY = height;
-        else if (y >= map.length - height) currentMapY = map.length - height - 1;
+        if (y < width) currentMapY = width;
+        else if (y >= map.length - width) currentMapY = map.length - width - 1;
         else currentMapY = y;
     }
 

@@ -53,7 +53,7 @@ public class ShowMapMenu {
                 default -> changeY += number;
             }
         }
-        System.out.println(showMapController.moveMap(changeY, changeX));
+        System.out.println(showMapController.moveMap(changeX, changeY));
     }
 
     private void showDetails(Matcher matcher) {

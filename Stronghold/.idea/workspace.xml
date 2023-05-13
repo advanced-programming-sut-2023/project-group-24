@@ -4,17 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="some tests">
-      <change afterPath="$PROJECT_DIR$/src/test/java/view/menus/CreateMapMenuTest.java" afterDir="false" />
+    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="debug show map controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/allUsers.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/allUsers.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/loggedInUser.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/loggedInUser.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CreateMapController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/KingdomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/map/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShowMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/ShowMapController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/enums/commands/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/enums/commands/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/controller/RegisterMenuControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/RegisterMenuControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/KingdomControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/KingdomControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/UnitControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/UnitControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/view/menus/ProfileMenuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/view/menus/ProfileMenuTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShopMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShowMapMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/ShowMapMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/TradeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menus/gamemenus/TradeMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +73,10 @@
       <recent name="" />
       <recent name="model.buildings.BuildingTest" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="controller.functionalcontrollers" />
+      <recent name="controller" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="view.menus" />
       <recent name="controller.gamecontrollers" />
@@ -84,7 +90,14 @@
       <recent name="controller.gamecontrollers" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in Stronghold">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Stronghold" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in Stronghold" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <option name="PACKAGE_NAME" value="" />
@@ -123,21 +136,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShopMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="view.menus.gamemenus.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="view.menus.gamemenus" />
-      <option name="MAIN_CLASS_NAME" value="view.menus.gamemenus.ShopMenuTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="UnitControllerTest.attackWall" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
@@ -167,11 +165,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in Stronghold" />
         <item itemvalue="JUnit.UnitControllerTest.attackWall" />
         <item itemvalue="JUnit.ProfileMenuTest" />
         <item itemvalue="JUnit.GameMenuTest" />
-        <item itemvalue="JUnit.ShopMenuTest" />
       </list>
     </recent_temporary>
   </component>
@@ -420,7 +418,28 @@
       <option name="project" value="LOCAL" />
       <updated>1683949206383</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="update project">
+      <created>1683970396785</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1683970396785</updated>
+    </task>
+    <task id="LOCAL-00034" summary="debug command">
+      <created>1683971826007</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1683971826007</updated>
+    </task>
+    <task id="LOCAL-00035" summary="debug show map controller">
+      <created>1683971840325</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1683971840325</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,9 +469,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update game menu and unit controller" />
-    <MESSAGE value="add invalid command" />
-    <MESSAGE value="debug command and main menu" />
     <MESSAGE value="debug" />
     <MESSAGE value="debug unit controller" />
     <MESSAGE value="debug commands" />
@@ -475,7 +491,10 @@
     <MESSAGE value="pow" />
     <MESSAGE value="unit controller test" />
     <MESSAGE value="some tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="some tests" />
+    <MESSAGE value="update project" />
+    <MESSAGE value="debug command" />
+    <MESSAGE value="debug show map controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="debug show map controller" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Stronghold$WorkersNeededBuildingTest.ic" NAME="WorkersNeededBuildingTest Coverage Results" MODIFIED="1683881193357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -544,7 +563,7 @@
     <SUITE FILE_PATH="coverage/Stronghold$ShowMapMenuTest.ic" NAME="ShowMapMenuTest Coverage Results" MODIFIED="1683969800113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.menus.gamemenus.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$All_in_Stronghold.ic" NAME="All in Stronghold Coverage Results" MODIFIED="1683969974649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Stronghold$All_in_Stronghold.ic" NAME="All in Stronghold Coverage Results" MODIFIED="1683970249629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Stronghold$ProfileMenuTest.ic" NAME="ProfileMenuTest Coverage Results" MODIFIED="1683969965661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.menus.*</FILTER>
     </SUITE>

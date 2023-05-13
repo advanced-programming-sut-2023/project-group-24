@@ -61,7 +61,7 @@ public enum Commands {
     DROP_TREE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
             "^droptree( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
     DROP_BUILDING("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
-            "^dropbuilding( -[xyt] ((\"[^\"]*\")|(\\d*))){3}$"),
+            "^dropbuilding( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
     DROP_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
             "(?=.* -c (?<count>\\d*))^dropunit( -[xytc] ((\"[^\"]*\")|(\\S*))){4}$"),
     CHANGE_KINGDOM("^change kingdom -c (?<color>\\S*)$"),

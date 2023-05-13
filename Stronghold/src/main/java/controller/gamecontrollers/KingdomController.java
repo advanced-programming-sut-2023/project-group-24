@@ -1,5 +1,6 @@
 package controller.gamecontrollers;
 
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.People;
 import model.buildings.*;
@@ -7,7 +8,6 @@ import model.databases.GameDatabase;
 import model.enums.Item;
 import model.enums.PopularityFactor;
 import model.map.Cell;
-import controller.functionalcontrollers.Pair;
 
 import java.util.ArrayList;
 
@@ -219,7 +219,7 @@ public class KingdomController {
 
     public String showPopularityFactors() {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
-        return  "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) + '\n' +
+        return "fear: " + kingdom.getPopularityFactor(PopularityFactor.FEAR) + '\n' +
                 "food: " + kingdom.getPopularityFactor(PopularityFactor.FOOD) + '\n' +
                 "Inn: " + kingdom.getPopularityFactor(PopularityFactor.INN) + '\n' +
                 "tax: " + kingdom.getPopularityFactor(PopularityFactor.TAX) + '\n' +
@@ -317,7 +317,8 @@ public class KingdomController {
     public int freeSpace(Item item) {
         int freeSpace = 0;
         for (Building building : gameDatabase.getCurrentKingdom().getBuildings()) {
-            if (building.getBuildingType().getItemsItCanHold() == item.getCategory())
+            if (building.getBuildingType().getItemsItCanHold() == item.getCategory()
+                    && building.getBuildingType().getCategory() == BuildingType.Category.STORAGE)
                 freeSpace += building.getBuildingType().getStorageCapacity()
                         - ((StorageBuilding) building).getNumberOfItemsInStorage();
         }

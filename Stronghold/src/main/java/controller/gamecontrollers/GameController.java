@@ -1,5 +1,6 @@
 package controller.gamecontrollers;
 
+import controller.functionalcontrollers.Pair;
 import controller.functionalcontrollers.PathFinder;
 import model.Kingdom;
 import model.army.*;
@@ -12,7 +13,6 @@ import model.enums.Direction;
 import model.enums.MovingType;
 import model.map.Cell;
 import model.map.Texture;
-import controller.functionalcontrollers.Pair;
 
 import java.util.ArrayList;
 
@@ -41,7 +41,7 @@ public class GameController {
 
     private void makeWarMachines() {
         outer:
-        while (true){
+        while (true) {
             for (Building building : currentKingdom.getBuildings()) {
                 if (building.getBuildingType().equals(BuildingType.SIEGE_TENT)) {
                     WarMachineType warMachineType = ((SiegeTent) building).getProducingWarMachine();
@@ -121,6 +121,11 @@ public class GameController {
                     if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
                             && !((Soldier) army).visibility())
                         continue;
+                    PathFinder pathFinder = new PathFinder(gameDatabase.getMap(),
+                            new Pair<>(army.getLocation().getX(), army.getLocation().getY()), getMovingType(army));
+                    if (pathFinder.search(new Pair<>(army.getPath().get(army.getPath().size() - 1).getX(),
+                            army.getPath().get(army.getPath().size() - 1).getY())).equals(PathFinder.OutputState.NO_ERRORS))
+                        army.setPath(pathFinder.findPath());
                     army.setTarget(enemy);
                     return;
                 }
@@ -232,7 +237,8 @@ public class GameController {
     private void hasKingdomsFallen() {
         for (Kingdom kingdom : gameDatabase.getKingdoms()) {
             if (kingdom.getArmies().size() == 0 || kingdom.getBuildings().size() == 0) removeKingdom(kingdom);
-            if (!kingdom.getArmies().get(0).getArmyType().equals(ArmyType.LORD) ||
+            if (kingdom.getArmies().size() == 0 ||
+                    !kingdom.getArmies().get(0).getArmyType().equals(ArmyType.LORD) ||
                     !kingdom.getBuildings().get(0).getBuildingType().equals(BuildingType.TOWN_HALL))
                 removeKingdom(kingdom);
         }

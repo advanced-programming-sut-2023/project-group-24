@@ -22,5 +22,41 @@
     "slogan": "slogan2",
     "email": "email2",
     "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 2,
+      "object2": "81c70f139f2bd7cf07e53d55c5400e1e59304ecea93d7b8d21ff252bc61021b9"
+    },
+    "username": "aref",
+    "password": "548d8cf86e2d301f6e1f5dc621cba2e409e8e814ba35ca1feeff6b0b995d848f",
+    "nickname": "aref",
+    "slogan": "Password1@",
+    "email": "aref@gmail.com",
+    "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 2,
+      "object2": "ac0395bd07f1d1d17d89c421469247cc3f433b09be226a02a1f8e135f9a6fd5b"
+    },
+    "username": "omid",
+    "password": "548d8cf86e2d301f6e1f5dc621cba2e409e8e814ba35ca1feeff6b0b995d848f",
+    "nickname": "omid",
+    "slogan": "Password1@",
+    "email": "omid@gmail.com",
+    "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 2,
+      "object2": "d9ef5294fc8f32c4a3b2bcdbb05b9b1974e950a68a2d1794f02b1b8b6d400215"
+    },
+    "username": "pouria",
+    "password": "548d8cf86e2d301f6e1f5dc621cba2e409e8e814ba35ca1feeff6b0b995d848f",
+    "nickname": "pouria gh",
+    "slogan": "Password1@",
+    "email": "pouria@gmail.com",
+    "highScore": 0
   }
 ]

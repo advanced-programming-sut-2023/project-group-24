@@ -41,7 +41,7 @@ public class ShopMenu {
     }
 
     private void enterMainMenu() {
-        AppController.setCurrentMenu(MenusName.MAIN_MENU);
+        AppController.setCurrentMenu(MenusName.GAME_MENU);
     }
 
     private void showPriceList() {
@@ -68,7 +68,7 @@ public class ShopMenu {
         int itemAmount = Integer.parseInt(matcher.group("itemAmount"));
         ShopMenuMessages message = shopController.buyItem(itemName, itemAmount, kingdomController);
         switch (message) {
-            case FULL_STORAGE -> System.out.println("Your storage is full!");
+            case FULL_STORAGE -> System.out.println("Not enough space!");
             case SUCCESS -> System.out.println("The item successfully purchased!");
             case INVALID_AMOUNT -> System.out.println("You entered invalid amount!");
             case INVALID_NAME -> System.out.println("You entered invalid name!");

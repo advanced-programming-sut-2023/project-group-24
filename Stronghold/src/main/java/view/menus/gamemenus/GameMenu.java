@@ -2,11 +2,11 @@ package view.menus.gamemenus;
 
 import controller.AppController;
 import controller.MainController;
+import controller.MenusName;
 import controller.gamecontrollers.BuildingController;
 import controller.gamecontrollers.GameController;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.UnitController;
-import controller.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.BuildingControllerMessages;
 import view.enums.messages.UnitControllerMessages;
@@ -163,8 +163,7 @@ public class GameMenu {
         if (gameController.isGameDone()) {
             System.out.println("User " + gameController.getWinner() + " win the game!");
             AppController.setCurrentMenu(MenusName.MAIN_MENU);
-        }
-        else
+        } else
             System.out.println("It's " + gameController.getCurrentUser() + " turn now!");
     }
 
@@ -264,10 +263,7 @@ public class GameMenu {
             case NO_BUILDINGS -> System.out.println("There is no building to select!");
             case NOT_OWNER -> System.out.println("You are not the owner of this building!");
             case SUCCESS -> System.out.println("The building was successfully selected!");
-            case MARKET -> {
-                System.out.println("You are in shop menu!");
-                shopMenu();
-            }
+            case MARKET -> shopMenu();
         }
     }
 

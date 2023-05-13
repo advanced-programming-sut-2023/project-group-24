@@ -36,9 +36,15 @@ public class TradeMenu {
                 acceptTrade(matcher);
             else if (Commands.getMatcher(command, Commands.TRADE_HISTORY) != null)
                 tradeHistory();
+            else if (Commands.getMatcher(command, Commands.EXIT) != null)
+                exit();
             else
                 System.out.println("Invalid command!");
         }
+    }
+
+    private void exit() {
+        AppController.setCurrentMenu(MenusName.GAME_MENU);
     }
 
     private void printNotifications(String[] notifications) {
@@ -55,12 +61,8 @@ public class TradeMenu {
 
         TradeControllerMessages errorMessage = tradeController.addTrade(resourceType, resourceAmount, price, message);
         switch (errorMessage) {
-            case INVALID_RESOURCE_NAME:
-                System.out.println(Color.RED + "this item doesn't exist" + Color.RESET);
-                break;
-            case SUCCESS:
-                System.out.println(Color.GREEN + "successfully added your trade request" + Color.RESET);
-                break;
+            case INVALID_RESOURCE_NAME -> System.out.println(Color.RED + "this item doesn't exist" + Color.RESET);
+            case SUCCESS -> System.out.println(Color.GREEN + "successfully added your trade request" + Color.RESET);
         }
     }
 
@@ -76,12 +78,8 @@ public class TradeMenu {
         String acceptingMessage = MainController.removeDoubleQuotation(matcher.group("message"));
         TradeControllerMessages message = tradeController.tradeAccept(id, acceptingMessage, kingdomController);
         switch (message) {
-            case ID_OUT_OF_BOUNDS:
-                System.out.println(Color.RED + "trade with this id doesn't exist" + Color.RESET);
-                break;
-            case SUCCESS:
-                System.out.println(Color.GREEN + "trade was done successfully" + Color.RESET);
-                break;
+            case ID_OUT_OF_BOUNDS -> System.out.println(Color.RED + "trade with this id doesn't exist" + Color.RESET);
+            case SUCCESS -> System.out.println(Color.GREEN + "trade was done successfully" + Color.RESET);
         }
     }
 

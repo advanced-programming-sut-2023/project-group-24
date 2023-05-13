@@ -99,30 +99,22 @@ public class CreateMapController {
     }
 
     private Direction getDirection(String direction) {
-        switch (direction) {
-            case "n":
-                return Direction.UP;
-            case "e":
-                return Direction.RIGHT;
-            case "w":
-                return Direction.LEFT;
-            default:
-                return Direction.DOWN;
-        }
+        return switch (direction) {
+            case "n" -> Direction.UP;
+            case "e" -> Direction.RIGHT;
+            case "w" -> Direction.LEFT;
+            default -> Direction.DOWN;
+        };
     }
 
     private String randomDirection() {
         int direct = (int) (Math.random() * 4);
-        switch (direct) {
-            case 0:
-                return "n";
-            case 1:
-                return "e";
-            case 2:
-                return "w";
-            default:
-                return "s";
-        }
+        return switch (direct) {
+            case 0 -> "n";
+            case 1 -> "e";
+            case 2 -> "w";
+            default -> "s";
+        };
     }
 
     public CreateMapMessages dropTree(int x, int y, String type) {
@@ -168,8 +160,8 @@ public class CreateMapController {
     private void createKingdom(Cell townHallLocation, Cell stockPileLocation, KingdomColor kingdomColor) {
         Kingdom kingdom = new Kingdom(kingdomColor);
         map.addKingdom(kingdom);
-        new Building(kingdom, townHallLocation, BuildingType.TOWN_HALL);
-        new Building(kingdom, stockPileLocation, BuildingType.STOCKPILE);
+        Building.getBuildingFromBuildingType(kingdom, townHallLocation, BuildingType.TOWN_HALL);
+        Building.getBuildingFromBuildingType(kingdom, stockPileLocation, BuildingType.STOCKPILE);
         new Soldier(townHallLocation, ArmyType.LORD, kingdom, SoldierType.LORD);
     }
 
