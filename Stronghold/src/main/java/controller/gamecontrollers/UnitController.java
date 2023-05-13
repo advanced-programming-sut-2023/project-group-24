@@ -1,5 +1,6 @@
 package controller.gamecontrollers;
 
+import controller.functionalcontrollers.Pair;
 import controller.functionalcontrollers.PathFinder;
 import model.People;
 import model.army.*;
@@ -12,11 +13,9 @@ import model.enums.Direction;
 import model.enums.MovingType;
 import model.map.Cell;
 import model.map.Map;
-import controller.functionalcontrollers.Pair;
 import view.enums.messages.UnitControllerMessages;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class UnitController {
     private final GameDatabase gameDatabase;
@@ -428,17 +427,14 @@ public class UnitController {
         Building building = gameDatabase.getMap().getMap()[x][y].getExistingBuilding();
         if (building == null || building.getKingdom().equals(gameDatabase.getCurrentKingdom()))
             return UnitControllerMessages.NULL_SELECTED_BUILDING;
-        for (Army e : selectedArmies) if (isOutOfRange(x, y, e)) return UnitControllerMessages.OUT_OF_RANGE;
-        for (Army e : selectedArmies) {
-            if (getDistance(x, y) > 1) {
-                ArrayList<Army> oneArmy = new ArrayList<>(List.of(e));
-                PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), new Pair<>(x, y), getMovingType(oneArmy));
-                if (!pathFinder.search(new Pair<>(x, y)).equals(PathFinder.OutputState.NO_ERRORS))
-                    return UnitControllerMessages.BLOCK;
-                e.setPath(pathFinder.findPath());
-            }
+        for (Army e : selectedArmies)
+            if (e.getArmyType().getRange() > 0 && isOutOfRange(x, y, e))
+                return UnitControllerMessages.OUT_OF_RANGE;
+        for (Army e : selectedArmies)
+            if (e.getArmyType().getRange() == 0 && getDistance(x, y) > 1)
+                return UnitControllerMessages.CANNOT_ATTACK;
+        for (Army e : selectedArmies)
             e.setTargetBuilding(building);
-        }
         return UnitControllerMessages.SUCCESS;
     }
 

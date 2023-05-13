@@ -81,6 +81,8 @@ public class GameController {
         for (Army army : currentKingdom.getArmies()) {
             if (army.getTarget() == null)
                 checkOtherTargets(army);
+            if (army.getTarget() == null)
+                continue;
             if (army.getTarget().getHp() < 0)
                 setTarget(army);
             if (army.getTarget() == null)
@@ -163,9 +165,10 @@ public class GameController {
         return x < 0 || x >= gameDatabase.getMap().getSize() ||
                 y < 0 || y >= gameDatabase.getMap().getSize();
     }
+
     private void setArcherTarget(Army army) {
         Cell cell = army.getLocation();
-        int radius = army.getArmyType().getRange() - 1;
+        int radius = army.getArmyType().getRange() - 1 + army.getLocation().getExistingBuilding().getBuildingType().getAttackPoint();
         int cellX = cell.getX();
         int cellY = cell.getY();
         Map map = gameDatabase.getMap();
@@ -178,8 +181,11 @@ public class GameController {
                                     && !((Soldier) army).visibility())
                                 continue;
                             army.setTarget(enemy);
-                            return;
+                            if (army.canAttack())
+                                return;
                         }
+        if (!army.canAttack())
+            army.setTarget(null);
     }
 
     private Cell getNeighbor(Army army, int i, int radius) {
@@ -286,12 +292,20 @@ public class GameController {
     }
 
     private void hasKingdomsFallen() {
-        for (Kingdom kingdom : gameDatabase.getKingdoms()) {
-            if (kingdom.getArmies().size() == 0 || kingdom.getBuildings().size() == 0) removeKingdom(kingdom);
-            if (kingdom.getArmies().size() == 0 ||
-                    !kingdom.getArmies().get(0).getArmyType().equals(ArmyType.LORD) ||
-                    !kingdom.getBuildings().get(0).getBuildingType().equals(BuildingType.TOWN_HALL))
-                removeKingdom(kingdom);
+        out:
+        while (true) {
+            for (Kingdom kingdom : gameDatabase.getKingdoms()) {
+                if (kingdom.getArmies().size() == 0 || kingdom.getBuildings().size() == 0) {
+                    removeKingdom(kingdom);
+                    continue out;
+                }
+                if (!kingdom.getArmies().get(0).getArmyType().equals(ArmyType.LORD) ||
+                        !kingdom.getBuildings().get(0).getBuildingType().equals(BuildingType.TOWN_HALL)) {
+                    removeKingdom(kingdom);
+                    continue out;
+                }
+            }
+            break;
         }
     }
 

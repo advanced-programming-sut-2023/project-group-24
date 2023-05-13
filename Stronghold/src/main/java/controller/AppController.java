@@ -30,6 +30,7 @@ public class AppController {
 
     public static void setCurrentMenu(MenusName currentMenu) {
         AppController.currentMenu = currentMenu;
+        database.saveDataIntoFile();
     }
 
     public static User getLoggedInUser() {

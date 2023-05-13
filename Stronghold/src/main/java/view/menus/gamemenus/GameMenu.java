@@ -149,6 +149,7 @@ public class GameMenu {
         int y = Integer.parseInt(matcher.group("y"));
         UnitControllerMessages message = unitController.attackBuilding(x, y);
         switch (message) {
+            case CANNOT_ATTACK -> System.out.println("Building is far from you, Please go near that!");
             case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
             case NULL_SELECTED_BUILDING -> System.out.println("There is no building in that location!");
             case INVALID_LOCATION -> System.out.println("You entered invalid location!");

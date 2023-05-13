@@ -6,5 +6,6 @@ public enum TradeControllerMessages {
     INVALID_AMOUNT,
     NOT_ENOUGH_RESOURCES,
     TRADE_IS_YOURS,
+    NOT_ENOUGH_GOLD,
     SUCCESS
 }

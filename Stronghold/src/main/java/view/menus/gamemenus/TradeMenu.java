@@ -78,8 +78,10 @@ public class TradeMenu {
         String acceptingMessage = MainController.removeDoubleQuotation(matcher.group("message"));
         TradeControllerMessages message = tradeController.tradeAccept(id, acceptingMessage, kingdomController);
         switch (message) {
-            case ID_OUT_OF_BOUNDS -> System.out.println(Color.RED + "trade with this id doesn't exist" + Color.RESET);
-            case SUCCESS -> System.out.println(Color.GREEN + "trade was done successfully" + Color.RESET);
+            case ID_OUT_OF_BOUNDS -> System.out.println(Color.RED + "Trade with this id doesn't exist!" + Color.RESET);
+            case SUCCESS -> System.out.println(Color.GREEN + "Trade was done successfully!" + Color.RESET);
+            case NOT_ENOUGH_GOLD -> System.out.println(Color.RED + "The requester doesn't have enough gold!"
+                    + Color.RESET);
         }
     }
 

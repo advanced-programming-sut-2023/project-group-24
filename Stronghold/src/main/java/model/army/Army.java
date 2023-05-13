@@ -124,6 +124,14 @@ public abstract class Army {
     }
 
     public boolean canAttack() {
+        if (armyType.getRange() > 0) {
+            int fireRange = 0;
+            if (location.getExistingBuilding() != null)
+                fireRange = location.getExistingBuilding().getBuildingType().getAttackPoint();
+            if (target.location.getExistingBuilding() != null)
+                fireRange -= target.location.getExistingBuilding().getBuildingType().getAttackPoint();
+            return getDistance() >= armyType.getRange() + fireRange;
+        }
         return getDistance() <= armyType.getRange();
     }
 
@@ -132,6 +140,6 @@ public abstract class Army {
         int y = location.getY();
         int x1 = target.location.getX();
         int y1 = target.location.getY();
-        return (int) (Math.sqrt((x - x1) ^ 2 + (y - y1) ^ 2));
+        return (int) (Math.sqrt(Math.pow((x - x1), 2) + Math.pow((y - y1), 2)));
     }
 }

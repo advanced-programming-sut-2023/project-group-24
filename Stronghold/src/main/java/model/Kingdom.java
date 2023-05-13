@@ -42,7 +42,7 @@ public class Kingdom {
         gold = 1000;
         foodRate = 0;
         taxRate = 0;
-        fearRate = 0;
+        fearRate = 1;
         populationCapacity = 8;
         buildings = new ArrayList<>();
         trades = new ArrayList<>();
@@ -217,10 +217,6 @@ public class Kingdom {
 
     public ArrayList<Trade> getNotifications() {
         return notifications;
-    }
-
-    public void setNotifications(ArrayList<Trade> notifications) {
-        this.notifications = notifications;
     }
 
     public void setPopulationCapacity() {
