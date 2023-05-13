@@ -1,38 +1,26 @@
 [
   {
     "recovery": {
-      "object1": 2,
-      "object2": "d9ef5294fc8f32c4a3b2bcdbb05b9b1974e950a68a2d1794f02b1b8b6d400215"
+      "object1": 1,
+      "object2": "recoveryAnswer1"
     },
-    "username": "aref",
-    "password": "92b8d75deef26cc8d00b22e2306a507cba3c343928ece69d6d9c387fc5a202ec",
-    "nickname": "omid1",
-    "slogan": "I\u0027m not in DANGER , I am the DANGER",
-    "email": "Omid1@gmail.com",
+    "username": "username1",
+    "password": "password1",
+    "nickname": "nickname1",
+    "slogan": "slogan1",
+    "email": "email1",
     "highScore": 0
   },
   {
     "recovery": {
       "object1": 2,
-      "object2": "d9ef5294fc8f32c4a3b2bcdbb05b9b1974e950a68a2d1794f02b1b8b6d400215"
+      "object2": "recoveryAnswer2"
     },
-    "username": "pouria",
-    "password": "92b8d75deef26cc8d00b22e2306a507cba3c343928ece69d6d9c387fc5a202ec",
-    "nickname": "omid1",
-    "slogan": "I fight for peace",
-    "email": "Omid11@gmail.com",
-    "highScore": 0
-  },
-  {
-    "recovery": {
-      "object1": 2,
-      "object2": "d9ef5294fc8f32c4a3b2bcdbb05b9b1974e950a68a2d1794f02b1b8b6d400215"
-    },
-    "username": "omid",
-    "password": "92b8d75deef26cc8d00b22e2306a507cba3c343928ece69d6d9c387fc5a202ec",
-    "nickname": "omid1",
-    "slogan": "U play the game, I live in the game",
-    "email": "Omidcsac11@gmail.com",
+    "username": "username2",
+    "password": "password2",
+    "nickname": "nickname2",
+    "slogan": "slogan2",
+    "email": "email2",
     "highScore": 0
   }
 ]

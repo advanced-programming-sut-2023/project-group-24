@@ -31,14 +31,17 @@ class PathFinderTest {
     private final int width = 5;// real width = 2 * height + 1
     private final Database database = new Database();
     private final CreateMapController createMapController = new CreateMapController(database);
-    private final Map mapMap = database.getMapById("mapForTesting");
-    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(new Kingdom(KingdomColor.RED))), mapMap);
-    private final Cell[][] map = mapMap.getMap();
+    private final Map mapMap;
+    private final GameDatabase gameDatabase;
+    private final Cell[][] map;
     private int currentMapX;
     private int currentMapY;
 
     {
         createMapController.createMap(200, "mapForTesting");
+        mapMap = database.getMapById("mapForTesting");
+        map = mapMap.getMap();
+        gameDatabase = new GameDatabase(new ArrayList<>(List.of(new Kingdom(KingdomColor.RED))), mapMap);
     }
 
     @Test
@@ -114,10 +117,6 @@ class PathFinderTest {
             outputMap.append(boarder);
         }
         return outputMap.toString();
-    }
-
-    public boolean checkInvalidIndex(int x, int y) {
-        return x > map.length || y > map.length;
     }
 
     private void checkIndex(int x, int y) {

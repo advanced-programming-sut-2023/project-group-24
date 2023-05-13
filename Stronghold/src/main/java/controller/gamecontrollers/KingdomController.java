@@ -3,6 +3,7 @@ package controller.gamecontrollers;
 import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.People;
+import model.Trade;
 import model.buildings.*;
 import model.databases.GameDatabase;
 import model.enums.Item;
@@ -33,6 +34,7 @@ public class KingdomController {
         handlePopulation(kingdom);
         handleWorkers(kingdom, buildings);
         handleHorse();
+        handleTrade();
     }
 
     private void handleFood(Kingdom kingdom) {
@@ -77,6 +79,15 @@ public class KingdomController {
         for (Building building : gameDatabase.getCurrentKingdom().getBuildings()) {
             if (building instanceof Stable && ((Stable) building).getNumberOfHorses() < 4)
                 ((Stable) building).produceHorse();
+        }
+    }
+
+    private void handleTrade() {
+        for (Trade trade : gameDatabase.getCurrentKingdom().getTrades()) {
+            if (trade.getRequester().equals(gameDatabase.getCurrentKingdom()) && trade.canBeGotten()) {
+                changeStockedNumber(new Pair<>(trade.getResourceType(), trade.getResourceAmount()));
+                trade.acquireItems();
+            }
         }
     }
 

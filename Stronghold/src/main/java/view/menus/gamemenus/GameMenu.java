@@ -267,6 +267,7 @@ public class GameMenu {
             case INVALID_TYPE -> System.out.println("You entered invalid type of building!");
             case CANNOT_BUILD_HERE -> System.out.println("You can not drop building here!");
             case NOT_ENOUGH_MATERIAL -> System.out.println("You don't have enough material to build this building!");
+            case IRRELEVANT_BUILDING -> System.out.println("You cannot build the building!");
             case NOT_ENOUGH_GOLD -> System.out.println("You don't have enough gold to build this building!");
             case SUCCESS -> System.out.println("The building was successfully built!");
         }
@@ -281,6 +282,7 @@ public class GameMenu {
             case NO_BUILDINGS -> System.out.println("There is no building to select!");
             case NOT_OWNER -> System.out.println("You are not the owner of this building!");
             case SUCCESS -> System.out.println("The building was successfully selected!");
+            case IRRELEVANT_BUILDING -> System.out.println("You cannot select a moat");
             case MARKET -> shopMenu();
         }
     }
@@ -295,6 +297,7 @@ public class GameMenu {
             case INCORRECT_COUNT -> System.out.println("You entered invalid count!");
             case INVALID_TYPE -> System.out.println("Unit with this type does not exist!");
             case NOT_ENOUGH_MATERIAL -> System.out.println("You don't have enough weapons to create this unit!");
+            case NOT_ENOUGH_PEOPLE -> System.out.println("Your kingdom does not have unemployed people");
             case SUCCESS -> System.out.println("The units were successfully created!");
         }
     }
@@ -315,6 +318,7 @@ public class GameMenu {
         BuildingControllerMessages message = buildingController.changeGateClosedState();
         switch (message) {
             case SUCCESS -> System.out.println("Success!");
+            case ENEMY_IS_NEARBY -> System.out.println("Enemy is nearby!");
             case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any buildings!");
             case IRRELEVANT_BUILDING -> System.out.println("You didn't select a gate!");
         }
@@ -341,6 +345,7 @@ public class GameMenu {
             case SUCCESS -> System.out.println("Successful!");
             case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any buildings!");
             case IRRELEVANT_BUILDING -> System.out.println("You didn't select dairy farm!");
+            case NOT_ENOUGH_SPACE -> System.out.println("Not enough space for the leather armor");
             case NOT_ENOUGH_COWS -> System.out.println("You don't have enough cow to produce leather!");
         }
     }

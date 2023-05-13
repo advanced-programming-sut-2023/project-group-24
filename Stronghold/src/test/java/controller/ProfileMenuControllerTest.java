@@ -10,12 +10,13 @@ import view.enums.messages.ProfileMenuMessages;
 class ProfileMenuControllerTest {
     private final Database database = new Database();
     private final User user;
-    private final ProfileMenuController profileMenuController = new ProfileMenuController(database);
+    private final ProfileMenuController profileMenuController;
 
     {
         database.addUser("username", MainController.getSHA256("password"), "nickname", "slogan", "email", new Pair<>(1, "answer"));
         user = database.getUserByUsername("username");
         AppController.setLoggedInUser(user);
+        profileMenuController = new ProfileMenuController(database);
     }
 
     @Test
