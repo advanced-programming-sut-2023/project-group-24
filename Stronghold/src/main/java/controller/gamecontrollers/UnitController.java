@@ -59,8 +59,12 @@ public class UnitController {
                 return UnitControllerMessages.ALREADY_IN_DESTINATION;
         }
         ArrayList<Cell> path = pathFinder.findPath();
-        for (Army e : gameDatabase.getSelectedUnits())
+        for (Army e : gameDatabase.getSelectedUnits()) {
+            e.setTargetBuilding(null);
+            e.setTarget(null);
+            e.setTargetCell(null);
             e.setPath(path);
+        }
         return UnitControllerMessages.SUCCESS;
     }
 
@@ -90,8 +94,12 @@ public class UnitController {
         Cell startLocation = selectedUnits.get(0).getLocation();
         Cell destination = gameDatabase.getMap().getMap()[x][y];
         Pair<Cell, Cell> patrolWay = new Pair<>(startLocation, destination);
-        for (Army e : gameDatabase.getSelectedUnits())
+        for (Army e : gameDatabase.getSelectedUnits()) {
+            e.setTargetBuilding(null);
+            e.setTarget(null);
+            e.setTargetCell(null);
             e.setPatrol(patrolWay);
+        }
         return UnitControllerMessages.SUCCESS;
     }
 
@@ -103,6 +111,9 @@ public class UnitController {
             if (e.getPatrol() != null) {
                 isPatrolling = true;
                 e.setPatrol(null);
+                e.setTargetBuilding(null);
+                e.setTarget(null);
+                e.setTargetCell(null);
             }
         }
         if (!isPatrolling) return UnitControllerMessages.NOT_PATROL;
@@ -115,6 +126,9 @@ public class UnitController {
         if (state == null) return UnitControllerMessages.INVALID_STATE;
         for (Army e : gameDatabase.getSelectedUnits()) {
             e.changeState(state);
+            e.setTargetBuilding(null);
+            e.setTarget(null);
+            e.setTargetCell(null);
         }
         return UnitControllerMessages.SUCCESS;
     }
@@ -134,6 +148,9 @@ public class UnitController {
         boolean isEnemy = false;
         for (Army e : enemies)
             if (!e.getOwner().equals(gameDatabase.getCurrentKingdom())) {
+                if (e.getArmyType().equals(ArmyType.ASSASSIN) && !e.getOwner().equals(gameDatabase.getCurrentKingdom())
+                        && !((Soldier) e).visibility())
+                    continue;
                 isEnemy = true;
                 break;
             }
@@ -143,6 +160,9 @@ public class UnitController {
         boolean outOfRange = true;
         int distance = getDistance(enemyX, enemyY);
         for (Army e : enemies) {
+            if (e.getArmyType().equals(ArmyType.ASSASSIN) && !e.getOwner().equals(gameDatabase.getCurrentKingdom())
+                    && !((Soldier) e).visibility())
+                continue;
             if (!e.getOwner().equals(gameDatabase.getCurrentKingdom())) {
                 int range = e.getLocation().getExistingBuilding().getBuildingType().getAttackPoint() -
                         enemyCell.getExistingBuilding().getBuildingType().getAttackPoint();
@@ -151,8 +171,12 @@ public class UnitController {
                 isEnemyExist = true;
                 UnitControllerMessages moveMessage = moveUnit(enemyX, enemyY);
                 if (!moveMessage.equals(UnitControllerMessages.SUCCESS)) return moveMessage;
-                for (Army f : selectedUnits)
+                for (Army f : selectedUnits) {
+                    f.setTargetBuilding(null);
+                    f.setTarget(null);
+                    f.setTargetCell(null);
                     f.setTarget(e);
+                }
                 break;
             }
         }
@@ -175,6 +199,9 @@ public class UnitController {
                 isArcherExist = true;
                 if (distance <= e.getArmyType().getRange() + range) {
                     canArcherAttack = true;
+                    e.setTargetBuilding(null);
+                    e.setTarget(null);
+                    e.setTargetCell(null);
                     e.setTargetCell(targetCell);
                 }
             }
