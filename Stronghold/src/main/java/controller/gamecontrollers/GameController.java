@@ -12,6 +12,7 @@ import model.databases.GameDatabase;
 import model.enums.Direction;
 import model.enums.MovingType;
 import model.map.Cell;
+import model.map.Map;
 import model.map.Texture;
 
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class GameController {
     private void war() {
         for (Army army : currentKingdom.getArmies()) {
             if (army.getTarget() == null)
-                continue;
+                checkOtherTargets(army);
             if (army.getTarget().getHp() < 0)
                 setTarget(army);
             if (army.getTarget() == null)
@@ -87,6 +88,27 @@ public class GameController {
             if (army.canAttack())
                 army.getTarget().takeDamage((int) (army.getArmyType().getDamage() * army.getOwner().getFearRate()));
         }
+    }
+
+    private void checkOtherTargets(Army army) {
+        if (army.getTargetCell() != null) {
+            for (Army enemy : army.getTargetCell().getArmies()) {
+                if (!enemy.getOwner().equals(army.getOwner())) {
+                    enemy.takeDamage((int) (army.getArmyType().getDamage() * army.getOwner().getFearRate()));
+                    return;
+                }
+            }
+        } else if (army.getTargetBuilding() != null) {
+            Building building = army.getTargetBuilding();
+            if (checkNeighbor(army, army.getTargetBuilding()))
+                building.takeDamage((int) (army.getArmyType().getDamage() * army.getOwner().getFearRate()));
+        }
+    }
+
+    private boolean checkNeighbor(Army army, Building building) {
+        int changeX = army.getLocation().getX() - building.getLocation().getX();
+        int changeY = army.getLocation().getY() - building.getLocation().getY();
+        return changeX < 2 && changeY < 2 && changeY > -2 && changeX > -2;
     }
 
 
@@ -97,6 +119,12 @@ public class GameController {
     }
 
     private void setTarget(Army army) {
+        if (army instanceof WarMachine)
+            return;
+        if (army.getArmyType().getRange() > 0) {
+            setArcherTarget(army);
+            return;
+        }
         for (Army enemy : army.getLocation().getArmies())
             if (!enemy.getOwner().equals(army.getOwner())) {
                 army.setTarget(enemy);
@@ -129,6 +157,29 @@ public class GameController {
                     army.setTarget(enemy);
                     return;
                 }
+    }
+
+    private boolean checkXY(int x, int y) {
+        return x < 0 || x >= gameDatabase.getMap().getSize() ||
+                y < 0 || y >= gameDatabase.getMap().getSize();
+    }
+    private void setArcherTarget(Army army) {
+        Cell cell = army.getLocation();
+        int radius = army.getArmyType().getRange() - 1;
+        int cellX = cell.getX();
+        int cellY = cell.getY();
+        Map map = gameDatabase.getMap();
+        for (int y = -1 * radius; y < 2 * radius; y++)
+            for (int x = -1 * radius; x < 2 * radius; x++)
+                if (!checkXY(cellX + x, cellY + y))
+                    for (Army enemy : map.getMap()[cellX + x][cellY + y].getArmies())
+                        if (!enemy.getOwner().equals(army.getOwner())) {
+                            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                                    && !((Soldier) army).visibility())
+                                continue;
+                            army.setTarget(enemy);
+                            return;
+                        }
     }
 
     private Cell getNeighbor(Army army, int i, int radius) {
