@@ -36,13 +36,13 @@ public class ShowMapController {
         checkIndex(x, y);
         StringBuilder outputMap = new StringBuilder();
         String boarder = "\n|" + "-".repeat(65) + "|\n";
-        for (int i = currentMapY - height; i <= currentMapY + height; i++) {
+        for (int i = currentMapX - height; i <= currentMapX + height; i++) {
             outputMap.append('|');
-            for (int j = currentMapX - width; j <= currentMapX + width; j++)
+            for (int j = currentMapY - width; j <= currentMapY + width; j++)
                 outputMap.append(FirstLine(i, j)).append('|');
             outputMap.append("\n");
             outputMap.append('|');
-            for (int j = currentMapX - width; j <= currentMapX + width; j++)
+            for (int j = currentMapY - width; j <= currentMapY + width; j++)
                 outputMap.append(SecondLine(i, j)).append('|');
             outputMap.append(boarder);
         }
