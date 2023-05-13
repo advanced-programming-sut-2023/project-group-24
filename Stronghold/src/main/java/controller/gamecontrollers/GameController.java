@@ -90,6 +90,9 @@ public class GameController {
         for (int i = 0; i < 4; i++)
             for (Army enemy : getNeighbor(army, i, UnitState.DEFENSIVE.getFireRange()).getArmies())
                 if (!enemy.getOwner().equals(army.getOwner())) {
+                    if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                            && !((Soldier) army).visibility())
+                        continue;
                     army.setTarget(enemy);
                     return;
                 }
@@ -98,6 +101,9 @@ public class GameController {
         for (int i = 0; i < 8; i++)
             for (Army enemy : getNeighbor(army, i, UnitState.OFFENSIVE.getFireRange()).getArmies())
                 if (!enemy.getOwner().equals(army.getOwner())) {
+                    if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                            && !((Soldier) army).visibility())
+                        continue;
                     army.setTarget(enemy);
                     return;
                 }

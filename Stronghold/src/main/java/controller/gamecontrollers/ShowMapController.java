@@ -4,6 +4,7 @@ import controller.AppController;
 import model.Kingdom;
 import model.army.Army;
 import model.army.ArmyType;
+import model.army.Soldier;
 import model.buildings.Building;
 import model.buildings.BuildingType;
 import model.buildings.DefenceBuilding;
@@ -71,22 +72,30 @@ public class ShowMapController {
         else if (building instanceof DefenceBuilding || building.getBuildingType().getName().contains("tower") ||
                 building.getBuildingType().getName().contains("turret")) buildingIcon = 'W';
         char troop = ' ';
-        for (Army army : cell.getArmies())
-            if (army.getPath() .size() == 0) {
+        for (Army army : cell.getArmies()) {
+            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                    && !((Soldier) army).visibility())
+                continue;
+            if (army.getPath().size() == 0) {
                 troop = 'S';
                 break;
             }
+        }
         return cell.getTexture().getColor().toString() + " " + buildingIcon + ' ' + troop + ' ' + Color.RESET;
     }
 
     private String FirstLine(int i, int j) {
         Cell cell = map[i][j];
         char movingTroop = ' ';
-        for (Army army : cell.getArmies())
+        for (Army army : cell.getArmies()) {
+            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                    && !((Soldier) army).visibility())
+                continue;
             if (army.getPath().size() > 0) {
                 movingTroop = 'M';
                 break;
             }
+        }
         char tree = ' ';
         if (cell.getTree() != null) tree = 'T';
         return cell.getTexture().getColor().toString() + " " + movingTroop + ' ' + tree + " " + Color.RESET;
@@ -113,6 +122,9 @@ public class ShowMapController {
         StringBuilder outputArmy = new StringBuilder();
         HashMap<ArmyType, Integer> armyCount = new HashMap<>();
         for (Army army : armies) {
+            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                    && !((Soldier) army).visibility())
+                continue;
             ArmyType armyType = army.getArmyType();
             if (armyCount.containsKey(armyType)) armyCount.replace(armyType, armyCount.get(armyType) + 1);
             else armyCount.put(armyType, 1);

@@ -30,6 +30,7 @@ public abstract class Army {
         target = null;
         location.addArmy(this);
         owner.addArmy(this);
+        unitState = UnitState.STANDING;
     }
 
     public void isDead() {

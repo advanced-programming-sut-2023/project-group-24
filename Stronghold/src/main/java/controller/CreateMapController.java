@@ -40,7 +40,8 @@ public class CreateMapController {
         if (texture1 == null)
             return CreateMapMessages.INVALID_TEXTURE;
         Cell cell = map.getMap()[x][y];
-        if (cell.getExistingBuilding().getBuildingType().equals(BuildingType.TOWN_HALL))
+        if (cell.getExistingBuilding() != null && cell.getExistingBuilding().getBuildingType().
+                equals(BuildingType.TOWN_HALL))
             return CreateMapMessages.INVALID_LOCATION;
         cell.changeTexture(texture1);
         checkChangeTexture(texture1.isCanBuild(), texture1.isCanPass(), map.getMap()[x][y]);
@@ -77,7 +78,7 @@ public class CreateMapController {
         if (x >= map.getSize() || y >= map.getSize() || x < 0 || y < 0)
             return CreateMapMessages.INVALID_LOCATION;
         Cell cell = map.getMap()[x][y];
-        if (cell.getExistingBuilding().getBuildingType().equals(BuildingType.TOWN_HALL))
+        if (cell.getExistingBuilding() != null && cell.getExistingBuilding().getBuildingType().equals(BuildingType.TOWN_HALL))
             return CreateMapMessages.DONT_PLAY_WITH_TOWN_HALL;
         cell.clear(map);
         return CreateMapMessages.SUCCESS;
@@ -225,8 +226,8 @@ public class CreateMapController {
         int y = cell.getY();
 
         Building building1 = null, building2 = null, building3 = null, building4 = null;
-        if (x != 0) building1 = map.getMap()[x][y - 1].getExistingBuilding();
-        if (y != 0) building2 = map.getMap()[x - 1][y].getExistingBuilding();
+        if (y != 0) building1 = map.getMap()[x][y - 1].getExistingBuilding();
+        if (x != 0) building2 = map.getMap()[x - 1][y].getExistingBuilding();
         if (x != map.getSize() - 1) building3 = map.getMap()[x + 1][y].getExistingBuilding();
         if (y != map.getSize() - 1) building4 = map.getMap()[x][y + 1].getExistingBuilding();
 
