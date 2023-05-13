@@ -152,7 +152,9 @@ public class GameMenu {
             case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
             case NULL_SELECTED_BUILDING -> System.out.println("There is no building in that location!");
             case INVALID_LOCATION -> System.out.println("You entered invalid location!");
-            case SUCCESS -> System.out.println("Your unit have this building as target!");
+            case OUT_OF_RANGE -> System.out.println("The building is out of range!");
+            case SUCCESS -> System.out.println("Your unit have this building as a target!");
+            case BLOCK -> System.out.println("You can not target that building!");
         }
     }
 

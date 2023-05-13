@@ -394,13 +394,29 @@ public class UnitController {
     }
 
     public UnitControllerMessages attackBuilding(int x, int y) {
+        ArrayList<Army> selectedArmies = gameDatabase.getSelectedUnits();
         if (checkXY(x, y)) return UnitControllerMessages.INVALID_LOCATION;
-        if (gameDatabase.getSelectedUnits().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
+        if (selectedArmies.size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         Building building = gameDatabase.getMap().getMap()[x][y].getExistingBuilding();
         if (building == null || building.getKingdom().equals(gameDatabase.getCurrentKingdom()))
             return UnitControllerMessages.NULL_SELECTED_BUILDING;
-        for (Army e : gameDatabase.getSelectedUnits())
+        for (Army e : selectedArmies) {
+            if (e.getArmyType().getRange() > 0 &&
+                    e.getArmyType().getRange() + e.getLocation().getExistingBuilding().getBuildingType().getHeight()
+                            < getDistance(x, y)) return UnitControllerMessages.OUT_OF_RANGE;
+        }
+        for (Army e : selectedArmies) {
+            if (getDistance(x, y) > 1)
+            {
+                ArrayList<Army> oneArmy = new ArrayList<>();
+                oneArmy.add(e);
+                PathFinder pathFinder = new PathFinder(gameDatabase.getMap(), new Pair<>(x, y), getMovingType(oneArmy));
+                if (!pathFinder.search(new Pair<>(x, y)).equals(PathFinder.OutputState.NO_ERRORS))
+                    return UnitControllerMessages.BLOCK;
+                e.setPath(pathFinder.findPath());
+            }
             e.setTargetBuilding(building);
+        }
         return UnitControllerMessages.SUCCESS;
     }
 
