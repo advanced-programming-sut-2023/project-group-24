@@ -46,10 +46,6 @@ public class Cell {
         this.existingBuilding = existingBuilding;
     }
 
-    public boolean isRock() {
-        return isRock;
-    }
-
     public void setRock(boolean rock) {
         isRock = rock;
     }
@@ -131,60 +127,60 @@ public class Cell {
 
     public boolean canMove(Direction direction, Cell startPoint, MovingType movingType) {
         int lastHeight = 0, nextHeight = 0;
-        if (startPoint.existingBuilding != null)
-            lastHeight = startPoint.existingBuilding.getBuildingType().getHeight();
-        if (existingBuilding != null)
-            nextHeight = existingBuilding.getBuildingType().getHeight();
-        if (!handleTunneller() || nextHeight == -1)
+        if (startPoint.existingBuilding != null) lastHeight = startPoint.existingBuilding.getBuildingType().getHeight();
+        if (existingBuilding != null) nextHeight = existingBuilding.getBuildingType().getHeight();
+        if (!(tree == null && !isRock && texture.isCanPass()) || nextHeight == -1) return false;
+        if (nextHeight == lastHeight || movingType.equals(MovingType.ASSASSIN)) return true;
+        if ((existingBuilding != null && existingBuilding.getBuildingType().equals(BuildingType.STAIR)) || (startPoint.
+                existingBuilding != null && startPoint.existingBuilding.getBuildingType().equals(BuildingType.STAIR)) ||
+                checkGate() || checkGate(startPoint)) return true;
+        if (movingType.equals(MovingType.CAN_NOT_CLIMB_LADDER))
             return false;
-        if (movingType.equals(MovingType.TUNNELLER))
-            return true;
-        if (!(tree == null && !isRock && texture.isCanPass()))
-            return false;
-        if (nextHeight == lastHeight)
-            return true;
-        if (movingType.equals(MovingType.ASSASSIN))
-            return true;
-        if (handleClimber(startPoint, direction))
-            return false;
-        return handleLadder(direction, movingType, startPoint);
+        return handleClimber(startPoint, direction);
     }
 
-    private boolean handleLadder(Direction direction, MovingType movingType, Cell startPoint) {// need to be refactored!
-        Building building = startPoint.existingBuilding;
-        if (building != null && building.getBuildingType().equals(BuildingType.STAIR) ||
-                existingBuilding.getBuildingType().equals(BuildingType.STAIR))
-            return true;
-        else if (movingType.equals(MovingType.CAN_NOT_CLIMB_LADDER))
-            return true;
-        if (existingBuilding instanceof DefenceBuilding)
-            if (((DefenceBuilding) existingBuilding).hasLadderState(direction))
-                return true;
-        if (startPoint.existingBuilding == null)
+    private boolean checkGate() {
+        if (existingBuilding == null)
             return false;
-        if (startPoint.existingBuilding instanceof DefenceBuilding)
-            return ((DefenceBuilding) startPoint.existingBuilding).hasLadderState(direction);
+        BuildingType type = existingBuilding.getBuildingType();
+        if (type.equals(BuildingType.SMALL_STONE_GATEHOUSE) || type.equals(BuildingType.LARGE_STONE_GATEHOUSE))
+            return !((GateAndStairs) existingBuilding).isClosed();
         return false;
+    }
+
+    private boolean checkGate(Cell cell) {
+        if (cell.existingBuilding == null)
+            return false;
+        BuildingType type = cell.existingBuilding.getBuildingType();
+        return type.equals(BuildingType.SMALL_STONE_GATEHOUSE) || type.equals(BuildingType.LARGE_STONE_GATEHOUSE);
     }
 
     private boolean handleClimber(Cell startPoint, Direction direction) {
-        BuildingType type = existingBuilding.getBuildingType();
-        if (type.equals(BuildingType.SMALL_STONE_GATEHOUSE) || type.equals(BuildingType.LARGE_STONE_GATEHOUSE)) {
-            if (((GateAndStairs) startPoint.existingBuilding).isClosed())
-                return true;
-        }
+        return checkLadder(startPoint, direction) || checkLadder(direction);
+    }
+
+    private boolean checkLadder(Cell cell, Direction direction) {
+        if (cell.existingBuilding == null)
+            return false;
+        if (cell.existingBuilding instanceof DefenceBuilding)
+            return ((DefenceBuilding) cell.existingBuilding).hasLadderState(backWardDirection(direction));
         return false;
     }
 
-    private boolean handleTunneller() {
-        switch (this.texture) {
-            case SEA:
-            case RIVER:
-            case POND_BIG:
-            case POND_SMALL:
-                return false;
-            default:
-                return true;
+    private boolean checkLadder(Direction direction) {
+        if (existingBuilding == null)
+            return false;
+        if (existingBuilding instanceof DefenceBuilding)
+            return ((DefenceBuilding) existingBuilding).hasLadderState(direction);
+        return false;
+    }
+
+    private Direction backWardDirection(Direction direction) {
+        switch (direction) {
+            case DOWN : return Direction.UP;
+            case RIGHT: return Direction.LEFT;
+            case LEFT: return Direction.RIGHT;
+            default: return Direction.DOWN;
         }
     }
 
