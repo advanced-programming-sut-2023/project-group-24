@@ -53,7 +53,7 @@ public class Kingdom {
         popularityFactors.put(PopularityFactor.FEAR, 0);
         popularityFactors.put(PopularityFactor.FOOD, 0);
         popularityFactors.put(PopularityFactor.RELIGION, 0);
-        popularityFactors.put(PopularityFactor.TAX, 0);
+        popularityFactors.put(PopularityFactor.TAX, 1);
         popularityFactors.put(PopularityFactor.INN, 0);
         popularityFactors.put(PopularityFactor.HOMELESS, 0);
         setStorage();

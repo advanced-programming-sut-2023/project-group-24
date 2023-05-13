@@ -144,6 +144,7 @@ public class CreateMapMenu {
             case INVALID_TYPE -> System.out.println("\033[0;31mInvalid Type!\033[0m");
             case CURRENT_KINGDOM_NULL -> System.out.println("\033[0;31mSet a kingdom first!\033[0m");
             case INVALID_COUNT -> System.out.println("\033[0;31mInvalid count!\033[0m");
+            case DONT_PLAY_WITH_TOWN_HALL -> System.out.println("\033[0;31mDon't play with townHall!\033[0m");
             case KINGDOM_EXIST -> System.out.println("\033[0;31mKingdom with this color allready exist!\033[0m");
             case SUCCESS -> System.out.println("\033[0;32mSuccess\033[0m");
         }

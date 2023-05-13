@@ -4,6 +4,7 @@ import controller.AppController;
 import model.Kingdom;
 import model.army.Army;
 import model.army.ArmyType;
+import model.army.Soldier;
 import model.buildings.Building;
 import model.buildings.BuildingType;
 import model.buildings.DefenceBuilding;
@@ -35,13 +36,13 @@ public class ShowMapController {
         checkIndex(x, y);
         StringBuilder outputMap = new StringBuilder();
         String boarder = "\n|" + "-".repeat(65) + "|\n";
-        for (int j = currentMapY - height; j <= currentMapY + height; j++) {
+        for (int i = currentMapY - height; i <= currentMapY + height; i++) {
             outputMap.append('|');
-            for (int i = currentMapX - width; i <= currentMapX + width; i++)
+            for (int j = currentMapX - width; j <= currentMapX + width; j++)
                 outputMap.append(FirstLine(i, j)).append('|');
             outputMap.append("\n");
             outputMap.append('|');
-            for (int i = currentMapX - width; i <= currentMapX + width; i++)
+            for (int j = currentMapX - width; j <= currentMapX + width; j++)
                 outputMap.append(SecondLine(i, j)).append('|');
             outputMap.append(boarder);
         }
@@ -71,29 +72,37 @@ public class ShowMapController {
         else if (building instanceof DefenceBuilding || building.getBuildingType().getName().contains("tower") ||
                 building.getBuildingType().getName().contains("turret")) buildingIcon = 'W';
         char troop = ' ';
-        for (Army army : cell.getArmies())
-            if (army.getPath() .size() == 0) {
+        for (Army army : cell.getArmies()) {
+            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                    && !((Soldier) army).visibility())
+                continue;
+            if (army.getPath().size() == 0) {
                 troop = 'S';
                 break;
             }
+        }
         return cell.getTexture().getColor().toString() + " " + buildingIcon + ' ' + troop + ' ' + Color.RESET;
     }
 
     private String FirstLine(int i, int j) {
         Cell cell = map[i][j];
         char movingTroop = ' ';
-        for (Army army : cell.getArmies())
+        for (Army army : cell.getArmies()) {
+            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                    && !((Soldier) army).visibility())
+                continue;
             if (army.getPath().size() > 0) {
                 movingTroop = 'M';
                 break;
             }
+        }
         char tree = ' ';
         if (cell.getTree() != null) tree = 'T';
         return cell.getTexture().getColor().toString() + " " + movingTroop + ' ' + tree + " " + Color.RESET;
     }
 
     public String moveMap(int changeY, int changeX) {
-        return showMap(currentMapX + changeX, currentMapY + changeY);
+        return showMap(currentMapX + changeY, currentMapY + changeX);
     }
 
     public String showDetails(int x, int y) {
@@ -113,6 +122,9 @@ public class ShowMapController {
         StringBuilder outputArmy = new StringBuilder();
         HashMap<ArmyType, Integer> armyCount = new HashMap<>();
         for (Army army : armies) {
+            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                    && !((Soldier) army).visibility())
+                continue;
             ArmyType armyType = army.getArmyType();
             if (armyCount.containsKey(armyType)) armyCount.replace(armyType, armyCount.get(armyType) + 1);
             else armyCount.put(armyType, 1);
