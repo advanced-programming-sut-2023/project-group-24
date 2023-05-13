@@ -14,21 +14,20 @@ import view.enums.messages.UnitControllerMessages;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class UnitControllerTest {
     private final Map map = new Map(10, "test");
     private final Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
     private final Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
     private final Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
+    private final UnitController unitController = new UnitController(gameDatabase);
+    private final KingdomController kingdomController = new KingdomController(gameDatabase);
+
     {
         map.addKingdom(kingdom1);
         map.addKingdom(kingdom2);
         map.addKingdom(kingdom3);
     }
-    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private final UnitController unitController = new UnitController(gameDatabase);
-    private final KingdomController kingdomController = new KingdomController(gameDatabase);
 
     @Test
     void selectUnit() {

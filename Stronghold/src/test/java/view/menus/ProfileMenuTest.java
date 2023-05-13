@@ -1,7 +1,9 @@
 package view.menus;
 
 import controller.AppController;
+import controller.MenusName;
 import controller.ProfileMenuController;
+import controller.functionalcontrollers.Pair;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.TradeController;
 import model.Kingdom;
@@ -13,8 +15,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import controller.functionalcontrollers.Pair;
-import controller.MenusName;
 import view.menus.gamemenus.TradeMenu;
 
 import java.io.ByteArrayInputStream;
@@ -26,32 +26,33 @@ import java.util.NoSuchElementException;
 
 
 class ProfileMenuTest {
-    private Map map = new Map(10, "test");
-    private Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
-    private Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
-    private Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final Database database = new Database();
+    private final ProfileMenuController profileMenuController = new ProfileMenuController(database);
+    private final ProfileMenu profileMenu = new ProfileMenu(profileMenuController);
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+    private final PrintStream originalErr = System.err;
+    private final Map map = new Map(10, "test");
+    private final Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
+    private final Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
+    private final Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
+    private final TradeController tradeController = new TradeController(gameDatabase);
+    private final KingdomController kingdomController = new KingdomController(gameDatabase);
+    private final TradeMenu tradeMenu = new TradeMenu(tradeController, kingdomController);
+
     {
         map.addKingdom(kingdom1);
         map.addKingdom(kingdom2);
         map.addKingdom(kingdom3);
     }
-    private GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private TradeController tradeController = new TradeController(gameDatabase);
-    private KingdomController kingdomController = new KingdomController(gameDatabase);
-    private TradeMenu tradeMenu = new TradeMenu(tradeController, kingdomController);
-    private final Database database = new Database();
+
     {
         database.addUser("username", "pass", "nick", "s", "e", new Pair<>(1, "h"));
         AppController.setLoggedInUser(database.getUserByUsername("username"));
         AppController.setCurrentMenu(MenusName.PROFILE_MENU);
     }
-    private final ProfileMenuController profileMenuController = new ProfileMenuController(database);
-    private final ProfileMenu profileMenu = new ProfileMenu(profileMenuController);
-
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-    private final PrintStream originalErr = System.err;
 
     @BeforeEach
     void setUpStreams() {
@@ -82,8 +83,7 @@ class ProfileMenuTest {
         Assertions.assertDoesNotThrow(() -> {
             try {
                 profileMenu.run();
-            }
-            catch (NoSuchElementException ignored) {
+            } catch (NoSuchElementException ignored) {
 
             }
         });

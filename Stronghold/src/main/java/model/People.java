@@ -3,16 +3,10 @@ package model;
 import model.buildings.Building;
 
 public class People {
-    private final Kingdom owner;
     private Building workStation;
 
-    public People(Kingdom owner) {
-        this.owner = owner;
+    public People() {
         workStation = null;
-    }
-
-    public Kingdom getOwner() {
-        return owner;
     }
 
     public Building getWorkStation() {

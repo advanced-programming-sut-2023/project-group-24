@@ -153,7 +153,8 @@ public class GameController {
             if (getNeighbor(army, i, UnitState.DEFENSIVE.getFireRange()) != null)
                 for (Army enemy : getNeighbor(army, i, UnitState.DEFENSIVE.getFireRange()).getArmies())
                     if (!enemy.getOwner().equals(army.getOwner())) {
-                        if (army.getArmyType().equals(ArmyType.ASSASSIN) && !army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                        if (army.getArmyType().equals(ArmyType.ASSASSIN) &&
+                                !army.getOwner().equals(gameDatabase.getCurrentKingdom())
                                 && !((Soldier) army).visibility())
                             continue;
                         army.setTarget(enemy);
@@ -164,7 +165,8 @@ public class GameController {
         for (int i = 0; i < 8; i++)
             for (Army enemy : getNeighbor(army, i, UnitState.OFFENSIVE.getFireRange()).getArmies())
                 if (!enemy.getOwner().equals(army.getOwner())) {
-                    if (army.getArmyType().equals(ArmyType.ASSASSIN) && !army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                    if (army.getArmyType().equals(ArmyType.ASSASSIN) &&
+                            !army.getOwner().equals(gameDatabase.getCurrentKingdom())
                             && !((Soldier) army).visibility())
                         continue;
                     PathFinder pathFinder = new PathFinder(gameDatabase.getMap(),
@@ -195,7 +197,8 @@ public class GameController {
                 if (!checkXY(cellX + x, cellY + y))
                     for (Army enemy : map.getMap()[cellX + x][cellY + y].getArmies())
                         if (!enemy.getOwner().equals(army.getOwner())) {
-                            if (army.getArmyType().equals(ArmyType.ASSASSIN) && !army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                            if (army.getArmyType().equals(ArmyType.ASSASSIN) &&
+                                    !army.getOwner().equals(gameDatabase.getCurrentKingdom())
                                     && !((Soldier) army).visibility())
                                 continue;
                             army.setTarget(enemy);
@@ -310,7 +313,8 @@ public class GameController {
     }
 
     private void checkAndUseTrap(Cell cell) {
-        if (cell.getExistingBuilding() != null && cell.getExistingBuilding().getBuildingType().equals(BuildingType.KILLING_PIT))
+        if (cell.getExistingBuilding() != null &&
+                cell.getExistingBuilding().getBuildingType().equals(BuildingType.KILLING_PIT))
             activeTrap(cell);
     }
 

@@ -3,12 +3,12 @@ package model;
 import model.enums.Item;
 
 public class Trade {
-    private Item resourceType;
-    private int resourceAmount;
-    private int price;
-    private String requesterMessage;
+    private final Item resourceType;
+    private final int resourceAmount;
+    private final int price;
+    private final String requesterMessage;
     private String acceptingMessage;
-    private Kingdom requester;
+    private final Kingdom requester;
     private Kingdom acceptingKingdom;
     private boolean canBeGotten;
 
@@ -69,11 +69,11 @@ public class Trade {
     public String toString() {
         if (acceptingKingdom == null) return String.format("O %6s - %15s - %3d - price: %4d - \"%s\"",
                 getRequester().getColor().toString().toLowerCase(),
-                resourceType.toString().replaceAll("_", " ").toLowerCase(),
+                resourceType.getName(),
                 resourceAmount, price, requesterMessage);
         return String.format("X %6s - %15s - %3d - price: %4d - \"%s\" - accepted by %6s: \"%s\"",
                 requester.getColor().toString().toLowerCase(),
-                resourceType.toString().replaceAll("_", " ").toLowerCase(),
+                resourceType.getName(),
                 resourceAmount, price, requesterMessage,
                 acceptingKingdom.getColor().toString().toLowerCase(), acceptingMessage);
     }

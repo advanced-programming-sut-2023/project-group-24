@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class BuildingTypeTest {
-    private BuildingType buildingType = BuildingType.TOWN_HALL;
+    private final BuildingType buildingType = BuildingType.TOWN_HALL;
 
     @Test
     void getBuildingTypeFromName() {

@@ -13,12 +13,12 @@ public class SiegeTent extends EngineersNeededBuilding {
         super(kingdom, location, buildingType);
     }
 
-    public void setProducingWarMachine(WarMachineType producingWarMachine) {
-        this.producingWarMachine = producingWarMachine;
-    }
-
     public WarMachineType getProducingWarMachine() {
         return producingWarMachine;
+    }
+
+    public void setProducingWarMachine(WarMachineType producingWarMachine) {
+        this.producingWarMachine = producingWarMachine;
     }
 
     @Override

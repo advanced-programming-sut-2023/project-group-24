@@ -1,9 +1,9 @@
 package controller;
 
+import controller.functionalcontrollers.Pair;
 import model.databases.Database;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import controller.functionalcontrollers.Pair;
 import view.enums.messages.LoginMenuMessages;
 
 class LoginMenuControllerTest {

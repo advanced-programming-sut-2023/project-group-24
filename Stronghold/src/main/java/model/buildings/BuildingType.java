@@ -1,9 +1,9 @@
 package model.buildings;
 
-import model.enums.Item;
-import model.army.Type;
-import model.map.Texture;
 import controller.functionalcontrollers.Pair;
+import model.army.Type;
+import model.enums.Item;
+import model.map.Texture;
 
 import java.util.List;
 import java.util.Vector;
@@ -65,7 +65,7 @@ public enum BuildingType {
             1, 0, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
             false, false, null, EngineersNeededBuilding.class),
-    PITCH_DITCH("pitch ditch", Category.TRAP, new Pair<>(Item.PITCH, -1), 0, 1,//todo remove (prob)
+    PITCH_DITCH("pitch ditch", Category.TRAP, new Pair<>(Item.PITCH, -1), 0, 1,
             0, 0, 0, 0, 225, 0, 0,
             null, null, 0, null, null, null,
             false, false, null, Building.class),

@@ -2,12 +2,12 @@ package view.menus;
 
 import controller.AppController;
 import controller.CreateMapController;
+import controller.MenusName;
 import model.databases.Database;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import controller.MenusName;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -15,17 +15,17 @@ import java.io.PrintStream;
 import java.util.NoSuchElementException;
 
 class CreateMapMenuTest {
-    private Database database = new Database();
-    private CreateMapController createMapController = new CreateMapController(database);
-    {
-        createMapController.createMap(200, "mapForTesting");
-    }
-    private CreateMapMenu createMapMenu = new CreateMapMenu(createMapController);
-
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
+    private final Database database = new Database();
+    private final CreateMapController createMapController = new CreateMapController(database);
+    private final CreateMapMenu createMapMenu = new CreateMapMenu(createMapController);
+
+    {
+        createMapController.createMap(200, "mapForTesting");
+    }
 
     @BeforeEach
     void setUpStreams() {
@@ -58,8 +58,7 @@ class CreateMapMenuTest {
         Assertions.assertDoesNotThrow(() -> {
             try {
                 createMapMenu.run();
-            }
-            catch (NoSuchElementException ignored) {
+            } catch (NoSuchElementException ignored) {
 
             }
         });

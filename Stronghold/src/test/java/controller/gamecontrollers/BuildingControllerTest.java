@@ -1,5 +1,6 @@
 package controller.gamecontrollers;
 
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.People;
 import model.army.ArmyType;
@@ -14,7 +15,6 @@ import model.map.Map;
 import model.map.Texture;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import controller.functionalcontrollers.Pair;
 import view.enums.messages.BuildingControllerMessages;
 
 import java.util.ArrayList;
@@ -26,14 +26,15 @@ class BuildingControllerTest {
     private final Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
     private final Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
     private final Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
+    private final BuildingController buildingController = new BuildingController(gameDatabase);
+    private final KingdomController kingdomController = new KingdomController(gameDatabase);
+
     {
         map.addKingdom(kingdom1);
         map.addKingdom(kingdom2);
         map.addKingdom(kingdom3);
     }
-    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private final BuildingController buildingController = new BuildingController(gameDatabase);
-    private final KingdomController kingdomController = new KingdomController(gameDatabase);
 
     @Test
     void dropBuilding() {
@@ -90,18 +91,18 @@ class BuildingControllerTest {
         Assertions.assertEquals(buildingController.createUnit("archer", 1, kingdomController), BuildingControllerMessages.NOT_ENOUGH_MATERIAL);
         kingdomController.changeStockedNumber(new Pair<>(Item.BOW, 10));
         Assertions.assertEquals(buildingController.createUnit("archer", 1, kingdomController), BuildingControllerMessages.NOT_ENOUGH_PEOPLE);
-        kingdom1.addPeople(new People(kingdom1));
-        kingdom1.addPeople(new People(kingdom1));
-        kingdom1.addPeople(new People(kingdom1));
-        kingdom1.addPeople(new People(kingdom1));
+        kingdom1.addPeople(new People());
+        kingdom1.addPeople(new People());
+        kingdom1.addPeople(new People());
+        kingdom1.addPeople(new People());
         Assertions.assertEquals(buildingController.createUnit("archer", 1, kingdomController), BuildingControllerMessages.SUCCESS);
         Assertions.assertEquals(buildingController.createUnit("archer", 3, kingdomController), BuildingControllerMessages.SUCCESS);
         Assertions.assertEquals(buildingController.createUnit("archer", 1, kingdomController), BuildingControllerMessages.NOT_ENOUGH_PEOPLE);
         Assertions.assertEquals(buildingController.selectBuilding(2, 3), BuildingControllerMessages.SUCCESS);
-        kingdom1.addPeople(new People(kingdom1));
-        kingdom1.addPeople(new People(kingdom1));
-        kingdom1.addPeople(new People(kingdom1));
-        kingdom1.addPeople(new People(kingdom1));
+        kingdom1.addPeople(new People());
+        kingdom1.addPeople(new People());
+        kingdom1.addPeople(new People());
+        kingdom1.addPeople(new People());
         Assertions.assertEquals(buildingController.createUnit("archer", 1, kingdomController), BuildingControllerMessages.IRRELEVANT_BUILDING);
         Assertions.assertEquals(map.getMap()[2][2].getArmies().size(), 4);
         Assertions.assertEquals(buildingController.createUnit("chert", 1, kingdomController), BuildingControllerMessages.INVALID_TYPE);
@@ -177,15 +178,14 @@ class BuildingControllerTest {
         Assertions.assertEquals(buildingController.selectBuilding(2, 4), BuildingControllerMessages.SUCCESS);
         Assertions.assertEquals(buildingController.openDogCage(), BuildingControllerMessages.SUCCESS);
         int currentArmyCount = kingdom1.getArmies().size();
-        Assertions.assertEquals(currentArmyCount - oldArmyCount , 3);
-        Assertions.assertEquals(map.getMap()[2][4].getArmies().get(map.getMap()[2][4].getArmies().size() - 1).getArmyType() , ArmyType.DOG);
+        Assertions.assertEquals(currentArmyCount - oldArmyCount, 3);
+        Assertions.assertEquals(map.getMap()[2][4].getArmies().get(map.getMap()[2][4].getArmies().size() - 1).getArmyType(), ArmyType.DOG);
         Assertions.assertEquals(buildingController.openDogCage(), BuildingControllerMessages.NO_BUILDINGS_SELECTED);
         Assertions.assertEquals(buildingController.selectBuilding(2, 4), BuildingControllerMessages.NO_BUILDINGS);
     }
 
     @Test
     void showDetails() {
-        //TODO maybe fill out this one more thoroughly later? I'll just do one real quick
         kingdomController.changeStockedNumber(new Pair<>(Item.WOOD, 200));
         kingdomController.changeStockedNumber(new Pair<>(Item.STONE, 99));
         Assertions.assertEquals(buildingController.dropBuilding(2, 2, "market", kingdomController), BuildingControllerMessages.SUCCESS);

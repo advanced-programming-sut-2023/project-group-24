@@ -1,10 +1,10 @@
 package controller.gamecontrollers;
 
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.Trade;
 import model.databases.GameDatabase;
 import model.enums.Item;
-import controller.functionalcontrollers.Pair;
 import view.enums.messages.TradeControllerMessages;
 
 import java.util.ArrayList;

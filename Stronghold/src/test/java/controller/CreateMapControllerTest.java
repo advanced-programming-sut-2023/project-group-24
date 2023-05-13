@@ -5,11 +5,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import view.enums.messages.CreateMapMessages;
 
-import java.io.File;
-
 class CreateMapControllerTest {
-    private Database database = new Database();
-    private CreateMapController createMapController = new CreateMapController(database);
+    private final Database database = new Database();
+    private final CreateMapController createMapController = new CreateMapController(database);
+
     {
         createMapController.createMap(200, "mapForTesting");
     }
@@ -55,7 +54,7 @@ class CreateMapControllerTest {
         Assertions.assertEquals(createMapController.dropRock(1, 1, "r"), CreateMapMessages.SUCCESS);
         Assertions.assertEquals(createMapController.dropRock(-1, 1, "r"), CreateMapMessages.INVALID_LOCATION);
         Assertions.assertEquals(createMapController.dropRock(1, 1, "a"), CreateMapMessages.INVALID_DIRECTION);
-        createMapController.setTexture(5, 5,"sea");
+        createMapController.setTexture(5, 5, "sea");
         Assertions.assertEquals(createMapController.dropRock(5, 5, "r"), CreateMapMessages.NOT_HERE);
     }
 
@@ -64,7 +63,7 @@ class CreateMapControllerTest {
         Assertions.assertEquals(createMapController.dropTree(13, 13, "olive tree"), CreateMapMessages.SUCCESS);
         Assertions.assertEquals(createMapController.dropTree(-1, 1, "olive tree"), CreateMapMessages.INVALID_LOCATION);
         Assertions.assertEquals(createMapController.dropTree(1, 1, "chert"), CreateMapMessages.INVALID_TYPE);
-        createMapController.setTexture(5, 5,"sea");
+        createMapController.setTexture(5, 5, "sea");
         Assertions.assertEquals(createMapController.dropTree(5, 5, "olive tree"), CreateMapMessages.NOT_HERE);
     }
 
@@ -100,7 +99,7 @@ class CreateMapControllerTest {
         Assertions.assertEquals(createMapController.dropBuilding(1, 200, "granary"), CreateMapMessages.INVALID_LOCATION);
         Assertions.assertEquals(createMapController.dropBuilding(1, 3, "chert va pert"), CreateMapMessages.INVALID_TYPE);
         Assertions.assertEquals(createMapController.dropBuilding(1, 20, "apple orchard"), CreateMapMessages.NOT_HERE);
-        createMapController.setTexture(5, 5,"sea");
+        createMapController.setTexture(5, 5, "sea");
         Assertions.assertEquals(createMapController.dropBuilding(5, 5, "caged war dogs"), CreateMapMessages.NOT_HERE);
         Assertions.assertEquals(createMapController.dropBuilding(8, 8, "small stone gatehouse"), CreateMapMessages.SUCCESS);
         Assertions.assertEquals(createMapController.dropBuilding(9, 9, "drawbridge"), CreateMapMessages.NOT_HERE);

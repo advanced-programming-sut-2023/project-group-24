@@ -1,5 +1,6 @@
 package controller.gamecontrollers;
 
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.databases.GameDatabase;
 import model.enums.Item;
@@ -7,25 +8,25 @@ import model.enums.KingdomColor;
 import model.map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import controller.functionalcontrollers.Pair;
 import view.enums.messages.TradeControllerMessages;
 
 import java.util.ArrayList;
 import java.util.List;
 
 class TradeControllerTest {
-    private Map map = new Map(10, "test");
-    private Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
-    private Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
-    private Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final Map map = new Map(10, "test");
+    private final Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
+    private final Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
+    private final Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
+    private final TradeController tradeController = new TradeController(gameDatabase);
+    private final KingdomController kingdomController = new KingdomController(gameDatabase);
+
     {
         map.addKingdom(kingdom1);
         map.addKingdom(kingdom2);
         map.addKingdom(kingdom3);
     }
-    private GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private TradeController tradeController = new TradeController(gameDatabase);
-    private KingdomController kingdomController = new KingdomController(gameDatabase);
 
     @Test
     void addTrade() {

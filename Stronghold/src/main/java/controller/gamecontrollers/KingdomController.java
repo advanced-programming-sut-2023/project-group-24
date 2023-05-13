@@ -60,7 +60,7 @@ public class KingdomController {
         int peopleChange = (2 * ((kingdom.getPopularity() - 1) / 25 - 1));
         if (peopleChange < 0) removePeople(kingdom, -peopleChange);
         else for (int i = 0; i < peopleChange; i++)
-            new People(kingdom);
+            new People();
     }
 
     private void handleProduct(ArrayList<Building> buildings) {

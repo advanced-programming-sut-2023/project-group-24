@@ -7,12 +7,10 @@ import model.map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class DefenceBuildingTest extends BuildingTest {
-    private Kingdom kingdom = new Kingdom(KingdomColor.RED);
-    private Map map = new Map(10, "testMap");
-    private DefenceBuilding defenceBuilding = new DefenceBuilding(kingdom, map.getMap()[2][2], BuildingType.LOW_WALL);
+    private final Kingdom kingdom = new Kingdom(KingdomColor.RED);
+    private final Map map = new Map(10, "testMap");
+    private final DefenceBuilding defenceBuilding = new DefenceBuilding(kingdom, map.getMap()[2][2], BuildingType.LOW_WALL);
 
     @Test
     void hasLadderState() {

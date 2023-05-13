@@ -1,8 +1,8 @@
 package view.menus.gamemenus;
 
 import controller.AppController;
-import controller.gamecontrollers.ShowMapController;
 import controller.MenusName;
+import controller.gamecontrollers.ShowMapController;
 import view.enums.commands.Commands;
 import view.menus.GetInputFromUser;
 

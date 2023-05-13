@@ -1,6 +1,7 @@
 package view.menus.gamemenus;
 
 import controller.AppController;
+import controller.MenusName;
 import controller.gamecontrollers.ShowMapController;
 import model.Kingdom;
 import model.databases.GameDatabase;
@@ -10,7 +11,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import controller.MenusName;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -20,23 +20,23 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 class ShowMapMenuTest {
-    private Map map = new Map(200, "test");
-    private Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
-    private Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
-    private Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+    private final PrintStream originalErr = System.err;
+    private final Map map = new Map(200, "test");
+    private final Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
+    private final Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
+    private final Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
+    private final ShowMapController showMapController = new ShowMapController(gameDatabase);
+    private final ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
+
     {
         map.addKingdom(kingdom1);
         map.addKingdom(kingdom2);
         map.addKingdom(kingdom3);
     }
-    private GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private ShowMapController showMapController = new ShowMapController(gameDatabase);
-    private ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
-
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-    private final PrintStream originalErr = System.err;
 
     @BeforeEach
     void setUpStreams() {
@@ -65,8 +65,7 @@ class ShowMapMenuTest {
         Assertions.assertDoesNotThrow(() -> {
             try {
                 showMapMenu.run();
-            }
-            catch (NoSuchElementException ignored) {
+            } catch (NoSuchElementException ignored) {
 
             }
         });

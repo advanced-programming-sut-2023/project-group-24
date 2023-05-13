@@ -1,5 +1,6 @@
 package controller.gamecontrollers;
 
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.buildings.Building;
 import model.buildings.BuildingType;
@@ -9,7 +10,6 @@ import model.enums.KingdomColor;
 import model.map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import controller.functionalcontrollers.Pair;
 import view.enums.messages.ShopMenuMessages;
 
 import java.util.ArrayList;
@@ -20,14 +20,15 @@ class ShopControllerTest {
     private final Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
     private final Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
     private final Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
+    private final ShopController shopController = new ShopController(gameDatabase);
+    private final KingdomController kingdomController = new KingdomController(gameDatabase);
+
     {
         map.addKingdom(kingdom1);
         map.addKingdom(kingdom2);
         map.addKingdom(kingdom3);
     }
-    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private final ShopController shopController = new ShopController(gameDatabase);
-    private final KingdomController kingdomController = new KingdomController(gameDatabase);
 
     @Test
     void showPriceList() {

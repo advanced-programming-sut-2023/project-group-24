@@ -1,21 +1,22 @@
 package controller;
 
+import controller.functionalcontrollers.Pair;
 import model.User;
 import model.databases.Database;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import controller.functionalcontrollers.Pair;
 import view.enums.messages.ProfileMenuMessages;
 
 class ProfileMenuControllerTest {
     private final Database database = new Database();
     private final User user;
+    private final ProfileMenuController profileMenuController = new ProfileMenuController(database);
+
     {
         database.addUser("username", MainController.getSHA256("password"), "nickname", "slogan", "email", new Pair<>(1, "answer"));
         user = database.getUserByUsername("username");
         AppController.setLoggedInUser(user);
     }
-    private final ProfileMenuController profileMenuController = new ProfileMenuController(database);
 
     @Test
     void changeUsername() {

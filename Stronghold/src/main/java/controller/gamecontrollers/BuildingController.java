@@ -63,7 +63,7 @@ public class BuildingController {
             return BuildingControllerMessages.IRRELEVANT_BUILDING;
         if (cell.getExistingBuilding().getKingdom() != gameDatabase.getCurrentKingdom())
             return BuildingControllerMessages.NOT_OWNER;
-        gameDatabase.setCurrentBuilding(cell.getExistingBuilding()); //TODO remember to deselect building on next turn
+        gameDatabase.setCurrentBuilding(cell.getExistingBuilding());
         if (cell.getExistingBuilding().getBuildingType() == BuildingType.MARKET)
             return BuildingControllerMessages.MARKET;
         return BuildingControllerMessages.SUCCESS;

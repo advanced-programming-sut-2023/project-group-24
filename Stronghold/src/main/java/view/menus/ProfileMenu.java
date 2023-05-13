@@ -2,8 +2,8 @@ package view.menus;
 
 import controller.AppController;
 import controller.MainController;
-import controller.ProfileMenuController;
 import controller.MenusName;
+import controller.ProfileMenuController;
 import view.enums.commands.Commands;
 import view.enums.messages.ProfileMenuMessages;
 

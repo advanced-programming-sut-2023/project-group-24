@@ -81,7 +81,8 @@ public class AppController {
                     KingdomController kingdomController = new KingdomController(gameDatabase);
                     UnitController unitController = new UnitController(gameDatabase);
                     BuildingController buildingController = new BuildingController(gameDatabase);
-                    GameMenu gameMenu = new GameMenu(kingdomController, unitController, buildingController, gameController);
+                    GameMenu gameMenu =
+                            new GameMenu(kingdomController, unitController, buildingController, gameController);
                     gameMenu.run();
                 }
                 case SHOW_MAP_MENU -> {

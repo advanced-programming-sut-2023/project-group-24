@@ -1,6 +1,7 @@
 package view.menus.gamemenus;
 
 import controller.AppController;
+import controller.MenusName;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.TradeController;
 import model.Kingdom;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import controller.MenusName;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,24 +21,24 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 class TradeMenuTest {
-    private Map map = new Map(10, "test");
-    private Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
-    private Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
-    private Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+    private final PrintStream originalErr = System.err;
+    private final Map map = new Map(10, "test");
+    private final Kingdom kingdom1 = new Kingdom(KingdomColor.RED);
+    private final Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
+    private final Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
+    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
+    private final TradeController tradeController = new TradeController(gameDatabase);
+    private final KingdomController kingdomController = new KingdomController(gameDatabase);
+    private final TradeMenu tradeMenu = new TradeMenu(tradeController, kingdomController);
+
     {
         map.addKingdom(kingdom1);
         map.addKingdom(kingdom2);
         map.addKingdom(kingdom3);
     }
-    private GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private TradeController tradeController = new TradeController(gameDatabase);
-    private KingdomController kingdomController = new KingdomController(gameDatabase);
-    private TradeMenu tradeMenu = new TradeMenu(tradeController, kingdomController);
-
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-    private final PrintStream originalErr = System.err;
 
     @BeforeEach
     void setUpStreams() {
@@ -67,8 +67,7 @@ class TradeMenuTest {
         Assertions.assertDoesNotThrow(() -> {
             try {
                 tradeMenu.run();
-            }
-            catch (NoSuchElementException ignored) {
+            } catch (NoSuchElementException ignored) {
 
             }
         });

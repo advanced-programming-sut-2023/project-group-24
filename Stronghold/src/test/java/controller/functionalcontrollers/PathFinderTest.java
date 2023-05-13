@@ -2,6 +2,7 @@ package controller.functionalcontrollers;
 
 import controller.AppController;
 import controller.CreateMapController;
+import controller.MenusName;
 import model.Kingdom;
 import model.army.Army;
 import model.army.ArmyType;
@@ -19,7 +20,6 @@ import model.map.Cell;
 import model.map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import controller.MenusName;
 import view.enums.messages.CreateMapMessages;
 
 import java.util.ArrayList;
@@ -27,12 +27,19 @@ import java.util.HashMap;
 import java.util.List;
 
 class PathFinderTest {
-    private Database database = new Database();
-    private CreateMapController createMapController = new CreateMapController(database);
+    private final int height = 2;// real height = 2 * height + 1
+    private final int width = 5;// real width = 2 * height + 1
+    private final Database database = new Database();
+    private final CreateMapController createMapController = new CreateMapController(database);
+    private final Map mapMap = database.getMapById("mapForTesting");
+    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(new Kingdom(KingdomColor.RED))), mapMap);
+    private final Cell[][] map = mapMap.getMap();
+    private int currentMapX;
+    private int currentMapY;
+
     {
         createMapController.createMap(200, "mapForTesting");
     }
-    private Map mapMap = database.getMapById("mapForTesting");
 
     @Test
     void findPath() {
@@ -91,13 +98,6 @@ class PathFinderTest {
         Assertions.assertEquals(pathFinder2.search(new Pair<>(5, 0)), PathFinder.OutputState.NO_ERRORS);
         Assertions.assertEquals(pathFinder3.search(new Pair<>(5, 0)), PathFinder.OutputState.NO_ERRORS);
     }
-
-    private final int height = 2;// real height = 2 * height + 1
-    private final int width = 5;// real width = 2 * height + 1
-    private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(new Kingdom(KingdomColor.RED))), mapMap);
-    private final Cell[][] map = mapMap.getMap();
-    private int currentMapX;
-    private int currentMapY;
 
     public String showMap(int x, int y) {
         checkIndex(x, y);

@@ -80,7 +80,8 @@ public class CreateMapController {
         if (x >= map.getSize() || y >= map.getSize() || x < 0 || y < 0)
             return CreateMapMessages.INVALID_LOCATION;
         Cell cell = map.getMap()[x][y];
-        if (cell.getExistingBuilding() != null && cell.getExistingBuilding().getBuildingType().equals(BuildingType.TOWN_HALL))
+        if (cell.getExistingBuilding() != null &&
+                cell.getExistingBuilding().getBuildingType().equals(BuildingType.TOWN_HALL))
             return CreateMapMessages.DONT_PLAY_WITH_TOWN_HALL;
         cell.clear(map);
         return CreateMapMessages.SUCCESS;

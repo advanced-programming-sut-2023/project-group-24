@@ -1,7 +1,7 @@
 package model.buildings;
 
-import model.enums.Direction;
 import model.Kingdom;
+import model.enums.Direction;
 import model.map.Cell;
 
 import java.util.ArrayList;

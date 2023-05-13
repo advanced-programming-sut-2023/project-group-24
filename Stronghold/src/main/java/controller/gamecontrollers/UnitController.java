@@ -395,7 +395,7 @@ public class UnitController {
         if (gameDatabase.getSelectedUnits().size() == 0) return UnitControllerMessages.NULL_SELECTED_UNIT;
         for (Army e : gameDatabase.getSelectedUnits()) {
             if (e instanceof Soldier) {
-                new People(e.getOwner());
+                new People();
                 e.isDead();
             }
         }
