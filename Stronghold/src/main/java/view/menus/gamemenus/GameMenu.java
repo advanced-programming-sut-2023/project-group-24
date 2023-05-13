@@ -162,6 +162,8 @@ public class GameMenu {
             System.out.println("User " + gameController.getWinner() + " win the game!");
             AppController.setCurrentMenu(MenusName.MAIN_MENU);
         }
+        else
+            System.out.println("It's " + gameController.getCurrentUser() + " turn now!");
     }
 
     private void turnPlayed() {

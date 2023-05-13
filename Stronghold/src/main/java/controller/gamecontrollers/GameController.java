@@ -13,6 +13,7 @@ import model.databases.GameDatabase;
 import model.enums.Direction;
 import model.enums.MovingType;
 import model.map.Cell;
+import model.map.Texture;
 import utils.Pair;
 
 import java.util.ArrayList;
@@ -45,6 +46,10 @@ public class GameController {
 
     public String getWinner() {
         return gameDatabase.getKingdoms().get(0).getOwner().getUsername();
+    }
+
+    public String getCurrentUser() {
+        return gameDatabase.getCurrentKingdom().getOwner().getUsername();
     }
 
     private void giveLastPlayerScoreAndEndGame() {
@@ -129,6 +134,7 @@ public class GameController {
                 }
                 army.moveArmy();
                 checkAndUseTrap(army.getLocation());
+                if (army.getLocation().getTexture().equals(Texture.SHALLOW_WATER)) i++;
             }
         }
     }
@@ -171,7 +177,7 @@ public class GameController {
     }
 
     private void checkAndUseTrap(Cell cell) {
-        if (cell.getExistingBuilding() != null || cell.getExistingBuilding().getBuildingType().equals(BuildingType.KILLING_PIT))
+        if (cell.getExistingBuilding() != null && cell.getExistingBuilding().getBuildingType().equals(BuildingType.KILLING_PIT))
             activeTrap(cell);
     }
 
