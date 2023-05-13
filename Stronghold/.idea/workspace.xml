@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="pow">
-      <change afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/UnitControllerTest.java" afterDir="false" />
+    <list default="true" id="2259bfcb-b331-43fd-9d58-1cd3edd6c0a0" name="Changes" comment="unit controller test">
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/GameControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/gamecontrollers/KingdomControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/menus/ProfileMenuTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/info/allUsers.json" beforeDir="false" afterPath="$PROJECT_DIR$/info/allUsers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gamecontrollers/UnitController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,10 +67,10 @@
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="controller.gamecontrollers" />
+      <recent name="view.menus" />
       <recent name="controller" />
       <recent name="view.menus.gamemenus" />
       <recent name="" />
-      <recent name="model.buildings" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="view.enums.commands" />
@@ -87,7 +87,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UnitControllerTest.attackBuilding" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
@@ -96,56 +96,54 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.UnitControllerTest" />
-      <option name="METHOD_NAME" value="attackBuilding" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.GameControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameControllerTest.nextTurn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Stronghold" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.gamecontrollers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
+      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.GameControllerTest" />
+      <option name="METHOD_NAME" value="nextTurn" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UnitControllerTest.attackWall" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProfileMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.gamecontrollers.*" />
+          <option name="PATTERN" value="view.menus.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.UnitControllerTest" />
-      <option name="METHOD_NAME" value="attackWall" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="view.menus" />
+      <option name="MAIN_CLASS_NAME" value="view.menus.ProfileMenuTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UnitControllerTest.pourOil" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProfileMenuTest.testRun" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Stronghold" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.gamecontrollers.*" />
+          <option name="PATTERN" value="view.menus.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.UnitControllerTest" />
-      <option name="METHOD_NAME" value="pourOil" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UnitControllerTest.setLadder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Stronghold" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.gamecontrollers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controller.gamecontrollers" />
-      <option name="MAIN_CLASS_NAME" value="controller.gamecontrollers.UnitControllerTest" />
-      <option name="METHOD_NAME" value="setLadder" />
+      <option name="PACKAGE_NAME" value="view.menus" />
+      <option name="MAIN_CLASS_NAME" value="view.menus.ProfileMenuTest" />
+      <option name="METHOD_NAME" value="testRun" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -165,10 +163,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in Stronghold" />
-        <item itemvalue="JUnit.UnitControllerTest.pourOil" />
-        <item itemvalue="JUnit.UnitControllerTest.attackWall" />
-        <item itemvalue="JUnit.UnitControllerTest.setLadder" />
-        <item itemvalue="JUnit.UnitControllerTest.attackBuilding" />
+        <item itemvalue="JUnit.GameControllerTest" />
+        <item itemvalue="JUnit.GameControllerTest.nextTurn" />
+        <item itemvalue="JUnit.ProfileMenuTest.testRun" />
+        <item itemvalue="JUnit.ProfileMenuTest" />
       </list>
     </recent_temporary>
   </component>
@@ -403,7 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683940072177</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="unit controller test">
+      <created>1683947227545</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1683947227545</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,7 +438,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="first checkpoint" />
     <MESSAGE value="first checkpoint final version" />
     <MESSAGE value="update game menu and unit controller" />
     <MESSAGE value="add invalid command" />
@@ -458,7 +462,8 @@
     <MESSAGE value="handle assasin" />
     <MESSAGE value="update attacking building" />
     <MESSAGE value="pow" />
-    <option name="LAST_COMMIT_MESSAGE" value="pow" />
+    <MESSAGE value="unit controller test" />
+    <option name="LAST_COMMIT_MESSAGE" value="unit controller test" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Stronghold$WarMachineTypeTest.ic" NAME="WarMachineTypeTest Coverage Results" MODIFIED="1683913676034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -491,7 +496,7 @@
     <SUITE FILE_PATH="coverage/Stronghold$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1683876273235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Stronghold$All_in_Stronghold.ic" NAME="All in Stronghold Coverage Results" MODIFIED="1683946934011" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Stronghold$All_in_Stronghold.ic" NAME="All in Stronghold Coverage Results" MODIFIED="1683948672148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Stronghold$BuildingTest.ic" NAME="BuildingTest Coverage Results" MODIFIED="1683877719860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.buildings.*</FILTER>
     </SUITE>
