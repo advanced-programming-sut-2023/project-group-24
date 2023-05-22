@@ -13,6 +13,7 @@ public class LoginMenuController {
     private final Database database;
     private int numberOfIncorrectPassword;
 
+
     public LoginMenuController(Database database) {
         this.database = database;
         this.numberOfIncorrectPassword = 0;
