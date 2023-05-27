@@ -1,10 +1,13 @@
-package view.menus.gamemenus;
+package view.oldmenus;
 
 import controller.AppController;
 import controller.MenusName;
+import controller.ProfileMenuController;
+import controller.functionalcontrollers.Pair;
 import controller.gamecontrollers.KingdomController;
-import controller.gamecontrollers.ShopController;
+import controller.gamecontrollers.TradeController;
 import model.Kingdom;
+import model.databases.Database;
 import model.databases.GameDatabase;
 import model.enums.KingdomColor;
 import model.map.Map;
@@ -12,6 +15,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import view.oldmenus.gamemenus.TradeMenu;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -20,7 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-class ShopMenuTest {
+
+class ProfileMenuTest {
+    private final Database database = new Database();
+    private final ProfileMenuController profileMenuController;
+    private final ProfileMenu profileMenu;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -30,14 +38,22 @@ class ShopMenuTest {
     private final Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
     private final Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
     private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private final ShopController shopController = new ShopController(gameDatabase);
+    private final TradeController tradeController = new TradeController(gameDatabase);
     private final KingdomController kingdomController = new KingdomController(gameDatabase);
-    private final ShopMenu shopMenu = new ShopMenu(shopController, kingdomController);
+    private final TradeMenu tradeMenu = new TradeMenu(tradeController, kingdomController);
 
     {
         map.addKingdom(kingdom1);
         map.addKingdom(kingdom2);
         map.addKingdom(kingdom3);
+    }
+
+    {
+        database.addUser("username", "pass", "nick", "s", "e", new Pair<>(1, "h"));
+        AppController.setLoggedInUser(database.getUserByUsername("username"));
+        AppController.setCurrentMenu(MenusName.PROFILE_MENU);
+        profileMenuController = new ProfileMenuController(database);
+        profileMenu = new ProfileMenu(profileMenuController);
     }
 
     @BeforeEach
@@ -54,19 +70,21 @@ class ShopMenuTest {
 
     @Test
     void testRun() {
-        AppController.setCurrentMenu(MenusName.SHOP_MENU);
-        String data = "buy -i stone -a 1\n" +
-                "buy -i stone -a 1\n" +
-                "buy -i stone -a 0\n" +
-                "show price list\n" +
-                "sell -i c -a 1\n" +
-                "sell -i stone -a 12\n" +
-                "sell -i stone -a 0\n" +
-                "chert\n";
+        AppController.setCurrentMenu(MenusName.PROFILE_MENU);
+        String data = "profile change -u \"j j\"\n" +
+                "profile change -n nickname\n" +
+                "profile change password -o 123 -p 234\n" +
+                "profile change -e username@a.c\n" +
+                "profile change slogan -s username\n" +
+                "profile remove slogan\n" +
+                "profile display highscore\n" +
+                "profile display rank\n" +
+                "profile display slogan\n" +
+                "profile display\n";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Assertions.assertDoesNotThrow(() -> {
             try {
-                shopMenu.run();
+                profileMenu.run();
             } catch (NoSuchElementException ignored) {
 
             }

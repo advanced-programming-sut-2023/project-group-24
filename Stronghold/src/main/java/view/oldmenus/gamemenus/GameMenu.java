@@ -1,4 +1,4 @@
-package view.menus.gamemenus;
+package view.oldmenus.gamemenus;
 
 import controller.AppController;
 import controller.MainController;
@@ -10,7 +10,7 @@ import controller.gamecontrollers.UnitController;
 import view.enums.commands.Commands;
 import view.enums.messages.BuildingControllerMessages;
 import view.enums.messages.UnitControllerMessages;
-import view.menus.GetInputFromUser;
+import view.oldmenus.GetInputFromUser;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

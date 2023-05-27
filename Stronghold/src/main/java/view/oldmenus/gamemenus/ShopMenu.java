@@ -1,4 +1,4 @@
-package view.menus.gamemenus;
+package view.oldmenus.gamemenus;
 
 import controller.AppController;
 import controller.MainController;
@@ -7,7 +7,7 @@ import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.ShopController;
 import view.enums.commands.Commands;
 import view.enums.messages.ShopMenuMessages;
-import view.menus.GetInputFromUser;
+import view.oldmenus.GetInputFromUser;
 
 import javax.swing.*;
 import java.util.regex.Matcher;

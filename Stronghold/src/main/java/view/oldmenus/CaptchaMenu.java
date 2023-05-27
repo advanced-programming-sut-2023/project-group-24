@@ -1,4 +1,4 @@
-package view.menus;
+package view.oldmenus;
 
 import controller.captchacontrollers.Captcha;
 import view.enums.commands.Commands;

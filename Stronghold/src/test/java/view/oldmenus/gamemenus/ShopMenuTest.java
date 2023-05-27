@@ -1,9 +1,9 @@
-package view.menus.gamemenus;
+package view.oldmenus.gamemenus;
 
 import controller.AppController;
 import controller.MenusName;
 import controller.gamecontrollers.KingdomController;
-import controller.gamecontrollers.TradeController;
+import controller.gamecontrollers.ShopController;
 import model.Kingdom;
 import model.databases.GameDatabase;
 import model.enums.KingdomColor;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-class TradeMenuTest {
+class ShopMenuTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -30,9 +30,9 @@ class TradeMenuTest {
     private final Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
     private final Kingdom kingdom3 = new Kingdom(KingdomColor.GREEN);
     private final GameDatabase gameDatabase = new GameDatabase(new ArrayList<>(List.of(kingdom1, kingdom2, kingdom3)), map);
-    private final TradeController tradeController = new TradeController(gameDatabase);
+    private final ShopController shopController = new ShopController(gameDatabase);
     private final KingdomController kingdomController = new KingdomController(gameDatabase);
-    private final TradeMenu tradeMenu = new TradeMenu(tradeController, kingdomController);
+    private final ShopMenu shopMenu = new ShopMenu(shopController, kingdomController);
 
     {
         map.addKingdom(kingdom1);
@@ -54,19 +54,19 @@ class TradeMenuTest {
 
     @Test
     void testRun() {
-        AppController.setCurrentMenu(MenusName.TRADE_MENU);
-        String data = "trade -t \"chert va pert\" -a 3 -p 2 -m \"12\"\n" +
-                "trade -t \"stone\" -a 3 -p 2 -m \"12\"\n" +
-                "trade -t \"stone\" -a 0 -p 2 -m \"12\"\n" +
-                "trade -t \"stone\" -a 3 -p 0 -m \"12\"\n" +
-                "trade list\n" +
-                "trade history\n" +
-                "trade accept -i 1 -m hello\n" +
+        AppController.setCurrentMenu(MenusName.SHOP_MENU);
+        String data = "buy -i stone -a 1\n" +
+                "buy -i stone -a 1\n" +
+                "buy -i stone -a 0\n" +
+                "show price list\n" +
+                "sell -i c -a 1\n" +
+                "sell -i stone -a 12\n" +
+                "sell -i stone -a 0\n" +
                 "chert\n";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Assertions.assertDoesNotThrow(() -> {
             try {
-                tradeMenu.run();
+                shopMenu.run();
             } catch (NoSuchElementException ignored) {
 
             }

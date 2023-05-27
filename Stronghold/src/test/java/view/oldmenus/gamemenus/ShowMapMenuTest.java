@@ -1,4 +1,4 @@
-package view.menus.gamemenus;
+package view.oldmenus.gamemenus;
 
 import controller.AppController;
 import controller.MenusName;

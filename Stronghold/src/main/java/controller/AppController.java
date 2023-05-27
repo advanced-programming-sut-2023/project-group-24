@@ -6,11 +6,11 @@ import model.User;
 import model.databases.Database;
 import model.databases.GameDatabase;
 import model.map.Map;
-import view.menus.*;
-import view.menus.gamemenus.GameMenu;
-import view.menus.gamemenus.ShopMenu;
-import view.menus.gamemenus.ShowMapMenu;
-import view.menus.gamemenus.TradeMenu;
+import view.oldmenus.*;
+import view.oldmenus.gamemenus.GameMenu;
+import view.oldmenus.gamemenus.ShopMenu;
+import view.oldmenus.gamemenus.ShowMapMenu;
+import view.oldmenus.gamemenus.TradeMenu;
 
 import java.util.ArrayList;
 

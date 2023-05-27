@@ -1,13 +1,10 @@
-package view.menus;
+package view.oldmenus.gamemenus;
 
 import controller.AppController;
 import controller.MenusName;
-import controller.ProfileMenuController;
-import controller.functionalcontrollers.Pair;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.TradeController;
 import model.Kingdom;
-import model.databases.Database;
 import model.databases.GameDatabase;
 import model.enums.KingdomColor;
 import model.map.Map;
@@ -15,7 +12,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import view.menus.gamemenus.TradeMenu;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -24,11 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-
-class ProfileMenuTest {
-    private final Database database = new Database();
-    private final ProfileMenuController profileMenuController;
-    private final ProfileMenu profileMenu;
+class TradeMenuTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -48,14 +40,6 @@ class ProfileMenuTest {
         map.addKingdom(kingdom3);
     }
 
-    {
-        database.addUser("username", "pass", "nick", "s", "e", new Pair<>(1, "h"));
-        AppController.setLoggedInUser(database.getUserByUsername("username"));
-        AppController.setCurrentMenu(MenusName.PROFILE_MENU);
-        profileMenuController = new ProfileMenuController(database);
-        profileMenu = new ProfileMenu(profileMenuController);
-    }
-
     @BeforeEach
     void setUpStreams() {
         System.setOut(new PrintStream(outContent));
@@ -70,21 +54,19 @@ class ProfileMenuTest {
 
     @Test
     void testRun() {
-        AppController.setCurrentMenu(MenusName.PROFILE_MENU);
-        String data = "profile change -u \"j j\"\n" +
-                "profile change -n nickname\n" +
-                "profile change password -o 123 -p 234\n" +
-                "profile change -e username@a.c\n" +
-                "profile change slogan -s username\n" +
-                "profile remove slogan\n" +
-                "profile display highscore\n" +
-                "profile display rank\n" +
-                "profile display slogan\n" +
-                "profile display\n";
+        AppController.setCurrentMenu(MenusName.TRADE_MENU);
+        String data = "trade -t \"chert va pert\" -a 3 -p 2 -m \"12\"\n" +
+                "trade -t \"stone\" -a 3 -p 2 -m \"12\"\n" +
+                "trade -t \"stone\" -a 0 -p 2 -m \"12\"\n" +
+                "trade -t \"stone\" -a 3 -p 0 -m \"12\"\n" +
+                "trade list\n" +
+                "trade history\n" +
+                "trade accept -i 1 -m hello\n" +
+                "chert\n";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Assertions.assertDoesNotThrow(() -> {
             try {
-                profileMenu.run();
+                tradeMenu.run();
             } catch (NoSuchElementException ignored) {
 
             }

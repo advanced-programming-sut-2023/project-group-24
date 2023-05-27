@@ -1,10 +1,10 @@
-package view.menus.gamemenus;
+package view.oldmenus.gamemenus;
 
 import controller.AppController;
 import controller.MenusName;
 import controller.gamecontrollers.ShowMapController;
 import view.enums.commands.Commands;
-import view.menus.GetInputFromUser;
+import view.oldmenus.GetInputFromUser;
 
 import java.util.regex.Matcher;
 

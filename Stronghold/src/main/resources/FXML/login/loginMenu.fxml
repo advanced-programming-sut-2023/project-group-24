@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.controls.login.LoginMenuController"
+            prefHeight="800.0" prefWidth="800.0">
+    <left>
+        <VBox>
+            <TextField/>
+            <PasswordField/>
+            <Hyperlink/>
+            <Hyperlink/>
+        </VBox>
+    </left>
+
+    <right>
+        <VBox>
+            <ImageView/>
+            <TextField/>
+            <VBox>
+                <Button/>
+            </VBox>
+        </VBox>
+    </right>
+
+</BorderPane>

@@ -6,7 +6,7 @@ import model.databases.Database;
 import model.enums.Slogan;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.RegisterMenuMessages;
-import view.menus.CaptchaMenu;
+import view.oldmenus.CaptchaMenu;
 
 import java.util.ArrayList;
 import java.util.List;

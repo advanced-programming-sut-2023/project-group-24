@@ -1,4 +1,4 @@
-package view.menus.gamemenus;
+package view.oldmenus.gamemenus;
 
 import controller.AppController;
 import controller.MainController;
@@ -8,7 +8,7 @@ import controller.gamecontrollers.TradeController;
 import model.enums.Color;
 import view.enums.commands.Commands;
 import view.enums.messages.TradeControllerMessages;
-import view.menus.GetInputFromUser;
+import view.oldmenus.GetInputFromUser;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
