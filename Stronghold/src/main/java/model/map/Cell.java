@@ -177,12 +177,16 @@ public class Cell {
     }
 
     private Direction backWardDirection(Direction direction) {
-        return switch (direction) {
-            case DOWN -> Direction.UP;
-            case RIGHT -> Direction.LEFT;
-            case LEFT -> Direction.RIGHT;
-            default -> Direction.DOWN;
-        };
+        switch (direction) {
+            case DOWN:
+                return Direction.UP;
+            case RIGHT:
+                return Direction.LEFT;
+            case LEFT:
+                return Direction.RIGHT;
+            default:
+                return Direction.DOWN;
+        }
     }
 
 }

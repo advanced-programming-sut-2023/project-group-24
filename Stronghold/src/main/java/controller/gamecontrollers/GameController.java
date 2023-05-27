@@ -212,18 +212,24 @@ public class GameController {
     private Cell getNeighbor(Army army, int i, int radius) {
         int x = army.getLocation().getX();
         int y = army.getLocation().getY();
-        return switch (i) {
-            case 0 -> y >= radius ? gameDatabase.getMap().getMap()[x][y - radius] : null;
-            case 1 ->
-                    y + radius < gameDatabase.getMap().getSize() ? gameDatabase.getMap().getMap()[x][y + radius] : null;
-            case 2 -> x >= radius ? gameDatabase.getMap().getMap()[x - radius][y] : null;
-            case 3 ->
-                    x + radius < gameDatabase.getMap().getSize() ? gameDatabase.getMap().getMap()[x + radius][y] : null;
-            case 4 -> checkInBounds(x - 1, y - 1) ? gameDatabase.getMap().getMap()[x - 1][y - 1] : null;
-            case 5 -> checkInBounds(x - 1, y + 1) ? gameDatabase.getMap().getMap()[x - 1][y + 1] : null;
-            case 6 -> checkInBounds(x + 1, y - 1) ? gameDatabase.getMap().getMap()[x + 1][y - 1] : null;
-            default -> checkInBounds(x + 1, y + 1) ? gameDatabase.getMap().getMap()[x + 1][y + 1] : null;
-        };
+        switch (i) {
+            case 0:
+                return y >= radius ? gameDatabase.getMap().getMap()[x][y - radius] : null;
+            case 1:
+                return y + radius < gameDatabase.getMap().getSize() ? gameDatabase.getMap().getMap()[x][y + radius] : null;
+            case 2:
+                return x >= radius ? gameDatabase.getMap().getMap()[x - radius][y] : null;
+            case 3:
+                return x + radius < gameDatabase.getMap().getSize() ? gameDatabase.getMap().getMap()[x + radius][y] : null;
+            case 4:
+                return checkInBounds(x - 1, y - 1) ? gameDatabase.getMap().getMap()[x - 1][y - 1] : null;
+            case 5:
+                return checkInBounds(x - 1, y + 1) ? gameDatabase.getMap().getMap()[x - 1][y + 1] : null;
+            case 6:
+                return checkInBounds(x + 1, y - 1) ? gameDatabase.getMap().getMap()[x + 1][y - 1] : null;
+            default:
+                return checkInBounds(x + 1, y + 1) ? gameDatabase.getMap().getMap()[x + 1][y + 1] : null;
+        }
     }
 
     private boolean checkInBounds(int x, int y) {
@@ -283,22 +289,18 @@ public class GameController {
         int targetX = targetCell.getX();
         int targetY = targetCell.getY();
         switch (targetX - currentX) {
-            case 1 -> {
+            case 1:
                 return Direction.UP;
-            }
-            case -1 -> {
+            case -1:
                 return Direction.DOWN;
-            }
-            default -> {
+            default:
                 switch (targetY - currentY) {
-                    case 1 -> {
+                    case 1:
                         return Direction.LEFT;
-                    }
-                    case -1 -> {
+                    case -1:
                         return Direction.RIGHT;
-                    }
                 }
-            }
+                break;
         }
         return null;
     }

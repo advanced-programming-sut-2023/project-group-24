@@ -53,20 +53,24 @@ public class MainMenu {
             System.out.print("Enter username" + (i + 1) + " : ");
             String newUsername = GetInputFromUser.getUserInput();
             switch (mainMenuController.checkDuplicationOfUsername(newUsername, usernames)) {
-                case SUCCESS -> usernames.add(newUsername);
-                case DUPLICATE_USERNAME -> {
+                case SUCCESS:
+                    usernames.add(newUsername);
+                    break;
+                case DUPLICATE_USERNAME:
                     System.out.println("You entered repetitious username!");
                     i--;
-                }
+                    break;
             }
         }
         MainMenuMessages message = mainMenuController.enterGameMenu(usernames, mapId);
         switch (message) {
-            case INVALID_USERNAME -> System.out.println("Invalid username!");
-            case SUCCESS -> {
+            case INVALID_USERNAME:
+                System.out.println("Invalid username!");
+                break;
+            case SUCCESS:
                 System.out.println("Game started!");
                 AppController.setCurrentMenu(MenusName.GAME_MENU);
-            }
+                break;
         }
     }
 

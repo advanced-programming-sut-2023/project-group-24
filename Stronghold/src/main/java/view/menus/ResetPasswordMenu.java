@@ -40,8 +40,12 @@ public class ResetPasswordMenu {
         String username = MainController.removeDoubleQuotation(matcher.group("username"));
         ResetPasswordMessages message = resetPasswordMenuController.checkUserUsername(username);
         switch (message) {
-            case USER_NOT_FOUND -> System.out.println("User not found!");
-            case USER_FOUND -> getAndCheckUserRecoveryAnswer();
+            case USER_NOT_FOUND:
+                System.out.println("User not found!");
+                break;
+            case USER_FOUND:
+                getAndCheckUserRecoveryAnswer();
+                break;
         }
     }
 
@@ -51,8 +55,12 @@ public class ResetPasswordMenu {
         String recoveryAnswer = GetInputFromUser.getUserInput();
         ResetPasswordMessages message = resetPasswordMenuController.checkUserRecoveryAnswer(recoveryAnswer);
         switch (message) {
-            case INCORRECT_ANSWER -> System.out.println("Your answer is not correct!");
-            case CORRECT_ANSWER -> changePassword();
+            case INCORRECT_ANSWER:
+                System.out.println("Your answer is not correct!");
+                break;
+            case CORRECT_ANSWER:
+                changePassword();
+                break;
         }
     }
 
@@ -63,16 +71,28 @@ public class ResetPasswordMenu {
         String newPasswordConfirm = GetInputFromUser.getUserInput();
         ResetPasswordMessages message = resetPasswordMenuController.checkAndChangeNewPassword(newPassword, newPasswordConfirm);
         switch (message) {
-            case SUCCESS -> {
+            case SUCCESS:
                 System.out.println("Your password has been successfully changed");
                 loginMenu();
-            }
-            case PASSWORD_REPETITION_DO_NOT_MATCH -> System.out.println("The password and its repetition do not match");
-            case SHORT_PASSWORD -> System.out.println("The new password is too short!");
-            case NON_CAPITAL_PASSWORD -> System.out.println("The new password must contain uppercase characters!");
-            case NON_SMALL_PASSWORD -> System.out.println("The new password must contain lowercase characters!");
-            case NON_SPECIFIC_PASSWORD -> System.out.println("The new password must contain specific characters!");
-            case NON_NUMBER_PASSWORD -> System.out.println("The new password must contain numbers!");
+                break;
+            case PASSWORD_REPETITION_DO_NOT_MATCH:
+                System.out.println("The password and its repetition do not match");
+                break;
+            case SHORT_PASSWORD:
+                System.out.println("The new password is too short!");
+                break;
+            case NON_CAPITAL_PASSWORD:
+                System.out.println("The new password must contain uppercase characters!");
+                break;
+            case NON_SMALL_PASSWORD:
+                System.out.println("The new password must contain lowercase characters!");
+                break;
+            case NON_SPECIFIC_PASSWORD:
+                System.out.println("The new password must contain specific characters!");
+                break;
+            case NON_NUMBER_PASSWORD:
+                System.out.println("The new password must contain numbers!");
+                break;
         }
     }
 }
