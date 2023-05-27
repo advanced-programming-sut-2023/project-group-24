@@ -81,8 +81,7 @@ public class Database {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
-        Type allUsersType = new TypeToken<Vector<User>>() {
-        }.getType();
+        Type allUsersType = new TypeToken<Vector<User>>(){}.getType();
 
         try {
             allUsers = gson.fromJson(fileToString(FILE_TO_SAVE_ALL_USERS), allUsersType);
