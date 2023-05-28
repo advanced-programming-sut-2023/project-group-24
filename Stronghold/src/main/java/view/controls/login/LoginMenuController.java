@@ -12,4 +12,8 @@ public class LoginMenuController extends Control {
     public void register(MouseEvent mouseEvent) throws Exception {
         getApp().run(MenusName.REGISTER_MENU);
     }
+
+    public void login(MouseEvent mouseEvent) throws Exception {
+        getApp().run(MenusName.MAIN_MENU);
+    }
 }

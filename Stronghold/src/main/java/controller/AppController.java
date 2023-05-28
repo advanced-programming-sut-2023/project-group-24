@@ -8,6 +8,7 @@ import model.databases.Database;
 import model.databases.GameDatabase;
 import model.map.Map;
 import view.menus.login.*;
+import view.menus.main.MainMenu;
 import view.oldmenus.gamemenus.GameMenu;
 import view.oldmenus.gamemenus.ShopMenu;
 import view.oldmenus.gamemenus.ShowMapMenu;
@@ -77,6 +78,10 @@ public class AppController {
             case CAPTCHA_MENU:
                 CaptchaMenu captchaMenu = new CaptchaMenu(this);
                 captchaMenu.start(stage);
+                break;
+            case MAIN_MENU:
+                MainMenu mainMenu = new MainMenu(this);
+                mainMenu.start(stage);
                 break;
         }
 //        switch (currentMenu) {

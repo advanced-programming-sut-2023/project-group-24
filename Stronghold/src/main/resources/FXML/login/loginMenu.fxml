@@ -26,7 +26,7 @@
             <ImageView fitHeight="50" fitWidth="200"/>
             <TextField promptText="captcha" minHeight="50" maxWidth="200" alignment="CENTER"/>
             <VBox alignment="BOTTOM_RIGHT" prefHeight="600">
-                <Button text="login" prefWidth="300" prefHeight="75"/>
+                <Button text="login" prefWidth="300" prefHeight="75" onMouseClicked="#login"/>
             </VBox>
         </VBox>
     </right>
