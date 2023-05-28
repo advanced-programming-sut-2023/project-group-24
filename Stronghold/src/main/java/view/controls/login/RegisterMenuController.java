@@ -8,4 +8,8 @@ public class RegisterMenuController extends Control {
     public void register(MouseEvent mouseEvent) throws Exception {
         getApp().run(MenusName.SECURITY_QUESTION_CHOOSE_MENU);
     }
+
+    public void back(MouseEvent mouseEvent) throws Exception {
+        getApp().run(MenusName.LOGIN_MENU);
+    }
 }

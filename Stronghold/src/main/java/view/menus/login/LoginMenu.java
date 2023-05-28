@@ -25,8 +25,7 @@ public class LoginMenu extends Application {
         Pane pane = fxmlLoader.load();
         ((Control) fxmlLoader.getController()).setUp(stage, app);
 
-        Scene scene = new Scene(pane);
-        stage.setScene(scene);
+        stage.getScene().setRoot(pane);
         stage.show();
     }
 }

@@ -9,6 +9,7 @@ import model.databases.GameDatabase;
 import model.map.Map;
 import view.menus.login.*;
 import view.menus.main.MainMenu;
+import view.menus.profile.ProfileMenu;
 import view.oldmenus.gamemenus.GameMenu;
 import view.oldmenus.gamemenus.ShopMenu;
 import view.oldmenus.gamemenus.ShowMapMenu;
@@ -82,6 +83,10 @@ public class AppController {
             case MAIN_MENU:
                 MainMenu mainMenu = new MainMenu(this);
                 mainMenu.start(stage);
+                break;
+            case PROFILE_MENU:
+                ProfileMenu profileMenu = new ProfileMenu(this);
+                profileMenu.start(stage);
                 break;
         }
 //        switch (currentMenu) {
