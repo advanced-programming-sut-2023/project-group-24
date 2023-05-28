@@ -15,9 +15,9 @@
             prefHeight="700.0" prefWidth="1000.0">
     <top>
         <HBox alignment="CENTER_LEFT" prefWidth="1000">
-            <ImageView fitWidth="75" fitHeight="75"/>
+            <ImageView fitWidth="75" fitHeight="75" fx:id="avatar"/>
             <HBox alignment="CENTER_RIGHT" prefWidth="1000">
-                <ImageView fitHeight="75" fitWidth="75"/>
+                <ImageView fitHeight="75" fitWidth="75" fx:id="back"/>
             </HBox>
         </HBox>
     </top>
@@ -46,7 +46,7 @@
 
     <right>
         <VBox spacing="30" alignment="CENTER">
-            <Button prefWidth="250" prefHeight="70"/>
+            <Button prefWidth="250" prefHeight="70" onMouseClicked="#changePassword"/>
             <Button prefWidth="250" prefHeight="70"/>
         </VBox>
     </right>

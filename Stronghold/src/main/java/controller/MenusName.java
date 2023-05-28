@@ -8,6 +8,7 @@ public enum MenusName {
     SECURITY_QUESTION_CHOOSE_MENU,
     REGISTER_MENU,
     CAPTCHA_MENU,
+    CHANGE_PASSWORD_MENU,
 
 
 
