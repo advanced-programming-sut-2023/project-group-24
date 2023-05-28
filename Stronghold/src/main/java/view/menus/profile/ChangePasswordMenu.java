@@ -27,7 +27,7 @@ public class ChangePasswordMenu extends Application {
         dialog.initOwner(stage);
         dialog.initStyle(StageStyle.UNDECORATED);
 
-        URL url = LoginMenu.class.getResource("/FXML/login/forgotPasswordMenu.fxml");
+        URL url = LoginMenu.class.getResource("/FXML/profile/changePasswordMenu.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(url);
         Pane pane = fxmlLoader.load();
         ((Control) fxmlLoader.getController()).setUp(dialog, app);

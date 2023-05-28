@@ -9,6 +9,7 @@ public enum MenusName {
     REGISTER_MENU,
     CAPTCHA_MENU,
     CHANGE_PASSWORD_MENU,
+    LEADER_BOARD_MENU,
 
 
 

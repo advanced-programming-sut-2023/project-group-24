@@ -1,5 +1,6 @@
 package view.controls.profile;
 
+import controller.AppController;
 import controller.MenusName;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -22,5 +23,9 @@ public class ProfileMenuController extends Control {
 
     public void changePassword(MouseEvent mouseEvent) throws Exception {
         getApp().run(MenusName.CHANGE_PASSWORD_MENU);
+    }
+
+    public void leaderBoard(MouseEvent mouseEvent) throws Exception {
+        getApp().run(MenusName.LEADER_BOARD_MENU);
     }
 }

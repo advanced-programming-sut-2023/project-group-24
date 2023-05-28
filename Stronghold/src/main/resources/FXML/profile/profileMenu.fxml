@@ -47,7 +47,7 @@
     <right>
         <VBox spacing="30" alignment="CENTER">
             <Button prefWidth="250" prefHeight="70" onMouseClicked="#changePassword"/>
-            <Button prefWidth="250" prefHeight="70"/>
+            <Button prefWidth="250" prefHeight="70" onMouseClicked="#leaderBoard"/>
         </VBox>
     </right>
 

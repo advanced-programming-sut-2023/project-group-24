@@ -11,6 +11,7 @@ import model.map.Map;
 import view.menus.login.*;
 import view.menus.main.MainMenu;
 import view.menus.profile.ChangePasswordMenu;
+import view.menus.profile.LeaderBoardMenu;
 import view.menus.profile.ProfileMenu;
 import view.oldmenus.gamemenus.GameMenu;
 import view.oldmenus.gamemenus.ShopMenu;
@@ -93,6 +94,10 @@ public class AppController {
             case CHANGE_PASSWORD_MENU:
                 ChangePasswordMenu changePasswordMenu = new ChangePasswordMenu(this);
                 changePasswordMenu.start(stage);
+                break;
+            case LEADER_BOARD_MENU:
+                LeaderBoardMenu leaderBoardMenu = new LeaderBoardMenu(this);
+                leaderBoardMenu.start(stage);
                 break;
         }
 //        switch (currentMenu) {
