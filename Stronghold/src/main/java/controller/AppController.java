@@ -10,10 +10,7 @@ import model.databases.GameDatabase;
 import model.map.Map;
 import view.menus.login.*;
 import view.menus.main.MainMenu;
-import view.menus.profile.ChangePasswordMenu;
-import view.menus.profile.ChooseAvatarMenu;
-import view.menus.profile.LeaderBoardMenu;
-import view.menus.profile.ProfileMenu;
+import view.menus.profile.*;
 import view.oldmenus.gamemenus.GameMenu;
 import view.oldmenus.gamemenus.ShopMenu;
 import view.oldmenus.gamemenus.ShowMapMenu;
@@ -103,6 +100,10 @@ public class AppController {
             case CHOOSE_AVATAR_MENU:
                 ChooseAvatarMenu chooseAvatarMenu = new ChooseAvatarMenu(this);
                 chooseAvatarMenu.start(stage);
+                break;
+            case COPY_AVATAR_MENU:
+                CopyAvatarMenu copyAvatarMenu = new CopyAvatarMenu(this);
+                copyAvatarMenu.start(stage);
                 break;
         }
 //        switch (currentMenu) {

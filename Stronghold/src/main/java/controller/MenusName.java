@@ -13,6 +13,7 @@ public enum MenusName {
     CHANGE_PASSWORD_MENU,
     LEADER_BOARD_MENU,
     CHOOSE_AVATAR_MENU,
+    COPY_AVATAR_MENU,
 
 
 
