@@ -74,6 +74,10 @@ public class AppController {
                 SecurityQuestionChooseMenu securityQuestionChooseMenu = new SecurityQuestionChooseMenu(this);
                 securityQuestionChooseMenu.start(stage);
                 break;
+            case CAPTCHA_MENU:
+                CaptchaMenu captchaMenu = new CaptchaMenu(this);
+                captchaMenu.start(stage);
+                break;
         }
 //        switch (currentMenu) {
 //            case LOGIN_MENU:

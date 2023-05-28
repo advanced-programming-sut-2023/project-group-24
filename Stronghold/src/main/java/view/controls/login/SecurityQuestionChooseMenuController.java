@@ -1,5 +1,6 @@
 package view.controls.login;
 
+import controller.MenusName;
 import javafx.scene.input.MouseEvent;
 import view.controls.Control;
 
@@ -8,6 +9,8 @@ public class SecurityQuestionChooseMenuController extends Control {
         getStage().close();
     }
 
-    public void confirm(MouseEvent mouseEvent) {
+    public void confirm(MouseEvent mouseEvent) throws Exception {
+        getStage().close();
+        getApp().run(MenusName.CAPTCHA_MENU);
     }
 }

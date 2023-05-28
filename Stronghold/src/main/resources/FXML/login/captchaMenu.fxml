@@ -6,16 +6,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.controls.login.ForgotPasswordMenuController"
+            fx:controller="view.controls.login.CaptchaMenuController"
             prefHeight="180.0" prefWidth="250.0" maxHeight="180">
     <top>
         <VBox alignment="TOP_CENTER" minWidth="250" minHeight="180" spacing="20">
-            <PasswordField minWidth="200" minHeight="50" maxWidth="200"/>
-            <PasswordField minWidth="200" minHeight="50" maxWidth="200"/>
+            <ImageView fitWidth="200" fitHeight="50"/>
+            <TextField minWidth="200" minHeight="50" maxWidth="200"/>
         </VBox>
     </top>
 
@@ -29,5 +29,4 @@
     <padding>
         <Insets top="15" right="15" left="15" bottom="15"/>
     </padding>
-
 </BorderPane>
