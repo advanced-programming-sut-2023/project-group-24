@@ -16,7 +16,7 @@
         <VBox spacing="20">
             <TextField promptText="username" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"/>
             <PasswordField promptText="password" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"/>
-            <Hyperlink text="I don't have an account"/>
+            <Hyperlink text="I don't have an account" onMouseClicked="#register"/>
             <Hyperlink text="I forgot my password" onMouseClicked="#forgotPassword"/>
         </VBox>
     </left>

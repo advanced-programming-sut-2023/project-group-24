@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.controls.login.RegisterMenuController"
+            prefHeight="500.0" prefWidth="500.0">
+    <left>
+        <VBox spacing="20">
+            <TextField minWidth="200" maxHeight="50" minHeight="50"/>
+            <PasswordField minWidth="200" maxHeight="50" minHeight="50"/>
+            <PasswordField minWidth="200" maxHeight="50" minHeight="50"/>
+            <TextField minWidth="200" maxHeight="50" minHeight="50"/>
+            <TextField minWidth="200" maxHeight="50" minHeight="50"/>
+            <TextField minWidth="200" maxHeight="50" minHeight="50"/>
+        </VBox>
+    </left>
+
+    <right>
+        <VBox alignment="TOP_RIGHT" prefHeight="900">
+            <ImageView fitWidth="50" fitHeight="50"/>
+            <CheckBox/>
+            <VBox alignment="BOTTOM_RIGHT" prefHeight="900">
+                <Button prefHeight="75" prefWidth="275" text="register"/>
+            </VBox>
+        </VBox>
+    </right>
+
+    <padding>
+        <Insets top="20" left="20" right="20" bottom="20"/>
+    </padding>
+
+</BorderPane>

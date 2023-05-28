@@ -66,6 +66,10 @@ public class AppController {
                 SecurityQuestionConfirmMenu securityQuestionConfirmMenu = new SecurityQuestionConfirmMenu(this);
                 securityQuestionConfirmMenu.start(stage);
                 break;
+            case REGISTER_MENU:
+                RegisterMenu registerMenu = new RegisterMenu(this);
+                registerMenu.start(stage);
+                break;
         }
 //        switch (currentMenu) {
 //            case LOGIN_MENU:
