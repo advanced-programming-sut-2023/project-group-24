@@ -49,14 +49,18 @@ public class AppController {
     }
 
 
-    public void run() throws Exception {
+    public void run(MenusName currentMenu) throws Exception {
         database.loadDataFromFile();
         checkLoggedInUSer();
 
         switch (currentMenu) {
             case LOGIN_MENU:
-                LoginMenu loginMenu = new LoginMenu();
+                LoginMenu loginMenu = new LoginMenu(this);
                 loginMenu.start(stage);
+                break;
+            case FORGOT_PASSWORD_MENU:
+                ForgotPasswordMenu forgotPasswordMenu = new ForgotPasswordMenu(this);
+                forgotPasswordMenu.start(stage);
                 break;
         }
 //        switch (currentMenu) {
@@ -121,7 +125,7 @@ public class AppController {
 
     private void checkLoggedInUSer() {
         loggedInUser = database.getStayedLoggedInUser();
-        if (database.getStayedLoggedInUser() != null) setCurrentMenu(MenusName.MAIN_MENU);
+//        if (database.getStayedLoggedInUser() != null) setCurrentMenu(MenusName.MAIN_MENU);
     }
 
 }
