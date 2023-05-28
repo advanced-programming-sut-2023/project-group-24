@@ -28,7 +28,7 @@
             <ImageView fitWidth="50" fitHeight="50"/>
             <CheckBox/>
             <VBox alignment="BOTTOM_RIGHT" prefHeight="900">
-                <Button prefHeight="75" prefWidth="275" text="register"/>
+                <Button prefHeight="75" prefWidth="275" text="register" onMouseClicked="#register"/>
             </VBox>
         </VBox>
     </right>

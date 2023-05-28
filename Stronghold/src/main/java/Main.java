@@ -11,6 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         AppController start = new AppController(stage);
+        stage.setResizable(false);
         start.run(MenusName.LOGIN_MENU);
     }
 }

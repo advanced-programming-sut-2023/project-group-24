@@ -70,6 +70,10 @@ public class AppController {
                 RegisterMenu registerMenu = new RegisterMenu(this);
                 registerMenu.start(stage);
                 break;
+            case SECURITY_QUESTION_CHOOSE_MENU:
+                SecurityQuestionChooseMenu securityQuestionChooseMenu = new SecurityQuestionChooseMenu(this);
+                securityQuestionChooseMenu.start(stage);
+                break;
         }
 //        switch (currentMenu) {
 //            case LOGIN_MENU:
