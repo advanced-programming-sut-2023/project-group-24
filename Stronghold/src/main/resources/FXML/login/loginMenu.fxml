@@ -7,27 +7,32 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.login.LoginMenuController"
-            prefHeight="800.0" prefWidth="800.0">
+            prefHeight="500.0" prefWidth="500.0">
     <left>
-        <VBox>
-            <TextField/>
-            <PasswordField/>
-            <Hyperlink/>
-            <Hyperlink/>
+        <VBox spacing="20">
+            <TextField promptText="username" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"/>
+            <PasswordField promptText="password" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"/>
+            <Hyperlink text="I don't have an account"/>
+            <Hyperlink text="I forgot my password"/>
         </VBox>
     </left>
 
     <right>
-        <VBox>
-            <ImageView/>
-            <TextField/>
-            <VBox>
-                <Button/>
+        <VBox alignment="TOP_RIGHT" spacing="20" prefHeight="500">
+            <ImageView fitHeight="50" fitWidth="200"/>
+            <TextField promptText="captcha" minHeight="50" maxWidth="200" alignment="CENTER"/>
+            <VBox alignment="BOTTOM_RIGHT" prefHeight="600">
+                <Button text="login" prefWidth="300" prefHeight="75"/>
             </VBox>
         </VBox>
     </right>
+
+    <padding>
+        <Insets right="25" left="25" top="25" bottom="25"/>
+    </padding>
 
 </BorderPane>

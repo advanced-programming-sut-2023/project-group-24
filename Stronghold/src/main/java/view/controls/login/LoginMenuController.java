@@ -1,4 +1,6 @@
 package view.controls.login;
 
-public class LoginMenuController {
+import view.controls.Control;
+
+public class LoginMenuController extends Control {
 }

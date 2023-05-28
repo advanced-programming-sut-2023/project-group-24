@@ -1,12 +1,13 @@
 package controller;
 
 import controller.gamecontrollers.*;
+import javafx.stage.Stage;
 import model.Kingdom;
 import model.User;
 import model.databases.Database;
 import model.databases.GameDatabase;
 import model.map.Map;
-import view.oldmenus.*;
+import view.menus.login.*;
 import view.oldmenus.gamemenus.GameMenu;
 import view.oldmenus.gamemenus.ShopMenu;
 import view.oldmenus.gamemenus.ShowMapMenu;
@@ -19,9 +20,11 @@ public class AppController {
     private static User loggedInUser;
     private static GameDatabase gameDatabase;
     private static MenusName currentMenu;
+    private Stage stage;
 
-    public AppController() {
+    public AppController(Stage stage) {
         currentMenu = MenusName.LOGIN_MENU;
+        this.stage = stage;
     }
 
     public static MenusName getCurrentMenu() {
@@ -46,71 +49,74 @@ public class AppController {
     }
 
 
-    public void run() {
+    public void run() throws Exception {
         database.loadDataFromFile();
         checkLoggedInUSer();
-        while (true) {
-            switch (currentMenu) {
-                case LOGIN_MENU:
-                    LoginMenuController loginMenuController = new LoginMenuController(database);
-                    LoginMenu loginMenu = new LoginMenu(loginMenuController);
-                    loginMenu.run();
-                    break;
-                case PROFILE_MENU:
-                    ProfileMenuController profileMenuController = new ProfileMenuController(database);
-                    ProfileMenu profileMenu = new ProfileMenu(profileMenuController);
-                    profileMenu.run();
-                    break;
-                case REGISTER_MENU:
-                    RegisterMenuController registerMenuController = new RegisterMenuController(database);
-                    RegisterMenu registerMenu = new RegisterMenu(registerMenuController);
-                    registerMenu.run();
-                    break;
-                case RESET_PASSWORD_MENU:
-                    ResetPasswordMenuController resetPasswordMenuController = new ResetPasswordMenuController(database);
-                    ResetPasswordMenu resetPasswordMenu = new ResetPasswordMenu(resetPasswordMenuController);
-                    resetPasswordMenu.run();
-                    break;
-                case MAIN_MENU:
-                    MainMenuController mainMenuController = new MainMenuController(database);
-                    MainMenu mainMenu = new MainMenu(mainMenuController);
-                    mainMenu.run();
-                    break;
-                case GAME_MENU: {
-                    GameController gameController = new GameController(gameDatabase);
-                    KingdomController kingdomController = new KingdomController(gameDatabase);
-                    UnitController unitController = new UnitController(gameDatabase);
-                    BuildingController buildingController = new BuildingController(gameDatabase);
-                    GameMenu gameMenu =
-                            new GameMenu(kingdomController, unitController, buildingController, gameController);
-                    gameMenu.run();
-                    break;
-                }
-                case SHOW_MAP_MENU:
-                    ShowMapController showMapController = new ShowMapController(gameDatabase);
-                    ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
-                    showMapMenu.run();
-                    break;
-                case TRADE_MENU: {
-                    TradeController tradeController = new TradeController(gameDatabase);
-                    KingdomController kingdomController = new KingdomController(gameDatabase);
-                    TradeMenu tradeMenu = new TradeMenu(tradeController, kingdomController);
-                    tradeMenu.run();
-                    break;
-                }
-                case SHOP_MENU:
-                    ShopController shopController = new ShopController(gameDatabase);
-                    KingdomController kingdomController = new KingdomController(gameDatabase);
-                    ShopMenu shopMenu = new ShopMenu(shopController, kingdomController);
-                    shopMenu.run();
-                    break;
-                case CREATE_MAP_MENU:
-                    CreateMapController createMapController = new CreateMapController(database);
-                    CreateMapMenu createMapMenu = new CreateMapMenu(createMapController);
-                    createMapMenu.run();
-                    break;
-            }
+
+        switch (currentMenu) {
+            case LOGIN_MENU:
+                LoginMenu loginMenu = new LoginMenu();
+                loginMenu.start(stage);
+                break;
         }
+//        switch (currentMenu) {
+//            case LOGIN_MENU:
+//                LoginMe loginMenu = new LoginMenu()
+//                break;
+//            case PROFILE_MENU:
+//                ProfileMenuController profileMenuController = new ProfileMenuController(database);
+//                ProfileMenu profileMenu = new ProfileMenu(profileMenuController);
+//                profileMenu.run();
+//                break;
+//            case REGISTER_MENU:
+//                RegisterMenuController registerMenuController = new RegisterMenuController(database);
+//                RegisterMenu registerMenu = new RegisterMenu(registerMenuController);
+//                registerMenu.run();
+//                break;
+//            case RESET_PASSWORD_MENU:
+//                ResetPasswordMenuController resetPasswordMenuController = new ResetPasswordMenuController(database);
+//                ResetPasswordMenu resetPasswordMenu = new ResetPasswordMenu(resetPasswordMenuController);
+//                resetPasswordMenu.run();
+//                break;
+//            case MAIN_MENU:
+//                MainMenuController mainMenuController = new MainMenuController(database);
+//                MainMenu mainMenu = new MainMenu(mainMenuController);
+//                mainMenu.run();
+//                break;
+//            case GAME_MENU: {
+//                GameController gameController = new GameController(gameDatabase);
+//                KingdomController kingdomController = new KingdomController(gameDatabase);
+//                UnitController unitController = new UnitController(gameDatabase);
+//                BuildingController buildingController = new BuildingController(gameDatabase);
+//                GameMenu gameMenu =
+//                        new GameMenu(kingdomController, unitController, buildingController, gameController);
+//                gameMenu.run();
+//                break;
+//            }
+//            case SHOW_MAP_MENU:
+//                ShowMapController showMapController = new ShowMapController(gameDatabase);
+//                ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
+//                showMapMenu.run();
+//                break;
+//            case TRADE_MENU: {
+//                TradeController tradeController = new TradeController(gameDatabase);
+//                KingdomController kingdomController = new KingdomController(gameDatabase);
+//                TradeMenu tradeMenu = new TradeMenu(tradeController, kingdomController);
+//                tradeMenu.run();
+//                break;
+//            }
+//            case SHOP_MENU:
+//                ShopController shopController = new ShopController(gameDatabase);
+//                KingdomController kingdomController = new KingdomController(gameDatabase);
+//                ShopMenu shopMenu = new ShopMenu(shopController, kingdomController);
+//                shopMenu.run();
+//                break;
+//            case CREATE_MAP_MENU:
+//                CreateMapController createMapController = new CreateMapController(database);
+//                CreateMapMenu createMapMenu = new CreateMapMenu(createMapController);
+//                createMapMenu.run();
+//                break;
+//        }
     }
 
     private void checkLoggedInUSer() {
