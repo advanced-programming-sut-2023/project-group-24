@@ -7,10 +7,7 @@ import model.databases.Database;
 import model.databases.GameDatabase;
 import model.map.Map;
 import view.menus.*;
-import view.menus.gamemenus.GameMenu;
-import view.menus.gamemenus.ShopMenu;
-import view.menus.gamemenus.ShowMapMenu;
-import view.menus.gamemenus.TradeMenu;
+import view.menus.gamemenus.*;
 
 import java.util.ArrayList;
 
@@ -46,7 +43,7 @@ public class AppController {
     }
 
 
-    public void run() {
+    public void run(String[] args) {
         database.loadDataFromFile();
         checkLoggedInUSer();
         while (true) {
@@ -87,7 +84,8 @@ public class AppController {
                 }
                 case SHOW_MAP_MENU -> {
                     ShowMapController showMapController = new ShowMapController(gameDatabase);
-                    ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
+                    MiniMap.gameDatabase = gameDatabase;
+                    ShowMapMenu showMapMenu = new ShowMapMenu(showMapController, args);
                     showMapMenu.run();
                 }
                 case TRADE_MENU -> {
