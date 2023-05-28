@@ -104,6 +104,7 @@ public class AppController {
                     CreateMapController createMapController = new CreateMapController(database);
                     CreateMapMenu createMapMenu = new CreateMapMenu(createMapController);
                     createMapMenu.run();
+
                 }
             }
         }
