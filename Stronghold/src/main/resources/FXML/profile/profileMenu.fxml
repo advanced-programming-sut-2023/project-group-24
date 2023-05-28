@@ -15,7 +15,7 @@
             prefHeight="700.0" prefWidth="1000.0">
     <top>
         <HBox alignment="CENTER_LEFT" prefWidth="1000">
-            <ImageView fitWidth="75" fitHeight="75" fx:id="avatar"/>
+            <ImageView fitWidth="75" fitHeight="75" fx:id="avatar" onMouseClicked="#chooseAvatar"/>
             <HBox alignment="CENTER_RIGHT" prefWidth="1000">
                 <ImageView fitHeight="75" fitWidth="75" fx:id="back"/>
             </HBox>

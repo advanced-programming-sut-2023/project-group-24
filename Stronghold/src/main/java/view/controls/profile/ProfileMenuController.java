@@ -28,4 +28,8 @@ public class ProfileMenuController extends Control {
     public void leaderBoard(MouseEvent mouseEvent) throws Exception {
         getApp().run(MenusName.LEADER_BOARD_MENU);
     }
+
+    public void chooseAvatar(MouseEvent mouseEvent) throws Exception {
+        getApp().run(MenusName.CHOOSE_AVATAR_MENU);
+    }
 }
