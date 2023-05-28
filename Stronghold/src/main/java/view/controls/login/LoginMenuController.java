@@ -6,6 +6,6 @@ import view.controls.Control;
 
 public class LoginMenuController extends Control {
     public void forgotPassword(MouseEvent mouseEvent) throws Exception {
-        getApp().run(MenusName.FORGOT_PASSWORD_MENU);
+        getApp().run(MenusName.SECURITY_QUESTION_CONFIRM_MENU);
     }
 }

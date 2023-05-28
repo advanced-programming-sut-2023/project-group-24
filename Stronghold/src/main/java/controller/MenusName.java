@@ -3,6 +3,7 @@ package controller;
 public enum MenusName {
     //login
     LOGIN_MENU,
+    SECURITY_QUESTION_CONFIRM_MENU,
     FORGOT_PASSWORD_MENU,
 
 

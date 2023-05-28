@@ -62,6 +62,10 @@ public class AppController {
                 ForgotPasswordMenu forgotPasswordMenu = new ForgotPasswordMenu(this);
                 forgotPasswordMenu.start(stage);
                 break;
+            case SECURITY_QUESTION_CONFIRM_MENU:
+                SecurityQuestionConfirmMenu securityQuestionConfirmMenu = new SecurityQuestionConfirmMenu(this);
+                securityQuestionConfirmMenu.start(stage);
+                break;
         }
 //        switch (currentMenu) {
 //            case LOGIN_MENU:
