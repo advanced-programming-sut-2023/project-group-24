@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.controls.profile.ProfileMenuController"
+            prefHeight="700.0" prefWidth="1000.0">
+    <top>
+        <HBox alignment="CENTER_LEFT" prefWidth="1000">
+            <ImageView fitWidth="75" fitHeight="75" fx:id="avatar" onMouseClicked="#chooseAvatar"/>
+            <HBox alignment="CENTER_RIGHT" prefWidth="1000">
+                <ImageView fitHeight="75" fitWidth="75" fx:id="back"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox alignment="CENTER" spacing="30">
+            <HBox spacing="30">
+                <TextField minWidth="200" maxWidth="200" minHeight="50"/>
+                <Button prefWidth="150" prefHeight="50"/>
+            </HBox>
+            <HBox spacing="30">
+                <TextField minWidth="200" maxWidth="200" minHeight="50"/>
+                <Button prefWidth="150" prefHeight="50"/>
+            </HBox>
+            <HBox spacing="30">
+                <TextField minWidth="200" maxWidth="200" minHeight="50"/>
+                <Button prefWidth="150" prefHeight="50"/>
+            </HBox>
+            <HBox spacing="30">
+                <TextField minWidth="200" maxWidth="200" minHeight="50"/>
+                <Button prefWidth="150" prefHeight="50"/>
+                <Button prefWidth="150" prefHeight="50"/>
+            </HBox>
+        </VBox>
+    </left>
+
+    <right>
+        <VBox spacing="30" alignment="CENTER">
+            <Button prefWidth="250" prefHeight="70" onMouseClicked="#changePassword"/>
+            <Button prefWidth="250" prefHeight="70" onMouseClicked="#leaderBoard"/>
+        </VBox>
+    </right>
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+</BorderPane>

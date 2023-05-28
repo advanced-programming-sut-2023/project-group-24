@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.controls.profile.LeaderBoardMenuController"
+            prefHeight="600.0" prefWidth="400.0">
+    <top>
+        <VBox>
+            <HBox alignment="CENTER_RIGHT">
+                <ImageView fitHeight="50" fitWidth="50" onMouseClicked="#back" fx:id="back"/>
+            </HBox>
+            <HBox alignment="CENTER">
+                <ImageView fitHeight="35" fitWidth="35"/>
+                <Text text="username"/>
+                <Text text="high score"/>
+            </HBox> <!-- probably make a separate class for this HBox -->
+        </VBox>
+    </top>
+
+    <bottom>
+        <ScrollPane>
+
+        </ScrollPane>
+    </bottom>
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+</BorderPane>

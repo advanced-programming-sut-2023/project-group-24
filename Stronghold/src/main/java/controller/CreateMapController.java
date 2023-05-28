@@ -103,22 +103,30 @@ public class CreateMapController {
     }
 
     private Direction getDirection(String direction) {
-        return switch (direction) {
-            case "n" -> Direction.UP;
-            case "e" -> Direction.RIGHT;
-            case "w" -> Direction.LEFT;
-            default -> Direction.DOWN;
-        };
+        switch (direction) {
+            case "n":
+                return Direction.UP;
+            case "e":
+                return Direction.RIGHT;
+            case "w":
+                return Direction.LEFT;
+            default:
+                return Direction.DOWN;
+        }
     }
 
     private String randomDirection() {
         int direct = (int) (Math.random() * 4);
-        return switch (direct) {
-            case 0 -> "n";
-            case 1 -> "e";
-            case 2 -> "w";
-            default -> "s";
-        };
+        switch (direct) {
+            case 0:
+                return "n";
+            case 1:
+                return "e";
+            case 2:
+                return "w";
+            default:
+                return "s";
+        }
     }
 
     public CreateMapMessages dropTree(int x, int y, String type) {

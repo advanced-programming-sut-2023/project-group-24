@@ -4,7 +4,7 @@ import model.User;
 import model.databases.Database;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.ProfileMenuMessages;
-import view.menus.CaptchaMenu;
+import view.oldmenus.CaptchaMenu;
 
 import java.util.Vector;
 

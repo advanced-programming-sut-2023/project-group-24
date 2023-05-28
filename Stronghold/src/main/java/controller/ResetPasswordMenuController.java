@@ -28,21 +28,16 @@ public class ResetPasswordMenuController {
 
     public ResetPasswordMessages checkAndChangeNewPassword(String newPassword, String newPasswordConfirm) {
         switch (MainController.whatIsPasswordProblem(newPassword)) {
-            case NON_CAPITAL_PASSWORD -> {
+            case NON_CAPITAL_PASSWORD:
                 return ResetPasswordMessages.NON_CAPITAL_PASSWORD;
-            }
-            case NON_NUMBER_PASSWORD -> {
+            case NON_NUMBER_PASSWORD:
                 return ResetPasswordMessages.NON_NUMBER_PASSWORD;
-            }
-            case NON_SMALL_PASSWORD -> {
+            case NON_SMALL_PASSWORD:
                 return ResetPasswordMessages.NON_SMALL_PASSWORD;
-            }
-            case NON_SPECIFIC_PASSWORD -> {
+            case NON_SPECIFIC_PASSWORD:
                 return ResetPasswordMessages.NON_SPECIFIC_PASSWORD;
-            }
-            case SHORT_PASSWORD -> {
+            case SHORT_PASSWORD:
                 return ResetPasswordMessages.SHORT_PASSWORD;
-            }
         }
         if (!newPassword.equals(newPasswordConfirm)) return ResetPasswordMessages.PASSWORD_REPETITION_DO_NOT_MATCH;
         String newPasswordAsSHA = MainController.getSHA256(newPassword);
