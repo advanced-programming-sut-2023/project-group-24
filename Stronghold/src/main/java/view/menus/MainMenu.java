@@ -2,7 +2,7 @@ package view.menus;
 
 import controller.AppController;
 import controller.MainMenuController;
-import utils.enums.MenusName;
+import controller.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.MainMenuMessages;
 

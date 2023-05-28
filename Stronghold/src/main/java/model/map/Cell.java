@@ -69,7 +69,8 @@ public class Cell {
     public ArrayList<Army> selectUnits(Kingdom owner) {
         ArrayList<Army> selectedUnit = new ArrayList<>();
         for (Army army : armies)
-            if (army.getOwner().equals(owner))
+            if (army.getOwner().equals(owner) &&
+                    !army.getArmyType().equals(ArmyType.DOG))
                 selectedUnit.add(army);
         return selectedUnit;
     }
@@ -133,7 +134,7 @@ public class Cell {
         if (nextHeight == lastHeight || movingType.equals(MovingType.ASSASSIN)) return true;
         if ((existingBuilding != null && existingBuilding.getBuildingType().equals(BuildingType.STAIR)) || (startPoint.
                 existingBuilding != null && startPoint.existingBuilding.getBuildingType().equals(BuildingType.STAIR)) ||
-            checkGate() || checkGate(startPoint)) return true;
+                checkGate() || checkGate(startPoint)) return true;
         if (movingType.equals(MovingType.CAN_NOT_CLIMB_LADDER))
             return false;
         return handleClimber(startPoint, direction);
@@ -156,18 +157,18 @@ public class Cell {
     }
 
     private boolean handleClimber(Cell startPoint, Direction direction) {
-        return checkLadder(startPoint) || checkLadder();
+        return checkLadder(startPoint, direction) || checkLadder(direction);
     }
 
-    private boolean checkLadder(Cell cell) {
+    private boolean checkLadder(Cell cell, Direction direction) {
         if (cell.existingBuilding == null)
             return false;
         if (cell.existingBuilding instanceof DefenceBuilding)
-            return ((DefenceBuilding) existingBuilding).hasLadderState(backWardDirection(direction));
+            return ((DefenceBuilding) cell.existingBuilding).hasLadderState(backWardDirection(direction));
         return false;
     }
 
-    private boolean checkLadder() {
+    private boolean checkLadder(Direction direction) {
         if (existingBuilding == null)
             return false;
         if (existingBuilding instanceof DefenceBuilding)
@@ -176,12 +177,12 @@ public class Cell {
     }
 
     private Direction backWardDirection(Direction direction) {
-        switch (direction) {
-            case DOWN : return Direction.UP;
-            case RIGHT: return Direction.LEFT;
-            case LEFT: return Direction.RIGHT;
-            default: return Direction.DOWN;
-        }
+        return switch (direction) {
+            case DOWN -> Direction.UP;
+            case RIGHT -> Direction.LEFT;
+            case LEFT -> Direction.RIGHT;
+            default -> Direction.DOWN;
+        };
     }
 
 }

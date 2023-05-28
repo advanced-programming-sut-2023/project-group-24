@@ -60,8 +60,8 @@ public enum Commands {
     DROP_ROCK("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -d (?<direction>\\S*))^droprock( -[xyd] \\S*){3}$"),
     DROP_TREE("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
             "^droptree( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
-    DROP_BUILDING("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\d*)))" +
-            "^dropbuilding( -[xyt] ((\"[^\"]*\")|(\\d*))){3}$"),
+    DROP_BUILDING("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
+            "^dropbuilding( -[xyt] ((\"[^\"]*\")|(\\S*))){3}$"),
     DROP_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))" +
             "(?=.* -c (?<count>\\d*))^dropunit( -[xytc] ((\"[^\"]*\")|(\\S*))){4}$"),
     CHANGE_KINGDOM("^change kingdom -c (?<color>\\S*)$"),
@@ -71,7 +71,7 @@ public enum Commands {
     SHOW_PRICE_LIST("^show price list$"),
     BUY_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S*)))(?=.* -a (?<itemAmount>\\d*))" +
             "^buy( -[ia] ((\"[^\"]*\")|(\\S*))){2}$"),
-    SELL_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S*))(?=.* -a (?<itemAmount>\\d*))" +
+    SELL_ITEM("(?=.* -i (?<itemName>(\"[^\"]*\")|(\\S*)))(?=.* -a (?<itemAmount>\\d*))" +
             "^sell( -[ia] ((\"[^\"]*\")|(\\S*))){2}$"),
 
     //Game menu commands
@@ -84,9 +84,10 @@ public enum Commands {
     SELECT_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))(?=.* -t (?<type>(\"[^\"]*\")|(\\S*)))?" +
             "^select unit( -[xyt] ((\"[^\"]*\")|(\\S*))){2,3}$"),
     MOVE_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^move unit to( -[xy] \\d*){2}$"),
+    ASSIGN_ENGINEER_OIL("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))^assign engineer( -[xy] \\d*){2}$"),
     PATROL_UNIT("(?=.* -x (?<x>\\d*))(?=.* -y (?<y>\\d*))" +
             "^patrol unit( -[xy] \\d*){2}$"),
-    ATTACK_WALL("^attack wall -d (?<direction>\\s*)$"),
+    ATTACK_WALL("^attack wall -d (?<direction>\\S*)$"),
     STOP_PATROL("^stop patrol$"),
     SET_STATE("^set (?<state>\\S*)$"),
     SET_LADDER("^set ladder -d (?<direction>\\S*)$"),

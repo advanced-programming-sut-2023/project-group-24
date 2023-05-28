@@ -1,17 +1,14 @@
 package model;
 
-import controller.gamecontrollers.KingdomController;
 import model.enums.Item;
 import model.enums.KingdomColor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class TradeTest {
     Kingdom kingdom1 = new Kingdom(KingdomColor.GREEN);
     Kingdom kingdom2 = new Kingdom(KingdomColor.BLUE);
-    private Trade trade = new Trade(kingdom1, Item.WOOD, 23, 10, "please help mee");
+    private final Trade trade = new Trade(kingdom1, Item.WOOD, 23, 10, "please help mee");
 
 
     @Test

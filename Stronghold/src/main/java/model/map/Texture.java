@@ -1,25 +1,25 @@
 package model.map;
 
 import controller.MainController;
-import model.enums.Color;
+import javafx.scene.paint.Color;
 
 public enum Texture {
-    GROUND(true, true, Color.YELLOW_BACKGROUND),
-    GRAVEL(true, true, Color.YELLOW_BACKGROUND_BRIGHT),
-    SLAB(true, false, Color.WHITE_BACKGROUND),
-    STONE(false, false, Color.MAGENTA_BACKGROUND),
-    IRON(true, false, Color.RED_BACKGROUND),
-    GRASS(true, true, Color.GREEN_BACKGROUND),
-    GRASSLAND(true, true, Color.GREEN_BACKGROUND_BRIGHT),
-    CONDENSED(true, true, Color.GREEN_BACKGROUND),
-    OIL(false, true, Color.YELLOW_BACKGROUND),
-    PLAIN(false, false, Color.BLACK_BACKGROUND_BRIGHT),
-    SHALLOW_WATER(true, false, Color.BLACK_BACKGROUND_BRIGHT),
-    RIVER(false, false, Color.BLUE_BACKGROUND),
-    POND_SMALL(false, false, Color.BLACK_BACKGROUND_BRIGHT),
-    POND_BIG(false, false, Color.BLUE_BACKGROUND),
-    BEACH(true, false, Color.BLACK_BACKGROUND_BRIGHT),
-    SEA(false, false, Color.BLUE_BACKGROUND);
+    GROUND(true, true, Color.YELLOW),
+    GRAVEL(true, true, Color.LIGHTYELLOW),
+    SLAB(true, false, Color.WHITE),
+    STONE(false, false, Color.MAGENTA),
+    IRON(true, false, Color.RED),
+    GRASS(true, true, Color.GREEN),
+    GRASSLAND(true, true, Color.LIGHTGREEN),
+    CONDENSED(true, true, Color.GREEN),
+    OIL(false, true, Color.YELLOW),
+    PLAIN(false, false, Color.BLACK),
+    SHALLOW_WATER(true, false, Color.BLACK),
+    RIVER(false, false, Color.BLUE),
+    POND_SMALL(false, false, Color.BLACK),
+    POND_BIG(false, false, Color.BLUE),
+    BEACH(true, false, Color.BLACK),
+    SEA(false, false, Color.BLUE);
     private final boolean canPass;
     private final boolean canBuild;
     private final Color color;

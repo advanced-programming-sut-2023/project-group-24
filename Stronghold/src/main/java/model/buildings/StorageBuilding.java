@@ -1,9 +1,9 @@
 package model.buildings;
 
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.enums.Item;
 import model.map.Cell;
-import utils.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;

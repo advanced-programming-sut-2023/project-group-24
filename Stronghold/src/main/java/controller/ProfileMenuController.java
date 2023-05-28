@@ -14,7 +14,7 @@ public class ProfileMenuController {
 
     public ProfileMenuController(Database database) {
         this.database = database;
-        currentUser = AppController.getLoggedInUser();
+        currentUser = database.getUserByUsername(AppController.getLoggedInUser().getUsername());
     }
 
     public ProfileMenuMessages changeUsername(String newUsername) {
@@ -97,7 +97,7 @@ public class ProfileMenuController {
         Vector<User> sortedUsers = database.getAllUsersByRank();
         for (int i = 0; i < sortedUsers.size(); i++) {
             if (sortedUsers.get(i).equals(currentUser))
-                return (i + 1);
+                return i + 1;
         }
         return 0;
     }

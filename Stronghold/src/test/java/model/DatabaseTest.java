@@ -1,12 +1,12 @@
 package model;
 
+import controller.functionalcontrollers.Pair;
 import model.databases.Database;
 import model.map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import utils.Pair;
 
 import java.io.IOException;
 import java.util.Vector;

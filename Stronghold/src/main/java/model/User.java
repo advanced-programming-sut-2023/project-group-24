@@ -1,6 +1,6 @@
 package model;
 
-import utils.Pair;
+import controller.functionalcontrollers.Pair;
 
 public class User implements Comparable<User> {
     private final Pair<Integer, String> recovery;

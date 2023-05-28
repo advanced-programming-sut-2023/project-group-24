@@ -1,23 +1,12 @@
 package model;
 
 import model.buildings.Building;
-import model.map.Cell;
 
 public class People {
-    private Kingdom owner;
     private Building workStation;
 
-    public People(Kingdom owner) {
-        this.owner = owner;
+    public People() {
         workStation = null;
-    }
-
-    public Kingdom getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Kingdom owner) {
-        this.owner = owner;
     }
 
     public Building getWorkStation() {

@@ -1,5 +1,6 @@
 package controller.gamecontrollers;
 
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.army.Army;
 import model.army.ArmyType;
@@ -12,10 +13,8 @@ import model.enums.Direction;
 import model.enums.Item;
 import model.map.Cell;
 import model.map.Map;
-import utils.Pair;
 import view.enums.messages.BuildingControllerMessages;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +63,7 @@ public class BuildingController {
             return BuildingControllerMessages.IRRELEVANT_BUILDING;
         if (cell.getExistingBuilding().getKingdom() != gameDatabase.getCurrentKingdom())
             return BuildingControllerMessages.NOT_OWNER;
-        gameDatabase.setCurrentBuilding(cell.getExistingBuilding()); //TODO remember to deselect building on next turn
+        gameDatabase.setCurrentBuilding(cell.getExistingBuilding());
         if (cell.getExistingBuilding().getBuildingType() == BuildingType.MARKET)
             return BuildingControllerMessages.MARKET;
         return BuildingControllerMessages.SUCCESS;
@@ -85,6 +84,9 @@ public class BuildingController {
             return BuildingControllerMessages.NOT_ENOUGH_MATERIAL;
         if (gameDatabase.getCurrentKingdom().getUnemployment() < count)
             return BuildingControllerMessages.NOT_ENOUGH_PEOPLE;
+        if (name.equals("knight") && kingdomController.getNumberOfAvailableHorses() < count)
+            return BuildingControllerMessages.NOT_ENOUGH_MATERIAL;
+        if (name.equals("knight")) for (int i = 0; i < count; i++) kingdomController.useHorse();
         for (int i = 0; i < count; i++)
             new Soldier(gameDatabase.getCurrentBuilding().getLocation(), armyType, currentKingdom, soldierType);
         gameDatabase.getCurrentKingdom().removeUnemploymentPeople(count);
@@ -126,7 +128,7 @@ public class BuildingController {
         return BuildingControllerMessages.SUCCESS;
     }
 
-    public  BuildingControllerMessages openDogCage() {
+    public BuildingControllerMessages openDogCage() {
         if (gameDatabase.getCurrentBuilding() == null)
             return BuildingControllerMessages.NO_BUILDINGS_SELECTED;
         Building building = gameDatabase.getCurrentBuilding();
@@ -258,7 +260,7 @@ public class BuildingController {
                 && building2.getKingdom() == currentKingdom) return Direction.LEFT;
         if (building3 != null && building3.getBuildingType() == neededBuildingType
                 && building3.getKingdom() == currentKingdom) return Direction.DOWN;
-        if  (building4 != null && building4.getBuildingType() == neededBuildingType
+        if (building4 != null && building4.getBuildingType() == neededBuildingType
                 && building4.getKingdom() == currentKingdom) return Direction.RIGHT;
         return Direction.NONE;
     }
@@ -276,7 +278,7 @@ public class BuildingController {
     }
 
     private void useResources(int count, ArmyType armyType,
-                                 SoldierType soldierType, Kingdom kingdom, KingdomController kingdomController) {
+                              SoldierType soldierType, Kingdom kingdom, KingdomController kingdomController) {
         if (soldierType.getWeapon() != null)
             kingdomController.changeStockedNumber(new Pair<>(soldierType.getWeapon(), -count));
         if (soldierType.getArmor() != null)
@@ -325,7 +327,7 @@ public class BuildingController {
         }
         if (building.getBuildingType().getName().contains("gatehouse")) {
             if (findNeighborContains(building.getLocation(), BuildingType.LOW_WALL) == Direction.RIGHT
-                    || findNeighborContains(building.getLocation(), BuildingType.LOW_WALL) == Direction.LEFT )
+                    || findNeighborContains(building.getLocation(), BuildingType.LOW_WALL) == Direction.LEFT)
                 building.setDirection(Direction.RIGHT);
             else
                 building.setDirection(Direction.UP);
@@ -344,17 +346,12 @@ public class BuildingController {
 
     private Building getBuildingFromDirection(int x, int y, Direction direction) {
         Cell[][] map = gameDatabase.getMap().getMap();
-        switch (direction) {
-            case UP:
-                return  map[x - 1][y].getExistingBuilding();
-            case RIGHT:
-                return  map[x][y + 1].getExistingBuilding();
-            case LEFT:
-                return  map[x][y - 1].getExistingBuilding();
-            case DOWN:
-                return  map[x + 1][y].getExistingBuilding();
-            default:
-                return null;
-        }
+        return switch (direction) {
+            case UP -> map[x - 1][y].getExistingBuilding();
+            case RIGHT -> map[x][y + 1].getExistingBuilding();
+            case LEFT -> map[x][y - 1].getExistingBuilding();
+            case DOWN -> map[x + 1][y].getExistingBuilding();
+            default -> null;
+        };
     }
 }

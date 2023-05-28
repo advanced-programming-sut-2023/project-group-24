@@ -1,9 +1,9 @@
 package model.army;
 
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.buildings.Building;
 import model.map.Cell;
-import utils.Pair;
 
 import java.util.ArrayList;
 
@@ -36,6 +36,7 @@ public abstract class Army {
     public void isDead() {
         this.getLocation().removeArmy(this);
         this.getOwner().removeArmy(this);
+        if (armyType == ArmyType.KNIGHT) owner.killHorse();
     }
 
     public Cell getLocation() {
@@ -61,10 +62,12 @@ public abstract class Army {
     }
 
     public void moveArmy() {
-        location.removeArmy(this);
-        location = path.get(0);
-        path.remove(0);
-        location.addArmy(this);
+        if (path.size() != 0) {
+            location.removeArmy(this);
+            location = path.get(0);
+            path.remove(0);
+            location.addArmy(this);
+        }
     }
 
     public ArrayList<Cell> getPath() {
@@ -124,6 +127,16 @@ public abstract class Army {
     }
 
     public boolean canAttack() {
+        if (target == null)
+            return false;
+        if (armyType.getRange() > 0) {
+            int fireRange = 0;
+            if (location.getExistingBuilding() != null)
+                fireRange = location.getExistingBuilding().getBuildingType().getAttackPoint();
+            if (target.location.getExistingBuilding() != null)
+                fireRange -= target.location.getExistingBuilding().getBuildingType().getAttackPoint();
+            return getDistance() <= armyType.getRange() + fireRange;
+        }
         return getDistance() <= armyType.getRange();
     }
 
@@ -132,6 +145,6 @@ public abstract class Army {
         int y = location.getY();
         int x1 = target.location.getX();
         int y1 = target.location.getY();
-        return (int) (Math.sqrt((x - x1) ^ 2 + (y - y1) ^ 2));
+        return (int) (Math.sqrt(Math.pow((x - x1), 2) + Math.pow((y - y1), 2)));
     }
 }

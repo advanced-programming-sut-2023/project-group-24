@@ -1,18 +1,16 @@
 package controller.gamecontrollers;
 
+import controller.functionalcontrollers.Pair;
 import controller.functionalcontrollers.PathFinder;
 import model.Kingdom;
 import model.army.*;
-import model.buildings.Building;
-import model.buildings.BuildingType;
-import model.buildings.GateAndStairs;
+import model.buildings.*;
 import model.databases.GameDatabase;
 import model.enums.Direction;
 import model.enums.MovingType;
 import model.map.Cell;
 import model.map.Map;
 import model.map.Texture;
-import utils.Pair;
 
 import java.util.ArrayList;
 
@@ -28,6 +26,7 @@ public class GameController {
         gameDatabase.setSelectedUnits(new ArrayList<>());
         gameDatabase.setCurrentBuilding(null);
         currentKingdom = gameDatabase.getCurrentKingdom();
+        makeWarMachines();
         checkStateOfUnits();
         moveUnits();
         war();
@@ -36,6 +35,41 @@ public class GameController {
         kingdomController.nextTurn();
         hasKingdomsFallen();
         giveLastPlayerScoreAndEndGame();
+        handleEngineerOil();
+    }
+
+    private void handleEngineerOil() {
+        for (Army army : currentKingdom.getArmies()) {
+            Building building = army.getLocation().getExistingBuilding();
+            if (building != null) {
+                if (building.getBuildingType().equals(BuildingType.OIL_SMELTER)) {
+                    if (((EngineersNeededBuilding) building).hasEnoughWorkers())
+                        army.changeEngineerState();
+                    else {
+                        ((EngineersNeededBuilding) building).assignEngineers((Soldier) army);
+                        army.getLocation().removeArmy(army);
+                    }
+                }
+            }
+        }
+    }
+
+    private void makeWarMachines() {
+        outer:
+        while (true) {
+            for (Building building : currentKingdom.getBuildings()) {
+                if (building.getBuildingType().equals(BuildingType.SIEGE_TENT)) {
+                    WarMachineType warMachineType = ((SiegeTent) building).getProducingWarMachine();
+                    if (warMachineType == null) continue;
+                    ArmyType armyType = ArmyType.stringToEnum(warMachineType.toString());
+                    new WarMachine(building.getLocation(), armyType, currentKingdom, warMachineType);
+                    currentKingdom.removeBuilding(building);
+                    building.getLocation().setExistingBuilding(null);
+                    continue outer;
+                }
+            }
+            break;
+        }
     }
 
     public boolean isGameDone() {
@@ -62,6 +96,8 @@ public class GameController {
         for (Army army : currentKingdom.getArmies()) {
             if (army.getTarget() == null)
                 checkOtherTargets(army);
+            if (army.getTarget() == null)
+                continue;
             if (army.getTarget().getHp() < 0)
                 setTarget(army);
             if (army.getTarget() == null)
@@ -114,22 +150,30 @@ public class GameController {
         if (army.getUnitState().equals(UnitState.STANDING))
             return;
         for (int i = 0; i < 4; i++)
-            for (Army enemy : getNeighbor(army, i, UnitState.DEFENSIVE.getFireRange()).getArmies())
-                if (!enemy.getOwner().equals(army.getOwner())) {
-                    if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
-                            && !((Soldier) army).visibility())
-                        continue;
-                    army.setTarget(enemy);
-                    return;
-                }
+            if (getNeighbor(army, i, UnitState.DEFENSIVE.getFireRange()) != null)
+                for (Army enemy : getNeighbor(army, i, UnitState.DEFENSIVE.getFireRange()).getArmies())
+                    if (!enemy.getOwner().equals(army.getOwner())) {
+                        if (army.getArmyType().equals(ArmyType.ASSASSIN) &&
+                                !army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                                && !((Soldier) army).visibility())
+                            continue;
+                        army.setTarget(enemy);
+                        return;
+                    }
         if (army.getUnitState().equals(UnitState.DEFENSIVE))
             return;
         for (int i = 0; i < 8; i++)
             for (Army enemy : getNeighbor(army, i, UnitState.OFFENSIVE.getFireRange()).getArmies())
                 if (!enemy.getOwner().equals(army.getOwner())) {
-                    if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                    if (army.getArmyType().equals(ArmyType.ASSASSIN) &&
+                            !army.getOwner().equals(gameDatabase.getCurrentKingdom())
                             && !((Soldier) army).visibility())
                         continue;
+                    PathFinder pathFinder = new PathFinder(gameDatabase.getMap(),
+                            new Pair<>(army.getLocation().getX(), army.getLocation().getY()), getMovingType(army));
+                    if (pathFinder.search(new Pair<>(army.getPath().get(army.getPath().size() - 1).getX(),
+                            army.getPath().get(army.getPath().size() - 1).getY())).equals(PathFinder.OutputState.NO_ERRORS))
+                        army.setPath(pathFinder.findPath());
                     army.setTarget(enemy);
                     return;
                 }
@@ -139,9 +183,12 @@ public class GameController {
         return x < 0 || x >= gameDatabase.getMap().getSize() ||
                 y < 0 || y >= gameDatabase.getMap().getSize();
     }
+
     private void setArcherTarget(Army army) {
         Cell cell = army.getLocation();
         int radius = army.getArmyType().getRange() - 1;
+        if (army.getLocation().getExistingBuilding() != null)
+            radius += army.getLocation().getExistingBuilding().getBuildingType().getAttackPoint();
         int cellX = cell.getX();
         int cellY = cell.getY();
         Map map = gameDatabase.getMap();
@@ -150,27 +197,37 @@ public class GameController {
                 if (!checkXY(cellX + x, cellY + y))
                     for (Army enemy : map.getMap()[cellX + x][cellY + y].getArmies())
                         if (!enemy.getOwner().equals(army.getOwner())) {
-                            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+                            if (army.getArmyType().equals(ArmyType.ASSASSIN) &&
+                                    !army.getOwner().equals(gameDatabase.getCurrentKingdom())
                                     && !((Soldier) army).visibility())
                                 continue;
                             army.setTarget(enemy);
-                            return;
+                            if (army.canAttack())
+                                return;
                         }
+        if (!army.canAttack())
+            army.setTarget(null);
     }
 
     private Cell getNeighbor(Army army, int i, int radius) {
         int x = army.getLocation().getX();
         int y = army.getLocation().getY();
         return switch (i) {
-            case 0 -> gameDatabase.getMap().getMap()[x][y - radius];
-            case 1 -> gameDatabase.getMap().getMap()[x][y + radius];
-            case 2 -> gameDatabase.getMap().getMap()[x - radius][y];
-            case 3 -> gameDatabase.getMap().getMap()[x + radius][y];
-            case 4 -> gameDatabase.getMap().getMap()[x - 1][y - 1];
-            case 5 -> gameDatabase.getMap().getMap()[x - 1][y + 1];
-            case 6 -> gameDatabase.getMap().getMap()[x + 1][y - 1];
-            default -> gameDatabase.getMap().getMap()[x + 1][y + 1];
+            case 0 -> y >= radius ? gameDatabase.getMap().getMap()[x][y - radius] : null;
+            case 1 ->
+                    y + radius < gameDatabase.getMap().getSize() ? gameDatabase.getMap().getMap()[x][y + radius] : null;
+            case 2 -> x >= radius ? gameDatabase.getMap().getMap()[x - radius][y] : null;
+            case 3 ->
+                    x + radius < gameDatabase.getMap().getSize() ? gameDatabase.getMap().getMap()[x + radius][y] : null;
+            case 4 -> checkInBounds(x - 1, y - 1) ? gameDatabase.getMap().getMap()[x - 1][y - 1] : null;
+            case 5 -> checkInBounds(x - 1, y + 1) ? gameDatabase.getMap().getMap()[x - 1][y + 1] : null;
+            case 6 -> checkInBounds(x + 1, y - 1) ? gameDatabase.getMap().getMap()[x + 1][y - 1] : null;
+            default -> checkInBounds(x + 1, y + 1) ? gameDatabase.getMap().getMap()[x + 1][y + 1] : null;
         };
+    }
+
+    private boolean checkInBounds(int x, int y) {
+        return x >= 0 && y >= 0 && x < gameDatabase.getMap().getSize() && y < gameDatabase.getMap().getSize();
     }
 
     private void moveUnits() {
@@ -190,9 +247,33 @@ public class GameController {
                 army.moveArmy();
                 checkAndUseTrap(army.getLocation());
                 if (army.getLocation().getTexture().equals(Texture.SHALLOW_WATER)) i++;
+                if (army.getPath().size() == 0) handlePatrol(army);
             }
         }
     }
+
+    private void handlePatrol(Army army) {
+        if (army.getPatrol() != null) {
+            if (army.getPatrol().getObject1().equals(army.getLocation())) {
+                PathFinder pathFinder = new PathFinder(gameDatabase.getMap(),
+                        new Pair<>(army.getLocation().getX(), army.getLocation().getY()), getMovingType(army));
+                if (pathFinder.search(new Pair<>(army.getPatrol().getObject2().getX(),
+                        army.getPatrol().getObject2().getY())).equals(PathFinder.OutputState.NO_ERRORS))
+                    army.setPath(pathFinder.findPath());
+                else
+                    army.setPath(new ArrayList<>());
+            } else if (army.getPatrol().getObject2().equals(army.getLocation())) {
+                PathFinder pathFinder = new PathFinder(gameDatabase.getMap(),
+                        new Pair<>(army.getLocation().getX(), army.getLocation().getY()), getMovingType(army));
+                if (pathFinder.search(new Pair<>(army.getPatrol().getObject1().getX(),
+                        army.getPatrol().getObject1().getY())).equals(PathFinder.OutputState.NO_ERRORS))
+                    army.setPath(pathFinder.findPath());
+                else
+                    army.setPath(new ArrayList<>());
+            }
+        }
+    }
+
 
     private Direction getDirection(Army army) {
         Cell currentCell = army.getLocation();
@@ -232,7 +313,8 @@ public class GameController {
     }
 
     private void checkAndUseTrap(Cell cell) {
-        if (cell.getExistingBuilding() != null && cell.getExistingBuilding().getBuildingType().equals(BuildingType.KILLING_PIT))
+        if (cell.getExistingBuilding() != null &&
+                cell.getExistingBuilding().getBuildingType().equals(BuildingType.KILLING_PIT))
             activeTrap(cell);
     }
 
@@ -262,11 +344,20 @@ public class GameController {
     }
 
     private void hasKingdomsFallen() {
-        for (Kingdom kingdom : gameDatabase.getKingdoms()) {
-            if (kingdom.getArmies().size() == 0 || kingdom.getBuildings().size() == 0) removeKingdom(kingdom);
-            if (!kingdom.getArmies().get(0).getArmyType().equals(ArmyType.LORD) ||
-                    !kingdom.getBuildings().get(0).getBuildingType().equals(BuildingType.TOWN_HALL))
-                removeKingdom(kingdom);
+        out:
+        while (true) {
+            for (Kingdom kingdom : gameDatabase.getKingdoms()) {
+                if (kingdom.getArmies().size() == 0 || kingdom.getBuildings().size() == 0) {
+                    removeKingdom(kingdom);
+                    continue out;
+                }
+                if (!kingdom.getArmies().get(0).getArmyType().equals(ArmyType.LORD) ||
+                        !kingdom.getBuildings().get(0).getBuildingType().equals(BuildingType.TOWN_HALL)) {
+                    removeKingdom(kingdom);
+                    continue out;
+                }
+            }
+            break;
         }
     }
 

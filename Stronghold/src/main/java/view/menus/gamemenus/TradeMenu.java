@@ -2,10 +2,10 @@ package view.menus.gamemenus;
 
 import controller.AppController;
 import controller.MainController;
+import controller.MenusName;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.TradeController;
 import model.enums.Color;
-import utils.enums.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.TradeControllerMessages;
 import view.menus.GetInputFromUser;
@@ -37,16 +37,14 @@ public class TradeMenu {
             else if (Commands.getMatcher(command, Commands.TRADE_HISTORY) != null)
                 tradeHistory();
             else if (Commands.getMatcher(command, Commands.EXIT) != null)
-                enterMainMenu();
-            else if (Commands.getMatcher(command, Commands.SHOW_CURRENT_MENU) != null)
-                System.out.println("Trade menu");
+                exit();
             else
                 System.out.println("Invalid command!");
         }
     }
 
-    private void enterMainMenu() {
-        AppController.setCurrentMenu(MenusName.MAIN_MENU);
+    private void exit() {
+        AppController.setCurrentMenu(MenusName.GAME_MENU);
     }
 
     private void printNotifications(String[] notifications) {
@@ -80,8 +78,10 @@ public class TradeMenu {
         String acceptingMessage = MainController.removeDoubleQuotation(matcher.group("message"));
         TradeControllerMessages message = tradeController.tradeAccept(id, acceptingMessage, kingdomController);
         switch (message) {
-            case ID_OUT_OF_BOUNDS -> System.out.println(Color.RED + "trade with this id doesn't exist" + Color.RESET);
-            case SUCCESS -> System.out.println(Color.GREEN + "trade was done successfully" + Color.RESET);
+            case ID_OUT_OF_BOUNDS -> System.out.println(Color.RED + "Trade with this id doesn't exist!" + Color.RESET);
+            case SUCCESS -> System.out.println(Color.GREEN + "Trade was done successfully!" + Color.RESET);
+            case NOT_ENOUGH_GOLD -> System.out.println(Color.RED + "The requester doesn't have enough gold!"
+                    + Color.RESET);
         }
     }
 

@@ -1,8 +1,9 @@
 package view.menus.gamemenus;
 
 import controller.AppController;
+import controller.MenusName;
 import controller.gamecontrollers.ShowMapController;
-import utils.enums.MenusName;
+import javafx.application.Application;
 import view.enums.commands.Commands;
 import view.menus.GetInputFromUser;
 
@@ -10,9 +11,11 @@ import java.util.regex.Matcher;
 
 public class ShowMapMenu {
     private final ShowMapController showMapController;
+  private final String[] args;
 
-    public ShowMapMenu(ShowMapController showMapController) {
+    public ShowMapMenu(ShowMapController showMapController, String[] args) {
         this.showMapController = showMapController;
+        this.args = args;
     }
 
     public void run() {
@@ -31,10 +34,11 @@ public class ShowMapMenu {
     }
 
     private void showMap(Matcher matcher) {
-        int x = Integer.parseInt(matcher.group("x"));
+        /*int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
         if (showMapController.checkInvalidIndex(x, y)) System.out.println("\033[0;31mIndex out of bounds!\033[0m");
-        else System.out.println(showMapController.showMap(x, y));
+        else System.out.println(showMapController.showMap(x, y));*/
+        Application.launch(MiniMap.class, args);
     }
 
     private void moveMap(Matcher matcher) {
@@ -53,7 +57,7 @@ public class ShowMapMenu {
                 default -> changeY += number;
             }
         }
-        System.out.println(showMapController.moveMap(changeY, changeX));
+        System.out.println(showMapController.moveMap(changeX, changeY));
     }
 
     private void showDetails(Matcher matcher) {

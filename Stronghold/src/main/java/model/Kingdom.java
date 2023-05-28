@@ -1,14 +1,11 @@
 package model;
 
+import controller.functionalcontrollers.Pair;
 import model.army.Army;
-import model.buildings.Building;
-import model.buildings.BuildingType;
-import model.buildings.StorageBuilding;
-import model.buildings.WorkersNeededBuilding;
+import model.buildings.*;
 import model.enums.Item;
 import model.enums.KingdomColor;
 import model.enums.PopularityFactor;
-import utils.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +39,7 @@ public class Kingdom {
         gold = 1000;
         foodRate = 0;
         taxRate = 0;
-        fearRate = 0;
+        fearRate = 1;
         populationCapacity = 8;
         buildings = new ArrayList<>();
         trades = new ArrayList<>();
@@ -77,12 +74,6 @@ public class Kingdom {
 
     public void setPopularity(int popularity) {
         this.popularity = popularity;
-    }
-
-    public void changePopularity(int amount) {
-        this.popularity += amount;
-        if (popularity < 0) popularity = 0;
-        if (popularity > 100) popularity = 100;
     }
 
     public int getPopulation() {
@@ -219,10 +210,6 @@ public class Kingdom {
         return notifications;
     }
 
-    public void setNotifications(ArrayList<Trade> notifications) {
-        this.notifications = notifications;
-    }
-
     public void setPopulationCapacity() {
         populationCapacity = BuildingType.TOWN_HALL.getHomeCapacity();
         for (Building building : buildings)
@@ -242,15 +229,6 @@ public class Kingdom {
         return foodNumber;
     }
 
-    public int getChurchNumber() {
-        int churchAmount = 0;
-        for (Building building : buildings)
-            if (building.getBuildingType().equals(BuildingType.CHURCH) ||
-                    building.getBuildingType().equals(BuildingType.CATHEDRAL))
-                churchAmount++;
-        return churchAmount;
-    }
-
     public double getFearRate() {
         return fearRate;
     }
@@ -262,12 +240,26 @@ public class Kingdom {
     public void removeEmploymentPeople() {
         if (0 == population.size())
             return;
-        ((WorkersNeededBuilding)population.get(population.size() - 1).getWorkStation()).
+        ((WorkersNeededBuilding) population.get(population.size() - 1).getWorkStation()).
                 unAssignWorker(population.get(population.size() - 1));
         population.remove(population.size() - 1);
     }
 
     public void resetNotifications() {
         notifications = new ArrayList<>();
+    }
+
+    public void killHorse() {
+        for (Building building : buildings) {
+            if (building instanceof Stable
+                    && ((Stable) building).getNumberOfHorses() != ((Stable) building).getNumberOfAvailableHorses()) {
+                ((Stable) building).killHorse();
+                break;
+            }
+        }
+    }
+
+    public void removePeople(People people) {
+        population.remove(people);
     }
 }

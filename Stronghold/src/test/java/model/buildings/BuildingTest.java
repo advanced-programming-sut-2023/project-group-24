@@ -6,11 +6,9 @@ import model.map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class BuildingTest {
-    private Kingdom kingdom = new Kingdom(KingdomColor.RED);
-    private Map map = new Map(10, "testMap");
+    private final Kingdom kingdom = new Kingdom(KingdomColor.RED);
+    private final Map map = new Map(10, "testMap");
 
     @Test
     void getBuildingFromBuildingType() {

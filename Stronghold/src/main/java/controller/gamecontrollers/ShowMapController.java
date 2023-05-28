@@ -1,6 +1,7 @@
 package controller.gamecontrollers;
 
 import controller.AppController;
+import controller.MenusName;
 import model.Kingdom;
 import model.army.Army;
 import model.army.ArmyType;
@@ -11,7 +12,6 @@ import model.buildings.DefenceBuilding;
 import model.databases.GameDatabase;
 import model.enums.Color;
 import model.map.Cell;
-import utils.enums.MenusName;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,13 +36,13 @@ public class ShowMapController {
         checkIndex(x, y);
         StringBuilder outputMap = new StringBuilder();
         String boarder = "\n|" + "-".repeat(65) + "|\n";
-        for (int i = currentMapY - height; i <= currentMapY + height; i++) {
+        for (int i = currentMapX - height; i <= currentMapX + height; i++) {
             outputMap.append('|');
-            for (int j = currentMapX - width; j <= currentMapX + width; j++)
+            for (int j = currentMapY - width; j <= currentMapY + width; j++)
                 outputMap.append(FirstLine(i, j)).append('|');
             outputMap.append("\n");
             outputMap.append('|');
-            for (int j = currentMapX - width; j <= currentMapX + width; j++)
+            for (int j = currentMapY - width; j <= currentMapY + width; j++)
                 outputMap.append(SecondLine(i, j)).append('|');
             outputMap.append(boarder);
         }
@@ -54,11 +54,11 @@ public class ShowMapController {
     }
 
     private void checkIndex(int x, int y) {
-        if (x < width) currentMapX = width;
-        else if (x >= map[1].length - width) currentMapX = map.length - width - 1;
+        if (x < height) currentMapX = height;
+        else if (x >= map[1].length - height) currentMapX = map.length - height - 1;
         else currentMapX = x;
-        if (y < height) currentMapY = height;
-        else if (y >= map.length - height) currentMapY = map.length - height - 1;
+        if (y < width) currentMapY = width;
+        else if (y >= map.length - width) currentMapY = map.length - width - 1;
         else currentMapY = y;
     }
 
@@ -73,7 +73,7 @@ public class ShowMapController {
                 building.getBuildingType().getName().contains("turret")) buildingIcon = 'W';
         char troop = ' ';
         for (Army army : cell.getArmies()) {
-            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+            if (army.getArmyType().equals(ArmyType.ASSASSIN) && !army.getOwner().equals(gameDatabase.getCurrentKingdom())
                     && !((Soldier) army).visibility())
                 continue;
             if (army.getPath().size() == 0) {
@@ -88,7 +88,7 @@ public class ShowMapController {
         Cell cell = map[i][j];
         char movingTroop = ' ';
         for (Army army : cell.getArmies()) {
-            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+            if (army.getArmyType().equals(ArmyType.ASSASSIN) && !army.getOwner().equals(gameDatabase.getCurrentKingdom())
                     && !((Soldier) army).visibility())
                 continue;
             if (army.getPath().size() > 0) {
@@ -122,7 +122,7 @@ public class ShowMapController {
         StringBuilder outputArmy = new StringBuilder();
         HashMap<ArmyType, Integer> armyCount = new HashMap<>();
         for (Army army : armies) {
-            if (army.getArmyType().equals(ArmyType.ASSASSIN) && army.getOwner().equals(gameDatabase.getCurrentKingdom())
+            if (army.getArmyType().equals(ArmyType.ASSASSIN) && !army.getOwner().equals(gameDatabase.getCurrentKingdom())
                     && !((Soldier) army).visibility())
                 continue;
             ArmyType armyType = army.getArmyType();

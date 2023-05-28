@@ -13,16 +13,12 @@ public enum RecoveryQuestion {
     }
 
     public static String getRecoveryQuestionByNumber(int number) {
-        switch (number) {
-            case 1:
-                return ONE.recoveryQuestion;
-            case 2:
-                return TWO.recoveryQuestion;
-            case 3:
-                return THREE.recoveryQuestion;
-            default:
-                return null;
-        }
+        return switch (number) {
+            case 1 -> ONE.recoveryQuestion;
+            case 2 -> TWO.recoveryQuestion;
+            case 3 -> THREE.recoveryQuestion;
+            default -> null;
+        };
     }
 }
 

@@ -1,10 +1,10 @@
 package controller.gamecontrollers;
 
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.Trade;
 import model.databases.GameDatabase;
 import model.enums.Item;
-import utils.Pair;
 import view.enums.messages.TradeControllerMessages;
 
 import java.util.ArrayList;
@@ -47,6 +47,7 @@ public class TradeController {
         if (trade.getRequester() == gameDatabase.getCurrentKingdom()) return TradeControllerMessages.TRADE_IS_YOURS;
         if (gameDatabase.getCurrentKingdom().getStockedNumber(trade.getResourceType())
                 < trade.getResourceAmount()) return TradeControllerMessages.NOT_ENOUGH_RESOURCES;
+        if (trade.getRequester().getGold() < trade.getPrice()) return TradeControllerMessages.NOT_ENOUGH_GOLD;
 
         trade.accept(gameDatabase.getCurrentKingdom(), message);
         kingdomController.changeStockedNumber(new Pair<>(trade.getResourceType(), -trade.getResourceAmount()));

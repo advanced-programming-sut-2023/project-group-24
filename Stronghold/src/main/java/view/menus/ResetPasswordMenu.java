@@ -2,8 +2,8 @@ package view.menus;
 
 import controller.AppController;
 import controller.MainController;
+import controller.MenusName;
 import controller.ResetPasswordMenuController;
-import utils.enums.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.ResetPasswordMessages;
 

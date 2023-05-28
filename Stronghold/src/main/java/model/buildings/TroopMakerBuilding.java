@@ -27,7 +27,7 @@ public class TroopMakerBuilding extends Building {
             if (soldierType == null)
                 continue;
             builder.append(" - ").append("weapon: ").append(
-                    soldierType.getWeapon() == null ? "none" :soldierType.getWeapon().getName());
+                    soldierType.getWeapon() == null ? "none" : soldierType.getWeapon().getName());
             builder.append(" - ").append("weapon: ").append(soldierType.getArmor() == null ?
                     "none" : soldierType.getArmor().getName());
             output.add(builder.toString());

@@ -2,11 +2,11 @@ package view.menus.gamemenus;
 
 import controller.AppController;
 import controller.MainController;
+import controller.MenusName;
 import controller.gamecontrollers.BuildingController;
 import controller.gamecontrollers.GameController;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.UnitController;
-import utils.enums.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.BuildingControllerMessages;
 import view.enums.messages.UnitControllerMessages;
@@ -67,6 +67,8 @@ public class GameMenu {
                 createUnit(matcher);
             else if (Commands.getMatcher(command, Commands.REPAIR) != null)
                 repair();
+            else if ((matcher = Commands.getMatcher(command, Commands.ASSIGN_ENGINEER_OIL)) != null)
+                assignEngineer(matcher);
             else if (Commands.getMatcher(command, Commands.SHOW_BUILDING_DETAILS) != null)
                 showDetail();
             else if (Commands.getMatcher(command, Commands.OPEN_DOG_CAGE) != null)
@@ -120,6 +122,21 @@ public class GameMenu {
         }
     }
 
+    private void assignEngineer(Matcher matcher) {
+        int x = Integer.parseInt(matcher.group("x"));
+        int y = Integer.parseInt(matcher.group("y"));
+        UnitControllerMessages message = unitController.assignEngineer(x, y);
+        switch (message) {
+            case SUCCESS -> System.out.println("Your engineer will work there!");
+            case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
+            case BUILDING_NOT_FOUND -> System.out.println("There is no oil smelter");
+            case ALREADY_WORKING -> System.out.println("This building has enough worker!");
+            case INVALID_LOCATION -> System.out.println("You entered invalid location!");
+            case BLOCK -> System.out.println("You engineer can't move there!");
+            case IRRELEVANT_UNIT -> System.out.println("You can not do that with these units!");
+        }
+    }
+
     private void attackWall(Matcher matcher) {
         String direction = matcher.group("direction");
         UnitControllerMessages message = unitController.attackWall(direction);
@@ -149,10 +166,13 @@ public class GameMenu {
         int y = Integer.parseInt(matcher.group("y"));
         UnitControllerMessages message = unitController.attackBuilding(x, y);
         switch (message) {
+            case CANNOT_ATTACK -> System.out.println("Building is far from you, Please go near that!");
             case NULL_SELECTED_UNIT -> System.out.println("You didn't select any unit!");
             case NULL_SELECTED_BUILDING -> System.out.println("There is no building in that location!");
             case INVALID_LOCATION -> System.out.println("You entered invalid location!");
-            case SUCCESS -> System.out.println("Your unit have this building as target!");
+            case OUT_OF_RANGE -> System.out.println("The building is out of range!");
+            case SUCCESS -> System.out.println("Your unit have this building as a target!");
+            case BLOCK -> System.out.println("You can not target that building!");
         }
     }
 
@@ -161,8 +181,7 @@ public class GameMenu {
         if (gameController.isGameDone()) {
             System.out.println("User " + gameController.getWinner() + " win the game!");
             AppController.setCurrentMenu(MenusName.MAIN_MENU);
-        }
-        else
+        } else
             System.out.println("It's " + gameController.getCurrentUser() + " turn now!");
     }
 
@@ -202,7 +221,7 @@ public class GameMenu {
     }
 
     private void setFoodRate(Matcher matcher) {
-        int foodRate = Integer.parseInt(matcher.group("RateNumber"));
+        int foodRate = Integer.parseInt(matcher.group("rateNumber"));
         BuildingControllerMessages message = buildingController.setFoodRate(foodRate, kingdomController);
         switch (message) {
             case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any building!");
@@ -248,6 +267,7 @@ public class GameMenu {
             case INVALID_TYPE -> System.out.println("You entered invalid type of building!");
             case CANNOT_BUILD_HERE -> System.out.println("You can not drop building here!");
             case NOT_ENOUGH_MATERIAL -> System.out.println("You don't have enough material to build this building!");
+            case IRRELEVANT_BUILDING -> System.out.println("You cannot build the building!");
             case NOT_ENOUGH_GOLD -> System.out.println("You don't have enough gold to build this building!");
             case SUCCESS -> System.out.println("The building was successfully built!");
         }
@@ -262,10 +282,8 @@ public class GameMenu {
             case NO_BUILDINGS -> System.out.println("There is no building to select!");
             case NOT_OWNER -> System.out.println("You are not the owner of this building!");
             case SUCCESS -> System.out.println("The building was successfully selected!");
-            case MARKET -> {
-                System.out.println("You are in shop menu!");
-                shopMenu();
-            }
+            case IRRELEVANT_BUILDING -> System.out.println("You cannot select a moat");
+            case MARKET -> shopMenu();
         }
     }
 
@@ -279,6 +297,7 @@ public class GameMenu {
             case INCORRECT_COUNT -> System.out.println("You entered invalid count!");
             case INVALID_TYPE -> System.out.println("Unit with this type does not exist!");
             case NOT_ENOUGH_MATERIAL -> System.out.println("You don't have enough weapons to create this unit!");
+            case NOT_ENOUGH_PEOPLE -> System.out.println("Your kingdom does not have unemployed people");
             case SUCCESS -> System.out.println("The units were successfully created!");
         }
     }
@@ -299,6 +318,7 @@ public class GameMenu {
         BuildingControllerMessages message = buildingController.changeGateClosedState();
         switch (message) {
             case SUCCESS -> System.out.println("Success!");
+            case ENEMY_IS_NEARBY -> System.out.println("Enemy is nearby!");
             case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any buildings!");
             case IRRELEVANT_BUILDING -> System.out.println("You didn't select a gate!");
         }
@@ -325,6 +345,7 @@ public class GameMenu {
             case SUCCESS -> System.out.println("Successful!");
             case NO_BUILDINGS_SELECTED -> System.out.println("You didn't select any buildings!");
             case IRRELEVANT_BUILDING -> System.out.println("You didn't select dairy farm!");
+            case NOT_ENOUGH_SPACE -> System.out.println("Not enough space for the leather armor");
             case NOT_ENOUGH_COWS -> System.out.println("You don't have enough cow to produce leather!");
         }
     }

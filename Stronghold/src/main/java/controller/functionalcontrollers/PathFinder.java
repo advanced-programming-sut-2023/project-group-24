@@ -4,7 +4,6 @@ import model.enums.Direction;
 import model.enums.MovingType;
 import model.map.Cell;
 import model.map.Map;
-import utils.Pair;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -63,7 +62,7 @@ public class PathFinder {
         if (isValid(newI, newJ)) {
             if (isDestination(newI, newJ)) {
                 cellDetails[newI][newJ].setAll(i, j, 0, 0);
-                return true;
+                return canMoveTo(i, j, newI, newJ);
             } else if (!closedList[newI][newJ] && canMoveTo(i, j, newI, newJ)) {
                 int gNew = cellDetails[i][j].getG() + 1;
                 int fNew = gNew + calculateHValue(newI, newJ);
@@ -86,6 +85,7 @@ public class PathFinder {
             Pair<Integer, Integer> cellCoordinates = path.pop();
             output.add(map.getMap()[cellCoordinates.getObject1()][cellCoordinates.getObject2()]);
         }
+
         return output;
     }
 

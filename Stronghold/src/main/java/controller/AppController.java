@@ -6,12 +6,8 @@ import model.User;
 import model.databases.Database;
 import model.databases.GameDatabase;
 import model.map.Map;
-import utils.enums.MenusName;
 import view.menus.*;
-import view.menus.gamemenus.GameMenu;
-import view.menus.gamemenus.ShopMenu;
-import view.menus.gamemenus.ShowMapMenu;
-import view.menus.gamemenus.TradeMenu;
+import view.menus.gamemenus.*;
 
 import java.util.ArrayList;
 
@@ -31,6 +27,7 @@ public class AppController {
 
     public static void setCurrentMenu(MenusName currentMenu) {
         AppController.currentMenu = currentMenu;
+        database.saveDataIntoFile();
     }
 
     public static User getLoggedInUser() {
@@ -46,7 +43,7 @@ public class AppController {
     }
 
 
-    public void run() {
+    public void run(String[] args) {
         database.loadDataFromFile();
         checkLoggedInUSer();
         while (true) {
@@ -81,12 +78,14 @@ public class AppController {
                     KingdomController kingdomController = new KingdomController(gameDatabase);
                     UnitController unitController = new UnitController(gameDatabase);
                     BuildingController buildingController = new BuildingController(gameDatabase);
-                    GameMenu gameMenu = new GameMenu(kingdomController, unitController, buildingController, gameController);
+                    GameMenu gameMenu =
+                            new GameMenu(kingdomController, unitController, buildingController, gameController);
                     gameMenu.run();
                 }
                 case SHOW_MAP_MENU -> {
                     ShowMapController showMapController = new ShowMapController(gameDatabase);
-                    ShowMapMenu showMapMenu = new ShowMapMenu(showMapController);
+                    MiniMap.gameDatabase = gameDatabase;
+                    ShowMapMenu showMapMenu = new ShowMapMenu(showMapController, args);
                     showMapMenu.run();
                 }
                 case TRADE_MENU -> {

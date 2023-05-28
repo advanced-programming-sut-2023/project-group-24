@@ -1,9 +1,9 @@
 package controller;
 
+import controller.functionalcontrollers.Pair;
 import model.User;
 import model.databases.Database;
 import model.enums.Slogan;
-import utils.Pair;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.RegisterMenuMessages;
 import view.menus.CaptchaMenu;
@@ -59,7 +59,8 @@ public class RegisterMenuController {
         return RegisterMenuMessages.SUCCESS;
     }
 
-    public RegisterMenuMessages checkErrorsForSecurityQuestion(String recoveryQuestion, String answer, String answerConfirm) {
+    public RegisterMenuMessages checkErrorsForSecurityQuestion(String recoveryQuestion,
+                                                               String answer, String answerConfirm) {
         int recoveryQuestionNumber = Integer.parseInt(recoveryQuestion);
         if (recoveryQuestionNumber < 1 || recoveryQuestionNumber > 3) return RegisterMenuMessages.INVALID_NUMBER;
         else if (!answer.equals(answerConfirm)) return RegisterMenuMessages.INCORRECT_ANSWER_CONFIRMATION;

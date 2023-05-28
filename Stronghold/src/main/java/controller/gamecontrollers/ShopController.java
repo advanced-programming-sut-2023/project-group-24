@@ -1,9 +1,9 @@
 package controller.gamecontrollers;
 
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.databases.GameDatabase;
 import model.enums.Item;
-import utils.Pair;
 import view.enums.messages.ShopMenuMessages;
 
 public class ShopController {

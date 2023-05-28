@@ -1,9 +1,9 @@
 package model.buildings;
 
-import model.enums.Item;
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
+import model.enums.Item;
 import model.map.Cell;
-import utils.Pair;
 
 import java.util.ArrayList;
 
@@ -62,10 +62,10 @@ public class ProducerBuilding extends WorkersNeededBuilding {
             output.add("items this building can produce:");
             for (int i = 0; i < getBuildingType().getProduces().size(); i++) {
                 Pair<Item, Integer> pair = getBuildingType().getProduces().get(i);
-                String item = String.format("%d) %s - %d", i + 1, pair.getObject1().getName(), pair.getObject2());
+                String item = String.format("%d) %s - %d", i + 1, pair.getObject1().getName(), Math.abs(pair.getObject2()));
                 if (getBuildingType().getUses() != null)
                     output.add(item + String.format("requires: %s - %d",
-                            getBuildingType().getUses().get(i).getObject1().getName(), -pair.getObject2()));
+                            getBuildingType().getUses().get(i).getObject1().getName(), Math.abs(pair.getObject2())));
                 else
                     output.add(item);
             }

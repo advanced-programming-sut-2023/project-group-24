@@ -1,17 +1,19 @@
 package controller;
 
-import model.databases.Database;
-import model.enums.Direction;
+import controller.functionalcontrollers.Pair;
 import model.Kingdom;
-import model.enums.KingdomColor;
 import model.army.*;
 import model.buildings.Building;
 import model.buildings.BuildingType;
+import model.buildings.StorageBuilding;
+import model.databases.Database;
+import model.enums.Direction;
+import model.enums.Item;
+import model.enums.KingdomColor;
 import model.map.Cell;
 import model.map.Map;
 import model.map.Texture;
 import model.map.Tree;
-import utils.enums.MenusName;
 import view.enums.messages.CreateMapMessages;
 
 public class CreateMapController {
@@ -78,7 +80,8 @@ public class CreateMapController {
         if (x >= map.getSize() || y >= map.getSize() || x < 0 || y < 0)
             return CreateMapMessages.INVALID_LOCATION;
         Cell cell = map.getMap()[x][y];
-        if (cell.getExistingBuilding() != null && cell.getExistingBuilding().getBuildingType().equals(BuildingType.TOWN_HALL))
+        if (cell.getExistingBuilding() != null &&
+                cell.getExistingBuilding().getBuildingType().equals(BuildingType.TOWN_HALL))
             return CreateMapMessages.DONT_PLAY_WITH_TOWN_HALL;
         cell.clear(map);
         return CreateMapMessages.SUCCESS;
@@ -100,30 +103,22 @@ public class CreateMapController {
     }
 
     private Direction getDirection(String direction) {
-        switch (direction) {
-            case "n":
-                return Direction.UP;
-            case "e":
-                return Direction.RIGHT;
-            case "w":
-                return Direction.LEFT;
-            default:
-                return Direction.DOWN;
-        }
+        return switch (direction) {
+            case "n" -> Direction.UP;
+            case "e" -> Direction.RIGHT;
+            case "w" -> Direction.LEFT;
+            default -> Direction.DOWN;
+        };
     }
 
     private String randomDirection() {
         int direct = (int) (Math.random() * 4);
-        switch (direct) {
-            case 0:
-                return "n";
-            case 1:
-                return "e";
-            case 2:
-                return "w";
-            default:
-                return "s";
-        }
+        return switch (direct) {
+            case 0 -> "n";
+            case 1 -> "e";
+            case 2 -> "w";
+            default -> "s";
+        };
     }
 
     public CreateMapMessages dropTree(int x, int y, String type) {
@@ -169,8 +164,10 @@ public class CreateMapController {
     private void createKingdom(Cell townHallLocation, Cell stockPileLocation, KingdomColor kingdomColor) {
         Kingdom kingdom = new Kingdom(kingdomColor);
         map.addKingdom(kingdom);
-        new Building(kingdom, townHallLocation, BuildingType.TOWN_HALL);
-        new Building(kingdom, stockPileLocation, BuildingType.STOCKPILE);
+        Building.getBuildingFromBuildingType(kingdom, townHallLocation, BuildingType.TOWN_HALL);
+        Building.getBuildingFromBuildingType(kingdom, stockPileLocation, BuildingType.STOCKPILE);
+        ((StorageBuilding) kingdom.getBuildings().get(1)).changeItemCount(new Pair<>(Item.WOOD, 50));
+        ((StorageBuilding) kingdom.getBuildings().get(1)).changeItemCount(new Pair<>(Item.STONE, 20));
         new Soldier(townHallLocation, ArmyType.LORD, kingdom, SoldierType.LORD);
     }
 
@@ -237,7 +234,7 @@ public class CreateMapController {
                 && building2.getKingdom() == currentKingdom) return true;
         if (building3 != null && building3.getBuildingType() == neededBuildingType
                 && building3.getKingdom() == currentKingdom) return true;
-        return  building4 != null && building4.getBuildingType() == neededBuildingType
+        return building4 != null && building4.getBuildingType() == neededBuildingType
                 && building4.getKingdom() == currentKingdom;
     }
 

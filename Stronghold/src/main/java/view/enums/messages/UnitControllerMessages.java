@@ -7,6 +7,7 @@ public enum UnitControllerMessages {
     NULL_SELECTED_UNIT,
     BLOCK,
     ALREADY_IN_DESTINATION,
+    ALREADY_WORKING,
     INVALID_STATE,
     NOT_ENEMY,
     NOT_ARCHER,
@@ -22,5 +23,6 @@ public enum UnitControllerMessages {
     BUILDING_NOT_FOUND,
     NULL_SELECTED_BUILDING,
     NO_BUILDING,
-    NOT_ENOUGH_ENGINEER
+    NOT_ENOUGH_ENGINEER,
+    CANNOT_ATTACK
 }
