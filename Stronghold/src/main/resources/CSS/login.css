@@ -1,9 +1,14 @@
 @font-face {
 	font-family: 'Seagram';
-	src: url(“../fonts/Seagram tfb.ttf”);
+	src: url("../fonts/Seagram.ttf");
 }
 
 BorderPane {
-    -fx-font-family: 'Seagram';
+    -fx-font-family: 'Seagram%20tfb', serif;
     -fx-font-size: 20;
+    -fx-background-color: brown;
+}
+
+.password-input .button {
+	-fx-background-color: red;
 }
