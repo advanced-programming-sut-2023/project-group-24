@@ -50,6 +50,7 @@ public class LoginMenuController extends Control {
                 break;
             case INCORRECT_PASSWORD:
                 showError("Login Unsuccessful", "The password is incorrect");
+                loginController.disableInputIncorrectPassword(mainPane);
                 break;
             case SUCCESS:
                 getApp().run(MenusName.MAIN_MENU);
@@ -82,10 +83,6 @@ public class LoginMenuController extends Control {
         alert.setTitle("Error");
         alert.setHeaderText(header);
         alert.setContentText(message);
-        Pane pane = new Pane();
-        pane.setMinHeight(200);
-        pane.setMinWidth(200);
-        pane.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
         alert.initOwner(getStage());
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(getClass().getResource("/CSS/alert.css").toExternalForm());

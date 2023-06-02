@@ -3,8 +3,11 @@ package controller;
 import controller.captchacontrollers.CaptchaGenerator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import model.User;
 import model.databases.Database;
+import model.modelview.PasswordInput;
 import view.enums.messages.LoginMenuMessages;
 import view.menus.login.LoginMenu;
 import view.oldmenus.CaptchaMenu;
@@ -12,6 +15,8 @@ import view.oldmenus.CaptchaMenu;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class LoginController implements Controller {
     private final Database database;
@@ -35,6 +40,16 @@ public class LoginController implements Controller {
         AppController.setLoggedInUser(user);
         AppController.setCurrentMenu(MenusName.MAIN_MENU);
         return LoginMenuMessages.SUCCESS;
+    }
+
+    public void disableInputIncorrectPassword(Pane mainPane) {
+        mainPane.setDisable(true);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                mainPane.setDisable(false);
+            }
+        }, (numberOfIncorrectPassword * 5) * 1000);
     }
 
     public void makeDelayForIncorrectPassword() {

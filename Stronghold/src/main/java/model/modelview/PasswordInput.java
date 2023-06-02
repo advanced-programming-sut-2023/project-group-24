@@ -94,4 +94,9 @@ public class PasswordInput extends HBox {
     public String getText() {
         return passwordFieldHidden.getText();
     }
+
+    public void disable(boolean disable) {
+        passwordFieldShown.setDisable(disable);
+        passwordFieldHidden.setDisable(disable);
+    }
 }
