@@ -32,4 +32,9 @@ public class ProfileMenuController extends Control {
     public void chooseAvatar(MouseEvent mouseEvent) throws Exception {
         getApp().run(MenusName.CHOOSE_AVATAR_MENU);
     }
+
+    @Override
+    public void run() {
+
+    }
 }

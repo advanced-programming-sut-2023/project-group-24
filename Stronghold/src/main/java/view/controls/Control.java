@@ -3,7 +3,7 @@ package view.controls;
 import controller.AppController;
 import javafx.stage.Stage;
 
-public class Control {
+public abstract class Control {
     private Stage stage;
     private AppController app;
 
@@ -18,5 +18,8 @@ public class Control {
     public void setUp(Stage stage, AppController app) {
         this.stage = stage;
         this.app = app;
+        run();
     }
+
+    public abstract void run();
 }

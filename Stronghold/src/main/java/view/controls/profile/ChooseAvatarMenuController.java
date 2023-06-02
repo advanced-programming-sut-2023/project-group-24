@@ -12,4 +12,9 @@ public class ChooseAvatarMenuController extends Control {
     public void copyMenu(MouseEvent mouseEvent) throws Exception {
         getApp().run(MenusName.COPY_AVATAR_MENU);
     }
+
+    @Override
+    public void run() {
+
+    }
 }

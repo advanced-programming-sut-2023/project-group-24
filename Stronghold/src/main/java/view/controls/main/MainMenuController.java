@@ -8,4 +8,9 @@ public class MainMenuController extends Control {
     public void profileMenu(MouseEvent mouseEvent) throws Exception {
         getApp().run(MenusName.PROFILE_MENU);
     }
+
+    @Override
+    public void run() {
+
+    }
 }

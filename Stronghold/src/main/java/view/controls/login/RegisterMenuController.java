@@ -23,4 +23,9 @@ public class RegisterMenuController extends Control {
     public void back(MouseEvent mouseEvent) throws Exception {
         getApp().run(MenusName.LOGIN_MENU);
     }
+
+    @Override
+    public void run() {
+
+    }
 }

@@ -7,4 +7,9 @@ public class ForgotPasswordMenuController extends Control {
     public void cancel(MouseEvent mouseEvent) {
         getStage().close();
     }
+
+    @Override
+    public void run() {
+
+    }
 }

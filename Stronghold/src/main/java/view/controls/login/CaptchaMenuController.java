@@ -7,4 +7,9 @@ public class CaptchaMenuController extends Control {
     public void cancel(MouseEvent mouseEvent) {
         getStage().close();
     }
+
+    @Override
+    public void run() {
+
+    }
 }

@@ -18,4 +18,9 @@ public class LeaderBoardMenuController extends Control {
     public void back(MouseEvent mouseEvent) {
         getStage().close();
     }
+
+    @Override
+    public void run() {
+
+    }
 }

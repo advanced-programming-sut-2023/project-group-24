@@ -1,0 +1,9 @@
+@font-face {
+	font-family: 'Seagram';
+	src: url(“../fonts/Seagram tfb.ttf”);
+}
+
+BorderPane {
+    -fx-font-family: 'Seagram';
+    -fx-font-size: 20;
+}

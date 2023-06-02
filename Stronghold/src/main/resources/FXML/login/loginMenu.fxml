@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.login.LoginMenuController"
+            styleClass="@../../CSS/login.css"
+            fx:id="mainPane"
             prefHeight="500.0" prefWidth="500.0">
     <left>
         <VBox spacing="20">
-            <TextField promptText="username" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"/>
-            <PasswordField promptText="password" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"/>
+            <TextField promptText="username" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"
+                       fx:id="usernameField"/>
+            <PasswordField promptText="password" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"
+                           fx:id="passwordFieldHidden"/>
+            <TextField promptText="password" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"
+                           fx:id="passwordFieldShown"/>
             <Hyperlink text="I don't have an account" onMouseClicked="#register"/>
             <Hyperlink text="I forgot my password" onMouseClicked="#forgotPassword"/>
         </VBox>

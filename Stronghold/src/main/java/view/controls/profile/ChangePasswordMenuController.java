@@ -8,4 +8,9 @@ public class ChangePasswordMenuController extends Control {
     public void cancel(MouseEvent mouseEvent) throws Exception {
         getApp().run(MenusName.PROFILE_MENU);
     }
+
+    @Override
+    public void run() {
+
+    }
 }

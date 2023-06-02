@@ -13,4 +13,9 @@ public class SecurityQuestionChooseMenuController extends Control {
         getStage().close();
         getApp().run(MenusName.CAPTCHA_MENU);
     }
+
+    @Override
+    public void run() {
+
+    }
 }

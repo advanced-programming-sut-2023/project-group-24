@@ -13,4 +13,9 @@ public class SecurityQuestionConfirmMenuController extends Control {
     public void cancel(MouseEvent mouseEvent) {
         getStage().close();
     }
+
+    @Override
+    public void run() {
+
+    }
 }
