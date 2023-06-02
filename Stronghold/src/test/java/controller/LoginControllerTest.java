@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import view.enums.messages.LoginMenuMessages;
 
-class LoginMenuControllerTest {
+class LoginControllerTest {
 
     @Test
     void loginUser() {
         Database database = new Database();
         database.addUser("pouria", MainController.getSHA256("Pouriagh1@"), "pouria", "Say my name", "p@g.c", new Pair<>(1, "p"));
-        LoginMenuController loginMenuController = new LoginMenuController(database);
+        LoginController loginMenuController = new LoginController(database);
         Assertions.assertEquals(LoginMenuMessages.USER_NOT_FOUND, loginMenuController.loginUser("aref", "Password", false));
         Assertions.assertEquals(LoginMenuMessages.INCORRECT_PASSWORD, loginMenuController.loginUser("pouria", "Password", false));
     }

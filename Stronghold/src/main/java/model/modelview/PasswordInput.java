@@ -31,6 +31,7 @@ public class PasswordInput extends HBox {
         this.getChildren().add(showContainer);
         passwordFieldHidden.textProperty().addListener((observableValue, s, t1) -> hintFont());
         passwordFieldHidden.setPromptText("password");
+        passwordFieldShown.setPromptText("password");
         this.setAlignment(Pos.BOTTOM_LEFT);
         show.setImage(new Image(LoginMenu.class.getResource("/images/login/see-password.png").toExternalForm()));
         setUpFields();
@@ -56,7 +57,7 @@ public class PasswordInput extends HBox {
         passwordFieldHidden.managedProperty().bind(showContainer.hoverProperty().not());
         passwordFieldHidden.visibleProperty().bind(showContainer.hoverProperty().not());
         passwordFieldHidden.textProperty().bindBidirectional(passwordFieldShown.textProperty());
-        show.hoverProperty().addListener(observable -> handleFocused());
+        showContainer.hoverProperty().addListener(observable -> handleFocused());
     }
 
     private void setUpSize() {
@@ -75,13 +76,22 @@ public class PasswordInput extends HBox {
     }
 
     private void handleFocused() {
-        if (show.isHover() && passwordFieldHidden.isFocused()) {
+        if (passwordFieldShown.isVisible() && passwordFieldHidden.isFocused()) {
+            int currentPosition = passwordFieldHidden.getCaretPosition();
             passwordFieldShown.requestFocus();
-            passwordFieldShown.selectEnd();
+            passwordFieldShown.selectRange(currentPosition, currentPosition);
+            passwordFieldShown.selectPositionCaret(currentPosition);
         }
-        if (!show.isHover() && passwordFieldShown.isFocused()) {
+        if (!showContainer.isHover() && passwordFieldShown.isFocused()) {
+            int currentPosition = passwordFieldShown.getCaretPosition();
             passwordFieldHidden.requestFocus();
             passwordFieldHidden.selectEnd();
+            passwordFieldHidden.selectRange(currentPosition, currentPosition);
+            passwordFieldHidden.selectPositionCaret(currentPosition);
         }
+    }
+
+    public String getText() {
+        return passwordFieldHidden.getText();
     }
 }

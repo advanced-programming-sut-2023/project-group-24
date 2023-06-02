@@ -1,18 +1,24 @@
 package controller;
 
+import controller.captchacontrollers.CaptchaGenerator;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.User;
 import model.databases.Database;
 import view.enums.messages.LoginMenuMessages;
+import view.menus.login.LoginMenu;
 import view.oldmenus.CaptchaMenu;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
-public class LoginMenuController {
+public class LoginController implements Controller {
     private final Database database;
     private int numberOfIncorrectPassword;
+    private String captchaText;
 
-    public LoginMenuController(Database database) {
+    public LoginController(Database database) {
         this.database = database;
         this.numberOfIncorrectPassword = 0;
     }
@@ -25,7 +31,6 @@ public class LoginMenuController {
             return LoginMenuMessages.INCORRECT_PASSWORD;
         }
         numberOfIncorrectPassword = 0;
-        if (!CaptchaMenu.runCaptcha()) return LoginMenuMessages.INCORRECT_CAPTCHA;
         if (stayLoggedIn) database.setStayedLoggedInUser(user);
         AppController.setLoggedInUser(user);
         AppController.setCurrentMenu(MenusName.MAIN_MENU);
@@ -53,5 +58,15 @@ public class LoginMenuController {
         robot.delay(30);
         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+    }
+
+    public void generateCaptcha(ImageView captchaImage) {
+        File file = new File("info/captcha.png");
+        captchaText = CaptchaGenerator.generateRandomCaptcha(200, 50, file.getAbsolutePath());
+        captchaImage.setImage(new Image(file.getAbsolutePath()));
+    }
+
+    public boolean isCaptchaIncorrect(String captchaText) {
+        return captchaText == null || !captchaText.equals(this.captchaText);
     }
 }

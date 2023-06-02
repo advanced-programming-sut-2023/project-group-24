@@ -1,7 +1,7 @@
 package view.oldmenus;
 
 import controller.AppController;
-import controller.LoginMenuController;
+import controller.LoginController;
 import controller.MainController;
 import controller.MenusName;
 import view.enums.commands.Commands;
@@ -11,10 +11,10 @@ import java.util.regex.Matcher;
 
 public class LoginMenu {
 
-    private final LoginMenuController loginMenuController;
+    private final LoginController loginMenuController;
 
 
-    public LoginMenu(LoginMenuController loginMenuController) {
+    public LoginMenu(LoginController loginMenuController) {
         this.loginMenuController = loginMenuController;
     }
 

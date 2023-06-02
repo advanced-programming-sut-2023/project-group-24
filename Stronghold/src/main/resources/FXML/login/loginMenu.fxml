@@ -5,8 +5,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
 <?import model.modelview.PasswordInput?>
+<?import javafx.scene.layout.HBox?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.login.LoginMenuController"
@@ -17,23 +17,20 @@
         <VBox spacing="20" styleClass="pane">
             <TextField promptText="username" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"
                        fx:id="usernameField"/>
-<!--            <HBox>-->
-<!--                <PasswordField promptText="password" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"-->
-<!--                               fx:id="passwordFieldHidden"/>-->
-<!--                <TextField promptText="password" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"-->
-<!--                           fx:id="passwordFieldShown"/>-->
-<!--                <Button fx:id="tmp"/>-->
-<!--            </HBox>-->
             <PasswordInput prefHeight="50" fx:id="passwordInput"/>
-            <Hyperlink text="I don't have an account" onMouseClicked="#register" styleClass="hyperlink"/>
-            <Hyperlink text="I forgot my password" onMouseClicked="#forgotPassword"/>
+            <Hyperlink text="I don't have an account" onMouseClicked="#register" styleClass="hyperlink"
+                       fx:id="register"/>
+            <Hyperlink text="I forgot my password" onMouseClicked="#forgotPassword" fx:id="forgotPassword"/>
         </VBox>
     </left>
 
     <right>
         <VBox alignment="TOP_RIGHT" spacing="20" prefHeight="500">
-            <ImageView fitHeight="50" fitWidth="200"/>
-            <TextField promptText="captcha" minHeight="50" maxWidth="200" alignment="CENTER"/>
+            <ImageView fitHeight="50" fitWidth="200" fx:id="captchaImage"/>
+            <HBox alignment="CENTER_RIGHT">
+                <TextField promptText="captcha" minHeight="50" maxWidth="160" alignment="CENTER" fx:id="captchaField"/>
+                <Button prefHeight="40" prefWidth="40" onMouseClicked="#anotherCaptcha"/>
+            </HBox>
             <VBox alignment="BOTTOM_RIGHT" prefHeight="600">
                 <Button text="login" prefWidth="300" prefHeight="75" onMouseClicked="#login"/>
             </VBox>

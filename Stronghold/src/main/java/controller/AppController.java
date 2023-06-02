@@ -166,6 +166,15 @@ public class AppController {
 //        }
     }
 
+    public Controller getControllerForMenu(MenusName name) {
+        switch (name) {
+            case LOGIN_MENU:
+                return new LoginController(database);
+        }
+
+        return null;
+    }
+
     private void checkLoggedInUSer() {
         loggedInUser = database.getStayedLoggedInUser();
 //        if (database.getStayedLoggedInUser() != null) setCurrentMenu(MenusName.MAIN_MENU);
