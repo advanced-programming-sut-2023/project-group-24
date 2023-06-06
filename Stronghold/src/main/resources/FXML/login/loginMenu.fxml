@@ -3,10 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import model.modelview.PasswordInput?>
-<?import javafx.scene.layout.HBox?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.login.LoginMenuController"
@@ -27,12 +25,14 @@
     <right>
         <VBox alignment="TOP_RIGHT" spacing="20" prefHeight="500">
             <ImageView fitHeight="50" fitWidth="200" fx:id="captchaImage"/>
-            <HBox alignment="CENTER_RIGHT">
-                <TextField promptText="captcha" minHeight="50" maxWidth="160" alignment="CENTER" fx:id="captchaField"/>
-                <Button prefHeight="40" prefWidth="40" onMouseClicked="#anotherCaptcha"/>
+            <HBox alignment="BOTTOM_RIGHT">
+                <TextField promptText="captcha" minHeight="50" maxWidth="180" alignment="CENTER" fx:id="captchaField"/>
+                <Button maxHeight="20" prefHeight="20" minHeight="20" prefWidth="20" maxWidth="20"
+                        onMouseClicked="#anotherCaptcha" styleClass="re-captcha"/>
             </HBox>
             <VBox alignment="BOTTOM_RIGHT" prefHeight="600">
-                <Button text="login" prefWidth="300" prefHeight="75" onMouseClicked="#login"/>
+                <Button text="log in" prefWidth="350" prefHeight="50" onMouseClicked="#login" styleClass="menu-button"
+                        fx:id="login" textAlignment="CENTER"/>
             </VBox>
         </VBox>
     </right>

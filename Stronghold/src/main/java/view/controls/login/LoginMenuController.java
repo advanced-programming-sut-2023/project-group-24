@@ -1,21 +1,14 @@
 package view.controls.login;
 
-import controller.AppController;
 import controller.LoginController;
 import controller.MenusName;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.StageStyle;
 import model.modelview.PasswordInput;
 import view.controls.Control;
-import view.enums.messages.LoginMenuMessages;
 
 import java.io.InputStream;
 
@@ -27,6 +20,7 @@ public class LoginMenuController extends Control {
     public Hyperlink forgotPassword;
     public ImageView captchaImage;
     public TextField captchaField;
+    public Button login;
 
     private LoginController loginController;
 
@@ -68,10 +62,14 @@ public class LoginMenuController extends Control {
     private void setUpFont() {
         InputStream fontStream = getClass().getResourceAsStream("/fonts/Seagram.ttf");
         InputStream fontStream2 = getClass().getResourceAsStream("/fonts/Seagram.ttf");
+        InputStream fontStream3 = getClass().getResourceAsStream("/fonts/Seagram.ttf");
         if (fontStream != null) {
             Font font = Font.loadFont(fontStream, 24);
             usernameField.setFont(font);
             passwordInput.setFont(font);
+            captchaField.setFont(font);
+            Font big = Font.loadFont(fontStream3, 30);
+            login.setFont(big);
             Font small = Font.loadFont(fontStream2, 18);
             register.setFont(small);
             forgotPassword.setFont(small);
@@ -79,6 +77,7 @@ public class LoginMenuController extends Control {
     }
 
     private void showError(String header, String message) {
+        anotherCaptcha();
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(header);
@@ -90,7 +89,8 @@ public class LoginMenuController extends Control {
         alert.show();
     }
 
-    public void anotherCaptcha(MouseEvent mouseEvent) {
+    public void anotherCaptcha() {
         loginController.generateCaptcha(captchaImage);
+        captchaField.setText("");
     }
 }

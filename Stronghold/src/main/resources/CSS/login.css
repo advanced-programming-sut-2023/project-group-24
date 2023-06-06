@@ -6,9 +6,45 @@
 BorderPane {
     -fx-font-family: 'Seagram%20tfb', serif;
     -fx-font-size: 20;
-    -fx-background-color: brown;
+    /*-fx-background-size: cover;*/
+    -fx-background-image: url("../images/backgrounds/login.jpg");
+    -fx-background-size: cover;
 }
 
 .password-input .button {
 	-fx-background-color: red;
+}
+
+.text-field {
+	-fx-background-color: transparent;
+	-fx-text-fill: #f97330;
+	-fx-background-radius: 0px;
+	-fx-border-color: transparent transparent #492300 transparent;
+	-fx-prompt-text-fill: #f9733099;
+	-fx-border-width: 2;
+}
+
+.hyperlink {
+	-fx-text-fill: #804919;
+}
+
+.button {
+	-fx-background-color: transparent;
+	-fx-text-fill: white;
+	-fx-padding: 0px 0px 9px 0px;
+}
+
+.menu-button {
+    -fx-background-image: url("../images/menus/button.jpg");
+    -fx-background-size: stretch;
+}
+
+.menu-button:hover {
+    -fx-background-image: url("../images/menus/button-hover.jpg");
+    -fx-background-size: stretch;
+}
+
+.re-captcha {
+	-fx-background-image: url("../images/login/retry.png");
+    -fx-background-size: stretch;
 }
