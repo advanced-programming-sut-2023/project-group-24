@@ -39,6 +39,7 @@ public class RegisterMenuController extends Control {
     public CheckBox customSlogan;
     public Label nicknameError;
     public Label sloganError;
+    public Button registerButton;
 
     private RegisterController registerController;
 
@@ -153,6 +154,7 @@ public class RegisterMenuController extends Control {
 
     private void setUpFont() {
         if (getClass().getResourceAsStream("/fonts/Seagram.ttf") != null) {
+            Font big = Font.loadFont(getClass().getResourceAsStream("/fonts/Seagram.ttf"), 24);
             Font normal = Font.loadFont(getClass().getResourceAsStream("/fonts/Seagram.ttf"), 20);
             Font small = Font.loadFont(getClass().getResourceAsStream("/fonts/Seagram.ttf"), 17);
             Font tiny = Font.loadFont(getClass().getResourceAsStream("/fonts/Seagram.ttf"), 14);
@@ -171,6 +173,13 @@ public class RegisterMenuController extends Control {
             userNameError.setFont(mini);
             nicknameError.setFont(mini);
             sloganError.setFont(mini);
+            registerButton.setFont(big);
         } else System.out.println("font not loaded");
+    }
+
+    public void randomPassword() {
+        String password = registerController.makeRandomPassword();
+        passwordField.setText(password);
+        confirmPasswordField.setText(password);
     }
 }

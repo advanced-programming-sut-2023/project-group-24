@@ -62,9 +62,11 @@
                 <CheckBox prefWidth="32" prefHeight="32" minWidth="32" minHeight="32" maxWidth="32" maxHeight="32"
                           fx:id="customSlogan"/>
             </HBox>
+            <Button prefHeight="32" prefWidth="32" maxHeight="32" maxWidth="32" minHeight="32" minWidth="32"
+                    onMouseClicked="#randomPassword" id="random-password"/>
             <VBox alignment="BOTTOM_RIGHT" prefHeight="900">
-                <Button prefHeight="45" prefWidth="275" text="register" onMouseClicked="#register"
-                        styleClass="menu-button"/>
+                <Button prefHeight="45" prefWidth="275" text="Register" onMouseClicked="#register"
+                        styleClass="menu-button" fx:id="registerButton"/>
             </VBox>
         </VBox>
     </right>

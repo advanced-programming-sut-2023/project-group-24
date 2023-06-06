@@ -49,7 +49,7 @@ BorderPane {
 
 .back-icon {
 	-fx-background-image: url("../images/menus/back-icon.png");
-	-fx-background-size: cover;
+	-fx-background-size: stretch;
 }
 
 .check-box {
@@ -100,4 +100,9 @@ BorderPane {
 #register-pane {
 	-fx-background-image: url("../images/backgrounds/register.jpg");
     -fx-background-size: cover;
+}
+
+#random-password {
+	-fx-background-image: url("../images/login/random-password.png");
+    -fx-background-size: stretch;
 }

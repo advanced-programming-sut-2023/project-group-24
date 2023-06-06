@@ -85,7 +85,7 @@ public class RegisterController implements Controller {
         StringBuilder password = new StringBuilder();
         List<Integer> indexesOfPassword = new ArrayList<>();
         String[] passwordCharacters = new String[]{"0123456789", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                "abcdefghijklmnopqrstuvwxyz", "`~!@#$%^&*()_+=-*/><?{}[]|\\/:\\;\",."};
+                "abcdefghijklmnopqrstuvwxyz", "`~!@#$%^&*()+=-*/><?{}[]|\\/:\\;\",."};
         int sizeOfPassword = (int) (Math.random() * 8) + 8;
         password.setLength(sizeOfPassword);
         for (int i = 0; i < sizeOfPassword; i++) indexesOfPassword.add(i);
@@ -126,7 +126,7 @@ public class RegisterController implements Controller {
         StringBuilder newUsername = new StringBuilder(username);
         int length = (int) (Math.random() * 2) + 1;
         String[] usernameCharacters = new String[]{"0123456789", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                "abcdefghijklmnopqrstuvwxyz", "`~!@#$%^&*()_+=-*/><?{}[]|\\/:\\;\",."};
+                "abcdefghijklmnopqrstuvwxyz", "`~!@#$%^&*()+=-*/><?{}[]|\\/:\\;\",."};
         for (int i = 0; i < length; i++) {
             int stringIndex = (int) (Math.random() * 4);
             int characterIndex = (int) (Math.random() * usernameCharacters[stringIndex].length());

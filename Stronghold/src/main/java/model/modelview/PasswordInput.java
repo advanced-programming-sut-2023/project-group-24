@@ -98,6 +98,10 @@ public class PasswordInput extends HBox {
         return passwordFieldHidden.getText();
     }
 
+    public void setText(String password) {
+        passwordFieldHidden.setText(password);
+    }
+
     public StringProperty textProperty() {
         return passwordFieldHidden.textProperty();
     }
