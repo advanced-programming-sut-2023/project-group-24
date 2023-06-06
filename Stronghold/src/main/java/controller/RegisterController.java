@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RegisterMenuController {
+public class RegisterController implements Controller {
 
     Database database;
 
-    public RegisterMenuController(Database database) {
+    public RegisterController(Database database) {
         this.database = database;
     }
 

@@ -65,14 +65,16 @@ public class PasswordInput extends HBox {
         passwordFieldHidden.maxHeightProperty().bind(this.prefHeightProperty());
         passwordFieldShown.minHeightProperty().bind(this.prefHeightProperty());
         passwordFieldShown.maxHeightProperty().bind(this.prefHeightProperty());
-        passwordFieldHidden.maxWidthProperty().bind(this.prefHeightProperty().multiply(-0.6).add(200));
-        passwordFieldShown.maxWidthProperty().bind(this.prefHeightProperty().multiply(-0.6).add(200));
+        passwordFieldHidden.maxWidthProperty().bind(this.prefHeightProperty().multiply(-0.6).add(250));
+        passwordFieldHidden.minWidthProperty().bind(this.prefHeightProperty().multiply(-0.6).add(250));
+        passwordFieldShown.maxWidthProperty().bind(this.prefHeightProperty().multiply(-0.6).add(250));
+        passwordFieldShown.minWidthProperty().bind(this.prefHeightProperty().multiply(-0.6).add(250));
+        passwordFieldHidden.alignmentProperty().bind(this.alignmentProperty());
+        passwordFieldShown.alignmentProperty().bind(this.alignmentProperty());
         show.fitHeightProperty().bind(this.prefHeightProperty().multiply(0.6));
         show.fitWidthProperty().bind(this.prefHeightProperty().multiply(0.6));
         showContainer.prefHeightProperty().bind(this.prefHeightProperty().multiply(0.6));
         showContainer.maxHeightProperty().bind(this.prefHeightProperty().multiply(0.6));
-        passwordFieldHidden.setAlignment(Pos.CENTER);
-        passwordFieldShown.setAlignment(Pos.CENTER);
     }
 
     private void handleFocused() {

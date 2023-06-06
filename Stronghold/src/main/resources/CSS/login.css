@@ -7,8 +7,6 @@ BorderPane {
     -fx-font-family: 'Seagram%20tfb', serif;
     -fx-font-size: 20;
     /*-fx-background-size: cover;*/
-    -fx-background-image: url("../images/backgrounds/login.jpg");
-    -fx-background-size: cover;
 }
 
 .password-input .button {
@@ -44,7 +42,58 @@ BorderPane {
     -fx-background-size: stretch;
 }
 
-.re-captcha {
+.retry {
 	-fx-background-image: url("../images/login/retry.png");
     -fx-background-size: stretch;
+}
+
+.back-icon {
+	-fx-background-image: url("../images/menus/back-icon.png");
+	-fx-background-size: cover;
+}
+
+.check-box {
+    /* default properties */
+    -fx-border-color: #492300 #492300 #492300 #492300;
+    -fx-border-width: 2;
+    -fx-border-radius: 5 5 5 5;
+    selected-box-color: #492300;
+    box-color: transparent;
+    mark-color: transparent;
+}
+
+.check-box:selected > .box {
+	/*-fx-background-insets: 1.1px 0.8px 1px 1.5px;*/
+	-fx-background-insets: 1px 1px 1px 1px;
+	-fx-background-radius: 5 5 5 5;
+    /* background color for selected checkbox */
+    -fx-background-color: selected-box-color;
+}
+
+.check-box > .box {
+	/*-fx-background-insets: 0px 1px 0px 1px;
+	-fx-background-radius: 2 2 2 2;*/
+    /* background color of unselected checkbox */
+    -fx-background-color: box-color;
+}
+
+.check-box:selected > .box > .mark,
+.check-box:indeterminate  > .box > .mark {
+    /* modify mark color */
+    -fx-background-color: mark-color;
+}
+
+.text {
+	-fx-text-fill: #f97330;
+	-fx-color: #f97330;
+}
+
+#login-pane {
+	-fx-background-image: url("../images/backgrounds/login.jpg");
+    -fx-background-size: cover;
+}
+
+#register-pane {
+	-fx-background-image: url("../images/backgrounds/register.jpg");
+    -fx-background-size: cover;
 }

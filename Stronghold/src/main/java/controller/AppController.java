@@ -170,6 +170,8 @@ public class AppController {
         switch (name) {
             case LOGIN_MENU:
                 return new LoginController(database);
+            case REGISTER_MENU:
+                return new RegisterController(database);
         }
 
         return null;
