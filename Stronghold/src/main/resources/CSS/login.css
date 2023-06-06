@@ -88,6 +88,10 @@ BorderPane {
 	-fx-color: #f97330;
 }
 
+.label {
+	-fx-text-fill: red;
+}
+
 #login-pane {
 	-fx-background-image: url("../images/backgrounds/login.jpg");
     -fx-background-size: cover;

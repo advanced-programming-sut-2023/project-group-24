@@ -24,15 +24,15 @@ public class LoginMenuController extends Control {
 
     private LoginController loginController;
 
-    public void forgotPassword(MouseEvent mouseEvent) throws Exception {
+    public void forgotPassword() throws Exception {
         getApp().run(MenusName.SECURITY_QUESTION_CONFIRM_MENU);
     }
 
-    public void register(MouseEvent mouseEvent) throws Exception {
+    public void register() throws Exception {
         getApp().run(MenusName.REGISTER_MENU);
     }
 
-    public void login(MouseEvent mouseEvent) throws Exception {
+    public void login() throws Exception {
         if (usernameField.getText().equals("")) showError("Empty Field", "Username field is empty");
         else if (passwordInput.getText().equals("")) showError("Empty Field", "Password field is empty");
         else if (captchaField.getText().equals("")) showError("Empty Field", "Captcha field is empty");

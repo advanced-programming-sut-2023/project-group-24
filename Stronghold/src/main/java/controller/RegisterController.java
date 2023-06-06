@@ -34,6 +34,11 @@ public class RegisterController implements Controller {
             RegisterMenuMessages passwordCheckMessage = checkPasswordErrors(password, passwordConfirmation);
             if (passwordCheckMessage != RegisterMenuMessages.SUCCESS) return passwordCheckMessage;
         }
+        return checkEmailErrors(email);
+    }
+
+    public RegisterMenuMessages checkEmailErrors(String email) {
+        if (email.equals("")) return RegisterMenuMessages.NULL_EMAIL;
         for (User e : database.getAllUsers()) {
             if (e.getEmail().equalsIgnoreCase(email)) return RegisterMenuMessages.DUPLICATE_EMAIL;
         }
@@ -42,6 +47,7 @@ public class RegisterController implements Controller {
     }
 
     public RegisterMenuMessages checkPasswordErrors(String password, String passwordConfirmation) {
+        if (password.equals("")) return RegisterMenuMessages.NULL_PASSWORD;
         CommonMessages passwordMessage = MainController.whatIsPasswordProblem(password);
         switch (passwordMessage) {
             case SHORT_PASSWORD:
@@ -56,6 +62,13 @@ public class RegisterController implements Controller {
                 return RegisterMenuMessages.NON_SPECIFIC_PASSWORD;
         }
         if (!password.equals(passwordConfirmation)) return RegisterMenuMessages.INCORRECT_PASSWORD_CONFIRM;
+        return RegisterMenuMessages.SUCCESS;
+    }
+
+    public RegisterMenuMessages checkUsernameErrors(String username) {
+        if (username.equals("")) return RegisterMenuMessages.NULL_USERNAME;
+        else if (MainController.isUsernameValid(username)) return RegisterMenuMessages.INVALID_USERNAME;
+        else if (database.getUserByUsername(username) != null) return RegisterMenuMessages.DUPLICATE_USERNAME;
         return RegisterMenuMessages.SUCCESS;
     }
 
