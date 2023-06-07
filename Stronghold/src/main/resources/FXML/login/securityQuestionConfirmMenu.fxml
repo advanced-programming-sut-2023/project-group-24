@@ -14,7 +14,7 @@
             prefHeight="180.0" prefWidth="250.0" maxHeight="180">
     <top>
         <VBox alignment="TOP_CENTER" minWidth="250" minHeight="180" spacing="20">
-            <Text text="What is your father's name?"/>
+            <Label text="What is your father's name?"/>
             <TextField maxWidth="200" minHeight="50" minWidth="200"/>
         </VBox>
     </top>

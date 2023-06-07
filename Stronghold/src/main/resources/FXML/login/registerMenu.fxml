@@ -16,29 +16,29 @@
             <VBox maxHeight="50">
                 <TextField minWidth="250" maxHeight="40" minHeight="40" maxWidth="250" promptText="username"
                            alignment="BASELINE_LEFT" fx:id="usernameField"/>
-                <Label prefHeight="10" fx:id="userNameError"/>
+                <Label prefHeight="10" fx:id="userNameError" styleClass="error"/>
             </VBox>
 
             <VBox maxHeight="50">
                 <PasswordInput prefHeight="40" fx:id="passwordField" alignment="BOTTOM_LEFT"/>
-                <Label prefHeight="10" fx:id="passwordError"/>
+                <Label prefHeight="10" fx:id="passwordError" styleClass="error"/>
             </VBox>
 
             <VBox maxHeight="50">
                 <PasswordInput prefHeight="40" fx:id="confirmPasswordField" alignment="BOTTOM_LEFT"/>
-                <Label prefHeight="10" fx:id="confirmPasswordError"/>
+                <Label prefHeight="10" fx:id="confirmPasswordError" styleClass="error"/>
             </VBox>
 
             <VBox maxHeight="50">
                 <TextField minWidth="250" maxHeight="40" minHeight="40" maxWidth="250" promptText="nickname"
                            alignment="BASELINE_LEFT" fx:id="nicknameField"/>
-                <Label prefHeight="10" fx:id="nicknameError"/>
+                <Label prefHeight="10" fx:id="nicknameError" styleClass="error"/>
             </VBox>
 
             <VBox maxHeight="50">
                 <TextField minWidth="250" maxHeight="40" minHeight="40" maxWidth="250" promptText="email"
                            alignment="BASELINE_LEFT" fx:id="emailField"/>
-                <Label prefHeight="10" fx:id="emailError"/>
+                <Label prefHeight="10" fx:id="emailError" styleClass="error"/>
             </VBox>
 
             <VBox maxHeight="50">
@@ -48,7 +48,7 @@
                     <Button maxHeight="20" minHeight="20" maxWidth="20" minWidth="20" prefHeight="20" prefWidth="20"
                             styleClass="retry" onMouseClicked="#randomSlogan"/>
                 </HBox>
-                <Label prefHeight="10" fx:id="sloganError"/>
+                <Label prefHeight="10" fx:id="sloganError" styleClass="error"/>
             </VBox>
         </VBox>
     </left>

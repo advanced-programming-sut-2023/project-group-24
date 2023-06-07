@@ -22,6 +22,11 @@ BorderPane {
 	-fx-border-width: 2;
 }
 
+.dark-text-field {
+	-fx-text-fill: #7dbf32;
+	-fx-prompt-text-fill: #56701899;
+}
+
 .hyperlink {
 	-fx-text-fill: #804919;
 }
@@ -83,13 +88,106 @@ BorderPane {
     -fx-background-color: mark-color;
 }
 
+.combo-box {
+	-fx-border-color: #492300;
+    -fx-border-width: 0.9 0.9 1.1 0.9;
+    -fx-background-radius: 0, 0, 0, 0;
+    -fx-background-insets: 0, 0, 0, 0;
+    -fx-font-size: 11px;
+    -fx-text-fill: #894300;
+    -fx-text-inner-color: #894300;
+    -fx-selection-bar-text: #794000;
+    -fx-text-base-color: #693300;
+}
+
+.combo-box .content {
+	-fx-background-color: #cfb253;
+}
+
+.combo-box .list-cell {
+    -fx-background: white;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-padding: 3 0 2 7;
+    -fx-cell-size: 30px; 
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #cfb253, #cfb253;
+    -fx-background-insets: 0, 0;
+    /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );*/
+
+}    
+
+.combo-box-popup .list-view .list-cell {
+    -fx-padding: 3 0 2 7;
+    -fx-pref-height: 30;
+
+    /* No alternate highlighting */
+    -fx-background-color: transparent;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: #af9243;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected:hover {
+	-fx-background-color: #bfa24a;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-background-color: #c4aa50;
+    -fx-text-fill: -fx-text-inner-color;
+}
+
+.combo-box-base  {
+    -fx-background-color: #cfb253, #cfb253, #cfb253, #cfb253;
+    -fx-background-radius: 0, 0, 0, 0;
+    -fx-padding: 0;
+}
+
+.combo-box-base:hover {
+    -fx-color: -fx-hover-base;
+}
+
+.combo-box-base:showing {
+    -fx-color: -fx-pressed-base;
+}
+
+.combo-box-base:focused {
+    /*-fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;*/
+    -fx-border-color: #492300bb;
+    -fx-border-width: 0.9 0.9 1.6 0.9;
+    -fx-background-radius: 0, 0, 0, 0;
+    -fx-background-insets: 0, 0, 0, 0;
+}
+
+.combo-box-base:disabled {
+    -fx-opacity: .4;
+}
+
 .text {
 	-fx-text-fill: #f97330;
 	-fx-color: #f97330;
 }
 
-.label {
+.error {
 	-fx-text-fill: red;
+}
+
+.pop-up-menu {
+	/*first edition border color: #cfb253;*/
+	-fx-border-radius: 20;
+	-fx-border-width: 2;
+	-fx-border-color: black;
+
+	-fx-effect: innershadow(gaussian, black, 18, 0.2, 0, 0);
+
+	-fx-background-image: url("../images/backgrounds/pop-up-background.jpg");
+    -fx-background-radius: 20;
+    -fx-background-size: stretch;
 }
 
 #login-pane {
