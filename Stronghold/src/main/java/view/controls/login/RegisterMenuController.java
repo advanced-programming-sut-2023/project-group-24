@@ -50,6 +50,17 @@ public class RegisterMenuController extends Control {
         getApp().saveUserInfo(usernameField.getText(), passwordField.getText(),
                 nicknameField.getText(), sloganField.getText(), emailField.getText());
         getApp().run(MenusName.SECURITY_QUESTION_CHOOSE_MENU);
+        emptyFields();
+    }
+
+    private void emptyFields() {
+        usernameField.setText("");
+        passwordField.setText("");
+        nicknameField.setText("");
+        confirmPasswordField.setText("");
+        emailField.setText("");
+        if (customSlogan.isSelected()) sloganField.setText("");
+        else randomSlogan();
     }
 
     public void back() throws Exception {

@@ -60,6 +60,7 @@ public class AppController {
 
     public void saveUser() {
         database.addUser(userInfo.toUser());
+        database.saveDataIntoFile();
     }
 
     public static void makeNewGameDatabase(ArrayList<Kingdom> kingdoms, Map map) {

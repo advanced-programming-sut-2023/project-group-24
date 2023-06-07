@@ -2,6 +2,8 @@ package view.controls.login;
 
 import controller.LoginController;
 import controller.MenusName;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -56,6 +58,11 @@ public class LoginMenuController extends Control {
         loginController = (LoginController) getApp().getControllerForMenu(MenusName.LOGIN_MENU);
         loginController.generateCaptcha(captchaImage);
         setUpFont();
+        captchaField.textProperty().addListener((observableValue, s, t1) -> preventLettersInCaptcha(s, t1));
+    }
+
+    private void preventLettersInCaptcha(String s, String t1) {
+        if (!t1.matches("\\d*")) captchaField.setText(s);
     }
 
     private void setUpFont() {

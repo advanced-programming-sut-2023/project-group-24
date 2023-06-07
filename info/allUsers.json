@@ -5,9 +5,7 @@
     "nickname": "nickname1",
     "slogan": "slogan1",
     "email": "email1",
-    "highScore": 0,
-    "recoveryQuestionNumber": 1,
-    "recoveryAnswer": "recoveryAnswer1"
+    "highScore": 0
   },
   {
     "username": "username2",
@@ -15,8 +13,66 @@
     "nickname": "nickname2",
     "slogan": "slogan2",
     "email": "email2",
-    "highScore": 0,
-    "recoveryQuestionNumber": 2,
-    "recoveryAnswer": "recoveryAnswer2"
+    "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 1,
+      "object2": "a"
+    },
+    "username": "a",
+    "password": "QW(kjl)Zc4f+PC",
+    "nickname": "a",
+    "slogan": "I fight for peace",
+    "email": "a@aaa",
+    "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 1,
+      "object2": "b"
+    },
+    "username": "b",
+    "password": "24/:kyF/l99;4",
+    "nickname": "b",
+    "slogan": "Life has tree parts, gaming, eating and sleeping",
+    "email": "b@bbb",
+    "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 1,
+      "object2": "c"
+    },
+    "username": "c",
+    "password": "awAF8H,|Gk)$42",
+    "nickname": "c",
+    "slogan": "Life has tree parts, gaming, eating and sleeping",
+    "email": "c@ccc",
+    "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 1,
+      "object2": "d"
+    },
+    "username": "d",
+    "password": "L0rkXB$\u0026j,5",
+    "nickname": "d",
+    "slogan": "It\u0027s not hard to defeat me, It\u0027s Impossible",
+    "email": "d@ddd",
+    "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 1,
+      "object2": "e"
+    },
+    "username": "e",
+    "password": "v\u00268PO\u0026:+\\",
+    "nickname": "e",
+    "slogan": "U play the game, I live in the game",
+    "email": "e@eee",
+    "highScore": 0
   }
 ]
