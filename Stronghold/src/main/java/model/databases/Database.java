@@ -126,6 +126,10 @@ public class Database {
         allUsers.add(newUser);
     }
 
+    public void addUser(User user) {
+        allUsers.add(user);
+    }
+
     public Map getMapById(String id) {
         for (Map map : maps) {
             if (map.getId().equals(id))

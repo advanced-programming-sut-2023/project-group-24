@@ -17,6 +17,7 @@
                 <ComboBox prefWidth="200" prefHeight="50" fx:id="comboBox"/>
                 <TextField minWidth="200" minHeight="50" maxWidth="200" maxHeight="50" promptText="answer"
                            fx:id="answer" styleClass="dark-text-field"/>
+                <Label prefHeight="10" fx:id="error" styleClass="error"/>
             </VBox>
         </VBox>
     </top>

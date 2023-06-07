@@ -10,8 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import view.modelview.PasswordInput;
 import view.controls.Control;
+import view.modelview.PasswordInput;
 
 public class RegisterMenuController extends Control {
     public Button back;
@@ -40,13 +40,16 @@ public class RegisterMenuController extends Control {
         if (confirmPasswordField.getText().equals("")) confirmPasswordError.setText("This field is empty");
         if (emailField.getText().equals("")) emailError.setText("This field is empty");
         if (sloganField.getText().equals("")) sloganError.setText("This field is empty");
-        if (userNameError.getText().equals("")
-                && passwordError.getText().equals("")
-                && nicknameError.getText().equals("")
-                && confirmPasswordError.getText().equals("")
-                && emailError.getText().equals("")
-                && sloganError.getText().equals(""))
-            getApp().run(MenusName.SECURITY_QUESTION_CHOOSE_MENU);
+        if (!userNameError.getText().equals("")
+                || !passwordError.getText().equals("")
+                || !nicknameError.getText().equals("")
+                || !confirmPasswordError.getText().equals("")
+                || !emailError.getText().equals("")
+                || !sloganError.getText().equals("")) return;
+
+        getApp().saveUserInfo(usernameField.getText(), passwordField.getText(),
+                nicknameField.getText(), sloganField.getText(), emailField.getText());
+        getApp().run(MenusName.SECURITY_QUESTION_CHOOSE_MENU);
     }
 
     public void back() throws Exception {

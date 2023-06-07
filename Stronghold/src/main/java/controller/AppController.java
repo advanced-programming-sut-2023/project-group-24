@@ -1,10 +1,12 @@
 package controller;
 
+import controller.functionalcontrollers.Pair;
 import controller.gamecontrollers.*;
 import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 import model.Kingdom;
 import model.User;
+import model.UserInfo;
 import model.databases.Database;
 import model.databases.GameDatabase;
 import model.map.Map;
@@ -24,6 +26,7 @@ public class AppController {
     private static GameDatabase gameDatabase;
     private static MenusName currentMenu;
     private Stage stage;
+    private UserInfo userInfo;
 
     public AppController(Stage stage) {
         currentMenu = MenusName.LOGIN_MENU;
@@ -45,6 +48,18 @@ public class AppController {
 
     public static void setLoggedInUser(User loggedInUser) {
         AppController.loggedInUser = loggedInUser;
+    }
+
+    public void saveUserInfo(String username, String password, String nickname, String slogan, String email) {
+        userInfo = new UserInfo(username, password, nickname, slogan, email);
+    }
+
+    public void saveUserRecovery(int questionNumber, String answer) {
+        userInfo.setRecovery(new Pair<>(questionNumber, answer));
+    }
+
+    public void saveUser() {
+        database.addUser(userInfo.toUser());
     }
 
     public static void makeNewGameDatabase(ArrayList<Kingdom> kingdoms, Map map) {
