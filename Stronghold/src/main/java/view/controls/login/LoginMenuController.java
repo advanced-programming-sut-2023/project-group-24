@@ -4,10 +4,9 @@ import controller.LoginController;
 import controller.MenusName;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import model.modelview.PasswordInput;
+import view.modelview.PasswordInput;
 import view.controls.Control;
 
 import java.io.InputStream;

@@ -3,14 +3,10 @@ package controller;
 import controller.captchacontrollers.CaptchaGenerator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import model.User;
 import model.databases.Database;
-import model.modelview.PasswordInput;
 import view.enums.messages.LoginMenuMessages;
-import view.menus.login.LoginMenu;
-import view.oldmenus.CaptchaMenu;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

@@ -1,4 +1,4 @@
-package model.modelview;
+package view.modelview;
 
 import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
@@ -104,6 +104,11 @@ public class PasswordInput extends HBox {
 
     public StringProperty textProperty() {
         return passwordFieldHidden.textProperty();
+    }
+
+    public void setPromptText(String promptText) {
+        passwordFieldHidden.setPromptText(promptText);
+        passwordFieldShown.setPromptText(promptText);
     }
 
     public void disable(boolean disable) {

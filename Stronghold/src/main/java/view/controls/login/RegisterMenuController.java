@@ -2,26 +2,16 @@ package view.controls.login;
 
 import controller.MenusName;
 import controller.RegisterController;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import model.modelview.PasswordInput;
+import view.modelview.PasswordInput;
 import view.controls.Control;
-import view.menus.login.LoginMenu;
-
-import java.io.InputStream;
 
 public class RegisterMenuController extends Control {
     public Button back;
@@ -68,6 +58,7 @@ public class RegisterMenuController extends Control {
         registerController = (RegisterController) getApp().getControllerForMenu(MenusName.REGISTER_MENU);
         setUpFont();
         setUpErrors();
+        confirmPasswordField.setPromptText("confirm password");
         sloganField.disableProperty().bind(customSlogan.selectedProperty().not());
         customSlogan.setOnAction(actionEvent -> customSloganSelect());
         randomSlogan();
