@@ -1,5 +1,6 @@
 package model;
 
+import controller.MainController;
 import controller.functionalcontrollers.Pair;
 
 public class UserInfo {
@@ -23,6 +24,6 @@ public class UserInfo {
     }
 
     public User toUser() {
-        return new User(username, password, nickname, slogan, email, recovery);
+        return new User(username, MainController.getSHA256(password), nickname, slogan, email, recovery);
     }
 }

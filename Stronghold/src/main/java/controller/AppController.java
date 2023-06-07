@@ -1,5 +1,6 @@
 package controller;
 
+import com.sun.tools.javac.Main;
 import controller.functionalcontrollers.Pair;
 import controller.gamecontrollers.*;
 import javafx.scene.control.TextFormatter;
@@ -55,7 +56,7 @@ public class AppController {
     }
 
     public void saveUserRecovery(int questionNumber, String answer) {
-        userInfo.setRecovery(new Pair<>(questionNumber, answer));
+        userInfo.setRecovery(new Pair<>(questionNumber, MainController.getSHA256(answer)));
     }
 
     public void saveUser() {

@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.User;
 import model.databases.Database;
+import model.enums.RecoveryQuestion;
 import view.enums.messages.LoginMenuMessages;
 
 import java.awt.*;
@@ -69,6 +70,19 @@ public class LoginController implements Controller {
         robot.delay(30);
         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+    }
+
+    public boolean isRecoveryAnswerCorrect(String username, String answer) {
+        return database.getUserByUsername(username).isRecoveryAnswerCorrect(MainController.getSHA256(answer));
+    }
+
+    public boolean usernameExists(String username) {
+        return database.getUserByUsername(username) != null;
+    }
+
+    public String getRecoveryQuestion(String username) {
+        return RecoveryQuestion.getRecoveryQuestionByNumber(
+                database.getUserByUsername(username).getRecoveryQuestionNumber());
     }
 
     public void generateCaptcha(ImageView captchaImage) {

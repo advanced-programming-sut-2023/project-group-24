@@ -1,21 +1,72 @@
 package view.controls.login;
 
+import controller.LoginController;
 import controller.MenusName;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import view.controls.Control;
 
 public class SecurityQuestionConfirmMenuController extends Control {
-    public void confirm(MouseEvent mouseEvent) throws Exception {
-        getStage().close();
-        getApp().run(MenusName.FORGOT_PASSWORD_MENU);
+    public TextField usernameField;
+    public VBox questionPane;
+    public Label question;
+    public TextField answerField;
+    public Button confirm;
+    public Button cancel;
+    public Label error;
+
+    private LoginController loginController;
+
+    public void confirm() throws Exception {
+        if (loginController.isRecoveryAnswerCorrect(usernameField.getText(), answerField.getText())) {
+            getStage().close();
+            getApp().run(MenusName.FORGOT_PASSWORD_MENU);
+            return;
+        }
+        error.setText("Incorrect answer");
     }
 
-    public void cancel(MouseEvent mouseEvent) {
+    public void cancel() {
         getStage().close();
     }
 
     @Override
     public void run() {
+        loginController = (LoginController) getApp().getControllerForMenu(MenusName.LOGIN_MENU);
+        setUpText();
+        usernameField.textProperty().addListener((observableValue, s, t1) ->
+                setQuestionVisibility(loginController.usernameExists(usernameField.getText())));
+        answerField.textProperty().addListener((observableValue, s, t1) -> error.setText(""));
+        questionPane.setVisible(false);
+    }
 
+    private void setQuestionVisibility(boolean usernameExists) {
+        if (usernameExists) {
+            questionPane.setVisible(true);
+            question.setText(loginController.getRecoveryQuestion(usernameField.getText()));
+            answerField.setText("");
+            error.setText("");
+        }
+        else questionPane.setVisible(false);
+    }
+
+    private void setUpText() {
+        Font tiny = Font.loadFont(getClass().getResourceAsStream("/fonts/Seagram.ttf"), 14);
+        Font medium = Font.loadFont(getClass().getResourceAsStream("/fonts/Seagram.ttf"), 20);
+        Font mini = Font.loadFont(getClass().getResourceAsStream("/fonts/Seagram.ttf"), 11);
+        question.setFont(tiny);
+        answerField.setFont(medium);
+        usernameField.setFont(medium);
+        cancel.setFont(medium);
+        confirm.setFont(medium);
+        error.setFont(mini);
+        question.setTextFill(Color.rgb(101, 166, 27));
     }
 }
