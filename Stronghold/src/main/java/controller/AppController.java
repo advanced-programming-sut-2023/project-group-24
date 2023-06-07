@@ -28,6 +28,7 @@ public class AppController {
     private static MenusName currentMenu;
     private Stage stage;
     private UserInfo userInfo;
+    private User currentUser;
 
     public AppController(Stage stage) {
         currentMenu = MenusName.LOGIN_MENU;
@@ -61,6 +62,15 @@ public class AppController {
 
     public void saveUser() {
         database.addUser(userInfo.toUser());
+        database.saveDataIntoFile();
+    }
+
+    public void setCurrentUser(String username) {
+        currentUser = database.getUserByUsername(username);
+    }
+
+    public void setCurrentUserPassword(String password) {
+        database.getUserByUsername(currentUser.getUsername()).changePasswords(MainController.getSHA256(password));
         database.saveDataIntoFile();
     }
 
@@ -198,5 +208,4 @@ public class AppController {
         loggedInUser = database.getStayedLoggedInUser();
 //        if (database.getStayedLoggedInUser() != null) setCurrentMenu(MenusName.MAIN_MENU);
     }
-
 }

@@ -55,7 +55,7 @@ public class User implements Comparable<User> {
     }
 
     public void changePasswords(String newPassword) {
-        password = newPassword;
+        this.password = newPassword;
     }
 
     public boolean isPasswordCorrect(String password) {

@@ -101,7 +101,7 @@ public class Database {
             saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
         }
         catch (IOException ignored) {
-
+            System.out.println("error");
         }
     }
 

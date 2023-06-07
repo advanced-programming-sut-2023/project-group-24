@@ -20,7 +20,7 @@
                        fx:id="usernameField" styleClass="dark-text-field"/>
             <VBox alignment="TOP_CENTER" fx:id="questionPane">
                 <Label text="What is your father's name?" fx:id="question"/>
-                <TextField promptText="password" minHeight="30" maxWidth="200" minWidth="200" alignment="CENTER"
+                <TextField promptText="answer" minHeight="30" maxWidth="200" minWidth="200" alignment="CENTER"
                            fx:id="answerField" styleClass="dark-text-field"/>
                 <Label styleClass="error" fx:id="error"/>
             </VBox>

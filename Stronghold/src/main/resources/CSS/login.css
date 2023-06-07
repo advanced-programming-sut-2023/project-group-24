@@ -24,7 +24,12 @@ BorderPane {
 
 .dark-text-field {
 	-fx-text-fill: #7dbf32;
-	-fx-prompt-text-fill: #56701899;
+	-fx-prompt-text-fill: #6aa12b99;
+}
+
+.dark-text-field .text-field {
+	-fx-text-fill: #7dbf32;
+	-fx-prompt-text-fill: #6aa12b99;
 }
 
 .hyperlink {

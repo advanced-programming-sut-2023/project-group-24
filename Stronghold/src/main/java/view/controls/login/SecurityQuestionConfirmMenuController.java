@@ -26,6 +26,7 @@ public class SecurityQuestionConfirmMenuController extends Control {
 
     public void confirm() throws Exception {
         if (loginController.isRecoveryAnswerCorrect(usernameField.getText(), answerField.getText())) {
+            getApp().setCurrentUser(usernameField.getText());
             getStage().close();
             getApp().run(MenusName.FORGOT_PASSWORD_MENU);
             return;
