@@ -56,18 +56,18 @@ public class AppController {
     }
 
     public void saveUser() {
-        DATABASE.addUser(userInfo.toUser());
-        DATABASE.saveDataIntoFile();
+        database.addUser(userInfo.toUser());
+        database.saveDataIntoFile();
     }
 
     public void setCurrentUser(String username) {
-        currentUser = DATABASE.getUserByUsername(username);
+        currentUser = database.getUserByUsername(username);
         if (currentUser == null) System.out.println("not found");
     }
 
     public void setCurrentUserPassword(String password) {
-        DATABASE.getUserByUsername(currentUser.getUsername()).changePasswords(MainController.getSHA256(password));
-        DATABASE.saveDataIntoFile();
+        database.getUserByUsername(currentUser.getUsername()).changePasswords(MainController.getSHA256(password));
+        database.saveDataIntoFile();
     }
 
     public static void makeNewGameDatabase(ArrayList<Kingdom> kingdoms, Map map) {
@@ -208,5 +208,9 @@ public class AppController {
 
     public void saveData() {
         database.saveDataIntoFile();
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
     }
 }

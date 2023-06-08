@@ -235,6 +235,15 @@ BorderPane {
     -fx-background-size: cover;
 }
 
+#change-password {
+	-fx-background-image: url("../images/backgrounds/change-password.jpg");
+    -fx-background-size: cover;
+    -fx-border-radius: 40;
+	-fx-border-width: 2;
+	-fx-border-color: white;
+	-fx-effect: innershadow(gaussian, white, 22, 0.2, 0, 0);
+}
+
 #random-password {
 	-fx-background-image: url("../images/login/random-password.png");
     -fx-background-size: stretch;

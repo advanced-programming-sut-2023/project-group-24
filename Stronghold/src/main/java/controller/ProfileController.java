@@ -64,7 +64,7 @@ public class ProfileController implements Controller {
                 return ProfileMenuMessages.NON_NUMBER_PASSWORD;
         }
         if (oldPassword.equals(newPassword)) return ProfileMenuMessages.DUPLICATE_PASSWORD;
-        if (!CaptchaMenu.runCaptcha()) return ProfileMenuMessages.INCORRECT_CAPTCHA;
+//        if (!CaptchaMenu.runCaptcha()) return ProfileMenuMessages.INCORRECT_CAPTCHA;
         return ProfileMenuMessages.SUCCESS;
     }
 

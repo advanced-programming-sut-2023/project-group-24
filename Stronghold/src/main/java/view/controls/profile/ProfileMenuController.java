@@ -1,17 +1,13 @@
 package view.controls.profile;
 
-import controller.AppController;
 import controller.ControllersName;
 import controller.MenusName;
 import controller.ProfileController;
-import javafx.event.Event;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -19,9 +15,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import view.controls.Control;
 import view.enums.messages.ProfileMenuMessages;
-import view.menus.login.LoginMenu;
-
-import java.awt.*;
 
 public class ProfileMenuController extends Control {
     public Button back;
