@@ -2,11 +2,8 @@ package view.controls.login;
 
 import controller.MenusName;
 import controller.RegisterController;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import view.controls.Control;

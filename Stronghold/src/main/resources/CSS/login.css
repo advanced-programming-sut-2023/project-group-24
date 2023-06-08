@@ -205,6 +205,11 @@ BorderPane {
     -fx-background-size: cover;
 }
 
+#main-menu-pane {
+	-fx-background-image: url("../images/backgrounds/main-menu.PNG");
+    -fx-background-size: cover;
+}
+
 #random-password {
 	-fx-background-image: url("../images/login/random-password.png");
     -fx-background-size: stretch;

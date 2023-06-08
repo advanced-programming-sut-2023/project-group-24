@@ -23,6 +23,8 @@ public class MainMenu extends Application {
         Pane pane = fxmlLoader.load();
         ((Control) fxmlLoader.getController()).setUp(stage, app);
 
+        stage.setWidth(pane.getMinWidth());
+        stage.setHeight(pane.getMinHeight());
         stage.getScene().setRoot(pane);
         stage.show();
     }

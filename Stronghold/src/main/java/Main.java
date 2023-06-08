@@ -15,6 +15,6 @@ public class Main extends Application {
         AppController start = new AppController(stage);
         stage.setResizable(false);
         stage.setScene(new Scene(new Pane()));
-        start.run(MenusName.LOGIN_MENU);
+        start.run(MenusName.MAIN_MENU);
     }
 }
