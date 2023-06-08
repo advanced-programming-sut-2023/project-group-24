@@ -6,24 +6,36 @@ import view.enums.messages.CommonMessages;
 import view.enums.messages.ProfileMenuMessages;
 import view.oldmenus.CaptchaMenu;
 
+import javax.naming.ldap.Control;
 import java.util.Vector;
 
-public class ProfileMenuController {
+public class ProfileController implements Controller {
     private final Database database;
-    private final User currentUser;
+    private User currentUser;
 
-    public ProfileMenuController(Database database) {
+    public ProfileController(Database database) {
         this.database = database;
         currentUser = database.getUserByUsername(AppController.getLoggedInUser().getUsername());
     }
 
+    public ProfileController(Database database, User currentUser) {
+        this.database = database;
+        this.currentUser = currentUser;
+    }
+
     public ProfileMenuMessages changeUsername(String newUsername) {
-        if (newUsername == null) return ProfileMenuMessages.NULL_FIELD;
-        else if (MainController.isUsernameValid(newUsername)) return ProfileMenuMessages.INVALID_USERNAME;
-        else if (database.getUserByUsername(newUsername) != null) return ProfileMenuMessages.DUPLICATE_USERNAME;
+        ProfileMenuMessages message = checkChangeUsernameErrors(newUsername);
+        if (message != null) return message;
         currentUser.setUsername(newUsername);
         database.saveDataIntoFile();
         return ProfileMenuMessages.SUCCESS;
+    }
+
+    private ProfileMenuMessages checkChangeUsernameErrors(String newUsername) {
+        if (newUsername == null) return ProfileMenuMessages.NULL_FIELD;
+        else if (MainController.isUsernameValid(newUsername)) return ProfileMenuMessages.INVALID_USERNAME;
+        else if (database.getUserByUsername(newUsername) != null) return ProfileMenuMessages.DUPLICATE_USERNAME;
+        return null;
     }
 
     public ProfileMenuMessages changeNickname(String newNickname) {
@@ -66,13 +78,19 @@ public class ProfileMenuController {
     }
 
     public ProfileMenuMessages changeEmail(String newEmail) {
+        ProfileMenuMessages x = checkChangeEmailErrors(newEmail);
+        if (x != null) return x;
+        currentUser.setEmail(newEmail);
+        database.saveDataIntoFile();
+        return ProfileMenuMessages.SUCCESS;
+    }
+
+    private ProfileMenuMessages checkChangeEmailErrors(String newEmail) {
         if (newEmail == null) return ProfileMenuMessages.NULL_FIELD;
         else if (MainController.isEmailValid(newEmail)) return ProfileMenuMessages.INVALID_EMAIL_FORMAT;
         for (User e : database.getAllUsers())
             if (e.getEmail().equalsIgnoreCase(newEmail)) return ProfileMenuMessages.DUPLICATE_EMAIL;
-        currentUser.setEmail(newEmail);
-        database.saveDataIntoFile();
-        return ProfileMenuMessages.SUCCESS;
+        return null;
     }
 
     public ProfileMenuMessages changeSlogan(String newSlogan) {
@@ -113,5 +131,19 @@ public class ProfileMenuController {
         String rank = "Rank: " + showRank();
         String slogan = "Slogan: " + showSlogan();
         return username + "\n" + nickname + "\n" + email + "\n" + rank + "\n" + slogan;
+    }
+
+    public String getCurrentUser(String info) {
+        switch (info) {
+            case "username":
+                return currentUser.getUsername();
+            case "nickname":
+                return currentUser.getNickname();
+            case "email":
+                return currentUser.getEmail();
+            case "slogan":
+                return currentUser.getSlogan();
+        }
+        return "";
     }
 }

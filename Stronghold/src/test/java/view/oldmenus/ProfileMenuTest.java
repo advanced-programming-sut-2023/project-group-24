@@ -2,7 +2,7 @@ package view.oldmenus;
 
 import controller.AppController;
 import controller.MenusName;
-import controller.ProfileMenuController;
+import controller.ProfileController;
 import controller.functionalcontrollers.Pair;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.TradeController;
@@ -27,7 +27,7 @@ import java.util.NoSuchElementException;
 
 class ProfileMenuTest {
     private final Database database = new Database();
-    private final ProfileMenuController profileMenuController;
+    private final ProfileController profileController;
     private final ProfileMenu profileMenu;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -52,8 +52,8 @@ class ProfileMenuTest {
         database.addUser("username", "pass", "nick", "s", "e", new Pair<>(1, "h"));
         AppController.setLoggedInUser(database.getUserByUsername("username"));
         AppController.setCurrentMenu(MenusName.PROFILE_MENU);
-        profileMenuController = new ProfileMenuController(database);
-        profileMenu = new ProfileMenu(profileMenuController);
+        profileController = new ProfileController(database);
+        profileMenu = new ProfileMenu(profileController);
     }
 
     @BeforeEach

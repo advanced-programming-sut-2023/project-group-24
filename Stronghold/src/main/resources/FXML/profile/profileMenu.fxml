@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 <BorderPane xmlns="http://javafx.com/javafx"
@@ -14,9 +13,10 @@
             prefHeight="675.0" prefWidth="900.0">
     <top>
         <HBox alignment="CENTER_LEFT" prefWidth="900">
-            <Button minWidth="75" minHeight="75" fx:id="avatar" onMouseClicked="#chooseAvatar" styleClass="button-image"/>
+            <Button minWidth="75" minHeight="75" fx:id="avatar" onMouseClicked="#chooseAvatar"
+                    styleClass="button-image"/>
             <HBox alignment="CENTER_RIGHT" prefWidth="900">
-                <Button minHeight="75" minWidth="75" fx:id="back" styleClass="back-icon"/>
+                <Button minHeight="75" minWidth="75" fx:id="back" styleClass="back-icon" onMouseClicked="#back"/>
             </HBox>
         </HBox>
     </top>
@@ -27,7 +27,8 @@
                 <HBox spacing="5" alignment="BOTTOM_LEFT">
                     <TextField minWidth="250" maxWidth="250" minHeight="50" styleClass="blue-text-field"
                                promptText="username" fx:id="usernameField"/>
-                    <Button minHeight="25" prefHeight="25" minWidth="25" styleClass="edit"/>
+                    <Button minHeight="25" prefHeight="25" minWidth="25" styleClass="edit" fx:id="usernameEdit"
+                            onMouseClicked="#enableEdit"/>
                 </HBox>
                 <Label styleClass="error" fx:id="usernameError"/>
             </VBox>
@@ -36,7 +37,8 @@
                 <HBox spacing="5" alignment="BOTTOM_LEFT">
                     <TextField minWidth="250" maxWidth="250" minHeight="50" styleClass="blue-text-field"
                                promptText="nickname" fx:id="nicknameField"/>
-                    <Button minHeight="25" prefHeight="25" minWidth="25" styleClass="edit"/>
+                    <Button minHeight="25" prefHeight="25" minWidth="25" styleClass="edit" fx:id="nicknameEdit"
+                            onMouseClicked="#enableEdit"/>
                 </HBox>
                 <Label styleClass="error" fx:id="nicknameError"/>
             </VBox>
@@ -45,16 +47,22 @@
                 <HBox spacing="5" alignment="BOTTOM_LEFT">
                     <TextField minWidth="250" maxWidth="250" minHeight="50" styleClass="blue-text-field"
                                promptText="email" fx:id="emailField"/>
-                    <Button minHeight="25" prefHeight="25" minWidth="25" styleClass="edit"/>
+                    <Button minHeight="25" prefHeight="25" minWidth="25" styleClass="edit" fx:id="emailEdit"
+                            onMouseClicked="#enableEdit"/>
                 </HBox>
                 <Label styleClass="error" fx:id="emailError"/>
             </VBox>
 
             <VBox>
-                <HBox spacing="5" alignment="BOTTOM_LEFT">
+                <HBox spacing="5" alignment="BOTTOM_LEFT" fx:id="sloganContainer">
                     <TextField minWidth="250" maxWidth="250" minHeight="50" styleClass="blue-text-field"
                                promptText="The slogan is empty" fx:id="sloganField"/>
-                    <Button prefWidth="25" prefHeight="25" minWidth="25" styleClass="retry-black" maxHeight="25" minHeight="25"/>
+                    <VBox spacing="2">
+                        <Button prefWidth="25" prefHeight="25" minWidth="25" styleClass="retry-black" maxHeight="25"
+                                minHeight="25"/>
+                        <Button minHeight="25" prefHeight="25" minWidth="25" styleClass="edit" fx:id="sloganEdit"
+                                onMouseClicked="#enableEdit"/>
+                    </VBox>
                 </HBox>
                 <Label styleClass="error" fx:id="sloganError"/>
             </VBox>

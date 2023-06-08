@@ -1,9 +1,6 @@
 package controller;
 
-import com.sun.tools.javac.Main;
 import controller.functionalcontrollers.Pair;
-import controller.gamecontrollers.*;
-import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 import model.Kingdom;
 import model.User;
@@ -14,18 +11,15 @@ import model.map.Map;
 import view.menus.login.*;
 import view.menus.main.MainMenu;
 import view.menus.profile.*;
-import view.oldmenus.gamemenus.GameMenu;
-import view.oldmenus.gamemenus.ShopMenu;
-import view.oldmenus.gamemenus.ShowMapMenu;
-import view.oldmenus.gamemenus.TradeMenu;
 
 import java.util.ArrayList;
 
 public class AppController {
-    private static final Database database = new Database();
+    private static final Database DATABASE = new Database();
     private static User loggedInUser;
     private static GameDatabase gameDatabase;
     private static MenusName currentMenu;
+    private final Database database;
     private Stage stage;
     private UserInfo userInfo;
     private User currentUser;
@@ -33,6 +27,7 @@ public class AppController {
     public AppController(Stage stage) {
         currentMenu = MenusName.LOGIN_MENU;
         this.stage = stage;
+        this.database = new Database();
     }
 
     public static MenusName getCurrentMenu() {
@@ -41,7 +36,7 @@ public class AppController {
 
     public static void setCurrentMenu(MenusName currentMenu) {
         AppController.currentMenu = currentMenu;
-        database.saveDataIntoFile();
+        DATABASE.saveDataIntoFile();
     }
 
     public static User getLoggedInUser() {
@@ -61,17 +56,18 @@ public class AppController {
     }
 
     public void saveUser() {
-        database.addUser(userInfo.toUser());
-        database.saveDataIntoFile();
+        DATABASE.addUser(userInfo.toUser());
+        DATABASE.saveDataIntoFile();
     }
 
     public void setCurrentUser(String username) {
-        currentUser = database.getUserByUsername(username);
+        currentUser = DATABASE.getUserByUsername(username);
+        if (currentUser == null) System.out.println("not found");
     }
 
     public void setCurrentUserPassword(String password) {
-        database.getUserByUsername(currentUser.getUsername()).changePasswords(MainController.getSHA256(password));
-        database.saveDataIntoFile();
+        DATABASE.getUserByUsername(currentUser.getUsername()).changePasswords(MainController.getSHA256(password));
+        DATABASE.saveDataIntoFile();
     }
 
     public static void makeNewGameDatabase(ArrayList<Kingdom> kingdoms, Map map) {
@@ -80,7 +76,7 @@ public class AppController {
 
 
     public void run(MenusName currentMenu) throws Exception {
-        database.loadDataFromFile();
+        DATABASE.loadDataFromFile();
         checkLoggedInUSer();
 
         switch (currentMenu) {
@@ -193,19 +189,24 @@ public class AppController {
 //        }
     }
 
-    public Controller getControllerForMenu(MenusName name) {
+    public Controller getControllerForMenu(ControllersName name) {
         switch (name) {
-            case LOGIN_MENU:
+            case LOGIN:
                 return new LoginController(database);
-            case REGISTER_MENU:
+            case REGISTER:
                 return new RegisterController(database);
+            case PROFILE:
+                return new ProfileController(database, database.getUserByUsername(currentUser.getUsername()));
         }
-
         return null;
     }
 
     private void checkLoggedInUSer() {
-        loggedInUser = database.getStayedLoggedInUser();
+        loggedInUser = DATABASE.getStayedLoggedInUser();
 //        if (database.getStayedLoggedInUser() != null) setCurrentMenu(MenusName.MAIN_MENU);
+    }
+
+    public void saveData() {
+        database.saveDataIntoFile();
     }
 }

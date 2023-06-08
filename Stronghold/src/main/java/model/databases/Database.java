@@ -26,9 +26,7 @@ public class Database {
     private Vector<Map> maps;
 
     public Database() {
-        allUsers = new Vector<>();
-        stayedLoggedInUser = null;
-        maps = new Vector<>();
+        loadDataFromFile();
     }
 
     private static String fileToString(String filePath) throws FileNotFoundException {
@@ -107,15 +105,12 @@ public class Database {
 
     private void checkForSavingDirectory() throws IOException {
         File directory = new File(DIRECTORY_TO_SAVE_INFO);
-        if (directory.mkdirs())
-            throw new IOException("couldn't make directory");
+        if (directory.mkdirs()) throw new IOException("couldn't make directory");
     }
 
     public User getUserByUsername(String username) {
         if (allUsers == null) return null;
-        for (User user : allUsers)
-            if (user.getUsername().equals(username))
-                return user;
+        for (User user : allUsers) if (user.getUsername().equals(username)) return user;
         return null;
     }
 

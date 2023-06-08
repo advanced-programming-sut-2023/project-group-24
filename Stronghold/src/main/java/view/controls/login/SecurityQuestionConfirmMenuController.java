@@ -1,5 +1,6 @@
 package view.controls.login;
 
+import controller.ControllersName;
 import controller.LoginController;
 import controller.MenusName;
 import javafx.beans.value.ChangeListener;
@@ -40,7 +41,7 @@ public class SecurityQuestionConfirmMenuController extends Control {
 
     @Override
     public void run() {
-        loginController = (LoginController) getApp().getControllerForMenu(MenusName.LOGIN_MENU);
+        loginController = (LoginController) getApp().getControllerForMenu(ControllersName.LOGIN);
         setUpText();
         usernameField.textProperty().addListener((observableValue, s, t1) ->
                 setQuestionVisibility(loginController.usernameExists(usernameField.getText())));

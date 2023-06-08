@@ -1,9 +1,13 @@
 package view.controls.profile;
 
 import controller.AppController;
+import controller.ControllersName;
 import controller.MenusName;
+import controller.ProfileController;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -14,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import view.controls.Control;
+import view.enums.messages.ProfileMenuMessages;
 import view.menus.login.LoginMenu;
 
 import java.awt.*;
@@ -35,14 +40,15 @@ public class ProfileMenuController extends Control {
     public Label nicknameError;
     public Label usernameError;
     public Button saveButton;
+    public CheckBox customSlogan;
+    public HBox sloganContainer;
+    public Button sloganEdit;
+    public Button emailEdit;
+    public Button nicknameEdit;
+    public Button usernameEdit;
 
     private Image avatarImage;
-
-    @FXML
-    public void initialize() {
-//        back.setImage(new Image(LoginMenu.class.getResource("/images/back-icon.png").toExternalForm()));
-//        avatar.setImage(new Image(LoginMenu.class.getResource("/images/back-icon.png").toExternalForm()));
-    }
+    private ProfileController profileController;
 
     public void changePassword(MouseEvent mouseEvent) throws Exception {
         getApp().run(MenusName.CHANGE_PASSWORD_MENU);
@@ -53,19 +59,53 @@ public class ProfileMenuController extends Control {
     }
 
     public void save(MouseEvent mouseEvent) {
+        if (usernameField.getText().equals("")) usernameError.setText("Empty Field");
+        if (nicknameField.getText().equals("")) nicknameError.setText("Empty Field");
+        if (emailField.getText().equals("")) emailError.setText("Empty Field");
+        profileController.changeUsername(usernameField.getText());
+        profileController.changeNickname(nicknameField.getText());
+        profileController.changeEmail(emailField.getText());
+        if (profileController.changeSlogan(sloganField.getText()) == ProfileMenuMessages.NULL_FIELD)
+            profileController.removeSlogan();
+        disableFields();
+        resetFields();
     }
 
     public void chooseAvatar(MouseEvent mouseEvent) throws Exception {
         getApp().run(MenusName.CHOOSE_AVATAR_MENU);
     }
 
+    public void back(MouseEvent mouseEvent) throws Exception {
+        getApp().run(MenusName.MAIN_MENU);
+    }
+
     @Override
     public void run() {
+        this.profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE);
+        disableFields();
+        resetFields();
         mainPane.setRight(right);
         avatarImage = new Image(getClass().getResource("/images/icons/game-icon.png").toExternalForm());
         avatar.setStyle("-fx-background-image: url(\""  + avatarImage.getUrl() + "\");");
         
         setUpText();
+        if (!profileController.getCurrentUser("slogan").equals("")) customSlogan.setSelected(true);
+        sloganContainer.visibleProperty().bind(customSlogan.selectedProperty());
+        customSlogan.setOnAction((e) -> sloganField.setText(""));
+    }
+
+    private void resetFields() {
+        usernameField.setText(profileController.getCurrentUser("username"));
+        nicknameField.setText(profileController.getCurrentUser("nickname"));
+        emailField.setText(profileController.getCurrentUser("email"));
+        sloganField.setText(profileController.getCurrentUser("slogan"));
+    }
+
+    private void disableFields() {
+        sloganField.setDisable(true);
+        emailField.setDisable(true);
+        nicknameField.setDisable(true);
+        usernameField.setDisable(true);
     }
 
     private void setUpText() {
@@ -87,5 +127,12 @@ public class ProfileMenuController extends Control {
         leaderBoardButton.setFont(big);
         changePasswordButton.setFont(big);
         saveButton.setFont(big);
+    }
+
+    public void enableEdit(MouseEvent mouseEvent) {
+        if (mouseEvent.getTarget().equals(sloganEdit)) sloganField.setDisable(false);
+        if (mouseEvent.getTarget().equals(emailEdit)) emailField.setDisable(false);
+        if (mouseEvent.getTarget().equals(nicknameEdit)) nicknameField.setDisable(false);
+        if (mouseEvent.getTarget().equals(usernameEdit)) usernameField.setDisable(false);
     }
 }

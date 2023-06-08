@@ -1,5 +1,6 @@
 package view.controls.login;
 
+import controller.ControllersName;
 import controller.MenusName;
 import controller.RegisterController;
 import javafx.fxml.FXML;
@@ -69,7 +70,7 @@ public class RegisterMenuController extends Control {
 
     @Override
     public void run() {
-        registerController = (RegisterController) getApp().getControllerForMenu(MenusName.REGISTER_MENU);
+        registerController = (RegisterController) getApp().getControllerForMenu(ControllersName.REGISTER);
         setUpFont();
         setUpErrors();
         confirmPasswordField.setPromptText("confirm password");

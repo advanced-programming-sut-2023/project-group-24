@@ -3,7 +3,7 @@ package view.oldmenus;
 import controller.AppController;
 import controller.MainController;
 import controller.MenusName;
-import controller.ProfileMenuController;
+import controller.ProfileController;
 import view.enums.commands.Commands;
 import view.enums.messages.ProfileMenuMessages;
 
@@ -11,10 +11,10 @@ import java.util.regex.Matcher;
 
 public class ProfileMenu {
 
-    ProfileMenuController profileMenuController;
+    ProfileController profileController;
 
-    public ProfileMenu(ProfileMenuController profileMenuController) {
-        this.profileMenuController = profileMenuController;
+    public ProfileMenu(ProfileController profileController) {
+        this.profileController = profileController;
     }
 
     public void run() {
@@ -58,7 +58,7 @@ public class ProfileMenu {
 
     private void changeUsername(Matcher matcher) {
         String username = MainController.removeDoubleQuotation(matcher.group("username"));
-        ProfileMenuMessages message = profileMenuController.changeUsername(username);
+        ProfileMenuMessages message = profileController.changeUsername(username);
         switch (message) {
             case SUCCESS:
                 System.out.println("Your username has been successfully changed");
@@ -79,7 +79,7 @@ public class ProfileMenu {
 
     private void changeNickname(Matcher matcher) {
         String nickname = MainController.removeDoubleQuotation(matcher.group("nickname"));
-        ProfileMenuMessages message = profileMenuController.changeNickname(nickname);
+        ProfileMenuMessages message = profileController.changeNickname(nickname);
         switch (message) {
             case SUCCESS:
                 System.out.println("Your nickname has been successfully changed");
@@ -93,7 +93,7 @@ public class ProfileMenu {
     private void changePassword(Matcher matcher) {
         String oldPassword = MainController.removeDoubleQuotation(matcher.group("oldPassword"));
         String newPassword = MainController.removeDoubleQuotation(matcher.group("newPassword"));
-        ProfileMenuMessages message = profileMenuController.checkChangePasswordErrors(oldPassword, newPassword);
+        ProfileMenuMessages message = profileController.checkChangePasswordErrors(oldPassword, newPassword);
         switch (message) {
             case SUCCESS:
                 checkPasswordConfirmAndChangeThat(newPassword);
@@ -131,7 +131,7 @@ public class ProfileMenu {
     private void checkPasswordConfirmAndChangeThat(String newPassword) {
         System.out.println("Please enter your new password again");
         String newPasswordConfirm = GetInputFromUser.getUserInput();
-        ProfileMenuMessages message = profileMenuController.changePassword(newPassword, newPasswordConfirm);
+        ProfileMenuMessages message = profileController.changePassword(newPassword, newPasswordConfirm);
         switch (message) {
             case SUCCESS:
                 System.out.println("Your password has been successfully changed!");
@@ -147,7 +147,7 @@ public class ProfileMenu {
 
     private void changeEmail(Matcher matcher) {
         String email = MainController.removeDoubleQuotation(matcher.group("email"));
-        ProfileMenuMessages message = profileMenuController.changeEmail(email);
+        ProfileMenuMessages message = profileController.changeEmail(email);
         switch (message) {
             case SUCCESS:
                 System.out.println("Your email has been successfully changed!");
@@ -166,7 +166,7 @@ public class ProfileMenu {
 
     private void changeSlogan(Matcher matcher) {
         String slogan = MainController.removeDoubleQuotation(matcher.group("slogan"));
-        ProfileMenuMessages message = profileMenuController.changeSlogan(slogan);
+        ProfileMenuMessages message = profileController.changeSlogan(slogan);
         switch (message) {
             case SUCCESS:
                 System.out.println("Your slogan has been successfully changed!");
@@ -178,7 +178,7 @@ public class ProfileMenu {
     }
 
     private void removeSlogan() {
-        ProfileMenuMessages message = profileMenuController.removeSlogan();
+        ProfileMenuMessages message = profileController.removeSlogan();
         switch (message) {
             case SUCCESS:
                 System.out.println("Your slogan has been successfully removed!");
@@ -190,22 +190,22 @@ public class ProfileMenu {
     }
 
     private void showHighScore() {
-        int result = profileMenuController.showHighScore();
+        int result = profileController.showHighScore();
         System.out.println("Your high score is: " + result);
     }
 
     private void showRank() {
-        int result = profileMenuController.showRank();
+        int result = profileController.showRank();
         System.out.println("Your rank is: " + result);
     }
 
     private void showSlogan() {
-        String result = profileMenuController.showSlogan();
+        String result = profileController.showSlogan();
         System.out.println(result);
     }
 
     private void showAllOfProfile() {
-        String result = profileMenuController.showProfile();
+        String result = profileController.showProfile();
         System.out.println(result);
     }
 }

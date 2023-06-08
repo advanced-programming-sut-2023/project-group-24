@@ -1,5 +1,6 @@
 package view.controls.login;
 
+import controller.ControllersName;
 import controller.LoginController;
 import controller.MenusName;
 import javafx.beans.value.ChangeListener;
@@ -43,7 +44,7 @@ public class CaptchaMenuController extends Control {
 
     @Override
     public void run() {
-        this.loginController = (LoginController) getApp().getControllerForMenu(MenusName.LOGIN_MENU);
+        this.loginController = (LoginController) getApp().getControllerForMenu(ControllersName.LOGIN);
         setUpText();
         anotherCaptcha();
         captchaField.textProperty().addListener((observableValue, s, t1) -> preventLettersInCaptcha(s, t1));

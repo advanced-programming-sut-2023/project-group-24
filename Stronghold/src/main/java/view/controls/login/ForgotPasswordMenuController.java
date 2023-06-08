@@ -1,5 +1,6 @@
 package view.controls.login;
 
+import controller.ControllersName;
 import controller.MenusName;
 import controller.RegisterController;
 import javafx.scene.control.Button;
@@ -34,7 +35,7 @@ public class ForgotPasswordMenuController extends Control {
 
     @Override
     public void run() {
-        registerController = (RegisterController) getApp().getControllerForMenu(MenusName.REGISTER_MENU);
+        registerController = (RegisterController) getApp().getControllerForMenu(ControllersName.REGISTER);
         setUpText();
         passwordField.textProperty().addListener((observableValue, s, t1) -> passwordErrors());
         confirmPasswordField.textProperty().addListener((observableValue, s, t1) -> passwordErrors());
