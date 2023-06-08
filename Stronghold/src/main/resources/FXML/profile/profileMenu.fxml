@@ -1,58 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.profile.ProfileMenuController"
-            prefHeight="700.0" prefWidth="1000.0">
+            stylesheets="@../../CSS/login.css"
+            id="profile-pane"
+            fx:id="mainPane"
+            prefHeight="675.0" prefWidth="900.0">
     <top>
-        <HBox alignment="CENTER_LEFT" prefWidth="1000">
-            <ImageView fitWidth="75" fitHeight="75" fx:id="avatar" onMouseClicked="#chooseAvatar"/>
-            <HBox alignment="CENTER_RIGHT" prefWidth="1000">
-                <ImageView fitHeight="75" fitWidth="75" fx:id="back"/>
+        <HBox alignment="CENTER_LEFT" prefWidth="900">
+            <Button minWidth="75" minHeight="75" fx:id="avatar" onMouseClicked="#chooseAvatar" styleClass="button-image"/>
+            <HBox alignment="CENTER_RIGHT" prefWidth="900">
+                <Button minHeight="75" minWidth="75" fx:id="back" styleClass="back-icon"/>
             </HBox>
         </HBox>
     </top>
 
     <left>
         <VBox alignment="CENTER" spacing="30">
-            <HBox spacing="30">
-                <TextField minWidth="200" maxWidth="200" minHeight="50"/>
-                <Button prefWidth="150" prefHeight="50"/>
-            </HBox>
-            <HBox spacing="30">
-                <TextField minWidth="200" maxWidth="200" minHeight="50"/>
-                <Button prefWidth="150" prefHeight="50"/>
-            </HBox>
-            <HBox spacing="30">
-                <TextField minWidth="200" maxWidth="200" minHeight="50"/>
-                <Button prefWidth="150" prefHeight="50"/>
-            </HBox>
-            <HBox spacing="30">
-                <TextField minWidth="200" maxWidth="200" minHeight="50"/>
-                <Button prefWidth="150" prefHeight="50"/>
-                <Button prefWidth="150" prefHeight="50"/>
-            </HBox>
+            <VBox>
+                <HBox spacing="5" alignment="BOTTOM_LEFT">
+                    <TextField minWidth="250" maxWidth="250" minHeight="50" styleClass="blue-text-field"
+                               promptText="username" fx:id="usernameField"/>
+                    <Button minHeight="25" prefHeight="25" minWidth="25" styleClass="edit"/>
+                </HBox>
+                <Label styleClass="error" fx:id="usernameError"/>
+            </VBox>
+
+            <VBox>
+                <HBox spacing="5" alignment="BOTTOM_LEFT">
+                    <TextField minWidth="250" maxWidth="250" minHeight="50" styleClass="blue-text-field"
+                               promptText="nickname" fx:id="nicknameField"/>
+                    <Button minHeight="25" prefHeight="25" minWidth="25" styleClass="edit"/>
+                </HBox>
+                <Label styleClass="error" fx:id="nicknameError"/>
+            </VBox>
+
+            <VBox>
+                <HBox spacing="5" alignment="BOTTOM_LEFT">
+                    <TextField minWidth="250" maxWidth="250" minHeight="50" styleClass="blue-text-field"
+                               promptText="email" fx:id="emailField"/>
+                    <Button minHeight="25" prefHeight="25" minWidth="25" styleClass="edit"/>
+                </HBox>
+                <Label styleClass="error" fx:id="emailError"/>
+            </VBox>
+
+            <VBox>
+                <HBox spacing="5" alignment="BOTTOM_LEFT">
+                    <TextField minWidth="250" maxWidth="250" minHeight="50" styleClass="blue-text-field"
+                               promptText="The slogan is empty" fx:id="sloganField"/>
+                    <Button prefWidth="25" prefHeight="25" minWidth="25" styleClass="retry-black" maxHeight="25" minHeight="25"/>
+                </HBox>
+                <Label styleClass="error" fx:id="sloganError"/>
+            </VBox>
         </VBox>
     </left>
 
     <right>
-        <VBox spacing="30" alignment="CENTER">
-            <Button prefWidth="250" prefHeight="70" onMouseClicked="#changePassword"/>
-            <Button prefWidth="250" prefHeight="70" onMouseClicked="#leaderBoard"/>
+        <VBox spacing="30" alignment="CENTER_LEFT" fx:id="right">
+            <HBox alignment="CENTER_RIGHT" spacing="20">
+                <Text text="have custom slogan" fx:id="haveCustomSloganText" styleClass="text" textAlignment="CENTER"/>
+                <CheckBox prefWidth="32" prefHeight="32" minWidth="32" minHeight="32" maxWidth="32" maxHeight="32"
+                          fx:id="customSlogan"/>
+                <padding>
+                    <Insets bottom="100"/>
+                </padding>
+            </HBox>
+            <Button prefWidth="280" prefHeight="50" styleClass="menu-button" onMouseClicked="#changePassword"
+                    text="Change Password" fx:id="changePasswordButton"/>
+            <Button prefWidth="280" prefHeight="50" styleClass="menu-button" onMouseClicked="#leaderBoard"
+                    text="Leader board" fx:id="leaderBoardButton"/>
+            <Button prefWidth="280" prefHeight="50" styleClass="menu-button" onMouseClicked="#save"
+                    text="Save Changes" fx:id="saveButton"/>
         </VBox>
     </right>
 
     <padding>
-        <Insets top="30" right="30" bottom="30" left="30"/>
+        <Insets top="10" right="20" bottom="30" left="20"/>
     </padding>
 
 </BorderPane>

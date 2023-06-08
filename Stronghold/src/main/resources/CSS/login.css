@@ -32,8 +32,14 @@ BorderPane {
 	-fx-prompt-text-fill: #6aa12b99;
 }
 
+.blue-text-field {
+	-fx-text-fill: #3c2bcf;
+	-fx-prompt-text-fill: #3022ab99;
+}
+
 .hyperlink {
 	-fx-text-fill: #804919;
+	-fx-border-color: transparent;
 }
 
 .button {
@@ -59,6 +65,20 @@ BorderPane {
 
 .back-icon {
 	-fx-background-image: url("../images/menus/back-icon.png");
+	-fx-background-size: stretch;
+}
+
+.retry-black {
+	-fx-background-image: url("../images/menus/retry.png");
+	-fx-background-size: stretch;
+}
+
+.button-image {
+	-fx-background-size: stretch;
+}
+
+.edit {
+	-fx-background-image: url("../images/menus/edit.png");
 	-fx-background-size: stretch;
 }
 
@@ -207,6 +227,11 @@ BorderPane {
 
 #main-menu-pane {
 	-fx-background-image: url("../images/backgrounds/main-menu.PNG");
+    -fx-background-size: cover;
+}
+
+#profile-pane {
+	-fx-background-image: url("../images/backgrounds/profile.jpg");
     -fx-background-size: cover;
 }
 
