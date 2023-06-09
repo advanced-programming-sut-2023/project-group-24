@@ -12,7 +12,12 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -79,7 +84,8 @@ public class Database {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
-        Type allUsersType = new TypeToken<Vector<User>>(){}.getType();
+        Type allUsersType = new TypeToken<Vector<User>>() {
+        }.getType();
 
         try {
             allUsers = gson.fromJson(fileToString(FILE_TO_SAVE_ALL_USERS), allUsersType);
@@ -97,8 +103,7 @@ public class Database {
             checkForSavingDirectory();
             saveObjectToFile(FILE_TO_SAVE_ALL_USERS, allUsers);
             saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
-        }
-        catch (IOException ignored) {
+        } catch (IOException ignored) {
             System.out.println("error");
         }
     }
@@ -142,5 +147,57 @@ public class Database {
             if (map.getId().equals(id)) return true;
         }
         return false;
+    }
+
+    public String[] getAvatarsPathsForUser(User user) {
+        File path = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars");
+        if (path.mkdirs()) return new String[0];
+        File[] files = path.listFiles();
+        if (files == null) return new String[0];
+        String[] output = new String[files.length];
+        try {
+            for (int i = 0; i < output.length; i++) output[i] = files[i].toURI().toURL().toExternalForm();
+            return output;
+        } catch (MalformedURLException ignored) {
+            return new String[0];
+        }
+    }
+
+    public String getCurrentAvatarPath(User user) {
+        File path = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars");
+        File pic = new File(path.getAbsoluteFile() + "/0.png");
+        if (path.mkdirs() || !pic.exists()) {
+            try {
+                Files.copy(
+                        Paths.get(getClass().getResource("/images/avatars/0.png").toURI()),
+                        pic.toPath());
+            } catch (IOException | URISyntaxException ignored) {
+            }
+            return getClass().getResource("/images/avatars/0.png").toExternalForm();
+        }
+        try {
+            return pic.toURI().toURL().toExternalForm();
+        } catch (MalformedURLException ignored) {
+            return getClass().getResource("/images/avatars/0.png").toExternalForm();
+        }
+    }
+
+    public void addAvatarPicture(User user, String path) {
+        File dir = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars");
+        File dest = new File(dir.getAbsolutePath() + "/" + Objects.requireNonNull(dir.listFiles()).length +
+                ".png");
+        try {
+            Files.copy(new File(path).toPath(), dest.toPath());
+        } catch (IOException ignored) {
+        }
+    }
+
+    public void setCurrentAvatar(User user, String path) {
+        File dest = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars" +
+                "/0.png");
+        try {
+            Files.copy(new File(path).toPath(), dest.toPath());
+        } catch (IOException ignored) {
+        }
     }
 }

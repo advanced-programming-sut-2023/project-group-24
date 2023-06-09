@@ -40,7 +40,6 @@ public class ProfileMenuController extends Control {
     public Button nicknameEdit;
     public Button usernameEdit;
 
-    private Image avatarImage;
     private ProfileController profileController;
 
     public void changePassword(MouseEvent mouseEvent) throws Exception {
@@ -77,14 +76,18 @@ public class ProfileMenuController extends Control {
         this.profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE);
         disableFields();
         resetFields();
-        mainPane.setRight(right);
-        avatarImage = new Image(getClass().getResource("/images/icons/game-icon.png").toExternalForm());
-        avatar.setStyle("-fx-background-image: url(\""  + avatarImage.getUrl() + "\");");
-        
+        updateAvatar();
         setUpText();
+        mainPane.setRight(right);
+
         if (!profileController.getCurrentUser("slogan").equals("")) customSlogan.setSelected(true);
         sloganContainer.visibleProperty().bind(customSlogan.selectedProperty());
         customSlogan.setOnAction((e) -> sloganField.setText(""));
+    }
+
+    private void updateAvatar() {
+        Image avatarImage = new Image(profileController.getAvatarPath());
+        avatar.setStyle("-fx-background-image: url(\""  + profileController.getAvatarPath() + "\");");
     }
 
     private void resetFields() {

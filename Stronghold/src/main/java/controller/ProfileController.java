@@ -120,6 +120,14 @@ public class ProfileController implements Controller {
         return 0;
     }
 
+    public String getAvatarPath() {
+        return database.getCurrentAvatarPath(currentUser);
+    }
+
+    public String[] getAllAvatarsPath() {
+        return database.getAvatarsPathsForUser(currentUser);
+    }
+
     public String showSlogan() {
         return currentUser.getSlogan();
     }
