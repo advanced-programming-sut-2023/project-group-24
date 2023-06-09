@@ -244,6 +244,15 @@ BorderPane {
 	-fx-effect: innershadow(gaussian, white, 22, 0.2, 0, 0);
 }
 
+#select-avatar {
+	-fx-background-image: url("../images/backgrounds/select-avatar.jpg");
+    -fx-background-size: cover;
+    -fx-border-radius: 20;
+	-fx-border-width: 2;
+	-fx-border-color: black;
+	-fx-effect: innershadow(gaussian, black, 22, 0.2, 0, 0);
+}
+
 #random-password {
 	-fx-background-image: url("../images/login/random-password.png");
     -fx-background-size: stretch;

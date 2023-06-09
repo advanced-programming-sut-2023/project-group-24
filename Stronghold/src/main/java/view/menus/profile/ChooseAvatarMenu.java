@@ -5,6 +5,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -25,7 +27,7 @@ public class ChooseAvatarMenu extends Application {
         Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(stage);
-        dialog.initStyle(StageStyle.UNDECORATED);
+        dialog.initStyle(StageStyle.TRANSPARENT);
 
         URL url = LoginMenu.class.getResource("/FXML/profile/chooseAvatarMenu.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(url);
@@ -33,7 +35,13 @@ public class ChooseAvatarMenu extends Application {
         ((Control) fxmlLoader.getController()).setUp(dialog, app);
 
         Scene scene = new Scene(pane);
+        scene.setFill(Color.TRANSPARENT);
         dialog.setScene(scene);
         dialog.show();
+
+        Rectangle rect = new Rectangle(dialog.getWidth(), dialog.getHeight());
+        rect.setArcHeight(42);
+        rect.setArcWidth(42);
+        pane.setClip(rect);
     }
 }
