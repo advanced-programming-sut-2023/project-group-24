@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.shape.Rectangle?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.profile.ProfileMenuController"
@@ -13,7 +14,7 @@
             prefHeight="675.0" prefWidth="900.0">
     <top>
         <HBox alignment="CENTER_LEFT" prefWidth="900">
-            <Button minWidth="75" minHeight="75" fx:id="avatar" onMouseClicked="#chooseAvatar"
+            <Rectangle width="75" height="75" fx:id="avatar" onMouseClicked="#chooseAvatar"
                     styleClass="button-image"/>
             <HBox alignment="CENTER_RIGHT" prefWidth="900">
                 <Button minHeight="75" minWidth="75" fx:id="back" styleClass="back-icon" onMouseClicked="#back"/>

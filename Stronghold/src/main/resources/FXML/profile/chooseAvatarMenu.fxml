@@ -15,15 +15,19 @@
             id="select-avatar"
             prefHeight="312.5" prefWidth="500.0" maxHeight="312.5" minHeight="312.5" minWidth="500" maxWidth="500">
     <left>
-        <ScrollPane minWidth="200" minHeight="280">
-            <VBox/>
+        <ScrollPane minWidth="200" minHeight="280" styleClass="edge-to-edge" fx:id="scrollPane">
+            <VBox fx:id="scrollContent" alignment="TOP_CENTER" spacing="40" minWidth="188"/>
+
+            <padding>
+                <Insets top="20" bottom="20"/>
+            </padding>
         </ScrollPane>
     </left>
 
     <center>
         <Button text="hello"/>
         <VBox alignment="BOTTOM_RIGHT" spacing="15">
-            <Pane minHeight="150" minWidth="210"/>
+            <HBox minHeight="150" minWidth="210" fx:id="dragAndDrop" alignment="TOP_CENTER"/>
             <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="confirm" onMouseClicked="#confirm"
                     fx:id="confirm"/>
             <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="copy others' avatar"

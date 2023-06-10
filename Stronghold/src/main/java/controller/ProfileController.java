@@ -7,6 +7,7 @@ import view.enums.messages.ProfileMenuMessages;
 import view.oldmenus.CaptchaMenu;
 
 import javax.naming.ldap.Control;
+import java.net.URI;
 import java.util.Vector;
 
 public class ProfileController implements Controller {
@@ -126,6 +127,20 @@ public class ProfileController implements Controller {
 
     public String[] getAllAvatarsPath() {
         return database.getAvatarsPathsForUser(currentUser);
+    }
+
+    public void addAvatar(String absolutePath) {
+        database.addAvatarPicture(currentUser, absolutePath);
+    }
+
+    public int getCurrentAvatarNumber() {
+        int index = database.getAvatarNumber(currentUser);
+        if (index == -1) return 0;
+        else return index - 1;
+    }
+
+    public void setCurrentAvatar(URI path) {
+        database.setCurrentAvatar(currentUser, path);
     }
 
     public String showSlogan() {

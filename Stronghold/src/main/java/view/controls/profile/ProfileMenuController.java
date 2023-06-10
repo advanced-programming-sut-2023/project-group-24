@@ -3,6 +3,7 @@ package view.controls.profile;
 import controller.ControllersName;
 import controller.MenusName;
 import controller.ProfileController;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -11,14 +12,19 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import view.controls.Control;
 import view.enums.messages.ProfileMenuMessages;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 public class ProfileMenuController extends Control {
     public Button back;
-    public Button avatar;
+    public Rectangle avatar;
     public VBox right;
     public BorderPane mainPane;
     public TextField usernameField;
@@ -41,6 +47,7 @@ public class ProfileMenuController extends Control {
     public Button usernameEdit;
 
     private ProfileController profileController;
+    private PropertyChangeListener listener;
 
     public void changePassword(MouseEvent mouseEvent) throws Exception {
         getApp().run(MenusName.CHANGE_PASSWORD_MENU);
@@ -68,6 +75,7 @@ public class ProfileMenuController extends Control {
     }
 
     public void back(MouseEvent mouseEvent) throws Exception {
+        getApp().removeListener(listener);
         getApp().run(MenusName.MAIN_MENU);
     }
 
@@ -79,6 +87,8 @@ public class ProfileMenuController extends Control {
         updateAvatar();
         setUpText();
         mainPane.setRight(right);
+        this.listener = evt -> updateAvatar();
+        getApp().addListener(listener);
 
         if (!profileController.getCurrentUser("slogan").equals("")) customSlogan.setSelected(true);
         sloganContainer.visibleProperty().bind(customSlogan.selectedProperty());
@@ -87,7 +97,7 @@ public class ProfileMenuController extends Control {
 
     private void updateAvatar() {
         Image avatarImage = new Image(profileController.getAvatarPath());
-        avatar.setStyle("-fx-background-image: url(\""  + profileController.getAvatarPath() + "\");");
+        avatar.setFill(new ImagePattern(avatarImage));
     }
 
     private void resetFields() {

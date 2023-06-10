@@ -193,6 +193,73 @@ BorderPane {
     -fx-opacity: .4;
 }
 
+.scroll-bar {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-bar:vertical {
+	-fx-pref-width: 9px;
+	/*-fx-padding: 3;*/
+}
+
+.scroll-bar:vertical .track {
+    -fx-background: transparent;
+	-fx-background-color: transparent;
+	-fx-background-radius: 0;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background: transparent;
+	-fx-background-color: #f97330aa;
+	-fx-background-radius: 0;
+	-fx-max-width: 2;
+}
+
+.scroll-bar:vertical *.increment-arrow .content, 
+.scroll-bar:vertical *.decrement-arrow .content {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-bar:vertical *.increment-arrow, 
+.scroll-bar:vertical *.decrement-arrow {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+	-fx-display: none;
+	-fx-padding: 0 0 0 0;
+}
+
+
+.scroll-bar:vertical *.increment-button,
+.scroll-bar:vertical *.decrement-button {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+	-fx-display: none;
+	-fx-background-insets: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+	-fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+}
+
+.scroll-pane .corner {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: #492300;
+}
+
+.scroll-pane .content {
+	/*-fx-background: transparent;*/
+}
+
+.scroll-pane > .viewport {
+   /*-fx-background: transparent;*/
+}
+
 .text {
 	-fx-text-fill: #f97330;
 	-fx-color: #f97330;
@@ -200,6 +267,11 @@ BorderPane {
 
 .error {
 	-fx-text-fill: red;
+}
+
+.selected {
+	-fx-border-color: #693310;
+	-fx-border-width: 2;
 }
 
 .pop-up-menu {

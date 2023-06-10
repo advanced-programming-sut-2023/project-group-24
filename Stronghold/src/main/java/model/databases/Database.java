@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import controller.functionalcontrollers.Pair;
 import model.User;
 import model.map.Map;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,8 +14,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Objects;
@@ -154,9 +157,9 @@ public class Database {
         if (path.mkdirs()) return new String[0];
         File[] files = path.listFiles();
         if (files == null) return new String[0];
-        String[] output = new String[files.length];
+        String[] output = new String[files.length - 1];
         try {
-            for (int i = 0; i < output.length; i++) output[i] = files[i].toURI().toURL().toExternalForm();
+            for (int i = 0; i < output.length; i++) output[i] = files[i + 1].toURI().toURL().toExternalForm();
             return output;
         } catch (MalformedURLException ignored) {
             return new String[0];
@@ -168,10 +171,13 @@ public class Database {
         File pic = new File(path.getAbsoluteFile() + "/0.png");
         if (path.mkdirs() || !pic.exists()) {
             try {
-                Files.copy(
-                        Paths.get(getClass().getResource("/images/avatars/0.png").toURI()),
-                        pic.toPath());
+                for (int i = 0; i < 6; i++) Files.copy(
+                        Paths.get(getClass().getResource("/images/avatars/" + i + ".png").toURI()),
+                            new File(path.getAbsolutePath() + "/" + (i + 1) + ".png").toPath());
+                Files.copy(Paths.get(getClass().getResource("/images/avatars/0.png").toURI()),
+                        new File(path.getAbsolutePath() + "/0.png").toPath());
             } catch (IOException | URISyntaxException ignored) {
+                System.out.println("Error while copying avatars info the user's folder");
             }
             return getClass().getResource("/images/avatars/0.png").toExternalForm();
         }
@@ -189,15 +195,33 @@ public class Database {
         try {
             Files.copy(new File(path).toPath(), dest.toPath());
         } catch (IOException ignored) {
+            ignored.printStackTrace();
         }
     }
 
-    public void setCurrentAvatar(User user, String path) {
+    public void setCurrentAvatar(User user, URI path) {
         File dest = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars" +
                 "/0.png");
+        if (dest.exists()) if (!dest.delete()) return;
         try {
             Files.copy(new File(path).toPath(), dest.toPath());
         } catch (IOException ignored) {
+            ignored.printStackTrace();
         }
+    }
+
+    public int getAvatarNumber(User user) {
+        File path = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars");
+        File current = new File(path.getAbsolutePath() + "/0.png");
+
+        try {
+            for (int i = 1; i < Objects.requireNonNull(path.listFiles()).length; i++) {
+                if (FileUtils.contentEquals(new File(path.getAbsolutePath() + "/" + i + ".png"), current))
+                    return i;
+            }
+        } catch (IOException ignored) {
+            System.out.println("Error in get avatar number");
+        }
+        return -1;
     }
 }

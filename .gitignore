@@ -2,3 +2,4 @@
 /.idea/
 *.json
 info/captcha.png
+/info/

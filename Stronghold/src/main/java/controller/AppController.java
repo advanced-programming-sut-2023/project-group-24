@@ -12,7 +12,11 @@ import view.menus.login.*;
 import view.menus.main.MainMenu;
 import view.menus.profile.*;
 
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.EventListener;
 
 public class AppController {
     private static final Database DATABASE = new Database();
@@ -23,11 +27,13 @@ public class AppController {
     private Stage stage;
     private UserInfo userInfo;
     private User currentUser;
+    private ArrayList<PropertyChangeListener> updateListeners;
 
     public AppController(Stage stage) {
         currentMenu = MenusName.LOGIN_MENU;
         this.stage = stage;
         this.database = new Database();
+        this.updateListeners = new ArrayList<>();
     }
 
     public static MenusName getCurrentMenu() {
@@ -68,6 +74,19 @@ public class AppController {
     public void setCurrentUserPassword(String password) {
         database.getUserByUsername(currentUser.getUsername()).changePasswords(MainController.getSHA256(password));
         database.saveDataIntoFile();
+    }
+
+    public void addListener(PropertyChangeListener listener) {
+        this.updateListeners.add(listener);
+    }
+
+    public void removeListener(PropertyChangeListener listener) {
+        this.updateListeners.remove(listener);
+    }
+
+    public void updateListeners(String name) {
+        for (PropertyChangeListener updateListener : this.updateListeners)
+            updateListener.propertyChange(new PropertyChangeEvent(this, name, 1, 1));
     }
 
     public static void makeNewGameDatabase(ArrayList<Kingdom> kingdoms, Map map) {
