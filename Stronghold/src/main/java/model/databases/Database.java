@@ -23,6 +23,8 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Database {
     private static final String DIRECTORY_TO_SAVE_INFO = "info";
@@ -159,7 +161,11 @@ public class Database {
         if (files == null) return new String[0];
         String[] output = new String[files.length - 1];
         try {
-            for (int i = 0; i < output.length; i++) output[i] = files[i + 1].toURI().toURL().toExternalForm();
+            for (int i = 1; i < files.length; i++) {
+                Matcher matcher = Pattern.compile("(?<number>\\d+)\\.png").matcher(files[i].getName());
+                if (!matcher.find()) System.out.println("hi");
+                output[Integer.parseInt(matcher.group("number")) - 1] = files[i].toURI().toURL().toExternalForm();
+            }
             return output;
         } catch (MalformedURLException ignored) {
             return new String[0];

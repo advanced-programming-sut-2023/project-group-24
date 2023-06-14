@@ -3,7 +3,6 @@ package view.controls.profile;
 import controller.ControllersName;
 import controller.MenusName;
 import controller.ProfileController;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -16,10 +15,10 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import model.enums.Slogan;
 import view.controls.Control;
 import view.enums.messages.ProfileMenuMessages;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class ProfileMenuController extends Control {
@@ -61,6 +60,9 @@ public class ProfileMenuController extends Control {
         if (usernameField.getText().equals("")) usernameError.setText("Empty Field");
         if (nicknameField.getText().equals("")) nicknameError.setText("Empty Field");
         if (emailField.getText().equals("")) emailError.setText("Empty Field");
+        if (sloganField.getText().equals("") && customSlogan.isSelected()) sloganError.setText("Empty Field");
+        if (!sloganError.getText().equals("") || !emailError.getText().equals("") || !nicknameError.getText().equals("")
+                || !usernameError.getText().equals("")) return;
         profileController.changeUsername(usernameField.getText());
         profileController.changeNickname(nicknameField.getText());
         profileController.changeEmail(emailField.getText());
@@ -79,6 +81,16 @@ public class ProfileMenuController extends Control {
         getApp().run(MenusName.MAIN_MENU);
     }
 
+    public void randomSlogan() {
+        String currentSlogan = sloganField.getText();
+        String nextSlogan = Slogan.getRandomSlogan();
+        if (currentSlogan.equals(nextSlogan)) {
+            randomSlogan();
+            return;
+        }
+        sloganField.setText(nextSlogan);
+    }
+
     @Override
     public void run() {
         this.profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE);
@@ -89,10 +101,42 @@ public class ProfileMenuController extends Control {
         mainPane.setRight(right);
         this.listener = evt -> updateAvatar();
         getApp().addListener(listener);
+        usernameField.textProperty().addListener((observableValue, s, t1) -> usernameErrors(t1));
+        emailField.textProperty().addListener((observableValue, s, t1) -> emailErrors(t1));
+        nicknameField.textProperty().addListener((observableValue, s, t1) -> nicknameError.setText(""));
+        sloganField.textProperty().addListener((observableValue, s, t1) -> sloganError.setText(""));
 
         if (!profileController.getCurrentUser("slogan").equals("")) customSlogan.setSelected(true);
         sloganContainer.visibleProperty().bind(customSlogan.selectedProperty());
         customSlogan.setOnAction((e) -> sloganField.setText(""));
+    }
+
+    private void usernameErrors(String to) {
+        switch (profileController.checkChangeUsernameErrors(to)) {
+            case INVALID_USERNAME:
+                usernameError.setText("There are invalid characters in your username");
+                break;
+            case DUPLICATE_USERNAME:
+                usernameError.setText("This username already exists");
+                break;
+            default:
+                usernameError.setText("");
+                break;
+        }
+    }
+
+    private void emailErrors(String newEmail) {
+        switch (profileController.checkChangeEmailErrors(newEmail)) {
+            case INVALID_EMAIL_FORMAT:
+                emailError.setText("Email format is incorrect");
+                break;
+            case DUPLICATE_EMAIL:
+                emailError.setText("This email already exists");
+                break;
+            default:
+                emailError.setText("");
+                break;
+        }
     }
 
     private void updateAvatar() {

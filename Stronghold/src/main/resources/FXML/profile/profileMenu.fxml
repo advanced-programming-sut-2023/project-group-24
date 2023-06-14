@@ -56,11 +56,11 @@
 
             <VBox>
                 <HBox spacing="5" alignment="BOTTOM_LEFT" fx:id="sloganContainer">
-                    <TextField minWidth="250" maxWidth="250" minHeight="50" styleClass="blue-text-field"
+                    <TextField minWidth="350" maxWidth="250" minHeight="50" styleClass="blue-text-field"
                                promptText="The slogan is empty" fx:id="sloganField"/>
                     <VBox spacing="2">
                         <Button prefWidth="25" prefHeight="25" minWidth="25" styleClass="retry-black" maxHeight="25"
-                                minHeight="25"/>
+                                minHeight="25" onMouseClicked="#randomSlogan"/>
                         <Button minHeight="25" prefHeight="25" minWidth="25" styleClass="edit" fx:id="sloganEdit"
                                 onMouseClicked="#enableEdit"/>
                     </VBox>
