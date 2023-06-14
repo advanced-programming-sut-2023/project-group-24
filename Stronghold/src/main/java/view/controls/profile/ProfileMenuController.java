@@ -105,6 +105,7 @@ public class ProfileMenuController extends Control {
         emailField.textProperty().addListener((observableValue, s, t1) -> emailErrors(t1));
         nicknameField.textProperty().addListener((observableValue, s, t1) -> nicknameError.setText(""));
         sloganField.textProperty().addListener((observableValue, s, t1) -> sloganError.setText(""));
+        customSlogan.selectedProperty().addListener((observableValue, s, t1) -> sloganError.setText(""));
 
         if (!profileController.getCurrentUser("slogan").equals("")) customSlogan.setSelected(true);
         sloganContainer.visibleProperty().bind(customSlogan.selectedProperty());

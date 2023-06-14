@@ -25,13 +25,13 @@
     </left>
 
     <center>
-        <Button text="hello"/>
         <VBox alignment="BOTTOM_RIGHT" spacing="15">
-            <HBox minHeight="150" minWidth="210" fx:id="dragAndDrop" alignment="TOP_CENTER"/>
+            <HBox minHeight="150" minWidth="210" fx:id="dragAndDrop" alignment="TOP_CENTER"
+                  onMouseClicked="#chooseFileAvatar"/>
             <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="confirm" onMouseClicked="#confirm"
                     fx:id="confirm"/>
             <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="copy others' avatar"
-                    onMouseClicked="#copyMenu" fx:id="cancel"/>
+                    onMouseClicked="#copyMenu" fx:id="copyMenu"/>
         </VBox>
     </center>
 

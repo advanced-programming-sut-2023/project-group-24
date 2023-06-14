@@ -4,7 +4,6 @@ import controller.ControllersName;
 import controller.MenusName;
 import controller.ProfileController;
 import javafx.animation.TranslateTransition;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -12,36 +11,42 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import view.controls.Control;
 
-import java.awt.*;
-import java.awt.image.ImageConsumer;
+import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 
 public class ChooseAvatarMenuController extends Control {
     public ScrollPane scrollPane;
     public Button confirm;
-    public Button cancel;
     public VBox scrollContent;
     public HBox dragAndDrop;
+    public Button copyMenu;
 
     private ProfileController profileController;
 
-    public void confirm(MouseEvent mouseEvent) {
+    public void confirm() {
         getApp().updateListeners("update avatar");
         getStage().close();
     }
 
-    public void copyMenu(MouseEvent mouseEvent) throws Exception {
+    public void copyMenu() throws Exception {
         getApp().run(MenusName.COPY_AVATAR_MENU);
+    }
+
+    public void chooseFileAvatar() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG Images", "*.png"));
+        File file = fileChooser.showOpenDialog(getStage());
+        profileController.addAvatar(file.getAbsolutePath());
+        updateScrollContent();
     }
 
     @Override
@@ -49,6 +54,7 @@ public class ChooseAvatarMenuController extends Control {
         this.profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE);
         updateScrollContent();
         setUpDragAndDrop();
+        setUpFont();
 
         scrollPane.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
     }
@@ -72,8 +78,7 @@ public class ChooseAvatarMenuController extends Control {
     private void handleDragDropped(DragEvent event) {
         Dragboard db = event.getDragboard();
         boolean success = db.hasFiles();
-        /* let the source know whether the string was successfully
-         * transferred and used */
+
         if (db.getFiles().get(0).getAbsolutePath().endsWith(".png")) {
             profileController.addAvatar(db.getFiles().get(0).getAbsolutePath());
             updateScrollContent();
@@ -103,7 +108,7 @@ public class ChooseAvatarMenuController extends Control {
             button.setMinWidth(100);
             button.setMaxHeight(100);
             button.setMaxWidth(100);
-            button.setStyle("-fx-background-image: url(\""  + path + "\");-fx-background-size: stretch;");
+            button.setStyle("-fx-background-image: url(\"" + path + "\");-fx-background-size: stretch;");
             scrollContent.getChildren().add(button);
         }
         Button selected = (Button) scrollContent.getChildren().get(profileController.getCurrentAvatarNumber());
@@ -117,5 +122,11 @@ public class ChooseAvatarMenuController extends Control {
             if (i != selected) scrollContent.getChildren().get(i).getStyleClass().removeAll("selected");
             else scrollContent.getChildren().get(i).getStyleClass().add("selected");
         }
+    }
+
+    private void setUpFont() {
+        Font normal = Font.loadFont(getClass().getResourceAsStream("/fonts/Seagram.ttf"), 20);
+        confirm.setFont(normal);
+        copyMenu.setFont(normal);
     }
 }
