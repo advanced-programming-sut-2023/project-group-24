@@ -48,15 +48,15 @@ public class ProfileMenuController extends Control {
     private ProfileController profileController;
     private PropertyChangeListener listener;
 
-    public void changePassword(MouseEvent mouseEvent) throws Exception {
+    public void changePassword() throws Exception {
         getApp().run(MenusName.CHANGE_PASSWORD_MENU);
     }
 
-    public void leaderBoard(MouseEvent mouseEvent) throws Exception {
+    public void leaderBoard() throws Exception {
         getApp().run(MenusName.LEADER_BOARD_MENU);
     }
 
-    public void save(MouseEvent mouseEvent) {
+    public void save() {
         if (usernameField.getText().equals("")) usernameError.setText("Empty Field");
         if (nicknameField.getText().equals("")) nicknameError.setText("Empty Field");
         if (emailField.getText().equals("")) emailError.setText("Empty Field");
@@ -72,11 +72,11 @@ public class ProfileMenuController extends Control {
         resetFields();
     }
 
-    public void chooseAvatar(MouseEvent mouseEvent) throws Exception {
+    public void chooseAvatar() throws Exception {
         getApp().run(MenusName.CHOOSE_AVATAR_MENU);
     }
 
-    public void back(MouseEvent mouseEvent) throws Exception {
+    public void back() throws Exception {
         getApp().removeListener(listener);
         getApp().run(MenusName.MAIN_MENU);
     }
