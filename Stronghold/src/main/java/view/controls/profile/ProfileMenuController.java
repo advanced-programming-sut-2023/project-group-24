@@ -3,10 +3,7 @@ package view.controls.profile;
 import controller.ControllersName;
 import controller.MenusName;
 import controller.ProfileController;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -15,6 +12,8 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 import model.enums.Slogan;
 import view.controls.Control;
 import view.enums.messages.ProfileMenuMessages;
@@ -58,19 +57,46 @@ public class ProfileMenuController extends Control {
     }
 
     public void save() {
-        if (usernameField.getText().equals("")) usernameError.setText("Empty Field");
-        if (nicknameField.getText().equals("")) nicknameError.setText("Empty Field");
-        if (emailField.getText().equals("")) emailError.setText("Empty Field");
-        if (sloganField.getText().equals("") && customSlogan.isSelected()) sloganError.setText("Empty Field");
+        checkEmptyFields();
         if (!sloganError.getText().equals("") || !emailError.getText().equals("") || !nicknameError.getText().equals("")
                 || !usernameError.getText().equals("")) return;
+        saveChanges();
+        disableFields();
+        resetFields();
+        showSuccessMessage();
+    }
+
+    private void showSuccessMessage() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("Success");
+        alert.setContentText("The changes were saved successfully.");
+        alert.initOwner(getStage());
+        alert.setResizable(true);
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initStyle(StageStyle.TRANSPARENT);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setPrefSize(300, 200);
+        dialogPane.getScene().setFill(Color.TRANSPARENT);
+        dialogPane.setGraphic(null);
+        dialogPane.getStylesheets().add(getClass().getResource("/CSS/alert.css").toExternalForm());
+        dialogPane.getStyleClass().add("dialog-pane");
+        dialogPane.getStyleClass().add("dialog-pane-success");
+        alert.show();
+    }
+
+    private void saveChanges() {
         profileController.changeUsername(usernameField.getText());
         profileController.changeNickname(nicknameField.getText());
         profileController.changeEmail(emailField.getText());
         if (profileController.changeSlogan(sloganField.getText()) == ProfileMenuMessages.NULL_FIELD)
             profileController.removeSlogan();
-        disableFields();
-        resetFields();
+    }
+
+    private void checkEmptyFields() {
+        if (usernameField.getText().equals("")) usernameError.setText("Empty Field");
+        if (nicknameField.getText().equals("")) nicknameError.setText("Empty Field");
+        if (emailField.getText().equals("")) emailError.setText("Empty Field");
+        if (sloganField.getText().equals("") && customSlogan.isSelected()) sloganError.setText("Empty Field");
     }
 
     public void chooseAvatar() throws Exception {

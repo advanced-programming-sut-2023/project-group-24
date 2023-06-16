@@ -110,5 +110,17 @@
     "slogan": "U play the game, I live in the game",
     "email": "tes@tes",
     "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 2,
+      "object2": "bbb6b6e26c3b98d9b0d0f4eaa98d6db79ecc82cad47913a2653f1bed326dd389"
+    },
+    "username": "aa",
+    "password": "3eb615014bce8a88b16c7370d34921a68a389ba918b0cc18141b30b193175d0a",
+    "nickname": "mmm",
+    "slogan": "Life has tree parts, gaming, eating and sleeping",
+    "email": "pdnviof@gmail.com",
+    "highScore": 0
   }
 ]

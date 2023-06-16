@@ -8,7 +8,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 import view.modelview.PasswordInput;
 import view.controls.Control;
 
@@ -91,7 +94,13 @@ public class LoginMenuController extends Control {
         alert.setHeaderText(header);
         alert.setContentText(message);
         alert.initOwner(getStage());
+        alert.setResizable(true);
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initStyle(StageStyle.TRANSPARENT);
         DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setPrefSize(300, 200);
+        dialogPane.getScene().setFill(Color.TRANSPARENT);
+        dialogPane.setGraphic(null);
         dialogPane.getStylesheets().add(getClass().getResource("/CSS/alert.css").toExternalForm());
         dialogPane.getStyleClass().add("dialog-pane");
         alert.show();
