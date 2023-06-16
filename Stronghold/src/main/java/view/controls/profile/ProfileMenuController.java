@@ -19,6 +19,7 @@ import model.enums.Slogan;
 import view.controls.Control;
 import view.enums.messages.ProfileMenuMessages;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class ProfileMenuController extends Control {
@@ -99,17 +100,28 @@ public class ProfileMenuController extends Control {
         updateAvatar();
         setUpText();
         mainPane.setRight(right);
-        this.listener = evt -> updateAvatar();
+        updateAvatarListener();
+        setUpListeners();
+        setUpSlogan();
+    }
+
+    private void setUpSlogan() {
+        if (!profileController.getCurrentUser("slogan").equals("")) customSlogan.setSelected(true);
+        sloganContainer.visibleProperty().bind(customSlogan.selectedProperty());
+        customSlogan.setOnAction((e) -> sloganField.setText(""));
+    }
+
+    private void updateAvatarListener() {
+        this.listener = this::updateAvatar;
         getApp().addListener(listener);
+    }
+
+    private void setUpListeners() {
         usernameField.textProperty().addListener((observableValue, s, t1) -> usernameErrors(t1));
         emailField.textProperty().addListener((observableValue, s, t1) -> emailErrors(t1));
         nicknameField.textProperty().addListener((observableValue, s, t1) -> nicknameError.setText(""));
         sloganField.textProperty().addListener((observableValue, s, t1) -> sloganError.setText(""));
         customSlogan.selectedProperty().addListener((observableValue, s, t1) -> sloganError.setText(""));
-
-        if (!profileController.getCurrentUser("slogan").equals("")) customSlogan.setSelected(true);
-        sloganContainer.visibleProperty().bind(customSlogan.selectedProperty());
-        customSlogan.setOnAction((e) -> sloganField.setText(""));
     }
 
     private void usernameErrors(String to) {
@@ -138,6 +150,10 @@ public class ProfileMenuController extends Control {
                 emailError.setText("");
                 break;
         }
+    }
+
+    private void updateAvatar(PropertyChangeEvent event) {
+        if (event.getPropertyName().equals("update avatar")) updateAvatar();
     }
 
     private void updateAvatar() {

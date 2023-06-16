@@ -5,6 +5,7 @@ import model.databases.Database;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.ProfileMenuMessages;
 
+import java.io.File;
 import java.net.URI;
 import java.util.Vector;
 
@@ -125,12 +126,20 @@ public class ProfileController implements Controller {
         return database.getCurrentAvatarPath(currentUser);
     }
 
+    public String getAvatarPath(String username) {
+        User user = database.getUserByUsername(username);
+        if (user == null) return getClass().getResource("/images/avatars/0.png").toExternalForm();
+        return database.getCurrentAvatarPath(user);
+    }
+
     public String[] getAllAvatarsPath() {
         return database.getAvatarsPathsForUser(currentUser);
     }
 
     public void addAvatar(String absolutePath) {
-        database.addAvatarPicture(currentUser, absolutePath);
+        if (database.getAvatarNumber(currentUser, new File(absolutePath)) == -1)
+            database.addAvatarPicture(currentUser, absolutePath);
+        else database.setCurrentAvatar(currentUser, new File(absolutePath));
     }
 
     public int getCurrentAvatarNumber() {
@@ -141,6 +150,12 @@ public class ProfileController implements Controller {
 
     public void setCurrentAvatar(URI path) {
         database.setCurrentAvatar(currentUser, path);
+    }
+
+    public void copyAvatar(String username) {
+        User user = database.getUserByUsername(username);
+        if (user == null) return;
+        database.copyAvatar(currentUser, user);
     }
 
     public String showSlogan() {

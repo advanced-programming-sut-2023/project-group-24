@@ -19,6 +19,8 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import view.controls.Control;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -31,6 +33,7 @@ public class ChooseAvatarMenuController extends Control {
     public Button copyMenu;
 
     private ProfileController profileController;
+    private PropertyChangeListener listener;
 
     public void confirm() {
         getApp().updateListeners("update avatar");
@@ -55,6 +58,8 @@ public class ChooseAvatarMenuController extends Control {
         updateScrollContent();
         setUpDragAndDrop();
         setUpFont();
+        this.listener = this::updateScrollContent;
+        getApp().addListener(listener);
 
         scrollPane.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
     }
@@ -93,6 +98,12 @@ public class ChooseAvatarMenuController extends Control {
             if (event.getDragboard().getFiles().get(0).getAbsolutePath().endsWith(".png"))
                 event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         event.consume();
+    }
+
+    private void updateScrollContent(PropertyChangeEvent event) {
+        if (event.getPropertyName().equals("copied avatar")) {
+            updateScrollContent();
+        }
     }
 
     private void updateScrollContent() {
