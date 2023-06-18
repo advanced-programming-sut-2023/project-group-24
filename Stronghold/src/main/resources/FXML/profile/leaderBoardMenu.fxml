@@ -9,8 +9,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
+<?import view.modelview.LeaderBoardTable?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@../../CSS/login.css"
             fx:controller="view.controls.profile.LeaderBoardMenuController"
             prefHeight="600.0" prefWidth="400.0">
     <top>
@@ -18,17 +20,18 @@
             <HBox alignment="CENTER_RIGHT">
                 <ImageView fitHeight="50" fitWidth="50" onMouseClicked="#back" fx:id="back"/>
             </HBox>
-            <HBox alignment="CENTER">
-                <ImageView fitHeight="35" fitWidth="35"/>
-                <Text text="username"/>
-                <Text text="high score"/>
-            </HBox> <!-- probably make a separate class for this HBox -->
+<!--            <HBox alignment="CENTER">-->
+<!--                <ImageView fitHeight="35" fitWidth="35"/>-->
+<!--                <Text text="username"/>-->
+<!--                <Text text="high score"/>-->
+<!--            </HBox> &lt;!&ndash; probably make a separate class for this HBox &ndash;&gt;-->
+<!--            <LeaderBoardTable/>-->
         </VBox>
     </top>
 
     <bottom>
-        <ScrollPane>
-
+        <ScrollPane maxHeight="500" styleClass="leader-board-scroll-pane" fx:id="scrollPane" maxWidth="300">
+            <LeaderBoardTable minWidth="280" alignment="TOP_RIGHT" fx:id="leaderBoardContent"/>
         </ScrollPane>
     </bottom>
 
