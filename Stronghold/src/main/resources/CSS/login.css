@@ -1,11 +1,12 @@
 @font-face {
-	font-family: 'Seagram';
-	src: url("../fonts/Seagram.ttf");
+    font-family: "Seagram tfb";
+    src: url("../fonts/Seagram.ttf");
 }
 
 BorderPane {
     -fx-font-family: 'Seagram%20tfb', serif;
     -fx-font-size: 20;
+    -fx-font-family: "Seagram tfb";
     /*-fx-background-size: cover;*/
 }
 
@@ -279,6 +280,10 @@ BorderPane {
 	-fx-border-width: 2;
 }
 
+.leader-board-table {
+	-fx-fill: orange;
+}
+
 .pop-up-menu {
 	/*first edition border color: #cfb253;*/
 	-fx-border-radius: 20;
@@ -310,6 +315,17 @@ BorderPane {
 #profile-pane {
 	-fx-background-image: url("../images/backgrounds/profile.jpg");
     -fx-background-size: cover;
+}
+
+#leader-board-pane {
+	-fx-background-image: url("../images/backgrounds/leaderboard.jpg");
+    -fx-background-size: cover;
+
+    -fx-border-radius: 20;
+	-fx-border-width: 2;
+	-fx-border-color: black;
+
+	-fx-effect: innershadow(gaussian, black, 18, 0.2, 0, 0);
 }
 
 #change-password {

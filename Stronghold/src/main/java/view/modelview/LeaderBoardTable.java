@@ -2,33 +2,54 @@ package view.modelview;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 
 public class LeaderBoardTable extends VBox {
     public LeaderBoardTable() {
         super();
+        this.getStyleClass().add("leader-board-table");
+        this.setAlignment(Pos.TOP_CENTER);
         for (int i = 0; i < 10; i++) {
-            Label rank = new Label();
-            rank.setMinWidth(30);
-            ImageView imageView = new ImageView();
-            imageView.setFitHeight(0);
-            imageView.setFitWidth(0);
-            Label username = new Label();
-            username.setMinWidth(200);
-            Label score = new Label();
-            score.setMinWidth(50);
+            Label rank = createLabel(30, i);
+            ImageView imageView = createImageView();
+            Label username = createLabel(200, i);
+            Label score = createLabel(50, i);
             HBox hBox = new HBox(rank, imageView, username, score);
             hBox.setSpacing(10);
             hBox.setPadding(new Insets(5));
+            setHBoxColor(i, hBox);
             this.getChildren().add(hBox);
         }
+    }
+
+    private Label createLabel(int size, int row) {
+        Label label = new Label();
+        label.setMinWidth(size);
+         label.setTextFill(Color.WHITE);
+        return label;
+    }
+
+    private ImageView createImageView() {
+        ImageView imageView = new ImageView();
+        imageView.setFitHeight(0);
+        imageView.setFitWidth(0);
+        return imageView;
+    }
+
+    private void setHBoxColor(int i, HBox hBox) {
+        if (i % 2 == 0) hBox.setBackground(new Background(new BackgroundFill(
+                Color.rgb(124, 159, 214,0.35), CornerRadii.EMPTY, Insets.EMPTY
+        )));
+        else  hBox.setBackground(new Background(new BackgroundFill(
+                Color.rgb(82, 122, 186,0.35), CornerRadii.EMPTY, Insets.EMPTY
+        )));
     }
 
     public void show(ArrayList<UserInfo> info) {

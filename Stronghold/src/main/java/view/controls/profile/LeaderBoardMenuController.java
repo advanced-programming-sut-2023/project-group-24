@@ -2,6 +2,9 @@ package view.controls.profile;
 
 import controller.ControllersName;
 import controller.LeaderBoardController;
+import controller.ProfileController;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -9,8 +12,9 @@ import view.controls.Control;
 import view.modelview.LeaderBoardTable;
 
 public class LeaderBoardMenuController extends Control {
-    public ImageView back;
+    public Button back;
     public LeaderBoardTable leaderBoardContent;
+    public Label rank;
 
     private LeaderBoardController leaderBoardController;
 
@@ -20,9 +24,11 @@ public class LeaderBoardMenuController extends Control {
 
     @Override
     public void run() {
+        ProfileController profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE);
         leaderBoardController = (LeaderBoardController) getApp().getControllerForMenu(ControllersName.LEADER_BOARD);
         leaderBoardContent.show(leaderBoardController.showTenUsers());
         leaderBoardContent.setOnScroll(this::handleScroll);
+        rank.setText("Your rank is " + profileController.showRank());
     }
 
     private void handleScroll(ScrollEvent scrollEvent) {
