@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.login.CaptchaMenuController"
-            prefHeight="180.0" prefWidth="250.0" maxHeight="180">
+            styleClass="pop-up-menu"
+            stylesheets="@../../CSS/menu-style.css"
+            prefHeight="330.0" prefWidth="250.0" maxHeight="330" minHeight="330">
     <top>
-        <VBox alignment="TOP_CENTER" minWidth="250" minHeight="180" spacing="20">
-            <ImageView fitWidth="200" fitHeight="50"/>
-            <TextField minWidth="200" minHeight="50" maxWidth="200"/>
+        <VBox alignment="TOP_CENTER" spacing="8">
+            <Label text="Fill out captcha" fx:id="title"/>
+            <VBox alignment="TOP_CENTER" minWidth="250" minHeight="180" maxWidth="90" spacing="20">
+                <ImageView fitHeight="50" fitWidth="200" fx:id="captchaImage"/>
+                <VBox alignment="TOP_CENTER">
+                    <HBox alignment="BOTTOM_RIGHT">
+                        <TextField promptText="captcha" minHeight="50" maxWidth="180" alignment="CENTER"
+                                   fx:id="captchaField" styleClass="dark-text-field"/>
+                        <Button maxHeight="20" prefHeight="20" minHeight="20" prefWidth="20" maxWidth="20"
+                                onMouseClicked="#anotherCaptcha" styleClass="retry"/>
+                    </HBox>
+                    <Label prefHeight="10" fx:id="error" styleClass="error"/>
+                </VBox>
+            </VBox>
         </VBox>
     </top>
 
     <bottom>
-        <HBox alignment="CENTER" spacing="20">
-            <Button prefWidth="100" prefHeight="50" onMouseClicked="#cancel"/>
-            <Button prefWidth="100" prefHeight="50"/>
-        </HBox>
+        <VBox alignment="BOTTOM_CENTER" spacing="10">
+            <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="confirm" onMouseClicked="#confirm"
+                    fx:id="confirm"/>
+            <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="cancel" onMouseClicked="#cancel"
+                    fx:id="cancel"/>
+        </VBox>
     </bottom>
 
     <padding>

@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import view.modelview.PasswordInput?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.login.LoginMenuController"
-            prefHeight="500.0" prefWidth="500.0">
+            stylesheets="@../../CSS/menu-style.css"
+            fx:id="mainPane"
+            id="login-pane"
+            prefHeight="550.0" prefWidth="550.0">
     <left>
-        <VBox spacing="20">
-            <TextField promptText="username" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"/>
-            <PasswordField promptText="password" minHeight="50" maxWidth="200" minWidth="200" alignment="CENTER"/>
-            <Hyperlink text="I don't have an account" onMouseClicked="#register"/>
-            <Hyperlink text="I forgot my password" onMouseClicked="#forgotPassword"/>
+        <VBox spacing="20" styleClass="pane">
+            <TextField promptText="username" minHeight="50" maxWidth="250" minWidth="250" alignment="CENTER"
+                       fx:id="usernameField"/>
+            <PasswordInput prefHeight="50" prefWidth="200" fx:id="passwordInput" alignment="BOTTOM_CENTER"/>
+            <Hyperlink text="I don't have an account" onMouseClicked="#register" styleClass="hyperlink"
+                       fx:id="register"/>
+            <Hyperlink text="I forgot my password" onMouseClicked="#forgotPassword" fx:id="forgotPassword"/>
         </VBox>
     </left>
 
     <right>
         <VBox alignment="TOP_RIGHT" spacing="20" prefHeight="500">
-            <ImageView fitHeight="50" fitWidth="200"/>
-            <TextField promptText="captcha" minHeight="50" maxWidth="200" alignment="CENTER"/>
+            <ImageView fitHeight="50" fitWidth="200" fx:id="captchaImage"/>
+            <HBox alignment="BOTTOM_RIGHT">
+                <TextField promptText="captcha" minHeight="50" maxWidth="180" alignment="CENTER" fx:id="captchaField"/>
+                <Button maxHeight="20" prefHeight="20" minHeight="20" prefWidth="20" maxWidth="20"
+                        onMouseClicked="#anotherCaptcha" styleClass="retry"/>
+            </HBox>
             <VBox alignment="BOTTOM_RIGHT" prefHeight="600">
-                <Button text="login" prefWidth="300" prefHeight="75" onMouseClicked="#login"/>
+                <Button text="log in" prefWidth="350" prefHeight="50" onMouseClicked="#login" styleClass="menu-button"
+                        fx:id="login" textAlignment="CENTER"/>
             </VBox>
         </VBox>
     </right>

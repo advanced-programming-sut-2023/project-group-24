@@ -2,7 +2,7 @@ package view.oldmenus;
 
 import controller.AppController;
 import controller.MenusName;
-import controller.RegisterMenuController;
+import controller.nongame.RegisterController;
 import controller.functionalcontrollers.Pair;
 import model.databases.Database;
 import org.junit.jupiter.api.AfterEach;
@@ -17,8 +17,8 @@ import java.util.NoSuchElementException;
 
 class RegisterMenuTest {
     private final Database database = new Database();
-    private final RegisterMenuController registerMenuController = new RegisterMenuController(database);
-    private final RegisterMenu registerMenu = new RegisterMenu(registerMenuController);
+    private final RegisterController registerController = new RegisterController(database);
+    private final RegisterMenu registerMenu = new RegisterMenu(registerController);
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;

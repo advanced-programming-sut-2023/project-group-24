@@ -1,40 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.scene.image.ImageView?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import view.modelview.PasswordInput?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.login.RegisterMenuController"
-            prefHeight="500.0" prefWidth="500.0">
+            stylesheets="@../../CSS/menu-style.css"
+            id="register-pane"
+            prefHeight="550.0" prefWidth="550.0">
     <left>
         <VBox spacing="20">
-            <TextField minWidth="200" maxHeight="50" minHeight="50"/>
-            <PasswordField minWidth="200" maxHeight="50" minHeight="50"/>
-            <PasswordField minWidth="200" maxHeight="50" minHeight="50"/>
-            <TextField minWidth="200" maxHeight="50" minHeight="50"/>
-            <TextField minWidth="200" maxHeight="50" minHeight="50"/>
-            <TextField minWidth="200" maxHeight="50" minHeight="50"/>
+            <VBox maxHeight="50">
+                <TextField minWidth="250" maxHeight="40" minHeight="40" maxWidth="250" promptText="username"
+                           alignment="BASELINE_LEFT" fx:id="usernameField"/>
+                <Label prefHeight="10" fx:id="userNameError" styleClass="error"/>
+            </VBox>
+
+            <VBox maxHeight="50">
+                <PasswordInput prefHeight="40" fx:id="passwordField" alignment="BOTTOM_LEFT"/>
+                <Label prefHeight="10" fx:id="passwordError" styleClass="error"/>
+            </VBox>
+
+            <VBox maxHeight="50">
+                <PasswordInput prefHeight="40" fx:id="confirmPasswordField" alignment="BOTTOM_LEFT"/>
+                <Label prefHeight="10" fx:id="confirmPasswordError" styleClass="error"/>
+            </VBox>
+
+            <VBox maxHeight="50">
+                <TextField minWidth="250" maxHeight="40" minHeight="40" maxWidth="250" promptText="nickname"
+                           alignment="BASELINE_LEFT" fx:id="nicknameField"/>
+                <Label prefHeight="10" fx:id="nicknameError" styleClass="error"/>
+            </VBox>
+
+            <VBox maxHeight="50">
+                <TextField minWidth="250" maxHeight="40" minHeight="40" maxWidth="250" promptText="email"
+                           alignment="BASELINE_LEFT" fx:id="emailField"/>
+                <Label prefHeight="10" fx:id="emailError" styleClass="error"/>
+            </VBox>
+
+            <VBox maxHeight="50">
+                <HBox alignment="BOTTOM_LEFT" fx:id="sloganContainer">
+                    <TextField minWidth="330" maxHeight="40" minHeight="40" maxWidth="330" promptText="slogan"
+                               alignment="BASELINE_LEFT" fx:id="sloganField"/>
+                    <VBox>
+                        <Button maxHeight="20" minHeight="20" maxWidth="20" minWidth="20" prefHeight="20" prefWidth="20"
+                                styleClass="drop-down" onMouseClicked="#selectSlogan"/>
+                        <Button maxHeight="20" minHeight="20" maxWidth="20" minWidth="20" prefHeight="20" prefWidth="20"
+                                styleClass="retry" onMouseClicked="#randomSlogan"/>
+                    </VBox>
+                </HBox>
+                <Label prefHeight="10" fx:id="sloganError" styleClass="error"/>
+            </VBox>
         </VBox>
     </left>
 
     <right>
-        <VBox alignment="TOP_RIGHT" prefHeight="900">
-            <ImageView fitWidth="50" fitHeight="50" onMouseClicked="#back" fx:id="back"/>
-            <CheckBox/>
+        <VBox alignment="TOP_RIGHT" prefHeight="900" spacing="30">
+            <Button prefWidth="50" minWidth="50" maxWidth="50" prefHeight="50" minHeight="50" maxHeight="50"
+                    onMouseClicked="#back" fx:id="back" styleClass="back-icon"/>
+            <HBox alignment="CENTER_RIGHT" spacing="20">
+                <Text text="have custom slogan" fx:id="haveCustomSloganText" styleClass="text" textAlignment="CENTER"/>
+                <CheckBox prefWidth="32" prefHeight="32" minWidth="32" minHeight="32" maxWidth="32" maxHeight="32"
+                          fx:id="customSlogan"/>
+            </HBox>
+            <Button prefHeight="32" prefWidth="32" maxHeight="32" maxWidth="32" minHeight="32" minWidth="32"
+                    onMouseClicked="#randomPassword" id="random-password"/>
             <VBox alignment="BOTTOM_RIGHT" prefHeight="900">
-                <Button prefHeight="75" prefWidth="275" text="register" onMouseClicked="#register"/>
+                <Button prefHeight="45" prefWidth="275" text="Register" onMouseClicked="#register"
+                        styleClass="menu-button" fx:id="registerButton"/>
             </VBox>
         </VBox>
     </right>
 
     <padding>
-        <Insets top="20" left="20" right="20" bottom="20"/>
+        <Insets top="20" left="10" right="40" bottom="20"/>
     </padding>
 
 </BorderPane>

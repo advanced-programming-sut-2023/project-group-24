@@ -3,7 +3,7 @@ package view.oldmenus;
 import controller.AppController;
 import controller.MainController;
 import controller.MenusName;
-import controller.RegisterMenuController;
+import controller.nongame.RegisterController;
 import view.enums.commands.Commands;
 import view.enums.messages.RegisterMenuMessages;
 
@@ -11,10 +11,10 @@ import java.util.regex.Matcher;
 
 public class RegisterMenu {
 
-    private final RegisterMenuController registerMenuController;
+    private final RegisterController registerController;
 
-    public RegisterMenu(RegisterMenuController registerMenuController) {
-        this.registerMenuController = registerMenuController;
+    public RegisterMenu(RegisterController registerController) {
+        this.registerController = registerController;
     }
 
     public void run() {
@@ -46,7 +46,7 @@ public class RegisterMenu {
         String slogan = MainController.removeDoubleQuotation(matcher.group("slogan"));
         int recoveryQuestion;
         String recoveryAnswer;
-        RegisterMenuMessages message = registerMenuController.checkErrorsForRegister(
+        RegisterMenuMessages message = registerController.checkErrorsForRegister(
                 username, password,
                 passwordConfirm, nickname,
                 email, slogan);
@@ -82,7 +82,7 @@ public class RegisterMenu {
                 break;
             case DUPLICATE_USERNAME:
                 System.out.println("Username is already used!");
-                String newUsername = registerMenuController.makeNewUsername(username);
+                String newUsername = registerController.makeNewUsername(username);
                 System.out.println("Recommended username: " + newUsername);
                 break;
             case SHORT_PASSWORD:
@@ -116,7 +116,7 @@ public class RegisterMenu {
                              String nickname, String email,
                              String slogan, int recoveryQuestionNumber,
                              String recoveryAnswer) {
-        RegisterMenuMessages message = registerMenuController.registerUser(username, password,
+        RegisterMenuMessages message = registerController.registerUser(username, password,
                 nickname, email, slogan,
                 recoveryQuestionNumber, recoveryAnswer);
         switch (message) {
@@ -132,18 +132,18 @@ public class RegisterMenu {
 
     private String checkAndSetSlogan(String slogan) {
         if (!slogan.equals("random")) return slogan;
-        String randomSlogan = registerMenuController.makeRandomSlogan();
+        String randomSlogan = registerController.makeRandomSlogan();
         System.out.println("Your slogan is \"" + randomSlogan + "\"");
         return randomSlogan;
     }
 
     private String checkAndSetPassword(String password) {
         if (!password.equals("random")) return password;
-        String randomPassword = registerMenuController.makeRandomPassword();
+        String randomPassword = registerController.makeRandomPassword();
         System.out.println("Your random password is: " + randomPassword);
         System.out.print("Please re-enter your password here: ");
         String passwordConfirm = GetInputFromUser.getUserInput();
-        RegisterMenuMessages message = registerMenuController.checkPasswordErrors(randomPassword, passwordConfirm);
+        RegisterMenuMessages message = registerController.checkPasswordErrors(randomPassword, passwordConfirm);
         switch (message) {
             case SUCCESS:
                 return randomPassword;
@@ -169,7 +169,7 @@ public class RegisterMenu {
         String recoveryQuestion = MainController.removeDoubleQuotation(matcher.group("questionNumber"));
         String answer = MainController.removeDoubleQuotation(matcher.group("answer"));
         String answerConfirm = MainController.removeDoubleQuotation(matcher.group("answerConfirm"));
-        RegisterMenuMessages message = registerMenuController.checkErrorsForSecurityQuestion(recoveryQuestion, answer, answerConfirm);
+        RegisterMenuMessages message = registerController.checkErrorsForSecurityQuestion(recoveryQuestion, answer, answerConfirm);
         switch (message) {
             case SUCCESS:
                 return recoveryQuestion + answer;

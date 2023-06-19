@@ -1,5 +1,7 @@
-package controller;
+package controller.nongame;
 
+import controller.Controller;
+import controller.MainController;
 import controller.functionalcontrollers.Pair;
 import model.User;
 import model.databases.Database;
@@ -12,11 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RegisterMenuController {
+public class RegisterController implements Controller {
 
-    Database database;
+    private Database database;
 
-    public RegisterMenuController(Database database) {
+    public RegisterController(Database database) {
         this.database = database;
     }
 
@@ -34,6 +36,11 @@ public class RegisterMenuController {
             RegisterMenuMessages passwordCheckMessage = checkPasswordErrors(password, passwordConfirmation);
             if (passwordCheckMessage != RegisterMenuMessages.SUCCESS) return passwordCheckMessage;
         }
+        return checkEmailErrors(email);
+    }
+
+    public RegisterMenuMessages checkEmailErrors(String email) {
+        if (email.equals("")) return RegisterMenuMessages.NULL_EMAIL;
         for (User e : database.getAllUsers()) {
             if (e.getEmail().equalsIgnoreCase(email)) return RegisterMenuMessages.DUPLICATE_EMAIL;
         }
@@ -42,6 +49,7 @@ public class RegisterMenuController {
     }
 
     public RegisterMenuMessages checkPasswordErrors(String password, String passwordConfirmation) {
+        if (password.equals("")) return RegisterMenuMessages.NULL_PASSWORD;
         CommonMessages passwordMessage = MainController.whatIsPasswordProblem(password);
         switch (passwordMessage) {
             case SHORT_PASSWORD:
@@ -59,6 +67,13 @@ public class RegisterMenuController {
         return RegisterMenuMessages.SUCCESS;
     }
 
+    public RegisterMenuMessages checkUsernameErrors(String username) {
+        if (username.equals("")) return RegisterMenuMessages.NULL_USERNAME;
+        else if (MainController.isUsernameValid(username)) return RegisterMenuMessages.INVALID_USERNAME;
+        else if (database.getUserByUsername(username) != null) return RegisterMenuMessages.DUPLICATE_USERNAME;
+        return RegisterMenuMessages.SUCCESS;
+    }
+
     public RegisterMenuMessages checkErrorsForSecurityQuestion(String recoveryQuestion,
                                                                String answer, String answerConfirm) {
         int recoveryQuestionNumber = Integer.parseInt(recoveryQuestion);
@@ -72,7 +87,7 @@ public class RegisterMenuController {
         StringBuilder password = new StringBuilder();
         List<Integer> indexesOfPassword = new ArrayList<>();
         String[] passwordCharacters = new String[]{"0123456789", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                "abcdefghijklmnopqrstuvwxyz", "`~!@#$%^&*()_+=-*/><?{}[]|\\/:\\;\",."};
+                "abcdefghijklmnopqrstuvwxyz", "`~!@#$%^&*()+=-*/><?{}[]|\\/:\\;\",."};
         int sizeOfPassword = (int) (Math.random() * 8) + 8;
         password.setLength(sizeOfPassword);
         for (int i = 0; i < sizeOfPassword; i++) indexesOfPassword.add(i);
@@ -113,7 +128,7 @@ public class RegisterMenuController {
         StringBuilder newUsername = new StringBuilder(username);
         int length = (int) (Math.random() * 2) + 1;
         String[] usernameCharacters = new String[]{"0123456789", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                "abcdefghijklmnopqrstuvwxyz", "`~!@#$%^&*()_+=-*/><?{}[]|\\/:\\;\",."};
+                "abcdefghijklmnopqrstuvwxyz", "`~!@#$%^&*()+=-*/><?{}[]|\\/:\\;\",."};
         for (int i = 0; i < length; i++) {
             int stringIndex = (int) (Math.random() * 4);
             int characterIndex = (int) (Math.random() * usernameCharacters[stringIndex].length());

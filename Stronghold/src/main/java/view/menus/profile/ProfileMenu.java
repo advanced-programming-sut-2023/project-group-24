@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import view.controls.Control;
-import view.menus.login.LoginMenu;
 
 import java.net.URL;
 

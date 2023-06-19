@@ -11,19 +11,29 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.login.SecurityQuestionConfirmMenuController"
-            prefHeight="180.0" prefWidth="250.0" maxHeight="180">
+            styleClass="pop-up-menu"
+            stylesheets="@../../CSS/menu-style.css"
+            prefHeight="330.0" prefWidth="250.0" maxHeight="330" minHeight="330">
     <top>
-        <VBox alignment="TOP_CENTER" minWidth="250" minHeight="180" spacing="20">
-            <Text text="What is your father's name?"/>
-            <TextField maxWidth="200" minHeight="50" minWidth="200"/>
+        <VBox alignment="TOP_CENTER" spacing="10">
+            <TextField promptText="username" minHeight="30" maxWidth="200" minWidth="200" alignment="CENTER"
+                       fx:id="usernameField" styleClass="dark-text-field"/>
+            <VBox alignment="TOP_CENTER" fx:id="questionPane">
+                <Label text="What is your father's name?" fx:id="question"/>
+                <TextField promptText="answer" minHeight="30" maxWidth="200" minWidth="200" alignment="CENTER"
+                           fx:id="answerField" styleClass="dark-text-field"/>
+                <Label styleClass="error" fx:id="error"/>
+            </VBox>
         </VBox>
     </top>
 
     <bottom>
-        <HBox alignment="CENTER" spacing="20">
-            <Button prefWidth="100" prefHeight="50" onMouseClicked="#cancel"/>
-            <Button prefWidth="100" prefHeight="50" onMouseClicked="#confirm"/>
-        </HBox>
+        <VBox alignment="BOTTOM_CENTER" spacing="10">
+            <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="confirm" onMouseClicked="#confirm"
+                    fx:id="confirm"/>
+            <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="cancel" onMouseClicked="#cancel"
+                    fx:id="cancel"/>
+        </VBox>
     </bottom>
 
     <padding>

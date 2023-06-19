@@ -24,5 +24,11 @@ public enum RecoveryQuestion {
                 return null;
         }
     }
+
+    public static String[] getAsArray() {
+        String[] output = new String[values().length];
+        for (int i = 0; i < values().length; i++) output[i] = values()[i].recoveryQuestion;
+        return output;
+    }
 }
 

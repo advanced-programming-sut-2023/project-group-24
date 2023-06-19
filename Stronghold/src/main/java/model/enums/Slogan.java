@@ -17,6 +17,12 @@ public enum Slogan {
         return values()[(int) (Math.random() * values().length)].toString();
     }
 
+    public static String[] getAll() {
+        String[] output = new String[values().length];
+        for (int i = 0; i < output.length; i++) output[i] = values()[i].toString();
+        return output;
+    }
+
     @Override
     public String toString() {
         return slogan;

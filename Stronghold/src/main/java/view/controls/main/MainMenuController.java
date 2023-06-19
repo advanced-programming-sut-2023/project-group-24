@@ -1,11 +1,44 @@
 package view.controls.main;
 
 import controller.MenusName;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import view.controls.Control;
 
 public class MainMenuController extends Control {
-    public void profileMenu(MouseEvent mouseEvent) throws Exception {
+    public Text title;
+    public Button enterGame;
+    public Button createMap;
+    public Button profileMenu;
+    public Button exit;
+
+    public void profileMenu() throws Exception {
         getApp().run(MenusName.PROFILE_MENU);
+    }
+
+    public void exit() {
+        getStage().close();
+    }
+
+    @Override
+    public void run() {
+        Font huge = Font.loadFont(getClass().getResource("/fonts/Seagram.ttf").toExternalForm(), 70);
+        Font large = Font.loadFont(getClass().getResource("/fonts/Seagram.ttf").toExternalForm(), 30);
+        profileMenu.setFont(large);
+        enterGame.setFont(large);
+        createMap.setFont(large);
+        exit.setFont(large);
+        title.setFont(huge);
+        title.setFill(Color.FIREBRICK);
+        title.setStrokeWidth(0.2);
+        title.setStroke(Color.BLACK);
+        DropShadow effect = new DropShadow(BlurType.THREE_PASS_BOX, Color.BLACK, 10, 0, 0, 0);
+        effect.setInput(new InnerShadow(BlurType.THREE_PASS_BOX, Color.BLACK, 5, 0, 0, 0));
+        title.setEffect(effect);
     }
 }
