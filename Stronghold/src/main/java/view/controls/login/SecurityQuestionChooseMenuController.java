@@ -1,14 +1,11 @@
 package view.controls.login;
 
 import controller.MenusName;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import model.enums.RecoveryQuestion;
@@ -45,7 +42,7 @@ public class SecurityQuestionChooseMenuController extends Control {
 
     private void checkForError() {
         if (answer.getText().equals("")) error.setText("The field is empty");
-        else  error.setText("");
+        else error.setText("");
     }
 
     private void setUpText() {

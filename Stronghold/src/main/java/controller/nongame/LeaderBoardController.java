@@ -1,7 +1,6 @@
 package controller.nongame;
 
 import controller.Controller;
-import javafx.scene.image.Image;
 import model.User;
 import model.databases.Database;
 import view.modelview.UserInfo;

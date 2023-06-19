@@ -40,14 +40,14 @@ public class ChangePasswordMenuController extends Control {
         if (loginController.isCaptchaIncorrect(captchaField.getText())) captchaError.setText("Incorrect captcha");
         anotherCaptcha();
         switch (profileController.checkChangePasswordErrors(oldPassword.getText(), newPassword.getText())) {
-                case INCORRECT_PASSWORD:
-                    oldPasswordError.setText("wrong password");
-                    break;
-                case DUPLICATE_PASSWORD:
-                    if (errorFound()) return;
-                    passwordError.setText("The new password is the same as your old one");
-                    break;
-            }
+            case INCORRECT_PASSWORD:
+                oldPasswordError.setText("wrong password");
+                break;
+            case DUPLICATE_PASSWORD:
+                if (errorFound()) return;
+                passwordError.setText("The new password is the same as your old one");
+                break;
+        }
         if (errorFound()) return;
         profileController.changePassword(newPassword.getText(), confirmPassword.getText());
         getStage().close();

@@ -5,5 +5,4 @@ public enum ControllersName {
     REGISTER,
     PROFILE,
     LEADER_BOARD
-    ;
 }

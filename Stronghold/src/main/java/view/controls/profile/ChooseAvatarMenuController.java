@@ -33,7 +33,6 @@ public class ChooseAvatarMenuController extends Control {
     public Button copyMenu;
 
     private ProfileController profileController;
-    private PropertyChangeListener listener;
 
     public void confirm() {
         getApp().updateListeners("update avatar");
@@ -58,7 +57,7 @@ public class ChooseAvatarMenuController extends Control {
         updateScrollContent();
         setUpDragAndDrop();
         setUpFont();
-        this.listener = this::updateScrollContent;
+        PropertyChangeListener listener = this::updateScrollContent;
         getApp().addListener(listener);
 
         scrollPane.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));

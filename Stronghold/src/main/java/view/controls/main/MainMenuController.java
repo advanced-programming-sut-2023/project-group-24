@@ -2,16 +2,11 @@ package view.controls.main;
 
 import controller.MenusName;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
 import javafx.scene.effect.InnerShadow;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import view.controls.Control;
 
@@ -22,7 +17,7 @@ public class MainMenuController extends Control {
     public Button profileMenu;
     public Button exit;
 
-    public void profileMenu(MouseEvent mouseEvent) throws Exception {
+    public void profileMenu() throws Exception {
         getApp().run(MenusName.PROFILE_MENU);
     }
 

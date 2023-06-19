@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MainMenuController {
 
-    Database database;
+    private Database database;
 
     public MainMenuController(Database database) {
         this.database = database;

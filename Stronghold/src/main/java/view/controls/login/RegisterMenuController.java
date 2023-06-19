@@ -3,10 +3,8 @@ package view.controls.login;
 import controller.ControllersName;
 import controller.MenusName;
 import controller.nongame.RegisterController;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -18,8 +16,6 @@ import view.controls.Control;
 import view.modelview.PasswordInput;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Optional;
 
 public class RegisterMenuController extends Control {
     public Button back;

@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class RegisterController implements Controller {
 
-    Database database;
+    private Database database;
 
     public RegisterController(Database database) {
         this.database = database;

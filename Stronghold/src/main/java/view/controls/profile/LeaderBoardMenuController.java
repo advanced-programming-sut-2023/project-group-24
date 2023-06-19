@@ -17,7 +17,7 @@ public class LeaderBoardMenuController extends Control {
 
     private LeaderBoardController leaderBoardController;
 
-    public void back(MouseEvent mouseEvent) {
+    public void back() {
         getStage().close();
     }
 
