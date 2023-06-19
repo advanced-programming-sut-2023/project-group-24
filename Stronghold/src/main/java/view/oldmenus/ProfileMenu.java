@@ -3,7 +3,7 @@ package view.oldmenus;
 import controller.AppController;
 import controller.MainController;
 import controller.MenusName;
-import controller.ProfileController;
+import controller.nongame.ProfileController;
 import view.enums.commands.Commands;
 import view.enums.messages.ProfileMenuMessages;
 

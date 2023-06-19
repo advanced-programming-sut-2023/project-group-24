@@ -1,7 +1,7 @@
 package view.oldmenus;
 
 import controller.AppController;
-import controller.MainMenuController;
+import controller.nongame.MainMenuController;
 import controller.MenusName;
 import view.enums.commands.Commands;
 import view.enums.messages.MainMenuMessages;

@@ -12,7 +12,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.profile.CopyAvatarMenuController"
-            stylesheets="@../../CSS/login.css"
+            stylesheets="@../../CSS/menu-style.css"
             styleClass="pop-up-menu"
             prefHeight="330.0" prefWidth="250.0" maxHeight="330" minHeight="330">
     <top>

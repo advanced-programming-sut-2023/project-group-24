@@ -1,5 +1,6 @@
-package controller;
+package controller.nongame;
 
+import controller.Controller;
 import javafx.scene.image.Image;
 import model.User;
 import model.databases.Database;
@@ -38,5 +39,9 @@ public class LeaderBoardController implements Controller {
     public void goUp() {
         row--;
         if (row < 0) row = 0;
+    }
+
+    public void update() {
+        users = database.getAllUsersByRank();
     }
 }

@@ -10,7 +10,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.main.MainMenuController"
             id="main-menu-pane"
-            stylesheets="@../../CSS/login.css"
+            stylesheets="@../../CSS/menu-style.css"
             prefHeight="563.0" prefWidth="900.0" minHeight="563" minWidth="900">
     <center>
         <VBox spacing="30">

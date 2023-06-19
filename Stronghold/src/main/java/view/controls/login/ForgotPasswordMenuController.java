@@ -1,8 +1,7 @@
 package view.controls.login;
 
 import controller.ControllersName;
-import controller.MenusName;
-import controller.RegisterController;
+import controller.nongame.RegisterController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;

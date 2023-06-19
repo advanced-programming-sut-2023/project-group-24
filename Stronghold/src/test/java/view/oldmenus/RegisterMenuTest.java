@@ -2,7 +2,7 @@ package view.oldmenus;
 
 import controller.AppController;
 import controller.MenusName;
-import controller.RegisterController;
+import controller.nongame.RegisterController;
 import controller.functionalcontrollers.Pair;
 import model.databases.Database;
 import org.junit.jupiter.api.AfterEach;

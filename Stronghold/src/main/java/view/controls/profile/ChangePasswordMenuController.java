@@ -1,9 +1,9 @@
 package view.controls.profile;
 
 import controller.ControllersName;
-import controller.LoginController;
-import controller.ProfileController;
-import controller.RegisterController;
+import controller.nongame.LoginController;
+import controller.nongame.ProfileController;
+import controller.nongame.RegisterController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

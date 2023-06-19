@@ -8,7 +8,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.login.RegisterMenuController"
-            stylesheets="@../../CSS/login.css"
+            stylesheets="@../../CSS/menu-style.css"
             id="register-pane"
             prefHeight="550.0" prefWidth="550.0">
     <left>

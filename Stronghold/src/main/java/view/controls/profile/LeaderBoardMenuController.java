@@ -1,11 +1,10 @@
 package view.controls.profile;
 
 import controller.ControllersName;
-import controller.LeaderBoardController;
-import controller.ProfileController;
+import controller.nongame.LeaderBoardController;
+import controller.nongame.ProfileController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import view.controls.Control;

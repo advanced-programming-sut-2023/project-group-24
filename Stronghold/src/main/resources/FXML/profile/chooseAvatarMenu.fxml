@@ -11,7 +11,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.profile.ChooseAvatarMenuController"
-            stylesheets="@../../CSS/login.css"
+            stylesheets="@../../CSS/menu-style.css"
             id="select-avatar"
             prefHeight="312.5" prefWidth="500.0" maxHeight="312.5" minHeight="312.5" minWidth="500" maxWidth="500">
     <left>

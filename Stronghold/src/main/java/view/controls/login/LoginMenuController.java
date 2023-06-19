@@ -1,10 +1,8 @@
 package view.controls.login;
 
 import controller.ControllersName;
-import controller.LoginController;
+import controller.nongame.LoginController;
 import controller.MenusName;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;

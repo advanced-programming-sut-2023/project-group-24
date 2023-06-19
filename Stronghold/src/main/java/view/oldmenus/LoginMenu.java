@@ -1,7 +1,7 @@
 package view.oldmenus;
 
 import controller.AppController;
-import controller.LoginController;
+import controller.nongame.LoginController;
 import controller.MainController;
 import controller.MenusName;
 import view.enums.commands.Commands;

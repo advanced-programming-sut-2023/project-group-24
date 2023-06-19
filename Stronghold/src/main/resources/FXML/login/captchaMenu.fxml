@@ -8,7 +8,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.controls.login.CaptchaMenuController"
             styleClass="pop-up-menu"
-            stylesheets="@../../CSS/login.css"
+            stylesheets="@../../CSS/menu-style.css"
             prefHeight="330.0" prefWidth="250.0" maxHeight="330" minHeight="330">
     <top>
         <VBox alignment="TOP_CENTER" spacing="8">

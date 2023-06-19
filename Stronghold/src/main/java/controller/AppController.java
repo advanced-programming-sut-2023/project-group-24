@@ -1,6 +1,10 @@
 package controller;
 
 import controller.functionalcontrollers.Pair;
+import controller.nongame.LeaderBoardController;
+import controller.nongame.LoginController;
+import controller.nongame.ProfileController;
+import controller.nongame.RegisterController;
 import javafx.stage.Stage;
 import model.Kingdom;
 import model.User;
@@ -12,11 +16,9 @@ import view.menus.login.*;
 import view.menus.main.MainMenu;
 import view.menus.profile.*;
 
-import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import java.util.EventListener;
 
 public class AppController {
     private static final Database DATABASE = new Database();

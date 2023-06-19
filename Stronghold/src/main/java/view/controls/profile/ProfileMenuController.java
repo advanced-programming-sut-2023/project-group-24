@@ -2,7 +2,7 @@ package view.controls.profile;
 
 import controller.ControllersName;
 import controller.MenusName;
-import controller.ProfileController;
+import controller.nongame.ProfileController;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;

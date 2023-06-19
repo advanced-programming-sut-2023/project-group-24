@@ -1,6 +1,7 @@
 package controller;
 
 import controller.functionalcontrollers.Pair;
+import controller.nongame.LoginController;
 import model.databases.Database;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

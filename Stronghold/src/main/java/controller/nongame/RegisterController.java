@@ -1,5 +1,7 @@
-package controller;
+package controller.nongame;
 
+import controller.Controller;
+import controller.MainController;
 import controller.functionalcontrollers.Pair;
 import model.User;
 import model.databases.Database;

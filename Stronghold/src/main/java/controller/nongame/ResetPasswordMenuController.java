@@ -1,5 +1,6 @@
-package controller;
+package controller.nongame;
 
+import controller.MainController;
 import model.User;
 import model.databases.Database;
 import model.enums.RecoveryQuestion;

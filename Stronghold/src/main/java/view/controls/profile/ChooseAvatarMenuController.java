@@ -2,7 +2,7 @@ package view.controls.profile;
 
 import controller.ControllersName;
 import controller.MenusName;
-import controller.ProfileController;
+import controller.nongame.ProfileController;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;

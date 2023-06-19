@@ -1,5 +1,8 @@
-package controller;
+package controller.nongame;
 
+import controller.AppController;
+import controller.Controller;
+import controller.MainController;
 import model.User;
 import model.databases.Database;
 import view.enums.messages.CommonMessages;

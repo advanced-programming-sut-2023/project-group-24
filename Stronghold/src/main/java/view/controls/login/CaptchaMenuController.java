@@ -1,10 +1,7 @@
 package view.controls.login;
 
 import controller.ControllersName;
-import controller.LoginController;
-import controller.MenusName;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import controller.nongame.LoginController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

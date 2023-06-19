@@ -2,7 +2,7 @@ package view.controls.login;
 
 import controller.ControllersName;
 import controller.MenusName;
-import controller.RegisterController;
+import controller.nongame.RegisterController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;

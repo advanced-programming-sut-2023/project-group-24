@@ -2,7 +2,7 @@ package view.oldmenus;
 
 import controller.AppController;
 import controller.MenusName;
-import controller.ProfileController;
+import controller.nongame.ProfileController;
 import controller.functionalcontrollers.Pair;
 import controller.gamecontrollers.KingdomController;
 import controller.gamecontrollers.TradeController;

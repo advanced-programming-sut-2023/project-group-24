@@ -3,7 +3,7 @@ package view.oldmenus;
 import controller.AppController;
 import controller.MainController;
 import controller.MenusName;
-import controller.ResetPasswordMenuController;
+import controller.nongame.ResetPasswordMenuController;
 import view.enums.commands.Commands;
 import view.enums.messages.ResetPasswordMessages;
 

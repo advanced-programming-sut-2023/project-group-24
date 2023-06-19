@@ -1,5 +1,9 @@
-package controller;
+package controller.nongame;
 
+import controller.AppController;
+import controller.Controller;
+import controller.MainController;
+import controller.MenusName;
 import controller.captchacontrollers.CaptchaGenerator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
