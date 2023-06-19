@@ -122,5 +122,29 @@
     "slogan": "Life has tree parts, gaming, eating and sleeping",
     "email": "pdnviof@gmail.com",
     "highScore": 100
+  },
+  {
+    "recovery": {
+      "object1": 2,
+      "object2": "aaa9402664f1a41f40ebbc52c9993eb66aeb366602958fdfaa283b71e64db123"
+    },
+    "username": "h",
+    "password": "9412a0c76f495f2cf3aa52b132a0601faae8242e0f8d5e1ac668ca896e9040fc",
+    "nickname": "h",
+    "slogan": "I fight for peace",
+    "email": "h@hhh",
+    "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 3,
+      "object2": "de7d1b721a1e0632b7cf04edf5032c8ecffa9f9a08492152b926f1a5a7e765d7"
+    },
+    "username": "i",
+    "password": "05909c54a9e90022e3a3ec89aba3910e6dd85f42f67bc7db01a0e24b91e472fb",
+    "nickname": "i",
+    "slogan": "i",
+    "email": "i@iii",
+    "highScore": 0
   }
 ]

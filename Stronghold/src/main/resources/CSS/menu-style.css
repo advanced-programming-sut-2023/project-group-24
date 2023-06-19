@@ -74,6 +74,11 @@ BorderPane {
 	-fx-background-size: stretch;
 }
 
+.drop-down {
+	-fx-background-image: url("../images/menus/drop-down.png");
+	-fx-background-size: stretch;
+}
+
 .button-image {
 	-fx-background-size: stretch;
 }

@@ -3,16 +3,23 @@ package view.controls.login;
 import controller.ControllersName;
 import controller.MenusName;
 import controller.nongame.RegisterController;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.StageStyle;
+import model.enums.Slogan;
 import view.controls.Control;
 import view.modelview.PasswordInput;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Optional;
 
 public class RegisterMenuController extends Control {
     public Button back;
@@ -31,6 +38,7 @@ public class RegisterMenuController extends Control {
     public Label nicknameError;
     public Label sloganError;
     public Button registerButton;
+    public HBox sloganContainer;
 
     private RegisterController registerController;
 
@@ -48,8 +56,10 @@ public class RegisterMenuController extends Control {
                 || !emailError.getText().equals("")
                 || !sloganError.getText().equals("")) return;
 
-        getApp().saveUserInfo(usernameField.getText(), passwordField.getText(),
+        if (customSlogan.isSelected()) getApp().saveUserInfo(usernameField.getText(), passwordField.getText(),
                 nicknameField.getText(), sloganField.getText(), emailField.getText());
+        else getApp().saveUserInfo(usernameField.getText(), passwordField.getText(),
+                nicknameField.getText(), null, emailField.getText());
         getApp().run(MenusName.SECURITY_QUESTION_CHOOSE_MENU);
         emptyFields();
     }
@@ -74,7 +84,7 @@ public class RegisterMenuController extends Control {
         setUpFont();
         setUpErrors();
         confirmPasswordField.setPromptText("confirm password");
-        sloganField.disableProperty().bind(customSlogan.selectedProperty().not());
+        sloganContainer.visibleProperty().bind(customSlogan.selectedProperty());
         customSlogan.setOnAction(actionEvent -> customSloganSelect());
         randomSlogan();
     }
@@ -86,6 +96,22 @@ public class RegisterMenuController extends Control {
     @FXML
     private void randomSlogan() {
         sloganField.setText(registerController.makeRandomSlogan());
+    }
+
+    public void selectSlogan() {
+        ChoiceDialog<String> alert = new ChoiceDialog<>(Slogan.FIRST.toString(), Arrays.asList(Slogan.getAll()));
+        alert.setHeaderText("Select a slogan");
+        alert.setContentText("");
+        alert.initOwner(getStage());
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initStyle(StageStyle.TRANSPARENT);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setPrefSize(400, 266.7);
+        dialogPane.getScene().setFill(Color.TRANSPARENT);
+        dialogPane.setGraphic(null);
+        dialogPane.getStylesheets().add(getClass().getResource("/CSS/alert.css").toExternalForm());
+        dialogPane.getStyleClass().add("dialog-pane");
+        alert.showAndWait().ifPresent(s -> sloganField.setText(s));
     }
 
     private void setUpErrors() {

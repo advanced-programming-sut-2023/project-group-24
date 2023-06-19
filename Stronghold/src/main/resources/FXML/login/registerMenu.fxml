@@ -42,11 +42,15 @@
             </VBox>
 
             <VBox maxHeight="50">
-                <HBox alignment="BOTTOM_LEFT">
+                <HBox alignment="BOTTOM_LEFT" fx:id="sloganContainer">
                     <TextField minWidth="330" maxHeight="40" minHeight="40" maxWidth="330" promptText="slogan"
                                alignment="BASELINE_LEFT" fx:id="sloganField"/>
-                    <Button maxHeight="20" minHeight="20" maxWidth="20" minWidth="20" prefHeight="20" prefWidth="20"
-                            styleClass="retry" onMouseClicked="#randomSlogan"/>
+                    <VBox>
+                        <Button maxHeight="20" minHeight="20" maxWidth="20" minWidth="20" prefHeight="20" prefWidth="20"
+                                styleClass="drop-down" onMouseClicked="#selectSlogan"/>
+                        <Button maxHeight="20" minHeight="20" maxWidth="20" minWidth="20" prefHeight="20" prefWidth="20"
+                                styleClass="retry" onMouseClicked="#randomSlogan"/>
+                    </VBox>
                 </HBox>
                 <Label prefHeight="10" fx:id="sloganError" styleClass="error"/>
             </VBox>
