@@ -1,10 +1,7 @@
 package view.controls.profile;
 
-import controller.AppController;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
+import controller.ControllersName;
+import controller.LeaderBoardController;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -13,8 +10,9 @@ import view.modelview.LeaderBoardTable;
 
 public class LeaderBoardMenuController extends Control {
     public ImageView back;
-    public ScrollPane scrollPane;
     public LeaderBoardTable leaderBoardContent;
+
+    private LeaderBoardController leaderBoardController;
 
     public void back(MouseEvent mouseEvent) {
         getStage().close();
@@ -22,10 +20,15 @@ public class LeaderBoardMenuController extends Control {
 
     @Override
     public void run() {
-        final double SPEED = 0.05 / leaderBoardContent.getChildren().size();
-        scrollPane.getContent().setOnScroll(scrollEvent -> {
-            double deltaY = scrollEvent.getDeltaY() * SPEED;
-            scrollPane.setVvalue(scrollPane.getVvalue() - deltaY);
-        });
+        leaderBoardController = (LeaderBoardController) getApp().getControllerForMenu(ControllersName.LEADER_BOARD);
+        leaderBoardContent.show(leaderBoardController.showTenUsers());
+        leaderBoardContent.setOnScroll(this::handleScroll);
+    }
+
+    private void handleScroll(ScrollEvent scrollEvent) {
+        if (scrollEvent.getDeltaY() < 0) leaderBoardController.goDown();
+        else leaderBoardController.goUp();
+
+        leaderBoardContent.show(leaderBoardController.showTenUsers());
     }
 }

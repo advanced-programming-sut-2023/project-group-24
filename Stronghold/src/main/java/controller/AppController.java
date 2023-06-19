@@ -216,6 +216,8 @@ public class AppController {
                 return new RegisterController(database);
             case PROFILE:
                 return new ProfileController(database, database.getUserByUsername(currentUser.getUsername()));
+            case LEADER_BOARD:
+                return new LeaderBoardController(database);
         }
         return null;
     }
