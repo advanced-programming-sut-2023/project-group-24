@@ -226,7 +226,11 @@ public enum BuildingType {
     MOAT("moat", Category.CASTLE, null, 0, 100000,
             0, 0, -1, 0, 0, 0, 0,
             null, null, 0, null, null, null,
-            false, false, null, DefenceBuilding.class);
+            false, false, null, DefenceBuilding.class),
+    BRAZIER("moat", Category.TOWN, null, 200, 100000,
+            0, 0, 0, 0, 0, 0, 0,
+            null, null, 0, null, null, null,
+            false, false, null, Building.class);
 
     private final String name;
     private final Category category;

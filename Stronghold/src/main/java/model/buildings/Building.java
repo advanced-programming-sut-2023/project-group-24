@@ -12,12 +12,14 @@ public class Building {
     private final Cell location;
     private final BuildingType buildingType;
     private int hp;
+    private int burnCounter;
 
     public Building(Kingdom kingdom, Cell location, BuildingType buildingType) {
         this.kingdom = kingdom;
         this.location = location;
         this.buildingType = buildingType;
         this.hp = buildingType.getMaxHp();
+        this.burnCounter = 0;
         location.setExistingBuilding(this);
         kingdom.addBuilding(this);
     }
@@ -47,6 +49,10 @@ public class Building {
         return hp;
     }
 
+    public boolean isBurning() {
+        return burnCounter > 0;
+    }
+
     public void takeDamage(int amount) {
         hp -= amount;
         if (hp <= 0) {
@@ -62,6 +68,15 @@ public class Building {
 
     public void repair() {
         hp = buildingType.getMaxHp();
+    }
+
+    public void startBurning() {
+        this.burnCounter = 3;
+    }
+
+    public void takeDamageFromBurning() {
+        this.burnCounter--;
+        this.takeDamage(50);
     }
 
     public ArrayList<String> showDetails() {

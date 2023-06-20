@@ -238,7 +238,7 @@ public class BuildingController {
         return true;
     }
 
-    private boolean checkNeighborContains(Cell cell, BuildingType neededBuildingType) {
+    boolean checkNeighborContains(Cell cell, BuildingType neededBuildingType) {
         return findNeighborContains(cell, neededBuildingType) != Direction.NONE;
     }
 

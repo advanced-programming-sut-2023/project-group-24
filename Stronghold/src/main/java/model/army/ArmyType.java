@@ -20,7 +20,7 @@ public enum ArmyType {
     ASSASSIN(60, 128, 0, 28, 3),
     HORSE_ARCHER(80, 128, 5, 24, 5),
     ARABIAN_SWORD_MAN(80, 150, 0, 32, 5),
-    FIRE_THROWER(100, 96, 3, 32, 5),
+    FIRE_THROWER(100, 96, 3, 32, 5, true),
     DOG(0, 5, 0, 60, 5),
     //WAR_MACHINES:
     SIEGE_TOWER(150, 600, 0, 0, 1),
@@ -28,19 +28,25 @@ public enum ArmyType {
     BATTERING_RAMS(150, 1000, 1, 334, 1),
     CATAPULT(150, 150, 5, 200, 2),
     TREBUCHETS(150, 400, 7, 334, 0),
-    FIRE_BALLISTA(150, 150, 6, 70, 2);
+    FIRE_BALLISTA(150, 150, 6, 70, 2, true);
     private final int price;
     private final int maxHp;
     private final int range;
     private final int damage;
     private final int speed;//cell per turn
+    private final boolean canBurn;
 
     ArmyType(int price, int maxHp, int range, int damage, int speed) {
+        this(price, maxHp, range, damage, speed, false);
+    }
+
+    ArmyType(int price, int maxHp, int range, int damage, int speed, boolean canBurn) {
         this.price = price;
         this.maxHp = maxHp;
         this.range = range;
         this.damage = damage;
         this.speed = speed;
+        this.canBurn = canBurn;
     }
 
     public static ArmyType stringToEnum(String name) {
@@ -68,6 +74,10 @@ public enum ArmyType {
 
     public int getPrice() {
         return price;
+    }
+
+    public boolean canBurn() {
+        return canBurn;
     }
 
     @Override

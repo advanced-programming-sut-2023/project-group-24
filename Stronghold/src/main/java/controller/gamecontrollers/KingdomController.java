@@ -4,6 +4,7 @@ import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.People;
 import model.Trade;
+import model.army.Army;
 import model.buildings.*;
 import model.databases.GameDatabase;
 import model.enums.Item;
@@ -23,6 +24,7 @@ public class KingdomController {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
         ArrayList<Building> buildings = kingdom.getBuildings();
         kingdom.setPopulationCapacity();
+        handleBurning(kingdom);
         handleFood(kingdom);
         handleHomeless(kingdom);
         handleInn(kingdom);
@@ -35,6 +37,10 @@ public class KingdomController {
         handleWorkers(kingdom, buildings);
         handleHorse();
         handleTrade();
+    }
+
+    private void handleBurning(Kingdom kingdom) {
+        for (Building building : kingdom.getBuildings()) if (building.isBurning()) building.takeDamageFromBurning();
     }
 
     private void handleFood(Kingdom kingdom) {

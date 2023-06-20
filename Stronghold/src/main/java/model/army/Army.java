@@ -147,4 +147,8 @@ public abstract class Army {
         int y1 = target.location.getY();
         return (int) (Math.sqrt(Math.pow((x - x1), 2) + Math.pow((y - y1), 2)));
     }
+
+    public boolean canBurn() {
+        return this.armyType.canBurn();
+    }
 }
