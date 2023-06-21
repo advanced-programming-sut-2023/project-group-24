@@ -13,6 +13,7 @@ public class Building {
     private final BuildingType buildingType;
     private int hp;
     private int burnCounter;
+    private boolean isSick;
 
     public Building(Kingdom kingdom, Cell location, BuildingType buildingType) {
         this.kingdom = kingdom;
@@ -20,6 +21,7 @@ public class Building {
         this.buildingType = buildingType;
         this.hp = buildingType.getMaxHp();
         this.burnCounter = 0;
+        this.isSick = false;
         location.setExistingBuilding(this);
         kingdom.addBuilding(this);
     }
@@ -51,6 +53,14 @@ public class Building {
 
     public boolean isBurning() {
         return burnCounter > 0;
+    }
+
+    public boolean isSick() {
+        return isSick;
+    }
+
+    public void setSick(boolean sick) {
+        isSick = sick;
     }
 
     public void takeDamage(int amount) {

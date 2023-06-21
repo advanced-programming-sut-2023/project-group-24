@@ -25,6 +25,9 @@ public class KingdomController {
         ArrayList<Building> buildings = kingdom.getBuildings();
         kingdom.setPopulationCapacity();
         handleBurning(kingdom);
+        handleSickness(kingdom);
+        handleTreatment(kingdom);
+        handleSicknessPopularityFactor(kingdom);
         handleFood(kingdom);
         handleHomeless(kingdom);
         handleInn(kingdom);
@@ -41,6 +44,34 @@ public class KingdomController {
 
     private void handleBurning(Kingdom kingdom) {
         for (Building building : kingdom.getBuildings()) if (building.isBurning()) building.takeDamageFromBurning();
+    }
+    
+    private void handleSickness(Kingdom kingdom) {
+        int numberOfBuildings = kingdom.getBuildings().size();
+        int random = (int) (Math.random() * numberOfBuildings * 4);
+        if (random < numberOfBuildings) kingdom.getBuildings().get(random).setSick(true);
+    }
+
+    private void handleTreatment(Kingdom kingdom) {
+        for (Building building : kingdom.getBuildings()) {
+            if (building.isSick()) {
+                for (Building apothecary : kingdom.getBuildings()) {
+                    if (apothecary.getBuildingType() == BuildingType.APOTHECARY
+                            && ((WorkersNeededBuilding) building).hasEnoughWorkers()) {
+                        if (Math.abs(apothecary.getLocation().getX() - building.getLocation().getX()) +
+                                Math.abs(apothecary.getLocation().getY() - building.getLocation().getY()) < 5)
+                            building.setSick(false);
+                    }
+                }
+            }
+        }
+    }
+
+    private void handleSicknessPopularityFactor(Kingdom kingdom) {
+        int sickRate = 0;
+        for (Building building : kingdom.getBuildings()) if (building.isSick()) sickRate++;
+        kingdom.setSickRate(-sickRate);
+        kingdom.setPopularityFactor(PopularityFactor.SICK, sickRate);
     }
 
     private void handleFood(Kingdom kingdom) {

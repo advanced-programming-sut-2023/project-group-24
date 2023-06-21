@@ -6,5 +6,6 @@ public enum PopularityFactor {
     RELIGION,
     TAX,
     HOMELESS,
-    INN
+    INN,
+    SICK
 }

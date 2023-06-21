@@ -227,8 +227,12 @@ public enum BuildingType {
             0, 0, -1, 0, 0, 0, 0,
             null, null, 0, null, null, null,
             false, false, null, DefenceBuilding.class),
-    BRAZIER("moat", Category.TOWN, null, 200, 100000,
+    BRAZIER("brazier", Category.TOWN, null, 200, 200,
             0, 0, 0, 0, 0, 0, 0,
+            null, null, 0, null, null, null,
+            false, false, null, Building.class),
+    APOTHECARY("apothecary", Category.TOWN, new Pair<>(Item.WOOD, -20), 150, 250,
+            1, 0, 0, 0, 0, 0, 0,
             null, null, 0, null, null, null,
             false, false, null, Building.class);
 
