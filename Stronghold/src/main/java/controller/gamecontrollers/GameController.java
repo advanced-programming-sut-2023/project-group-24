@@ -8,6 +8,7 @@ import model.buildings.*;
 import model.databases.GameDatabase;
 import model.enums.Direction;
 import model.enums.MovingType;
+import model.enums.Slogan;
 import model.map.Cell;
 import model.map.Map;
 import model.map.Texture;
@@ -29,6 +30,7 @@ public class GameController {
         makeWarMachines();
         checkStateOfUnits();
         moveUnits();
+        handleBrazier();
         war();
         gameDatabase.nextTurn();
         canGateBeCaptured();
@@ -36,6 +38,16 @@ public class GameController {
         hasKingdomsFallen();
         giveLastPlayerScoreAndEndGame();
         handleEngineerOil();
+    }
+
+    private void handleBrazier() {
+        BuildingController buildingController = new BuildingController(gameDatabase);
+        for (Army army : currentKingdom.getArmies()) {
+            if (army instanceof Soldier
+                    && army.getArmyType().getRange() > 1
+                    && buildingController.checkNeighborContains(army.getLocation(), BuildingType.BRAZIER))
+                ((Soldier) army).setCanBurnOnce(true);
+        }
     }
 
     private void handleEngineerOil() {
@@ -117,8 +129,11 @@ public class GameController {
             }
         } else if (army.getTargetBuilding() != null) {
             Building building = army.getTargetBuilding();
-            if (checkNeighbor(army, army.getTargetBuilding()))
+            if (checkNeighbor(army, army.getTargetBuilding())) {
                 building.takeDamage((int) (army.getArmyType().getDamage() * army.getOwner().getFearRate()));
+                if (army.canBurn()) building.startBurning();
+                if (army instanceof Soldier) ((Soldier) army).setCanBurnOnce(false);
+            }
         }
     }
 

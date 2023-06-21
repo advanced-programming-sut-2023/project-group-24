@@ -27,6 +27,7 @@ public class Kingdom {
     private int wantedFoodRate;
     private int taxRate;
     private int wantedTaxRate;
+    private int sickRate;
     private double fearRate;// it has effect on workers and unit!
 
     public Kingdom(KingdomColor color) {
@@ -40,6 +41,7 @@ public class Kingdom {
         foodRate = 0;
         taxRate = 0;
         fearRate = 1;
+        sickRate = 0;
         populationCapacity = 8;
         buildings = new ArrayList<>();
         trades = new ArrayList<>();
@@ -53,6 +55,7 @@ public class Kingdom {
         popularityFactors.put(PopularityFactor.TAX, 1);
         popularityFactors.put(PopularityFactor.INN, 0);
         popularityFactors.put(PopularityFactor.HOMELESS, 0);
+        popularityFactors.put(PopularityFactor.SICK, 0);
         setStorage();
     }
 
@@ -176,6 +179,14 @@ public class Kingdom {
 
     public void setFoodRate(int foodRate) {
         this.foodRate = foodRate;
+    }
+
+    public int getSickRate() {
+        return sickRate;
+    }
+
+    public void setSickRate(int sickRate) {
+        this.sickRate = sickRate;
     }
 
     public int getTaxRate() {
