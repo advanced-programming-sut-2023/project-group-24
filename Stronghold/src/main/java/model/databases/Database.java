@@ -28,6 +28,7 @@ import java.util.regex.Pattern;
 public class Database {
     private static final String DIRECTORY_TO_SAVE_INFO = "info";
     private static final String FILE_TO_SAVE_ALL_USERS = DIRECTORY_TO_SAVE_INFO + "/allUsers.json";
+    private static final String FILE_TO_SAVE_A_MAP = DIRECTORY_TO_SAVE_INFO + "/map1.json";
     private static final String FILE_TO_SAVE_STAYED_LOGGED_IN_USER = DIRECTORY_TO_SAVE_INFO + "/loggedInUser.json";
 
     private Vector<User> allUsers;
@@ -94,6 +95,7 @@ public class Database {
         try {
             allUsers = gson.fromJson(fileToString(FILE_TO_SAVE_ALL_USERS), allUsersType);
             stayedLoggedInUser = gson.fromJson(fileToString(FILE_TO_SAVE_STAYED_LOGGED_IN_USER), User.class);
+            maps = new Vector<>();
         } catch (FileNotFoundException ignored) {
             allUsers = new Vector<>();
             maps = new Vector<>();
@@ -107,6 +109,7 @@ public class Database {
             checkForSavingDirectory();
             saveObjectToFile(FILE_TO_SAVE_ALL_USERS, allUsers);
             saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
+            saveObjectToFile(FILE_TO_SAVE_A_MAP, maps.get(0));
         } catch (IOException ignored) {
             System.out.println("error");
         }

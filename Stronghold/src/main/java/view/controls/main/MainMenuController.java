@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -21,8 +22,18 @@ public class MainMenuController extends Control {
         getApp().run(MenusName.PROFILE_MENU);
     }
 
+    public void createMap() throws Exception {
+        getApp().run(MenusName.ENTER_CREATE_MAP_MENU);
+    }
+
+    public void enterGame() throws Exception {
+        getApp().run(MenusName.ENTER_MAP_MENU);
+    }
+
     public void exit() {
+        getApp().saveData();
         getStage().close();
+        System.exit(0);
     }
 
     @Override

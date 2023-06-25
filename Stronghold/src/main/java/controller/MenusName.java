@@ -14,11 +14,15 @@ public enum MenusName {
     LEADER_BOARD_MENU,
     CHOOSE_AVATAR_MENU,
     COPY_AVATAR_MENU,
-
-
-
-
+    //main
     MAIN_MENU,
+    ENTER_CREATE_MAP_MENU,
+    ENTER_MAP_MENU,
+
+
+
+
+
     RESET_PASSWORD_MENU,
     GAME_MENU,
     CREATE_MAP_MENU,

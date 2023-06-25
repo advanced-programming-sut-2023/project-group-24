@@ -17,8 +17,10 @@
             <HBox minWidth="420" maxWidth="420" prefWidth="420" alignment="CENTER">
                 <Text text="Stronghold" textAlignment="CENTER" fx:id="title"/>
             </HBox>
-            <Button prefHeight="60" prefWidth="420" styleClass="menu-button" text="Enter Game" fx:id="enterGame"/>
-            <Button prefHeight="60" prefWidth="420" styleClass="menu-button" text="Create Map" fx:id="createMap"/>
+            <Button prefHeight="60" prefWidth="420" styleClass="menu-button" text="Enter Game" fx:id="enterGame"
+                    onMouseClicked="#enterGame"/>
+            <Button prefHeight="60" prefWidth="420" styleClass="menu-button" text="Create Map" fx:id="createMap"
+                    onMouseClicked="#createMap"/>
             <Button prefHeight="60" prefWidth="420" styleClass="menu-button" text="Profile Menu"
                     onMouseClicked="#profileMenu" fx:id="profileMenu"/>
             <Button prefHeight="60" prefWidth="420" styleClass="menu-button" text="Exit" onMouseClicked="#exit"

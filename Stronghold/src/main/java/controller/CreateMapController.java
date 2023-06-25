@@ -7,6 +7,7 @@ import model.buildings.Building;
 import model.buildings.BuildingType;
 import model.buildings.StorageBuilding;
 import model.databases.Database;
+import model.enums.Color;
 import model.enums.Direction;
 import model.enums.Item;
 import model.enums.KingdomColor;
@@ -16,7 +17,7 @@ import model.map.Texture;
 import model.map.Tree;
 import view.enums.messages.CreateMapMessages;
 
-public class CreateMapController {
+public class CreateMapController implements Controller {
     private final Database database;
     private Map map;
     private Kingdom currentKingdom;
@@ -26,12 +27,20 @@ public class CreateMapController {
     }
 
     public CreateMapMessages createMap(int size, String id) {
-        if (database.mapIdExists(id))
-            return CreateMapMessages.ID_EXIST;
-        if (!(size == 200 || size == 400))
-            return CreateMapMessages.INVALID_SIZE;
+        CreateMapMessages message = getCreateMapMessage(size, id);
+        if (message != CreateMapMessages.SUCCESS) return message;
         map = new Map(size, id);
         database.addMap(map);
+        newKingdom(1, 1, "red");
+        newKingdom(2, 2, "blue");
+        return CreateMapMessages.SUCCESS;
+    }
+
+    public CreateMapMessages getCreateMapMessage(int size, String id) {
+        if (database.mapIdExists(id))
+            return CreateMapMessages.ID_EXIST;
+        if (size > 400 || size < 20)
+            return CreateMapMessages.INVALID_SIZE;
         return CreateMapMessages.SUCCESS;
     }
 

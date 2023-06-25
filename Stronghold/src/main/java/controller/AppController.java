@@ -1,10 +1,7 @@
 package controller;
 
 import controller.functionalcontrollers.Pair;
-import controller.nongame.LeaderBoardController;
-import controller.nongame.LoginController;
-import controller.nongame.ProfileController;
-import controller.nongame.RegisterController;
+import controller.nongame.*;
 import javafx.stage.Stage;
 import model.Kingdom;
 import model.User;
@@ -13,6 +10,8 @@ import model.databases.Database;
 import model.databases.GameDatabase;
 import model.map.Map;
 import view.menus.login.*;
+import view.menus.main.CreateMapMenu;
+import view.menus.main.EnterMapMenu;
 import view.menus.main.MainMenu;
 import view.menus.profile.*;
 
@@ -149,6 +148,14 @@ public class AppController {
                 CopyAvatarMenu copyAvatarMenu = new CopyAvatarMenu(this);
                 copyAvatarMenu.start(stage);
                 break;
+            case ENTER_CREATE_MAP_MENU:
+                CreateMapMenu createMapMenu = new CreateMapMenu(this);
+                createMapMenu.start(stage);
+                break;
+            case ENTER_MAP_MENU:
+                EnterMapMenu enterMapMenu = new EnterMapMenu(this);
+                enterMapMenu.start(stage);
+                break;
         }
 //        switch (currentMenu) {
 //            case LOGIN_MENU:
@@ -220,6 +227,10 @@ public class AppController {
                 return new ProfileController(database, database.getUserByUsername(currentUser.getUsername()));
             case LEADER_BOARD:
                 return new LeaderBoardController(database);
+            case CREATE_MAP:
+                return new CreateMapController(database);
+            case ENTER_MAP:
+                return new EnterMapController(database, currentUser);
         }
         return null;
     }

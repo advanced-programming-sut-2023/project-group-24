@@ -4,5 +4,7 @@ public enum ControllersName {
     LOGIN,
     REGISTER,
     PROFILE,
-    LEADER_BOARD
+    LEADER_BOARD,
+    CREATE_MAP,
+    ENTER_MAP
 }

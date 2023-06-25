@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Building {
-    private final Kingdom kingdom;
-    private final Cell location;
+    private transient final Kingdom kingdom;
+    private transient final Cell location;
     private final BuildingType buildingType;
     private int hp;
     private int burnCounter;

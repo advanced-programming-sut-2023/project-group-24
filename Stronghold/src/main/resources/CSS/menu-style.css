@@ -278,6 +278,7 @@ BorderPane {
 
 .error {
 	-fx-text-fill: red;
+	-fx-font-size: 11;
 }
 
 .selected {
@@ -298,6 +299,18 @@ BorderPane {
 	-fx-effect: innershadow(gaussian, black, 18, 0.2, 0, 0);
 
 	-fx-background-image: url("../images/backgrounds/pop-up-background.jpg");
+    -fx-background-radius: 20;
+    -fx-background-size: stretch;
+}
+
+.choose-map {
+	-fx-border-radius: 20;
+	-fx-border-width: 2;
+	-fx-border-color: black;
+
+	-fx-effect: innershadow(gaussian, black, 18, 0.2, 0, 0);
+
+	-fx-background-image: url("../images/backgrounds/choose-map.jpg");
     -fx-background-radius: 20;
     -fx-background-size: stretch;
 }
