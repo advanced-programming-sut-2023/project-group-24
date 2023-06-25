@@ -94,6 +94,7 @@ public class Database {
         try {
             allUsers = gson.fromJson(fileToString(FILE_TO_SAVE_ALL_USERS), allUsersType);
             stayedLoggedInUser = gson.fromJson(fileToString(FILE_TO_SAVE_STAYED_LOGGED_IN_USER), User.class);
+            maps = new Vector<>();
         } catch (FileNotFoundException ignored) {
             allUsers = new Vector<>();
             maps = new Vector<>();

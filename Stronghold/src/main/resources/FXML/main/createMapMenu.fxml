@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.controls.main.CreateMapMenuController"
+            styleClass="choose-map"
+            stylesheets="@../../CSS/menu-style.css"
+            prefHeight="273.0" prefWidth="364.0" maxHeight="273" minHeight="273">
+    <left>
+        <VBox alignment="TOP_CENTER" spacing="20">
+            <VBox maxHeight="50">
+                <TextField promptText="id" minHeight="40" maxWidth="150" minWidth="150" alignment="CENTER"
+                           fx:id="mapId"/>
+                <Label prefHeight="10" fx:id="idError" styleClass="error"/>
+            </VBox>
+
+            <VBox maxHeight="50">
+                <TextField promptText="size" minHeight="40" maxWidth="150" minWidth="150" alignment="CENTER"
+                           fx:id="mapSize"/>
+                <Label prefHeight="10" fx:id="sizeError" styleClass="error"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <bottom>
+        <HBox alignment="BOTTOM_CENTER" spacing="20">
+            <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="confirm" onMouseClicked="#confirm"
+                    fx:id="confirm"/>
+            <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="cancel" onMouseClicked="#cancel"
+                    fx:id="cancel"/>
+        </HBox>
+    </bottom>
+
+    <padding>
+        <Insets right="10" left="10" top="15" bottom="20"/>
+    </padding>
+
+</BorderPane>

@@ -16,7 +16,7 @@ import model.map.Texture;
 import model.map.Tree;
 import view.enums.messages.CreateMapMessages;
 
-public class CreateMapController {
+public class CreateMapController implements Controller {
     private final Database database;
     private Map map;
     private Kingdom currentKingdom;
@@ -26,12 +26,18 @@ public class CreateMapController {
     }
 
     public CreateMapMessages createMap(int size, String id) {
-        if (database.mapIdExists(id))
-            return CreateMapMessages.ID_EXIST;
-        if (!(size == 200 || size == 400))
-            return CreateMapMessages.INVALID_SIZE;
+        CreateMapMessages message = getCreateMapMessage(size, id);
+        if (message != CreateMapMessages.SUCCESS) return message;
         map = new Map(size, id);
         database.addMap(map);
+        return CreateMapMessages.SUCCESS;
+    }
+
+    public CreateMapMessages getCreateMapMessage(int size, String id) {
+        if (database.mapIdExists(id))
+            return CreateMapMessages.ID_EXIST;
+        if (size > 400 || size < 20)
+            return CreateMapMessages.INVALID_SIZE;
         return CreateMapMessages.SUCCESS;
     }
 
