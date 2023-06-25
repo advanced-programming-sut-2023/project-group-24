@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 public abstract class Army {
     private final ArrayList<Cell> path;
-    private final Kingdom owner;
+    private transient final Kingdom owner;
     private ArmyType armyType;
     private Pair<Cell, Cell> patrol;
     private Army target;
     private Cell targetCell;
     private Building targetBuilding;
-    private Cell location;
+    private transient Cell location;
     private UnitState unitState;
     private int hp;
 

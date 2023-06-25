@@ -30,7 +30,9 @@ public class MainMenuController extends Control {
     }
 
     public void exit() {
+        getApp().saveData();
         getStage().close();
+        System.exit(0);
     }
 
     @Override
