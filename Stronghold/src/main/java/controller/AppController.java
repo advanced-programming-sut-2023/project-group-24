@@ -1,10 +1,7 @@
 package controller;
 
 import controller.functionalcontrollers.Pair;
-import controller.nongame.LeaderBoardController;
-import controller.nongame.LoginController;
-import controller.nongame.ProfileController;
-import controller.nongame.RegisterController;
+import controller.nongame.*;
 import javafx.stage.Stage;
 import model.Kingdom;
 import model.User;
@@ -232,6 +229,8 @@ public class AppController {
                 return new LeaderBoardController(database);
             case CREATE_MAP:
                 return new CreateMapController(database);
+            case ENTER_MAP:
+                return new EnterMapController(database, currentUser);
         }
         return null;
     }

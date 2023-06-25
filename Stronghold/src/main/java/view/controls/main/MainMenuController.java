@@ -26,7 +26,8 @@ public class MainMenuController extends Control {
         getApp().run(MenusName.ENTER_CREATE_MAP_MENU);
     }
 
-    public void enterGame() {
+    public void enterGame() throws Exception {
+        getApp().run(MenusName.ENTER_MAP_MENU);
     }
 
     public void exit() {

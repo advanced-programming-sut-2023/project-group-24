@@ -7,6 +7,7 @@ import model.buildings.Building;
 import model.buildings.BuildingType;
 import model.buildings.StorageBuilding;
 import model.databases.Database;
+import model.enums.Color;
 import model.enums.Direction;
 import model.enums.Item;
 import model.enums.KingdomColor;
@@ -30,6 +31,8 @@ public class CreateMapController implements Controller {
         if (message != CreateMapMessages.SUCCESS) return message;
         map = new Map(size, id);
         database.addMap(map);
+        newKingdom(1, 1, "red");
+        newKingdom(2, 2, "blue");
         return CreateMapMessages.SUCCESS;
     }
 
