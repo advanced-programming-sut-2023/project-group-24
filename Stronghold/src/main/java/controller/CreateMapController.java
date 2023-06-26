@@ -1,6 +1,9 @@
 package controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import controller.functionalcontrollers.Pair;
+import controller.nongame.EnterMapController;
 import model.Kingdom;
 import model.army.*;
 import model.buildings.Building;
@@ -16,6 +19,10 @@ import model.map.Map;
 import model.map.Texture;
 import model.map.Tree;
 import view.enums.messages.CreateMapMessages;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class CreateMapController implements Controller {
     private final Database database;
@@ -280,5 +287,30 @@ public class CreateMapController implements Controller {
             return CreateMapMessages.FEW_KINGDOM;
         AppController.setCurrentMenu(MenusName.MAIN_MENU);
         return CreateMapMessages.SUCCESS;
+    }
+
+    public void saveMap() {
+        String directory;
+        if (new File("").getAbsolutePath().endsWith("Stronghold")) directory = "../";
+        else directory = "./";
+
+        File saveMap = new File(directory + "map.json");
+        File saveUsers = new File(directory + "users.json");
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+
+        try {
+            FileWriter fileWriterMap = new FileWriter(saveMap.getAbsolutePath());
+            FileWriter fileWriterUsers = new FileWriter(saveUsers.getAbsolutePath());
+            fileWriterMap.write(gson.toJson(map));
+            fileWriterMap.flush();
+            fileWriterUsers.write(gson.toJson(null));
+            fileWriterUsers.flush();
+        } catch (IOException e) {
+            System.out.println("save failed");
+            e.printStackTrace();
+        }
     }
 }
