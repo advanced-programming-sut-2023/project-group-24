@@ -1,6 +1,5 @@
 package controller.nongame;
 
-import controller.AppController;
 import controller.Controller;
 import controller.MainController;
 import model.User;

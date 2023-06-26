@@ -1,6 +1,5 @@
 package controller.gamecontrollers;
 
-import controller.AppController;
 import controller.MenusName;
 import model.Kingdom;
 import model.army.Army;
