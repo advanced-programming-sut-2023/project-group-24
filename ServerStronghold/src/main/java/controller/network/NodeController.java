@@ -1,5 +1,8 @@
 package controller.network;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import model.Packet;
 import model.User;
 import model.databases.Database;
 
@@ -20,5 +23,20 @@ public class NodeController extends Thread {
         this.socket = socket;
         this.inputStream = new DataInputStream(socket.getInputStream());
         this.outputStream = new DataOutputStream(socket.getOutputStream());
+    }
+
+    @Override
+    public void run() {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+        Packet databasePacket = new Packet("app", "database", null, gson.toJson(database));
+        try {
+            outputStream.writeUTF(databasePacket.toJson());
+            System.out.println("database sent");
+        } catch (IOException e) {
+            System.out.println("disconnected: " + socket.getInetAddress() + ":" + socket.getPort());
+            e.printStackTrace();
+        }
     }
 }

@@ -3,6 +3,7 @@ package controller.nongame;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import controller.Controller;
+import controller.InputOutputHandler;
 import model.User;
 import model.databases.Database;
 import model.map.Map;
@@ -16,8 +17,10 @@ public class EnterMapController implements Controller {
     private Database database;
     private ArrayList<User> users;
     private Map map;
+    private InputOutputHandler ioHandler;
 
-    public EnterMapController(Database database, User currentUser) {
+    public EnterMapController(InputOutputHandler ioHandler, Database database, User currentUser) {
+        this.ioHandler = ioHandler;
         this.database = database;
         this.users = new ArrayList<>();
         users.add(currentUser);

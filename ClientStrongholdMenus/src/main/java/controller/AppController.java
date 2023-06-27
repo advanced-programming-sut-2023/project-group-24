@@ -47,21 +47,18 @@ public class AppController {
                     new DataOutputStream(socket.getOutputStream()),
                     new DataInputStream(socket.getInputStream())
             );
+            inputOutputHandler.start();
             this.inputOutputHandler.addListener(evt -> {
                 Packet packet = ((Packet) evt.getNewValue());
-                if (packet.getTopic().equals("app") && packet.getSubject().equals("current user")) {
-                    GsonBuilder gsonBuilder = new GsonBuilder();
-                    gsonBuilder.setPrettyPrinting();
-                    Gson gson = gsonBuilder.create();
-
-                    currentUser = gson.fromJson(packet.getValue(), User.class);
-                }
-                if (packet.getTopic().equals("app") && packet.getSubject().equals("databse")) {
+                if (packet.getTopic().equals("app") && packet.getSubject().equals("database")) {
                     GsonBuilder gsonBuilder = new GsonBuilder();
                     gsonBuilder.setPrettyPrinting();
                     Gson gson = gsonBuilder.create();
 
                     database = gson.fromJson(packet.getValue(), Database.class);
+                    System.out.println("database recieved");
+                    for (PropertyChangeListener l : updateListeners)
+                        l.propertyChange(new PropertyChangeEvent("", "", 0, 1));
                 }
             });
         } catch (IOException e) {
@@ -79,6 +76,8 @@ public class AppController {
     }
 
     public void saveUser() {
+        database.addUser(userInfo.toUser());
+        database.saveDataIntoFile();
         Packet packet = new Packet("database", "add user", new String[]{
                 userInfo.getUsername(),
                 userInfo.getPassword(),
@@ -92,13 +91,13 @@ public class AppController {
     }
 
     public void setCurrentUser(String username) {
-        Packet packet = new Packet("database", "set current user", null, username);
-        inputOutputHandler.sendPacket(packet);
+        currentUser = database.getUserByUsername(username);
+        if (currentUser == null) System.out.println("not found");
     }
 
     public void setCurrentUserPassword(String password) {
-        Packet packet = new Packet("database", "set current user's password", null, password);
-        inputOutputHandler.sendPacket(packet);
+        database.getUserByUsername(currentUser.getUsername()).changePasswords(MainController.getSHA256(password));
+        database.saveDataIntoFile();
     }
 
     public void addListener(PropertyChangeListener listener) {
@@ -177,19 +176,20 @@ public class AppController {
     }
 
     public Controller getControllerForMenu(ControllersName name, Control control) {
+        if (control.listener() != null) inputOutputHandler.addListener(control.listener());
         switch (name) {
             case LOGIN:
-                return new LoginController(inputOutputHandler, control);
+                return new LoginController(inputOutputHandler, database);
             case REGISTER:
-                return new RegisterController(inputOutputHandler, control);
+                return new RegisterController(inputOutputHandler, database);
             case PROFILE:
-                return new ProfileController(inputOutputHandler, control);
+                return new ProfileController(inputOutputHandler, database, currentUser);
             case LEADER_BOARD:
-                return new LeaderBoardController(inputOutputHandler, control);
+                return new LeaderBoardController(inputOutputHandler, database);
             case CREATE_MAP:
-                return new CreateMapController(inputOutputHandler, control);
+                return new CreateMapController(inputOutputHandler, database);
             case ENTER_MAP:
-                return new EnterMapController(inputOutputHandler, control);
+                return new EnterMapController(inputOutputHandler, database, currentUser);
         }
         return null;
     }

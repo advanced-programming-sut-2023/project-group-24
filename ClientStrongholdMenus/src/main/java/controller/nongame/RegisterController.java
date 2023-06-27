@@ -1,6 +1,7 @@
 package controller.nongame;
 
 import controller.Controller;
+import controller.InputOutputHandler;
 import controller.MainController;
 import controller.functionalcontrollers.Pair;
 import model.User;
@@ -14,10 +15,11 @@ import java.util.List;
 import java.util.Random;
 
 public class RegisterController implements Controller {
-
     private Database database;
+    private InputOutputHandler ioHandler;
 
-    public RegisterController(Database database) {
+    public RegisterController(InputOutputHandler ioHandler, Database database) {
+        this.ioHandler = ioHandler;
         this.database = database;
     }
 

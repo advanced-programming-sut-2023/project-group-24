@@ -28,8 +28,10 @@ public class CreateMapController implements Controller {
     private final Database database;
     private Map map;
     private Kingdom currentKingdom;
+    private InputOutputHandler ioHandler;
 
-    public CreateMapController(Database database) {
+    public CreateMapController(InputOutputHandler ioHandler, Database database) {
+        this.ioHandler = ioHandler;
         this.database = database;
     }
 

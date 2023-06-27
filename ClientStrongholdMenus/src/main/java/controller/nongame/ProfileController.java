@@ -1,6 +1,7 @@
 package controller.nongame;
 
 import controller.Controller;
+import controller.InputOutputHandler;
 import controller.MainController;
 import model.User;
 import model.databases.Database;
@@ -14,8 +15,10 @@ import java.util.Vector;
 public class ProfileController implements Controller {
     private final Database database;
     private User currentUser;
+    private InputOutputHandler ioHandler;
 
-    public ProfileController(Database database, User currentUser) {
+    public ProfileController(InputOutputHandler ioHandler, Database database, User currentUser) {
+        this.ioHandler = ioHandler;
         this.database = database;
         this.currentUser = currentUser;
     }

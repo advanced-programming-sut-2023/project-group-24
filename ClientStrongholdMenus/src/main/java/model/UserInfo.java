@@ -46,4 +46,8 @@ public class UserInfo {
     public String getEmail() {
         return email;
     }
+
+    public User toUser() {
+        return new User(username, MainController.getSHA256(password), nickname, slogan, email, recovery);
+    }
 }

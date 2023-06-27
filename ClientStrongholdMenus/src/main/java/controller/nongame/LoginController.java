@@ -1,9 +1,6 @@
 package controller.nongame;
 
-import controller.AppController;
-import controller.Controller;
-import controller.MainController;
-import controller.MenusName;
+import controller.*;
 import controller.captchacontrollers.CaptchaGenerator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,6 +8,7 @@ import javafx.scene.layout.Pane;
 import model.User;
 import model.databases.Database;
 import model.enums.RecoveryQuestion;
+import view.controls.Control;
 import view.enums.messages.LoginMenuMessages;
 
 import java.awt.*;
@@ -23,8 +21,10 @@ public class LoginController implements Controller {
     private final Database database;
     private int numberOfIncorrectPassword;
     private String captchaText;
+    private InputOutputHandler ioHandler;
 
-    public LoginController(Database database) {
+    public LoginController(InputOutputHandler ioHandler, Database database) {
+        this.ioHandler = ioHandler;
         this.database = database;
         this.numberOfIncorrectPassword = 0;
     }

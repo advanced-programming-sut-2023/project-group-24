@@ -1,6 +1,7 @@
 package controller.nongame;
 
 import controller.Controller;
+import controller.InputOutputHandler;
 import model.User;
 import model.databases.Database;
 import view.modelview.UserInfo;
@@ -12,8 +13,10 @@ public class LeaderBoardController implements Controller {
     private Database database;
     private int row;
     private Vector<User> users;
+    private InputOutputHandler ioHandler;
 
-    public LeaderBoardController(Database database) {
+    public LeaderBoardController(InputOutputHandler ioHandler, Database database) {
+        this.ioHandler = ioHandler;
         this.database = database;
         this.users = database.getAllUsersByRank();
         this.row = 0;
