@@ -1,24 +1,37 @@
 package controller.nongame;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import controller.Controller;
 import controller.MainController;
 import controller.functionalcontrollers.Pair;
+import model.Packet;
 import model.User;
 import model.databases.Database;
 import model.enums.Slogan;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.RegisterMenuMessages;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class RegisterController implements Controller {
-
     private Database database;
+    private Socket socket;
+    private ArrayList<Socket> sockets;
 
     public RegisterController(Database database) {
         this.database = database;
+    }
+
+    public RegisterController(Database database, Socket socket, ArrayList<Socket> sockets) {
+        this.database = database;
+        this.socket = socket;
+        this.sockets = sockets;
     }
 
     public RegisterMenuMessages checkErrorsForRegister(String username, String password,
@@ -110,6 +123,10 @@ public class RegisterController implements Controller {
         return Slogan.getRandomSlogan();
     }
 
+    public void registerUser(User user) {
+        database.addUser(user);
+    }
+
     public String makeNewUsername(String username) {
         StringBuilder newUsername = new StringBuilder(username);
         int length = (int) (Math.random() * 2) + 1;
@@ -124,5 +141,30 @@ public class RegisterController implements Controller {
             return makeNewUsername(username);
         else
             return newUsername.toString();
+    }
+
+    public void handlePacket(Packet packet) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+        switch (packet.getSubject()) {
+            case "register":
+                registerUser(gson.fromJson(packet.getValue(), User.class));
+                sendDataToAllSockets(packet);
+                break;
+        }
+    }
+
+    public void sendDataToAllSockets(Packet packet) {
+        if (sockets == null) return;
+        for (Socket socket : sockets) {
+            if (socket.equals(this.socket)) continue;
+            try {
+                DataOutputStream stream = new DataOutputStream(socket.getOutputStream());
+                stream.writeUTF(packet.toJson());
+            } catch (IOException e) {
+                System.out.println("couldn't send data to " + socket.getInetAddress() + ":" + socket.getPort());
+            }
+        }
     }
 }

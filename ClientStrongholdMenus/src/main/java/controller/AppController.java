@@ -78,15 +78,10 @@ public class AppController {
     public void saveUser() {
         database.addUser(userInfo.toUser());
         database.saveDataIntoFile();
-        Packet packet = new Packet("database", "add user", new String[]{
-                userInfo.getUsername(),
-                userInfo.getPassword(),
-                userInfo.getNickname(),
-                userInfo.getSlogan(),
-                userInfo.getEmail(),
-                String.valueOf(userInfo.getRecovery().getObject1()),
-                userInfo.getRecovery().getObject2()
-        }, "");
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+        Packet packet = new Packet("register", "register", null, gson.toJson(userInfo.toUser()));
         inputOutputHandler.sendPacket(packet);
     }
 

@@ -1,15 +1,20 @@
 package controller.nongame;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import controller.Controller;
 import controller.InputOutputHandler;
 import controller.MainController;
 import controller.functionalcontrollers.Pair;
+import model.Packet;
 import model.User;
 import model.databases.Database;
 import model.enums.Slogan;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.RegisterMenuMessages;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,23 +26,18 @@ public class RegisterController implements Controller {
     public RegisterController(InputOutputHandler ioHandler, Database database) {
         this.ioHandler = ioHandler;
         this.database = database;
+        ioHandler.addListener(evt -> handlePacket((Packet) evt.getNewValue()));
     }
 
-    public RegisterMenuMessages checkErrorsForRegister(String username, String password,
-                                                       String passwordConfirmation, String nickname,
-                                                       String email, String slogan) {
-        if (username.equals("")) return RegisterMenuMessages.NULL_USERNAME;
-        else if (password.equals("")) return RegisterMenuMessages.NULL_PASSWORD;
-        else if (nickname.equals("")) return RegisterMenuMessages.NULL_NICKNAME;
-        else if (email.equals("")) return RegisterMenuMessages.NULL_EMAIL;
-        else if (slogan != null && slogan.equals("")) return RegisterMenuMessages.NULL_SLOGAN;
-        else if (MainController.isUsernameValid(username)) return RegisterMenuMessages.INVALID_USERNAME;
-        else if (database.getUserByUsername(username) != null) return RegisterMenuMessages.DUPLICATE_USERNAME;
-        else if (!password.equals("random")) {
-            RegisterMenuMessages passwordCheckMessage = checkPasswordErrors(password, passwordConfirmation);
-            if (passwordCheckMessage != RegisterMenuMessages.SUCCESS) return passwordCheckMessage;
+    private void handlePacket(Packet packet) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+        if (packet.getTopic().equals("register")) switch (packet.getSubject()) {
+            case "register":
+                registerUser(gson.fromJson(packet.getValue(), User.class));
+                break;
         }
-        return checkEmailErrors(email);
     }
 
     public RegisterMenuMessages checkEmailErrors(String email) {
@@ -75,12 +75,8 @@ public class RegisterController implements Controller {
         return RegisterMenuMessages.SUCCESS;
     }
 
-    public RegisterMenuMessages checkErrorsForSecurityQuestion(String recoveryQuestion,
-                                                               String answer, String answerConfirm) {
-        int recoveryQuestionNumber = Integer.parseInt(recoveryQuestion);
-        if (recoveryQuestionNumber < 1 || recoveryQuestionNumber > 3) return RegisterMenuMessages.INVALID_NUMBER;
-        else if (!answer.equals(answerConfirm)) return RegisterMenuMessages.INCORRECT_ANSWER_CONFIRMATION;
-        return RegisterMenuMessages.SUCCESS;
+    public void registerUser(User user) {
+        database.addUser(user);
     }
 
     public String makeRandomPassword() {
@@ -112,19 +108,4 @@ public class RegisterController implements Controller {
         return Slogan.getRandomSlogan();
     }
 
-    public String makeNewUsername(String username) {
-        StringBuilder newUsername = new StringBuilder(username);
-        int length = (int) (Math.random() * 2) + 1;
-        String[] usernameCharacters = new String[]{"0123456789", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                "abcdefghijklmnopqrstuvwxyz", "`~!@#$%^&*()+=-*/><?{}[]|\\/:\\;\",."};
-        for (int i = 0; i < length; i++) {
-            int stringIndex = (int) (Math.random() * 4);
-            int characterIndex = (int) (Math.random() * usernameCharacters[stringIndex].length());
-            newUsername.append(usernameCharacters[stringIndex].charAt(characterIndex));
-        }
-        if (database.getUserByUsername(newUsername.toString()) != null)
-            return makeNewUsername(username);
-        else
-            return newUsername.toString();
-    }
 }

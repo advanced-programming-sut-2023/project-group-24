@@ -109,7 +109,6 @@ public class Database {
             checkForSavingDirectory();
             saveObjectToFile(FILE_TO_SAVE_ALL_USERS, allUsers);
             saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
-            saveObjectToFile(FILE_TO_SAVE_A_MAP, maps.get(0));
         } catch (IOException ignored) {
             System.out.println("error");
         }
