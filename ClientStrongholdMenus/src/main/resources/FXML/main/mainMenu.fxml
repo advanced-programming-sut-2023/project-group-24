@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.controls.main.MainMenuController"
+            id="main-menu-pane"
+            stylesheets="@../../CSS/menu-style.css"
+            prefHeight="563.0" prefWidth="900.0" minHeight="563" minWidth="900">
+    <center>
+        <VBox spacing="30">
+            <HBox minWidth="420" maxWidth="420" prefWidth="420" alignment="CENTER">
+                <Text text="Stronghold" textAlignment="CENTER" fx:id="title"/>
+            </HBox>
+            <Button prefHeight="60" prefWidth="420" styleClass="menu-button" text="Enter Game" fx:id="enterGame"
+                    onMouseClicked="#enterGame"/>
+            <Button prefHeight="60" prefWidth="420" styleClass="menu-button" text="Create Map" fx:id="createMap"
+                    onMouseClicked="#createMap"/>
+            <Button prefHeight="60" prefWidth="420" styleClass="menu-button" text="Profile Menu"
+                    onMouseClicked="#profileMenu" fx:id="profileMenu"/>
+            <Button prefHeight="60" prefWidth="420" styleClass="menu-button" text="Exit" onMouseClicked="#exit"
+                    fx:id="exit"/>
+        </VBox>
+    </center>
+
+    <padding>
+        <Insets top="20" left="40" bottom="50" right="10"/>
+    </padding>
+
+</BorderPane>

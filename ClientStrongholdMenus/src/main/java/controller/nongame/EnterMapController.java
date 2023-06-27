@@ -3,12 +3,9 @@ package controller.nongame;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import controller.Controller;
-import controller.InputOutputHandler;
-import model.Packet;
 import model.User;
 import model.databases.Database;
 import model.map.Map;
-import view.controls.Control;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,50 +13,65 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class EnterMapController implements Controller {
-    private final InputOutputHandler inputOutputHandler;
+    private Database database;
     private ArrayList<User> users;
     private Map map;
 
-    public EnterMapController(InputOutputHandler inputOutputHandler, Control control) {
-        this.inputOutputHandler = inputOutputHandler;
-        inputOutputHandler.addListener(evt -> control.listener().propertyChange(evt));
+    public EnterMapController(Database database, User currentUser) {
+        this.database = database;
+        this.users = new ArrayList<>();
+        users.add(currentUser);
     }
 
-    public void mapIdExists(String mapId) {
-        Packet packet = new Packet("enter map", "map id exists", null, mapId);
-        inputOutputHandler.sendPacket(packet);
+    public boolean mapIdExists(String mapId) {
+        return database.getMapById(mapId) != null;
     }
 
-    public void isInvalidUser(String username) {
-        Packet packet = new Packet("enter map", "is invalid user", null, username);
-        inputOutputHandler.sendPacket(packet);
+    public boolean isInvalidUser(String username) {
+        User user = database.getUserByUsername(username);
+        return user == null || users.contains(user) || map.getKingdoms().size() == users.size();
     }
 
-    public void addUser(String username) {
-        Packet packet = new Packet("enter map", "add user", null, username);
-        inputOutputHandler.sendPacket(packet);
+    public boolean addUser(String username) {
+        if (isInvalidUser(username)) return false;
+        users.add(database.getUserByUsername(username));
+        return true;
     }
 
     public String getAvatarPath(String username) {
-        File file = new File("");
-        String path;
-        if (file.getAbsolutePath().contains("Stronghold")) path = "../";
-        else path = "./";
-        File avatarPath = new File(path + "info/avatars/" + username + ".png");
-        if (avatarPath.exists()) return path + "info/avatars/" + username + ".png";
-        return path + "info/avatars/a@a.png";
+        return database.getCurrentAvatarPath(database.getUserByUsername(username));
     }
 
-    public void startGame() {
-        if (map == null || users.size() != map.getKingdoms().size()) return;
+    public boolean startGame() {
+        if (map == null || users.size() != map.getKingdoms().size()) return false;
 
-        Packet packet = new Packet("enter map", "start game", null, "");
-        inputOutputHandler.sendPacket(packet);
+        String directory;
+        if (new File("").getAbsolutePath().endsWith("Stronghold")) directory = "../";
+        else directory = "./";
+
+        File saveMap = new File(directory + "map.json");
+        File saveUsers = new File(directory + "users.json");
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+
+        try {
+            FileWriter fileWriterMap = new FileWriter(saveMap.getAbsolutePath());
+            FileWriter fileWriterUsers = new FileWriter(saveUsers.getAbsolutePath());
+            fileWriterMap.write(gson.toJson(map));
+            fileWriterMap.flush();
+            fileWriterUsers.write(gson.toJson(users));
+            fileWriterUsers.flush();
+            return true;
+        } catch (IOException e) {
+            System.out.println("save failed");
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public void selectMap(String mapId) {
-        Packet packet = new Packet("enter map", "select map", null, mapId);
-        inputOutputHandler.sendPacket(packet);
-        //TODO select map after it is selected
+        this.map = database.getMapById(mapId);
     }
 }

@@ -53,7 +53,7 @@ public class ChooseAvatarMenuController extends Control {
 
     @Override
     public void run() {
-        this.profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE);
+        this.profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE, this);
         updateScrollContent();
         setUpDragAndDrop();
         setUpFont();
@@ -61,6 +61,11 @@ public class ChooseAvatarMenuController extends Control {
         getApp().addListener(listener);
 
         scrollPane.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+    @Override
+    public PropertyChangeListener listener() {
+        return null;
     }
 
     private void setUpDragAndDrop() {

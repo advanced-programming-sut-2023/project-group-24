@@ -12,6 +12,8 @@ import javafx.scene.text.Font;
 import view.controls.Control;
 import view.modelview.PasswordInput;
 
+import java.beans.PropertyChangeListener;
+
 public class ChangePasswordMenuController extends Control {
     public Button confirm;
     public Button cancel;
@@ -66,15 +68,20 @@ public class ChangePasswordMenuController extends Control {
 
     @Override
     public void run() {
-        profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE);
-        loginController = (LoginController) getApp().getControllerForMenu(ControllersName.LOGIN);
-        registerController = (RegisterController) getApp().getControllerForMenu(ControllersName.REGISTER);
+        profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE, this);
+        loginController = (LoginController) getApp().getControllerForMenu(ControllersName.LOGIN, this);
+        registerController = (RegisterController) getApp().getControllerForMenu(ControllersName.REGISTER, this);
         setUpText();
         anotherCaptcha();
         newPassword.textProperty().addListener((observableValue, s, t1) -> passwordErrors());
         confirmPassword.textProperty().addListener((observableValue, s, t1) -> passwordErrors());
         oldPassword.textProperty().addListener((observableValue, s, t1) -> oldPasswordError.setText(""));
         captchaField.textProperty().addListener((observableValue, s, t1) -> checkCaptchaChars(s, t1));
+    }
+
+    @Override
+    public PropertyChangeListener listener() {
+        return null;
     }
 
     private void checkCaptchaChars(String from, String to) {

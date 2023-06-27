@@ -1,32 +1,21 @@
 package controller.nongame;
 
 import controller.Controller;
-import controller.InputOutputHandler;
-import model.Packet;
 import model.User;
-import view.controls.Control;
+import model.databases.Database;
 import view.modelview.UserInfo;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
 public class LeaderBoardController implements Controller {
-    private final InputOutputHandler inputOutputHandler;
+    private Database database;
     private int row;
     private Vector<User> users;
 
-    public LeaderBoardController(InputOutputHandler inputOutputHandler, Control control) {
-        this.inputOutputHandler = inputOutputHandler;
-        inputOutputHandler.addListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                Packet packet = ((Packet) evt.getNewValue());
-                if (packet.getTopic().equals("leader board") && packet.getSubject().equals("all users"))
-                    update(packet);
-            }
-        });
+    public LeaderBoardController(Database database) {
+        this.database = database;
+        this.users = database.getAllUsersByRank();
         this.row = 0;
     }
 
@@ -51,7 +40,7 @@ public class LeaderBoardController implements Controller {
         if (row < 0) row = 0;
     }
 
-    public void update(Packet packet) {
-        //TODO update leader board
+    public void update() {
+        users = database.getAllUsersByRank();
     }
 }

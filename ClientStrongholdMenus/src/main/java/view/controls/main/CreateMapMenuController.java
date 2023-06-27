@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import view.controls.Control;
 
+import java.beans.PropertyChangeListener;
+
 public class CreateMapMenuController extends Control {
     public Button confirm;
     public Button cancel;
@@ -47,9 +49,14 @@ public class CreateMapMenuController extends Control {
 
     @Override
     public void run() {
-        createMapController = (CreateMapController) getApp().getControllerForMenu(ControllersName.CREATE_MAP);
+        createMapController = (CreateMapController) getApp().getControllerForMenu(ControllersName.CREATE_MAP, this);
         mapId.textProperty().addListener((observableValue, s, t1) -> idError.setText(""));
         mapSize.textProperty().addListener((observableValue, s, t1) -> sizeFieldCheck(s, t1));
+    }
+
+    @Override
+    public PropertyChangeListener listener() {
+        return null;
     }
 
     private void sizeFieldCheck(String from, String to) {

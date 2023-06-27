@@ -1,40 +1,44 @@
 package controller.nongame;
 
+import controller.AppController;
 import controller.Controller;
-import controller.InputOutputHandler;
+import controller.MainController;
+import controller.MenusName;
 import controller.captchacontrollers.CaptchaGenerator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import model.Packet;
-import view.controls.Control;
+import model.User;
+import model.databases.Database;
+import model.enums.RecoveryQuestion;
+import view.enums.messages.LoginMenuMessages;
 
+import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class LoginController implements Controller {
-    private final InputOutputHandler inputOutputHandler;
+    private final Database database;
     private int numberOfIncorrectPassword;
     private String captchaText;
 
-    public LoginController(InputOutputHandler inputOutputHandler, Control control) {
-        this.inputOutputHandler = inputOutputHandler;
+    public LoginController(Database database) {
+        this.database = database;
         this.numberOfIncorrectPassword = 0;
-        inputOutputHandler.addListener(evt -> {
-            if (evt.getPropertyName().equals("login"))
-                control.listener().propertyChange(evt);
-            if (((Packet) evt.getNewValue()).getValue().equals("INCORRECT_PASSWORD")) numberOfIncorrectPassword++;
-        });
     }
 
-    public void requestLoginUser(String username, String password, boolean stayLoggedIn) {
-        Packet packet = new Packet("login", "login user", new String[]{
-                username,
-                password,
-                String.valueOf(stayLoggedIn)
-        }, "");
-        inputOutputHandler.sendPacket(packet);
+    public LoginMenuMessages loginUser(String username, String password, boolean stayLoggedIn) {
+        User user = database.getUserByUsername(username);
+        if (user == null) return LoginMenuMessages.USER_NOT_FOUND;
+        else if (!user.isPasswordCorrect(MainController.getSHA256(password))) {
+            numberOfIncorrectPassword++;
+            return LoginMenuMessages.INCORRECT_PASSWORD;
+        }
+        numberOfIncorrectPassword = 0;
+        if (stayLoggedIn) database.setStayedLoggedInUser(user);
+        return LoginMenuMessages.SUCCESS;
     }
 
     public void disableInputIncorrectPassword(Pane mainPane) {
@@ -47,22 +51,40 @@ public class LoginController implements Controller {
         }, (numberOfIncorrectPassword * 5) * 1000);
     }
 
-    public void requestIsRecoveryAnswerCorrect(String username, String answer) {
-        Packet packet = new Packet("login", "is recovery answer correct", new String[]{
-                username,
-                answer,
-        }, "");
-        inputOutputHandler.sendPacket(packet);
+    public void makeDelayForIncorrectPassword() {
+        int delayTime = (numberOfIncorrectPassword * 5) * 1000;
+        try {
+            Robot robot = new Robot();
+            changeConsole(robot);
+            robot.delay(delayTime);
+            changeConsole(robot);
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void requestUsernameExists(String username) {
-        Packet packet = new Packet("login", "username exists", null, username);
-        inputOutputHandler.sendPacket(packet);
+    private void changeConsole(Robot robot) {
+        robot.delay(300);
+        robot.mouseMove(1700, 950);
+        robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
+        robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
+        robot.mouseMove(1725, 975);
+        robot.delay(30);
+        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
     }
 
-    public void requestRecoveryQuestion(String username) {
-        Packet packet = new Packet("login", "username exists", null, username);
-        inputOutputHandler.sendPacket(packet);
+    public boolean isRecoveryAnswerCorrect(String username, String answer) {
+        return database.getUserByUsername(username).isRecoveryAnswerCorrect(MainController.getSHA256(answer));
+    }
+
+    public boolean usernameExists(String username) {
+        return database.getUserByUsername(username) != null;
+    }
+
+    public String getRecoveryQuestion(String username) {
+        return RecoveryQuestion.getRecoveryQuestionByNumber(
+                database.getUserByUsername(username).getRecoveryQuestionNumber());
     }
 
     public void generateCaptcha(ImageView captchaImage) {

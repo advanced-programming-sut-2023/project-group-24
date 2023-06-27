@@ -42,7 +42,7 @@ public class LoginMenuController extends Control {
         else if (captchaField.getText().equals("")) showError("Empty Field", "Captcha field is empty");
         else if (loginController.isCaptchaIncorrect(captchaField.getText()))
             showError("Incorrect Captcha", "The captcha is incorrect");
-        else switch (loginController.requestLoginUser(usernameField.getText(), passwordInput.getText(),false)) {
+        else switch (loginController.loginUser(usernameField.getText(), passwordInput.getText(),false)) {
             case USER_NOT_FOUND:
                 showError("Login Unsuccessful", "No users with this username were found.");
                 break;
@@ -59,7 +59,7 @@ public class LoginMenuController extends Control {
 
     @Override
     public void run() {
-        loginController = (LoginController) getApp().getControllerForMenu(ControllersName.LOGIN);
+        loginController = (LoginController) getApp().getControllerForMenu(ControllersName.LOGIN, this);
         loginController.generateCaptcha(captchaImage);
         setUpFont();
         captchaField.textProperty().addListener((observableValue, s, t1) -> preventLettersInCaptcha(s, t1));

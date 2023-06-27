@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.controls.profile.ChooseAvatarMenuController"
+            stylesheets="@../../CSS/menu-style.css"
+            id="select-avatar"
+            prefHeight="312.5" prefWidth="500.0" maxHeight="312.5" minHeight="312.5" minWidth="500" maxWidth="500">
+    <left>
+        <ScrollPane minWidth="200" minHeight="280" styleClass="edge-to-edge" fx:id="scrollPane">
+            <VBox fx:id="scrollContent" alignment="TOP_CENTER" spacing="40" minWidth="188"/>
+
+            <padding>
+                <Insets top="20" bottom="20"/>
+            </padding>
+        </ScrollPane>
+    </left>
+
+    <center>
+        <VBox alignment="BOTTOM_RIGHT" spacing="15">
+            <HBox minHeight="150" minWidth="210" fx:id="dragAndDrop" alignment="TOP_CENTER"
+                  onMouseClicked="#chooseFileAvatar"/>
+            <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="confirm" onMouseClicked="#confirm"
+                    fx:id="confirm"/>
+            <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="copy others' avatar"
+                    onMouseClicked="#copyMenu" fx:id="copyMenu"/>
+        </VBox>
+    </center>
+
+    <padding>
+        <Insets top="15" right="15" left="15" bottom="15"/>
+    </padding>
+</BorderPane>

@@ -1,187 +1,183 @@
 package controller.nongame;
 
 import controller.Controller;
-import controller.InputOutputHandler;
-import model.AvatarHandler;
-import model.Packet;
-import view.controls.Control;
+import controller.MainController;
+import model.User;
+import model.databases.Database;
+import view.enums.messages.CommonMessages;
+import view.enums.messages.ProfileMenuMessages;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
-import java.nio.file.Files;
-import java.util.Objects;
+import java.util.Vector;
 
 public class ProfileController implements Controller {
-    private final InputOutputHandler inputOutputHandler;
+    private final Database database;
+    private User currentUser;
 
-    public ProfileController(InputOutputHandler inputOutputHandler, Control control) {
-        this.inputOutputHandler = inputOutputHandler;
-        inputOutputHandler.addListener(evt -> control.listener().propertyChange(evt));
+    public ProfileController(Database database, User currentUser) {
+        this.database = database;
+        this.currentUser = currentUser;
     }
 
-    public void requestChangeUsername(String newUsername) {
-        Packet packet = new Packet("profile", "change username", null, newUsername);
-        inputOutputHandler.sendPacket(packet);
+    public ProfileMenuMessages changeUsername(String newUsername) {
+        ProfileMenuMessages message = checkChangeUsernameErrors(newUsername);
+        if (message != ProfileMenuMessages.SUCCESS) return message;
+        currentUser.setUsername(newUsername);
+        database.saveDataIntoFile();
+        return ProfileMenuMessages.SUCCESS;
     }
 
-    public void requestCheckChangeUsernameErrors(String newUsername) {
-        Packet packet = new Packet("profile", "check username errors", null, newUsername);
-        inputOutputHandler.sendPacket(packet);
+    public ProfileMenuMessages checkChangeUsernameErrors(String newUsername) {
+        if (newUsername == null) return ProfileMenuMessages.NULL_FIELD;
+        if (currentUser.getUsername().equals(newUsername)) return ProfileMenuMessages.NO_CHANGES;
+        else if (MainController.isUsernameValid(newUsername)) return ProfileMenuMessages.INVALID_USERNAME;
+        else if (database.getUserByUsername(newUsername) != null) return ProfileMenuMessages.DUPLICATE_USERNAME;
+        return ProfileMenuMessages.SUCCESS;
     }
 
-    public void requestChangeNickname(String newNickname) {
-        Packet packet = new Packet("profile", "change nickname", null, newNickname);
-        inputOutputHandler.sendPacket(packet);
+    public ProfileMenuMessages changeNickname(String newNickname) {
+        if (newNickname == null) return ProfileMenuMessages.NULL_FIELD;
+        currentUser.setNickName(newNickname);
+        database.saveDataIntoFile();
+        return ProfileMenuMessages.SUCCESS;
     }
 
-    public void checkChangePasswordErrors(String oldPassword, String newPassword) {
-        Packet packet = new Packet("profile", "check change password", new String[]{oldPassword, newPassword}, "");
-        inputOutputHandler.sendPacket(packet);
+    public ProfileMenuMessages checkChangePasswordErrors(String oldPassword, String newPassword) {
+        if (oldPassword == null || newPassword == null) return ProfileMenuMessages.NULL_FIELD;
+        String oldPasswordSHA = MainController.getSHA256(oldPassword);
+        if (!currentUser.isPasswordCorrect(oldPasswordSHA))
+            return ProfileMenuMessages.INCORRECT_PASSWORD;
+        CommonMessages message = MainController.whatIsPasswordProblem(newPassword);
+        switch (message) {
+            case OK:
+                break;
+            case SHORT_PASSWORD:
+                return ProfileMenuMessages.SHORT_PASSWORD;
+            case NON_CAPITAL_PASSWORD:
+                return ProfileMenuMessages.NON_CAPITAL_PASSWORD;
+            case NON_SMALL_PASSWORD:
+                return ProfileMenuMessages.NON_SMALL_PASSWORD;
+            case NON_NUMBER_PASSWORD:
+                return ProfileMenuMessages.NON_NUMBER_PASSWORD;
+        }
+        if (oldPassword.equals(newPassword)) return ProfileMenuMessages.DUPLICATE_PASSWORD;
+//        if (!CaptchaMenu.runCaptcha()) return ProfileMenuMessages.INCORRECT_CAPTCHA;
+        return ProfileMenuMessages.SUCCESS;
     }
 
-    public void changePassword(String newPassword, String newPasswordConfirm) {
-        Packet packet = new Packet("profile", "change password", new String[]{newPassword, newPasswordConfirm}, "");
-        inputOutputHandler.sendPacket(packet);
+    public ProfileMenuMessages changePassword(String newPassword, String newPasswordConfirm) {
+        if (newPasswordConfirm == null) return ProfileMenuMessages.NULL_FIELD;
+        if (!newPassword.equals(newPasswordConfirm)) return ProfileMenuMessages.INVALID_PASSWORD_CONFIRM;
+        String newPasswordAsSHA = MainController.getSHA256(newPassword);
+        currentUser.changePasswords(newPasswordAsSHA);
+        database.saveDataIntoFile();
+        return ProfileMenuMessages.SUCCESS;
     }
 
-    public void changeEmail(String newEmail) {
-        Packet packet = new Packet("profile", "change email", null, newEmail);
-        inputOutputHandler.sendPacket(packet);
+    public ProfileMenuMessages changeEmail(String newEmail) {
+        ProfileMenuMessages x = checkChangeEmailErrors(newEmail);
+        if (x != ProfileMenuMessages.SUCCESS) return x;
+        currentUser.setEmail(newEmail);
+        database.saveDataIntoFile();
+        return ProfileMenuMessages.SUCCESS;
     }
 
-    public void checkChangeEmailErrors(String newEmail) {
-        Packet packet = new Packet("profile", "check change email", null, newEmail);
-        inputOutputHandler.sendPacket(packet);
+    public ProfileMenuMessages checkChangeEmailErrors(String newEmail) {
+        if (currentUser.getEmail().equals(newEmail)) return ProfileMenuMessages.NO_CHANGES;
+        if (newEmail == null) return ProfileMenuMessages.NULL_FIELD;
+        else if (MainController.isEmailValid(newEmail)) return ProfileMenuMessages.INVALID_EMAIL_FORMAT;
+        for (User e : database.getAllUsers())
+            if (e.getEmail().equalsIgnoreCase(newEmail)) return ProfileMenuMessages.DUPLICATE_EMAIL;
+        return ProfileMenuMessages.SUCCESS;
     }
 
-    public void changeSlogan(String newSlogan) {
-        Packet packet = new Packet("profile", "change slogan", null, newSlogan);
-        inputOutputHandler.sendPacket(packet);
+    public ProfileMenuMessages changeSlogan(String newSlogan) {
+        if (newSlogan == null) return ProfileMenuMessages.NULL_FIELD;
+        currentUser.setSlogan(newSlogan);
+        database.saveDataIntoFile();
+        return ProfileMenuMessages.SUCCESS;
     }
 
-    public void removeSlogan() {
-        Packet packet = new Packet("profile", "remove slogan", null, "");
-        inputOutputHandler.sendPacket(packet);
+    public ProfileMenuMessages removeSlogan() {
+        if (currentUser.getSlogan() == null) return ProfileMenuMessages.EMPTY_SLOGAN;
+        currentUser.setSlogan(null);
+        database.saveDataIntoFile();
+        return ProfileMenuMessages.SUCCESS;
     }
 
-    public void showRank() {
-        Packet packet = new Packet("profile", "show rank", null, "");
-        inputOutputHandler.sendPacket(packet);
+    public int showHighScore() {
+        return currentUser.getHighScore();
     }
 
-    public String getAvatarPath() { //TODO VERY IMPORTANT!!! ask for avatars from the server
-        File file = new File("");
-        String path;
-        if (file.getAbsolutePath().contains("Stronghold")) path = "../";
-        else path = "./";
-        return path + "info/avatars/mine/0.png";
+    public int showRank() {
+        Vector<User> sortedUsers = database.getAllUsersByRank();
+        for (int i = 0; i < sortedUsers.size(); i++) {
+            if (sortedUsers.get(i).equals(currentUser))
+                return i + 1;
+        }
+        return 0;
+    }
+
+    public String getAvatarPath() {
+        return database.getCurrentAvatarPath(currentUser);
     }
 
     public String getAvatarPath(String username) {
-        File file = new File("");
-        String path;
-        if (file.getAbsolutePath().contains("Stronghold")) path = "../";
-        else path = "./";
-        File avatarPath = new File(path + "info/avatars/" + username + ".png");
-        if (avatarPath.exists()) return path + "info/avatars/" + username + ".png";
-        return path + "info/avatars/a@a.png";
+        User user = database.getUserByUsername(username);
+        if (user == null) return getClass().getResource("/images/avatars/0.png").toExternalForm();
+        return database.getCurrentAvatarPath(user);
     }
 
     public String[] getAllAvatarsPath() {
-        File file = new File("");
-        String path;
-        if (file.getAbsolutePath().contains("Stronghold")) path = "../";
-        else path = "./";
-        File avatarsPath = new File(path + "info/avatars/mine");
-        return avatarsPath.list();
+        return database.getAvatarsPathsForUser(currentUser);
     }
 
     public void addAvatar(String absolutePath) {
-        File file = new File("");
-        String path;
-        if (file.getAbsolutePath().contains("Stronghold")) path = "../";
-        else path = "./";
-        File avatarsPath = new File(path + "info/avatars/mine");
-        int index = Objects.requireNonNull(avatarsPath.listFiles()).length;
-        try {
-            Files.copy(new File(absolutePath).toPath(),
-                    new File(path + "info/avatars/mine/" + index + ".png").toPath());
-        } catch (IOException e) {
-            System.out.println("couldn't save avatar");
-            e.printStackTrace();
-        }
+        if (database.getAvatarNumber(currentUser, new File(absolutePath)) == -1)
+            database.addAvatarPicture(currentUser, absolutePath);
+        else database.setCurrentAvatar(currentUser, new File(absolutePath));
     }
 
     public int getCurrentAvatarNumber() {
-        File file = new File("");
-        String path;
-        if (file.getAbsolutePath().contains("Stronghold")) path = "../";
-        else path = "./";
-        File avatarsPath = new File(path + "info/avatars/mine");
-        File target = new File(getAvatarPath());
-        return new AvatarHandler().getAvatarNumber(avatarsPath, target);
+        int index = database.getAvatarNumber(currentUser);
+        if (index == -1) return 0;
+        else return index - 1;
     }
 
-    public void setCurrentAvatar(URI pathUri) {
-        File file = new File("");
-        String path;
-        if (file.getAbsolutePath().contains("Stronghold")) path = "../";
-        else path = "./";
-        File avatarsPath = new File(path + "info/avatars/mine/0.png");
-        if (avatarsPath.exists()) if (avatarsPath.delete()) return;
-        try {
-            Files.copy(new File(pathUri).toPath(), avatarsPath.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //TODO inform server of the change
-    }
-
-    public void setCurrentAvatar(String newPath) {
-        File file = new File("");
-        String path;
-        if (file.getAbsolutePath().contains("Stronghold")) path = "../";
-        else path = "./";
-        File avatarsPath = new File(path + "info/avatars/mine/0.png");
-        if (avatarsPath.exists()) if (avatarsPath.delete()) return;
-        try {
-            Files.copy(new File(newPath).toPath(), avatarsPath.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //TODO inform server of the change
+    public void setCurrentAvatar(URI path) {
+        database.setCurrentAvatar(currentUser, path);
     }
 
     public void copyAvatar(String username) {
-        File file = new File("");
-        String path;
-        if (file.getAbsolutePath().contains("Stronghold")) path = "../";
-        else path = "./";
-        String newAvatarPath = getAvatarPath(username);
-        if (new AvatarHandler().getAvatarNumber(new File(path + "info/avatars/mine"), new File(newAvatarPath)) == -1)
-            addAvatar(newAvatarPath);
-        else setCurrentAvatar(newAvatarPath);
+        User user = database.getUserByUsername(username);
+        if (user == null) return;
+        database.copyAvatar(currentUser, user);
+    }
+
+    public String showSlogan() {
+        return currentUser.getSlogan();
+    }
+
+    public String showProfile() {
+        String username = "Username: " + currentUser.getUsername();
+        String nickname = "Nickname: " + currentUser.getNickname();
+        String email = "Email: " + currentUser.getEmail();
+        String rank = "Rank: " + showRank();
+        String slogan = "Slogan: " + showSlogan();
+        return username + "\n" + nickname + "\n" + email + "\n" + rank + "\n" + slogan;
     }
 
     public String getCurrentUser(String info) {
         switch (info) {
             case "username":
-                Packet packet1 = new Packet("profile", "show username", null, "");
-                inputOutputHandler.sendPacket(packet1);
-                break;
+                return currentUser.getUsername();
             case "nickname":
-                Packet packet2 = new Packet("profile", "show rank", null, "");
-                inputOutputHandler.sendPacket(packet2);
-                break;
+                return currentUser.getNickname();
             case "email":
-                Packet packet3 = new Packet("profile", "show email", null, "");
-                inputOutputHandler.sendPacket(packet3);
-                break;
+                return currentUser.getEmail();
             case "slogan":
-                Packet packet4 = new Packet("profile", "show slogan", null, "");
-                inputOutputHandler.sendPacket(packet4);
-                break;
+                return currentUser.getSlogan();
         }
         return "";
     }

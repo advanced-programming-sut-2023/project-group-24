@@ -1,11 +1,11 @@
 package controller.nongame;
 
 import controller.Controller;
-import controller.InputOutputHandler;
 import controller.MainController;
-import model.Packet;
+import controller.functionalcontrollers.Pair;
+import model.User;
+import model.databases.Database;
 import model.enums.Slogan;
-import view.controls.Control;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.RegisterMenuMessages;
 
@@ -14,16 +14,37 @@ import java.util.List;
 import java.util.Random;
 
 public class RegisterController implements Controller {
-    private InputOutputHandler inputOutputHandler;
 
-    public RegisterController(InputOutputHandler inputOutputHandler, Control control) {
-        this.inputOutputHandler = inputOutputHandler;
-        inputOutputHandler.addListener(evt -> control.listener().propertyChange(evt));
+    private Database database;
+
+    public RegisterController(Database database) {
+        this.database = database;
     }
 
-    public void requestCheckEmailErrors(String email) {
-        Packet packet = new Packet("register", "check email errors", null, email);
-        inputOutputHandler.sendPacket(packet);
+    public RegisterMenuMessages checkErrorsForRegister(String username, String password,
+                                                       String passwordConfirmation, String nickname,
+                                                       String email, String slogan) {
+        if (username.equals("")) return RegisterMenuMessages.NULL_USERNAME;
+        else if (password.equals("")) return RegisterMenuMessages.NULL_PASSWORD;
+        else if (nickname.equals("")) return RegisterMenuMessages.NULL_NICKNAME;
+        else if (email.equals("")) return RegisterMenuMessages.NULL_EMAIL;
+        else if (slogan != null && slogan.equals("")) return RegisterMenuMessages.NULL_SLOGAN;
+        else if (MainController.isUsernameValid(username)) return RegisterMenuMessages.INVALID_USERNAME;
+        else if (database.getUserByUsername(username) != null) return RegisterMenuMessages.DUPLICATE_USERNAME;
+        else if (!password.equals("random")) {
+            RegisterMenuMessages passwordCheckMessage = checkPasswordErrors(password, passwordConfirmation);
+            if (passwordCheckMessage != RegisterMenuMessages.SUCCESS) return passwordCheckMessage;
+        }
+        return checkEmailErrors(email);
+    }
+
+    public RegisterMenuMessages checkEmailErrors(String email) {
+        if (email.equals("")) return RegisterMenuMessages.NULL_EMAIL;
+        for (User e : database.getAllUsers()) {
+            if (e.getEmail().equalsIgnoreCase(email)) return RegisterMenuMessages.DUPLICATE_EMAIL;
+        }
+        if (MainController.isEmailValid(email)) return RegisterMenuMessages.INVALID_EMAIL;
+        return RegisterMenuMessages.SUCCESS;
     }
 
     public RegisterMenuMessages checkPasswordErrors(String password, String passwordConfirmation) {
@@ -45,9 +66,19 @@ public class RegisterController implements Controller {
         return RegisterMenuMessages.SUCCESS;
     }
 
-    public void requestCheckUsernameErrors(String username) {
-        Packet packet = new Packet("register", "check username errors", null, username);
-        inputOutputHandler.sendPacket(packet);
+    public RegisterMenuMessages checkUsernameErrors(String username) {
+        if (username.equals("")) return RegisterMenuMessages.NULL_USERNAME;
+        else if (MainController.isUsernameValid(username)) return RegisterMenuMessages.INVALID_USERNAME;
+        else if (database.getUserByUsername(username) != null) return RegisterMenuMessages.DUPLICATE_USERNAME;
+        return RegisterMenuMessages.SUCCESS;
+    }
+
+    public RegisterMenuMessages checkErrorsForSecurityQuestion(String recoveryQuestion,
+                                                               String answer, String answerConfirm) {
+        int recoveryQuestionNumber = Integer.parseInt(recoveryQuestion);
+        if (recoveryQuestionNumber < 1 || recoveryQuestionNumber > 3) return RegisterMenuMessages.INVALID_NUMBER;
+        else if (!answer.equals(answerConfirm)) return RegisterMenuMessages.INCORRECT_ANSWER_CONFIRMATION;
+        return RegisterMenuMessages.SUCCESS;
     }
 
     public String makeRandomPassword() {
@@ -77,5 +108,21 @@ public class RegisterController implements Controller {
 
     public String makeRandomSlogan() {
         return Slogan.getRandomSlogan();
+    }
+
+    public String makeNewUsername(String username) {
+        StringBuilder newUsername = new StringBuilder(username);
+        int length = (int) (Math.random() * 2) + 1;
+        String[] usernameCharacters = new String[]{"0123456789", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                "abcdefghijklmnopqrstuvwxyz", "`~!@#$%^&*()+=-*/><?{}[]|\\/:\\;\",."};
+        for (int i = 0; i < length; i++) {
+            int stringIndex = (int) (Math.random() * 4);
+            int characterIndex = (int) (Math.random() * usernameCharacters[stringIndex].length());
+            newUsername.append(usernameCharacters[stringIndex].charAt(characterIndex));
+        }
+        if (database.getUserByUsername(newUsername.toString()) != null)
+            return makeNewUsername(username);
+        else
+            return newUsername.toString();
     }
 }

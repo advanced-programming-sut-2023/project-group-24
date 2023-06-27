@@ -9,6 +9,8 @@ import javafx.scene.text.Font;
 import view.controls.Control;
 import view.modelview.PasswordInput;
 
+import java.beans.PropertyChangeListener;
+
 public class ForgotPasswordMenuController extends Control {
     public Label title;
     public PasswordInput passwordField;
@@ -34,10 +36,15 @@ public class ForgotPasswordMenuController extends Control {
 
     @Override
     public void run() {
-        registerController = (RegisterController) getApp().getControllerForMenu(ControllersName.REGISTER);
+        registerController = (RegisterController) getApp().getControllerForMenu(ControllersName.REGISTER, this);
         setUpText();
         passwordField.textProperty().addListener((observableValue, s, t1) -> passwordErrors());
         confirmPasswordField.textProperty().addListener((observableValue, s, t1) -> passwordErrors());
+    }
+
+    @Override
+    public PropertyChangeListener listener() {
+        return null;
     }
 
     private void passwordErrors() {

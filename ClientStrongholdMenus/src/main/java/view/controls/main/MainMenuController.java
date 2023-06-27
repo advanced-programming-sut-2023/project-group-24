@@ -10,6 +10,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import view.controls.Control;
 
+import java.beans.PropertyChangeListener;
+
 public class MainMenuController extends Control {
     public Text title;
     public Button enterGame;
@@ -50,5 +52,10 @@ public class MainMenuController extends Control {
         DropShadow effect = new DropShadow(BlurType.THREE_PASS_BOX, Color.BLACK, 10, 0, 0, 0);
         effect.setInput(new InnerShadow(BlurType.THREE_PASS_BOX, Color.BLACK, 5, 0, 0, 0));
         title.setEffect(effect);
+    }
+
+    @Override
+    public PropertyChangeListener listener() {
+        return null;
     }
 }

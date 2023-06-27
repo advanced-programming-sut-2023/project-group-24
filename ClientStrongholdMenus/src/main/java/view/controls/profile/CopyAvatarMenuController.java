@@ -12,6 +12,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import view.controls.Control;
 
+import java.beans.PropertyChangeListener;
+
 public class CopyAvatarMenuController extends Control {
     public Button confirm;
     public Button cancel;
@@ -35,12 +37,17 @@ public class CopyAvatarMenuController extends Control {
 
     @Override
     public void run() {
-        profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE);
-        loginController = (LoginController) getApp().getControllerForMenu(ControllersName.LOGIN);
+        profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE, this);
+        loginController = (LoginController) getApp().getControllerForMenu(ControllersName.LOGIN, this);
         usernameField.textProperty().addListener((observableValue, s, t1) -> updateAvatar());
         confirm.setVisible(false);
         infoContainer.setVisible(false);
         setUpFont();
+    }
+
+    @Override
+    public PropertyChangeListener listener() {
+        return null;
     }
 
     private void setUpFont() {
@@ -52,7 +59,7 @@ public class CopyAvatarMenuController extends Control {
     }
 
     private void updateAvatar() {
-        if (!loginController.requestUsernameExists(usernameField.getText())) {
+        if (!loginController.usernameExists(usernameField.getText())) {
             infoContainer.setVisible(false);
             confirm.setVisible(false);
             return;

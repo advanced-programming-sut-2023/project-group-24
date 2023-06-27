@@ -87,8 +87,8 @@ public class ProfileMenuController extends Control {
     }
 
     private void saveChanges() {
-        profileController.requestChangeUsername(usernameField.getText());
-        profileController.requestChangeNickname(nicknameField.getText());
+        profileController.changeUsername(usernameField.getText());
+        profileController.changeNickname(nicknameField.getText());
         profileController.changeEmail(emailField.getText());
         if (profileController.changeSlogan(sloganField.getText()) == ProfileMenuMessages.NULL_FIELD)
             profileController.removeSlogan();
@@ -122,7 +122,7 @@ public class ProfileMenuController extends Control {
 
     @Override
     public void run() {
-        this.profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE);
+        this.profileController = (ProfileController) getApp().getControllerForMenu(ControllersName.PROFILE, this);
         disableFields();
         resetFields();
         updateAvatar();
@@ -131,6 +131,11 @@ public class ProfileMenuController extends Control {
         updateAvatarListener();
         setUpListeners();
         setUpSlogan();
+    }
+
+    @Override
+    public PropertyChangeListener listener() {
+        return null;
     }
 
     private void setUpSlogan() {
@@ -153,7 +158,7 @@ public class ProfileMenuController extends Control {
     }
 
     private void usernameErrors(String to) {
-        switch (profileController.requestCheckChangeUsernameErrors(to)) {
+        switch (profileController.checkChangeUsernameErrors(to)) {
             case INVALID_USERNAME:
                 usernameError.setText("There are invalid characters in your username");
                 break;

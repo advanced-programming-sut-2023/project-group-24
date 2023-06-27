@@ -14,6 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import view.controls.Control;
 
+import java.beans.PropertyChangeListener;
+
 public class EnterMapMenuController extends Control {
     public VBox userContainer;
     public TextField username;
@@ -32,12 +34,17 @@ public class EnterMapMenuController extends Control {
 
     @Override
     public void run() {
-        this.enterMapController = (EnterMapController) getApp().getControllerForMenu(ControllersName.ENTER_MAP);
+        this.enterMapController = (EnterMapController) getApp().getControllerForMenu(ControllersName.ENTER_MAP, this);
         mapId.setOnKeyPressed(this::keyPressedMap);
         username.setOnKeyPressed(this::keyPressedUser);
         username.setVisible(false);
         userContainer.visibleProperty().bind(username.visibleProperty());
         addUser(getApp().getCurrentUser().getUsername());
+    }
+
+    @Override
+    public PropertyChangeListener listener() {
+        return null;
     }
 
     private void keyPressedUser(KeyEvent keyEvent) {

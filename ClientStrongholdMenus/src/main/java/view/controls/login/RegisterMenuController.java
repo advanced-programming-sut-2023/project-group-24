@@ -15,6 +15,7 @@ import model.enums.Slogan;
 import view.controls.Control;
 import view.modelview.PasswordInput;
 
+import java.beans.PropertyChangeListener;
 import java.util.Arrays;
 
 public class RegisterMenuController extends Control {
@@ -76,13 +77,18 @@ public class RegisterMenuController extends Control {
 
     @Override
     public void run() {
-        registerController = (RegisterController) getApp().getControllerForMenu(ControllersName.REGISTER);
+        registerController = (RegisterController) getApp().getControllerForMenu(ControllersName.REGISTER, this);
         setUpFont();
         setUpErrors();
         confirmPasswordField.setPromptText("confirm password");
         sloganContainer.visibleProperty().bind(customSlogan.selectedProperty());
         customSlogan.setOnAction(actionEvent -> customSloganSelect());
         randomSlogan();
+    }
+
+    @Override
+    public PropertyChangeListener listener() {
+        return null;
     }
 
     private void customSloganSelect() {
@@ -120,7 +126,7 @@ public class RegisterMenuController extends Control {
     }
 
     private void emailErrors() {
-        switch (registerController.requestCheckEmailErrors(emailField.getText())) {
+        switch (registerController.checkEmailErrors(emailField.getText())) {
             case DUPLICATE_EMAIL:
                 emailError.setText("This email is signed in with another account");
                 break;
@@ -167,7 +173,7 @@ public class RegisterMenuController extends Control {
     }
 
     private void usernameErrors() {
-        switch (registerController.requestCheckUsernameErrors(usernameField.getText())) {
+        switch (registerController.checkUsernameErrors(usernameField.getText())) {
             case INVALID_USERNAME:
                 userNameError.setText("There are invalid characters in your username");
                 break;

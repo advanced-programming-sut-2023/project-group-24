@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import model.Packet;
 import model.User;
 import model.UserInfo;
+import model.databases.Database;
 import view.controls.Control;
 import view.menus.login.*;
 import view.menus.main.CreateMapMenu;
@@ -28,6 +29,7 @@ public class AppController {
     private static final int PORT = 1717;
 
     private Socket socket;
+    private Database database;
     private InputOutputHandler inputOutputHandler;
     private Stage stage;
     private UserInfo userInfo;
@@ -36,6 +38,8 @@ public class AppController {
 
     public AppController(Stage stage) {
         try {
+            System.out.println("Connecting to the sever...");
+            this.database = new Database();
             this.socket = new Socket(HOST, PORT);
             this.stage = stage;
             this.updateListeners = new ArrayList<>();
@@ -51,6 +55,13 @@ public class AppController {
                     Gson gson = gsonBuilder.create();
 
                     currentUser = gson.fromJson(packet.getValue(), User.class);
+                }
+                if (packet.getTopic().equals("app") && packet.getSubject().equals("databse")) {
+                    GsonBuilder gsonBuilder = new GsonBuilder();
+                    gsonBuilder.setPrettyPrinting();
+                    Gson gson = gsonBuilder.create();
+
+                    database = gson.fromJson(packet.getValue(), Database.class);
                 }
             });
         } catch (IOException e) {

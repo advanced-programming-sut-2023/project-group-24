@@ -43,7 +43,7 @@ public class CaptchaMenuController extends Control {
 
     @Override
     public void run() {
-        this.loginController = (LoginController) getApp().getControllerForMenu(ControllersName.LOGIN);
+        this.loginController = (LoginController) getApp().getControllerForMenu(ControllersName.LOGIN, this);
         setUpText();
         anotherCaptcha();
         captchaField.textProperty().addListener((observableValue, s, t1) -> preventLettersInCaptcha(s, t1));

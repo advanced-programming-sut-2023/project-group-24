@@ -11,6 +11,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import view.controls.Control;
 
+import java.beans.PropertyChangeListener;
+
 public class SecurityQuestionConfirmMenuController extends Control {
     public TextField usernameField;
     public VBox questionPane;
@@ -23,7 +25,7 @@ public class SecurityQuestionConfirmMenuController extends Control {
     private LoginController loginController;
 
     public void confirm() throws Exception {
-        if (loginController.requestIsRecoveryAnswerCorrect(usernameField.getText(), answerField.getText())) {
+        if (loginController.isRecoveryAnswerCorrect(usernameField.getText(), answerField.getText())) {
             getApp().setCurrentUser(usernameField.getText());
             getStage().close();
             getApp().run(MenusName.FORGOT_PASSWORD_MENU);
@@ -38,18 +40,23 @@ public class SecurityQuestionConfirmMenuController extends Control {
 
     @Override
     public void run() {
-        loginController = (LoginController) getApp().getControllerForMenu(ControllersName.LOGIN);
+        loginController = (LoginController) getApp().getControllerForMenu(ControllersName.LOGIN, this);
         setUpText();
         usernameField.textProperty().addListener((observableValue, s, t1) ->
-                setQuestionVisibility(loginController.requestUsernameExists(usernameField.getText())));
+                setQuestionVisibility(loginController.usernameExists(usernameField.getText())));
         answerField.textProperty().addListener((observableValue, s, t1) -> error.setText(""));
         questionPane.setVisible(false);
+    }
+
+    @Override
+    public PropertyChangeListener listener() {
+        return null;
     }
 
     private void setQuestionVisibility(boolean usernameExists) {
         if (usernameExists) {
             questionPane.setVisible(true);
-            question.setText(loginController.requestRecoveryQuestion(usernameField.getText()));
+            question.setText(loginController.getRecoveryQuestion(usernameField.getText()));
             answerField.setText("");
             error.setText("");
         }

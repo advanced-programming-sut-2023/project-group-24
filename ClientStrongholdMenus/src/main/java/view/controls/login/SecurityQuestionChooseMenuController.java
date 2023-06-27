@@ -11,6 +11,8 @@ import javafx.scene.text.Font;
 import model.enums.RecoveryQuestion;
 import view.controls.Control;
 
+import java.beans.PropertyChangeListener;
+
 public class SecurityQuestionChooseMenuController extends Control {
     public ComboBox<String> comboBox;
     public Label title;
@@ -38,6 +40,11 @@ public class SecurityQuestionChooseMenuController extends Control {
         comboBox.setValue(RecoveryQuestion.getRecoveryQuestionByNumber(1));
         setUpText();
         answer.textProperty().addListener((observableValue, s, t1) -> checkForError());
+    }
+
+    @Override
+    public PropertyChangeListener listener() {
+        return null;
     }
 
     private void checkForError() {
