@@ -229,6 +229,17 @@ public class ProfileController implements Controller {
                 sendDataToAllSockets(new Packet("database", "set avatar",
                         new String[]{currentUser.getUsername()}, packet.getValue()));
                 break;
+            case "logout":
+                currentUser.setOnline(false);
+                currentUser.setLastSessionToNow();
+                sendDataToAllSockets(new Packet("database", "logout", null, currentUser.getUsername()));
+                sockets.remove(socket);
+                try {
+                    socket.close();
+                    System.out.println("closed the connection with: " + socket.getPort());
+                } catch (IOException ignored) {
+                    System.out.println("couldn't close the connection with port: " + socket.getPort());
+                }
         }
     }
 

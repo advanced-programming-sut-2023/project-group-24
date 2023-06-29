@@ -88,6 +88,10 @@ public class AppController {
             case "set avatar":
                 database.getUserByUsername(packet.getArgs()[0]).setCurrentAvatar(Integer.parseInt(packet.getValue()));
                 break;
+            case "logout":
+                database.getUserByUsername(packet.getValue()).setOnline(false);
+                database.getUserByUsername(packet.getValue()).setLastSessionToNow();
+                break;
         }
     }
 
@@ -233,5 +237,12 @@ public class AppController {
 
     public User getCurrentUser() {
         return currentUser;
+    }
+
+    public void logout() {
+        currentUser.setOnline(false);
+        currentUser.setLastSessionToNow();
+        Packet packet = new Packet("profile", "logout", null, "");
+        inputOutputHandler.sendPacket(packet);
     }
 }

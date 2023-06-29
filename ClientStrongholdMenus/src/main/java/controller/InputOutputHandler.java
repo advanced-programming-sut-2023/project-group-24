@@ -27,7 +27,7 @@ public class InputOutputHandler extends Thread {
                 for (PropertyChangeListener listener : listeners)
                     listener.propertyChange(new PropertyChangeEvent("server", packet.getTopic(), null, packet));
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("logged out");
                 break;
             }
         }

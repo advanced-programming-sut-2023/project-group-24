@@ -33,6 +33,7 @@ public class MainMenuController extends Control {
 
     public void exit() {
         getApp().saveData();
+        getApp().logout();
         getStage().close();
         System.exit(0);
     }
