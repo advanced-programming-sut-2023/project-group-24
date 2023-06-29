@@ -2,6 +2,8 @@ package model;
 
 import controller.functionalcontrollers.Pair;
 
+import java.time.LocalDateTime;
+
 public class User implements Comparable<User> {
     private final Pair<Integer, String> recovery;
     private String username;
@@ -10,6 +12,8 @@ public class User implements Comparable<User> {
     private String slogan;
     private String email;
     private int highScore;
+    private boolean isOnline;
+    private Session lastSession;
 
     public User(String username, String password, String nickname, String slogan,
                 String email, Pair<Integer, String> recovery) {
@@ -19,6 +23,8 @@ public class User implements Comparable<User> {
         this.slogan = slogan;
         this.email = email;
         this.recovery = recovery;
+        this.isOnline = true;
+        setLastSessionToNow();
     }
 
 
@@ -78,6 +84,23 @@ public class User implements Comparable<User> {
         this.highScore = highScore;
     }
 
+    public Session getLastSession() {
+        return lastSession;
+    }
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean online) {
+        isOnline = online;
+    }
+
+    public void setLastSessionToNow() {
+        LocalDateTime now = LocalDateTime.now();
+        this.lastSession = new Session(now.getHour(), now.getMinute(), now.getDayOfMonth(),
+                now.getMonth().getValue(), now.getYear());
+    }
 
     @Override
     public int compareTo(User o) {

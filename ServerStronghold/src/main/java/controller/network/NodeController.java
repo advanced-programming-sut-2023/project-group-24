@@ -2,16 +2,17 @@ package controller.network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import controller.nongame.LoginController;
+import controller.nongame.ProfileController;
 import controller.nongame.RegisterController;
 import model.Packet;
 import model.User;
 import model.databases.Database;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class NodeController extends Thread {
     private Database database;
@@ -40,7 +41,10 @@ public class NodeController extends Thread {
             System.out.println("database sent");
         } catch (IOException e) {
             System.out.println("disconnected: " + socket.getInetAddress() + ":" + socket.getPort());
-            e.printStackTrace();
+            if (user != null) {
+                user.setOnline(false);
+                user.setLastSessionToNow();
+            }
         }
 
         while (true) {
@@ -50,17 +54,33 @@ public class NodeController extends Thread {
                 handlePacket(packet);
             } catch (IOException e) {
                 System.out.println("disconnected: " + socket.getInetAddress() + ":" + socket.getPort());
-                e.printStackTrace();
+                if (user != null) {
+                    user.setOnline(false);
+                    user.setLastSessionToNow();
+                }
                 break;
             }
         }
     }
 
-    private void handlePacket(Packet packet) {
+    private synchronized void handlePacket(Packet packet) {
+        if (packet.getSubject().equals("login")) {
+            user = database.getUserByUsername(packet.getValue());
+            System.out.println("user " + user.getUsername() + " logged in from port: " + socket.getPort());
+            return;
+        }
         switch (packet.getTopic()) {
             case "register":
                 RegisterController registerController = new RegisterController(database, socket, sockets);
                 registerController.handlePacket(packet);
+                break;
+            case "profile":
+                ProfileController profileController = new ProfileController(database, user, socket, sockets);
+                profileController.handlePacket(packet);
+                break;
+            case "login":
+                LoginController loginController = new LoginController(database, socket, sockets);
+                loginController.handlePacket(packet);
         }
     }
 }

@@ -150,7 +150,7 @@ public class RegisterController implements Controller {
         switch (packet.getSubject()) {
             case "register":
                 registerUser(gson.fromJson(packet.getValue(), User.class));
-                sendDataToAllSockets(packet);
+                sendDataToAllSockets(new Packet("database", "register", null, packet.getValue()));
                 break;
         }
     }

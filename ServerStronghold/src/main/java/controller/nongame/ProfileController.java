@@ -2,22 +2,31 @@ package controller.nongame;
 
 import controller.Controller;
 import controller.MainController;
+import model.Packet;
 import model.User;
 import model.databases.Database;
 import view.enums.messages.CommonMessages;
 import view.enums.messages.ProfileMenuMessages;
 
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.net.Socket;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class ProfileController implements Controller {
     private final Database database;
+    private Socket socket;
+    private ArrayList<Socket> sockets;
     private User currentUser;
 
-    public ProfileController(Database database, User currentUser) {
+    public ProfileController(Database database, User currentUser, Socket socket, ArrayList<Socket> sockets) {
         this.database = database;
         this.currentUser = currentUser;
+        this.socket = socket;
+        this.sockets = sockets;
     }
 
     public ProfileMenuMessages changeUsername(String newUsername) {
@@ -180,5 +189,30 @@ public class ProfileController implements Controller {
                 return currentUser.getSlogan();
         }
         return "";
+    }
+
+    public void handlePacket(Packet packet) {
+        switch (packet.getSubject()) {
+            case "forgot password":
+                currentUser = database.getUserByUsername(packet.getArgs()[0]);
+                changePassword(packet.getValue(), packet.getValue());
+                sendDataToAllSockets(new Packet("database", "change password",
+                        new String[]{currentUser.getUsername()}, packet.getValue()));
+                break;
+        }
+    }
+
+    public void sendDataToAllSockets(Packet packet) {
+        if (sockets == null) return;
+        for (Socket socket : sockets) {
+            if (socket.equals(this.socket)) continue;
+            try {
+                DataOutputStream stream = new DataOutputStream(socket.getOutputStream());
+                stream.writeUTF(packet.toJson());
+                System.out.println("data sent to " + socket.getPort());
+            } catch (IOException e) {
+                System.out.println("couldn't send data to " + socket.getInetAddress() + ":" + socket.getPort());
+            }
+        }
     }
 }

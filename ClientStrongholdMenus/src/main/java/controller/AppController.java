@@ -48,23 +48,40 @@ public class AppController {
                     new DataInputStream(socket.getInputStream())
             );
             inputOutputHandler.start();
-            this.inputOutputHandler.addListener(evt -> {
-                Packet packet = ((Packet) evt.getNewValue());
-                if (packet.getTopic().equals("app") && packet.getSubject().equals("database")) {
-                    GsonBuilder gsonBuilder = new GsonBuilder();
-                    gsonBuilder.setPrettyPrinting();
-                    Gson gson = gsonBuilder.create();
-
-                    database = gson.fromJson(packet.getValue(), Database.class);
-                    System.out.println("database recieved");
-                    for (PropertyChangeListener l : updateListeners)
-                        l.propertyChange(new PropertyChangeEvent("", "", 0, 1));
-                }
-            });
+            this.inputOutputHandler.addListener(evt -> handleInputs(((Packet) evt.getNewValue())));
         } catch (IOException e) {
             System.out.println("couldn't connect");
             e.printStackTrace();
         }
+    }
+
+    private void handleInputs(Packet packet) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+        if (packet.getTopic().equals("app") && packet.getSubject().equals("database")) receiveDatabase(packet);
+        if (packet.getTopic().equals("database")) switch (packet.getSubject()) {
+            case "register":
+                database.addUser(gson.fromJson(packet.getValue(), User.class));
+                break;
+            case "change password":
+                database.getUserByUsername(packet.getArgs()[0]).changePasswords(MainController.getSHA256(packet.getValue()));
+                break;
+            case "login":
+                database.getUserByUsername(packet.getValue()).setOnline(true);
+                break;
+        }
+    }
+
+    private void receiveDatabase(Packet packet) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+
+        database = gson.fromJson(packet.getValue(), Database.class);
+        System.out.println("database received");
+        for (PropertyChangeListener l : updateListeners)
+            l.propertyChange(new PropertyChangeEvent("", "", 0, 1));
     }
 
     public void saveUserInfo(String username, String password, String nickname, String slogan, String email) {
@@ -91,6 +108,8 @@ public class AppController {
     }
 
     public void setCurrentUserPassword(String password) {
+        Packet packet = new Packet("profile", "forgot password", new String[]{currentUser.getUsername()}, password);
+        inputOutputHandler.sendPacket(packet);
         database.getUserByUsername(currentUser.getUsername()).changePasswords(MainController.getSHA256(password));
         database.saveDataIntoFile();
     }

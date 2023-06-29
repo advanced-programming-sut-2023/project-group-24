@@ -7,6 +7,7 @@ import controller.captchacontrollers.CaptchaGenerator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import model.Packet;
 import model.User;
 import model.databases.Database;
 import model.enums.RecoveryQuestion;
@@ -14,7 +15,11 @@ import view.enums.messages.LoginMenuMessages;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,10 +27,18 @@ public class LoginController implements Controller {
     private final Database database;
     private int numberOfIncorrectPassword;
     private String captchaText;
+    private Socket socket;
+    private ArrayList<Socket> sockets;
 
     public LoginController(Database database) {
         this.database = database;
         this.numberOfIncorrectPassword = 0;
+    }
+
+    public LoginController(Database database, Socket socket, ArrayList<Socket> sockets) {
+        this(database);
+        this.socket = socket;
+        this.sockets = sockets;
     }
 
     public LoginMenuMessages loginUser(String username, String password, boolean stayLoggedIn) {
@@ -94,5 +107,28 @@ public class LoginController implements Controller {
 
     public boolean isCaptchaIncorrect(String captchaText) {
         return captchaText == null || !captchaText.equals(this.captchaText);
+    }
+
+    public void handlePacket(Packet packet) {
+        switch (packet.getSubject()) {
+            case "login":
+                database.getUserByUsername(packet.getValue()).setOnline(true);
+                sendDataToAllSockets(new Packet("database", "login", null, packet.getValue()));
+                break;
+        }
+    }
+
+    public void sendDataToAllSockets(Packet packet) {
+        if (sockets == null) return;
+        for (Socket socket : sockets) {
+            if (socket.equals(this.socket)) continue;
+            try {
+                DataOutputStream stream = new DataOutputStream(socket.getOutputStream());
+                stream.writeUTF(packet.toJson());
+                System.out.println("data sent to " + socket.getPort());
+            } catch (IOException e) {
+                System.out.println("couldn't send data to " + socket.getInetAddress() + ":" + socket.getPort());
+            }
+        }
     }
 }

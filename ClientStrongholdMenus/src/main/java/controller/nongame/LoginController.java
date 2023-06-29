@@ -5,6 +5,7 @@ import controller.captchacontrollers.CaptchaGenerator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import model.Packet;
 import model.User;
 import model.databases.Database;
 import model.enums.RecoveryQuestion;
@@ -38,6 +39,7 @@ public class LoginController implements Controller {
         }
         numberOfIncorrectPassword = 0;
         if (stayLoggedIn) database.setStayedLoggedInUser(user);
+        ioHandler.sendPacket(new Packet("login", "login", null, username));
         return LoginMenuMessages.SUCCESS;
     }
 
@@ -49,29 +51,6 @@ public class LoginController implements Controller {
                 mainPane.setDisable(false);
             }
         }, (numberOfIncorrectPassword * 5) * 1000);
-    }
-
-    public void makeDelayForIncorrectPassword() {
-        int delayTime = (numberOfIncorrectPassword * 5) * 1000;
-        try {
-            Robot robot = new Robot();
-            changeConsole(robot);
-            robot.delay(delayTime);
-            changeConsole(robot);
-        } catch (AWTException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void changeConsole(Robot robot) {
-        robot.delay(300);
-        robot.mouseMove(1700, 950);
-        robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
-        robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
-        robot.mouseMove(1725, 975);
-        robot.delay(30);
-        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
     }
 
     public boolean isRecoveryAnswerCorrect(String username, String answer) {
