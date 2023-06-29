@@ -175,7 +175,7 @@ public class Database {
 
     public String getCurrentAvatarPath(User user) {
         File path = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars");
-        File pic = new File(path.getAbsoluteFile() + "/0.png");
+        File pic = new File(path.getAbsoluteFile() + "/" + user.getCurrentAvatar() + ".png");
         if (path.mkdirs() || !pic.exists()) {
             try {
                 for (int i = 0; i < 6; i++)

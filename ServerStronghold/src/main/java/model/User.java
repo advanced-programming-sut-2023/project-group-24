@@ -14,6 +14,7 @@ public class User implements Comparable<User> {
     private int highScore;
     private boolean isOnline;
     private Session lastSession;
+    private int currentAvatar;
 
     public User(String username, String password, String nickname, String slogan,
                 String email, Pair<Integer, String> recovery) {
@@ -94,6 +95,14 @@ public class User implements Comparable<User> {
 
     public void setOnline(boolean online) {
         isOnline = online;
+    }
+
+    public int getCurrentAvatar() {
+        return currentAvatar;
+    }
+
+    public void setCurrentAvatar(int currentAvatar) {
+        this.currentAvatar = currentAvatar;
     }
 
     public void setLastSessionToNow() {

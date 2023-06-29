@@ -199,6 +199,36 @@ public class ProfileController implements Controller {
                 sendDataToAllSockets(new Packet("database", "change password",
                         new String[]{currentUser.getUsername()}, packet.getValue()));
                 break;
+            case "change username":
+                String oldUsername = currentUser.getUsername();
+                changeUsername(packet.getValue());
+                sendDataToAllSockets(new Packet("database", "change username",
+                        new String[]{oldUsername}, packet.getValue()));
+                break;
+            case "change nickname":
+                changeNickname(packet.getValue());
+                sendDataToAllSockets(new Packet("database", "change nickname",
+                        new String[]{currentUser.getUsername()}, packet.getValue()));
+                break;
+            case "change email":
+                changeEmail(packet.getValue());
+                sendDataToAllSockets(new Packet("database", "change email",
+                        new String[]{currentUser.getUsername()}, packet.getValue()));
+                break;
+            case "change slogan":
+                changeSlogan(packet.getValue());
+                sendDataToAllSockets(new Packet("database", "change slogan",
+                        new String[]{currentUser.getUsername()}, packet.getValue()));
+                break;
+            case "remove slogan":
+                removeSlogan();
+                sendDataToAllSockets(new Packet("database", "remove slogan", new String[]{currentUser.getUsername()}, ""));
+                break;
+            case "set avatar":
+                currentUser.setCurrentAvatar(Integer.parseInt(packet.getValue()));
+                sendDataToAllSockets(new Packet("database", "set avatar",
+                        new String[]{currentUser.getUsername()}, packet.getValue()));
+                break;
         }
     }
 

@@ -3,6 +3,7 @@ package controller.nongame;
 import controller.Controller;
 import controller.InputOutputHandler;
 import controller.MainController;
+import model.Packet;
 import model.User;
 import model.databases.Database;
 import view.enums.messages.CommonMessages;
@@ -28,6 +29,8 @@ public class ProfileController implements Controller {
         if (message != ProfileMenuMessages.SUCCESS) return message;
         currentUser.setUsername(newUsername);
         database.saveDataIntoFile();
+        Packet packet = new Packet("profile", "change username", null, newUsername);
+        ioHandler.sendPacket(packet);
         return ProfileMenuMessages.SUCCESS;
     }
 
@@ -43,6 +46,8 @@ public class ProfileController implements Controller {
         if (newNickname == null) return ProfileMenuMessages.NULL_FIELD;
         currentUser.setNickName(newNickname);
         database.saveDataIntoFile();
+        Packet packet = new Packet("profile", "change nickname", null, newNickname);
+        ioHandler.sendPacket(packet);
         return ProfileMenuMessages.SUCCESS;
     }
 
@@ -75,6 +80,8 @@ public class ProfileController implements Controller {
         String newPasswordAsSHA = MainController.getSHA256(newPassword);
         currentUser.changePasswords(newPasswordAsSHA);
         database.saveDataIntoFile();
+        Packet packet = new Packet("profile", "forgot password", new String[]{currentUser.getUsername()}, newPassword);
+        ioHandler.sendPacket(packet);
         return ProfileMenuMessages.SUCCESS;
     }
 
@@ -83,6 +90,8 @@ public class ProfileController implements Controller {
         if (x != ProfileMenuMessages.SUCCESS) return x;
         currentUser.setEmail(newEmail);
         database.saveDataIntoFile();
+        Packet packet = new Packet("profile", "change email", null, newEmail);
+        ioHandler.sendPacket(packet);
         return ProfileMenuMessages.SUCCESS;
     }
 
@@ -99,6 +108,8 @@ public class ProfileController implements Controller {
         if (newSlogan == null) return ProfileMenuMessages.NULL_FIELD;
         currentUser.setSlogan(newSlogan);
         database.saveDataIntoFile();
+        Packet packet = new Packet("profile", "change slogan", null, newSlogan);
+        ioHandler.sendPacket(packet);
         return ProfileMenuMessages.SUCCESS;
     }
 
@@ -106,6 +117,8 @@ public class ProfileController implements Controller {
         if (currentUser.getSlogan() == null) return ProfileMenuMessages.EMPTY_SLOGAN;
         currentUser.setSlogan(null);
         database.saveDataIntoFile();
+        Packet packet = new Packet("profile", "remove slogan", null, null);
+        ioHandler.sendPacket(packet);
         return ProfileMenuMessages.SUCCESS;
     }
 
@@ -150,6 +163,9 @@ public class ProfileController implements Controller {
 
     public void setCurrentAvatar(URI path) {
         database.setCurrentAvatar(currentUser, path);
+        currentUser.setCurrentAvatar(database.getAvatarNumber(currentUser));
+        Packet packet = new Packet("profile", "set avatar", null, String.valueOf(currentUser.getCurrentAvatar()));
+        ioHandler.sendPacket(packet);
     }
 
     public void copyAvatar(String username) {

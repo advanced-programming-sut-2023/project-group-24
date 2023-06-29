@@ -70,6 +70,24 @@ public class AppController {
             case "login":
                 database.getUserByUsername(packet.getValue()).setOnline(true);
                 break;
+            case "change username":
+                database.getUserByUsername(packet.getArgs()[0]).setUsername(packet.getValue());
+                break;
+            case "change nickname":
+                database.getUserByUsername(packet.getArgs()[0]).setNickName(packet.getValue());
+                break;
+            case "change email":
+                database.getUserByUsername(packet.getArgs()[0]).setEmail(packet.getValue());
+                break;
+            case "change slogan":
+                database.getUserByUsername(packet.getArgs()[0]).setSlogan(packet.getValue());
+                break;
+            case "remove slogan":
+                database.getUserByUsername(packet.getArgs()[0]).setSlogan(null);
+                break;
+            case "set avatar":
+                database.getUserByUsername(packet.getArgs()[0]).setCurrentAvatar(Integer.parseInt(packet.getValue()));
+                break;
         }
     }
 
