@@ -24,6 +24,10 @@ public class MessageBox extends HBox {
     private VBox left;
     private VBox right;
 
+    private Button edit;
+    private Button deleteForMe;
+    private Button deleteForAll;
+
     public MessageBox(Message message) {
         super();
         right = new VBox();
@@ -34,6 +38,7 @@ public class MessageBox extends HBox {
         this.message = message;
         this.getStyleClass().add("message-box");
         this.setSpacing(30);
+        right.setSpacing(3);
 
         manageTop(message);
         manageCenter(message);
@@ -77,6 +82,7 @@ public class MessageBox extends HBox {
         for (int i = 0; i < 3; i++) {
             Text emoji = new Text(getEmojiFromNumber(1 + i));
             emoji.getStyleClass().add("emoji");
+            emoji.setFill(Color.WHITE);
             react.getChildren().add(emoji);
         }
         react.visibleProperty().bind(this.hoverProperty());
@@ -98,17 +104,21 @@ public class MessageBox extends HBox {
     private void manageCenter(Message message) {
         Text messageContent = new Text(message.getMessage());
         messageContent.setFill(Color.WHITE);
-        Button edit = getControlButton();
-        Button deleteForMe = getControlButton();
-        Button deleteForAll = getControlButton();
+        edit = getControlButton();
+        edit.getStyleClass().add("edit");
+        deleteForMe = getControlButton();
+        deleteForMe.getStyleClass().add("delete-for-me");
+        deleteForAll = getControlButton();
+        deleteForAll.getStyleClass().add("delete-for-all");
         VBox control = new VBox(edit, deleteForMe, deleteForAll);
+        control.setSpacing(3);
         control.setAlignment(Pos.TOP_RIGHT);
         VBox messageContentContainer = new VBox(messageContent);
         messageContentContainer.setMinWidth(150);
         control.visibleProperty().bind(this.hoverProperty());
         HBox center = new HBox(messageContentContainer, control);
         center.setSpacing(30);
-        messageContentContainer.setMinHeight(60);
+        messageContentContainer.setMinHeight(70);
         left.getChildren().add(messageContentContainer);
         right.getChildren().add(control);
     }
@@ -167,5 +177,17 @@ public class MessageBox extends HBox {
 
     public void setImage(Image image) {
         imageView.setImage(image);
+    }
+
+    public Button getEdit() {
+        return edit;
+    }
+
+    public Button getDeleteForMe() {
+        return deleteForMe;
+    }
+
+    public Button getDeleteForAll() {
+        return deleteForAll;
     }
 }

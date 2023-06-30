@@ -49,12 +49,20 @@ public class ChatController implements Controller {
         LocalDateTime now = LocalDateTime.now();
         Message message1 = new Message(currentUser.getUsername(), now.getHour(), now.getMinute(), message);
         currentChat.addMessage(message1);
-        Packet packet = new Packet("chat", "send message", null, message);
+        Packet packet = new Packet("chat", "send message", new String[]{currentChat.getId()}, message);
         ioHandler.sendPacket(packet);
     }
 
     public String getChatName() {
         if (currentChat instanceof PrivateChat) return ((PrivateChat) currentChat).getId(currentUser);
         return currentChat.getId();
+    }
+
+    public void edit(Message message, String text) {
+        if (!message.getSenderUsername().equals(currentUser.getUsername())) return;
+        message.setMessage(text);
+        Packet packet = new Packet("chat", "edit",
+                new String[]{String.valueOf(currentChat.getMessages().indexOf(message)), currentChat.getId()}, text);
+        ioHandler.sendPacket(packet);
     }
 }

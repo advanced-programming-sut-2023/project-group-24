@@ -76,6 +76,10 @@ public class AppController {
                 LocalDateTime now = LocalDateTime.now();
                 chat.addMessage(new Message(packet.getArgs()[0], now.getHour(), now.getMinute(), packet.getValue()));
                 break;
+            case "edit":
+                Chat currentChat = chatDatabase.getChatById(packet.getArgs()[1]);
+                Message message = currentChat.getMessages().get(Integer.parseInt(packet.getArgs()[0]));
+                message.setMessage(packet.getValue());
         }
     }
 

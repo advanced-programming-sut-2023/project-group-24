@@ -47,12 +47,24 @@ public class ChatController implements Controller {
         currentChat.addMessage(message1);
     }
 
+    public void edit(Message message, String text) {
+        message.setMessage(text);
+    }
+
     public void handlePacket(Packet packet) {
         switch (packet.getSubject()) {
             case "send message":
+                System.out.println(packet.getArgs()[0]);
+                currentChat = chatDatabase.getChatById(packet.getArgs()[0]);
                 sendMessage(packet.getValue());
                 sendDataToAllSockets(new Packet("chat", "send message",
                         new String[]{currentUser.getUsername(), currentChat.getId()}, packet.getValue()));
+                break;
+            case "edit":
+                currentChat = chatDatabase.getChatById(packet.getArgs()[1]);
+                Message message = currentChat.getMessages().get(Integer.parseInt(packet.getArgs()[0]));
+                edit(message, packet.getValue());
+                sendDataToAllSockets(packet);
                 break;
         }
     }

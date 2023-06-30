@@ -122,6 +122,24 @@
     -fx-background-size: stretch;
 }
 
+.edit {
+	-fx-background-color: transparent;
+	-fx-background-image: url("../images/menus/edit-message.png");
+    -fx-background-size: stretch;
+}
+
+.delete-for-me {
+	-fx-background-color: transparent;
+	-fx-background-image: url("../images/menus/cross.png");
+    -fx-background-size: stretch;
+}
+
+.delete-for-all {
+	-fx-background-color: transparent;
+	-fx-background-image: url("../images/menus/delete.png");
+    -fx-background-size: stretch;
+}
+
 .message-box {
 	/*-fx-background-color: blue;*/
 	-fx-text-fill: white;

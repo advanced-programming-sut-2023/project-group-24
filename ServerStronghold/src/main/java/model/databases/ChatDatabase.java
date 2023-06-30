@@ -88,7 +88,7 @@ public class ChatDatabase {
     }
 
     public Chat getChatById(User currentUser, String id) {
-        if (id.equals("publicChat")) return publicChat;
+        if (id.equals("Public Chat")) return publicChat;
         for (Room room : rooms) if (room.getId().equals(id) && room.getUsers().contains(currentUser)) return room;
         for (PrivateChat privateChat : privateChats)
             if (privateChat.getId().equals(id + ":" + currentUser.getUsername())
@@ -97,7 +97,7 @@ public class ChatDatabase {
     }
 
     public Chat getChatById(String id) {
-        if (id.equals("publicChat")) return publicChat;
+        if (id.equals("Public Chat")) return publicChat;
         for (Room room : rooms) if (room.getId().equals(id)) return room;
         return null;
     }

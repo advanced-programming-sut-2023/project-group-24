@@ -5,6 +5,7 @@ import controller.nongame.ChatController;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -58,12 +59,31 @@ public class ChatMenuController extends Control {
         Vector<Message> messages = chatController.readAllMessages();
         if (messages == null) return;
         messageContainer.getChildren().clear();
-        for (Message message : messages) messageContainer.getChildren().add(chatController.getMessageBox(message));
+        for (Message message : messages) {
+            MessageBox messageBox = chatController.getMessageBox(message);
+            messageContainer.getChildren().add(messageBox);
+            messageBox.getEdit().setOnMouseClicked(mouseEvent -> edit(message));
+            messageBox.getDeleteForMe().setOnMouseClicked(mouseEvent -> deleteForMe(message));
+            messageBox.getDeleteForAll().setOnMouseClicked(mouseEvent -> deleteForAll(message));
+        }
         messageScrollPane.setVvalue(1);
+    }
+
+    private void deleteForAll(Message message) {
+    }
+
+    private void deleteForMe(Message message) {
+    }
+
+    private void edit(Message message) {
+        chatController.edit(message, messageToSend.getText());
+        messageToSend.setText("");
+        update();
     }
 
     public void send() {
         chatController.sendMessage(messageToSend.getText());
+        messageToSend.setText("");
         update();
     }
 }
