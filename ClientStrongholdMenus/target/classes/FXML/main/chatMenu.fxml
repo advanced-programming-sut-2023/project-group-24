@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      stylesheets="@../../CSS/chat.css"
+      styleClass="main-container"
+      fx:controller="view.controls.main.ChatMenuController"
+      prefHeight="600.0" prefWidth="1100.0">
+<!--    <TextField/>-->
+    <ScrollPane minWidth="200" fx:id="chatsScrollPane">
+        <VBox minWidth="200" fx:id="chatsContainer"/>
+    </ScrollPane>
+
+</HBox>

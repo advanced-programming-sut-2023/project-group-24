@@ -18,6 +18,7 @@ public enum MenusName {
     MAIN_MENU,
     ENTER_CREATE_MAP_MENU,
     ENTER_MAP_MENU,
+    CHAT_MENU,
 
 
 

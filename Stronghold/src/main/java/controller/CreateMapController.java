@@ -39,7 +39,35 @@ public class CreateMapController implements Controller {
         map = new Map(size, id);
         database.addMap(map);
         newKingdom(1, 1, "red");
-        newKingdom(2, 2, "blue");
+        newKingdom(48, 48, "blue");
+        newKingdom(1, 48, "yellow");
+        setCurrentKingdom("red");
+        dropBuilding(2, 2, "barracks");
+        dropBuilding(2, 3, "mercenary post");
+        setTexture(3, 3, 46, 46, "grass");
+        dropBuilding(3, 3, "wheat farmer");
+        dropBuilding(3, 2, "shop farmer");
+        dropBuilding(2, 4, "wood cutter");
+        dropUnit(4, 4, "fire thrower", 5);
+        dropUnit(3, 4, "archer", 3);
+        setCurrentKingdom("blue");
+        dropBuilding(47, 47, "barracks");
+        dropBuilding(47, 46, "mercenary post");
+        setTexture(0, 20, 49, 25, "river");
+        dropBuilding(46, 46, "wheat farmer");
+        dropBuilding(46, 47, "shop farmer");
+        dropBuilding(47, 45, "wood cutter");
+        dropUnit(45, 45, "fire thrower", 5);
+        dropUnit(46, 45, "archer", 3);
+        setCurrentKingdom("yellow");
+        dropBuilding(2, 47, "barracks");
+        dropBuilding(2, 46, "mercenary post");
+        setTexture(20, 0, 25, 49, "river");
+        dropBuilding(3, 46, "wheat farmer");
+        dropBuilding(3, 47, "shop farmer");
+        dropBuilding(2, 45, "wood cutter");
+        dropUnit(4, 45, "fire thrower", 5);
+        dropUnit(3, 45, "archer", 3);
         return CreateMapMessages.SUCCESS;
     }
 

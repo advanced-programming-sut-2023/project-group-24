@@ -33,7 +33,8 @@ public class LoginMenuController extends Control {
     }
 
     public void register() throws Exception {
-        getApp().run(MenusName.REGISTER_MENU);
+//        getApp().run(MenusName.REGISTER_MENU);
+        getApp().run(MenusName.CHAT_MENU);
     }
 
     public void login() throws Exception {

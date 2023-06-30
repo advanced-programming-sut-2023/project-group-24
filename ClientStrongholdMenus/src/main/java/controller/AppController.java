@@ -8,9 +8,11 @@ import javafx.stage.Stage;
 import model.Packet;
 import model.User;
 import model.UserInfo;
+import model.databases.ChatDatabase;
 import model.databases.Database;
 import view.controls.Control;
 import view.menus.login.*;
+import view.menus.main.ChatMenu;
 import view.menus.main.CreateMapMenu;
 import view.menus.main.EnterMapMenu;
 import view.menus.main.MainMenu;
@@ -30,6 +32,7 @@ public class AppController {
 
     private Socket socket;
     private Database database;
+    private ChatDatabase chatDatabase;
     private InputOutputHandler inputOutputHandler;
     private Stage stage;
     private UserInfo userInfo;
@@ -60,6 +63,7 @@ public class AppController {
         gsonBuilder.setPrettyPrinting();
         Gson gson = gsonBuilder.create();
         if (packet.getTopic().equals("app") && packet.getSubject().equals("database")) receiveDatabase(packet);
+        if (packet.getTopic().equals("app") && packet.getSubject().equals("chat database")) receiveChatDatabase(packet);
         if (packet.getTopic().equals("database")) switch (packet.getSubject()) {
             case "register":
                 database.addUser(gson.fromJson(packet.getValue(), User.class));
@@ -93,6 +97,15 @@ public class AppController {
                 database.getUserByUsername(packet.getValue()).setLastSessionToNow();
                 break;
         }
+    }
+
+    private void receiveChatDatabase(Packet packet) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+
+        chatDatabase = gson.fromJson(packet.getValue(), ChatDatabase.class);
+        System.out.println("chat database received");
     }
 
     private void receiveDatabase(Packet packet) {
@@ -207,6 +220,10 @@ public class AppController {
             case ENTER_MAP_MENU:
                 EnterMapMenu enterMapMenu = new EnterMapMenu(this);
                 enterMapMenu.start(stage);
+                break;
+            case CHAT_MENU:
+                ChatMenu chatMenu = new ChatMenu(this);
+                chatMenu.start(stage);
                 break;
         }
     }

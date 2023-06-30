@@ -1,6 +1,7 @@
 package controller;
 
 import controller.network.NodeController;
+import model.databases.ChatDatabase;
 import model.databases.Database;
 import org.w3c.dom.Node;
 
@@ -12,12 +13,14 @@ import java.util.ArrayList;
 public class AppController {
     private ServerSocket serverSocket;
     private Database database;
+    private ChatDatabase chatDatabase;
     private ArrayList<Socket> sockets;
     
     public AppController() {
         try {
             this.serverSocket = new ServerSocket(1717);
             this.database = new Database();
+            this.chatDatabase = new ChatDatabase();
         } catch (IOException e) {
             System.out.println("Could not make the serverSocket");
             e.printStackTrace();
@@ -31,7 +34,7 @@ public class AppController {
                 Socket socket = serverSocket.accept();
                 System.out.println("New connection form: " + socket.getInetAddress() + ":" + socket.getPort());
                 sockets.add(socket);
-                new NodeController(socket, database, sockets).start();
+                new NodeController(socket, database, chatDatabase, sockets).start();
 
             } catch (IOException e) {
                 e.printStackTrace();

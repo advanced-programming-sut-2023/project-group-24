@@ -21,10 +21,10 @@ public class MainClient extends Application {
 
 //        start.setCurrentUser("aref");
 
-        try {
+//        try {
             start.run(MenusName.LOGIN_MENU);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }

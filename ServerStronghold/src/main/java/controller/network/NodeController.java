@@ -7,23 +7,28 @@ import controller.nongame.ProfileController;
 import controller.nongame.RegisterController;
 import model.Packet;
 import model.User;
+import model.databases.ChatDatabase;
 import model.databases.Database;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class NodeController extends Thread {
     private Database database;
+    private ChatDatabase chatDatabase;
     private Socket socket;
     private DataOutputStream outputStream;
     private DataInputStream inputStream;
     private User user;
     private ArrayList<Socket> sockets;
 
-    public NodeController(Socket socket, Database database, ArrayList<Socket> sockets) throws IOException {
+    public NodeController(Socket socket, Database database, ChatDatabase chatDatabase, ArrayList<Socket> sockets) throws IOException {
         this.database = database;
+        this.chatDatabase = chatDatabase;
         this.socket = socket;
         this.inputStream = new DataInputStream(socket.getInputStream());
         this.outputStream = new DataOutputStream(socket.getOutputStream());
@@ -32,25 +37,13 @@ public class NodeController extends Thread {
 
     @Override
     public void run() {
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setPrettyPrinting();
-        Gson gson = gsonBuilder.create();
-        Packet databasePacket = new Packet("app", "database", null, gson.toJson(database));
-        try {
-            outputStream.writeUTF(databasePacket.toJson());
-            System.out.println("database sent");
-        } catch (IOException e) {
-            System.out.println("disconnected: " + socket.getInetAddress() + ":" + socket.getPort());
-            if (user != null) {
-                user.setOnline(false);
-                user.setLastSessionToNow();
-            }
-        }
+        manageDatabase();
+        saveChatDatabase();
 
         while (true) {
             try {
                 String data = inputStream.readUTF();
-                Packet packet = gson.fromJson(data, Packet.class);
+                Packet packet = Packet.fromJson(data);
                 handlePacket(packet);
             } catch (IOException e) {
                 System.out.println("disconnected: " + socket.getInetAddress() + ":" + socket.getPort());
@@ -59,6 +52,35 @@ public class NodeController extends Thread {
                     user.setLastSessionToNow();
                 }
                 break;
+            }
+        }
+    }
+
+    private void saveChatDatabase() {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                chatDatabase.saveData();
+            }
+        };
+        new Timer().scheduleAtFixedRate(timerTask, 5000, 5000);
+    }
+
+    private void manageDatabase() {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+        Packet databasePacket = new Packet("app", "database", null, gson.toJson(database));
+        Packet chatDatabasePacket = new Packet("app", "chat database", null, gson.toJson(chatDatabase));
+        try {
+            outputStream.writeUTF(databasePacket.toJson());
+            outputStream.writeUTF(chatDatabasePacket.toJson());
+            System.out.println("database sent");
+        } catch (IOException e) {
+            System.out.println("disconnected: " + socket.getInetAddress() + ":" + socket.getPort());
+            if (user != null) {
+                user.setOnline(false);
+                user.setLastSessionToNow();
             }
         }
     }
