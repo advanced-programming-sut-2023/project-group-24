@@ -35,7 +35,7 @@ public class ChatDatabase {
         }
     }
 
-    public ChatDatabase loadChatDatabase() {
+    public synchronized ChatDatabase loadChatDatabase() {
         File file = new File("info/chatDatabase.json");
         if (file.exists()) {
             GsonBuilder gsonBuilder = new GsonBuilder();
@@ -50,7 +50,7 @@ public class ChatDatabase {
         } else return null;
     }
 
-    public void saveData() {
+    public synchronized void saveData() {
         File file = new File("info/chatDatabase.json");
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
@@ -65,19 +65,19 @@ public class ChatDatabase {
         }
     }
 
-    public PublicChat getPublicChat() {
+    public synchronized PublicChat getPublicChat() {
         return publicChat;
     }
 
-    public Vector<Room> getRooms() {
+    public synchronized Vector<Room> getRooms() {
         return rooms;
     }
 
-    public Vector<PrivateChat> getPrivateChats() {
+    public synchronized Vector<PrivateChat> getPrivateChats() {
         return privateChats;
     }
 
-    public Vector<Chat> getAllChats(User user) {
+    public synchronized Vector<Chat> getAllChats(User user) {
         Vector<Chat> output = new Vector<>();
         output.add(publicChat);
         for (PrivateChat privateChat : privateChats)
@@ -87,7 +87,7 @@ public class ChatDatabase {
         return output;
     }
 
-    public Chat getChatById(User currentUser, String id) {
+    public synchronized Chat getChatById(User currentUser, String id) {
         if (id.equals("publicChat")) return publicChat;
         for (Room room : rooms) if (room.getId().equals(id) && room.getUsers().contains(currentUser)) return room;
         for (PrivateChat privateChat : privateChats)
@@ -96,18 +96,18 @@ public class ChatDatabase {
         return null;
     }
 
-    public Chat getChatById(String id) {
+    public synchronized Chat getChatById(String id) {
         if (id.equals("publicChat")) return publicChat;
         for (Room room : rooms) if (room.getId().equals(id)) return room;
         return null;
     }
 
-    public User getUserFromUsername(String username) {
+    public synchronized User getUserFromUsername(String username) {
         for (User user : users) if (user.getUsername().equals(username)) return user;
         return null;
     }
 
-    public void addUser(User user) {
+    public synchronized void addUser(User user) {
         users.add(user);
     }
 }

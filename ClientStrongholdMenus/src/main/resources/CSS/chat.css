@@ -5,6 +5,7 @@
 
 .main-container {
 	-fx-background-color: #1a1921;
+	-fx-text-fill: white;
 }
 
 .scroll-bar {
@@ -66,6 +67,12 @@
     -fx-border-color: #412ea355;
 }
 
+.message-container {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: #412ea355;
+}
+
 .scroll-pane .content {
 	/*-fx-background: transparent;*/
 }
@@ -77,9 +84,40 @@
 .chat-box {
 	-fx-background-color: transparent;
 	-fx-font-size: 20;
-	-fx-font-family: "Noto Emoji";
+	-fx-font-family: "Noto Emoji", sans-serif;
 	-fx-text-fill: white;
 	-fx-border-width: 1;
 	-fx-border-color: white;
 	-fx-font-weight: 500;
+}
+
+.chat-name {
+	-fx-background-color: #241f3b;
+	-fx-font-size: 25;
+}
+
+.chat-name .label {
+	-fx-text-fill: white;
+	-fx-font-weight: 600;
+}
+
+.send-container {
+	-fx-background-color: #2b2936;
+}
+
+.text-area .content {
+	-fx-background-color: transparent;
+	-fx-border-width: 0.5 0.5 1 0.5;
+	-fx-border-color: #1a1921;
+	-fx-text-fill: white;
+}
+
+.text-area {
+	-fx-text-fill: white;
+}
+
+.send-button {
+	-fx-background-color: transparent;
+	-fx-background-image: url("../images/menus/send.png");
+    -fx-background-size: stretch;
 }
