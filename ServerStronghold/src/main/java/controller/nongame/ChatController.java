@@ -52,6 +52,7 @@ public class ChatController implements Controller {
     }
 
     public void handlePacket(Packet packet) {
+        Message message;
         switch (packet.getSubject()) {
             case "send message":
                 System.out.println(packet.getArgs()[0]);
@@ -62,8 +63,19 @@ public class ChatController implements Controller {
                 break;
             case "edit":
                 currentChat = chatDatabase.getChatById(packet.getArgs()[1]);
-                Message message = currentChat.getMessages().get(Integer.parseInt(packet.getArgs()[0]));
+                message = currentChat.getMessages().get(Integer.parseInt(packet.getArgs()[0]));
                 edit(message, packet.getValue());
+                sendDataToAllSockets(packet);
+                break;
+            case "delete for me":
+                currentChat = chatDatabase.getChatById(packet.getArgs()[1]);
+                message = currentChat.getMessages().get(Integer.parseInt(packet.getArgs()[0]));
+                message.addToBannedList(currentUser);
+                break;
+            case "delete for all":
+                currentChat = chatDatabase.getChatById(packet.getArgs()[1]);
+                message = currentChat.getMessages().get(Integer.parseInt(packet.getArgs()[0]));
+                message.remove();
                 sendDataToAllSockets(packet);
                 break;
         }

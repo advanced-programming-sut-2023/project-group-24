@@ -34,7 +34,11 @@ public class ChatController implements Controller {
     public Vector<Message> readAllMessages() {
         if (currentChat == null) return null;
         currentChat.readMessages(currentUser);
-        return currentChat.getMessages();
+        Vector<Message> messages = new Vector<>();
+        for (Message message : currentChat.getMessages())
+            if (!message.toString(currentUser).equals(""))
+                messages.add(message);
+        return messages;
     }
 
     public MessageBox getMessageBox(Message message) {
@@ -63,6 +67,20 @@ public class ChatController implements Controller {
         message.setMessage(text);
         Packet packet = new Packet("chat", "edit",
                 new String[]{String.valueOf(currentChat.getMessages().indexOf(message)), currentChat.getId()}, text);
+        ioHandler.sendPacket(packet);
+    }
+
+    public void deleteForMe(Message message) {
+        message.addToBannedList(currentUser);
+        Packet packet = new Packet("chat", "delete for me",
+                new String[]{String.valueOf(currentChat.getMessages().indexOf(message)), currentChat.getId()}, "");
+        ioHandler.sendPacket(packet);
+    }
+
+    public void deleteForAll(Message message) {
+        message.remove();
+        Packet packet = new Packet("chat", "delete for all",
+                new String[]{String.valueOf(currentChat.getMessages().indexOf(message)), currentChat.getId()}, "");
         ioHandler.sendPacket(packet);
     }
 }

@@ -80,6 +80,12 @@ public class AppController {
                 Chat currentChat = chatDatabase.getChatById(packet.getArgs()[1]);
                 Message message = currentChat.getMessages().get(Integer.parseInt(packet.getArgs()[0]));
                 message.setMessage(packet.getValue());
+                break;
+            case "delete for all":
+                Chat newChat = chatDatabase.getChatById(packet.getArgs()[1]);
+                Message newMessage = newChat.getMessages().get(Integer.parseInt(packet.getArgs()[0]));
+                newMessage.remove();
+                break;
         }
     }
 

@@ -70,9 +70,13 @@ public class ChatMenuController extends Control {
     }
 
     private void deleteForAll(Message message) {
+        chatController.deleteForAll(message);
+        update();
     }
 
     private void deleteForMe(Message message) {
+        chatController.deleteForMe(message);
+        update();
     }
 
     private void edit(Message message) {
