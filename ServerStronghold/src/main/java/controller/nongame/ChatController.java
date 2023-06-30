@@ -6,6 +6,7 @@ import model.Packet;
 import model.User;
 import model.chat.Chat;
 import model.chat.Message;
+import model.chat.Reaction;
 import model.databases.ChatDatabase;
 import model.databases.Database;
 
@@ -76,6 +77,17 @@ public class ChatController implements Controller {
                 currentChat = chatDatabase.getChatById(packet.getArgs()[1]);
                 message = currentChat.getMessages().get(Integer.parseInt(packet.getArgs()[0]));
                 message.remove();
+                sendDataToAllSockets(packet);
+                break;
+            case "react":
+                currentChat = chatDatabase.getChatById(packet.getArgs()[1]);
+                message = currentChat.getMessages().get(Integer.parseInt(packet.getArgs()[0]));
+                for (Reaction reaction : message.getReactions())
+                    if (reaction.getReactorUsername().equals(packet.getArgs()[3])) {
+                        message.getReactions().remove(reaction);
+                        break;
+                    }
+                message.getReactions().add(new Reaction(packet.getArgs()[3], Integer.parseInt(packet.getArgs()[2])));
                 sendDataToAllSockets(packet);
                 break;
         }

@@ -25,6 +25,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.security.PrivilegedExceptionAction;
 import java.util.Vector;
 
 public class ChatMenuController extends Control {
@@ -65,8 +66,16 @@ public class ChatMenuController extends Control {
             messageBox.getEdit().setOnMouseClicked(mouseEvent -> edit(message));
             messageBox.getDeleteForMe().setOnMouseClicked(mouseEvent -> deleteForMe(message));
             messageBox.getDeleteForAll().setOnMouseClicked(mouseEvent -> deleteForAll(message));
+            messageBox.getLaughing().setOnMouseClicked(mouseEvent -> react(message, 1));
+            messageBox.getCrying().setOnMouseClicked(mouseEvent -> react(message, 2));
+            messageBox.getHeart().setOnMouseClicked(mouseEvent -> react(message, 3));
         }
         messageScrollPane.setVvalue(1);
+    }
+
+    private void react(Message message, int i) {
+        chatController.react(message, i);
+        update();
     }
 
     private void deleteForAll(Message message) {

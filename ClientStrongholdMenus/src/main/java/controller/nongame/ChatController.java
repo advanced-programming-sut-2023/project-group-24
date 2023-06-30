@@ -9,6 +9,7 @@ import model.User;
 import model.chat.Chat;
 import model.chat.Message;
 import model.chat.PrivateChat;
+import model.chat.Reaction;
 import model.databases.ChatDatabase;
 import model.databases.Database;
 import view.modelview.MessageBox;
@@ -81,6 +82,18 @@ public class ChatController implements Controller {
         message.remove();
         Packet packet = new Packet("chat", "delete for all",
                 new String[]{String.valueOf(currentChat.getMessages().indexOf(message)), currentChat.getId()}, "");
+        ioHandler.sendPacket(packet);
+    }
+
+    public void react(Message message, int i) {
+        for (Reaction reaction : message.getReactions())
+            if (reaction.getReactorUsername().equals(currentUser.getUsername())) {
+                message.getReactions().remove(reaction);
+                break;
+            }
+        message.getReactions().add(new Reaction(currentUser.getUsername(), i));
+        Packet packet = new Packet("chat", "react", new String[]{String.valueOf(currentChat.getMessages().indexOf(message)),
+                currentChat.getId(), String.valueOf(i), currentUser.getUsername()}, "");
         ioHandler.sendPacket(packet);
     }
 }

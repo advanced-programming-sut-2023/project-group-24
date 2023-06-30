@@ -10,6 +10,7 @@ import model.User;
 import model.UserInfo;
 import model.chat.Chat;
 import model.chat.Message;
+import model.chat.Reaction;
 import model.databases.ChatDatabase;
 import model.databases.Database;
 import view.controls.Control;
@@ -86,6 +87,15 @@ public class AppController {
                 Message newMessage = newChat.getMessages().get(Integer.parseInt(packet.getArgs()[0]));
                 newMessage.remove();
                 break;
+            case "react":
+                Chat chatReact = chatDatabase.getChatById(packet.getArgs()[1]);
+                Message reactMessage = chatReact.getMessages().get(Integer.parseInt(packet.getArgs()[0]));
+                for (Reaction reaction : reactMessage.getReactions())
+                    if (reaction.getReactorUsername().equals(packet.getArgs()[3])) {
+                        reactMessage.getReactions().remove(reaction);
+                        break;
+                    }
+                reactMessage.getReactions().add(new Reaction(packet.getArgs()[3], Integer.parseInt(packet.getArgs()[2])));
         }
     }
 

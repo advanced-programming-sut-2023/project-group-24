@@ -28,6 +28,10 @@ public class MessageBox extends HBox {
     private Button deleteForMe;
     private Button deleteForAll;
 
+    private Text laughing;
+    private Text crying;
+    private Text heart;
+
     public MessageBox(Message message) {
         super();
         right = new VBox();
@@ -85,6 +89,9 @@ public class MessageBox extends HBox {
             emoji.setFill(Color.WHITE);
             react.getChildren().add(emoji);
         }
+        laughing = (Text) react.getChildren().get(0);
+        crying = (Text) react.getChildren().get(1);
+        heart = (Text) react.getChildren().get(2);
         react.visibleProperty().bind(this.hoverProperty());
         left.getChildren().add(reactions);
         right.getChildren().add(react);
@@ -189,5 +196,17 @@ public class MessageBox extends HBox {
 
     public Button getDeleteForAll() {
         return deleteForAll;
+    }
+
+    public Text getLaughing() {
+        return laughing;
+    }
+
+    public Text getCrying() {
+        return crying;
+    }
+
+    public Text getHeart() {
+        return heart;
     }
 }
