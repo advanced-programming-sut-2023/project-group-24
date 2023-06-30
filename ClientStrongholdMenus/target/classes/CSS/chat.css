@@ -99,7 +99,6 @@
 .chat-name .label {
 	-fx-text-fill: white;
 	-fx-font-weight: 600;
-	-fx-font-style: bold;
 }
 
 .send-container {
@@ -121,4 +120,24 @@
 	-fx-background-color: transparent;
 	-fx-background-image: url("../images/menus/send.png");
     -fx-background-size: stretch;
+}
+
+.message-box {
+	/*-fx-background-color: blue;*/
+	-fx-text-fill: white;
+	-fx-font-size: 16;
+	-fx-padding: 3 3 3 3;
+}
+
+.message-box > .text {
+	-fx-text-fill: white;
+}
+
+.emoji {
+	-fx-font-family: "Noto Emoji";
+	-fx-text-fill: white;
+}
+
+.text {
+	-fx-text-fill: white;
 }

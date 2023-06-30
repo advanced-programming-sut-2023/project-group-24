@@ -6,5 +6,6 @@ public enum ControllersName {
     PROFILE,
     LEADER_BOARD,
     CREATE_MAP,
-    ENTER_MAP
+    ENTER_MAP,
+    CHAT
 }

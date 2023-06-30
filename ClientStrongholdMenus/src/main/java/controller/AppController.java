@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import model.Packet;
 import model.User;
 import model.UserInfo;
+import model.chat.Chat;
+import model.chat.Message;
 import model.databases.ChatDatabase;
 import model.databases.Database;
 import view.controls.Control;
@@ -24,6 +26,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class AppController {
@@ -59,12 +62,28 @@ public class AppController {
     }
 
     private void handleInputs(Packet packet) {
+
+        if (packet.getTopic().equals("app") && packet.getSubject().equals("database")) receiveDatabase(packet);
+        if (packet.getTopic().equals("app") && packet.getSubject().equals("chat database")) receiveChatDatabase(packet);
+        if (packet.getTopic().equals("database")) handleDatabaseCommand(packet);
+        if (packet.getTopic().equals("chat")) handleChatCommand(packet);
+    }
+
+    private void handleChatCommand(Packet packet) {
+        switch (packet.getSubject()) {
+            case "send message":
+                Chat chat = chatDatabase.getChatById(packet.getArgs()[1]);
+                LocalDateTime now = LocalDateTime.now();
+                chat.addMessage(new Message(packet.getArgs()[0], now.getHour(), now.getMinute(), packet.getValue()));
+                break;
+        }
+    }
+
+    private void handleDatabaseCommand(Packet packet) {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
         Gson gson = gsonBuilder.create();
-        if (packet.getTopic().equals("app") && packet.getSubject().equals("database")) receiveDatabase(packet);
-        if (packet.getTopic().equals("app") && packet.getSubject().equals("chat database")) receiveChatDatabase(packet);
-        if (packet.getTopic().equals("database")) switch (packet.getSubject()) {
+        switch (packet.getSubject()) {
             case "register":
                 database.addUser(gson.fromJson(packet.getValue(), User.class));
                 break;
@@ -243,6 +262,8 @@ public class AppController {
                 return new CreateMapController(inputOutputHandler, database);
             case ENTER_MAP:
                 return new EnterMapController(inputOutputHandler, database, currentUser);
+            case CHAT:
+                return new ChatController(inputOutputHandler, database, chatDatabase, currentUser);
         }
         return null;
     }

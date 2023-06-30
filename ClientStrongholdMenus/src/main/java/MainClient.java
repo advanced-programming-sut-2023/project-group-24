@@ -19,7 +19,7 @@ public class MainClient extends Application {
         stage.getIcons().add(new Image(getClass().getResource("/images/icons/game-icon.png").toExternalForm()));
         stage.setTitle("Stronghold");
 
-//        start.setCurrentUser("aref");
+        start.setCurrentUser("aref");
 
 //        try {
             start.run(MenusName.LOGIN_MENU);

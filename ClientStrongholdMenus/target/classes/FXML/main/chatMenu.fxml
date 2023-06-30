@@ -16,10 +16,14 @@
 
     <VBox minWidth="900">
         <HBox minHeight="50" styleClass="chat-name" alignment="CENTER">
-            <Label text="tmp"/>
+            <Label text="tmp" fx:id="chatName"/>
         </HBox>
         <ScrollPane minHeight="480" maxHeight="480" fx:id="messageScrollPane" styleClass="message-container">
-            <VBox/>
+            <VBox fx:id="messageContainer" spacing="5">
+                <padding>
+                    <Insets top="5" right="5" bottom="10" left="5"/>
+                </padding>
+            </VBox>
         </ScrollPane>
         <HBox minHeight="70" alignment="CENTER_LEFT" spacing="30" fx:id="sendContainer" styleClass="send-container">
             <padding>
@@ -27,7 +31,7 @@
             </padding>
             <TextArea minWidth="820" maxWidth="820" minHeight="50" maxHeight="150" fx:id="messageToSend"/>
             <Button minHeight="30" minWidth="30" maxHeight="30" maxWidth="30" styleClass="send-button"
-                    fx:id="sendButton"/>
+                    fx:id="sendButton" onMouseClicked="#send"/>
         </HBox>
     </VBox>
 

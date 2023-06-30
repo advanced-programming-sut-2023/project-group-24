@@ -2,6 +2,7 @@ package controller.network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import controller.nongame.ChatController;
 import controller.nongame.LoginController;
 import controller.nongame.ProfileController;
 import controller.nongame.RegisterController;
@@ -26,7 +27,8 @@ public class NodeController extends Thread {
     private User user;
     private ArrayList<Socket> sockets;
 
-    public NodeController(Socket socket, Database database, ChatDatabase chatDatabase, ArrayList<Socket> sockets) throws IOException {
+    public NodeController(Socket socket, Database database, ChatDatabase chatDatabase, ArrayList<Socket> sockets)
+            throws IOException {
         this.database = database;
         this.chatDatabase = chatDatabase;
         this.socket = socket;
@@ -38,7 +40,6 @@ public class NodeController extends Thread {
     @Override
     public void run() {
         manageDatabase();
-        saveChatDatabase();
 
         while (true) {
             try {
@@ -54,16 +55,6 @@ public class NodeController extends Thread {
                 break;
             }
         }
-    }
-
-    private void saveChatDatabase() {
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                chatDatabase.saveData();
-            }
-        };
-        new Timer().scheduleAtFixedRate(timerTask, 5000, 5000);
     }
 
     private void manageDatabase() {
@@ -103,6 +94,11 @@ public class NodeController extends Thread {
             case "login":
                 LoginController loginController = new LoginController(database, socket, sockets);
                 loginController.handlePacket(packet);
+                break;
+            case "chat":
+                ChatController chatController = new ChatController(database, chatDatabase, user, socket, sockets);
+                chatController.handlePacket(packet);
+                break;
         }
     }
 }

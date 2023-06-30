@@ -2,6 +2,6 @@ package model.chat;
 
 public class PublicChat extends Chat {
     public PublicChat() {
-        super("publicChat");
+        super("Public Chat");
     }
 }
