@@ -302,7 +302,7 @@ Other Threads:
   0x000001eabcdfe720 WorkerThread "GC Thread#3" [stack: 0x00000032c2800000,0x00000032c2900000] [id=12400]
   0x000001eae0200ae0 WorkerThread "GC Thread#4" [stack: 0x00000032c2900000,0x00000032c2a00000] [id=11612]
   0x000001eae0201350 WorkerThread "GC Thread#5" [stack: 0x00000032c2a00000,0x00000032c2b00000] [id=23952]
-  0x000001eabcdfca40 ConcurrentGCThread "G1 Main Marker" [stack: 0x00000032c0b00000,0x00000032c0c00000] [id=23788]
+  0x000001eabcdfca40 ConcurrentGCThread "G1 controller.Main Marker" [stack: 0x00000032c0b00000,0x00000032c0c00000] [id=23788]
   0x000001eabcdfe9f0 WorkerThread "G1 Conc#0" [stack: 0x00000032c0c00000,0x00000032c0d00000] [id=23624]
   0x000001eabceb76d0 ConcurrentGCThread "G1 Refine#0" [stack: 0x00000032c0d00000,0x00000032c0e00000] [id=4572]
   0x000001eabceb7ec0 ConcurrentGCThread "G1 Service" [stack: 0x00000032c0e00000,0x00000032c0f00000] [id=6028]

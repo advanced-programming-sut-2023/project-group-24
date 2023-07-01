@@ -15,9 +15,9 @@ import java.util.ArrayList;
 public class Cell {
     private final int x;
     private final int y;
-    private final ArrayList<Army> armies;
+    private transient final ArrayList<Army> armies;
     private Texture texture;
-    private Building existingBuilding;
+    private transient Building existingBuilding;
     private boolean isRock;
     private Tree tree;
     private Direction direction;
@@ -177,12 +177,16 @@ public class Cell {
     }
 
     private Direction backWardDirection(Direction direction) {
-        return switch (direction) {
-            case DOWN -> Direction.UP;
-            case RIGHT -> Direction.LEFT;
-            case LEFT -> Direction.RIGHT;
-            default -> Direction.DOWN;
-        };
+        switch (direction) {
+            case DOWN:
+                return Direction.UP;
+            case RIGHT:
+                return Direction.LEFT;
+            case LEFT:
+                return Direction.RIGHT;
+            default:
+                return Direction.DOWN;
+        }
     }
 
 }

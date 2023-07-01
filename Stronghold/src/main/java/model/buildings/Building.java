@@ -8,16 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Building {
-    private final Kingdom kingdom;
+    private transient final Kingdom kingdom;
     private final Cell location;
     private final BuildingType buildingType;
     private int hp;
+    private int burnCounter;
+    private boolean isSick;
 
     public Building(Kingdom kingdom, Cell location, BuildingType buildingType) {
         this.kingdom = kingdom;
         this.location = location;
         this.buildingType = buildingType;
         this.hp = buildingType.getMaxHp();
+        this.burnCounter = 0;
+        this.isSick = false;
         location.setExistingBuilding(this);
         kingdom.addBuilding(this);
     }
@@ -47,6 +51,18 @@ public class Building {
         return hp;
     }
 
+    public boolean isBurning() {
+        return burnCounter > 0;
+    }
+
+    public boolean isSick() {
+        return isSick;
+    }
+
+    public void setSick(boolean sick) {
+        isSick = sick;
+    }
+
     public void takeDamage(int amount) {
         hp -= amount;
         if (hp <= 0) {
@@ -62,6 +78,15 @@ public class Building {
 
     public void repair() {
         hp = buildingType.getMaxHp();
+    }
+
+    public void startBurning() {
+        this.burnCounter = 3;
+    }
+
+    public void takeDamageFromBurning() {
+        this.burnCounter--;
+        this.takeDamage(50);
     }
 
     public ArrayList<String> showDetails() {

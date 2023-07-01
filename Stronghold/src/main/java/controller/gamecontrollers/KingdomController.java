@@ -4,6 +4,7 @@ import controller.functionalcontrollers.Pair;
 import model.Kingdom;
 import model.People;
 import model.Trade;
+import model.army.Army;
 import model.buildings.*;
 import model.databases.GameDatabase;
 import model.enums.Item;
@@ -23,6 +24,10 @@ public class KingdomController {
         Kingdom kingdom = gameDatabase.getCurrentKingdom();
         ArrayList<Building> buildings = kingdom.getBuildings();
         kingdom.setPopulationCapacity();
+        handleBurning(kingdom);
+        handleSickness(kingdom);
+        handleTreatment(kingdom);
+        handleSicknessPopularityFactor(kingdom);
         handleFood(kingdom);
         handleHomeless(kingdom);
         handleInn(kingdom);
@@ -35,6 +40,38 @@ public class KingdomController {
         handleWorkers(kingdom, buildings);
         handleHorse();
         handleTrade();
+    }
+
+    private void handleBurning(Kingdom kingdom) {
+        for (Building building : kingdom.getBuildings()) if (building.isBurning()) building.takeDamageFromBurning();
+    }
+    
+    private void handleSickness(Kingdom kingdom) {
+        int numberOfBuildings = kingdom.getBuildings().size();
+        int random = (int) (Math.random() * numberOfBuildings * 4);
+        if (random < numberOfBuildings) kingdom.getBuildings().get(random).setSick(true);
+    }
+
+    private void handleTreatment(Kingdom kingdom) {
+        for (Building building : kingdom.getBuildings()) {
+            if (building.isSick()) {
+                for (Building apothecary : kingdom.getBuildings()) {
+                    if (apothecary.getBuildingType() == BuildingType.APOTHECARY
+                            && ((WorkersNeededBuilding) building).hasEnoughWorkers()) {
+                        if (Math.abs(apothecary.getLocation().getX() - building.getLocation().getX()) +
+                                Math.abs(apothecary.getLocation().getY() - building.getLocation().getY()) < 5)
+                            building.setSick(false);
+                    }
+                }
+            }
+        }
+    }
+
+    private void handleSicknessPopularityFactor(Kingdom kingdom) {
+        int sickRate = 0;
+        for (Building building : kingdom.getBuildings()) if (building.isSick()) sickRate++;
+        kingdom.setSickRate(-sickRate);
+        kingdom.setPopularityFactor(PopularityFactor.SICK, sickRate);
     }
 
     private void handleFood(Kingdom kingdom) {
@@ -247,11 +284,14 @@ public class KingdomController {
     }
 
     private BuildingType getBuildingType(Item.Category category) {
-        return switch (category) {
-            case FOOD -> BuildingType.GRANARY;
-            case MATERIAL -> BuildingType.STOCKPILE;
-            default -> BuildingType.ARMOURY;
-        };
+        switch (category) {
+            case FOOD:
+                return BuildingType.GRANARY;
+            case MATERIAL:
+                return BuildingType.STOCKPILE;
+            default:
+                return BuildingType.ARMOURY;
+        }
     }
 
     public String showPopularityFactors() {
@@ -301,21 +341,48 @@ public class KingdomController {
     }
 
     public void handleTaxFactor(int taxRate) {
-        int taxFactor = switch (taxRate) {
-            case -3 -> 7;
-            case -2 -> 5;
-            case -1 -> 3;
-            case 0 -> 1;
-            case 1 -> -2;
-            case 2 -> -4;
-            case 3 -> -6;
-            case 4 -> -8;
-            case 5 -> -12;
-            case 6 -> -16;
-            case 7 -> -20;
-            case 8 -> -24;
-            default -> 0;
-        };
+        int taxFactor;
+        switch (taxRate) {
+            case -3:
+                taxFactor = 7;
+                break;
+            case -2:
+                taxFactor = 5;
+                break;
+            case -1:
+                taxFactor = 3;
+                break;
+            case 0:
+                taxFactor = 1;
+                break;
+            case 1:
+                taxFactor = -2;
+                break;
+            case 2:
+                taxFactor = -4;
+                break;
+            case 3:
+                taxFactor = -6;
+                break;
+            case 4:
+                taxFactor = -8;
+                break;
+            case 5:
+                taxFactor = -12;
+                break;
+            case 6:
+                taxFactor = -16;
+                break;
+            case 7:
+                taxFactor = -20;
+                break;
+            case 8:
+                taxFactor = -24;
+                break;
+            default:
+                taxFactor = 0;
+                break;
+        }
         gameDatabase.getCurrentKingdom().setPopularityFactor(PopularityFactor.TAX, taxFactor);
     }
 

@@ -37,7 +37,7 @@ public enum Commands {
     DISPLAY_SLOGAN("^profile display slogan$"),
     PROFILE_DISPLAY("^profile display$"),
 
-    //Main menu
+    //controller.Main menu
     ENTER_PROFILE_MENU("^enter profile menu$"),
     START_GAME("^start game$"),
     ENTER_CREATE_MAP("^enter create map menu$"),

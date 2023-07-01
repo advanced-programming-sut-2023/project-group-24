@@ -238,7 +238,7 @@ public class BuildingController {
         return true;
     }
 
-    private boolean checkNeighborContains(Cell cell, BuildingType neededBuildingType) {
+    boolean checkNeighborContains(Cell cell, BuildingType neededBuildingType) {
         return findNeighborContains(cell, neededBuildingType) != Direction.NONE;
     }
 
@@ -346,12 +346,17 @@ public class BuildingController {
 
     private Building getBuildingFromDirection(int x, int y, Direction direction) {
         Cell[][] map = gameDatabase.getMap().getMap();
-        return switch (direction) {
-            case UP -> map[x - 1][y].getExistingBuilding();
-            case RIGHT -> map[x][y + 1].getExistingBuilding();
-            case LEFT -> map[x][y - 1].getExistingBuilding();
-            case DOWN -> map[x + 1][y].getExistingBuilding();
-            default -> null;
-        };
+        switch (direction) {
+            case UP:
+                return map[x - 1][y].getExistingBuilding();
+            case RIGHT:
+                return map[x][y + 1].getExistingBuilding();
+            case LEFT:
+                return map[x][y - 1].getExistingBuilding();
+            case DOWN:
+                return map[x + 1][y].getExistingBuilding();
+            default:
+                return null;
+        }
     }
 }

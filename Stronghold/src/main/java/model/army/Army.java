@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public abstract class Army {
     private final ArrayList<Cell> path;
-    private final Kingdom owner;
+    private transient final Kingdom owner;
     private ArmyType armyType;
     private Pair<Cell, Cell> patrol;
     private Army target;
@@ -146,5 +146,9 @@ public abstract class Army {
         int x1 = target.location.getX();
         int y1 = target.location.getY();
         return (int) (Math.sqrt(Math.pow((x - x1), 2) + Math.pow((y - y1), 2)));
+    }
+
+    public boolean canBurn() {
+        return this.armyType.canBurn();
     }
 }

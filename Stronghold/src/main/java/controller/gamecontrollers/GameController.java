@@ -8,6 +8,7 @@ import model.buildings.*;
 import model.databases.GameDatabase;
 import model.enums.Direction;
 import model.enums.MovingType;
+import model.enums.Slogan;
 import model.map.Cell;
 import model.map.Map;
 import model.map.Texture;
@@ -29,6 +30,7 @@ public class GameController {
         makeWarMachines();
         checkStateOfUnits();
         moveUnits();
+        handleBrazier();
         war();
         gameDatabase.nextTurn();
         canGateBeCaptured();
@@ -36,6 +38,16 @@ public class GameController {
         hasKingdomsFallen();
         giveLastPlayerScoreAndEndGame();
         handleEngineerOil();
+    }
+
+    private void handleBrazier() {
+        BuildingController buildingController = new BuildingController(gameDatabase);
+        for (Army army : currentKingdom.getArmies()) {
+            if (army instanceof Soldier
+                    && army.getArmyType().getRange() > 1
+                    && buildingController.checkNeighborContains(army.getLocation(), BuildingType.BRAZIER))
+                ((Soldier) army).setCanBurnOnce(true);
+        }
     }
 
     private void handleEngineerOil() {
@@ -117,8 +129,11 @@ public class GameController {
             }
         } else if (army.getTargetBuilding() != null) {
             Building building = army.getTargetBuilding();
-            if (checkNeighbor(army, army.getTargetBuilding()))
+            if (checkNeighbor(army, army.getTargetBuilding())) {
                 building.takeDamage((int) (army.getArmyType().getDamage() * army.getOwner().getFearRate()));
+                if (army.canBurn()) building.startBurning();
+                if (army instanceof Soldier) ((Soldier) army).setCanBurnOnce(false);
+            }
         }
     }
 
@@ -212,18 +227,24 @@ public class GameController {
     private Cell getNeighbor(Army army, int i, int radius) {
         int x = army.getLocation().getX();
         int y = army.getLocation().getY();
-        return switch (i) {
-            case 0 -> y >= radius ? gameDatabase.getMap().getMap()[x][y - radius] : null;
-            case 1 ->
-                    y + radius < gameDatabase.getMap().getSize() ? gameDatabase.getMap().getMap()[x][y + radius] : null;
-            case 2 -> x >= radius ? gameDatabase.getMap().getMap()[x - radius][y] : null;
-            case 3 ->
-                    x + radius < gameDatabase.getMap().getSize() ? gameDatabase.getMap().getMap()[x + radius][y] : null;
-            case 4 -> checkInBounds(x - 1, y - 1) ? gameDatabase.getMap().getMap()[x - 1][y - 1] : null;
-            case 5 -> checkInBounds(x - 1, y + 1) ? gameDatabase.getMap().getMap()[x - 1][y + 1] : null;
-            case 6 -> checkInBounds(x + 1, y - 1) ? gameDatabase.getMap().getMap()[x + 1][y - 1] : null;
-            default -> checkInBounds(x + 1, y + 1) ? gameDatabase.getMap().getMap()[x + 1][y + 1] : null;
-        };
+        switch (i) {
+            case 0:
+                return y >= radius ? gameDatabase.getMap().getMap()[x][y - radius] : null;
+            case 1:
+                return y + radius < gameDatabase.getMap().getSize() ? gameDatabase.getMap().getMap()[x][y + radius] : null;
+            case 2:
+                return x >= radius ? gameDatabase.getMap().getMap()[x - radius][y] : null;
+            case 3:
+                return x + radius < gameDatabase.getMap().getSize() ? gameDatabase.getMap().getMap()[x + radius][y] : null;
+            case 4:
+                return checkInBounds(x - 1, y - 1) ? gameDatabase.getMap().getMap()[x - 1][y - 1] : null;
+            case 5:
+                return checkInBounds(x - 1, y + 1) ? gameDatabase.getMap().getMap()[x - 1][y + 1] : null;
+            case 6:
+                return checkInBounds(x + 1, y - 1) ? gameDatabase.getMap().getMap()[x + 1][y - 1] : null;
+            default:
+                return checkInBounds(x + 1, y + 1) ? gameDatabase.getMap().getMap()[x + 1][y + 1] : null;
+        }
     }
 
     private boolean checkInBounds(int x, int y) {
@@ -283,22 +304,18 @@ public class GameController {
         int targetX = targetCell.getX();
         int targetY = targetCell.getY();
         switch (targetX - currentX) {
-            case 1 -> {
+            case 1:
                 return Direction.UP;
-            }
-            case -1 -> {
+            case -1:
                 return Direction.DOWN;
-            }
-            default -> {
+            default:
                 switch (targetY - currentY) {
-                    case 1 -> {
+                    case 1:
                         return Direction.LEFT;
-                    }
-                    case -1 -> {
+                    case -1:
                         return Direction.RIGHT;
-                    }
                 }
-            }
+                break;
         }
         return null;
     }

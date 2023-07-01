@@ -1,12 +1,16 @@
 package controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import controller.functionalcontrollers.Pair;
+import controller.nongame.EnterMapController;
 import model.Kingdom;
 import model.army.*;
 import model.buildings.Building;
 import model.buildings.BuildingType;
 import model.buildings.StorageBuilding;
 import model.databases.Database;
+import model.enums.Color;
 import model.enums.Direction;
 import model.enums.Item;
 import model.enums.KingdomColor;
@@ -16,7 +20,11 @@ import model.map.Texture;
 import model.map.Tree;
 import view.enums.messages.CreateMapMessages;
 
-public class CreateMapController {
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class CreateMapController implements Controller {
     private final Database database;
     private Map map;
     private Kingdom currentKingdom;
@@ -26,12 +34,48 @@ public class CreateMapController {
     }
 
     public CreateMapMessages createMap(int size, String id) {
-        if (database.mapIdExists(id))
-            return CreateMapMessages.ID_EXIST;
-        if (!(size == 200 || size == 400))
-            return CreateMapMessages.INVALID_SIZE;
+        CreateMapMessages message = getCreateMapMessage(size, id);
+        if (message != CreateMapMessages.SUCCESS) return message;
         map = new Map(size, id);
         database.addMap(map);
+        newKingdom(1, 1, "red");
+        newKingdom(48, 48, "blue");
+        newKingdom(1, 48, "yellow");
+        setCurrentKingdom("red");
+        dropBuilding(2, 2, "barracks");
+        dropBuilding(2, 3, "mercenary post");
+        setTexture(3, 3, 46, 46, "grass");
+        dropBuilding(3, 3, "wheat farmer");
+        dropBuilding(3, 2, "shop farmer");
+        dropBuilding(2, 4, "wood cutter");
+        dropUnit(4, 4, "fire thrower", 5);
+        dropUnit(3, 4, "archer", 3);
+        setCurrentKingdom("blue");
+        dropBuilding(47, 47, "barracks");
+        dropBuilding(47, 46, "mercenary post");
+        setTexture(0, 20, 49, 25, "river");
+        dropBuilding(46, 46, "wheat farmer");
+        dropBuilding(46, 47, "shop farmer");
+        dropBuilding(47, 45, "wood cutter");
+        dropUnit(45, 45, "fire thrower", 5);
+        dropUnit(46, 45, "archer", 3);
+        setCurrentKingdom("yellow");
+        dropBuilding(2, 47, "barracks");
+        dropBuilding(2, 46, "mercenary post");
+        setTexture(20, 0, 25, 49, "river");
+        dropBuilding(3, 46, "wheat farmer");
+        dropBuilding(3, 47, "shop farmer");
+        dropBuilding(2, 45, "wood cutter");
+        dropUnit(4, 45, "fire thrower", 5);
+        dropUnit(3, 45, "archer", 3);
+        return CreateMapMessages.SUCCESS;
+    }
+
+    public CreateMapMessages getCreateMapMessage(int size, String id) {
+        if (database.mapIdExists(id))
+            return CreateMapMessages.ID_EXIST;
+        if (size > 400 || size < 20)
+            return CreateMapMessages.INVALID_SIZE;
         return CreateMapMessages.SUCCESS;
     }
 
@@ -103,22 +147,30 @@ public class CreateMapController {
     }
 
     private Direction getDirection(String direction) {
-        return switch (direction) {
-            case "n" -> Direction.UP;
-            case "e" -> Direction.RIGHT;
-            case "w" -> Direction.LEFT;
-            default -> Direction.DOWN;
-        };
+        switch (direction) {
+            case "n":
+                return Direction.UP;
+            case "e":
+                return Direction.RIGHT;
+            case "w":
+                return Direction.LEFT;
+            default:
+                return Direction.DOWN;
+        }
     }
 
     private String randomDirection() {
         int direct = (int) (Math.random() * 4);
-        return switch (direct) {
-            case 0 -> "n";
-            case 1 -> "e";
-            case 2 -> "w";
-            default -> "s";
-        };
+        switch (direct) {
+            case 0:
+                return "n";
+            case 1:
+                return "e";
+            case 2:
+                return "w";
+            default:
+                return "s";
+        }
     }
 
     public CreateMapMessages dropTree(int x, int y, String type) {
@@ -263,5 +315,30 @@ public class CreateMapController {
             return CreateMapMessages.FEW_KINGDOM;
         AppController.setCurrentMenu(MenusName.MAIN_MENU);
         return CreateMapMessages.SUCCESS;
+    }
+
+    public void saveMap() {
+        String directory;
+        if (new File("").getAbsolutePath().endsWith("Stronghold")) directory = "../";
+        else directory = "./";
+
+        File saveMap = new File(directory + "map.json");
+        File saveUsers = new File(directory + "users.json");
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+
+        try {
+            FileWriter fileWriterMap = new FileWriter(saveMap.getAbsolutePath());
+            FileWriter fileWriterUsers = new FileWriter(saveUsers.getAbsolutePath());
+            fileWriterMap.write(gson.toJson(map));
+            fileWriterMap.flush();
+            fileWriterUsers.write(gson.toJson(null));
+            fileWriterUsers.flush();
+        } catch (IOException e) {
+            System.out.println("save failed");
+            e.printStackTrace();
+        }
     }
 }

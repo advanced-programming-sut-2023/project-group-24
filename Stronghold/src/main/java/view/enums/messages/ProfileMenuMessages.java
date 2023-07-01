@@ -16,5 +16,6 @@ public enum ProfileMenuMessages {
     NON_SMALL_PASSWORD,
     INVALID_EMAIL_FORMAT,
     EMPTY_SLOGAN,
-    DUPLICATE_EMAIL
+    DUPLICATE_EMAIL,
+    NO_CHANGES
 }
