@@ -1,0 +1,11 @@
+sourceCompatibility = 17
+dependencies {
+    implementation 'cn.nikeo.jsonBuilder:jsonBuilder:0.2.0'
+    implementation 'com.solidfire.code.gson:gson:2.6.2'
+    implementation 'commons-io:commons-io:2.11.0'
+}
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+//eclipse.project.name = appName + "-core"
