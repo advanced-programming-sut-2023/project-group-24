@@ -35,6 +35,7 @@ public class ChatMenuController extends Control {
     public VBox messageContainer;
     public Label chatName;
     public TextField privateChat;
+    public TextField room;
 
     private ChatController chatController;
 
@@ -111,5 +112,9 @@ public class ChatMenuController extends Control {
 
     public void newPrivateChat() {
         if (chatController.newPrivateChat(privateChat.getText())) update();
+    }
+
+    public void newRoom() {
+        if (chatController.newRoom(privateChat.getText().split("-"))) update();
     }
 }

@@ -8,10 +8,7 @@ import javafx.stage.Stage;
 import model.Packet;
 import model.User;
 import model.UserInfo;
-import model.chat.Chat;
-import model.chat.Message;
-import model.chat.PrivateChat;
-import model.chat.Reaction;
+import model.chat.*;
 import model.databases.ChatDatabase;
 import model.databases.Database;
 import view.controls.Control;
@@ -30,6 +27,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class AppController {
     private static final String HOST = "localhost";
@@ -97,12 +95,20 @@ public class AppController {
                         break;
                     }
                 reactMessage.getReactions().add(new Reaction(packet.getArgs()[3], Integer.parseInt(packet.getArgs()[2])));
+                break;
             case "new private chat":
                 User friend = database.getUserByUsername(packet.getArgs()[1]);
                 User currentUser = database.getUserByUsername(packet.getArgs()[0]);
                 PrivateChat privateChat = new PrivateChat(
                         currentUser.getUsername() + ":" + friend.getUsername(), currentUser, friend);
                 chatDatabase.getPrivateChats().add(privateChat);
+                break;
+            case "new room":
+                Vector<User> users = new Vector<>();
+                String[] args = packet.getArgs();
+                for (int i = 0; i < args.length - 1; i++) users.add(database.getUserByUsername(args[1 + i]));
+                chatDatabase.getRooms().add(new Room(args[0], users));
+                break;
         }
     }
 

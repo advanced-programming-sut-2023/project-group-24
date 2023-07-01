@@ -6,10 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import model.Packet;
 import model.User;
-import model.chat.Chat;
-import model.chat.Message;
-import model.chat.PrivateChat;
-import model.chat.Reaction;
+import model.chat.*;
 import model.databases.ChatDatabase;
 import model.databases.Database;
 import view.enums.messages.CommonMessages;
@@ -17,6 +14,7 @@ import view.modelview.MessageBox;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class ChatController implements Controller {
@@ -61,11 +59,6 @@ public class ChatController implements Controller {
             packet = new Packet("chat", "send message",
                     new String[]{((PrivateChat) currentChat).getId(currentUser)}, message);
         else packet = new Packet("chat", "send message", new String[]{currentChat.getId()}, message);
-        System.out.println(packet.getArgs()[0]);
-        System.out.println(currentChat.getClass());
-        System.out.println(currentChat.getId());
-        System.out.println(currentChat instanceof PrivateChat);
-        System.out.println(((PrivateChat) currentChat).getId(currentUser));
         ioHandler.sendPacket(packet);
     }
 
@@ -133,5 +126,18 @@ public class ChatController implements Controller {
     public void selectChat(String chat) {
         Chat selectedChat = chatDatabase.getChatById(currentUser, chat);
         if (selectedChat != null) currentChat = selectedChat;
+    }
+
+    public boolean newRoom(String[] args) {
+        Vector<User> users = new Vector<>();
+        for (int i = 0; i < args.length - 1; i++) {
+            users.add(database.getUserByUsername(args[1 + i]));
+            if (users.get(i) == null) return false;
+        }
+        if (chatDatabase.getChatById(args[0]) != null) return false;
+        chatDatabase.getRooms().add(new Room(args[0], users));
+        Packet packet = new Packet("chat", "new room", args, "");
+        ioHandler.sendPacket(packet);
+        return true;
     }
 }

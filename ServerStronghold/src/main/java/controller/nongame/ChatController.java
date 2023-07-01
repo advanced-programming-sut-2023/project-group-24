@@ -4,10 +4,7 @@ import controller.Controller;
 import javafx.scene.image.Image;
 import model.Packet;
 import model.User;
-import model.chat.Chat;
-import model.chat.Message;
-import model.chat.PrivateChat;
-import model.chat.Reaction;
+import model.chat.*;
 import model.databases.ChatDatabase;
 import model.databases.Database;
 
@@ -57,7 +54,6 @@ public class ChatController implements Controller {
         Message message;
         switch (packet.getSubject()) {
             case "send message":
-                System.out.println(packet.getArgs()[0]);
                 currentChat = chatDatabase.getChatById(currentUser, packet.getArgs()[0]);
                 sendMessage(packet.getValue());
                 Packet packet1;
@@ -101,8 +97,15 @@ public class ChatController implements Controller {
                 PrivateChat privateChat = new PrivateChat(
                         currentUser.getUsername() + ":" + user.getUsername(), currentUser, user);
                 chatDatabase.getPrivateChats().add(privateChat);
-                System.out.println("added the private chat");
                 sendDataToAllSockets(packet);
+                break;
+            case "new room":
+                Vector<User> users = new Vector<>();
+                String[] args = packet.getArgs();
+                for (int i = 0; i < args.length - 1; i++) users.add(database.getUserByUsername(args[1 + i]));
+                chatDatabase.getRooms().add(new Room(args[0], users));
+                sendDataToAllSockets(packet);
+                break;
         }
     }
 

@@ -20,8 +20,9 @@
                 <Button maxWidth="25" maxHeight="25" minWidth="25" minHeight="25" styleClass="new" onMouseClicked="#newPrivateChat"/>
             </HBox>
             <HBox spacing="5" alignment="CENTER">
-                <TextField minWidth="140" maxWidth="140" promptText="new room" minHeight="30"/>
-                <Button maxWidth="25" maxHeight="25" minWidth="25" minHeight="25" styleClass="new"/>
+                <TextField minWidth="140" maxWidth="140" promptText="new room" minHeight="30" fx:id="room"/>
+                <Button maxWidth="25" maxHeight="25" minWidth="25" minHeight="25" styleClass="new"
+                        onMouseClicked="#newRoom"/>
             </HBox>
             <VBox minWidth="180" fx:id="chatsContainer"/>
         </VBox>
