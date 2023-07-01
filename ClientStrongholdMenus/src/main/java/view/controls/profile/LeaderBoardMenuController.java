@@ -3,12 +3,15 @@ package view.controls.profile;
 import controller.ControllersName;
 import controller.nongame.LeaderBoardController;
 import controller.nongame.ProfileController;
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.ScrollEvent;
+import model.Packet;
 import view.controls.Control;
 import view.modelview.LeaderBoardTable;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class LeaderBoardMenuController extends Control {
@@ -33,7 +36,12 @@ public class LeaderBoardMenuController extends Control {
 
     @Override
     public PropertyChangeListener listener() {
-        return null;
+        return evt -> Platform.runLater(this::update);
+    }
+
+    private void update() {
+        leaderBoardController.update();
+        leaderBoardContent.show(leaderBoardController.showTenUsers());
     }
 
     private void handleScroll(ScrollEvent scrollEvent) {

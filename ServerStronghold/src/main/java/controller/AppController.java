@@ -1,6 +1,8 @@
 package controller;
 
+import controller.network.CommandHandler;
 import controller.network.NodeController;
+import model.User;
 import model.databases.ChatDatabase;
 import model.databases.Database;
 import org.w3c.dom.Node;
@@ -32,6 +34,9 @@ public class AppController {
 
     public void start() {
         sockets = new ArrayList<>();
+        CommandHandler commandHandler = new CommandHandler(database, sockets);
+        commandHandler.start();
+        for (User user : database.getAllUsers()) user.setOnline(false);
         while (true) {
             try {
                 Socket socket = serverSocket.accept();

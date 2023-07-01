@@ -148,6 +148,9 @@ public class AppController {
             case "remove slogan":
                 database.getUserByUsername(packet.getArgs()[0]).setSlogan(null);
                 break;
+            case "set highscore":
+                database.getUserByUsername(packet.getArgs()[0]).setHighScore(Integer.parseInt(packet.getValue()));
+                break;
             case "set avatar":
                 database.getUserByUsername(packet.getArgs()[0]).setCurrentAvatar(Integer.parseInt(packet.getValue()));
                 break;
