@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.controls.login.SecurityQuestionConfirmMenuController"
+            styleClass="pop-up-menu"
+            stylesheets="@../../CSS/menu-style.css"
+            prefHeight="330.0" prefWidth="250.0" maxHeight="330" minHeight="330">
+    <top>
+        <VBox alignment="TOP_CENTER" spacing="10">
+            <TextField promptText="username" minHeight="30" maxWidth="200" minWidth="200" alignment="CENTER"
+                       fx:id="usernameField" styleClass="dark-text-field"/>
+            <VBox alignment="TOP_CENTER" fx:id="questionPane">
+                <Label text="What is your father's name?" fx:id="question"/>
+                <TextField promptText="answer" minHeight="30" maxWidth="200" minWidth="200" alignment="CENTER"
+                           fx:id="answerField" styleClass="dark-text-field"/>
+                <Label styleClass="error" fx:id="error"/>
+            </VBox>
+        </VBox>
+    </top>
+
+    <bottom>
+        <VBox alignment="BOTTOM_CENTER" spacing="10">
+            <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="confirm" onMouseClicked="#confirm"
+                    fx:id="confirm"/>
+            <Button prefWidth="210" prefHeight="30" styleClass="menu-button" text="cancel" onMouseClicked="#cancel"
+                    fx:id="cancel"/>
+        </VBox>
+    </bottom>
+
+    <padding>
+        <Insets top="15" right="15" left="15" bottom="15"/>
+    </padding>
+</BorderPane>

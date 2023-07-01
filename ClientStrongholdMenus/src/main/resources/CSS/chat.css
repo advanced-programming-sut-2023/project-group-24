@@ -1,0 +1,174 @@
+@font-face {
+    font-family: "Noto Emoji";
+    src: url("../fonts/NotoEmoji.ttf");
+}
+
+.main-container {
+	-fx-background-color: #1a1921;
+	-fx-text-fill: white;
+}
+
+.scroll-bar {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-bar:vertical {
+	-fx-pref-width: 9px;
+	/*-fx-padding: 3;*/
+}
+
+.scroll-bar:vertical .track {
+    -fx-background: transparent;
+	-fx-background-color: transparent;
+	-fx-background-radius: 0;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background: transparent;
+	-fx-background-color: #412ea3aa;
+	-fx-background-radius: 0;
+	-fx-max-width: 2;
+}
+
+.scroll-bar:vertical *.increment-arrow .content, 
+.scroll-bar:vertical *.decrement-arrow .content {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-bar:vertical *.increment-arrow, 
+.scroll-bar:vertical *.decrement-arrow {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+	-fx-display: none;
+	-fx-padding: 0 0 0 0;
+}
+
+
+.scroll-bar:vertical *.increment-button,
+.scroll-bar:vertical *.decrement-button {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+	-fx-display: none;
+	-fx-background-insets: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+	-fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+}
+
+.scroll-pane .corner {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane {
+	-fx-background-color: #1d1930;
+    -fx-background: #1d1930;
+    -fx-border-color: #412ea355;
+}
+
+.message-container {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: #412ea355;
+}
+
+.scroll-pane .content {
+	/*-fx-background: transparent;*/
+}
+
+.scroll-pane > .viewport {
+   /*-fx-background: transparent;*/
+}
+
+.chat-box {
+	-fx-background-color: transparent;
+	-fx-font-size: 20;
+	-fx-font-family: "Noto Emoji", sans-serif;
+	-fx-text-fill: white;
+	-fx-border-width: 1;
+	-fx-border-color: white;
+	-fx-font-weight: 500;
+}
+
+.chat-name {
+	-fx-background-color: #241f3b;
+	-fx-font-size: 25;
+}
+
+.chat-name .label {
+	-fx-text-fill: white;
+	-fx-font-weight: 600;
+}
+
+.send-container {
+	-fx-background-color: #2b2936;
+}
+
+.text-area .content {
+	-fx-background-color: transparent;
+	-fx-border-width: 0.5 0.5 1 0.5;
+	-fx-border-color: #1a1921;
+	-fx-text-fill: white;
+}
+
+.text-area {
+	-fx-text-fill: white;
+}
+
+.text-field {
+	-fx-background-color: #2b2936;
+	-fx-border-width: 0.5 0.5 1 0.5;
+	-fx-border-color: #1a1921;
+	-fx-text-fill: white;
+}
+
+.send-button {
+	-fx-background-color: transparent;
+	-fx-background-image: url("../images/menus/send.png");
+    -fx-background-size: stretch;
+}
+
+.edit {
+	-fx-background-color: transparent;
+	-fx-background-image: url("../images/menus/edit-message.png");
+    -fx-background-size: stretch;
+}
+
+.delete-for-me {
+	-fx-background-color: transparent;
+	-fx-background-image: url("../images/menus/cross.png");
+    -fx-background-size: stretch;
+}
+
+.delete-for-all {
+	-fx-background-color: transparent;
+	-fx-background-image: url("../images/menus/delete.png");
+    -fx-background-size: stretch;
+}
+
+.new {
+	-fx-background-color: transparent;
+	-fx-background-image: url("../images/menus/add.png");
+    -fx-background-size: stretch;
+}
+
+.message-box {
+	/*-fx-background-color: blue;*/
+	-fx-text-fill: white;
+	-fx-font-size: 16;
+	-fx-padding: 3 3 3 3;
+}
+
+.message-box > .text {
+	-fx-text-fill: white;
+}
+
+.emoji {
+	-fx-font-family: "Noto Emoji";
+	-fx-text-fill: white;
+}
+
+.text {
+	-fx-text-fill: white;
+}
