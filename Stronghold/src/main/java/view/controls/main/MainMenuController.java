@@ -11,11 +11,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import view.controls.Control;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Objects;
-
 public class MainMenuController extends Control {
     public Text title;
     public Button enterGame;
@@ -43,11 +38,13 @@ public class MainMenuController extends Control {
 
     @Override
     public void run() {
-        profileMenu.getStyleClass().add("large-font");
-        enterGame.getStyleClass().add("large-font");
-        createMap.getStyleClass().add("large-font");
-        exit.getStyleClass().add("large-font");
-        title.getStyleClass().add("huge-font");
+        Font huge = Font.loadFont(getClass().getResource("/fonts/Seagram.ttf").toExternalForm(), 70);
+        Font large = Font.loadFont(getClass().getResource("/fonts/Seagram.ttf").toExternalForm(), 30);
+        profileMenu.setFont(large);
+        enterGame.setFont(large);
+        createMap.setFont(large);
+        exit.setFont(large);
+        title.setFont(huge);
         title.setFill(Color.FIREBRICK);
         title.setStrokeWidth(0.2);
         title.setStroke(Color.BLACK);

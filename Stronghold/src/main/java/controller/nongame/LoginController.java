@@ -38,6 +38,8 @@ public class LoginController implements Controller {
         }
         numberOfIncorrectPassword = 0;
         if (stayLoggedIn) database.setStayedLoggedInUser(user);
+        AppController.setLoggedInUser(user);
+        AppController.setCurrentMenu(MenusName.MAIN_MENU);
         return LoginMenuMessages.SUCCESS;
     }
 

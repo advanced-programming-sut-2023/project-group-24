@@ -63,8 +63,6 @@ public class EnterMapController implements Controller {
             fileWriterMap.flush();
             fileWriterUsers.write(gson.toJson(users));
             fileWriterUsers.flush();
-            ProcessBuilder builder = new ProcessBuilder("run game.bat");
-            builder.start();
             return true;
         } catch (IOException e) {
             System.out.println("save failed");

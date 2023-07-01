@@ -44,7 +44,6 @@ public class CreateMapMenuController extends Control {
 
     private void success() {
         //TODO a loading page and connection to create map section
-        createMapController.saveMap();
         getStage().close();
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Building {
     private transient final Kingdom kingdom;
-    private final Cell location;
+    private transient final Cell location;
     private final BuildingType buildingType;
     private int hp;
     private int burnCounter;

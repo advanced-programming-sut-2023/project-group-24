@@ -4,7 +4,8 @@
 }
 
 BorderPane {
-	-fx-font-size: 20;
+    -fx-font-family: 'Seagram%20tfb', serif;
+    -fx-font-size: 20;
     -fx-font-family: "Seagram tfb";
     /*-fx-background-size: cover;*/
 }
@@ -366,12 +367,4 @@ BorderPane {
 #random-password {
 	-fx-background-image: url("../images/login/random-password.png");
     -fx-background-size: stretch;
-}
-
-.large-font {
-	-fx-font-size: 30;
-}
-
-.huge-font {
-	-fx-font-size: 70;
 }

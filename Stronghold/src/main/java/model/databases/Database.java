@@ -18,7 +18,10 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,7 +39,7 @@ public class Database {
         loadDataFromFile();
     }
 
-    private synchronized static String fileToString(String filePath) throws FileNotFoundException {
+    private static String fileToString(String filePath) throws FileNotFoundException {
         File file = new File(filePath);
         Scanner scanner = new Scanner(file);
         StringBuilder builder = new StringBuilder();
@@ -45,7 +48,7 @@ public class Database {
         return builder.toString();
     }
 
-    private synchronized static void saveObjectToFile(String filePath, Object object) {
+    private static void saveObjectToFile(String filePath, Object object) {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
@@ -78,16 +81,16 @@ public class Database {
     }
 
     public Vector<User> getAllUsersByRank() {
-        Vector<User> users = new Vector<>(allUsers);
-        Collections.sort(users);
-        return users;
+        Collections.sort(allUsers);
+        return allUsers;
     }
 
-    public synchronized void loadDataFromFile() {
+    public void loadDataFromFile() {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
-        Type allUsersType = new TypeToken<Vector<User>>() {}.getType();
+        Type allUsersType = new TypeToken<Vector<User>>() {
+        }.getType();
 
         try {
             allUsers = gson.fromJson(fileToString(FILE_TO_SAVE_ALL_USERS), allUsersType);
@@ -101,40 +104,40 @@ public class Database {
         if (allUsers == null) allUsers = new Vector<>();
     }
 
-    public synchronized void saveDataIntoFile() {
+    public void saveDataIntoFile() {
         try {
             checkForSavingDirectory();
             saveObjectToFile(FILE_TO_SAVE_ALL_USERS, allUsers);
             saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
-            if (maps.size() > 0) saveObjectToFile(FILE_TO_SAVE_A_MAP, maps.get(0));
+            saveObjectToFile(FILE_TO_SAVE_A_MAP, maps.get(0));
         } catch (IOException ignored) {
             System.out.println("error");
         }
     }
 
-    private synchronized void checkForSavingDirectory() throws IOException {
+    private void checkForSavingDirectory() throws IOException {
         File directory = new File(DIRECTORY_TO_SAVE_INFO);
         if (directory.mkdirs()) throw new IOException("couldn't make directory");
     }
 
-    public synchronized User getUserByUsername(String username) {
+    public User getUserByUsername(String username) {
         if (allUsers == null) return null;
         for (User user : allUsers) if (user.getUsername().equals(username)) return user;
         return null;
     }
 
-    public synchronized void addUser(String username, String password,
+    public void addUser(String username, String password,
                         String nickname, String slogan, String email,
                         Pair<Integer, String> recovery) {
         User newUser = new User(username, password, nickname, slogan, email, recovery);
         allUsers.add(newUser);
     }
 
-    public synchronized void addUser(User user) {
+    public void addUser(User user) {
         allUsers.add(user);
     }
 
-    public synchronized Map getMapById(String id) {
+    public Map getMapById(String id) {
         for (Map map : maps) {
             if (map.getId().equals(id))
                 return map;
@@ -142,18 +145,18 @@ public class Database {
         return null;
     }
 
-    public synchronized void addMap(Map map) {
+    public void addMap(Map map) {
         maps.add(map);
     }
 
-    public synchronized boolean mapIdExists(String id) {
+    public boolean mapIdExists(String id) {
         for (Map map : maps) {
             if (map.getId().equals(id)) return true;
         }
         return false;
     }
 
-    public synchronized String[] getAvatarsPathsForUser(User user) {
+    public String[] getAvatarsPathsForUser(User user) {
         File path = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars");
         if (path.mkdirs()) return new String[0];
         File[] files = path.listFiles();
@@ -171,7 +174,7 @@ public class Database {
         }
     }
 
-    public synchronized String getCurrentAvatarPath(User user) {
+    public String getCurrentAvatarPath(User user) {
         File path = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars");
         File pic = new File(path.getAbsoluteFile() + "/0.png");
         if (path.mkdirs() || !pic.exists()) {
@@ -194,7 +197,7 @@ public class Database {
         }
     }
 
-    public synchronized void addAvatarPicture(User user, String path) {
+    public void addAvatarPicture(User user, String path) {
         File dir = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars");
         File dest = new File(dir.getAbsolutePath() + "/" + Objects.requireNonNull(dir.listFiles()).length +
                 ".png");
@@ -205,11 +208,11 @@ public class Database {
         }
     }
 
-    public synchronized void setCurrentAvatar(User user, URI path) {
+    public void setCurrentAvatar(User user, URI path) {
         setCurrentAvatar(user, new File(path));
     }
 
-    public synchronized void setCurrentAvatar(User user, File path) {
+    public void setCurrentAvatar(User user, File path) {
         File dest = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars" +
                 "/0.png");
         if (dest.exists()) if (!dest.delete()) return;
@@ -220,20 +223,20 @@ public class Database {
         }
     }
 
-    public synchronized int getAvatarNumber(User user) {
+    public int getAvatarNumber(User user) {
         File path = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars");
         File current = new File(path.getAbsolutePath() + "/0.png");
 
         return getAvatarNumber(path, current);
     }
 
-    public synchronized int getAvatarNumber(User user, File target) {
+    public int getAvatarNumber(User user, File target) {
         File path = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(user) + "/avatars");
 
         return getAvatarNumber(path, target);
     }
 
-    private synchronized int getAvatarNumber(File path, File target) {
+    private int getAvatarNumber(File path, File target) {
         try {
             for (int i = 1; i < Objects.requireNonNull(path.listFiles()).length; i++) {
                 if (FileUtils.contentEquals(new File(path.getAbsolutePath() + "/" + i + ".png"), target))
@@ -245,7 +248,7 @@ public class Database {
         return -1;
     }
 
-    public synchronized void copyAvatar(User to, User from) {
+    public void copyAvatar(User to, User from) {
         File path = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(to) + "/avatars");
         File current = new File(path.getAbsolutePath() + "/0.png");
         File nextAvatar = new File(DIRECTORY_TO_SAVE_INFO + "/allUsers/" + allUsers.indexOf(from) +

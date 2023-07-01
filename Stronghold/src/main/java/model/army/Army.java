@@ -15,7 +15,7 @@ public abstract class Army {
     private Army target;
     private Cell targetCell;
     private Building targetBuilding;
-    private Cell location;
+    private transient Cell location;
     private UnitState unitState;
     private int hp;
 

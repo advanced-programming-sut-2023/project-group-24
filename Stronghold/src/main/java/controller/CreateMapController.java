@@ -1,9 +1,6 @@
 package controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import controller.functionalcontrollers.Pair;
-import controller.nongame.EnterMapController;
 import model.Kingdom;
 import model.army.*;
 import model.buildings.Building;
@@ -20,10 +17,6 @@ import model.map.Texture;
 import model.map.Tree;
 import view.enums.messages.CreateMapMessages;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 public class CreateMapController implements Controller {
     private final Database database;
     private Map map;
@@ -39,35 +32,7 @@ public class CreateMapController implements Controller {
         map = new Map(size, id);
         database.addMap(map);
         newKingdom(1, 1, "red");
-        newKingdom(48, 48, "blue");
-        newKingdom(1, 48, "yellow");
-        setCurrentKingdom("red");
-        dropBuilding(2, 2, "barracks");
-        dropBuilding(2, 3, "mercenary post");
-        setTexture(3, 3, 46, 46, "grass");
-        dropBuilding(3, 3, "wheat farmer");
-        dropBuilding(3, 2, "shop farmer");
-        dropBuilding(2, 4, "wood cutter");
-        dropUnit(4, 4, "fire thrower", 5);
-        dropUnit(3, 4, "archer", 3);
-        setCurrentKingdom("blue");
-        dropBuilding(47, 47, "barracks");
-        dropBuilding(47, 46, "mercenary post");
-        setTexture(0, 20, 49, 25, "river");
-        dropBuilding(46, 46, "wheat farmer");
-        dropBuilding(46, 47, "shop farmer");
-        dropBuilding(47, 45, "wood cutter");
-        dropUnit(45, 45, "fire thrower", 5);
-        dropUnit(46, 45, "archer", 3);
-        setCurrentKingdom("yellow");
-        dropBuilding(2, 47, "barracks");
-        dropBuilding(2, 46, "mercenary post");
-        setTexture(20, 0, 25, 49, "river");
-        dropBuilding(3, 46, "wheat farmer");
-        dropBuilding(3, 47, "shop farmer");
-        dropBuilding(2, 45, "wood cutter");
-        dropUnit(4, 45, "fire thrower", 5);
-        dropUnit(3, 45, "archer", 3);
+        newKingdom(2, 2, "blue");
         return CreateMapMessages.SUCCESS;
     }
 
@@ -315,30 +280,5 @@ public class CreateMapController implements Controller {
             return CreateMapMessages.FEW_KINGDOM;
         AppController.setCurrentMenu(MenusName.MAIN_MENU);
         return CreateMapMessages.SUCCESS;
-    }
-
-    public void saveMap() {
-        String directory;
-        if (new File("").getAbsolutePath().endsWith("Stronghold")) directory = "../";
-        else directory = "./";
-
-        File saveMap = new File(directory + "map.json");
-        File saveUsers = new File(directory + "users.json");
-
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setPrettyPrinting();
-        Gson gson = gsonBuilder.create();
-
-        try {
-            FileWriter fileWriterMap = new FileWriter(saveMap.getAbsolutePath());
-            FileWriter fileWriterUsers = new FileWriter(saveUsers.getAbsolutePath());
-            fileWriterMap.write(gson.toJson(map));
-            fileWriterMap.flush();
-            fileWriterUsers.write(gson.toJson(null));
-            fileWriterUsers.flush();
-        } catch (IOException e) {
-            System.out.println("save failed");
-            e.printStackTrace();
-        }
     }
 }

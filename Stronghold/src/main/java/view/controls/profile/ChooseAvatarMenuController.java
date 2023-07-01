@@ -47,7 +47,7 @@ public class ChooseAvatarMenuController extends Control {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG Images", "*.png"));
         File file = fileChooser.showOpenDialog(getStage());
-        if (file != null) profileController.addAvatar(file.getAbsolutePath());
+        profileController.addAvatar(file.getAbsolutePath());
         updateScrollContent();
     }
 
