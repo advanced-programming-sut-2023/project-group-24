@@ -22,7 +22,7 @@ public class Message {
         this.message = message;
         this.reactions = new Vector<>();
         this.isSeen = false;
-        this.isSent = true;
+        this.isSent = false;
         this.bannedList = new Vector<>();
         this.isRemoved = false;
     }
@@ -61,6 +61,10 @@ public class Message {
 
     public void setSeen(boolean seen) {
         isSeen = seen;
+    }
+
+    public void setSent(boolean sent) {
+        isSent = sent;
     }
 
     public void addToBannedList(User user) {

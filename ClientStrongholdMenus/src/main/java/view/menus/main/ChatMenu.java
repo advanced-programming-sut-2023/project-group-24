@@ -4,6 +4,7 @@ import controller.AppController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -36,8 +37,8 @@ public class ChatMenu extends Application {
         Scene scene = new Scene(pane);
         scene.setFill(Color.TRANSPARENT);
         dialog.setScene(scene);
-        System.out.println("hi");
-        dialog.setTitle("chat");
+        dialog.setTitle("Literally Telegram");
+        dialog.getIcons().add(new Image(getClass().getResource("/images/icons/telegram.png").toExternalForm()));
         dialog.show();
     }
 }

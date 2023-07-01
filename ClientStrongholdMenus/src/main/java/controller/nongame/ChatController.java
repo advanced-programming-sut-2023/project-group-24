@@ -35,6 +35,16 @@ public class ChatController implements Controller {
     public Vector<Message> readAllMessages() {
         if (currentChat == null) return null;
         currentChat.readMessages(currentUser);
+        Packet packet;
+        if (currentChat instanceof PrivateChat)
+            packet = new Packet("chat", "read", new String[]{((PrivateChat) currentChat).getId(currentUser)}, "");
+        else packet = new Packet("chat", "read", new String[]{currentChat.getId()}, "");
+        ioHandler.sendPacket(packet);
+        return readWithoutSeeing();
+    }
+
+    public Vector<Message> readWithoutSeeing() {
+        if (currentChat == null) return null;
         Vector<Message> messages = new Vector<>();
         for (Message message : currentChat.getMessages())
             if (!message.toString(currentUser).equals(""))
@@ -60,6 +70,7 @@ public class ChatController implements Controller {
                     new String[]{((PrivateChat) currentChat).getId(currentUser)}, message);
         else packet = new Packet("chat", "send message", new String[]{currentChat.getId()}, message);
         ioHandler.sendPacket(packet);
+        message1.setSent(true);
     }
 
     public String getChatName() {
@@ -83,7 +94,8 @@ public class ChatController implements Controller {
     public void deleteForMe(Message message) {
         message.addToBannedList(currentUser);
         Packet packet = new Packet("chat", "delete for me",
-                new String[]{String.valueOf(currentChat.getMessages().indexOf(message)), currentChat.getId()}, "");
+                new String[]{String.valueOf(currentChat.getMessages().indexOf(message)), currentChat.getId(),
+                        currentUser.getUsername()}, "");
         ioHandler.sendPacket(packet);
     }
 
@@ -130,13 +142,14 @@ public class ChatController implements Controller {
 
     public boolean newRoom(String[] args) {
         Vector<User> users = new Vector<>();
-        for (int i = 0; i < args.length - 1; i++) {
-            users.add(database.getUserByUsername(args[1 + i]));
+        users.add(currentUser);
+        for (int i = 1; i < args.length; i++) {
+            users.add(database.getUserByUsername(args[i]));
             if (users.get(i) == null) return false;
         }
         if (chatDatabase.getChatById(args[0]) != null) return false;
         chatDatabase.getRooms().add(new Room(args[0], users));
-        Packet packet = new Packet("chat", "new room", args, "");
+        Packet packet = new Packet("chat", "new room", args, currentUser.getUsername());
         ioHandler.sendPacket(packet);
         return true;
     }

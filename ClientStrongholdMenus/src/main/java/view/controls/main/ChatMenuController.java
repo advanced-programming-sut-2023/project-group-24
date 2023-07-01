@@ -51,7 +51,33 @@ public class ChatMenuController extends Control {
             Packet packet = ((Packet) evt.getNewValue());
             if (packet.getTopic().equals("chat") && !packet.getSubject().equals("read"))
                 Platform.runLater(this::update);
+            if (packet.getTopic().equals("chat") && packet.getSubject().equals("read"))
+                Platform.runLater(this::updateWithoutSeeing);
         };
+    }
+
+    private void updateWithoutSeeing() {
+        chatName.setText(chatController.getChatName());
+        Vector<Message> messages = chatController.readWithoutSeeing();
+        if (messages == null) return;
+        messageContainer.getChildren().clear();
+        chatsContainer.getChildren().clear();
+        for (Message message : messages) {
+            MessageBox messageBox = chatController.getMessageBox(message);
+            messageContainer.getChildren().add(messageBox);
+            messageBox.getEdit().setOnMouseClicked(mouseEvent -> edit(message));
+            messageBox.getDeleteForMe().setOnMouseClicked(mouseEvent -> deleteForMe(message));
+            messageBox.getDeleteForAll().setOnMouseClicked(mouseEvent -> deleteForAll(message));
+            messageBox.getLaughing().setOnMouseClicked(mouseEvent -> react(message, 1));
+            messageBox.getCrying().setOnMouseClicked(mouseEvent -> react(message, 2));
+            messageBox.getHeart().setOnMouseClicked(mouseEvent -> react(message, 3));
+        }
+        for (Chat chat : chatController.getAllChats()) {
+            ChatBox chatBox = new ChatBox(chatController.getChatName(chat));
+            chatsContainer.getChildren().add(chatBox);
+            chatBox.setOnMouseClicked(mouseEvent -> selectChat(chatBox.getText()));
+        }
+        messageScrollPane.setVvalue(1);
     }
 
     private void update() {
@@ -115,6 +141,6 @@ public class ChatMenuController extends Control {
     }
 
     public void newRoom() {
-        if (chatController.newRoom(privateChat.getText().split("-"))) update();
+        if (chatController.newRoom(room.getText().split("\\-"))) update();
     }
 }

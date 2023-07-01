@@ -16,6 +16,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MessageBox extends HBox {
+    private static final Image SEEN =
+            new Image(MessageBox.class.getResource("/images/menus/seen.png").toExternalForm());
+    private static final Image SENT =
+            new Image(MessageBox.class.getResource("/images/menus/sent.png").toExternalForm());
+
     private Message message;
     private int laughingReactions;
     private int cryingReactions;
@@ -142,7 +147,13 @@ public class MessageBox extends HBox {
         senderContainer.setMinWidth(50);
         Text date = new Text(String.format("%02d:%02d", message.getHour(), message.getMinute()));
         date.setFill(Color.WHITE);
-        HBox dateContainer = new HBox(date);
+        ImageView seenSit = new ImageView();
+        if (message.isSeen()) seenSit.setImage(SEEN);
+        else if (message.isSent()) seenSit.setImage(SENT);
+        else seenSit.setImage(null);
+        seenSit.setFitWidth(20);
+        seenSit.setFitHeight(20);
+        HBox dateContainer = new HBox(seenSit, date);
         dateContainer.setAlignment(Pos.CENTER_RIGHT);
         HBox top = new HBox(senderContainer, dateContainer);
         left.getChildren().add(senderContainer);

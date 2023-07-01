@@ -71,6 +71,11 @@ public class AppController {
 
     private void handleChatCommand(Packet packet) {
         switch (packet.getSubject()) {
+            case "read":
+                System.out.println("entered here");
+                Chat chat1 = chatDatabase.getChatById(database.getUserByUsername(packet.getArgs()[0]), packet.getArgs()[1]);
+                chat1.readMessages(database.getUserByUsername(packet.getArgs()[0]));
+                break;
             case "send message":
                 Chat chat = chatDatabase.getChatById(database.getUserByUsername(packet.getArgs()[0]), packet.getArgs()[1]);
                 LocalDateTime now = LocalDateTime.now();
@@ -105,6 +110,7 @@ public class AppController {
                 break;
             case "new room":
                 Vector<User> users = new Vector<>();
+                users.add(database.getUserByUsername(packet.getValue()));
                 String[] args = packet.getArgs();
                 for (int i = 0; i < args.length - 1; i++) users.add(database.getUserByUsername(args[1 + i]));
                 chatDatabase.getRooms().add(new Room(args[0], users));
