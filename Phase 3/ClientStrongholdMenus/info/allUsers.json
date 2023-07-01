@@ -1,0 +1,57 @@
+[
+  {
+    "recovery": {
+      "object1": 1,
+      "object2": "346df894ad90d4744f027f367b5cda3fd4b4853e28db76d752ade1172262e3a0"
+    },
+    "username": "omid",
+    "password": "9f9099760b8c9ca2d0a158069f2b6ceb56b887b07e85d2f29173e1aab08abeef",
+    "nickname": "Omid#2004",
+    "email": "efaw@gafd,.com",
+    "highScore": 0,
+    "isOnline": false,
+    "lastSession": {
+      "hour": 2,
+      "minute": 9,
+      "day": 2,
+      "month": 7,
+      "year": 2023
+    },
+    "currentAvatar": 0,
+    "friends": [
+      {
+        "requesterName": "omid",
+        "accepterName": "aref",
+        "accept": false
+      }
+    ]
+  },
+  {
+    "recovery": {
+      "object1": 1,
+      "object2": "18ac3e7343f016890c510e93f935261169d9e3f565436429830faf0934f4f8e4"
+    },
+    "username": "aref",
+    "password": "9f9099760b8c9ca2d0a158069f2b6ceb56b887b07e85d2f29173e1aab08abeef",
+    "nickname": "rf",
+    "slogan": "",
+    "email": "agas@f,c",
+    "highScore": 0,
+    "isOnline": true,
+    "lastSession": {
+      "hour": 2,
+      "minute": 24,
+      "day": 2,
+      "month": 7,
+      "year": 2023
+    },
+    "currentAvatar": 0,
+    "friends": [
+      {
+        "requesterName": "omid",
+        "accepterName": "aref",
+        "accept": false
+      }
+    ]
+  }
+]

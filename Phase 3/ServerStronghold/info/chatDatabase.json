@@ -1,0 +1,280 @@
+{
+  "users": [],
+  "publicChat": {
+    "id": "Public Chat",
+    "messages": [
+      {
+        "senderUsername": "aref",
+        "hour": 23,
+        "minute": 36,
+        "message": "hi",
+        "reactions": [],
+        "isSeen": false,
+        "isSent": true,
+        "bannedList": [
+          "omid"
+        ],
+        "isRemoved": false
+      },
+      {
+        "senderUsername": "omid",
+        "hour": 23,
+        "minute": 38,
+        "message": "ok",
+        "reactions": [
+          {
+            "reactorUsername": "omid",
+            "reactionValue": 2
+          }
+        ],
+        "isSeen": false,
+        "isSent": true,
+        "bannedList": [],
+        "isRemoved": true
+      },
+      {
+        "senderUsername": "aref",
+        "hour": 23,
+        "minute": 42,
+        "message": "hiiiii",
+        "reactions": [],
+        "isSeen": false,
+        "isSent": true,
+        "bannedList": [],
+        "isRemoved": true
+      },
+      {
+        "senderUsername": "aref",
+        "hour": 23,
+        "minute": 42,
+        "message": "hello",
+        "reactions": [
+          {
+            "reactorUsername": "aref",
+            "reactionValue": 2
+          },
+          {
+            "reactorUsername": "omid",
+            "reactionValue": 3
+          }
+        ],
+        "isSeen": false,
+        "isSent": true,
+        "bannedList": [],
+        "isRemoved": false
+      }
+    ]
+  },
+  "rooms": [
+    {
+      "users": [
+        {
+          "recovery": {
+            "object1": 1,
+            "object2": "36a7460b892f953632899035befedacbd4f8bd33a5ca673155a54b9bffa78935"
+          },
+          "username": "omid",
+          "password": "cdf164486fd6973767dabf8f86a8eff5c9cddf2a2d5e99ebc9eb0ca878846b59",
+          "nickname": "omid",
+          "email": "o@g.c",
+          "highScore": 20,
+          "isOnline": false,
+          "lastSession": {
+            "hour": 23,
+            "minute": 44,
+            "day": 1,
+            "month": 7,
+            "year": 2023
+          },
+          "currentAvatar": 1
+        },
+        {
+          "recovery": {
+            "object1": 2,
+            "object2": "81c70f139f2bd7cf07e53d55c5400e1e59304ecea93d7b8d21ff252bc61021b9"
+          },
+          "username": "aref",
+          "password": "632b27e8bae7d97c441b0c489b03232831fb52b11d434104da870ec78470cfd7",
+          "nickname": "rf",
+          "slogan": "hello",
+          "email": "aref123@email.com",
+          "highScore": 0,
+          "isOnline": false,
+          "lastSession": {
+            "hour": 23,
+            "minute": 44,
+            "day": 1,
+            "month": 7,
+            "year": 2023
+          },
+          "currentAvatar": 2
+        }
+      ],
+      "id": "roomie",
+      "messages": [
+        {
+          "senderUsername": "aref",
+          "hour": 23,
+          "minute": 43,
+          "message": "salam",
+          "reactions": [
+            {
+              "reactorUsername": "aref",
+              "reactionValue": 3
+            }
+          ],
+          "isSeen": false,
+          "isSent": true,
+          "bannedList": [],
+          "isRemoved": false
+        }
+      ]
+    },
+    {
+      "users": [
+        {
+          "recovery": {
+            "object1": 1,
+            "object2": "18ac3e7343f016890c510e93f935261169d9e3f565436429830faf0934f4f8e4"
+          },
+          "username": "aref",
+          "password": "9f9099760b8c9ca2d0a158069f2b6ceb56b887b07e85d2f29173e1aab08abeef",
+          "nickname": "Omid#2004",
+          "email": "agas@f,c",
+          "highScore": 0,
+          "isOnline": false,
+          "lastSession": {
+            "hour": 2,
+            "minute": 6,
+            "day": 2,
+            "month": 7,
+            "year": 2023
+          },
+          "currentAvatar": 0,
+          "friends": [
+            {
+              "requesterName": "omid",
+              "accepterName": "aref",
+              "accept": false
+            }
+          ]
+        },
+        {
+          "recovery": {
+            "object1": 1,
+            "object2": "18ac3e7343f016890c510e93f935261169d9e3f565436429830faf0934f4f8e4"
+          },
+          "username": "aref",
+          "password": "9f9099760b8c9ca2d0a158069f2b6ceb56b887b07e85d2f29173e1aab08abeef",
+          "nickname": "Omid#2004",
+          "email": "agas@f,c",
+          "highScore": 0,
+          "isOnline": false,
+          "lastSession": {
+            "hour": 2,
+            "minute": 6,
+            "day": 2,
+            "month": 7,
+            "year": 2023
+          },
+          "currentAvatar": 0,
+          "friends": [
+            {
+              "requesterName": "omid",
+              "accepterName": "aref",
+              "accept": false
+            }
+          ]
+        },
+        {
+          "recovery": {
+            "object1": 1,
+            "object2": "346df894ad90d4744f027f367b5cda3fd4b4853e28db76d752ade1172262e3a0"
+          },
+          "username": "omid",
+          "password": "9f9099760b8c9ca2d0a158069f2b6ceb56b887b07e85d2f29173e1aab08abeef",
+          "nickname": "Omid#2004",
+          "email": "efaw@gafd,.com",
+          "highScore": 0,
+          "isOnline": false,
+          "lastSession": {
+            "hour": 2,
+            "minute": 6,
+            "day": 2,
+            "month": 7,
+            "year": 2023
+          },
+          "currentAvatar": 0,
+          "friends": [
+            {
+              "requesterName": "omid",
+              "accepterName": "aref",
+              "accept": false
+            }
+          ]
+        }
+      ],
+      "id": "",
+      "messages": []
+    }
+  ],
+  "privateChats": [
+    {
+      "user1": {
+        "recovery": {
+          "object1": 2,
+          "object2": "81c70f139f2bd7cf07e53d55c5400e1e59304ecea93d7b8d21ff252bc61021b9"
+        },
+        "username": "aref",
+        "password": "632b27e8bae7d97c441b0c489b03232831fb52b11d434104da870ec78470cfd7",
+        "nickname": "rf",
+        "slogan": "hello",
+        "email": "aref123@email.com",
+        "highScore": 0,
+        "isOnline": true,
+        "lastSession": {
+          "hour": 23,
+          "minute": 27,
+          "day": 1,
+          "month": 7,
+          "year": 2023
+        },
+        "currentAvatar": 2
+      },
+      "user2": {
+        "recovery": {
+          "object1": 1,
+          "object2": "36a7460b892f953632899035befedacbd4f8bd33a5ca673155a54b9bffa78935"
+        },
+        "username": "omid",
+        "password": "cdf164486fd6973767dabf8f86a8eff5c9cddf2a2d5e99ebc9eb0ca878846b59",
+        "nickname": "omid",
+        "email": "o@g.c",
+        "highScore": 20,
+        "isOnline": false,
+        "lastSession": {
+          "hour": 23,
+          "minute": 40,
+          "day": 1,
+          "month": 7,
+          "year": 2023
+        },
+        "currentAvatar": 1
+      },
+      "id": "aref:omid",
+      "messages": [
+        {
+          "senderUsername": "aref",
+          "hour": 23,
+          "minute": 37,
+          "message": "hello",
+          "reactions": [],
+          "isSeen": false,
+          "isSent": true,
+          "bannedList": [],
+          "isRemoved": false
+        }
+      ]
+    }
+  ]
+}
