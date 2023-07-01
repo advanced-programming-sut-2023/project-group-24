@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Text?>
+<Pane xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="view.controls.lobby.LobbyMenuController"
+      prefHeight="400.0" prefWidth="600.0">
+        <VBox>
+            <HBox>
+                <ImageView fx:id="adminLogo" fitWidth="50" fitHeight="50"/>
+                <Text fx:id="admin" />
+            </HBox>
+            <VBox fx:id="lobbyContainer" spacing="60" />
+            <Button text="Leave Lobby" prefWidth="150" prefHeight="100" onMouseClicked="#leaveLobby" />
+            <Button text="make lobby public" prefWidth="150" prefHeight="100" onMouseClicked="#changeState"/>
+            <Button text="chat" prefWidth="150" prefHeight="100" onMouseClicked="#chat"/>
+        </VBox>
+</Pane>

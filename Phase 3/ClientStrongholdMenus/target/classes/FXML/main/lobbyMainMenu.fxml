@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@../../CSS/lobby.css"
+            fx:controller="view.controls.lobby.LobbyMainMenuController"
+            prefHeight="563.0" prefWidth="900.0" minHeight="563" minWidth="900">
+    <top>
+        <ScrollPane>
+            <VBox spacing="10">
+                <HBox spacing="10" alignment="CENTER">
+                    <Button prefHeight="50" prefWidth="50" styleClass="back-icon" onMouseClicked="#backMainMenu" />
+                    <TextField prefWidth="100" prefHeight="10" promptText="Size" fx:id="lobbySize" />
+                    <TextField prefWidth="100" prefHeight="10" promptText="ID" fx:id="lobbyId" />
+                    <Text text="Private Lobby" styleClass="text" textAlignment="CENTER" />
+                    <CheckBox prefWidth="32" prefHeight="32" minWidth="32" minHeight="32" maxWidth="32" maxHeight="32" fx:id="privateLobby" />
+                    <Button prefHeight="50" prefWidth="50" styleClass="add-button" onMouseClicked="#addLobby" />
+                    <Button prefHeight="50" prefWidth="50" styleClass="refresh-button" onMouseClicked="#refresh" />
+                    <TextField prefHeight="50" prefWidth="100" promptText="search" fx:id="searchBox"/>
+                    <Button prefHeight="50" prefWidth="50" styleClass="search-button" onMouseClicked="#joinPrivate" />
+                </HBox>
+                <VBox fx:id="lobbyContainer" spacing="60" />
+            </VBox>
+        </ScrollPane>
+    </top>
+
+</BorderPane>

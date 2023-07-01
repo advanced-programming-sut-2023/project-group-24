@@ -1,0 +1,67 @@
+package controller;
+
+import controller.network.CommandHandler;
+import controller.network.NodeController;
+import model.Lobby;
+import model.User;
+import model.databases.ChatDatabase;
+import model.databases.Database;
+import model.databases.LobbyDatabase;
+import org.w3c.dom.Node;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class AppController {
+    private ServerSocket serverSocket;
+    private Database database;
+    private ChatDatabase chatDatabase;
+    private LobbyDatabase lobbyDatabase;
+    private ArrayList<Socket> sockets;
+    
+    public AppController() {
+        try {
+            this.serverSocket = new ServerSocket(1717);
+            this.database = new Database();
+            this.chatDatabase = new ChatDatabase();
+            lobbyDatabase = new LobbyDatabase();
+            saveDatabases();
+        } catch (IOException e) {
+            System.out.println("Could not make the serverSocket");
+            e.printStackTrace();
+        }
+    }
+
+    public void start() {
+        sockets = new ArrayList<>();
+        CommandHandler commandHandler = new CommandHandler(database, sockets);
+        commandHandler.start();
+        for (User user : database.getAllUsers()) user.setOnline(false);
+        while (true) {
+            try {
+                Socket socket = serverSocket.accept();
+                System.out.println("New connection form: " + socket.getInetAddress() + ":" + socket.getPort());
+                sockets.add(socket);
+                new NodeController(socket, database, chatDatabase, sockets, lobbyDatabase).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+                break;
+            }
+        }
+    }
+
+    private void saveDatabases() {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                chatDatabase.saveData();
+                database.saveDataIntoFile();
+            }
+        };
+        new Timer().scheduleAtFixedRate(timerTask, 5000, 5000);
+    }
+}

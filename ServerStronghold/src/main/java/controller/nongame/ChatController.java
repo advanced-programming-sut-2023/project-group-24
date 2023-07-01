@@ -53,6 +53,17 @@ public class ChatController implements Controller {
     public void handlePacket(Packet packet) {
         Message message;
         switch (packet.getSubject()) {
+            case "read":
+                System.out.println("entered here");
+                currentChat = chatDatabase.getChatById(currentUser, packet.getArgs()[0]);
+                Packet packet2;
+                if (currentChat instanceof PrivateChat) packet2 = new Packet("chat", "read",
+                        new String[]{currentUser.getUsername(), ((PrivateChat) currentChat).getId(currentUser)},
+                        packet.getValue());
+                else packet2 = new Packet("chat", "read",
+                        new String[]{currentUser.getUsername(), currentChat.getId()}, packet.getValue());
+                sendDataToAllSockets(packet2);
+                break;
             case "send message":
                 currentChat = chatDatabase.getChatById(currentUser, packet.getArgs()[0]);
                 sendMessage(packet.getValue());
@@ -101,6 +112,7 @@ public class ChatController implements Controller {
                 break;
             case "new room":
                 Vector<User> users = new Vector<>();
+                users.add(currentUser);
                 String[] args = packet.getArgs();
                 for (int i = 0; i < args.length - 1; i++) users.add(database.getUserByUsername(args[1 + i]));
                 chatDatabase.getRooms().add(new Room(args[0], users));

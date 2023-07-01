@@ -79,7 +79,9 @@ public class NodeController extends Thread {
     private synchronized void handlePacket(Packet packet) {
         if (packet.getSubject().equals("login")) {
             user = database.getUserByUsername(packet.getValue());
+            user.setOnline(true);
             System.out.println("user " + user.getUsername() + " logged in from port: " + socket.getPort());
+            sendDataToAllSockets(new Packet("database", "login", null, user.getUsername()));
             return;
         }
         switch (packet.getTopic()) {
@@ -99,6 +101,19 @@ public class NodeController extends Thread {
                 ChatController chatController = new ChatController(database, chatDatabase, user, socket, sockets);
                 chatController.handlePacket(packet);
                 break;
+        }
+    }
+
+    public void sendDataToAllSockets(Packet packet) {
+        if (sockets == null) return;
+        for (Socket socket : sockets) {
+            if (socket.equals(this.socket)) continue;
+            try {
+                DataOutputStream stream = new DataOutputStream(socket.getOutputStream());
+                stream.writeUTF(packet.toJson());
+            } catch (IOException e) {
+                System.out.println("couldn't send data to " + socket.getInetAddress() + ":" + socket.getPort());
+            }
         }
     }
 }

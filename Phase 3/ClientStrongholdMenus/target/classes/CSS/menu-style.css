@@ -1,0 +1,378 @@
+@font-face {
+    font-family: "Seagram tfb";
+    src: url("../fonts/Seagram.ttf");
+}
+
+BorderPane {
+    -fx-font-family: 'Seagram%20tfb', serif;
+    -fx-font-size: 20;
+    -fx-font-family: "Seagram tfb";
+    /*-fx-background-size: cover;*/
+}
+
+.password-input .button {
+	-fx-background-color: red;
+}
+
+.text-field {
+	-fx-background-color: transparent;
+	-fx-text-fill: #f97330;
+	-fx-background-radius: 0px;
+	-fx-border-color: transparent transparent #492300 transparent;
+	-fx-prompt-text-fill: #f9733099;
+	-fx-border-width: 2;
+}
+
+.dark-text-field {
+	-fx-text-fill: #7dbf32;
+	-fx-prompt-text-fill: #6aa12b99;
+}
+
+.dark-text-field .text-field {
+	-fx-text-fill: #7dbf32;
+	-fx-prompt-text-fill: #6aa12b99;
+}
+
+.blue-text-field {
+	-fx-text-fill: #3c2bcf;
+	-fx-prompt-text-fill: #3022ab99;
+}
+
+.hyperlink {
+	-fx-text-fill: #804919;
+	-fx-border-color: transparent;
+}
+
+.button {
+	-fx-background-color: transparent;
+	-fx-text-fill: white;
+	-fx-padding: 0px 0px 9px 0px;
+}
+
+.menu-button {
+    -fx-background-image: url("../images/menus/button.jpg");
+    -fx-background-size: stretch;
+}
+
+.menu-button:hover {
+    -fx-background-image: url("../images/menus/button-hover.jpg");
+    -fx-background-size: stretch;
+}
+
+.retry {
+	-fx-background-image: url("../images/login/retry.png");
+    -fx-background-size: stretch;
+}
+
+.back-icon {
+	-fx-background-image: url("../images/menus/back-icon.png");
+	-fx-background-size: stretch;
+}
+
+.retry-black {
+	-fx-background-image: url("../images/menus/retry.png");
+	-fx-background-size: stretch;
+}
+
+.drop-down {
+	-fx-background-image: url("../images/menus/drop-down.png");
+	-fx-background-size: stretch;
+}
+
+.button-image {
+	-fx-background-size: stretch;
+}
+
+.edit {
+	-fx-background-image: url("../images/menus/edit.png");
+	-fx-background-size: stretch;
+}
+
+.check-box {
+    /* default properties */
+    -fx-border-color: #492300 #492300 #492300 #492300;
+    -fx-border-width: 2;
+    -fx-border-radius: 5 5 5 5;
+    selected-box-color: #492300;
+    box-color: transparent;
+    mark-color: transparent;
+}
+
+.check-box:selected > .box {
+	/*-fx-background-insets: 1.1px 0.8px 1px 1.5px;*/
+	-fx-background-insets: 1px 1px 1px 1px;
+	-fx-background-radius: 5 5 5 5;
+    /* background color for selected checkbox */
+    -fx-background-color: selected-box-color;
+}
+
+.check-box > .box {
+	/*-fx-background-insets: 0px 1px 0px 1px;
+	-fx-background-radius: 2 2 2 2;*/
+    /* background color of unselected checkbox */
+    -fx-background-color: box-color;
+}
+
+.check-box:selected > .box > .mark,
+.check-box:indeterminate  > .box > .mark {
+    /* modify mark color */
+    -fx-background-color: mark-color;
+}
+
+.combo-box {
+	-fx-border-color: #492300;
+    -fx-border-width: 0.9 0.9 1.1 0.9;
+    -fx-background-radius: 0, 0, 0, 0;
+    -fx-background-insets: 0, 0, 0, 0;
+    -fx-font-size: 11px;
+    -fx-text-fill: #894300;
+    -fx-text-inner-color: #894300;
+    -fx-selection-bar-text: #794000;
+    -fx-text-base-color: #693300;
+}
+
+.combo-box .content {
+	-fx-background-color: #cfb253;
+}
+
+.combo-box .list-cell {
+    -fx-background: white;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-padding: 3 0 2 7;
+    -fx-cell-size: 30px; 
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #cfb253, #cfb253;
+    -fx-background-insets: 0, 0;
+    /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );*/
+
+}    
+
+.combo-box-popup .list-view .list-cell {
+    -fx-padding: 3 0 2 7;
+    -fx-pref-height: 30;
+
+    /* No alternate highlighting */
+    -fx-background-color: transparent;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: #af9243;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected:hover {
+	-fx-background-color: #bfa24a;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-background-color: #c4aa50;
+    -fx-text-fill: -fx-text-inner-color;
+}
+
+.combo-box-base  {
+    -fx-background-color: #cfb253, #cfb253, #cfb253, #cfb253;
+    -fx-background-radius: 0, 0, 0, 0;
+    -fx-padding: 0;
+}
+
+.combo-box-base:hover {
+    -fx-color: -fx-hover-base;
+}
+
+.combo-box-base:showing {
+    -fx-color: -fx-pressed-base;
+}
+
+.combo-box-base:focused {
+    /*-fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;*/
+    -fx-border-color: #492300bb;
+    -fx-border-width: 0.9 0.9 1.6 0.9;
+    -fx-background-radius: 0, 0, 0, 0;
+    -fx-background-insets: 0, 0, 0, 0;
+}
+
+.combo-box-base:disabled {
+    -fx-opacity: .4;
+}
+
+.scroll-bar {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-bar:vertical {
+	-fx-pref-width: 9px;
+	/*-fx-padding: 3;*/
+}
+
+.scroll-bar:vertical .track {
+    -fx-background: transparent;
+	-fx-background-color: transparent;
+	-fx-background-radius: 0;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background: transparent;
+	-fx-background-color: #f97330aa;
+	-fx-background-radius: 0;
+	-fx-max-width: 2;
+}
+
+.scroll-bar:vertical *.increment-arrow .content, 
+.scroll-bar:vertical *.decrement-arrow .content {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-bar:vertical *.increment-arrow, 
+.scroll-bar:vertical *.decrement-arrow {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+	-fx-display: none;
+	-fx-padding: 0 0 0 0;
+}
+
+
+.scroll-bar:vertical *.increment-button,
+.scroll-bar:vertical *.decrement-button {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+	-fx-display: none;
+	-fx-background-insets: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+	-fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+}
+
+.scroll-pane .corner {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane {
+	-fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: #492300;
+}
+
+.scroll-pane .content {
+	/*-fx-background: transparent;*/
+}
+
+.scroll-pane > .viewport {
+   /*-fx-background: transparent;*/
+}
+
+.leader-board-scroll-pane .scroll-bar:vertical {
+    -fx-unit-increment: 250 ;
+    -fx-block-increment: 500 ;
+}
+
+.text {
+	-fx-text-fill: #f97330;
+	-fx-color: #f97330;
+}
+
+.error {
+	-fx-text-fill: red;
+	-fx-font-size: 11;
+}
+
+.selected {
+	-fx-border-color: #693310;
+	-fx-border-width: 2;
+}
+
+.leader-board-table {
+	-fx-fill: orange;
+}
+
+.pop-up-menu {
+	/*first edition border color: #cfb253;*/
+	-fx-border-radius: 20;
+	-fx-border-width: 2;
+	-fx-border-color: black;
+
+	-fx-effect: innershadow(gaussian, black, 18, 0.2, 0, 0);
+
+	-fx-background-image: url("../images/backgrounds/pop-up-background.jpg");
+    -fx-background-radius: 20;
+    -fx-background-size: stretch;
+}
+
+.choose-map {
+	-fx-border-radius: 20;
+	-fx-border-width: 2;
+	-fx-border-color: black;
+
+	-fx-effect: innershadow(gaussian, black, 18, 0.2, 0, 0);
+
+	-fx-background-image: url("../images/backgrounds/choose-map.jpg");
+    -fx-background-radius: 20;
+    -fx-background-size: stretch;
+}
+
+#login-pane {
+	-fx-background-image: url("../images/backgrounds/login.jpg");
+    -fx-background-size: cover;
+}
+
+#register-pane {
+	-fx-background-image: url("../images/backgrounds/register.jpg");
+    -fx-background-size: cover;
+}
+
+#main-menu-pane {
+	-fx-background-image: url("../images/backgrounds/main-menu.PNG");
+    -fx-background-size: cover;
+}
+
+#profile-pane {
+	-fx-background-image: url("../images/backgrounds/profile.jpg");
+    -fx-background-size: cover;
+}
+
+#leader-board-pane {
+	-fx-background-image: url("../images/backgrounds/leaderboard.jpg");
+    -fx-background-size: cover;
+
+    -fx-border-radius: 20;
+	-fx-border-width: 2;
+	-fx-border-color: black;
+
+	-fx-effect: innershadow(gaussian, black, 18, 0.2, 0, 0);
+}
+
+#change-password {
+	-fx-background-image: url("../images/backgrounds/change-password.jpg");
+    -fx-background-size: cover;
+    -fx-border-radius: 40;
+	-fx-border-width: 2;
+	-fx-border-color: white;
+	-fx-effect: innershadow(gaussian, white, 22, 0.2, 0, 0);
+}
+
+#select-avatar {
+	-fx-background-image: url("../images/backgrounds/select-avatar.jpg");
+    -fx-background-size: cover;
+    -fx-border-radius: 20;
+	-fx-border-width: 2;
+	-fx-border-color: black;
+	-fx-effect: innershadow(gaussian, black, 22, 0.2, 0, 0);
+}
+
+#random-password {
+	-fx-background-image: url("../images/login/random-password.png");
+    -fx-background-size: stretch;
+}
+
+.large-font {
+	-fx-font-size: 30;
+}
+
+.huge-font {
+	-fx-font-size: 70;
+}

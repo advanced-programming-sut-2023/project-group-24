@@ -71,6 +71,11 @@ public class AppController {
 
     private void handleChatCommand(Packet packet) {
         switch (packet.getSubject()) {
+            case "read":
+                System.out.println("entered here");
+                Chat chat1 = chatDatabase.getChatById(database.getUserByUsername(packet.getArgs()[0]), packet.getArgs()[1]);
+                chat1.readMessages(database.getUserByUsername(packet.getArgs()[0]));
+                break;
             case "send message":
                 Chat chat = chatDatabase.getChatById(database.getUserByUsername(packet.getArgs()[0]), packet.getArgs()[1]);
                 LocalDateTime now = LocalDateTime.now();
@@ -105,6 +110,7 @@ public class AppController {
                 break;
             case "new room":
                 Vector<User> users = new Vector<>();
+                users.add(database.getUserByUsername(packet.getValue()));
                 String[] args = packet.getArgs();
                 for (int i = 0; i < args.length - 1; i++) users.add(database.getUserByUsername(args[1 + i]));
                 chatDatabase.getRooms().add(new Room(args[0], users));
@@ -125,6 +131,7 @@ public class AppController {
                 break;
             case "login":
                 database.getUserByUsername(packet.getValue()).setOnline(true);
+                System.out.println("user " + packet.getValue() + "is online: " + database.getUserByUsername(packet.getValue()).isOnline());
                 break;
             case "change username":
                 database.getUserByUsername(packet.getArgs()[0]).setUsername(packet.getValue());
@@ -140,6 +147,9 @@ public class AppController {
                 break;
             case "remove slogan":
                 database.getUserByUsername(packet.getArgs()[0]).setSlogan(null);
+                break;
+            case "set highscore":
+                database.getUserByUsername(packet.getArgs()[0]).setHighScore(Integer.parseInt(packet.getValue()));
                 break;
             case "set avatar":
                 database.getUserByUsername(packet.getArgs()[0]).setCurrentAvatar(Integer.parseInt(packet.getValue()));
@@ -167,8 +177,6 @@ public class AppController {
 
         database = gson.fromJson(packet.getValue(), Database.class);
         System.out.println("database received");
-        for (PropertyChangeListener l : updateListeners)
-            l.propertyChange(new PropertyChangeEvent("", "", 0, 1));
     }
 
     public void saveUserInfo(String username, String password, String nickname, String slogan, String email) {
@@ -192,6 +200,7 @@ public class AppController {
     public void setCurrentUser(String username) {
         currentUser = database.getUserByUsername(username);
         if (currentUser == null) System.out.println("not found");
+        else currentUser.setOnline(true);
     }
 
     public void setCurrentUserPassword(String password) {
