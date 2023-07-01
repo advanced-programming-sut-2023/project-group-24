@@ -33,6 +33,7 @@ public class LoginController implements Controller {
     public LoginMenuMessages loginUser(String username, String password, boolean stayLoggedIn) {
         User user = database.getUserByUsername(username);
         if (user == null) return LoginMenuMessages.USER_NOT_FOUND;
+        else if (user.isOnline()) return LoginMenuMessages.AUTHENTICATION_ERROR;
         else if (!user.isPasswordCorrect(MainController.getSHA256(password))) {
             numberOfIncorrectPassword++;
             return LoginMenuMessages.INCORRECT_PASSWORD;

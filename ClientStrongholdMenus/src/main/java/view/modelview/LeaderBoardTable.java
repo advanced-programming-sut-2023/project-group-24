@@ -15,11 +15,12 @@ public class LeaderBoardTable extends VBox {
         this.getStyleClass().add("leader-board-table");
         this.setAlignment(Pos.TOP_CENTER);
         for (int i = 0; i < 10; i++) {
-            Label rank = createLabel(30, i);
+            Label rank = createLabel(20, i);
             ImageView imageView = createImageView();
-            Label username = createLabel(200, i);
-            Label score = createLabel(50, i);
-            HBox hBox = new HBox(rank, imageView, username, score);
+            Label username = createLabel(100, i);
+            Label score = createLabel(30, i);
+            Label lastSeen = createLabel(100, i);
+            HBox hBox = new HBox(rank, imageView, username, score, lastSeen);
             hBox.setSpacing(10);
             hBox.setPadding(new Insets(5));
             setHBoxColor(i, hBox);
@@ -36,8 +37,8 @@ public class LeaderBoardTable extends VBox {
 
     private ImageView createImageView() {
         ImageView imageView = new ImageView();
-        imageView.setFitHeight(0);
-        imageView.setFitWidth(0);
+        imageView.setFitHeight(30);
+        imageView.setFitWidth(30);
         return imageView;
     }
 
@@ -58,11 +59,13 @@ public class LeaderBoardTable extends VBox {
                 ((Label) hBox.getChildren().get(0)).setText(String.valueOf(info.get(i).getRank()));
                 ((Label) hBox.getChildren().get(2)).setText(String.valueOf(info.get(i).getUsername()));
                 ((Label) hBox.getChildren().get(3)).setText(String.valueOf(info.get(i).getHighscore()));
+                ((Label) hBox.getChildren().get(4)).setText(info.get(i).getLastSeen());
             } else {
                 ((ImageView) hBox.getChildren().get(1)).setImage(null);
                 ((Label) hBox.getChildren().get(0)).setText("");
                 ((Label) hBox.getChildren().get(2)).setText("");
                 ((Label) hBox.getChildren().get(3)).setText("");
+                ((Label) hBox.getChildren().get(4)).setText("");
             }
         }
     }

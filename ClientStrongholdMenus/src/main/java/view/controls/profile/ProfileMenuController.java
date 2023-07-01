@@ -139,7 +139,7 @@ public class ProfileMenuController extends Control {
     }
 
     private void setUpSlogan() {
-        if (!profileController.getCurrentUser("slogan").equals("")) customSlogan.setSelected(true);
+        if (profileController.getCurrentUser("slogan") == null) customSlogan.setSelected(true);
         sloganContainer.visibleProperty().bind(customSlogan.selectedProperty());
         customSlogan.setOnAction((e) -> sloganField.setText(""));
     }

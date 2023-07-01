@@ -25,11 +25,7 @@ public class LeaderBoardController implements Controller {
     public ArrayList<UserInfo> showTenUsers() {
         ArrayList<UserInfo> output = new ArrayList<>();
         for (int i = row * 10; i < (row + 1) * 10 && i < users.size(); i++)
-            output.add(new UserInfo(
-                    users.get(i).getUsername(),
-                    users.get(i).getHighScore(),
-                    i + 1)
-            );
+            output.add(new UserInfo(users.get(i), i + 1));
         return output;
     }
 

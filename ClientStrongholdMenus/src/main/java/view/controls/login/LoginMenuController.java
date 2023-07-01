@@ -43,19 +43,22 @@ public class LoginMenuController extends Control {
         else if (captchaField.getText().equals("")) showError("Empty Field", "Captcha field is empty");
         else if (loginController.isCaptchaIncorrect(captchaField.getText()))
             showError("Incorrect Captcha", "The captcha is incorrect");
-        else switch (loginController.loginUser(usernameField.getText(), passwordInput.getText(),false)) {
-            case USER_NOT_FOUND:
-                showError("Login Unsuccessful", "No users with this username were found.");
-                break;
-            case INCORRECT_PASSWORD:
-                showError("Login Unsuccessful", "The password is incorrect");
-                loginController.disableInputIncorrectPassword(mainPane);
-                break;
-            case SUCCESS:
-                getApp().setCurrentUser(usernameField.getText());
-                getApp().run(MenusName.MAIN_MENU);
-                break;
-        }
+        else switch (loginController.loginUser(usernameField.getText(), passwordInput.getText(), false)) {
+                case USER_NOT_FOUND:
+                    showError("Login Unsuccessful", "No users with this username were found.");
+                    break;
+                case AUTHENTICATION_ERROR:
+                    showError("Login Unsuccessful", "Authentication error");
+                    break;
+                case INCORRECT_PASSWORD:
+                    showError("Login Unsuccessful", "The password is incorrect");
+                    loginController.disableInputIncorrectPassword(mainPane);
+                    break;
+                case SUCCESS:
+                    getApp().setCurrentUser(usernameField.getText());
+                    getApp().run(MenusName.MAIN_MENU);
+                    break;
+            }
     }
 
     @Override

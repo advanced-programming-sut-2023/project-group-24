@@ -131,6 +131,7 @@ public class AppController {
                 break;
             case "login":
                 database.getUserByUsername(packet.getValue()).setOnline(true);
+                System.out.println("user " + packet.getValue() + "is online: " + database.getUserByUsername(packet.getValue()).isOnline());
                 break;
             case "change username":
                 database.getUserByUsername(packet.getArgs()[0]).setUsername(packet.getValue());
@@ -173,8 +174,6 @@ public class AppController {
 
         database = gson.fromJson(packet.getValue(), Database.class);
         System.out.println("database received");
-        for (PropertyChangeListener l : updateListeners)
-            l.propertyChange(new PropertyChangeEvent("", "", 0, 1));
     }
 
     public void saveUserInfo(String username, String password, String nickname, String slogan, String email) {
@@ -198,6 +197,7 @@ public class AppController {
     public void setCurrentUser(String username) {
         currentUser = database.getUserByUsername(username);
         if (currentUser == null) System.out.println("not found");
+        else currentUser.setOnline(true);
     }
 
     public void setCurrentUserPassword(String password) {
