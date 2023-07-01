@@ -82,12 +82,12 @@ public class AppController {
                             new GameMenu(kingdomController, unitController, buildingController, gameController);
                     gameMenu.run();
                 }
-                case SHOW_MAP_MENU -> {
-                    ShowMapController showMapController = new ShowMapController(gameDatabase);
-                    MiniMap.gameDatabase = gameDatabase;
-                    ShowMapMenu showMapMenu = new ShowMapMenu(showMapController, args);
-                    showMapMenu.run();
-                }
+//                case SHOW_MAP_MENU -> {
+//                    ShowMapController showMapController = new ShowMapController(gameDatabase);
+//                    MiniMap.gameDatabase = gameDatabase;
+//                    ShowMapMenu showMapMenu = new ShowMapMenu(showMapController, args);
+//                    showMapMenu.run();
+//                }
                 case TRADE_MENU -> {
                     TradeController tradeController = new TradeController(gameDatabase);
                     KingdomController kingdomController = new KingdomController(gameDatabase);
