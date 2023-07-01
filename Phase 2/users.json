@@ -1,0 +1,36 @@
+[
+  {
+    "recovery": {
+      "object1": 2,
+      "object2": "81c70f139f2bd7cf07e53d55c5400e1e59304ecea93d7b8d21ff252bc61021b9"
+    },
+    "username": "arefa",
+    "password": "fd3adff01855a5bb4a2c8a23158791eb859db5fc4bc358803075d8ce820c5e10",
+    "nickname": "are",
+    "slogan": "asdasd",
+    "email": "aref123@email.com",
+    "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 1,
+      "object2": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb"
+    },
+    "username": "a",
+    "password": "9ded7c025458ef543bee06fa8df22836b413d344f4b9b1c991d3c218ea0c8626",
+    "nickname": "a",
+    "email": "a@aaa",
+    "highScore": 0
+  },
+  {
+    "recovery": {
+      "object1": 1,
+      "object2": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb"
+    },
+    "username": "b",
+    "password": "9ded7c025458ef543bee06fa8df22836b413d344f4b9b1c991d3c218ea0c8626",
+    "nickname": "b",
+    "email": "a@aaa",
+    "highScore": 0
+  }
+]
