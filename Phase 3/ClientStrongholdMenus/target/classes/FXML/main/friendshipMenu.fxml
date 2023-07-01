@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controls.main.FriendshipMenuController">
+   <children>
+      <TextField fx:id="searchTab" layoutX="14.0" layoutY="26.0" promptText="User Id">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font></TextField>
+      <Button fx:id="search" layoutX="82.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#search" text="Find">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font></Button>
+      <VBox fx:id="following" layoutX="468.0" layoutY="73.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ff0000;" />
+      <VBox fx:id="myFriend" layoutX="344.0" layoutY="73.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #00ff00;" />
+      <VBox fx:id="request"  layoutX="216.0" layoutY="73.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #00ffff;" />
+      <Label layoutX="236.0" layoutY="52.0" text="Requests" textAlignment="CENTER">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="359.0" layoutY="52.0" text="MyFriends">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="492.0" layoutY="51.0" text="I Follow">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="image" fitHeight="101.0" fitWidth="150.0" layoutX="14.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="name" layoutX="49.0" layoutY="214.0" prefHeight="18.0" prefWidth="82.0" text="Users Name">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="score" layoutX="75.0" layoutY="239.0" text="Score:">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="39.0" layoutY="273.0" onMouseClicked="#send" mnemonicParsing="false" style="-fx-background-color: #aa23f3;" text="Send Request">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

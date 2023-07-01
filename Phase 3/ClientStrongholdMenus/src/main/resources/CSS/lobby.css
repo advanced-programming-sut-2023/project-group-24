@@ -1,0 +1,18 @@
+.add-button {
+    -fx-background-image: url("../images/icons/plus.png");
+    -fx-background-size: stretch;
+}
+
+.back-icon {
+    -fx-background-image: url("../images/menus/back-icon.png");
+    -fx-background-size: stretch;
+}
+
+.refresh-button {
+    -fx-background-image: url("../images/icons/refresh.png");
+    -fx-background-size: stretch;
+}
+.search-button {
+    -fx-background-image: url("../images/icons/search.png");
+    -fx-background-size: stretch;
+}

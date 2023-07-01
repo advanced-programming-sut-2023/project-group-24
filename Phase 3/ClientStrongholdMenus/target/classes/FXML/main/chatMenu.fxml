@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      stylesheets="@../../CSS/chat.css"
+      styleClass="main-container"
+      fx:controller="view.controls.main.ChatMenuController"
+      prefHeight="600.0" prefWidth="1100.0" maxHeight="600">
+
+    <ScrollPane minWidth="200" fx:id="chatsScrollPane">
+        <VBox minWidth="180" spacing="10">
+            <padding>
+                <Insets top="10" bottom="10" left="5" right="5"/>
+            </padding>
+            <HBox spacing="5" alignment="CENTER">
+                <TextField minWidth="140" maxWidth="140" promptText="new private chat" minHeight="30" fx:id="privateChat"/>
+                <Button maxWidth="25" maxHeight="25" minWidth="25" minHeight="25" styleClass="new" onMouseClicked="#newPrivateChat"/>
+            </HBox>
+            <HBox spacing="5" alignment="CENTER">
+                <TextField minWidth="140" maxWidth="140" promptText="new room" minHeight="30" fx:id="room"/>
+                <Button maxWidth="25" maxHeight="25" minWidth="25" minHeight="25" styleClass="new"
+                        onMouseClicked="#newRoom"/>
+            </HBox>
+            <VBox minWidth="180" fx:id="chatsContainer"/>
+        </VBox>
+    </ScrollPane>
+
+    <VBox minWidth="900">
+        <HBox minHeight="50" styleClass="chat-name" alignment="CENTER">
+            <Label text="tmp" fx:id="chatName"/>
+        </HBox>
+        <ScrollPane minHeight="480" maxHeight="480" fx:id="messageScrollPane" styleClass="message-container">
+            <VBox fx:id="messageContainer" spacing="5">
+                <padding>
+                    <Insets top="5" right="5" bottom="10" left="5"/>
+                </padding>
+            </VBox>
+        </ScrollPane>
+        <HBox minHeight="70" alignment="CENTER_LEFT" spacing="30" fx:id="sendContainer" styleClass="send-container">
+            <padding>
+                <Insets top="10" right="10" left="10" bottom="10"/>
+            </padding>
+            <TextArea minWidth="820" maxWidth="820" minHeight="50" maxHeight="150" fx:id="messageToSend"/>
+            <Button minHeight="30" minWidth="30" maxHeight="30" maxWidth="30" styleClass="send-button"
+                    fx:id="sendButton" onMouseClicked="#send"/>
+        </HBox>
+    </VBox>
+
+</HBox>
