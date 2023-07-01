@@ -6,6 +6,7 @@ import model.Packet;
 import model.User;
 import model.chat.Chat;
 import model.chat.Message;
+import model.chat.PrivateChat;
 import model.chat.Reaction;
 import model.databases.ChatDatabase;
 import model.databases.Database;
@@ -57,10 +58,15 @@ public class ChatController implements Controller {
         switch (packet.getSubject()) {
             case "send message":
                 System.out.println(packet.getArgs()[0]);
-                currentChat = chatDatabase.getChatById(packet.getArgs()[0]);
+                currentChat = chatDatabase.getChatById(currentUser, packet.getArgs()[0]);
                 sendMessage(packet.getValue());
-                sendDataToAllSockets(new Packet("chat", "send message",
-                        new String[]{currentUser.getUsername(), currentChat.getId()}, packet.getValue()));
+                Packet packet1;
+                if (currentChat instanceof PrivateChat) packet1 = new Packet("chat", "send message",
+                        new String[]{currentUser.getUsername(), ((PrivateChat) currentChat).getId(currentUser)},
+                        packet.getValue());
+                else packet1 = new Packet("chat", "send message",
+                        new String[]{currentUser.getUsername(), currentChat.getId()}, packet.getValue());
+                sendDataToAllSockets(packet1);
                 break;
             case "edit":
                 currentChat = chatDatabase.getChatById(packet.getArgs()[1]);
@@ -90,6 +96,13 @@ public class ChatController implements Controller {
                 message.getReactions().add(new Reaction(packet.getArgs()[3], Integer.parseInt(packet.getArgs()[2])));
                 sendDataToAllSockets(packet);
                 break;
+            case "new private chat":
+                User user = database.getUserByUsername(packet.getArgs()[1]);
+                PrivateChat privateChat = new PrivateChat(
+                        currentUser.getUsername() + ":" + user.getUsername(), currentUser, user);
+                chatDatabase.getPrivateChats().add(privateChat);
+                System.out.println("added the private chat");
+                sendDataToAllSockets(packet);
         }
     }
 

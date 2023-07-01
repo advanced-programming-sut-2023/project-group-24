@@ -11,7 +11,20 @@
       prefHeight="600.0" prefWidth="1100.0" maxHeight="600">
 
     <ScrollPane minWidth="200" fx:id="chatsScrollPane">
-        <VBox minWidth="180" fx:id="chatsContainer"/>
+        <VBox minWidth="180" spacing="10">
+            <padding>
+                <Insets top="10" bottom="10" left="5" right="5"/>
+            </padding>
+            <HBox spacing="5" alignment="CENTER">
+                <TextField minWidth="140" maxWidth="140" promptText="new private chat" minHeight="30" fx:id="privateChat"/>
+                <Button maxWidth="25" maxHeight="25" minWidth="25" minHeight="25" styleClass="new" onMouseClicked="#newPrivateChat"/>
+            </HBox>
+            <HBox spacing="5" alignment="CENTER">
+                <TextField minWidth="140" maxWidth="140" promptText="new room" minHeight="30"/>
+                <Button maxWidth="25" maxHeight="25" minWidth="25" minHeight="25" styleClass="new"/>
+            </HBox>
+            <VBox minWidth="180" fx:id="chatsContainer"/>
+        </VBox>
     </ScrollPane>
 
     <VBox minWidth="900">

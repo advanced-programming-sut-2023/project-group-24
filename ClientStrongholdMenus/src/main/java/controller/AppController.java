@@ -10,6 +10,7 @@ import model.User;
 import model.UserInfo;
 import model.chat.Chat;
 import model.chat.Message;
+import model.chat.PrivateChat;
 import model.chat.Reaction;
 import model.databases.ChatDatabase;
 import model.databases.Database;
@@ -73,7 +74,7 @@ public class AppController {
     private void handleChatCommand(Packet packet) {
         switch (packet.getSubject()) {
             case "send message":
-                Chat chat = chatDatabase.getChatById(packet.getArgs()[1]);
+                Chat chat = chatDatabase.getChatById(database.getUserByUsername(packet.getArgs()[0]), packet.getArgs()[1]);
                 LocalDateTime now = LocalDateTime.now();
                 chat.addMessage(new Message(packet.getArgs()[0], now.getHour(), now.getMinute(), packet.getValue()));
                 break;
@@ -96,6 +97,12 @@ public class AppController {
                         break;
                     }
                 reactMessage.getReactions().add(new Reaction(packet.getArgs()[3], Integer.parseInt(packet.getArgs()[2])));
+            case "new private chat":
+                User friend = database.getUserByUsername(packet.getArgs()[1]);
+                User currentUser = database.getUserByUsername(packet.getArgs()[0]);
+                PrivateChat privateChat = new PrivateChat(
+                        currentUser.getUsername() + ":" + friend.getUsername(), currentUser, friend);
+                chatDatabase.getPrivateChats().add(privateChat);
         }
     }
 

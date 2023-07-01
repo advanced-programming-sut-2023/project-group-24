@@ -115,4 +115,10 @@ public class User implements Comparable<User> {
     public int compareTo(User o) {
         return o.highScore - highScore;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof User)) return false;
+        return username.equals(((User) obj).getUsername());
+    }
 }

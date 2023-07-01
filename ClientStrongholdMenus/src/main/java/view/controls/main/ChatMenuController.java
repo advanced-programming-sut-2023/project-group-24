@@ -7,10 +7,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -37,6 +34,7 @@ public class ChatMenuController extends Control {
     public Button sendButton;
     public VBox messageContainer;
     public Label chatName;
+    public TextField privateChat;
 
     private ChatController chatController;
 
@@ -60,6 +58,7 @@ public class ChatMenuController extends Control {
         Vector<Message> messages = chatController.readAllMessages();
         if (messages == null) return;
         messageContainer.getChildren().clear();
+        chatsContainer.getChildren().clear();
         for (Message message : messages) {
             MessageBox messageBox = chatController.getMessageBox(message);
             messageContainer.getChildren().add(messageBox);
@@ -70,7 +69,17 @@ public class ChatMenuController extends Control {
             messageBox.getCrying().setOnMouseClicked(mouseEvent -> react(message, 2));
             messageBox.getHeart().setOnMouseClicked(mouseEvent -> react(message, 3));
         }
+        for (Chat chat : chatController.getAllChats()) {
+            ChatBox chatBox = new ChatBox(chatController.getChatName(chat));
+            chatsContainer.getChildren().add(chatBox);
+            chatBox.setOnMouseClicked(mouseEvent -> selectChat(chatBox.getText()));
+        }
         messageScrollPane.setVvalue(1);
+    }
+
+    private void selectChat(String chat) {
+        chatController.selectChat(chat);
+        update();
     }
 
     private void react(Message message, int i) {
@@ -98,5 +107,9 @@ public class ChatMenuController extends Control {
         chatController.sendMessage(messageToSend.getText());
         messageToSend.setText("");
         update();
+    }
+
+    public void newPrivateChat() {
+        if (chatController.newPrivateChat(privateChat.getText())) update();
     }
 }

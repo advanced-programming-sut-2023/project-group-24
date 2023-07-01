@@ -12,9 +12,11 @@ import model.chat.PrivateChat;
 import model.chat.Reaction;
 import model.databases.ChatDatabase;
 import model.databases.Database;
+import view.enums.messages.CommonMessages;
 import view.modelview.MessageBox;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class ChatController implements Controller {
@@ -54,13 +56,27 @@ public class ChatController implements Controller {
         LocalDateTime now = LocalDateTime.now();
         Message message1 = new Message(currentUser.getUsername(), now.getHour(), now.getMinute(), message);
         currentChat.addMessage(message1);
-        Packet packet = new Packet("chat", "send message", new String[]{currentChat.getId()}, message);
+        Packet packet;
+        if (currentChat instanceof PrivateChat)
+            packet = new Packet("chat", "send message",
+                    new String[]{((PrivateChat) currentChat).getId(currentUser)}, message);
+        else packet = new Packet("chat", "send message", new String[]{currentChat.getId()}, message);
+        System.out.println(packet.getArgs()[0]);
+        System.out.println(currentChat.getClass());
+        System.out.println(currentChat.getId());
+        System.out.println(currentChat instanceof PrivateChat);
+        System.out.println(((PrivateChat) currentChat).getId(currentUser));
         ioHandler.sendPacket(packet);
     }
 
     public String getChatName() {
         if (currentChat instanceof PrivateChat) return ((PrivateChat) currentChat).getId(currentUser);
         return currentChat.getId();
+    }
+
+    public String getChatName(Chat chat) {
+        if (chat instanceof PrivateChat) return ((PrivateChat) chat).getId(currentUser);
+        return chat.getId();
     }
 
     public void edit(Message message, String text) {
@@ -95,5 +111,27 @@ public class ChatController implements Controller {
         Packet packet = new Packet("chat", "react", new String[]{String.valueOf(currentChat.getMessages().indexOf(message)),
                 currentChat.getId(), String.valueOf(i), currentUser.getUsername()}, "");
         ioHandler.sendPacket(packet);
+    }
+
+    public boolean newPrivateChat(String text) {
+        User user = database.getUserByUsername(text);
+        if (user == null) return false;
+        for (PrivateChat privateChat : chatDatabase.getPrivateChats())
+            if (privateChat.getId(currentUser).equals(text)) return false;
+        PrivateChat privateChat = new PrivateChat(
+                currentUser.getUsername() + ":" + user.getUsername(), currentUser, user);
+        chatDatabase.getPrivateChats().add(privateChat);
+        Packet packet = new Packet("chat", "new private chat", new String[] {currentUser.getUsername(), text}, "");
+        ioHandler.sendPacket(packet);
+        return true;
+    }
+
+    public Vector<Chat> getAllChats() {
+        return chatDatabase.getAllChats(currentUser);
+    }
+
+    public void selectChat(String chat) {
+        Chat selectedChat = chatDatabase.getChatById(currentUser, chat);
+        if (selectedChat != null) currentChat = selectedChat;
     }
 }
