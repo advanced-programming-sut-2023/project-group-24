@@ -74,7 +74,7 @@ public class LobbyMenuController extends Control {
     }
 
     public void chat() throws Exception {
+        getApp().createRoom();
         getApp().run(MenusName.CHAT_MENU);
-//        getApp().createRoom();
     }
 }

@@ -42,22 +42,25 @@ public class ChatMenu extends Application {
 //        dialog.show();
         Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
-        if (stage.getScene() != null) {
-            dialog.initOwner(stage);
-        }
+//        if (stage.getScene() != null) {
+////            dialog.initOwner(stage);
+////        }
 
         URL url = LoginMenu.class.getResource("/FXML/main/chatMenu.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(url);
         Pane pane = fxmlLoader.load();
         ((Control) fxmlLoader.getController()).setUp(dialog, app);
 
+//        Pane pane = new Pane();
+
         Scene scene = new Scene(pane);
         scene.setFill(Color.TRANSPARENT);
         dialog.setScene(scene);
         dialog.setTitle("Literally Telegram");
         dialog.getIcons().add(new Image(getClass().getResource("/images/icons/telegram.png").toExternalForm()));
-        dialog.setWidth(800);
+        dialog.setWidth(1100);
         dialog.setHeight(600);
+        dialog.setResizable(false);
         dialog.show();
     }
 }

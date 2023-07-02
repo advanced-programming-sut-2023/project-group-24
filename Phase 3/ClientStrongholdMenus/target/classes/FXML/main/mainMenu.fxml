@@ -17,17 +17,17 @@
             <HBox minWidth="420" maxWidth="420" prefWidth="420" alignment="CENTER">
                 <Text text="Stronghold" textAlignment="CENTER" fx:id="title"/>
             </HBox>
-            <Button prefHeight="50" prefWidth="350" styleClass="menu-button" text="Enter Game" fx:id="enterGame"
+            <Button prefHeight="50" prefWidth="420" styleClass="menu-button" text="Enter Game" fx:id="enterGame"
                     onMouseClicked="#enterGame"/>
-            <Button prefHeight="50" prefWidth="350" styleClass="menu-button" text="Create Map" fx:id="createMap"
+            <Button prefHeight="50" prefWidth="420" styleClass="menu-button" text="Create Map" fx:id="createMap"
                     onMouseClicked="#createMap"/>
-            <Button prefHeight="50" prefWidth="350" styleClass="menu-button" text="Profile Menu"
+            <Button prefHeight="50" prefWidth="420" styleClass="menu-button" text="Profile Menu"
                     onMouseClicked="#profileMenu" fx:id="profileMenu"/>
-            <Button prefHeight="50" prefWidth="350" styleClass="menu-button" text="Chat" onMouseClicked="#chat"
+            <Button prefHeight="50" prefWidth="420" styleClass="menu-button" text="Chat" onMouseClicked="#chat"
                     fx:id="chat"/>
-            <Button prefHeight="50" prefWidth="350" styleClass="menu-button" text="Friends" onMouseClicked="#friend"
+            <Button prefHeight="50" prefWidth="420" styleClass="menu-button" text="Friends" onMouseClicked="#friend"
                     fx:id="friends"/>
-            <Button prefHeight="50" prefWidth="350" styleClass="menu-button" text="Exit" onMouseClicked="#exit"
+            <Button prefHeight="50" prefWidth="420" styleClass="menu-button" text="Exit" onMouseClicked="#exit"
                     fx:id="exit"/>
         </VBox>
     </center>

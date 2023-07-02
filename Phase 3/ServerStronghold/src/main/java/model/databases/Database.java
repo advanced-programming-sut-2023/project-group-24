@@ -90,6 +90,12 @@ public class Database {
         Type allUsersType = new TypeToken<Vector<User>>() {
         }.getType();
 
+        Database database = gson.fromJson(new SQLiteDatabase().get(), Database.class);
+        if (database != null) {
+            allUsers = database.getAllUsers();
+            return;
+        }
+
         try {
             allUsers = gson.fromJson(fileToString(FILE_TO_SAVE_ALL_USERS), allUsersType);
             stayedLoggedInUser = gson.fromJson(fileToString(FILE_TO_SAVE_STAYED_LOGGED_IN_USER), User.class);
@@ -108,6 +114,10 @@ public class Database {
             saveObjectToFile(FILE_TO_SAVE_ALL_USERS, allUsers);
             saveObjectToFile(FILE_TO_SAVE_STAYED_LOGGED_IN_USER, stayedLoggedInUser);
             if (maps != null && maps.size() > 0) saveObjectToFile(FILE_TO_SAVE_A_MAP, maps.get(0));
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.setPrettyPrinting();
+            Gson gson = gsonBuilder.create();
+            new SQLiteDatabase().insert("database", gson.toJson(this));
         } catch (IOException ignored) {
             System.out.println("error");
         }
